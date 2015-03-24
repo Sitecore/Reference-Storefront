@@ -1,0 +1,51 @@
+----item----
+version: 1
+id: {98D6E8E5-0977-4C51-B6C8-C180CC10F1BC}
+database: master
+path: /sitecore/layout/Layouts/Commerce Layout Blank
+parent: {75CC5CE4-8979-4008-9D3C-806477D57619}
+name: Commerce Layout Blank
+master: {00000000-0000-0000-0000-000000000000}
+template: {3A45A723-64EE-4919-9D41-02FD40FD1466}
+templatekey: Layout
+
+----field----
+field: {A036B2BC-BA04-44F6-A75F-BAE6CD242ABF}
+name: Path
+key: path
+content-length: 33
+
+/Views/Shared/_LayoutBlank.cshtml
+----version----
+language: en
+version: 1
+revision: ef0d058f-7001-43ca-8315-ceb08e3b9cc2
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20130410T115534
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+ef0d058f-7001-43ca-8315-ceb08e3b9cc2
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20130410T120143:635011921039970894
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

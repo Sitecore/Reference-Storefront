@@ -1,0 +1,45 @@
+﻿@*//-----------------------------------------------------------------------
+// Copyright 2015 Sitecore Corporation A/S
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+// except in compliance with the License. You may obtain a copy of the License at
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software distributed under the
+// License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+// either express or implied. See the License for the specific language governing permissions
+// and limitations under the License.
+// -------------------------------------------------------------------------------------------*@
+
+@using Sitecore.Reference.Storefront.Managers;
+@{
+    var continueShoppingLabel = Html.Sitecore().Field("PrevButtonLabel", Html.Sitecore().CurrentItem.Children["Delivery"]);
+    var backToDelivery = Html.Sitecore().Field("PrevButtonLabel", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var backToBilling = Html.Sitecore().Field("PrevButtonLabel", Html.Sitecore().CurrentItem.Children["Confirm"]);
+
+    var toBillingLabel = Html.Sitecore().Field("NextButtonLabel", Html.Sitecore().CurrentItem.Children["Delivery"]);
+    var toConfirmLabel = Html.Sitecore().Field("NextButtonLabel", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var placeOrderLabel = Html.Sitecore().Field("NextButtonLabel", Html.Sitecore().CurrentItem.Children["Confirm"]);
+    var processing = @Html.Sitecore().Field("Processing Label", Html.Sitecore().CurrentItem);
+}
+<div class="container">
+    <div class="row">
+        <div id="btn-delivery-prev" class="col-md-6 col-sm-6 col-xs-6 chk-prev" style="display: none;">
+            <a class="btn btn-info" href="@StorefrontManager.StorefrontHome">@continueShoppingLabel</a>
+        </div>
+        <div id="btn-billing-prev" class="col-md-6 col-sm-6 col-xs-6 chk-prev" style="display: none;">
+            <button id="BackToDeliveryButton" data-loading-text="@processing" onclick="switchingCheckoutStep('shipping')" class="btn btn-info">@backToDelivery</button>
+        </div>
+        <div id="btn-confirm-prev" class="col-md-6 col-sm-6 col-xs-6 chk-prev" style="display: none;">
+            <button id="BackToBillingButton" data-loading-text="@processing" onclick="switchingCheckoutStep('billing')" class="btn btn-info">@backToBilling</button>
+        </div>
+        <div id="btn-delivery-next" class="col-md-6 col-sm-6 col-xs-6 chk-next" style="display: none;">
+            <button id="ToBillingButton" data-loading-text="@processing" onclick="switchingCheckoutStep('billing')" class="btn btn-success" data-bind="enable: enableToBilling">@toBillingLabel</button>
+        </div>
+        <div id="btn-billing-next" class="col-md-6 col-sm-6 col-xs-6 chk-next" style="display: none;">
+            <button id="ToConfirmButton" data-loading-text="@processing" onclick="setPaymentMethods()" class="btn btn-success" data-bind="enable: enableToConfirm">@toConfirmLabel</button>
+        </div>
+        <div id="btn-confirm-next" class="col-md-6 col-sm-6 col-xs-6 chk-next" style="display: none;">
+            <button id="PlaceOrderButton" data-loading-text="@processing" onclick="submitOrder()" class="btn btn-success">@placeOrderLabel</button>
+        </div>
+    </div>
+</div>

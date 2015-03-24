@@ -1,0 +1,107 @@
+----item----
+version: 1
+id: {F084B649-7F37-4467-8F5D-224CB9C6F0B9}
+database: master
+path: /sitecore/templates/Storefront/Rendering Datasources/Product List Header/__Standard Values
+parent: {F73F2DD4-F64F-4134-90B2-0B16E37DF630}
+name: __Standard Values
+master: {00000000-0000-0000-0000-000000000000}
+template: {F73F2DD4-F64F-4134-90B2-0B16E37DF630}
+templatekey: Product List Header
+
+----field----
+field: {B06F5434-7BE9-444A-A0BE-2BD6FA01E4F5}
+name: Results Per Page Values
+key: results per page values
+content-length: 11
+
+12|18|24|30
+----version----
+language: en
+version: 1
+revision: 9bbc6392-78b5-4305-bec1-1d1e0192f445
+
+----field----
+field: {63E6284B-2F67-4F0C-84B3-17A0C6F0A80D}
+name: Sort By
+key: sort by
+content-length: 8
+
+Sort by:
+----field----
+field: {05C11D25-1E1D-4768-9513-A9102C382CF3}
+name: Showing
+key: showing
+content-length: 7
+
+Showing
+----field----
+field: {367AD7F0-816C-46E4-8A66-21A368230057}
+name: Results Per Page
+key: results per page
+content-length: 17
+
+Results per page:
+----field----
+field: {A0186324-66D4-4B05-81C2-811DC35BD05E}
+name: Ascending
+key: ascending
+content-length: 5
+
+(Asc)
+----field----
+field: {EC21D0D2-25EF-4DB2-97CB-DCA5CF0C5C09}
+name: Descending
+key: descending
+content-length: 6
+
+(Desc)
+----field----
+field: {8E44D8A6-6B06-4F72-A46A-349206C5BC8E}
+name: Of
+key: of
+content-length: 2
+
+of
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20150113T014150Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+9bbc6392-78b5-4305-bec1-1d1e0192f445
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150113T144611:635567571711959797Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

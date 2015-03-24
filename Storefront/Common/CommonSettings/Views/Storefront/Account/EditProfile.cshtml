@@ -1,0 +1,124 @@
+﻿@*//-----------------------------------------------------------------------
+// Copyright 2015 Sitecore Corporation A/S
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+// except in compliance with the License. You may obtain a copy of the License at
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software distributed under the
+// License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+// either express or implied. See the License for the specific language governing permissions
+// and limitations under the License.
+// -------------------------------------------------------------------------------------------*@
+
+@using Sitecore.Reference.Storefront.Managers;
+@model ProfileModel
+@{
+    //Labels
+    var currentPage = Html.Sitecore().CurrentItem;
+    var firstName = Html.Sitecore().Field("First Name", currentPage);
+    var surname = Html.Sitecore().Field("Surname", currentPage);
+    var email = Html.Sitecore().Field("Email", currentPage);
+    var repeatEmail = Html.Sitecore().Field("Repeat Email", currentPage);    
+    var saveChanges = Html.Sitecore().Field("Save Changes Button", currentPage);
+    var savingChanges = Html.Sitecore().Field("Saving Changes Button", currentPage);
+    var cancel = Html.Sitecore().Field("Cancel Button", currentPage);
+    var backtoMyAccount = Html.Sitecore().Field("Back To My Account", currentPage);
+
+    var telephoneNumberPH = Html.Sitecore().Field("Telephone Number Placeholder", currentPage);   
+    var emailPH = Html.Sitecore().Field("Email Placeholder", currentPage);
+    var firstNamePH = Html.Sitecore().Field("First Name Placeholder", currentPage);
+    var lastNamePH = Html.Sitecore().Field("Last Name Placeholder", currentPage);
+
+    var firstNameRequiredMsg = Html.Sitecore().Field("First Name Required Message", currentPage);
+    var lastNameRequiredMsg = Html.Sitecore().Field("Last Name Required Message", currentPage);
+    var emailRequiredMsg = Html.Sitecore().Field("Email Required Message", currentPage);
+    var telephoneRequiredMsg = Html.Sitecore().Field("Telephone Number Required Message", currentPage);  
+}
+
+@using (Ajax.BeginForm("UpdateProfile", "Account", null, new AjaxOptions { OnBegin = "SetSavingProfileButton", OnSuccess = "UpdateProfileSuccess", OnFailure = "UpdateProfileFailure", HttpMethod = "Post" }, new { @id = "UpdateProfileForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="wrap-main-content">
+        <!-- CONTENT CONTAINER -->
+        <div id="" class="row">
+            <div class="col-md-12 border-bottom"><h1><span class="back-to-myaccount pull-right"><a href="javascript:history.go(-1)"><span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span> @backtoMyAccount</a></span></h1></div>
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="FirstName">@firstName <span class="required">*</span></label>
+
+                        @Html.TextBoxFor(m => m.FirstName,
+                        new
+                        {
+                            placeholder = @firstNamePH,
+                            data_val_required = @firstNameRequiredMsg,
+                            @class = "form-control"
+                        })
+
+                        @Html.ValidationMessageFor(m => m.FirstName)
+
+                    </div>
+                    <div class="form-group">
+                        <label for="LastName">@surname <span class="required">*</span> </label>
+                        @Html.TextBoxFor(m => m.LastName,
+                        new
+                        {
+                            placeholder = @lastNamePH,
+                            data_val_required = @lastNameRequiredMsg,
+                            @class = "form-control"
+                        })
+
+                        @Html.ValidationMessageFor(m => m.LastName)
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Email">@email <span class="required">*</span> </label>
+                        @Html.TextBoxFor(m => m.Email,
+                        new
+                        {
+                            placeholder = @emailPH,
+                            data_val_required = @emailRequiredMsg,
+                            @class = "form-control"
+                        })
+
+                        @Html.ValidationMessageFor(m => m.Email)
+                    </div>
+                    <div class="form-group">
+                        <label for="EmailRepeat">@repeatEmail <span class="required">*</span> </label>
+                        @Html.TextBoxFor(m => m.EmailRepeat,
+                        new
+                        {
+                            placeholder = @emailPH,
+                            data_val_required = @emailRequiredMsg,
+                            @class = "form-control"
+                        })
+
+                        @Html.ValidationMessageFor(m => m.EmailRepeat)
+                    </div>
+                </div>              
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="TelephoneNumber">Telephone number <span class="required">*</span> </label>
+                        @Html.TextBoxFor(m => m.TelephoneNumber,
+                        new
+                        {
+                            placeholder = @telephoneNumberPH,
+                            data_val_required = @telephoneRequiredMsg,
+                            @class = "form-control"
+                        })
+
+                        @Html.ValidationMessageFor(m => m.TelephoneNumber)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 border-top">
+            <input type="submit" data-loading-text="@savingChanges" value="@saveChanges" class="btn btn-primary" id="saveProfileChangesButton" />
+            <a type="button" href="@StorefrontManager.StorefrontUri("/accountmanagement")" class="btn btn-default">@cancel</a>
+        </div>
+    </div>
+}

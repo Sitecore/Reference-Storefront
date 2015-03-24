@@ -1,0 +1,59 @@
+﻿@*//-----------------------------------------------------------------------
+// Copyright 2015 Sitecore Corporation A/S
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+// except in compliance with the License. You may obtain a copy of the License at
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software distributed under the
+// License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+// either express or implied. See the License for the specific language governing permissions
+// and limitations under the License.
+// -------------------------------------------------------------------------------------------*@
+
+@using Sitecore.Reference.Storefront.Managers;
+@model RenderingModel
+@{
+    Sitecore.Data.Fields.MultilistField linksField = Model.Item.Fields["QuickLinks"];
+    Item[] links = linksField != null ? linksField.GetItems() : new Item[0];
+
+    var myAccountAlt = Html.Sitecore().Field("My Account Alt", Model.Item);
+}
+<nav id="B05-TopBarLinks" class="quicklinks">
+    <ul>
+        @{
+            bool displayPipe = false;
+
+            if (Request.IsAuthenticated)
+            {
+                <li>
+                    <a class="quicklink-space" id="UserNameLink" href="@StorefrontManager.StorefrontUri("/accountmanagement")" class="username" title="@myAccountAlt">@Sitecore.Context.User.LocalName</a>
+                </li>
+            
+                displayPipe = true;
+            }
+            
+            for (int i = 0; i < links.Length; i++)
+            {
+                Item link = links[i];
+
+                Sitecore.Data.Fields.CheckboxField showWhenAuthenticated = link.Fields[StorefrontConstants.KnownFieldNames.ShowWhenAuthenticated];
+                Sitecore.Data.Fields.CheckboxField showAlways = link.Fields[StorefrontConstants.KnownFieldNames.ShowAlways];
+
+                bool show =  (showAlways.Checked) || (showWhenAuthenticated.Checked && Request.IsAuthenticated) || (!showWhenAuthenticated.Checked && !Request.IsAuthenticated);
+            
+                if (show)
+                { 
+                    if (displayPipe)
+                    {
+                        <li class="quicklink-space"> | </li>        
+                    }
+                    else
+                    {
+                        displayPipe = true;
+                    }
+                    <li>@Html.Sitecore().Field("Link", link, new { text = Html.Sitecore().Field("Text", link) })</li>
+                }
+            }
+        }
+    </ul>
+</nav>

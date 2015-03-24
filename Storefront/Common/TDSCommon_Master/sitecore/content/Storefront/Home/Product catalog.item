@@ -1,0 +1,65 @@
+----item----
+version: 1
+id: {889A6934-BCDC-4294-94B7-6D141E7312B4}
+database: master
+path: /sitecore/content/Storefront/Home/Product catalog
+parent: {441B60D3-09BB-4111-A3AD-D10076B78B54}
+name: Product catalog
+master: {00000000-0000-0000-0000-000000000000}
+template: {E55834FB-7C93-44A2-87C0-62BEBA282CED}
+templatekey: Commerce Navigation Item
+
+----field----
+field: {2882072B-E310-406B-8DD9-B22C9EA4A0F3}
+name: CategoryDatasource
+key: categorydatasource
+content-length: 91
+
+/sitecore/Commerce/Catalog Management/Catalogs/Contoso Base Catalog/Departments/22565422989
+----field----
+field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
+name: __Icon
+key: __icon
+content-length: 25
+
+Software/32x32/branch.png
+----field----
+field: {BA3F86A2-4A1C-4D78-B63D-91C2779C1B5E}
+name: __Sortorder
+key: __sortorder
+content-length: 1
+
+0
+----version----
+language: en
+version: 1
+revision: b1df8fb8-5bd7-4477-9448-9ecb39a8318a
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20141106T042951
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+b1df8fb8-5bd7-4477-9448-9ecb39a8318a
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150109T084255:635563897753924358Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

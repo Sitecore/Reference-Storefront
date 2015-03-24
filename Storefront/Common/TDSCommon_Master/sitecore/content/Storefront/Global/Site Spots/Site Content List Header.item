@@ -1,0 +1,51 @@
+----item----
+version: 1
+id: {CD29D0CE-ACB7-4023-AF46-E4386BF4054B}
+database: master
+path: /sitecore/content/Storefront/Global/Site Spots/Site Content List Header
+parent: {50CA28D4-C93C-435B-92DA-866276A1BFDF}
+name: Site Content List Header
+master: {00000000-0000-0000-0000-000000000000}
+template: {F73F2DD4-F64F-4134-90B2-0B16E37DF630}
+templatekey: Product List Header
+
+----version----
+language: en
+version: 1
+revision: 669c6036-52c6-4b91-b029-07d085e28d82
+
+----field----
+field: {8D82CAD4-6C30-4733-9D54-A7EFB847602B}
+name: Header
+key: header
+content-length: 12
+
+Site results
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20150123T210031Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+669c6036-52c6-4b91-b029-07d085e28d82
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150123T210159:635576437193955845Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

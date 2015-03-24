@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7B5BFDC5-7552-4EF0-807B-D9B60A78B3FD}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CommonSettings</RootNamespace>
+    <AssemblyName>CommonSettings</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PlaceHolder.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Project\Common.csproj">
+      <Project>{8450f330-0271-4091-8809-c671ccd50671}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-responsive.css" />
+    <Content Include="Content\bootstrap-responsive.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jquery-ui-1.10.4.css" />
+    <Content Include="Content\normalize.css" />
+    <Content Include="Content\number-polyfill.css" />
+    <Content Include="Content\Storefront\app.css" />
+    <Content Include="Content\Storefront\bootstrap-addins.css" />
+    <Content Include="Content\Storefront\bootstrap-theme.css" />
+    <Content Include="Content\Storefront\bootstrap.css" />
+    <Content Include="Content\Storefront\sitecore-theme.css" />
+    <Content Include="Images\loading.gif" />
+    <Content Include="img\glyphicons-halflings-white.png" />
+    <Content Include="img\glyphicons-halflings.png" />
+    <Content Include="Scripts\autoNumeric.js" />
+    <Content Include="Scripts\bootstrap-1.2.1.js" />
+    <Content Include="Scripts\bootstrap-1.2.1.min.js" />
+    <Content Include="Content\Storefront\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Storefront\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Scripts\jquery-2.0.3.intellisense.js" />
+    <Content Include="Scripts\jquery-2.0.3.js" />
+    <Content Include="Scripts\jquery-2.0.3.min.js" />
+    <Content Include="Scripts\jquery-ui-1.10.4.js" />
+    <Content Include="Scripts\jquery.blockUI.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Scripts\jquery.placeholder.js" />
+    <Content Include="Scripts\jquery.placeholder.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jsuri-1.1.1.js" />
+    <Content Include="Scripts\jsuri-1.1.1.min.js" />
+    <Content Include="Scripts\knockout-2.3.0.debug.js" />
+    <Content Include="Scripts\knockout-2.3.0.js" />
+    <Content Include="Scripts\knockout.mapping-latest.js" />
+    <Content Include="Scripts\knockout.validation-2.0.0.js" />
+    <Content Include="Scripts\knockout.validation-2.0.0.min.js" />
+    <Content Include="Scripts\modernizr-2.6.1.min.js" />
+    <Content Include="Scripts\number-polyfill.js" />
+    <Content Include="Scripts\number-polyfill.min.js" />
+    <Content Include="Scripts\plugins.js" />
+    <Content Include="Scripts\Storefront\addresses.js" />
+    <Content Include="Scripts\Storefront\bootstrap.js" />
+    <Content Include="Scripts\Storefront\bootstrap.min.js" />
+    <Content Include="Scripts\Storefront\cart.js" />
+    <Content Include="Scripts\Storefront\checkout.js" />
+    <Content Include="Scripts\Storefront\debug-knockout.js" />
+    <Content Include="Scripts\Storefront\editprofile.js" />
+    <Content Include="Scripts\Storefront\passwordmanagement.js" />
+    <Content Include="Scripts\Storefront\knockout-3.2.0.debug.js" />
+    <Content Include="Scripts\Storefront\loyaltycards.js" />
+    <Content Include="Scripts\Storefront\main.js" />
+    <Content Include="Scripts\Storefront\maps.js" />
+    <Content Include="Scripts\Storefront\search.js" />
+    <Content Include="Scripts\Storefront\product-details.js" />
+    <Content Include="Scripts\Storefront\register.js" />
+    <Content Include="Scripts\Storefront\Sitecore.js" />
+    <Content Include="Scripts\Storefront\ViewModels\addresses_VM.js" />
+    <Content Include="Scripts\Storefront\ViewModels\billing_VM.js" />
+    <Content Include="Scripts\Storefront\ViewModels\CartKnockoutModels.js" />
+    <Content Include="Scripts\Storefront\ViewModels\checkoutData_VM.js" />
+    <Content Include="Scripts\Storefront\ViewModels\confirm_VM.js" />
+    <Content Include="Scripts\Storefront\ViewModels\delivery_VM.js" />
+    <Content Include="Scripts\Storefront\ViewModels\errorsummary_VM.js" />
+    <Content Include="Scripts\Storefront\ViewModels\loyaltycards_VM.js" />
+    <Content Include="Scripts\Storefront\ViewModels\minicart_VM.js" />
+    <Content Include="Scripts\Storefront\ViewModels\orders_VM.js" />
+    <Content Include="Scripts\Storefront\ViewModels\StepIndicator.js" />
+    <Content Include="Scripts\Storefront\ViewModels\wishlist_VM.js" />
+    <Content Include="Scripts\Storefront\wishlist.js" />
+    <None Include="Scripts\_references.js" />
+    <Content Include="web.config" />
+    <Content Include="Views\Storefront\Account\Addresses.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Storefront\Account\EditProfile.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Storefront\Account\ForgotPassword.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Storefront\Account\Index.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Storefront\Account\Login.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Storefront\Account\LoyaltyCards.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Storefront\Account\MyWishList.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Storefront\Account\MyWishLists.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Storefront\Account\Register.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Storefront\Account\ForgotPasswordConfirmation.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Storefront\Account\_AccountProfile.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Storefront\Account\_AddressBook.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Storefront\Account\_LoyaltyAccount.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Storefront\Account\_RecentOrders.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Storefront\Account\_WishLists.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Storefront\Catalog\AddGiftCardToCart.cshtml" />
+    <Content Include="Views\Storefront\Catalog\AddToCart.cshtml" />
+    <Content Include="Views\Storefront\Catalog\CheckGiftCardBalance.cshtml" />
+    <Content Include="Views\Storefront\Catalog\ChildCategoryNavigation.cshtml" />
+    <Content Include="Views\Storefront\Catalog\GiftCardInformation.cshtml" />
+    <Content Include="Views\Storefront\Catalog\ProductFacets.cshtml" />
+    <Content Include="Views\Storefront\Catalog\ProductImages.cshtml" />
+    <Content Include="Views\Storefront\Catalog\ProductInformation.cshtml" />
+    <Content Include="Views\Storefront\Catalog\ProductList.cshtml" />
+    <Content Include="Views\Storefront\Catalog\ProductListHeader.cshtml" />
+    <Content Include="Views\Storefront\Catalog\ProductRating.cshtml" />
+    <Content Include="Views\Storefront\Catalog\ProductRecommendation.cshtml" />
+    <Content Include="Views\Storefront\Catalog\RelatedCatalogItems.cshtml" />
+    <Content Include="Views\Storefront\Catalog\SiteContentList.cshtml" />
+    <Content Include="Views\Storefront\Catalog\VisitedCategoryPage.cshtml" />
+    <Content Include="Views\Storefront\Catalog\VisitedProductDetailsPage.cshtml" />
+    <Content Include="Views\Storefront\Catalog\_FourProductSlide.cshtml" />
+    <Content Include="Views\Storefront\Catalog\_ProductSummary.cshtml" />
+    <Content Include="Views\Storefront\Catalog\_RelatedCatalogItemsSlide.cshtml" />
+    <Content Include="Views\Storefront\Catalog\_SiteContentSummary.cshtml" />
+    <Content Include="Views\Storefront\Checkout\_CheckoutFooter.cshtml" />
+    <Content Include="Views\Storefront\Checkout\_StartCheckout.cshtml" />
+    <Content Include="Views\Storefront\Checkout\StepIndicator.cshtml" />
+    <Content Include="Views\Storefront\Checkout\_Billing.cshtml" />
+    <Content Include="Views\Storefront\Checkout\_ByItem_SendByEmail.cshtml" />
+    <Content Include="Views\Storefront\Checkout\_ByItem_ShipAll.cshtml" />
+    <Content Include="Views\Storefront\Checkout\_ByItem_Store.cshtml" />
+    <Content Include="Views\Storefront\Checkout\_Confirm.cshtml" />
+    <Content Include="Views\Storefront\Checkout\_Delivery.cshtml" />
+    <Content Include="Views\Storefront\Checkout\OrderConfirmation.cshtml" />
+    <Content Include="Views\Storefront\Checkout\_PickAtStore.cshtml" />
+    <Content Include="Views\Storefront\Checkout\_PickDeliveryByItem.cshtml" />
+    <Content Include="Views\Storefront\Checkout\_SendByEmail.cshtml" />
+    <Content Include="Views\Storefront\Checkout\_ShipAll.cshtml" />
+    <Content Include="Views\Storefront\Landing\Carousel.cshtml" />
+    <Content Include="Views\Storefront\Shared\Error.cshtml" />
+    <Content Include="Views\Storefront\Shared\Breadcrumbs.cshtml" />
+    <Content Include="Views\Storefront\Shared\ErrorImage.cshtml" />
+    <Content Include="Views\Storefront\Shared\FooterNavigation.cshtml" />
+    <Content Include="Views\Storefront\Shared\LanguageSelector.cshtml" />
+    <Content Include="Views\Storefront\Shared\Logo.cshtml" />
+    <Content Include="Views\Storefront\Shared\MiniCart.cshtml" />
+    <Content Include="Views\Storefront\Shared\Navigation.cshtml" />
+    <Content Include="Views\Storefront\Shared\NavigationButtons.cshtml" />
+    <Content Include="Views\Storefront\Shared\NoDatasource.cshtml" />
+    <Content Include="Views\Storefront\Shared\Pagination.cshtml" />
+    <Content Include="Views\Storefront\Shared\SearchBar.cshtml" />
+    <Content Include="Views\Storefront\Shared\ShareAndPrint.cshtml" />
+    <Content Include="Views\Storefront\Shared\SocialConnector.cshtml" />
+    <Content Include="Views\Storefront\Shared\Structures\NavigationExtraStructure.cshtml" />
+    <Content Include="Views\Storefront\Shared\Structures\NavigationStructure.cshtml" />
+    <Content Include="Views\Storefront\Shared\Structures\SingleColumn.cshtml" />
+    <Content Include="Views\Storefront\Shared\Structures\ThreeColumn.cshtml" />
+    <Content Include="Views\Storefront\Shared\Structures\TopStructure.cshtml" />
+    <Content Include="Views\Storefront\Shared\Structures\TwoColumnCenterRight.cshtml" />
+    <Content Include="Views\Storefront\Shared\Structures\TwoColumnLeftCenter.cshtml" />
+    <Content Include="Views\Storefront\Shared\TitleText.cshtml" />
+    <Content Include="Views\Storefront\Shared\TopBarLinks.cshtml" />
+    <Content Include="Views\Storefront\Shared\ErrorsSummary.cshtml" />
+    <Content Include="Views\Storefront\Shared\_Layout.cshtml" />
+    <Content Include="Views\Storefront\ShoppingCart\CheckoutButtons.cshtml" />
+    <Content Include="Views\Storefront\ShoppingCart\ShoppingCart.cshtml" />
+    <Content Include="Views\Storefront\ShoppingCart\_CartSummary.cshtml" />
+    <Content Include="Views\Storefront\ShoppingCart\_LineItem.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Scripts\jquery-2.0.3.min.map" />
+    <Content Include="Scripts\jsuri-1.1.1.min.js.map">
+      <DependentUpon>jsuri-1.1.1.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\knockout.validation-2.0.0.min.js.map" />
+    <Content Include="Views\Storefront\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Storefront\Checkout\StorefrontCheckout.cshtml" />
+    <Content Include="Views\Storefront\Catalog\GiftCardPresentation.cshtml" />
+    <Content Include="Views\Storefront\Catalog\ProductPresentation.cshtml" />
+    <Content Include="sharplinter.conf" />
+    <Content Include="Views\Storefront\Shared\_PrintLayout.cshtml" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>56725</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:56725/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <!--<Import Project="..\..\packages\sharplinter-msbuild.0.2.1\build\sharplinter-msbuild.targets" Condition="Exists('..\..\packages\sharplinter-msbuild.0.2.1\build\sharplinter-msbuild.targets')" />-->
+  <!--<Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\sharplinter-msbuild.0.2.1\build\sharplinter-msbuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\sharplinter-msbuild.0.2.1\build\sharplinter-msbuild.targets'))" />
+  </Target>-->
+  <!--<Target Name="JSHint">
+    <Exec Command="&quot;$(JSHintToolPath)\sharplinter.exe&quot; -c &quot;$(SharpLinterConfigFile)&quot; -of &quot;{0}({1},{4}): error {2}: {3}&quot; -j &quot;$(JSHintToolPath)\jshint.js&quot; -v3 -r &quot;$(MSBuildProjectDirectory)\*.js&quot; -x jshint.js" WorkingDirectory="$(MSBuildProjectDirectory)" ContinueOnError="true" IgnoreExitCode="true">
+      <Output TaskParameter="ExitCode" PropertyName="SharpLinterErrorCode" />
+    </Exec>
+    -->
+  <!-- Set the magic 5 back to 0 to make this error our on JSHint issues-->
+  <!--
+    <Error Text="SharpLinter: error SHL00001: JSHint static code analysis produced one or more warnings" Condition="'$(SharpLinterErrorCode)' &gt; '5'" />
+    <OnError ExecuteTargets="SharpLinterErrorHandler" />
+  </Target>-->
+</Project>

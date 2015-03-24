@@ -1,0 +1,50 @@
+﻿@*//-----------------------------------------------------------------------
+// Copyright 2015 Sitecore Corporation A/S
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+// except in compliance with the License. You may obtain a copy of the License at
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software distributed under the
+// License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+// either express or implied. See the License for the specific language governing permissions
+// and limitations under the License.
+// -------------------------------------------------------------------------------------------*@
+
+@{
+    var colorLabel = Html.Sitecore().Field("Color Label", Html.Sitecore().CurrentItem);
+    var discountLabel = Html.Sitecore().Field("Discount Label", Html.Sitecore().CurrentItem);
+    var savingsLabel = Html.Sitecore().Field("Savings Label", Html.Sitecore().CurrentItem);
+}
+
+<tr>
+    <td class="cart-delete"><a pid="remove" class="delete-item" data-bind="attr: {'data-ajax-lineitemid': externalCartLineId}"><span class="glyphicon glyphicon-remove-circle"></span></a></td>
+    <td class="cart-image hidden-sm hidden-xs">
+        <a data-bind="attr:{'href' : productUrl}"><img class="img-responsive" data-bind="attr: {src: image}" alt="a" pid="image" /></a>
+    </td>
+    <td class="cart-info">
+        <a data-bind="attr:{'href' : productUrl}">
+            <h5 pid="displayName" data-bind="text: displayName"></h5>
+        </a>
+        <!-- ko if: color != null -->
+        <span class="cart-variable">@colorLabel</span>
+        <span pid="color" data-bind="text: color"></span>
+        <!-- /ko -->
+    </td>
+    <td class="cart-price">
+        <span pid="price" data-bind="text: linePrice"></span>
+        <p data-bind="visible: shouldShowDiscountOffers">
+            <span>@discountLabel</span>
+            <span pid="discountNames" data-bind="text: discountOfferNames" class="savings"></span>
+        </p>
+    </td>
+    <td class="cart-quantity text-center" style="width: 10%;">
+        <input pid="quantity" type="number" class="form-control form-control-quantity" placeholder="1" data-bind="attr: {value: quantity, 'data-ajax-lineitemid': externalCartLineId}">
+    </td>
+    <td class="cart-total">
+        <span pid="total" data-bind="text: lineTotal"></span>
+        <p data-bind="visible: shouldShowSavings">
+            <span>@savingsLabel </span>
+            <span pid="discount" data-bind="text: lineItemDiscount" class="savings"></span>
+        </p>
+    </td>
+</tr>

@@ -1,0 +1,68 @@
+﻿@*//-----------------------------------------------------------------------
+// Copyright 2015 Sitecore Corporation A/S
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+// except in compliance with the License. You may obtain a copy of the License at
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software distributed under the
+// License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+// either express or implied. See the License for the specific language governing permissions
+// and limitations under the License.
+// -------------------------------------------------------------------------------------------*@
+
+@model Sitecore.Reference.Storefront.Models.RenderingModels.ProductFacetsViewModel
+@{
+    if (Model == null || Model.ChildProductFacets == null || !Model.ChildProductFacets.Any())
+    {
+        return;
+    }
+}
+
+<div id="C03-ProductFacets" class="row">
+    <div class="col-md-12">
+        <!-- Toggle facets for mobile -->
+        @foreach (var facet in Model.ActiveFacets)
+        {
+            if (facet.IsValid())
+            {
+                <div class="facets-container">
+                    <h5>@facet.DisplayName.ToUpper()</h5>
+                    <label for="color-toggle"> + </label>
+                    <input type="checkbox" id="color-toggle" class="toggle-facets" />
+                    <div class="@facet.DisplayName.ToLower().Replace(" ", "")-list">
+                        <ul class="@facet.DisplayName.ToLower()">
+                            @foreach (var value in facet.FoundValues)
+                            {
+                                var facetCount = value.AggregateCount;
+                                if (value.IsValid())
+                                {
+                                    string name = value.Name;
+                                    switch (name)
+                                    {
+                                        case "1":
+                                            name = "Yes";
+                                            break;
+                                        case "0":
+                                            name = "No";
+                                            break;
+                                    }
+
+                                    var isActveFacet = string.Empty;
+                                    foreach (var activeFacet in Model.ActiveFacets)
+                                    {
+                                        if (activeFacet.Values.Contains(value.Name))
+                                        {
+                                            isActveFacet = "class=active";
+                                        }
+                                    }
+
+                                    <li @isActveFacet><a href="@Url.AddToFacets(facet.Name, value.Name)"><span pid="facetName">@name</span> <span pid="facetCount">(@facetCount)</span></a></li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

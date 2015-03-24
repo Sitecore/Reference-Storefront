@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TDSAnalysis>
+  <Rules>
+    <Rule validator="HedgehogDevelopment.SitecoreProject.Analysis.TemplateStructure, HedgehogDevelopment.SitecoreProject.Analysis, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" severity="Warn" />
+    <Rule validator="HedgehogDevelopment.SitecoreProject.Analysis.ShouldBeDeployOnce, HedgehogDevelopment.SitecoreProject.Analysis, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" severity="Warn">
+      <ValidatorSettings>
+        <Properties>
+          <add>/sitecore/system/Workflows</add>
+          <add>/sitecore/system/Modules</add>
+          <add>/sitecore/system/Settings</add>
+          <add>/sitecore/content</add>
+          <add>/sitecore/system</add>
+          <add>/sitecore/media library/Images</add>
+          <add>/sitecore/layout/Placeholder Settings</add>
+          <add>/sitecore/system/Proxies</add>
+          <add>/sitecore/layout/Renderings</add>
+          <add>/sitecore/system/Marketing Center</add>
+          <add>/sitecore/layout/Simulators</add>
+          <add>/sitecore/templates</add>
+          <add>/sitecore/media library</add>
+          <add>/sitecore/templates/System</add>
+          <add>/sitecore/system/Dictionary</add>
+          <add>/sitecore/system/Aliases</add>
+          <add>/sitecore/system/Languages</add>
+          <add>/sitecore/media library/Files</add>
+          <add>/sitecore/layout/Layouts</add>
+          <add>/sitecore/layout/Controllers</add>
+          <add>/sitecore/media library/System</add>
+          <add>/sitecore/layout/Models</add>
+          <add>/sitecore/templates/Branches</add>
+          <add>/sitecore/templates/Branches/System</add>
+          <add>/sitecore/system/Publishing targets</add>
+          <add>/sitecore/layout/Devices</add>
+          <add>/sitecore/layout</add>
+          <add>/sitecore/layout/Sublayouts</add>
+          <add>/sitecore/system/Tasks</add>
+          <add>/sitecore/system/Toolbox</add>
+        </Properties>
+        <Settings />
+      </ValidatorSettings>
+    </Rule>
+    <Rule validator="HedgehogDevelopment.SitecoreProject.Analysis.EnsureParent, HedgehogDevelopment.SitecoreProject.Analysis, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" severity="Error" />
+    <Rule validator="HedgehogDevelopment.SitecoreProject.Analysis.ShouldBeDeployOnceWithChildren, HedgehogDevelopment.SitecoreProject.Analysis, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" severity="Warn">
+      <ValidatorSettings>
+        <Properties>
+          <add>/sitecore/content</add>
+          <add>/sitecore/media library</add>
+        </Properties>
+        <Settings />
+      </ValidatorSettings>
+    </Rule>
+  </Rules>
+</TDSAnalysis>

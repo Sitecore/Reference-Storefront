@@ -1,0 +1,72 @@
+----item----
+version: 1
+id: {603F8B01-1CFC-4D47-828D-E51B9FD8AFEC}
+database: master
+path: /sitecore/content/Storefront/Global/QuickLinks/Links/TopBar/Sign out
+parent: {F95E9223-4DB2-4B91-B720-3B48EB0CA312}
+name: Sign out
+master: {00000000-0000-0000-0000-000000000000}
+template: {87C331AE-3293-4FD1-A5F2-A625523F3019}
+templatekey: QuickLink
+
+----version----
+language: en
+version: 1
+revision: e9e5781d-981b-4fb9-86e0-a9dba58e8aaa
+
+----field----
+field: {B861B1ED-2820-4AD8-B169-8928AC381634}
+name: Link
+key: link
+content-length: 77
+
+<link text="Log off" linktype="external" url="/logoff" anchor="" target="" />
+----field----
+field: {6CB9EB87-680B-4CB9-9946-9BAEB553F6B8}
+name: Text
+key: text
+content-length: 8
+
+Sign out
+----field----
+field: {5723C6B6-8A8A-4960-AEC8-050200AE62D2}
+name: Show when Authenticated
+key: show when authenticated
+content-length: 1
+
+1
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20141217T065722Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+e9e5781d-981b-4fb9-86e0-a9dba58e8aaa
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20141217T073103:635543982637029777Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

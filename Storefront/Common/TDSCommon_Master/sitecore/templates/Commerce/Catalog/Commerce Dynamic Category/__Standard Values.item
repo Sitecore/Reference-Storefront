@@ -1,0 +1,72 @@
+----item----
+version: 1
+id: {6F2A43FA-30E7-4199-B7D4-8943A94FD6E1}
+database: master
+path: /sitecore/templates/Commerce/Catalog/Commerce Dynamic Category/__Standard Values
+parent: {6820281F-3BB3-41B4-8C93-7771EEA496D0}
+name: __Standard Values
+master: {00000000-0000-0000-0000-000000000000}
+template: {6820281F-3BB3-41B4-8C93-7771EEA496D0}
+templatekey: Commerce Dynamic Category
+
+----field----
+field: {A0CB3965-8884-4C7A-8815-B6B2E5CED162}
+name: __Editors
+key: __editors
+content-length: 38
+
+{59F53BBB-D1F5-4E38-8EBA-0D73109BB59B}
+----field----
+field: {AC51462C-8A8D-493B-9492-34D1F26F20F1}
+name: __Default Bucket Query
+key: __default bucket query
+content-length: 32
+
++commercesearchitemtype:product&
+----field----
+field: {C7815F60-96E1-40CB-BB06-B5F833F73B61}
+name: __Persistent Bucket Filter
+key: __persistent bucket filter
+content-length: 49
+
++location:{08BFB57F-DAC9-4B11-90C5-5D19647899EF}&
+----field----
+field: {F1A1FE9E-A60C-4DDB-A3A0-BB5B29FE732E}
+name: __Renderings
+key: __renderings
+content-length: 1212
+
+<r xmlns:xsd="http://www.w3.org/2001/XMLSchema" ><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}" l="{0D62B8AF-6C41-4573-B246-ABEAD41A0B19}"><r id="{BAD1E82B-685B-4E6C-A8B7-00B3AEBA9673}" ph="main" uid="{03406F72-9923-44FD-8A6A-B33CEAB24EC0}" /><r id="{02188803-D9C2-4E91-926D-0C0AA19F730E}" ph="/main/Row1" uid="{6257C2BC-69C8-4C92-BCF4-94A93C371BF6}" /><r id="{4A8F380D-C69F-4120-B70E-95661CC2A981}" ph="/main/Row2" uid="{7E215B87-BD7E-4046-BC45-04FC20A2F47C}" /><r id="{219958FC-8DC4-4B52-89CA-F80E219FEE88}" ph="/main/Row3" uid="{68397D09-B2B4-46A5-A390-DE437FC820CC}" /><r id="{4A8F380D-C69F-4120-B70E-95661CC2A981}" ph="/main/Row4" uid="{1F640869-5CF4-4793-8FCD-AF14AE420C45}" /><r cac="1" ds="{466F65AA-92AA-4CC9-9098-50F4B78C69B6}" id="{943A7D19-5380-4854-9A60-9E2290205191}" par="" ph="TopNavigation" uid="{6CFC0C1A-EC98-4775-A08B-AD25604D6967}" vbd="1" ciu="1" /><r ds="" id="{430424F2-0632-47D3-8583-A097E1C43E84}" par="" ph="facets" uid="{E0523072-B45D-4125-A761-52BD6F95DBA3}" /></d><d id="{46D2F427-4CE5-4E1F-BA10-EF3636F43534}" l="{14030E9F-CE92-49C6-AD87-7D49B50E42EA}"><r ds="" id="{493B3A83-0FA7-4484-8FC9-4680991CF743}" par="" ph="content" uid="{A08C9132-DBD1-474F-A2CA-6CA26A4AA650}" /></d></r>
+----version----
+language: en
+version: 1
+revision: d9242a59-d705-40d9-8e9c-32b0640e8c6b
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20131011T095552
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+d9242a59-d705-40d9-8e9c-32b0640e8c6b
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20131023T153409:635181392498055343
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

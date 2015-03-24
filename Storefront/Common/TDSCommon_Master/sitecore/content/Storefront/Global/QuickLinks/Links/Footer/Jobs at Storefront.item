@@ -1,0 +1,65 @@
+----item----
+version: 1
+id: {F9337B4F-FCE0-46F9-9672-6BBD0F873666}
+database: master
+path: /sitecore/content/Storefront/Global/QuickLinks/Links/Footer/Jobs at Storefront
+parent: {22D28B39-F1F7-487A-9DDC-71C31AD123C6}
+name: Jobs at Storefront
+master: {00000000-0000-0000-0000-000000000000}
+template: {87C331AE-3293-4FD1-A5F2-A625523F3019}
+templatekey: QuickLink
+
+----version----
+language: en
+version: 1
+revision: ee8534a8-11bf-4530-b5b9-2367f2514442
+
+----field----
+field: {B861B1ED-2820-4AD8-B169-8928AC381634}
+name: Link
+key: link
+content-length: 114
+
+<link text="" linktype="internal" class="" title=""  querystring="" id="{4BEC36FB-5315-4BB1-A36D-2B7F7972B24E}" />
+----field----
+field: {6CB9EB87-680B-4CB9-9946-9BAEB553F6B8}
+name: Text
+key: text
+content-length: 18
+
+Jobs at Storefront
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20141105T092727
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+ee8534a8-11bf-4530-b5b9-2367f2514442
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20141124T045959:635524019991183207
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

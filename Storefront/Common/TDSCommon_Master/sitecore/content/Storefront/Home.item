@@ -1,0 +1,177 @@
+----item----
+version: 1
+id: {441B60D3-09BB-4111-A3AD-D10076B78B54}
+database: master
+path: /sitecore/content/Storefront/Home
+parent: {662344C9-D908-46D8-9A1A-CBF2EAA32E93}
+name: Home
+master: {00000000-0000-0000-0000-000000000000}
+template: {FB9DBD60-CBA2-490D-9C72-997271D576A3}
+templatekey: Home
+
+----field----
+field: {B36DE708-9413-4382-BB53-B944E6D02CFC}
+name: Catalogs
+key: catalogs
+content-length: 38
+
+{3888B670-D875-516F-9896-6346D44EBCB9}
+----field----
+field: {AE00DC8B-C90D-412F-B262-19EF55A20506}
+name: Product Images
+key: product images
+content-length: 38
+
+{7A0B1C91-9071-462F-AD46-D2A8125113F5}
+----field----
+field: {A204F8D6-B81A-4C1B-88EF-2DBC9471C18A}
+name: Category Images
+key: category images
+content-length: 38
+
+{4D3C4042-25C9-4AE7-ADC0-69B3B1D28DF5}
+----field----
+field: {FBF2BBA1-47BC-4B2E-BF76-133C8FAEA0FB}
+name: General Images
+key: general images
+content-length: 38
+
+{D2BE1B43-9784-47F1-B00E-F324BC0D474A}
+----field----
+field: {6C86E9A8-D48A-4E3B-8375-B81414CE28E5}
+name: Default Image
+key: default image
+content-length: 38
+
+{FD06B3BC-90B7-478F-ABF9-588846D21C76}
+----field----
+field: {268036A9-3394-4964-8CB3-AC4CA68BF4B4}
+name: RouteKey
+key: routekey
+content-length: 7
+
+contoso
+----field----
+field: {239412BD-046D-4C97-98BA-17B5FB07F004}
+name: ShopName
+key: shopname
+content-length: 7
+
+website
+----field----
+field: {0D2D45C1-783B-4A72-A797-F5907BC37CFE}
+name: DefaultCartName
+key: defaultcartname
+content-length: 7
+
+Default
+----field----
+field: {872F1C3E-42E7-4F28-9B06-AE6D0C40C3CA}
+name: DefaultProductId
+key: defaultproductid
+content-length: 11
+
+22565422120
+----field----
+field: {2F3DFFC4-3648-4183-8741-1CC97A04937C}
+name: GiftCardProductId
+key: giftcardproductid
+content-length: 11
+
+22565422120
+----field----
+field: {51CDF89D-E4E6-438B-A6CF-75747529CAFD}
+name: GiftCardAmountOptions
+key: giftcardamountoptions
+content-length: 15
+
+10|20|25|50|100
+----field----
+field: {A8925EB2-72E3-4636-9F21-C894A61975B8}
+name: Sender Email Address
+key: sender email address
+content-length: 41
+
+no-reply@sitecore.commerce.storefront.com
+----field----
+field: {CC553205-A4D2-4FEB-B722-9B41E9FA5271}
+name: TrackingCookieName
+key: trackingcookiename
+content-length: 8
+
+_visitor
+----field----
+field: {E00B561C-503B-47AF-979F-D6C0C911721D}
+name: IdKeyName
+key: idkeyname
+content-length: 9
+
+visitorId
+----field----
+field: {0CCF5AC9-FA08-4421-9651-707B33193F8E}
+name: CookieExpiryInDays
+key: cookieexpiryindays
+content-length: 1
+
+2
+----field----
+field: {F1A1FE9E-A60C-4DDB-A3A0-BB5B29FE732E}
+name: __Renderings
+key: __renderings
+content-length: 312
+
+<r xmlns:p="p" xmlns:s="s" p:p="1"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"><r uid="{8C308774-5362-4996-A416-527ED85204F1}" s:ds="{9988B682-59C7-4319-8BF9-7071F132A5AD}" /><r uid="{1634C13E-4B80-414F-BD44-0D3DA46A2A9F}" p:before="r[@uid='{1A6AE860-A323-460D-B8D7-CEFA22469672}']" s:ph="messages" /></d></r>
+----version----
+language: en
+version: 1
+revision: 36d525fe-00d9-4c34-9751-7ddfff866aba
+
+----field----
+field: {EC1F4944-D675-42F6-B354-A0A1BF04BFF8}
+name: Title
+key: title
+content-length: 20
+
+Reference Storefront
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20141009T064502Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\Admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+36d525fe-00d9-4c34-9751-7ddfff866aba
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150320T130224:635624533445291770Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {001DD393-96C5-490B-924A-B0F25CD9EFD8}
+name: __Lock
+key: __lock
+content-length: 5
+
+<r />

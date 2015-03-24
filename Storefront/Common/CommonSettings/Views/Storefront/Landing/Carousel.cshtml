@@ -1,0 +1,73 @@
+﻿@*//-----------------------------------------------------------------------
+// Copyright 2015 Sitecore Corporation A/S
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+// except in compliance with the License. You may obtain a copy of the License at
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software distributed under the
+// License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+// either express or implied. See the License for the specific language governing permissions
+// and limitations under the License.
+// -------------------------------------------------------------------------------------------*@
+
+@model RenderingModel
+@{
+    Sitecore.Data.Fields.MultilistField slidesField = Html.Sitecore().CurrentItem.Fields["Slides"];
+    Item[] slides = slidesField != null ? slidesField.GetItems() : new Item[0];
+}
+<div id="C01-Carousel" class="wrap-content-slideshow">
+    <div class="col-xs-12 col-sm-12 col-md-12 hidden-xs">
+        <!-- Styling div - Container -->
+        <div class="Slideshow">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    @{
+                        for (int i = 0; i < slides.Length; i++)
+			            {
+                            <li data-target="#carousel-example-generic" data-slide-to="@i" class="@(i == 0 ? "active" : "")"></li>
+                        }
+                    }
+                </ol>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    @{
+                        for (int i = 0; i < slides.Length; i++)
+                        {
+                            var linkField = ((Sitecore.Data.Fields.LinkField) slides[i].Fields["Link"]);
+                            var url = "#";
+                            if (linkField != null && linkField.TargetItem != null)
+                            {
+                                var targetItem = linkField.TargetItem;
+                                url = Sitecore.Links.LinkManager.GetItemUrl(targetItem);
+                            }
+                            
+                                <div class="item@(i == 0 ? " active" : "")">
+                                    
+                                        @Html.Sitecore().Field("Image", slides[i])
+                                        <div class="carousel-caption">
+
+                                            <a id="carousel-link" class="carousel-link" href="@url">
+                                                <h3>@Html.Sitecore().Field(StorefrontConstants.ItemFields.Title, slides[i])</h3>
+                                                <p>
+                                                    @Html.Sitecore().Field("Text", slides[i])
+                                                </p>
+                                            </a>
+                                    </div>
+                                    
+                                 </div>
+                            
+                        }
+                    }
+                </div>
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

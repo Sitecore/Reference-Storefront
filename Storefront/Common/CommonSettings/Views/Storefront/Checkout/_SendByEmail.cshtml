@@ -1,0 +1,42 @@
+﻿@*//-----------------------------------------------------------------------
+// Copyright 2015 Sitecore Corporation A/S
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+// except in compliance with the License. You may obtain a copy of the License at
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software distributed under the
+// License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+// either express or implied. See the License for the specific language governing permissions
+// and limitations under the License.
+// -------------------------------------------------------------------------------------------*@
+
+@{
+    var sendByEmailHeaderLabel = Html.Sitecore().Field("Send By Email Header", Html.Sitecore().CurrentItem.Children["Delivery"]).ToString().ToUpper();
+    var sendToMeLabel = Html.Sitecore().Field("Send To Me Label", Html.Sitecore().CurrentItem.Children["Delivery"]);
+    var recilientEmailLabel = Html.Sitecore().Field("Recipient Email Label", Html.Sitecore().CurrentItem.Children["Delivery"]);
+    var writeMessageLabel = Html.Sitecore().Field("Write Message Label", Html.Sitecore().CurrentItem.Children["Delivery"]);
+}
+
+<div class="col-md-12">
+    <h1>@sendByEmailHeaderLabel</h1>
+</div>
+<!-- ko if: $root.isAuthenticated -->
+<div class="col-md-12">
+    <div class="form-group">
+        <input type="checkbox" id="sendEmailToMe" data-bind="event: {change: setSendToMe}">
+        <label for="sendEmailToMe">@sendToMeLabel</label>
+    </div>
+</div>
+<!-- /ko -->
+<div class="col-md-12">
+    <div class="form-group">
+        <label for="shippingEmailAddress">@recilientEmailLabel*</label>
+        <input type="text" class="form-control" id="shippingEmailAddress" placeholder="@recilientEmailLabel" data-bind="value: shippingEmail">
+    </div>
+</div>
+<div class="col-md-12">
+    <div class="form-group">
+        <label for="shippingEmailMessage">@writeMessageLabel</label>
+        <textarea class="form-control" rows="3" id="shippingEmailMessage" data-bind="value: shippingEmailContent"></textarea>
+    </div>
+</div>

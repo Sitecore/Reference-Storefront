@@ -1,0 +1,198 @@
+----item----
+version: 1
+id: {17BCAAFD-5DB6-48C6-8E19-8F280600D8DA}
+database: master
+path: /sitecore/templates/Storefront/Page Templates/ShoppingCart Page/__Standard Values
+parent: {A5A90B92-457C-490F-8B98-A54990772C75}
+name: __Standard Values
+master: {00000000-0000-0000-0000-000000000000}
+template: {A5A90B92-457C-490F-8B98-A54990772C75}
+templatekey: ShoppingCart Page
+
+----field----
+field: {F1A1FE9E-A60C-4DDB-A3A0-BB5B29FE732E}
+name: __Renderings
+key: __renderings
+content-length: 1140
+
+<r xmlns:xsd="http://www.w3.org/2001/XMLSchema" ><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}" l="{F5034347-7E92-41D7-B8EB-F51D1F1BCF1C}"><r id="{15A09072-CE89-4126-A9E4-17753FC726FF}" ph="top" uid="{0E2D603A-CF36-4EE2-B598-D2E06AEBD5AE}" /><r ds="{98CE979E-638E-4EE0-AD7F-05164173F1C1}" id="{DC1B9040-8694-456A-A5E6-81996BD1B2AA}" par="" ph="topleft" uid="{5D2C83EE-F8CA-41B9-BBF2-03CBC74D3F52}" /><r id="{11680CDD-D6CF-4F1A-A770-B9815A6F7CEC}" ph="messages" uid="{67B3C0B8-0529-4597-A3E3-AB837B4A6FAC}" /><r id="{A093583B-6870-44AD-B14E-54703B32E9B9}" ph="middle" uid="{F720367A-12C1-4818-887C-EB6B70A32640}" /><r id="{AB04C56D-6E50-4AD8-8545-60AEBAA73C3C}" ph="center" uid="{9665D95B-D94D-43DB-AADB-996AD434FA03}" /><r id="{E1399DA5-1629-4CC4-8E37-5DCCB078C711}" ph="center" uid="{D3D0917F-627F-4DE0-8B33-0215E03C7171}" /></d><d id="{46D2F427-4CE5-4E1F-BA10-EF3636F43534}" l="{158292D8-6523-4052-8DEF-60DD6F112A09}"><r id="{A093583B-6870-44AD-B14E-54703B32E9B9}" ph="middle" uid="{01398123-D8BA-4185-A04C-5254820CCBB2}" /><r id="{AB04C56D-6E50-4AD8-8545-60AEBAA73C3C}" ph="center" uid="{5C79034B-3A89-484C-BFE6-29642E5DFB8F}" /></d></r>
+----version----
+language: en
+version: 1
+revision: d2d88ea7-0378-40e6-95ca-f1e5a7e9ba6d
+
+----field----
+field: {BCAE4882-2C82-42D7-8B33-D269CB521E36}
+name: Product Details Label
+key: product details label
+content-length: 15
+
+Product details
+----field----
+field: {03090E3B-94DA-461D-9419-C9235FCE5C1B}
+name: Unit Price Label
+key: unit price label
+content-length: 10
+
+Unit price
+----field----
+field: {ED2A6656-70D9-4B47-91C4-B2B3E574C6C6}
+name: Quantity Label
+key: quantity label
+content-length: 8
+
+Quantity
+----field----
+field: {361B56FE-46EE-4E86-9A83-5F7A1127E846}
+name: Total Label
+key: total label
+content-length: 5
+
+Total
+----field----
+field: {03972573-F2E1-4750-973C-ABE93FAE5F81}
+name: Payment Total Label
+key: payment total label
+content-length: 14
+
+Payment total:
+----field----
+field: {EC26E453-F364-4070-B697-70C5C6D5ECAF}
+name: VAT Label
+key: vat label
+content-length: 4
+
+VAT:
+----field----
+field: {6C2B407A-476F-4B29-80B7-78526FF43645}
+name: Order Total Label
+key: order total label
+content-length: 12
+
+Order total:
+----field----
+field: {782EC575-8B6D-4F75-B020-21126AE25A21}
+name: Total Savings Label
+key: total savings label
+content-length: 14
+
+Total savings:
+----field----
+field: {3E503A8F-AD03-464E-B61D-09CC8D6E79F7}
+name: Order Total Header Label
+key: order total header label
+content-length: 11
+
+Order Total
+----field----
+field: {E5337D27-918E-4DC7-955A-9185314C6615}
+name: Color Label
+key: color label
+content-length: 6
+
+Color:
+----field----
+field: {2C2FA18D-775B-4E00-80BB-20022B19402B}
+name: Discount Label
+key: discount label
+content-length: 9
+
+Discount:
+----field----
+field: {F1CDCC4B-3183-4465-BFA7-3DAE152CAFA9}
+name: Savings Label
+key: savings label
+content-length: 8
+
+Savings:
+----field----
+field: {71834529-FFDC-4D99-8203-86576CC04F33}
+name: Enter Coupon Code Message
+key: enter coupon code message
+content-length: 50
+
+Enter a coupon code to apply to the current order.
+----field----
+field: {00A44708-3F62-40DA-BD5C-96EAFD85CAC2}
+name: Promo Code Label
+key: promo code label
+content-length: 14
+
+Promotion code
+----field----
+field: {88C87F20-8237-4E2F-87F7-2D6B6EA43331}
+name: Add Promo Code Button
+key: add promo code button
+content-length: 18
+
+Add promotion code
+----field----
+field: {4FE90BE9-09E0-4915-881E-0DEF17A3F3A0}
+name: Promo Code List Label
+key: promo code list label
+content-length: 15
+
+Promotion code:
+----field----
+field: {EB60A902-0075-4D80-9649-0B0A6AFEE633}
+name: Remove Button
+key: remove button
+content-length: 6
+
+Remove
+----field----
+field: {7774845A-2602-442F-8741-2B34C1623100}
+name: Adding Promo Code Button
+key: adding promo code button
+content-length: 24
+
+Adding promotion code...
+----field----
+field: {04BF00DB-F5FB-41F7-8AB7-22408372A981}
+name: __Final Renderings
+key: __final renderings
+content-length: 355
+
+<r xmlns:p="p" xmlns:s="s" p:p="1"><d id="{46D2F427-4CE5-4E1F-BA10-EF3636F43534}" s:l="{158292D8-6523-4052-8DEF-60DD6F112A09}"><r uid="{01398123-D8BA-4185-A04C-5254820CCBB2}" s:id="{A093583B-6870-44AD-B14E-54703B32E9B9}" s:ph="middle" /><r uid="{5C79034B-3A89-484C-BFE6-29642E5DFB8F}" s:id="{AB04C56D-6E50-4AD8-8545-60AEBAA73C3C}" s:ph="center" /></d></r>
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20141121T071552
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+d2d88ea7-0378-40e6-95ca-f1e5a7e9ba6d
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150313T153741:635618578610066091Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

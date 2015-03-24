@@ -1,0 +1,84 @@
+﻿@*//-----------------------------------------------------------------------
+// Copyright 2015 Sitecore Corporation A/S
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+// except in compliance with the License. You may obtain a copy of the License at
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software distributed under the
+// License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+// either express or implied. See the License for the specific language governing permissions
+// and limitations under the License.
+// -------------------------------------------------------------------------------------------*@
+
+@model ProductViewModel
+@using Sitecore.Reference.Storefront.Extensions
+@using Sitecore.Commerce.Entities.Inventory
+
+@{
+    if (Model == null)
+    {
+        return;
+    }
+
+    var addingLabel = Html.Sitecore().Field("Adding To Cart Label", Html.Sitecore().CurrentItem);
+    var addLabel = Html.Sitecore().Field("Add To Cart Button", Html.Sitecore().CurrentItem);
+    var giftCardAmountLabel = Html.Sitecore().Field("Gift Card Amount Label", Html.Sitecore().CurrentItem);
+    var quantityLabel = Html.Sitecore().Field("Quantity Label", Html.Sitecore().CurrentItem);
+}
+
+@using (Ajax.BeginForm("AddCartLine", "Cart", null, new AjaxOptions { OnBegin = "SetAddButton", OnSuccess = "AddToCartSuccess", OnFailure = "AddToCartFailure", HttpMethod = "Post" }, new { @id = "AddToCartForm" }))
+{
+    @Html.ValidationSummary(true)
+    @Html.Sitecore().FormHandler()
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.ProductId)
+    @Html.Hidden("VariantId", string.Empty)
+    @Html.HiddenFor(m => m.CatalogName)
+    @Html.HiddenFor(m => m.ProductUrl)
+    
+    if (Model.Images != null && Model.Images.Any())
+    {
+        @Html.Hidden("ImageUrl", Model.Images[0].GetImageUrl(50, 50))
+    }
+
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="form-group giftcard-amount">
+            <div class="control-group">
+                <label class="control-label" for="GiftCard-Amount">@giftCardAmountLabel</label>              
+                <div class="controls" id="giftcardAmount">
+                    @if (Model.GiftCardAmountOptions == null)
+                    {
+                        @Html.TextBoxFor(model => model.GiftCardAmount, new { @id = "GiftCard-Amount", @type = "number", @class = "form-control", @min = "1", @max = "100", @required = "required", @Value = "1", @placeholder = "Amount" })
+                        @Html.ValidationMessageFor(model => model.GiftCardAmount)
+                    }
+                    else
+                    {
+                        @Html.DropDownListFor(model => model.GiftCardAmount, new SelectList(Model.GiftCardAmountOptions, "Key", "Value", "10"))
+                    }
+                    @Html.ValidationMessageFor(model => model.GiftCardAmount)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8 col-sm-8 col-xs-12">
+        <div id="C12-AddToCart" class="add-to-basket">
+            <div class="control-group">
+                <label class="control-label" for="Quantity">@quantityLabel</label>
+                <div class="controls" id="quantity">
+                    @Html.TextBoxFor(model => model.Quantity, new { @id = "Quantity", @type = "number", @class = "form-control", @min = "1", @max = "100", @required = "required", @Value = "1", @placeholder = "Quantity" })
+                    @Html.ValidationMessageFor(model => model.Quantity)
+                </div>
+            </div>
+
+            @if (Model.StockStatus != null && Equals(Model.StockStatus.Name, StockStatus.OutOfStock.Name))
+            {
+                <button id="AddToCartButton" type="submit" class="btn disabled">@addLabel</button>
+            }
+            else
+            {
+                <button id="AddToCartButton" type="submit" class="btn btn-success" data-loading-text="@addingLabel">@addLabel</button>
+            }
+        </div>
+    </div>
+}

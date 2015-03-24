@@ -1,0 +1,917 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+	OrderObjectMappings.xml
+
+	Commerce Services Orders mapped storage file.
+
+	Copyright (C) 2003 Microsoft Corp.
+-->
+<!--
+Usage notes
+
+* This XML file describes the mapping from Orders classes to SQL tables for use by the
+  Commerce Server mapped storage system. This file can be updated by the user
+  when extending the base Orders classes to describe user-defined properties and
+  classes. See the Orders extensibility section in the Commerce Server documentation.
+
+* Table columns defined in this mapping are restricted in their uses
+  of string types. Specifically, NTEXT, NVARCHAR, and NCHAR SQL types must be used,
+  instead of TEXT, VARCHAR, or CHAR.
+
+
+Tag definitions
+
+* StorageMap: The is the root node. Mapping information contained within this node is used
+  by the mapped storage system.
+
+* Tables: Container for one or more Table tags. The set of Table tags provided does not
+  need to model the entire set of tables in the database, only the set of tables used in
+  the mapping.
+
+* Table: Defines a table within the database. Contains a Columns and Constraints tag.
+  Attributes:
+
+  - Name: The name of the table. Must match the name of the table in the SQL Server database.
+
+* Columns: Container for one or more Column tags.
+
+* Column: Column definition for a column within a table. A column definition does not need
+  to capture all information about a SQL column, but only for the attributes shown below.
+
+  - Name: The name of the column. Must match the column name within the SQL Server table.
+
+  - DataType: The SQL data type of the column, e.g. int or uniqueidentifier.
+
+  - Precision: The width of the column, used for e.g. nvarchar column data type. Defaults
+    to zero if not specified.
+
+  - IsNullable: Boolean value corresponding to the NULL or NOT NULL SQL column constraint.
+    Defaults to false.
+
+  - GUID: Boolean value. Set to true when the column has the ROWGUIDCOL SQL property.
+
+* Constraints: Container for one or more PrimaryKey, ForeignKey, or Unique constraint
+  definition tags.
+
+* PrimaryKey: Defines a primary key constraint on a table. Contains one or more ColumnRef
+  tags. The set of PrimaryKey tags in the mapping file must match the actual primary key
+  constraints set on the table in the SQL schema. Attributes:
+
+  - Name: The name of the primary key constraint. Must match the name of the constraint in
+    the SQL schema.
+
+* ColumnRef: Used in a primary key or unique constraint definition to list a column name
+  bound in the constraint. Attributes:
+
+  - Name: The name of the column.
+
+* Unique: Defines a unique constraint on a table. Contains one or more ColumnRef tags.
+  Attributes:
+
+  - Name: The name of the unique constraint. Must match the name of the constraint in
+    the SQL schema.
+
+* ForeignKey: Defines a foreign key constraint on a table. Contains one or more ColumnMatch
+  tags. The set of ForeignKey tags in the mapping file must match the actual foreign key
+  constraints set on the table in the SQL schema. Attributes:
+
+  - Name: The name of the foreign key constraint. Must match the name of the constraint in
+    the SQL schema.
+
+  - ForeignTable: The name of the table from which the foreign key is copied.
+
+  - CascadeDelete: Boolean value that specifies whether ON DELETE CASCADE is defined on the
+    foreign key constraint. Default is false.
+
+  - CascadeUpdate: Boolean value that specifies whether ON UPDATE CASCADE is defined on the
+    foreign key constraint. Default is false.
+
+* ColumnMatch: Used in a ForeignKey constraint definition to specify a one-to-one mapping
+  between a foreign key column of the table and the column of the foreign table from which
+  the key value is copied. Attributes:
+
+  - Name: The name of the column in the local table that is a foreign key.
+
+  - ForeignName: The name of the column in the foreign table that provides the foreign key
+    value.
+
+* Classes: Container for one or more Class tags.
+
+* Class: Defines an object class. Contains one or more Property and WeaklyTypedProperty tags.
+  The set of Property and WeaklyTypedProperty tags within a Class definition need not match
+  the entire set of properties of the class, only those that will be mapped. Collection
+  properties that participate in an object container relationship must be listed. 
+  Attributes:
+
+  - Name: The name of the class. Must match the name of a class available in the assembly
+    specified in the web.config entry matching this class name.
+
+* Property: Defines a strongly-typed property name that will be mapped to storage. 
+  Attributes:
+
+  - Name: The name of the strongly-typed property. Must match a property of the class.
+
+* WeaklyTypedProperty: Defines a weakly-typed property name that will be mapped to storage.
+
+  - Name: The name of the weakly-typed property.
+
+* CollectionRelationships: Container for one or more CollectionRelationship tags.
+
+* CollectionRelationship: Defines a one-to-many container/collection relationship among
+  classes that are mapped to storage. A single CollectionRelationship tag maps a single
+  parent collection to the class type contained in the collection. Attributes:
+
+  - Name: The name of the relationship. Not used in the mapped storage system.
+
+  - ParentClass: The name of the parent class. Must be a mapped class specified using
+    a Class tag.
+
+  - ParentProperty: The name of the collection property of the parent class. Must correspond
+    to a Property tag entry in the parent class definition.
+
+  - ChildClass: The child class type contained in the collection. When more than one
+    mapped class can be present in a collection, the relationship should specify a common
+    parent class. An example of this is the abstract Payment class, whose four derived
+    classes can all reside in the Payments member of PurchaseOrder.
+
+* Mappings: Container for one or more ClassTableMap tags.
+
+* ClassTableMap: Defines a mapping from a class to a table. It contains one or more instances
+  of the PropertyMap tag. There can be more than one ClassTableMap tag defining
+  a relationship between the same class and a different table. Attributes:
+
+  - Class: Specifies the class name.
+
+  - Table: Specifies the table name.
+
+* PropertyMap: Defines a one-to-one mapping from a source class property (strongly-typed
+  or weakly-typed) to a target column in the table being mapped-to. Attributes:
+
+  - Property: The name of the class property being mapped.
+
+  - Column: The name of table column being mapped.
+
+-->
+<StorageMap>
+  <Tables>
+    <Table Name="PurchaseOrders">
+      <Columns>
+        <Column Name="OrderGroupId" DataType="uniqueidentifier" GUID="true" />
+        <Column Name="Name" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="SoldToId" DataType="uniqueidentifier" />
+        <Column Name="SoldToAddressId" DataType="nvarchar" Precision="50" IsNullable="true" />
+        <Column Name="LineItemCount" DataType="int" />
+        <Column Name="ShippingTotal" DataType="money" />
+        <Column Name="HandlingTotal" DataType="money" />
+        <Column Name="TaxTotal" DataType="money" />
+        <Column Name="SubTotal" DataType="money" />
+        <Column Name="Total" DataType="money" />
+        <Column Name="Created" DataType="datetime" />
+        <Column Name="LastModified" DataType="datetime" />
+        <Column Name="ModifiedBy" DataType="nvarchar" Precision="64" />
+        <Column Name="TrackingNumber" DataType="nvarchar" Precision="32" IsNullable="true" />
+        <Column Name="BasketId" DataType="uniqueidentifier" IsNullable="false" />
+        <Column Name="BillingCurrency" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="Status" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="SoldToName" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="MarshalledData" DataType="image" IsNullable="true" />
+      </Columns>
+      <Constraints>
+        <PrimaryKey Name="PK_PurchaseOrders">
+          <ColumnRef Name="OrderGroupId" />
+        </PrimaryKey>
+      </Constraints>
+    </Table>
+    <Table Name="LineItems">
+      <Columns>
+        <Column Name="LineItemId" DataType="uniqueidentifier" GUID="true" />
+        <Column Name="OrderFormId" DataType="uniqueidentifier" />
+        <Column Name="OrderGroupId" DataType="uniqueidentifier" />
+        <Column Name="ProductCatalog" DataType="nvarchar" Precision="255" IsNullable="false" />
+        <Column Name="ProductCategory" DataType="nvarchar" Precision="255" IsNullable="true" />
+        <Column Name="ProductId" DataType="nvarchar" Precision="255" IsNullable="false" />
+        <Column Name="ProductVariantId" DataType="nvarchar" Precision="255" IsNullable="true" />
+        <Column Name="Quantity" DataType="money" />
+        <Column Name="PlacedPrice" DataType="money" />
+        <Column Name="ListPrice" DataType="money" />
+        <Column Name="LineItemDiscountAmount" DataType="money" />
+        <Column Name="OrderLevelDiscountAmount" DataType="money" />
+        <Column Name="ShippingAddressId" DataType="nvarchar" Precision="50" IsNullable="false" />
+        <Column Name="ShippingMethodName" DataType="nvarchar" Precision="128" IsNullable="true" />
+        <Column Name="ShippingMethodId" DataType="uniqueidentifier" />
+        <Column Name="ExtendedPrice" DataType="money" />
+        <Column Name="Created" DataType="datetime" />
+        <Column Name="LastModified" DataType="datetime" />
+        <Column Name="Description" DataType="nvarchar" Precision="255" IsNullable="true" />
+        <Column Name="Status" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="DisplayName" DataType="nvarchar" Precision="128" IsNullable="true" />
+        <Column Name="AllowBackordersAndPreorders" DataType="bit" />
+        <Column Name="InStockQuantity" DataType="money" />
+        <Column Name="PreorderQuantity" DataType="money" />
+        <Column Name="BackorderQuantity" DataType="money" />
+        <Column Name="InventoryCondition" DataType="int" />
+        <Column Name="ModifiedBy" DataType="nvarchar" Precision="64" IsNullable="false" />
+        <Column Name="LineItemOrdering" DataType="timestamp" IsNullable="true" />
+        <Column Name="MarshalledData" DataType="image" IsNullable="true" />
+      </Columns>
+      <Constraints>
+        <PrimaryKey Name="PK_LineItems">
+          <ColumnRef Name="LineItemId" />
+        </PrimaryKey>
+        <!-- No need for ON DELETE CASCADE semantics - generated code will delete table by table -->
+        <ForeignKey Name="FK_LineItems_OrderForms" ForeignTable="OrderForms" CascadeDelete="false">
+          <ColumnMatch Name="OrderFormId" ForeignName="OrderFormId" />
+        </ForeignKey>
+      </Constraints>
+      <Ordering>
+        <OrderBy Column="OrderFormId" Ascending="true" />
+        <OrderBy Column="LineItemOrdering" Ascending="true" />
+      </Ordering>
+    </Table>
+    <Table Name="OrderAddresses">
+      <Columns>
+        <Column Name="OrderGroupId" DataType="uniqueidentifier" />
+        <Column Name="OrderAddressId" DataType="nvarchar" Precision="50" />
+        <Column Name="Name" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="FirstName" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="LastName" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="Organization" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="Line1" DataType="nvarchar" Precision="80" IsNullable="true" />
+        <Column Name="Line2" DataType="nvarchar" Precision="80" IsNullable="true" />
+        <Column Name="City" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="State" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="CountryCode" DataType="nvarchar" Precision="50" IsNullable="true" />
+        <Column Name="CountryName" DataType="nvarchar" Precision="50" IsNullable="true" />
+        <Column Name="PostalCode" DataType="nvarchar" Precision="20" IsNullable="true" />
+        <Column Name="RegionCode" DataType="nvarchar" Precision="50" IsNullable="true" />
+        <Column Name="RegionName" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="DaytimePhoneNumber" DataType="nvarchar" Precision="32" IsNullable="true" />
+        <Column Name="EveningPhoneNumber" DataType="nvarchar" Precision="32" IsNullable="true" />
+        <Column Name="FaxNumber" DataType="nvarchar" Precision="32" IsNullable="true" />
+        <Column Name="Email" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="MarshalledData" DataType="image" IsNullable="true" />
+      </Columns>
+      <Constraints>
+        <PrimaryKey Name="PK_OrderAddresses">
+          <ColumnRef Name="OrderGroupId" />
+          <ColumnRef Name="OrderAddressId" />
+        </PrimaryKey>
+        <!-- No need for ON DELETE CASCADE semantics - generated code will delete table by table -->
+        <ForeignKey Name="FK_OrderAddresses_PurchaseOrders" ForeignTable="PurchaseOrders" CascadeDelete="false">
+          <ColumnMatch Name="OrderGroupId" ForeignName="OrderGroupId" />
+        </ForeignKey>
+      </Constraints>
+    </Table>
+    <Table Name="OrderForms">
+      <Columns>
+        <Column Name="OrderFormId" DataType="uniqueidentifier" GUID="true" />
+        <Column Name="OrderGroupId" DataType="uniqueidentifier" />
+        <Column Name="Name" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="BillingAddressId" DataType="nvarchar" Precision="50" IsNullable="true" />
+        <Column Name="PromoUserIdentity" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="SubTotal" DataType="money" />
+        <Column Name="ShippingTotal" DataType="money" />
+        <Column Name="HandlingTotal" DataType="money" />
+        <Column Name="TaxTotal" DataType="money" />
+        <Column Name="Total" DataType="money" />
+        <Column Name="Created" DataType="datetime" />
+        <Column Name="LastModified" DataType="datetime" />
+        <Column Name="ModifiedBy" DataType="nvarchar" Precision="64" />
+        <Column Name="Status" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="MarshalledData" DataType="image" IsNullable="true" />
+      </Columns>
+      <Constraints>
+        <PrimaryKey Name="PK_OrderForms">
+          <ColumnRef Name="OrderFormId" />
+        </PrimaryKey>
+        <!-- No need for ON DELETE CASCADE semantics - generated code will delete table by table -->
+        <ForeignKey Name="FK_OrderForms_PurchaseOrders" ForeignTable="PurchaseOrders" CascadeDelete="false">
+          <ColumnMatch Name="OrderGroupId" ForeignName="OrderGroupId" />
+        </ForeignKey>
+      </Constraints>
+    </Table>
+    <Table Name="PromoCodeRecord">
+      <Columns>
+        <Column Name="OrderFormId" DataType="uniqueidentifier" />
+        <Column Name="PromoCode" DataType="nvarchar" Precision="64" />
+        <Column Name="OrderGroupId" DataType="uniqueidentifier" />
+        <Column Name="PromoCodeDefinitionId" DataType="int" />
+        <Column Name="PromoCodeLookupDate" DataType="datetime" />
+        <Column Name="PromoCodeStatus" DataType="int" />
+        <Column Name="PromoApplied" DataType="bit" />
+        <Column Name="PromoCodeReserved" DataType="bit" />
+        <Column Name="MarshalledData" DataType="image" IsNullable="true" />
+      </Columns>
+      <Constraints>
+        <PrimaryKey Name="PK_PromoCodeRecord">
+          <ColumnRef Name="OrderFormId" />
+          <ColumnRef Name="PromoCode" />
+        </PrimaryKey>
+        <!-- No need for ON DELETE CASCADE semantics - generated code will delete table by table -->
+        <ForeignKey Name="FK_PromoCodeRecord_OrderForms" ForeignTable="OrderForms" CascadeDelete="false">
+          <ColumnMatch Name="OrderFormId" ForeignName="OrderFormId" />
+        </ForeignKey>
+      </Constraints>
+    </Table>
+    <Table Name="CreditCardPayments">
+      <Columns>
+        <Column Name="PaymentId" DataType="uniqueidentifier" GUID="true" />
+        <Column Name="OrderFormId" DataType="uniqueidentifier" />
+        <Column Name="OrderGroupId" DataType="uniqueidentifier" />
+        <Column Name="BillingAddressId" DataType="nvarchar" Precision="50" IsNullable="true" />
+        <Column Name="PaymentMethodId" DataType="uniqueidentifier" IsNullable="false" />
+        <Column Name="PaymentMethodName" DataType="nvarchar" Precision="128" IsNullable="true" />
+        <Column Name="CustomerNameOnPayment" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="Amount" DataType="money" />
+        <Column Name="PaymentType" DataType="int" />
+        <Column Name="CreditCardIdentifier" DataType="nvarchar" Precision="40" IsNullable="true" />
+        <Column Name="CardType" DataType="nvarchar" Precision="40" IsNullable="true" />
+        <Column Name="ExpirationMonth" DataType="int" />
+        <Column Name="ExpirationYear" DataType="int" />
+        <Column Name="ValidationCode" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="AuthorizationCode" DataType="nvarchar" Precision="255" IsNullable="true" />
+        <Column Name="Status" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="MarshalledData" DataType="image" IsNullable="true" />
+      </Columns>
+      <Constraints>
+        <PrimaryKey Name="PK_CreditCardPayments">
+          <ColumnRef Name="PaymentId" />
+        </PrimaryKey>
+        <!-- No need for ON DELETE CASCADE semantics - generated code will delete table by table -->
+        <ForeignKey Name="FK_CreditCard_OrderForms" ForeignTable="OrderForms" CascadeDelete="false">
+          <ColumnMatch Name="OrderFormId" ForeignName="OrderFormId" />
+        </ForeignKey>
+      </Constraints>
+    </Table>
+    <Table Name="GiftCertificatePayments">
+      <Columns>
+        <Column Name="PaymentId" DataType="uniqueidentifier" GUID="true" />
+        <Column Name="OrderFormId" DataType="uniqueidentifier" />
+        <Column Name="OrderGroupId" DataType="uniqueidentifier" />
+        <Column Name="BillingAddressId" DataType="nvarchar" Precision="50" IsNullable="true" />
+        <Column Name="PaymentMethodId" DataType="uniqueidentifier" IsNullable="false" />
+        <Column Name="PaymentMethodName" DataType="nvarchar" Precision="128" IsNullable="true" />
+        <Column Name="CustomerNameOnPayment" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="Amount" DataType="money" />
+        <Column Name="PaymentType" DataType="int" />
+        <Column Name="ExpirationDate" DataType="datetime" />
+        <Column Name="GiftCertificateNumber" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="AuthorizationCode" DataType="nvarchar" Precision="255" IsNullable="true" />
+        <Column Name="Status" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="MarshalledData" DataType="image" IsNullable="true" />
+      </Columns>
+      <Constraints>
+        <PrimaryKey Name="PK_GiftCertificatePayments">
+          <ColumnRef Name="PaymentId" />
+        </PrimaryKey>
+        <!-- No need for ON DELETE CASCADE semantics - generated code will delete table by table -->
+        <ForeignKey Name="FK_GiftCertificate_OrderForms" ForeignTable="OrderForms" CascadeDelete="false">
+          <ColumnMatch Name="OrderFormId" ForeignName="OrderFormId" />
+        </ForeignKey>
+      </Constraints>
+    </Table>
+    <Table Name="PurchaseOrderPayments">
+      <Columns>
+        <Column Name="PaymentId" DataType="uniqueidentifier" GUID="true" />
+        <Column Name="OrderFormId" DataType="uniqueidentifier" />
+        <Column Name="OrderGroupId" DataType="uniqueidentifier" />
+        <Column Name="BillingAddressId" DataType="nvarchar" Precision="50" IsNullable="true" />
+        <Column Name="PaymentMethodId" DataType="uniqueidentifier" IsNullable="false" />
+        <Column Name="PaymentMethodName" DataType="nvarchar" Precision="128" IsNullable="true" />
+        <Column Name="CustomerNameOnPayment" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="Amount" DataType="money" />
+        <Column Name="PaymentType" DataType="int" />
+        <Column Name="PurchaseOrderPaymentNumber" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="Status" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="MarshalledData" DataType="image" IsNullable="true" />
+      </Columns>
+      <Constraints>
+        <PrimaryKey Name="PK_PurchaseOrderPayments">
+          <ColumnRef Name="PaymentId" />
+        </PrimaryKey>
+        <!-- No need for ON DELETE CASCADE semantics - generated code will delete table by table -->
+        <ForeignKey Name="FK_PurchaseOrderPayments_OrderForms" ForeignTable="OrderForms" CascadeDelete="false">
+          <ColumnMatch Name="OrderFormId" ForeignName="OrderFormId" />
+        </ForeignKey>
+      </Constraints>
+    </Table>
+    <Table Name="CashCardPayments">
+      <Columns>
+        <Column Name="PaymentId" DataType="uniqueidentifier" GUID="true" />
+        <Column Name="OrderFormId" DataType="uniqueidentifier" />
+        <Column Name="OrderGroupId" DataType="uniqueidentifier" />
+        <Column Name="BillingAddressId" DataType="nvarchar" Precision="50" IsNullable="true" />
+        <Column Name="PaymentMethodId" DataType="uniqueidentifier" IsNullable="false" />
+        <Column Name="PaymentMethodName" DataType="nvarchar" Precision="128" IsNullable="true" />
+        <Column Name="CustomerNameOnPayment" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="Amount" DataType="money" />
+        <Column Name="PaymentType" DataType="int" />
+        <Column Name="CashCardNumber" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="Status" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="MarshalledData" DataType="image" IsNullable="true" />
+      </Columns>
+      <Constraints>
+        <PrimaryKey Name="PK_CashCardPayments">
+          <ColumnRef Name="PaymentId" />
+        </PrimaryKey>
+        <!-- No need for ON DELETE CASCADE semantics - generated code will delete table by table -->
+        <ForeignKey Name="FK_CashCardPayments_OrderForms" ForeignTable="OrderForms" CascadeDelete="false">
+          <ColumnMatch Name="OrderFormId" ForeignName="OrderFormId" />
+        </ForeignKey>
+      </Constraints>
+    </Table>
+    <Table Name="DiscountsApplied">
+      <Columns>
+        <Column Name="OrderGroupId" DataType="uniqueidentifier" />
+        <Column Name="LineItemId" DataType="uniqueidentifier" />
+        <Column Name="DiscountId" DataType="int" />
+        <Column Name="Priority" DataType="int" />
+        <Column Name="LastModified" DataType="datetime" />
+        <Column Name="DiscountAmount" DataType="money" />
+        <Column Name="DiscountType" DataType="int" />
+        <Column Name="DiscountValue" DataType="money" />
+        <Column Name="DiscountName" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="PromoCode" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="BasketDisplayMessage" DataType="nvarchar" Precision="255" IsNullable="true" />
+        <Column Name="PromoCodeDefinitionId" DataType="int" />
+        <Column Name="ParentCollectionDiscriminator" DataType="int" IsNullable="false" />
+        <Column Name="MarshalledData" DataType="image" IsNullable="true" />
+      </Columns>
+      <Constraints>
+        <PrimaryKey Name="PK_DiscountsApplied">
+          <ColumnRef Name="LineItemId" />
+          <ColumnRef Name="DiscountId" />
+        </PrimaryKey>
+        <!-- No need for ON DELETE CASCADE semantics - generated code will delete table by table -->
+        <ForeignKey Name="FK_DiscountsApplied_LineItems" ForeignTable="LineItems" CascadeDelete="false">
+          <ColumnMatch Name="LineItemId" ForeignName="LineItemId" />
+        </ForeignKey>
+      </Constraints>
+    </Table>
+    <Table Name="Shipments">
+      <Columns>
+        <Column Name="ShipmentId" DataType="uniqueidentifier" />
+        <Column Name="OrderFormId" DataType="uniqueidentifier" />
+        <Column Name="OrderGroupId" DataType="uniqueidentifier" />
+        <Column Name="ShippingMethodId" DataType="uniqueidentifier" />
+        <Column Name="ShippingAddressId" DataType="nvarchar" Precision="50" IsNullable="true" />
+        <Column Name="ShipmentTrackingNumber" DataType="nvarchar" Precision="128" IsNullable="true" />
+        <Column Name="ShipmentTotal" DataType="money" />
+        <Column Name="ShippingDiscountAmount" DataType="money" />
+				<Column Name="ShippingMethodName" DataType="nvarchar" Precision="128" IsNullable="true" />
+        <Column Name="Status" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="MarshalledData" DataType="image" IsNullable="true" />
+      </Columns>
+      <Constraints>
+        <PrimaryKey Name="PK_Shipments">
+          <ColumnRef Name="ShipmentId" />
+        </PrimaryKey>
+        <!-- No need for ON DELETE CASCADE semantics - generated code will delete table by table -->
+        <ForeignKey Name="FK_Shipments_OrderForms" ForeignTable="OrderForms" CascadeDelete="false">
+          <ColumnMatch Name="OrderFormId" ForeignName="OrderFormId" />
+        </ForeignKey>
+      </Constraints>
+    </Table>
+    <Table Name="ShippingDiscounts">
+      <Columns>
+        <Column Name="OrderGroupId" DataType="uniqueidentifier" />
+        <Column Name="ShipmentId" DataType="uniqueidentifier" />
+        <Column Name="DiscountId" DataType="int" />
+        <Column Name="Priority" DataType="int" />
+        <Column Name="LastModified" DataType="datetime" />
+        <Column Name="DiscountAmount" DataType="money" />
+        <Column Name="DiscountType" DataType="int" />
+        <Column Name="DiscountValue" DataType="money" />
+        <Column Name="DiscountName" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="PromoCode" DataType="nvarchar" Precision="64" IsNullable="true" />
+        <Column Name="BasketDisplayMessage" DataType="nvarchar" Precision="255" IsNullable="true" />
+        <Column Name="PromoCodeDefinitionId" DataType="int" />
+        <Column Name="MarshalledData" DataType="image" IsNullable="true" />
+      </Columns>
+      <Constraints>
+        <PrimaryKey Name="PK_ShippingDiscounts">
+          <ColumnRef Name="ShipmentId" />
+          <ColumnRef Name="DiscountId" />
+        </PrimaryKey>
+        <!-- No need for ON DELETE CASCADE semantics - generated code will delete table by table -->
+        <ForeignKey Name="FK_ShippingDiscounts_Shipments" ForeignTable="Shipments" CascadeDelete="false">
+          <ColumnMatch Name="ShipmentId" ForeignName="ShipmentId" />
+        </ForeignKey>
+      </Constraints>
+    </Table>
+  </Tables>
+  <Classes>
+    <Class Name="PurchaseOrder">
+      <Property Name="BillingCurrency"/>
+      <Property Name="TrackingNumber"/>
+      <Property Name="BasketId"/>
+      <Property Name="OrderGroupId"/>
+      <Property Name="Name"/>
+      <Property Name="SoldToId"/>
+      <Property Name="SoldToAddressId"/>
+      <Property Name="LineItemCount"/>
+      <Property Name="ShippingTotal"/>
+      <Property Name="HandlingTotal"/>
+      <Property Name="TaxTotal"/>
+      <Property Name="SubTotal"/>
+      <Property Name="Total"/>
+      <Property Name="Created"/>
+      <Property Name="LastModified"/>
+      <Property Name="ModifiedBy"/>
+      <Property Name="OrderForms"/>
+      <Property Name="Addresses"/>
+      <Property Name="Status"/>
+      <Property Name="SoldToName"/>
+    </Class>
+    <Class Name="OrderForm">
+      <Property Name="OrderFormId"/>
+      <Property Name="OrderGroupId"/>
+      <Property Name="Name"/>
+      <Property Name="BillingAddressId"/>
+      <Property Name="PromoUserIdentity"/>
+      <Property Name="SubTotal"/>
+      <Property Name="ShippingTotal"/>
+      <Property Name="HandlingTotal"/>
+      <Property Name="TaxTotal"/>
+      <Property Name="Total"/>
+      <Property Name="Created"/>
+      <Property Name="LastModified"/>
+      <Property Name="ModifiedBy"/>
+      <Property Name="Payments"/>
+      <Property Name="LineItems"/>
+      <Property Name="Shipments"/>
+      <Property Name="PromoCodeRecords"/>
+      <Property Name="Status"/>
+    </Class>
+    <Class Name="LineItem">
+      <Property Name="LineItemId"/>
+      <Property Name="OrderGroupId"/>
+      <Property Name="OrderFormId"/>
+      <Property Name="ProductCatalog"/>
+      <Property Name="ProductCategory"/>
+      <Property Name="ProductId"/>
+      <Property Name="ProductVariantId"/>
+      <Property Name="Quantity"/>
+      <Property Name="PlacedPrice"/>
+      <Property Name="ListPrice"/>
+      <Property Name="LineItemDiscountAmount"/>
+      <Property Name="OrderLevelDiscountAmount"/>
+      <Property Name="ShippingAddressId"/>
+      <Property Name="ShippingMethodId"/>
+      <Property Name="ShippingMethodName"/>
+      <Property Name="ExtendedPrice"/>
+      <Property Name="Created"/>
+      <Property Name="LastModified"/>
+      <Property Name="Description"/>
+      <Property Name="Status"/>
+      <Property Name="DisplayName"/>
+      <Property Name="AllowBackordersAndPreorders"/>
+      <Property Name="InStockQuantity"/>
+      <Property Name="PreorderQuantity"/>
+      <Property Name="BackorderQuantity"/>
+      <Property Name="InventoryCondition"/>
+      <Property Name="ModifiedBy"/>
+      <Property Name="OrderLevelDiscountsApplied"/>
+      <Property Name="ItemLevelDiscountsApplied"/>
+    </Class>
+    <Class Name="OrderAddress">
+      <Property Name="OrderAddressId"/>
+      <Property Name="Name"/>
+      <Property Name="FirstName"/>
+      <Property Name="LastName"/>
+      <Property Name="Organization"/>
+      <Property Name="Line1"/>
+      <Property Name="Line2"/>
+      <Property Name="City"/>
+      <Property Name="State"/>
+      <Property Name="CountryCode"/>
+      <Property Name="CountryName"/>
+      <Property Name="PostalCode"/>
+      <Property Name="RegionName"/>
+      <Property Name="RegionCode"/>
+      <Property Name="DaytimePhoneNumber"/>
+      <Property Name="EveningPhoneNumber"/>
+      <Property Name="FaxNumber"/>
+      <Property Name="Email"/>
+      <Property Name="OrderGroupId"/>
+    </Class>
+    <Class Name="CreditCardPayment">
+      <Property Name="PaymentId"/>
+      <Property Name="OrderGroupId"/>
+      <Property Name="OrderFormId"/>
+      <Property Name="BillingAddressId"/>
+      <Property Name="PaymentMethodId"/>
+      <Property Name="PaymentMethodName"/>
+      <Property Name="CustomerNameOnPayment"/>
+      <Property Name="Amount"/>
+      <Property Name="PaymentType"/>
+      <Property Name="CreditCardIdentifier"/>
+      <Property Name="ExpirationMonth"/>
+      <Property Name="ExpirationYear"/>
+      <Property Name="CardType"/>
+      <Property Name="ValidationCode"/>
+      <Property Name="AuthorizationCode"/>
+      <Property Name="Status"/>
+    </Class>
+    <Class Name="GiftCertificatePayment">
+      <Property Name="PaymentId"/>
+      <Property Name="OrderGroupId"/>
+      <Property Name="OrderFormId"/>
+      <Property Name="BillingAddressId"/>
+      <Property Name="PaymentMethodId"/>
+      <Property Name="PaymentMethodName"/>
+      <Property Name="CustomerNameOnPayment"/>
+      <Property Name="Amount"/>
+      <Property Name="PaymentType"/>
+      <Property Name="GiftCertificateNumber"/>
+      <Property Name="ExpirationDate"/>
+      <Property Name="AuthorizationCode"/>
+      <Property Name="Status"/>
+    </Class>
+    <Class Name="PurchaseOrderPayment">
+      <Property Name="PaymentId"/>
+      <Property Name="OrderGroupId"/>
+      <Property Name="OrderFormId"/>
+      <Property Name="BillingAddressId"/>
+      <Property Name="PaymentMethodId"/>
+      <Property Name="PaymentMethodName"/>
+      <Property Name="CustomerNameOnPayment"/>
+      <Property Name="Amount"/>
+      <Property Name="PaymentType"/>
+      <Property Name="PurchaseOrderPaymentNumber"/>
+      <Property Name="Status"/>
+    </Class>
+    <Class Name="CashCardPayment">
+      <Property Name="PaymentId"/>
+      <Property Name="OrderGroupId"/>
+      <Property Name="OrderFormId"/>
+      <Property Name="BillingAddressId"/>
+      <Property Name="PaymentMethodId"/>
+      <Property Name="PaymentMethodName"/>
+      <Property Name="CustomerNameOnPayment"/>
+      <Property Name="Amount"/>
+      <Property Name="PaymentType"/>
+      <Property Name="CashCardNumber"/>
+      <Property Name="Status"/>
+    </Class>
+    <Class Name="Shipment">
+      <Property Name="ShipmentId"/>
+      <Property Name="OrderFormId"/>
+      <Property Name="OrderGroupId"/>
+      <Property Name="ShippingAddressId"/>
+      <Property Name="ShippingMethodId"/>
+      <Property Name="ShipmentTrackingNumber"/>
+      <Property Name="ShipmentTotal"/>
+      <Property Name="ShippingDiscountAmount"/>
+			<Property Name="ShippingMethodName"/>
+      <Property Name="Status"/>
+      <Property Name="ShippingDiscounts"/>
+    </Class>
+    <Class Name="PromoCodeRecord">
+      <Property Name="OrderFormId"/>
+      <Property Name="OrderGroupId"/>
+      <Property Name="PromoCode"/>
+      <Property Name="PromoCodeDefinitionId"/>
+      <Property Name="PromoCodeLookupDate"/>
+      <Property Name="PromoCodeStatus"/>
+      <Property Name="PromoApplied"/>
+      <Property Name="PromoCodeReserved"/>
+    </Class>
+    <Class Name="DiscountApplicationRecord">
+      <Property Name="LineItemId"/>
+      <Property Name="OrderGroupId"/>
+      <Property Name="DiscountId"/>
+      <Property Name="Priority"/>
+      <Property Name="LastModified"/>
+      <Property Name="DiscountAmount"/>
+      <Property Name="TypeOfDiscount"/>
+      <Property Name="DiscountValue"/>
+      <Property Name="DiscountName"/>
+      <Property Name="PromoCode"/>
+      <Property Name="BasketDisplayMessage"/>
+      <Property Name="PromoCodeDefinitionId"/>
+    </Class>
+    <Class Name="ShippingDiscountRecord">
+      <Property Name="ShipmentId"/>
+      <Property Name="OrderGroupId"/>
+      <Property Name="DiscountId"/>
+      <Property Name="Priority"/>
+      <Property Name="LastModified"/>
+      <Property Name="DiscountAmount"/>
+      <Property Name="TypeOfDiscount"/>
+      <Property Name="DiscountValue"/>
+      <Property Name="DiscountName"/>
+      <Property Name="PromoCode"/>
+      <Property Name="BasketDisplayMessage"/>
+      <Property Name="PromoCodeDefinitionId"/>
+    </Class>
+    <CollectionRelationships>
+      <CollectionRelationship Name="PurchaseOrderOrderForms" ParentClass="PurchaseOrder" ParentProperty="OrderForms" ChildClass="OrderForm" />
+      <CollectionRelationship Name="OrderFormPayments" ParentClass="OrderForm" ParentProperty="Payments" ChildClass="Payment" />
+      <CollectionRelationship Name="PurchaseOrderAddresses" ParentClass="PurchaseOrder" ParentProperty="Addresses" ChildClass="OrderAddress" />
+      <CollectionRelationship Name="OrderFormLineItems" ParentClass="OrderForm" ParentProperty="LineItems" ChildClass="LineItem" />
+      <CollectionRelationship Name="LineItemDiscountsApplied" ParentClass="LineItem" ParentProperty="OrderLevelDiscountsApplied" ChildClass="DiscountApplicationRecord" />
+      <CollectionRelationship Name="ItemLevelDiscountsApplied" ParentClass="LineItem" ParentProperty="ItemLevelDiscountsApplied" ChildClass="DiscountApplicationRecord" />
+      <CollectionRelationship Name="OrderFormShipments" ParentClass="OrderForm" ParentProperty="Shipments" ChildClass="Shipment" />
+      <CollectionRelationship Name="OrderFormPromoCodeRecords" ParentClass="OrderForm" ParentProperty="PromoCodeRecords" ChildClass="PromoCodeRecord" />
+      <CollectionRelationship Name="ShipmentDiscountsShipping" ParentClass="Shipment" ParentProperty="ShippingDiscounts" ChildClass="ShippingDiscountRecord" />
+    </CollectionRelationships>
+  </Classes>
+  <Mappings>
+    <ClassTableMap Class="ShippingDiscountRecord" Table="ShippingDiscounts">
+      <PropertyMap Property="DiscountId" Column="DiscountId" />
+      <PropertyMap Property="Priority" Column="Priority" />
+      <PropertyMap Property="LastModified" Column="LastModified" />
+      <PropertyMap Property="DiscountAmount" Column="DiscountAmount" />
+      <PropertyMap Property="TypeOfDiscount" Column="DiscountType" />
+      <PropertyMap Property="DiscountValue" Column="DiscountValue" />
+      <PropertyMap Property="DiscountName" Column="DiscountName" />
+      <PropertyMap Property="ShipmentId" Column="ShipmentId" />
+      <PropertyMap Property="OrderGroupId" Column="OrderGroupId" />
+      <PropertyMap Property="PromoCode" Column="PromoCode" />
+      <PropertyMap Property="BasketDisplayMessage" Column="BasketDisplayMessage" />
+      <PropertyMap Property="PromoCodeDefinitionId" Column="PromoCodeDefinitionId" />
+    </ClassTableMap>
+    <ClassTableMap Class="DiscountApplicationRecord" Table="DiscountsApplied">
+      <PropertyMap Property="DiscountId" Column="DiscountId" />
+      <PropertyMap Property="Priority" Column="Priority" />
+      <PropertyMap Property="LastModified" Column="LastModified" />
+      <PropertyMap Property="DiscountAmount" Column="DiscountAmount" />
+      <PropertyMap Property="TypeOfDiscount" Column="DiscountType" />
+      <PropertyMap Property="DiscountValue" Column="DiscountValue" />
+      <PropertyMap Property="DiscountName" Column="DiscountName" />
+      <PropertyMap Property="LineItemId" Column="LineItemId" />
+      <PropertyMap Property="OrderGroupId" Column="OrderGroupId" />
+      <PropertyMap Property="PromoCode" Column="PromoCode" />
+      <PropertyMap Property="BasketDisplayMessage" Column="BasketDisplayMessage" />
+      <PropertyMap Property="PromoCodeDefinitionId" Column="PromoCodeDefinitionId" />
+    </ClassTableMap>
+    <ClassTableMap Class="PromoCodeRecord" Table="PromoCodeRecord">
+      <PropertyMap Property="OrderFormId" Column="OrderFormId" />
+      <PropertyMap Property="OrderGroupId" Column="OrderGroupId" />
+      <PropertyMap Property="PromoCode" Column="PromoCode" />
+      <PropertyMap Property="PromoCodeDefinitionId" Column="PromoCodeDefinitionId" />
+      <PropertyMap Property="PromoCodeLookupDate" Column="PromoCodeLookupDate" />
+      <PropertyMap Property="PromoCodeStatus" Column="PromoCodeStatus" />
+      <PropertyMap Property="PromoApplied" Column="PromoApplied" />
+      <PropertyMap Property="PromoCodeReserved" Column="PromoCodeReserved" />
+    </ClassTableMap>
+    <ClassTableMap Class="Shipment" Table="Shipments">
+      <PropertyMap Property="OrderFormId" Column="OrderFormId" />
+      <PropertyMap Property="OrderGroupId" Column="OrderGroupId" />
+      <PropertyMap Property="ShippingMethodId" Column="ShippingMethodId" />
+      <PropertyMap Property="ShippingAddressId" Column="ShippingAddressId" />
+      <PropertyMap Property="ShipmentId" Column="ShipmentId" />
+      <PropertyMap Property="ShipmentTrackingNumber" Column="ShipmentTrackingNumber" />
+      <PropertyMap Property="ShipmentTotal" Column="ShipmentTotal" />
+      <PropertyMap Property="ShippingDiscountAmount" Column="ShippingDiscountAmount" />
+			<PropertyMap Property="ShippingMethodName" Column="ShippingMethodName" />
+      <PropertyMap Property="Status" Column="Status" />
+    </ClassTableMap>
+    <ClassTableMap Class="CashCardPayment" Table="CashCardPayments">
+      <PropertyMap Property="PaymentId" Column="PaymentId" />
+      <PropertyMap Property="OrderFormId" Column="OrderFormId" />
+      <PropertyMap Property="OrderGroupId" Column="OrderGroupId" />
+      <PropertyMap Property="BillingAddressId" Column="BillingAddressId" />
+      <PropertyMap Property="PaymentMethodId" Column="PaymentMethodId" />
+      <PropertyMap Property="PaymentMethodName" Column="PaymentMethodName" />
+      <PropertyMap Property="CustomerNameOnPayment" Column="CustomerNameOnPayment" />
+      <PropertyMap Property="Amount" Column="Amount" />
+      <PropertyMap Property="PaymentType" Column="PaymentType" />
+      <PropertyMap Property="CashCardNumber" Column="CashCardNumber" />
+      <PropertyMap Property="Status" Column="Status" />
+    </ClassTableMap>
+    <ClassTableMap Class="PurchaseOrderPayment" Table="PurchaseOrderPayments">
+      <PropertyMap Property="PaymentId" Column="PaymentId" />
+      <PropertyMap Property="OrderFormId" Column="OrderFormId" />
+      <PropertyMap Property="OrderGroupId" Column="OrderGroupId" />
+      <PropertyMap Property="BillingAddressId" Column="BillingAddressId" />
+      <PropertyMap Property="PaymentMethodId" Column="PaymentMethodId" />
+      <PropertyMap Property="PaymentMethodName" Column="PaymentMethodName" />
+      <PropertyMap Property="CustomerNameOnPayment" Column="CustomerNameOnPayment" />
+      <PropertyMap Property="Amount" Column="Amount" />
+      <PropertyMap Property="PaymentType" Column="PaymentType" />
+      <PropertyMap Property="PurchaseOrderPaymentNumber" Column="PurchaseOrderPaymentNumber" />
+      <PropertyMap Property="Status" Column="Status" />
+    </ClassTableMap>
+    <ClassTableMap Class="GiftCertificatePayment" Table="GiftCertificatePayments">
+      <PropertyMap Property="PaymentId" Column="PaymentId" />
+      <PropertyMap Property="OrderFormId" Column="OrderFormId" />
+      <PropertyMap Property="OrderGroupId" Column="OrderGroupId" />
+      <PropertyMap Property="BillingAddressId" Column="BillingAddressId" />
+      <PropertyMap Property="PaymentMethodId" Column="PaymentMethodId" />
+      <PropertyMap Property="PaymentMethodName" Column="PaymentMethodName" />
+      <PropertyMap Property="CustomerNameOnPayment" Column="CustomerNameOnPayment" />
+      <PropertyMap Property="Amount" Column="Amount" />
+      <PropertyMap Property="PaymentType" Column="PaymentType" />
+      <PropertyMap Property="GiftCertificateNumber" Column="GiftCertificateNumber" />
+      <PropertyMap Property="ExpirationDate" Column="ExpirationDate" />
+      <PropertyMap Property="AuthorizationCode" Column="AuthorizationCode" />
+      <PropertyMap Property="Status" Column="Status" />
+    </ClassTableMap>
+    <ClassTableMap Class="CreditCardPayment" Table="CreditCardPayments">
+      <PropertyMap Property="PaymentId" Column="PaymentId" />
+      <PropertyMap Property="OrderFormId" Column="OrderFormId" />
+      <PropertyMap Property="OrderGroupId" Column="OrderGroupId" />
+      <PropertyMap Property="BillingAddressId" Column="BillingAddressId" />
+      <PropertyMap Property="PaymentMethodId" Column="PaymentMethodId" />
+      <PropertyMap Property="PaymentMethodName" Column="PaymentMethodName" />
+      <PropertyMap Property="CustomerNameOnPayment" Column="CustomerNameOnPayment" />
+      <PropertyMap Property="Amount" Column="Amount" />
+      <PropertyMap Property="PaymentType" Column="PaymentType" />
+      <PropertyMap Property="CreditCardIdentifier" Column="CreditCardIdentifier" />
+      <PropertyMap Property="ExpirationMonth" Column="ExpirationMonth" />
+      <PropertyMap Property="ExpirationYear" Column="ExpirationYear" />
+      <PropertyMap Property="CardType" Column="CardType" />
+      <PropertyMap Property="ValidationCode" Column="ValidationCode" />
+      <PropertyMap Property="AuthorizationCode" Column="AuthorizationCode" />
+      <PropertyMap Property="Status" Column="Status" />
+    </ClassTableMap>
+    <ClassTableMap Class="OrderAddress" Table="OrderAddresses">
+      <PropertyMap Property="OrderAddressId" Column="OrderAddressId" />
+      <PropertyMap Property="Name" Column="Name" />
+      <PropertyMap Property="FirstName" Column="FirstName" />
+      <PropertyMap Property="LastName" Column="LastName" />
+      <PropertyMap Property="Organization" Column="Organization" />
+      <PropertyMap Property="Line1" Column="Line1" />
+      <PropertyMap Property="Line2" Column="Line2" />
+      <PropertyMap Property="City" Column="City" />
+      <PropertyMap Property="State" Column="State" />
+      <PropertyMap Property="CountryCode" Column="CountryCode" />
+      <PropertyMap Property="CountryName" Column="CountryName" />
+      <PropertyMap Property="PostalCode" Column="PostalCode" />
+      <PropertyMap Property="RegionName" Column="RegionName" />
+      <PropertyMap Property="RegionCode" Column="RegionCode" />
+      <PropertyMap Property="DaytimePhoneNumber" Column="DaytimePhoneNumber" />
+      <PropertyMap Property="EveningPhoneNumber" Column="EveningPhoneNumber" />
+      <PropertyMap Property="FaxNumber" Column="FaxNumber" />
+      <PropertyMap Property="Email" Column="Email" />
+      <PropertyMap Property="OrderGroupId" Column="OrderGroupId" />
+    </ClassTableMap>
+    <ClassTableMap Class="OrderForm" Table="OrderForms">
+      <PropertyMap Property="OrderFormId" Column="OrderFormId" />
+      <PropertyMap Property="OrderGroupId" Column="OrderGroupId" />
+      <PropertyMap Property="Name" Column="Name" />
+      <PropertyMap Property="BillingAddressId" Column="BillingAddressId" />
+      <PropertyMap Property="PromoUserIdentity" Column="PromoUserIdentity" />
+      <PropertyMap Property="SubTotal" Column="SubTotal" />
+      <PropertyMap Property="ShippingTotal" Column="ShippingTotal" />
+      <PropertyMap Property="HandlingTotal" Column="HandlingTotal" />
+      <PropertyMap Property="TaxTotal" Column="TaxTotal" />
+      <PropertyMap Property="Total" Column="Total" />
+      <PropertyMap Property="Created" Column="Created" />
+      <PropertyMap Property="LastModified" Column="LastModified" />
+      <PropertyMap Property="Status" Column="Status" />
+      <PropertyMap Property="ModifiedBy" Column="ModifiedBy" />
+    </ClassTableMap>
+    <ClassTableMap Class="LineItem" Table="LineItems">
+      <PropertyMap Property="OrderGroupId" Column="OrderGroupId" />
+      <PropertyMap Property="OrderFormId" Column="OrderFormId" />
+      <PropertyMap Property="LineItemId" Column="LineItemId" />
+      <PropertyMap Property="ProductCatalog" Column="ProductCatalog" />
+      <PropertyMap Property="ProductCategory" Column="ProductCategory" />
+      <PropertyMap Property="ProductId" Column="ProductId" />
+      <PropertyMap Property="ProductVariantId" Column="ProductVariantId" />
+      <PropertyMap Property="Quantity" Column="Quantity" />
+      <PropertyMap Property="PlacedPrice" Column="PlacedPrice" />
+      <PropertyMap Property="ListPrice" Column="ListPrice" />
+      <PropertyMap Property="LineItemDiscountAmount" Column="LineItemDiscountAmount" />
+      <PropertyMap Property="OrderLevelDiscountAmount" Column="OrderLevelDiscountAmount" />
+      <PropertyMap Property="ShippingAddressId" Column="ShippingAddressId" />
+      <PropertyMap Property="ShippingMethodId" Column="ShippingMethodId" />
+      <PropertyMap Property="ShippingMethodName" Column="ShippingMethodName" />
+      <PropertyMap Property="ExtendedPrice" Column="ExtendedPrice" />
+      <PropertyMap Property="Created" Column="Created" />
+      <PropertyMap Property="LastModified" Column="LastModified" />
+      <PropertyMap Property="Description" Column="Description" />
+      <PropertyMap Property="Status" Column="Status" />
+      <PropertyMap Property="DisplayName" Column="DisplayName" />
+      <PropertyMap Property="AllowBackordersAndPreorders" Column="AllowBackordersAndPreorders" />
+      <PropertyMap Property="InStockQuantity" Column="InStockQuantity" />
+      <PropertyMap Property="PreorderQuantity" Column="PreorderQuantity" />
+      <PropertyMap Property="BackorderQuantity" Column="BackorderQuantity" />
+      <PropertyMap Property="InventoryCondition" Column="InventoryCondition" />
+      <PropertyMap Property="ModifiedBy" Column="ModifiedBy" />
+    </ClassTableMap>
+    <ClassTableMap Class="PurchaseOrder" Table="PurchaseOrders">
+      <PropertyMap Property="OrderGroupId" Column="OrderGroupId" />
+      <PropertyMap Property="Name" Column="Name" />
+      <PropertyMap Property="SoldToId" Column="SoldToId" />
+      <PropertyMap Property="SoldToAddressId" Column="SoldToAddressId" />
+      <PropertyMap Property="LineItemCount" Column="LineItemCount" />
+      <PropertyMap Property="ShippingTotal" Column="ShippingTotal" />
+      <PropertyMap Property="HandlingTotal" Column="HandlingTotal" />
+      <PropertyMap Property="TaxTotal" Column="TaxTotal" />
+      <PropertyMap Property="SubTotal" Column="SubTotal" />
+      <PropertyMap Property="Total" Column="Total" />
+      <PropertyMap Property="Created" Column="Created" />
+      <PropertyMap Property="LastModified" Column="LastModified" />
+      <PropertyMap Property="ModifiedBy" Column="ModifiedBy" />
+      <PropertyMap Property="TrackingNumber" Column="TrackingNumber" />
+      <PropertyMap Property="BasketId" Column="BasketId" />
+      <PropertyMap Property="BillingCurrency" Column="BillingCurrency" />
+      <PropertyMap Property="Status" Column="Status" />
+      <PropertyMap Property="SoldToName" Column="SoldToName" />
+    </ClassTableMap>
+  </Mappings>
+</StorageMap>

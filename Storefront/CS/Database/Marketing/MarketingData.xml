@@ -1,0 +1,1225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MarketingSystemBulkExport xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.commerceserver.net/2013/01/Marketing/MarketingWebService" xmlns:expr="http://schemas.commerceserver.net/2013/01/Expressions" xmlns="http://schemas.commerceserver.net/2013/01/Marketing/MarketingWebService">
+  <tns:CampaignEventType xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>1</tns:Id>
+    <tns:Name>Request</tns:Name>
+    <tns:Description>Requests</tns:Description>
+    <tns:IsSchedulable>true</tns:IsSchedulable>
+  </tns:CampaignEventType>
+  <tns:CampaignEventType xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>2</tns:Id>
+    <tns:Name>Click</tns:Name>
+    <tns:Description>Clicks</tns:Description>
+    <tns:IsSchedulable>true</tns:IsSchedulable>
+  </tns:CampaignEventType>
+  <tns:CampaignEventType xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>3</tns:Id>
+    <tns:Name>Sold</tns:Name>
+    <tns:Description>Sold</tns:Description>
+    <tns:IsSchedulable>false</tns:IsSchedulable>
+  </tns:CampaignEventType>
+  <tns:CampaignEventType xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>4</tns:Id>
+    <tns:Name>Download</tns:Name>
+    <tns:Description>Download</tns:Description>
+    <tns:IsSchedulable>false</tns:IsSchedulable>
+  </tns:CampaignEventType>
+  <tns:IndustryCode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>1</tns:Id>
+    <tns:Name>Aviation</tns:Name>
+  </tns:IndustryCode>
+  <tns:IndustryCode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>2</tns:Id>
+    <tns:Name>Clothing</tns:Name>
+  </tns:IndustryCode>
+  <tns:IndustryCode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>3</tns:Id>
+    <tns:Name>Computer Hardware</tns:Name>
+  </tns:IndustryCode>
+  <tns:IndustryCode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>4</tns:Id>
+    <tns:Name>Computer Software</tns:Name>
+  </tns:IndustryCode>
+  <tns:IndustryCode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>5</tns:Id>
+    <tns:Name>Computer Services</tns:Name>
+  </tns:IndustryCode>
+  <tns:IndustryCode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>6</tns:Id>
+    <tns:Name>Financial</tns:Name>
+  </tns:IndustryCode>
+  <tns:IndustryCode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>7</tns:Id>
+    <tns:Name>Beverages</tns:Name>
+  </tns:IndustryCode>
+  <tns:IndustryCode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>8</tns:Id>
+    <tns:Name>Food</tns:Name>
+  </tns:IndustryCode>
+  <tns:IndustryCode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>9</tns:Id>
+    <tns:Name>Automotive</tns:Name>
+  </tns:IndustryCode>
+  <tns:IndustryCode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>10</tns:Id>
+    <tns:Name>Home &amp; Garden</tns:Name>
+  </tns:IndustryCode>
+  <tns:IndustryCode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>11</tns:Id>
+    <tns:Name>Entertainment</tns:Name>
+  </tns:IndustryCode>
+  <tns:IndustryCode xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>12</tns:Id>
+    <tns:Name>Travel</tns:Name>
+  </tns:IndustryCode>
+  <tns:PageGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>1</tns:Id>
+    <tns:Description>Run of site</tns:Description>
+    <tns:Tag>All</tns:Tag>
+  </tns:PageGroup>
+  <tns:PageGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>2</tns:Id>
+    <tns:Description>Home page</tns:Description>
+    <tns:Tag>Home</tns:Tag>
+  </tns:PageGroup>
+  <tns:DisplaySize xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>1</tns:Id>
+    <tns:Name>Full Banner</tns:Name>
+    <tns:Tag>Banner</tns:Tag>
+    <tns:Width>468</tns:Width>
+    <tns:Height>60</tns:Height>
+  </tns:DisplaySize>
+  <tns:DisplaySize xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>2</tns:Id>
+    <tns:Name>Full Banner with Nav Bar</tns:Name>
+    <tns:Tag>NavBanner</tns:Tag>
+    <tns:Width>392</tns:Width>
+    <tns:Height>72</tns:Height>
+  </tns:DisplaySize>
+  <tns:DisplaySize xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>3</tns:Id>
+    <tns:Name>Link Exchange</tns:Name>
+    <tns:Tag>LinkExchange</tns:Tag>
+    <tns:Width>440</tns:Width>
+    <tns:Height>40</tns:Height>
+  </tns:DisplaySize>
+  <tns:DisplaySize xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>4</tns:Id>
+    <tns:Name>Half Banner</tns:Name>
+    <tns:Tag>Half</tns:Tag>
+    <tns:Width>234</tns:Width>
+    <tns:Height>60</tns:Height>
+  </tns:DisplaySize>
+  <tns:DisplaySize xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>5</tns:Id>
+    <tns:Name>Square Button</tns:Name>
+    <tns:Tag>Square</tns:Tag>
+    <tns:Width>125</tns:Width>
+    <tns:Height>125</tns:Height>
+  </tns:DisplaySize>
+  <tns:DisplaySize xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>6</tns:Id>
+    <tns:Name>Button #1</tns:Name>
+    <tns:Tag>Button1</tns:Tag>
+    <tns:Width>120</tns:Width>
+    <tns:Height>90</tns:Height>
+  </tns:DisplaySize>
+  <tns:DisplaySize xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>7</tns:Id>
+    <tns:Name>Button #2</tns:Name>
+    <tns:Tag>Button2</tns:Tag>
+    <tns:Width>120</tns:Width>
+    <tns:Height>60</tns:Height>
+  </tns:DisplaySize>
+  <tns:DisplaySize xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>8</tns:Id>
+    <tns:Name>Micro Button</tns:Name>
+    <tns:Tag>Micro</tns:Tag>
+    <tns:Width>88</tns:Width>
+    <tns:Height>31</tns:Height>
+  </tns:DisplaySize>
+  <tns:DisplaySize xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>9</tns:Id>
+    <tns:Name>Vertical Banner</tns:Name>
+    <tns:Tag>Vertical</tns:Tag>
+    <tns:Width>120</tns:Width>
+    <tns:Height>240</tns:Height>
+  </tns:DisplaySize>
+  <tns:DisplayTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>1</tns:Id>
+    <tns:Name>Image</tns:Name>
+    <tns:Text>&lt;!--Inserted by Commerce Server--&gt;
+&lt;a href="{%RedirectUrl%}?ciid={%item_id%}&amp;amp;cachename={%CacheName%}&amp;amp;PageGroupId={%PageGroupId%}&amp;amp;url={%ClickUrl%}" target="{%TargetFrame%}"&gt;
+  &lt;img src="{%ImgUrl%}?CEVT={T=CAMP,CI={%item_id%},PG={%PageGroupId%},EVT=DOWNLOAD}" width="{%Width%}" height="{%Height%}" border="{%Border%}" alt="{%AltText%}" /&gt;
+&lt;/a&gt;</tns:Text>
+    <tns:Properties>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>1</tns:Id>
+        <tns:TemplateName>Image</tns:TemplateName>
+        <tns:Name>imgURL</tns:Name>
+        <tns:Type>Text</tns:Type>
+        <tns:Label>Image URL</tns:Label>
+        <tns:Order>1</tns:Order>
+        <tns:Encoding>SpacesAndPluses</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>true</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>2</tns:Id>
+        <tns:TemplateName>Image</tns:TemplateName>
+        <tns:Name>clickURL</tns:Name>
+        <tns:Type>Text</tns:Type>
+        <tns:Label>Click URL</tns:Label>
+        <tns:Order>2</tns:Order>
+        <tns:Encoding>Full</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>true</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>3</tns:Id>
+        <tns:TemplateName>Image</tns:TemplateName>
+        <tns:Name>altText</tns:Name>
+        <tns:Type>Text</tns:Type>
+        <tns:Label>Alt Text</tns:Label>
+        <tns:Order>3</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>4</tns:Id>
+        <tns:TemplateName>Image</tns:TemplateName>
+        <tns:Name>TargetFrame</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContextProfile</tns:Source>
+        <tns:DefaultValue>_top</tns:DefaultValue>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>5</tns:Id>
+        <tns:TemplateName>Image</tns:TemplateName>
+        <tns:Name>Border</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContextProfile</tns:Source>
+        <tns:DefaultValue>1</tns:DefaultValue>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>6</tns:Id>
+        <tns:TemplateName>Image</tns:TemplateName>
+        <tns:Name>RedirectUrl</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContextProfile</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>7</tns:Id>
+        <tns:TemplateName>Image</tns:TemplateName>
+        <tns:Name>item_id</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>8</tns:Id>
+        <tns:TemplateName>Image</tns:TemplateName>
+        <tns:Name>width</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>9</tns:Id>
+        <tns:TemplateName>Image</tns:TemplateName>
+        <tns:Name>height</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>10</tns:Id>
+        <tns:TemplateName>Image</tns:TemplateName>
+        <tns:Name>PageGroupId</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContextProfile</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+    </tns:Properties>
+    <tns:DeletedProperties />
+  </tns:DisplayTemplate>
+  <tns:DisplayTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>2</tns:Id>
+    <tns:Name>Text</tns:Name>
+    <tns:Text>&lt;!--Inserted by Commerce Server--&gt;
+&lt;a href="{%RedirectUrl%}?ciid={%item_id%}&amp;amp;cachename={%CacheName%}&amp;amp;PageGroupId={%PageGroupId%}&amp;amp;url={%ClickUrl%}" target="{%Targetframe%}"&gt;{%Text%}&lt;/a&gt;</tns:Text>
+    <tns:Properties>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>11</tns:Id>
+        <tns:TemplateName>Text</tns:TemplateName>
+        <tns:Name>text</tns:Name>
+        <tns:Type>TextArea</tns:Type>
+        <tns:Label>Text</tns:Label>
+        <tns:Order>1</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>true</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>12</tns:Id>
+        <tns:TemplateName>Text</tns:TemplateName>
+        <tns:Name>clickURL</tns:Name>
+        <tns:Type>Text</tns:Type>
+        <tns:Label>Click URL</tns:Label>
+        <tns:Order>2</tns:Order>
+        <tns:Encoding>Full</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>true</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>13</tns:Id>
+        <tns:TemplateName>Text</tns:TemplateName>
+        <tns:Name>TargetFrame</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContextProfile</tns:Source>
+        <tns:DefaultValue>_top</tns:DefaultValue>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>14</tns:Id>
+        <tns:TemplateName>Text</tns:TemplateName>
+        <tns:Name>RedirectUrl</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContextProfile</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>15</tns:Id>
+        <tns:TemplateName>Text</tns:TemplateName>
+        <tns:Name>item_id</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>16</tns:Id>
+        <tns:TemplateName>Text</tns:TemplateName>
+        <tns:Name>PageGroupId</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContextProfile</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+    </tns:Properties>
+    <tns:DeletedProperties />
+  </tns:DisplayTemplate>
+  <tns:DisplayTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>3</tns:Id>
+    <tns:Name>HTML</tns:Name>
+    <tns:Text>{%html%}</tns:Text>
+    <tns:Properties>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>17</tns:Id>
+        <tns:TemplateName>HTML</tns:TemplateName>
+        <tns:Name>html</tns:Name>
+        <tns:Type>TextArea</tns:Type>
+        <tns:Label>HTML Text</tns:Label>
+        <tns:Order>1</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>true</tns:IsRequired>
+      </tns:anyType>
+    </tns:Properties>
+    <tns:DeletedProperties />
+  </tns:DisplayTemplate>
+  <tns:DisplayTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>4</tns:Id>
+    <tns:Name>Non-Clickable Image</tns:Name>
+    <tns:Text>&lt;!--Inserted by Commerce Server--&gt;
+&lt;img src="{%ImgUrl%}?CEVT={T=CAMP,CI={%item_id%},PG={%PageGroupId%},EVT=DOWNLOAD}" width="{%Width%}" height="{%Height%}" border="{%Border%}" alt="{%AltText%}" /&gt;</tns:Text>
+    <tns:Properties>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>18</tns:Id>
+        <tns:TemplateName>Non-Clickable Image</tns:TemplateName>
+        <tns:Name>imgURL</tns:Name>
+        <tns:Type>Text</tns:Type>
+        <tns:Label>Image URL</tns:Label>
+        <tns:Order>1</tns:Order>
+        <tns:Encoding>SpacesAndPluses</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>true</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>19</tns:Id>
+        <tns:TemplateName>Non-Clickable Image</tns:TemplateName>
+        <tns:Name>altText</tns:Name>
+        <tns:Type>Text</tns:Type>
+        <tns:Label>Alt Text</tns:Label>
+        <tns:Order>2</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>20</tns:Id>
+        <tns:TemplateName>Non-Clickable Image</tns:TemplateName>
+        <tns:Name>Border</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContextProfile</tns:Source>
+        <tns:DefaultValue>1</tns:DefaultValue>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>21</tns:Id>
+        <tns:TemplateName>Non-Clickable Image</tns:TemplateName>
+        <tns:Name>width</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>22</tns:Id>
+        <tns:TemplateName>Non-Clickable Image</tns:TemplateName>
+        <tns:Name>height</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>23</tns:Id>
+        <tns:TemplateName>Non-Clickable Image</tns:TemplateName>
+        <tns:Name>PageGroupId</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContextProfile</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+    </tns:Properties>
+    <tns:DeletedProperties />
+  </tns:DisplayTemplate>
+  <tns:DisplayTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>5</tns:Id>
+    <tns:Name>Buy Now</tns:Name>
+    <tns:Text>&lt;!--Inserted by Commerce Server--&gt;
+&lt;a href="" language="JavaScript" onclick='BuyNowWin = window.open("{%RedirectUrl%}?ciid={%item_id%}&amp;amp;cachename={%CacheName%}&amp;amp;PageGroupId={%PageGroupId%}&amp;amp;url={%ClickUrl%}","BuyNow","width={%dlgWidth%},height={%dlgHeight%},scrollbars=yes"); return false;'&gt;
+  &lt;img src="{%imgUrl%}?CEVT={T=CAMP,CI={%item_id%},PG={%PageGroupId%},EVT=DOWNLOAD}" width="{%Width%}" height="{%Height%}" border="{%Border%}" alt="{%AltText%}" /&gt;
+&lt;/a&gt;</tns:Text>
+    <tns:Properties>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>24</tns:Id>
+        <tns:TemplateName>Buy Now</tns:TemplateName>
+        <tns:Name>imgURL</tns:Name>
+        <tns:Type>Text</tns:Type>
+        <tns:Label>Image URL</tns:Label>
+        <tns:Order>1</tns:Order>
+        <tns:Encoding>SpacesAndPluses</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>true</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>25</tns:Id>
+        <tns:TemplateName>Buy Now</tns:TemplateName>
+        <tns:Name>clickURL</tns:Name>
+        <tns:Type>Text</tns:Type>
+        <tns:Label>Click URL</tns:Label>
+        <tns:Order>2</tns:Order>
+        <tns:Encoding>Full</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>true</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>26</tns:Id>
+        <tns:TemplateName>Buy Now</tns:TemplateName>
+        <tns:Name>altText</tns:Name>
+        <tns:Type>Text</tns:Type>
+        <tns:Label>Alt Text</tns:Label>
+        <tns:Order>3</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>27</tns:Id>
+        <tns:TemplateName>Buy Now</tns:TemplateName>
+        <tns:Name>dlgWidth</tns:Name>
+        <tns:Type>Number</tns:Type>
+        <tns:Label>Window Width</tns:Label>
+        <tns:Order>4</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:DefaultValue>375</tns:DefaultValue>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>28</tns:Id>
+        <tns:TemplateName>Buy Now</tns:TemplateName>
+        <tns:Name>dlgHeight</tns:Name>
+        <tns:Type>Number</tns:Type>
+        <tns:Label>Window Height</tns:Label>
+        <tns:Order>5</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:DefaultValue>500</tns:DefaultValue>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>29</tns:Id>
+        <tns:TemplateName>Buy Now</tns:TemplateName>
+        <tns:Name>Border</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContextProfile</tns:Source>
+        <tns:DefaultValue>1</tns:DefaultValue>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>30</tns:Id>
+        <tns:TemplateName>Buy Now</tns:TemplateName>
+        <tns:Name>RedirectUrl</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContextProfile</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>31</tns:Id>
+        <tns:TemplateName>Buy Now</tns:TemplateName>
+        <tns:Name>item_id</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>32</tns:Id>
+        <tns:TemplateName>Buy Now</tns:TemplateName>
+        <tns:Name>width</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>33</tns:Id>
+        <tns:TemplateName>Buy Now</tns:TemplateName>
+        <tns:Name>height</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>34</tns:Id>
+        <tns:TemplateName>Buy Now</tns:TemplateName>
+        <tns:Name>Unique</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>IntrinsicValue</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>35</tns:Id>
+        <tns:TemplateName>Buy Now</tns:TemplateName>
+        <tns:Name>PageGroupId</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContextProfile</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+    </tns:Properties>
+    <tns:DeletedProperties />
+  </tns:DisplayTemplate>
+  <tns:DisplayTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>6</tns:Id>
+    <tns:Name>Windows Media Services</tns:Name>
+    <tns:Text>&lt;!--Inserted by Commerce Server--&gt;
+&lt;script language="vbscript" type="text/VB"&gt;
+sub WMA1{%Unique%}_click(Button, ShiftState, x, y)
+    if Button = 1 then
+      window.open "{%RedirectUrl%}?ciid={%item_id%}&amp;amp;cachename={%CacheName%}&amp;amp;PageGroupId={%PageGroupId%}&amp;amp;url={%ClickUrl%}", "{%TargetFrame%}"
+    end if
+end sub
+&lt;/script&gt;
+
+&lt;object id="WMA1{%Unique%}" width="{%Width%}" height="{%Height%}" 
+	classid="CLSID:22D6f312-B0F6-11D0-94AB-0080C74C7E95"
+	codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,4,5,715"
+	standby="Loading Microsoft® Windows Media™ Player components..." 
+	type="application/x-oleobject"&gt;
+	&lt;param name="ClickToPlay" value="False" /&gt;
+	&lt;param name="SendMouseClickEvents" value="True" /&gt;
+	&lt;param name="FileName" value="{%asfURL%}?CEVT={T=CAMP,CI={%item_id%},PG={%PageGroupId%},EVT=DOWNLOAD}" /&gt;
+	&lt;param name="ShowControls" value="False" /&gt;
+	&lt;param name="AutoRewind" value="True" /&gt;
+	&lt;param name="AutoStart" value="True" /&gt;
+	
+	&lt;embed type="application/x-mplayer2" 
+		pluginspage="http://www.microsoft.com/isapi/redir.dll?prd=windows&amp;amp;sbp=mediaplayer&amp;amp;ar=Media&amp;amp;sba=Plugin"
+		src="{%asfURL%}?CEVT={T=CAMP,CI={%item_id%},PG={%PageGroupId%},EVT=DOWNLOAD}"
+		name="MediaPlayer" 
+		width="{%Width%}" 
+		height="{%Height%}"&gt;
+	&lt;/embed&gt;
+&lt;/object&gt;</tns:Text>
+    <tns:Properties>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>36</tns:Id>
+        <tns:TemplateName>Windows Media Services</tns:TemplateName>
+        <tns:Name>asfURL</tns:Name>
+        <tns:Type>Text</tns:Type>
+        <tns:Label>Windows Media Services ASF</tns:Label>
+        <tns:Order>1</tns:Order>
+        <tns:Encoding>SpacesAndPluses</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>true</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>37</tns:Id>
+        <tns:TemplateName>Windows Media Services</tns:TemplateName>
+        <tns:Name>clickURL</tns:Name>
+        <tns:Type>Text</tns:Type>
+        <tns:Label>Click URL</tns:Label>
+        <tns:Order>2</tns:Order>
+        <tns:Encoding>Full</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>38</tns:Id>
+        <tns:TemplateName>Windows Media Services</tns:TemplateName>
+        <tns:Name>RedirectUrl</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContextProfile</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>39</tns:Id>
+        <tns:TemplateName>Windows Media Services</tns:TemplateName>
+        <tns:Name>item_id</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>40</tns:Id>
+        <tns:TemplateName>Windows Media Services</tns:TemplateName>
+        <tns:Name>Unique</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>IntrinsicValue</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>41</tns:Id>
+        <tns:TemplateName>Windows Media Services</tns:TemplateName>
+        <tns:Name>Width</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>42</tns:Id>
+        <tns:TemplateName>Windows Media Services</tns:TemplateName>
+        <tns:Name>Height</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>43</tns:Id>
+        <tns:TemplateName>Windows Media Services</tns:TemplateName>
+        <tns:Name>TargetFrame</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContextProfile</tns:Source>
+        <tns:DefaultValue>_top</tns:DefaultValue>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>44</tns:Id>
+        <tns:TemplateName>Windows Media Services</tns:TemplateName>
+        <tns:Name>PageGroupId</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContextProfile</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+    </tns:Properties>
+    <tns:DeletedProperties />
+  </tns:DisplayTemplate>
+  <tns:DisplayTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>7</tns:Id>
+    <tns:Name>Left Vignette</tns:Name>
+    <tns:Text>&lt;!--Inserted by Commerce Server--&gt;
+&lt;table border="0"&gt;
+	&lt;tr&gt;
+		&lt;td valign="middle"&gt;
+			&lt;a href="{%RedirectUrl%}?ciid={%item_id%}&amp;amp;cachename={%CacheName%}&amp;amp;PageGroupId={%PageGroupId%}&amp;amp;url={%ClickUrl%}" target="{%TargetFrame%}"&gt;
+				&lt;img src="{%ImgUrl%}?CEVT={T=CAMP,CI={%item_id%},PG={%PageGroupId%},EVT=DOWNLOAD}" width="{%Width%}" height="{%Height%}" border="{%Border%}" alt="{%AltText%}" /&gt;
+			&lt;/a&gt;
+		&lt;/td&gt;
+		&lt;td valign="middle"&gt;
+			&lt;a href="{%RedirectUrl%}?ciid={%item_id%}&amp;amp;cachename={%CacheName%}&amp;amp;PageGroupId={%PageGroupId%}&amp;amp;url={%ClickUrl%}" target="{%TargetFrame%}"&gt;{%Text%}&lt;/a&gt;
+		&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;</tns:Text>
+    <tns:Properties>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>45</tns:Id>
+        <tns:TemplateName>Left Vignette</tns:TemplateName>
+        <tns:Name>imgURL</tns:Name>
+        <tns:Type>Text</tns:Type>
+        <tns:Label>Image URL</tns:Label>
+        <tns:Order>1</tns:Order>
+        <tns:Encoding>SpacesAndPluses</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>true</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>46</tns:Id>
+        <tns:TemplateName>Left Vignette</tns:TemplateName>
+        <tns:Name>Text</tns:Name>
+        <tns:Type>TextArea</tns:Type>
+        <tns:Label>Text</tns:Label>
+        <tns:Order>2</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>true</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>47</tns:Id>
+        <tns:TemplateName>Left Vignette</tns:TemplateName>
+        <tns:Name>clickURL</tns:Name>
+        <tns:Type>Text</tns:Type>
+        <tns:Label>Click URL</tns:Label>
+        <tns:Order>3</tns:Order>
+        <tns:Encoding>Full</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>true</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>48</tns:Id>
+        <tns:TemplateName>Left Vignette</tns:TemplateName>
+        <tns:Name>altText</tns:Name>
+        <tns:Type>Text</tns:Type>
+        <tns:Label>Alt Text</tns:Label>
+        <tns:Order>4</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>49</tns:Id>
+        <tns:TemplateName>Left Vignette</tns:TemplateName>
+        <tns:Name>TargetFrame</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContextProfile</tns:Source>
+        <tns:DefaultValue>_top</tns:DefaultValue>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>50</tns:Id>
+        <tns:TemplateName>Left Vignette</tns:TemplateName>
+        <tns:Name>Border</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContextProfile</tns:Source>
+        <tns:DefaultValue>1</tns:DefaultValue>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>51</tns:Id>
+        <tns:TemplateName>Left Vignette</tns:TemplateName>
+        <tns:Name>RedirectUrl</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContextProfile</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>52</tns:Id>
+        <tns:TemplateName>Left Vignette</tns:TemplateName>
+        <tns:Name>item_id</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>53</tns:Id>
+        <tns:TemplateName>Left Vignette</tns:TemplateName>
+        <tns:Name>width</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>54</tns:Id>
+        <tns:TemplateName>Left Vignette</tns:TemplateName>
+        <tns:Name>height</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>55</tns:Id>
+        <tns:TemplateName>Left Vignette</tns:TemplateName>
+        <tns:Name>PageGroupId</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContextProfile</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+    </tns:Properties>
+    <tns:DeletedProperties />
+  </tns:DisplayTemplate>
+  <tns:DisplayTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>8</tns:Id>
+    <tns:Name>Right Vignette</tns:Name>
+    <tns:Text>&lt;!--Inserted by Commerce Server--&gt;
+&lt;table border="0"&gt;
+	&lt;tr&gt;
+		&lt;td valign="middle"&gt;
+			&lt;a href="{%RedirectUrl%}?ciid={%item_id%}&amp;amp;cachename={%CacheName%}&amp;amp;PageGroupId={%PageGroupId%}&amp;amp;url={%ClickUrl%}" target="{%TargetFrame%}"&gt;{%Text%}&lt;/a&gt;
+		&lt;/td&gt;
+		&lt;td valign="middle"&gt;
+			&lt;a href="{%RedirectUrl%}?ciid={%item_id%}&amp;amp;cachename={%CacheName%}&amp;amp;PageGroupId={%PageGroupId%}&amp;amp;url={%ClickUrl%}" target="{%TargetFrame%}"&gt;
+				&lt;img src="{%ImgUrl%}?CEVT={T=CAMP,CI={%item_id%},PG={%PageGroupId%},EVT=DOWNLOAD}" width="{%Width%}" height="{%Height%}" border="{%Border%}" alt="{%AltText%}" /&gt;
+			&lt;/a&gt;
+		&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;</tns:Text>
+    <tns:Properties>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>56</tns:Id>
+        <tns:TemplateName>Right Vignette</tns:TemplateName>
+        <tns:Name>imgURL</tns:Name>
+        <tns:Type>Text</tns:Type>
+        <tns:Label>Image URL</tns:Label>
+        <tns:Order>1</tns:Order>
+        <tns:Encoding>SpacesAndPluses</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>true</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>57</tns:Id>
+        <tns:TemplateName>Right Vignette</tns:TemplateName>
+        <tns:Name>Text</tns:Name>
+        <tns:Type>TextArea</tns:Type>
+        <tns:Label>Text</tns:Label>
+        <tns:Order>2</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>true</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>58</tns:Id>
+        <tns:TemplateName>Right Vignette</tns:TemplateName>
+        <tns:Name>clickURL</tns:Name>
+        <tns:Type>Text</tns:Type>
+        <tns:Label>Click URL</tns:Label>
+        <tns:Order>3</tns:Order>
+        <tns:Encoding>Full</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>true</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>59</tns:Id>
+        <tns:TemplateName>Right Vignette</tns:TemplateName>
+        <tns:Name>altText</tns:Name>
+        <tns:Type>Text</tns:Type>
+        <tns:Label>Alt Text</tns:Label>
+        <tns:Order>4</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>60</tns:Id>
+        <tns:TemplateName>Right Vignette</tns:TemplateName>
+        <tns:Name>TargetFrame</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContextProfile</tns:Source>
+        <tns:DefaultValue>_top</tns:DefaultValue>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>61</tns:Id>
+        <tns:TemplateName>Right Vignette</tns:TemplateName>
+        <tns:Name>Border</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContextProfile</tns:Source>
+        <tns:DefaultValue>1</tns:DefaultValue>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>62</tns:Id>
+        <tns:TemplateName>Right Vignette</tns:TemplateName>
+        <tns:Name>RedirectUrl</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContextProfile</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>63</tns:Id>
+        <tns:TemplateName>Right Vignette</tns:TemplateName>
+        <tns:Name>item_id</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>64</tns:Id>
+        <tns:TemplateName>Right Vignette</tns:TemplateName>
+        <tns:Name>width</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>65</tns:Id>
+        <tns:TemplateName>Right Vignette</tns:TemplateName>
+        <tns:Name>height</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>66</tns:Id>
+        <tns:TemplateName>Right Vignette</tns:TemplateName>
+        <tns:Name>PageGroupId</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContextProfile</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+    </tns:Properties>
+    <tns:DeletedProperties />
+  </tns:DisplayTemplate>
+  <tns:DisplayTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>9</tns:Id>
+    <tns:Name>Top Vignette</tns:Name>
+    <tns:Text>&lt;!--Inserted by Commerce Server--&gt;
+&lt;table border="0"&gt;
+	&lt;tr&gt;
+		&lt;td align="center"&gt;
+			&lt;a href="{%RedirectUrl%}?ciid={%item_id%}&amp;amp;cachename={%CacheName%}&amp;amp;PageGroupId={%PageGroupId%}&amp;amp;url={%ClickUrl%}" target="{%TargetFrame%}"&gt;
+				&lt;img src="{%ImgUrl%}?CEVT={T=CAMP,CI={%item_id%},PG={%PageGroupId%},EVT=DOWNLOAD}" width="{%Width%}" height="{%Height%}" border="{%Border%}" alt="{%AltText%}" /&gt;
+			&lt;/a&gt;
+		&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td align="center"&gt;
+			&lt;a href="{%RedirectUrl%}?ciid={%item_id%}&amp;amp;cachename={%CacheName%}&amp;amp;PageGroupId={%PageGroupId%}&amp;amp;url={%ClickUrl%}" target="{%TargetFrame%}"&gt;{%Text%}&lt;/a&gt;
+		&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;</tns:Text>
+    <tns:Properties>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>67</tns:Id>
+        <tns:TemplateName>Top Vignette</tns:TemplateName>
+        <tns:Name>imgURL</tns:Name>
+        <tns:Type>Text</tns:Type>
+        <tns:Label>Image URL</tns:Label>
+        <tns:Order>1</tns:Order>
+        <tns:Encoding>SpacesAndPluses</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>true</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>68</tns:Id>
+        <tns:TemplateName>Top Vignette</tns:TemplateName>
+        <tns:Name>Text</tns:Name>
+        <tns:Type>TextArea</tns:Type>
+        <tns:Label>Text</tns:Label>
+        <tns:Order>2</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>true</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>69</tns:Id>
+        <tns:TemplateName>Top Vignette</tns:TemplateName>
+        <tns:Name>clickURL</tns:Name>
+        <tns:Type>Text</tns:Type>
+        <tns:Label>Click URL</tns:Label>
+        <tns:Order>3</tns:Order>
+        <tns:Encoding>Full</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>true</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>70</tns:Id>
+        <tns:TemplateName>Top Vignette</tns:TemplateName>
+        <tns:Name>altText</tns:Name>
+        <tns:Type>Text</tns:Type>
+        <tns:Label>Alt Text</tns:Label>
+        <tns:Order>4</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>71</tns:Id>
+        <tns:TemplateName>Top Vignette</tns:TemplateName>
+        <tns:Name>TargetFrame</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContextProfile</tns:Source>
+        <tns:DefaultValue>_top</tns:DefaultValue>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>72</tns:Id>
+        <tns:TemplateName>Top Vignette</tns:TemplateName>
+        <tns:Name>Border</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContextProfile</tns:Source>
+        <tns:DefaultValue>1</tns:DefaultValue>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>73</tns:Id>
+        <tns:TemplateName>Top Vignette</tns:TemplateName>
+        <tns:Name>RedirectUrl</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContextProfile</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>74</tns:Id>
+        <tns:TemplateName>Top Vignette</tns:TemplateName>
+        <tns:Name>item_id</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>75</tns:Id>
+        <tns:TemplateName>Top Vignette</tns:TemplateName>
+        <tns:Name>width</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>76</tns:Id>
+        <tns:TemplateName>Top Vignette</tns:TemplateName>
+        <tns:Name>height</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContentItem</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+      <tns:anyType xsi:type="tns:DisplayPropertyData">
+        <tns:Id>77</tns:Id>
+        <tns:TemplateName>Top Vignette</tns:TemplateName>
+        <tns:Name>PageGroupId</tns:Name>
+        <tns:Type>NoUI</tns:Type>
+        <tns:Order>0</tns:Order>
+        <tns:Encoding>NoEncoding</tns:Encoding>
+        <tns:Source>ContextProfile</tns:Source>
+        <tns:IsRequired>false</tns:IsRequired>
+      </tns:anyType>
+    </tns:Properties>
+    <tns:DeletedProperties />
+  </tns:DisplayTemplate>
+  <tns:DisplayTemplate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>10</tns:Id>
+    <tns:Name>No Display</tns:Name>
+    <tns:Text />
+    <tns:Properties />
+    <tns:DeletedProperties />
+  </tns:DisplayTemplate>
+  <tns:Customer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>1</tns:Id>
+    <tns:Name>Default Customer</tns:Name>
+    <tns:Description>The default Marketing System customer.</tns:Description>
+    <tns:ContactName />
+    <tns:ContactAddress />
+    <tns:ContactPhone />
+    <tns:ContactFax />
+    <tns:ContactEmail />
+    <tns:DefaultUrl />
+    <tns:Type>Self</tns:Type>
+    <tns:CreatedDate>2015-03-08T01:22:59.9-05:00</tns:CreatedDate>
+    <tns:LastModifiedDate>2015-03-08T01:22:59.9-05:00</tns:LastModifiedDate>
+    <tns:LastModifiedBy>anonymous</tns:LastModifiedBy>
+    <tns:DeletedDate>1899-12-31T19:00:00-05:00</tns:DeletedDate>
+  </tns:Customer>
+  <tns:Campaign xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>1</tns:Id>
+    <tns:Name>Default Campaign</tns:Name>
+    <tns:Description>The default Marketing System campaign.</tns:Description>
+    <tns:Active>true</tns:Active>
+    <tns:StartDate>1999-12-31T19:00:00-05:00</tns:StartDate>
+    <tns:EndDate>2999-12-31T18:59:59-05:00</tns:EndDate>
+    <tns:CustomerId>1</tns:CustomerId>
+    <tns:EventTypeName>Request</tns:EventTypeName>
+    <tns:CampaignLevelGoaling>true</tns:CampaignLevelGoaling>
+    <tns:NumberOfEventsOrdered>0</tns:NumberOfEventsOrdered>
+    <tns:CustomerName>Default Customer</tns:CustomerName>
+    <tns:CreatedDate>2015-03-08T01:22:59.943-05:00</tns:CreatedDate>
+    <tns:LastModifiedDate>2015-03-08T01:22:59.943-05:00</tns:LastModifiedDate>
+    <tns:LastModifiedBy>anonymous</tns:LastModifiedBy>
+    <tns:DeletedDate>1899-12-31T19:00:00-05:00</tns:DeletedDate>
+  </tns:Campaign>
+  <tns:ExpressionCategory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:CategoryName>CatalogCondition</tns:CategoryName>
+    <tns:CategoryProfile>Product</tns:CategoryProfile>
+  </tns:ExpressionCategory>
+  <tns:ExpressionCategory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:CategoryName>TargetCondition</tns:CategoryName>
+    <tns:CategoryProfile>eee</tns:CategoryProfile>
+  </tns:ExpressionCategory>
+  <tns:ExpressionCategory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:CategoryName>TargetCondition</tns:CategoryName>
+    <tns:CategoryProfile>TargetingContext</tns:CategoryProfile>
+  </tns:ExpressionCategory>
+  <tns:ExpressionCategory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:CategoryName>TargetCondition</tns:CategoryName>
+    <tns:CategoryProfile>UserObject</tns:CategoryProfile>
+  </tns:ExpressionCategory>
+  <tns:PromoCodeDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>1</tns:Id>
+    <tns:Name>Rtrn15</tns:Name>
+    <tns:NumberOfCodes>1</tns:NumberOfCodes>
+    <tns:PublicPromoCode>Rtrn15</tns:PublicPromoCode>
+    <tns:UsageLimit>0</tns:UsageLimit>
+    <tns:UsageOption>Public</tns:UsageOption>
+    <tns:CodeGenerationStatus>Queued</tns:CodeGenerationStatus>
+    <tns:CodeGenerationError />
+    <tns:CreatedDate>2015-03-08T01:22:59.983-05:00</tns:CreatedDate>
+    <tns:LastModifiedDate>2015-03-08T01:22:59.983-05:00</tns:LastModifiedDate>
+    <tns:LastModifiedBy>anonymous</tns:LastModifiedBy>
+  </tns:PromoCodeDefinition>
+  <tns:Discount xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <tns:Id>1</tns:Id>
+    <tns:CampaignId>1</tns:CampaignId>
+    <tns:CampaignName>Default Campaign</tns:CampaignName>
+    <tns:ItemType>Discount</tns:ItemType>
+    <tns:Name>Rtrn15</tns:Name>
+    <tns:Description />
+    <tns:Active>true</tns:Active>
+    <tns:StartDate>1999-12-31T19:00:00-05:00</tns:StartDate>
+    <tns:EndDate>2015-03-27T18:59:59-04:00</tns:EndDate>
+    <tns:CreatedDate>2015-03-08T01:23:00.217-05:00</tns:CreatedDate>
+    <tns:LastModifiedDate>2015-03-08T01:23:00.32-05:00</tns:LastModifiedDate>
+    <tns:LastModifiedBy>anonymous</tns:LastModifiedBy>
+    <tns:DeletedDate>1899-12-31T19:00:00-05:00</tns:DeletedDate>
+    <tns:CreativeId>1</tns:CreativeId>
+    <tns:ExposureLimit>1</tns:ExposureLimit>
+    <tns:SizeName>Full Banner</tns:SizeName>
+    <tns:TemplateName>No Display</tns:TemplateName>
+    <tns:DateReceived>2015-03-04T08:04:22.563-05:00</tns:DateReceived>
+    <tns:PropertyValues />
+    <tns:PageGroups />
+    <tns:Targets />
+    <tns:DiscountType>LineItem</tns:DiscountType>
+    <tns:MultilingualBasketDisplay>
+      <tns:anyType xsi:type="tns:LanguageStringData">
+        <tns:CultureCode>en-US</tns:CultureCode>
+        <tns:Value>Returning Customer</tns:Value>
+      </tns:anyType>
+    </tns:MultilingualBasketDisplay>
+    <tns:UseEligibilityRequirementForTargeting>false</tns:UseEligibilityRequirementForTargeting>
+    <tns:WizardType>0</tns:WizardType>
+    <tns:Priority>1</tns:Priority>
+    <tns:PerOrderLimit>0</tns:PerOrderLimit>
+    <tns:ClickRequired>false</tns:ClickRequired>
+    <tns:MaxAwards>0</tns:MaxAwards>
+    <tns:OfferType>Percentage</tns:OfferType>
+    <tns:OfferAmount>15.0000</tns:OfferAmount>
+    <tns:OfferDisjoint>false</tns:OfferDisjoint>
+    <tns:CustomOrderLevelOfferType />
+    <tns:AutoAddAward>false</tns:AutoAddAward>
+    <tns:PromoCodeDefinitionId>1</tns:PromoCodeDefinitionId>
+    <tns:ReuseConditionsAsConditions>false</tns:ReuseConditionsAsConditions>
+    <tns:ReuseConditionsAsAwards>false</tns:ReuseConditionsAsAwards>
+    <tns:ReuseAwardsAsConditions>false</tns:ReuseAwardsAsConditions>
+    <tns:ReuseAwardsAsAwards>false</tns:ReuseAwardsAsAwards>
+    <tns:Condition>
+      <tns:Basis>Quantity</tns:Basis>
+      <tns:MinAmount>1</tns:MinAmount>
+    </tns:Condition>
+    <tns:EligibilityRequirements />
+  </tns:Discount>
+</MarketingSystemBulkExport>

@@ -1,0 +1,51 @@
+----item----
+version: 1
+id: {AC18900B-C8B1-43CD-99D8-7089DEE12980}
+database: master
+path: /sitecore/templates/Storefront/Folder Templates/Slides/__Standard Values
+parent: {CC2251FB-9D95-42EE-925D-C069827B5AFF}
+name: __Standard Values
+master: {00000000-0000-0000-0000-000000000000}
+template: {CC2251FB-9D95-42EE-925D-C069827B5AFF}
+templatekey: Slides
+
+----field----
+field: {1172F251-DAD4-4EFB-A329-0C63500E4F1E}
+name: __Masters
+key: __masters
+content-length: 77
+
+{CC2251FB-9D95-42EE-925D-C069827B5AFF}|{158E6AD5-E873-42A8-87C9-01E9ABCD93EC}
+----version----
+language: en
+version: 1
+revision: c26735e2-4d60-4e7a-b921-18c6e7ff6844
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20141021T044546
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+c26735e2-4d60-4e7a-b921-18c6e7ff6844
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20141021T044607:635494635671182810
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\Admin

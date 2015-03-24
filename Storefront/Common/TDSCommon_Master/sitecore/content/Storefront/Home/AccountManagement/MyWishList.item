@@ -1,0 +1,128 @@
+----item----
+version: 1
+id: {1531DA3C-6F6D-49E2-854A-5E604155F42A}
+database: master
+path: /sitecore/content/Storefront/Home/AccountManagement/MyWishList
+parent: {4D316BBA-345F-4929-9E84-A2208C0F7AA6}
+name: MyWishList
+master: {00000000-0000-0000-0000-000000000000}
+template: {D8F961C3-1A33-41C5-85BD-A76B785E87AB}
+templatekey: MyWishList Page
+
+----version----
+language: en
+version: 1
+revision: 0097137e-bcb7-4036-b1e0-aa4057870802
+
+----field----
+field: {EC1F4944-D675-42F6-B354-A0A1BF04BFF8}
+name: Title
+key: title
+content-length: 14
+
+Your Wish List
+----field----
+field: {87E89FF1-D796-44A7-A717-AE506698DBF8}
+name: Back To My Wish Lists Label
+key: back to my wish lists label
+content-length: 21
+
+Back to My Wish Lists
+----field----
+field: {1F65E5DA-12E3-44F8-9532-E08A56FF159B}
+name: Change Wish List Label
+key: change wish list label
+content-length: 16
+
+Change Wish List
+----field----
+field: {8AAFCF13-432C-440F-B2A3-104C6C3C760C}
+name: Product Details Label
+key: product details label
+content-length: 15
+
+Product Details
+----field----
+field: {1068AF13-B782-4362-AC38-5668FB66A1CC}
+name: Unit Price Label
+key: unit price label
+content-length: 10
+
+Unit Price
+----field----
+field: {350C0372-C64B-4E93-B5A7-BAD4B9F33AAD}
+name: Total Label
+key: total label
+content-length: 5
+
+Total
+----field----
+field: {720921FC-AB99-4338-9944-FF91ACA82055}
+name: Quantity Label
+key: quantity label
+content-length: 8
+
+Quantity
+----field----
+field: {AC731847-A489-4942-99B0-8914D3C0642B}
+name: You Save Label
+key: you save label
+content-length: 8
+
+You save
+----field----
+field: {05A55571-536E-43C3-9BE1-89835D7E9AD4}
+name: Color Label
+key: color label
+content-length: 5
+
+Color
+----field----
+field: {2B61380C-1292-41A7-B529-A9E59B573108}
+name: Add Selected Items To Cart Button
+key: add selected items to cart button
+content-length: 26
+
+Add selected items to cart
+----field----
+field: {850244AD-20EA-4C1B-9DF4-20FBBCE1F5F0}
+name: Add Selected Items To Cart Button Loading
+key: add selected items to cart button loading
+content-length: 16
+
+Adding items ...
+----field----
+field: {9C6BC4EC-9D6D-4574-9DD7-88D82B9FCB38}
+name: List Empty Text
+key: list empty text
+content-length: 25
+
+<p>Your list is empty</p>
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20150110T133031Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+0097137e-bcb7-4036-b1e0-aa4057870802
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150320T125514:635624529144506745Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

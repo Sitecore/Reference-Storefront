@@ -1,0 +1,51 @@
+----item----
+version: 1
+id: {7377C931-131A-417D-A0C3-57C296237784}
+database: master
+path: /sitecore/content/Storefront/Home/Search
+parent: {441B60D3-09BB-4111-A3AD-D10076B78B54}
+name: Search
+master: {00000000-0000-0000-0000-000000000000}
+template: {09FB2812-E751-4578-B1EB-0D2930AD215C}
+templatekey: Search Page
+
+----version----
+language: en
+version: 1
+revision: 561f142a-755b-49f8-bdbf-fc28b27ae2b0
+
+----field----
+field: {EC1F4944-D675-42F6-B354-A0A1BF04BFF8}
+name: Title
+key: title
+content-length: 6
+
+Search
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20150107T172228Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+561f142a-755b-49f8-bdbf-fc28b27ae2b0
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150320T125807:635624530870024830Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

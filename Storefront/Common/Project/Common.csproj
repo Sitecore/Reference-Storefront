@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8450F330-0271-4091-8809-C671CCD50671}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sitecore.Reference.Storefront</RootNamespace>
+    <AssemblyName>Sitecore.Reference.Storefront.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <StyleCopOverrideSettingsFile>..\..\..\Settings.Sitecore.StyleCop</StyleCopOverrideSettingsFile>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\..\Solution.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <SourceAnalysisEnabled>true</SourceAnalysisEnabled>
+    <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
+    <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
+    <CodeAnalysisRuleSet>..\..\Solution.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AntiXssLibrary">
+      <HintPath>..\..\packages\AntiXSS.4.2.1\lib\net40\AntiXssLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Analytics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\sitecore\Sitecore.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Analytics.DataAccess">
+      <HintPath>..\..\Lib\sitecore\Sitecore.Analytics.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Analytics.Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\sitecore\Sitecore.Analytics.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Analytics.MongoDB">
+      <HintPath>..\..\Lib\sitecore\Sitecore.Analytics.MongoDB.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Analytics.Outcome">
+      <HintPath>..\..\Lib\sitecore\Sitecore.Analytics.Outcome.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Commerce">
+      <HintPath>..\..\Lib\sitecore\Sitecore.Commerce.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Commerce.Connect.CommerceServer">
+      <HintPath>..\..\Lib\Sitecore.Commerce.Connect.CommerceServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.ContentSearch">
+      <HintPath>..\..\Lib\sitecore\Sitecore.ContentSearch.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.ContentSearch.Linq, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\sitecore\Sitecore.ContentSearch.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Kernel">
+      <HintPath>..\..\Lib\sitecore\Sitecore.Kernel.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Marketing">
+      <HintPath>..\..\Lib\sitecore\Sitecore.Marketing.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\sitecore\Sitecore.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.1.2\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.1.1\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="ExtensionMethods\CartExtensions.cs" />
+    <Compile Include="ExtensionMethods\HtmlExtensions.cs" />
+    <Compile Include="ExtensionMethods\OrdersExtensions.cs" />
+    <Compile Include="ExtensionMethods\SearchExtensions.cs" />
+    <Compile Include="ExtensionMethods\SimpleTypesExtensions.cs" />
+    <Compile Include="ExtensionMethods\SitecoreExtensions.cs" />
+    <Compile Include="ExtensionMethods\UrlExtensionMethods.cs" />
+    <Compile Include="ExtensionMethods\ValidateJsonAntiForgeryTokenAttribute.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Models\InputModels\AddCartLineInputModel.cs" />
+    <Compile Include="Models\InputModels\AddToWishListInputModel.cs" />
+    <Compile Include="Models\InputModels\BaseInputModel.cs" />
+    <Compile Include="Models\InputModels\CartLineInputModelItem.cs" />
+    <Compile Include="Models\InputModels\ForgotPasswordInputModel.cs" />
+    <Compile Include="Models\InputModels\ChangePasswordInputModel.cs" />
+    <Compile Include="Models\InputModels\CreditCardPaymentInputModelItem.cs" />
+    <Compile Include="Models\InputModels\DiscountInputModel.cs" />
+    <Compile Include="Models\InputModels\GetGiftCardBalanceInputModel.cs" />
+    <Compile Include="Models\InputModels\GetAvailableStatesInputModel.cs" />
+    <Compile Include="Models\InputModels\GetNearbyStoresInputModel.cs" />
+    <Compile Include="Models\InputModels\GetShippingMethodsInputModel.cs" />
+    <Compile Include="Models\InputModels\GiftCardPaymentInputModelItem.cs" />
+    <Compile Include="Models\InputModels\LoyaltyCardInputModelItem.cs" />
+    <Compile Include="Models\InputModels\LoyaltyCardPaymentInputModelItem.cs" />
+    <Compile Include="Models\InputModels\DeletePartyInputModelItem.cs" />
+    <Compile Include="Models\InputModels\PartyInputModelItem.cs" />
+    <Compile Include="Models\InputModels\PaymentInputModel.cs" />
+    <Compile Include="Models\InputModels\RegisterUserInputModel.cs" />
+    <Compile Include="Models\InputModels\SetShippingMethodsInputModel.cs" />
+    <Compile Include="Models\InputModels\ShippingMethodInputModelItem.cs" />
+    <Compile Include="Models\InputModels\ProductStockInfoInputModel.cs" />
+    <Compile Include="Models\InputModels\OrderConfirmationInputModel.cs" />
+    <Compile Include="Models\InputModels\SubmitOrderInputModel.cs" />
+    <Compile Include="Models\InputModels\DeleteCartLineInputModel.cs" />
+    <Compile Include="Models\InputModels\UpdateCartLineInputModel.cs" />
+    <Compile Include="Models\InputModels\SignUpForNotificationInputModel.cs" />
+    <Compile Include="Models\InputModels\CreateWishListInputModel.cs" />
+    <Compile Include="Models\InputModels\UpdateWishListInputModel.cs" />
+    <Compile Include="Models\InputModels\WishListInputModel.cs" />
+    <Compile Include="Models\InputModels\WishListLineInputModel.cs" />
+    <Compile Include="Interfaces\ISiteContext.cs" />
+    <Compile Include="Managers\BaseManager.cs" />
+    <Compile Include="Managers\MetadataManager.cs" />
+    <Compile Include="Managers\SitecoreItemManager.cs" />
+    <Compile Include="Managers\StorefrontManager.cs" />
+    <Compile Include="Managers\VisitorContext.cs" />
+    <Compile Include="Models\JsonResults\AddressItemBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\AddressListItemBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\AvailableStatesBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\CartAdjustmentBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\CartBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\CartLineBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\ForgotPasswordBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\CheckoutDataBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\LoyaltyCardItemBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\LoyaltyCardsBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\LoyaltyRewardPointItemBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\ProfileBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\RegisterBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\ChangePasswordBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\ShippingMethodsBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\StockInfoListBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\StockInfoBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\GiftCardBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\LoyaltyProgramItemBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\LoyaltyTierItemBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\LoyaltyTransactionItemBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\MiniCartBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\OrderHeaderItemBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\SubmitOrderBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\UpdateLoyaltyCardBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\UserBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\OrderBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\OrdersBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\WishListHeaderItemBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\WishListItemBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\WishListBaseJsonResult.cs" />
+    <Compile Include="Models\JsonResults\WishListsBaseJsonResult.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\MailTemplate.cs" />
+    <Compile Include="Models\ProfileModel.cs" />
+    <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="Models\RenderingModels\CartRenderingModel.cs" />
+    <Compile Include="Models\ProductSearchResultViewModel.cs" />
+    <Compile Include="Models\RenderingModels\MultipleProductSearchResults.cs" />
+    <Compile Include="Models\CatalogRouteData.cs" />
+    <Compile Include="Models\CategorySearchResults.cs" />
+    <Compile Include="Models\CategoryViewModel.cs" />
+    <Compile Include="Models\CustomCommerceCartLine.cs" />
+    <Compile Include="Models\JsonResults\BaseJsonResult.cs" />
+    <Compile Include="Models\LandingPageViewModel.cs" />
+    <Compile Include="Models\NoDataSourceViewModel.cs" />
+    <Compile Include="Models\PaginationModel.cs" />
+    <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="Models\RelatedCatalogItemsViewModel.cs" />
+    <Compile Include="Models\RenderingModels\NavigationViewModel.cs" />
+    <Compile Include="Models\RenderingModels\PaginationViewModel.cs" />
+    <Compile Include="Models\RenderingModels\ProductFacetsViewModel.cs" />
+    <Compile Include="Models\RenderingModels\ProductListHeaderViewModel.cs" />
+    <Compile Include="Models\SearchBarModel.cs" />
+    <Compile Include="Models\SearchResults.cs" />
+    <Compile Include="Models\SiteContentSearchResultsViewModel.cs" />
+    <Compile Include="Models\SiteContentViewModel.cs" />
+    <Compile Include="Models\SitecoreItemModels\Catalog.cs" />
+    <Compile Include="Models\SitecoreItemModels\Category.cs" />
+    <Compile Include="Models\SitecoreItemModels\CommercePromotion.cs" />
+    <Compile Include="Models\SitecoreItemModels\PromoList.cs" />
+    <Compile Include="Models\SitecoreItemModels\PromoRotator.cs" />
+    <Compile Include="Models\SitecoreItemModels\SitecoreItemBase.cs" />
+    <Compile Include="Models\SitecoreItemModels\CommerceStorefront.cs" />
+    <Compile Include="Models\VariantPropertiesEqualityComparer.cs" />
+    <Compile Include="Models\VariantViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Search\ComputedFields\SiteContentItem.cs" />
+    <Compile Include="Services\CatalogServiceProvider.cs" />
+    <Compile Include="Services\VisitedCategoryPageRequest.cs" />
+    <Compile Include="Services\VisitedCategoryPageResult.cs" />
+    <Compile Include="Services\VisitedProductDetailsPageRequest.cs" />
+    <Compile Include="Services\VisitedProductDetailsPageResult.cs" />
+    <Compile Include="SitecorePipelines\CatalogLinkProvider.cs" />
+    <Compile Include="SitecorePipelines\OrderOutcome.cs" />
+    <Compile Include="SitecorePipelines\ProductItemResolver.cs" />
+    <Compile Include="SitecorePipelines\RegisterDataModelExtensionsBase.cs" />
+    <Compile Include="SitecorePipelines\TriggerVisitedCategoryPagePageEvent.cs" />
+    <Compile Include="SitecorePipelines\TriggerVisitedProductDetailsPagePageEvent.cs" />
+    <Compile Include="StorefrontConstants.cs" />
+    <Compile Include="CommonTexts.cs" />
+    <Compile Include="Util\CartCacheHelper.cs" />
+    <Compile Include="Util\CartCookieHelper.cs" />
+    <Compile Include="Util\CatalogUrlManager.cs" />
+    <Compile Include="Util\EaPlanInfo.cs" />
+    <Compile Include="Util\FrameEditor.cs" />
+    <Compile Include="Util\Helpers.cs" />
+    <Compile Include="Util\InstallPostStep.cs" />
+    <Compile Include="Util\MailUtil.cs" />
+    <Compile Include="Util\QueryStringCollection.cs" />
+    <Compile Include="Util\SearchNavigation.cs" />
+    <Compile Include="Util\SiteContext.cs" />
+    <Compile Include="Util\StringUtility.cs" />
+    <Compile Include="Util\UrlBuilder.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="..\..\CustomDictionary.xml">
+      <Link>CustomDictionary.xml</Link>
+    </CodeAnalysisDictionary>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

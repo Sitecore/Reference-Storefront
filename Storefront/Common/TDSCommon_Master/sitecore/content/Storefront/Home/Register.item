@@ -1,0 +1,214 @@
+----item----
+version: 1
+id: {32AF489D-E6F9-4202-B6C7-6259C9F52E0E}
+database: master
+path: /sitecore/content/Storefront/Home/Register
+parent: {441B60D3-09BB-4111-A3AD-D10076B78B54}
+name: Register
+master: {00000000-0000-0000-0000-000000000000}
+template: {2483D7FA-6703-4633-9FFC-76F6CE53D7C4}
+templatekey: Register Page
+
+----field----
+field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
+name: __Icon
+key: __icon
+content-length: 27
+
+People/32x32/user1_edit.png
+----field----
+field: {A4F985D9-98B3-4B52-AAAF-4344F6E747C6}
+name: __Workflow
+key: __workflow
+content-length: 38
+
+{A5BC37E7-ED96-4C1E-8590-A26E64DB55EA}
+----version----
+language: en
+version: 1
+revision: 07acd0c4-7183-4f32-b63c-8327e6a793e0
+
+----field----
+field: {EC1F4944-D675-42F6-B354-A0A1BF04BFF8}
+name: Title
+key: title
+content-length: 18
+
+Create an Acccount
+----field----
+field: {25654646-90C4-487F-96B2-9AB21BFDBFEB}
+name: Registering
+key: registering
+content-length: 15
+
+Registering ...
+----field----
+field: {D788A7E2-00D1-44C0-96A1-993A51FD274C}
+name: Email
+key: email
+content-length: 13
+
+Email Address
+----field----
+field: {0754EF47-267D-4390-A004-A28BADEF4D0B}
+name: First Name
+key: first name
+content-length: 10
+
+First Name
+----field----
+field: {B7938EC0-1F55-45DE-8010-C59F52EF43E9}
+name: Last Name
+key: last name
+content-length: 7
+
+Surname
+----field----
+field: {C025EE06-D9F1-45A3-9BBE-B849C24EA25F}
+name: Password
+key: password
+content-length: 8
+
+Password
+----field----
+field: {96760D29-01C8-4158-B80D-8AE8B3427EF3}
+name: Password Again
+key: password again
+content-length: 16
+
+Confirm Password
+----field----
+field: {272FD624-6448-464B-AD8F-ED706C580F1D}
+name: Create User
+key: create user
+content-length: 11
+
+Create user
+----field----
+field: {04FED636-94A9-47E4-92CD-A7F92BEFB811}
+name: Cancel
+key: cancel
+content-length: 6
+
+Cancel
+----field----
+field: {E066EB82-1F62-4E92-A749-2C885A6FBCF4}
+name: Fill Form Message
+key: fill form message
+content-length: 55
+
+Please fill out the form below to create your own user.
+----field----
+field: {0F00BF99-7F90-4FCA-B56C-B171F305477C}
+name: Facebook Button
+key: facebook button
+content-length: 19
+
+Connect to facebook
+----field----
+field: {CB93092D-1DD9-4BC7-B30C-BAC55E1B6E26}
+name: Facebook Text
+key: facebook text
+content-length: 143
+
+            <h3>Save yourself some time, and log in via Facebook</h3>
+            <p>We will not use or share you information with others.</p>
+
+----field----
+field: {6F1B8496-8581-43BF-93B2-983CC992BBE7}
+name: Email Address Placeholder
+key: email address placeholder
+content-length: 13
+
+Email Address
+----field----
+field: {601747AC-BBA2-4D26-940A-990EBD71F2E7}
+name: First Name Placeholder
+key: first name placeholder
+content-length: 10
+
+First name
+----field----
+field: {6DFEAA2A-D395-4D6B-9A28-BAA067234C74}
+name: Last Name Placeholder
+key: last name placeholder
+content-length: 7
+
+Surname
+----field----
+field: {11E1495C-FC5F-40E7-A8FC-0AEC024D4D66}
+name: Password Placeholder
+key: password placeholder
+content-length: 8
+
+Password
+----field----
+field: {B65DF6CB-E4D5-4B11-9DA5-1D1E411EEBC1}
+name: Email Missing Message
+key: email missing message
+content-length: 22
+
+The email is required.
+----field----
+field: {6FFD7D04-6ADD-4608-9FEF-304CC12DDE36}
+name: Password Missing Message
+key: password missing message
+content-length: 25
+
+The password is required.
+----field----
+field: {2EF94CAE-2FC4-4936-80E5-CC14D680CC5C}
+name: Password Length Message
+key: password length message
+content-length: 50
+
+The Password must be at least {0} characters long.
+----field----
+field: {C4A8E07E-4CD4-4B78-8C1A-68D327DCEBBD}
+name: Passwords Do Not Match Message
+key: passwords do not match message
+content-length: 52
+
+The password and confirmation password do not match.
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20141119T095223Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+07acd0c4-7183-4f32-b63c-8327e6a793e0
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150320T125642:635624530026028287Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {3E431DE1-525E-47A3-B6B0-1CCBEC3A8C98}
+name: __Workflow state
+key: __workflow state
+content-length: 38
+
+{FCA998C5-0CC3-4F91-94D8-0A4E6CAECE88}

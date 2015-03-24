@@ -1,0 +1,65 @@
+----item----
+version: 1
+id: {BE891052-E65A-4C5F-9F52-88D288E96974}
+database: master
+path: /sitecore/content/Storefront/Global/QuickLinks/Account information
+parent: {3A5114AC-44CA-401C-A20A-C3EC314630C8}
+name: Account information
+master: {00000000-0000-0000-0000-000000000000}
+template: {3DEAA741-69D6-4CBF-BA89-079F22202ADE}
+templatekey: QuickLinks
+
+----field----
+field: {BA3F86A2-4A1C-4D78-B63D-91C2779C1B5E}
+name: __Sortorder
+key: __sortorder
+content-length: 3
+
+200
+----version----
+language: en
+version: 1
+revision: 541402e3-b14e-4317-97f8-d720b257e5fb
+
+----field----
+field: {1250AE47-B620-4E3D-BD17-A36BC3595143}
+name: QuickLinks
+key: quicklinks
+content-length: 77
+
+{154D2D8D-63A9-4285-BECB-AE486B78D631}|{CBB5B64F-D716-49EE-9B92-D07B33B517EB}
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20141105T093154
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+541402e3-b14e-4317-97f8-d720b257e5fb
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150311T072233:635616553539348592Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

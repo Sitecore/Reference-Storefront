@@ -1,0 +1,119 @@
+----item----
+version: 1
+id: {20CF30D5-9BE4-4681-91DD-E15B515FD1F3}
+database: master
+path: /sitecore/Commerce/Settings/Catalog/Default Catalog
+parent: {614105BC-C812-43E6-8005-1934275A9529}
+name: Default Catalog
+master: {00000000-0000-0000-0000-000000000000}
+template: {F8C2D048-1934-4EB1-9C5F-8C67DB673A30}
+templatekey: Commerce Catalog Setting Item
+
+----field----
+field: {8BBC9900-067F-40EA-8500-8B2C247636F7}
+name: Catalog
+key: catalog
+content-length: 23
+
+Adventure Works Catalog
+----version----
+language: de-DE
+version: 1
+revision: 354941dd-23f0-4225-9dc1-5a83bd970894
+
+----field----
+field: {B5E02AD9-D56F-4C41-A065-A133DB87BDEB}
+name: __Display name
+key: __display name
+content-length: 15
+
+Standardkatalog
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 18
+
+sitecore\Anonymous
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 35
+
+20150125T113332:635577824128814208Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 18
+
+sitecore\Anonymous
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+354941dd-23f0-4225-9dc1-5a83bd970894
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150125T113349:635577824293189196Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 18
+
+sitecore\Anonymous
+----version----
+language: en
+version: 1
+revision: 6e21e206-c828-4d21-a239-40efa9bdfe1c
+
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20131204T085348
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+6e21e206-c828-4d21-a239-40efa9bdfe1c
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150125T121632:635577849928779355Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

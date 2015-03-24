@@ -1,0 +1,100 @@
+----item----
+version: 1
+id: {E48E2CCA-493D-410D-9B15-B2E1A0939730}
+database: master
+path: /sitecore/content/Storefront/Global/Site Spots/ShareAndPrint
+parent: {50CA28D4-C93C-435B-92DA-866276A1BFDF}
+name: ShareAndPrint
+master: {00000000-0000-0000-0000-000000000000}
+template: {D8144149-F3DB-443A-9E26-C8D92CD824A9}
+templatekey: ShareAndPrint
+
+----version----
+language: en
+version: 1
+revision: bf70c3aa-5e9c-4260-a2ba-fb06c3e8bbfc
+
+----field----
+field: {1B09ADDD-5165-4C61-8E3B-EE06943C431D}
+name: Create New Wish List Label
+key: create new wish list label
+content-length: 20
+
+Create new wish list
+----field----
+field: {66CBA671-E9F1-41F2-942F-3D27FAE5857A}
+name: New Wish List Label
+key: new wish list label
+content-length: 13
+
+New wish list
+----field----
+field: {3E3E4DB9-85A9-435A-A5F3-965F159694F1}
+name: Add New Wish List Label
+key: add new wish list label
+content-length: 17
+
+Add new wish list
+----field----
+field: {98EFB1C2-07DF-4788-AA85-2C28B1B04922}
+name: Close Label
+key: close label
+content-length: 5
+
+Close
+----field----
+field: {5293C5D6-0C92-4FB7-887B-C3FA5A9D2E83}
+name: Create Wish List Label
+key: create wish list label
+content-length: 16
+
+Create wish list
+----field----
+field: {834DB12A-1186-45D1-84C9-C7EBA58467F4}
+name: Save Changes Label
+key: save changes label
+content-length: 12
+
+Save changes
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20150106T221503Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+bf70c3aa-5e9c-4260-a2ba-fb06c3e8bbfc
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150106T222419:635561798594170749Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

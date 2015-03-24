@@ -1,0 +1,170 @@
+----item----
+version: 1
+id: {22E25C12-DD87-4E6F-AE6C-9C2AED53ECF6}
+database: master
+path: /sitecore/content/Storefront/Home/AccountManagement/AddressBook
+parent: {4D316BBA-345F-4929-9E84-A2208C0F7AA6}
+name: AddressBook
+master: {00000000-0000-0000-0000-000000000000}
+template: {870F05DA-B99C-46D9-90C1-DDD8FA2B3DCF}
+templatekey: AddressBook Page
+
+----version----
+language: en
+version: 1
+revision: 1c584398-268b-459c-9991-fae393d19759
+
+----field----
+field: {EC1F4944-D675-42F6-B354-A0A1BF04BFF8}
+name: Title
+key: title
+content-length: 12
+
+Address Book
+----field----
+field: {90C4D9B9-8620-450A-A674-57EB110EF818}
+name: Change Address Label
+key: change address label
+content-length: 14
+
+Change address
+----field----
+field: {1D588062-5217-4496-B325-94B0981369CD}
+name: Address Label
+key: address label
+content-length: 7
+
+Address
+----field----
+field: {D91AB418-C356-4FB6-89DE-5EA2CD7C150B}
+name: City Label
+key: city label
+content-length: 4
+
+City
+----field----
+field: {77BE2267-2102-4BF0-8CA0-C295677E855C}
+name: Country Label
+key: country label
+content-length: 14
+
+Country/region
+----field----
+field: {388690DA-0E7F-4061-9237-E6CC1A3B7101}
+name: State Label
+key: state label
+content-length: 14
+
+State/province
+----field----
+field: {541542D6-BDF5-42D4-B20E-021C0287A163}
+name: Zip Code Label
+key: zip code label
+content-length: 7
+
+ZipCode
+----field----
+field: {7FD53F4B-D6FB-4F31-AD17-1FA6DED84E3A}
+name: Set As Primary Label
+key: set as primary label
+content-length: 22
+
+Set as primary address
+----field----
+field: {654B1DD8-9B4F-4ACA-ABAE-82F816EE0F70}
+name: Back To My Account Label
+key: back to my account label
+content-length: 18
+
+Back to My Account
+----field----
+field: {80A14700-60E0-487D-8B0C-9CCF8B26768E}
+name: Saving Label
+key: saving label
+content-length: 10
+
+Saving ...
+----field----
+field: {B6D5EA80-1003-4A93-8437-3D334DDE9AE3}
+name: Deleting Label
+key: deleting label
+content-length: 12
+
+Deleting ...
+----field----
+field: {CAA5DC96-A392-4E4A-878A-58F0414E533F}
+name: Select Label
+key: select label
+content-length: 10
+
+Select ...
+----field----
+field: {8881DF15-8613-4CC3-9B5C-09235413D8B0}
+name: New Address Label
+key: new address label
+content-length: 15
+
+New Address ...
+----field----
+field: {E16E9B13-D388-419E-B8BD-48C71EF0D3BB}
+name: Name Label
+key: name label
+content-length: 4
+
+Name
+----field----
+field: {FC30AAD9-0050-42CF-B721-0523072FB812}
+name: Save Changes Button
+key: save changes button
+content-length: 12
+
+Save changes
+----field----
+field: {1BD50106-1AA3-4393-BC2D-D2170F8EAD36}
+name: Cancel Button
+key: cancel button
+content-length: 6
+
+Cancel
+----field----
+field: {9AF5F65A-25A9-42E2-BC39-3C29ADBBBA94}
+name: Delete Address Button
+key: delete address button
+content-length: 6
+
+Delete
+----field----
+field: {F085C466-000A-40E4-A119-88C3534D9CE3}
+name: Addresses Empty Text
+key: addresses empty text
+content-length: 41
+
+<p>You have not added any address yet</p>
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20150114T014721Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+1c584398-268b-459c-9991-fae393d19759
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150320T125420:635624528609938475Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

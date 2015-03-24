@@ -1,0 +1,93 @@
+----item----
+version: 1
+id: {9988B682-59C7-4319-8BF9-7071F132A5AD}
+database: master
+path: /sitecore/content/Storefront/Global/Site Spots/MiniCart
+parent: {50CA28D4-C93C-435B-92DA-866276A1BFDF}
+name: MiniCart
+master: {00000000-0000-0000-0000-000000000000}
+template: {A59DB217-0B2A-4E79-AA72-11743FECF500}
+templatekey: MiniCart
+
+----field----
+field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
+name: __Icon
+key: __icon
+content-length: 36
+
+Business/32x32/shoppingcart_full.png
+----version----
+language: en
+version: 1
+revision: 99896529-4256-4cc1-95e6-0026141b96df
+
+----field----
+field: {DFE0F97D-5A01-4C23-9037-4637EA48B1A5}
+name: Quantity
+key: quantity
+content-length: 8
+
+Quantity
+----field----
+field: {BE9EBF28-579F-4B25-A851-85EA2DDFB719}
+name: Price
+key: price
+content-length: 5
+
+Price
+----field----
+field: {E9C22DF9-5E98-4CFB-8A76-34521297332D}
+name: Title
+key: title
+content-length: 18
+
+items in your cart
+----field----
+field: {E5827172-F48C-4E97-8D48-DD546F6C6318}
+name: Total
+key: total
+content-length: 5
+
+Total
+----field----
+field: {67021CB8-3C03-4D60-AA4C-76024E6463F9}
+name: ViewCartLabel
+key: viewcartlabel
+content-length: 9
+
+View cart
+----field----
+field: {C348822F-F374-40A7-8CEB-58240DB301F5}
+name: CheckoutLabel
+key: checkoutlabel
+content-length: 8
+
+Checkout
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20141123T014326
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+99896529-4256-4cc1-95e6-0026141b96df
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20141209T025259:635536903796035223Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

@@ -1,0 +1,54 @@
+﻿@*//-----------------------------------------------------------------------
+// Copyright 2015 Sitecore Corporation A/S
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+// except in compliance with the License. You may obtain a copy of the License at
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software distributed under the
+// License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+// either express or implied. See the License for the specific language governing permissions
+// and limitations under the License.
+// -------------------------------------------------------------------------------------------*@
+
+@using Sitecore.Reference.Storefront.Managers
+@{
+    var joiningLabel = @Html.Sitecore().Field("Joining Loyalty Program Button", Html.Sitecore().CurrentItem);
+}
+
+<div class="col-md-12" id="loyaltyAccount">
+    <h2>
+        @Html.Sitecore().Field("Loyalty Title", Html.Sitecore().CurrentItem)
+        <a href="@StorefrontManager.StorefrontUri("/accountmanagement/loyaltycards")" class="view-all pull-right">
+            <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> @Html.Sitecore().Field("View Details Label", Html.Sitecore().CurrentItem)
+        </a>
+    </h2>
+    <div id="loyaltySection">
+        <div data-bind="visible: showLoader">
+            <img src="/Images/loading.gif" />
+        </div>
+        <div class="table-responsive" id="loyaltyCards" data-bind="visible: isNotEmpty" style="display: none">
+            <table class="table table-hover small-list">
+                <thead>
+                    <tr>
+                        <td width="90%">@Html.Sitecore().Field("Card Number Label", Html.Sitecore().CurrentItem)</td>
+                        <td width="10%">&nbsp;</td>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: LoyaltyCards">
+                    <tr data-bind="css: {'odd': $index() % 2 == 0}">
+                        <td><a href="@StorefrontManager.StorefrontUri("/accountmanagement/loyaltycards")" data-bind="text: CardNumber"></a></td>
+                        <td><a href="@StorefrontManager.StorefrontUri("/accountmanagement/loyaltycards")"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="loyaltyCardsEmpty" data-bind="visible: isEmpty" style="display: none">
+            @Html.Sitecore().Field("Loyalty Empty Text", Html.Sitecore().CurrentItem)
+            <button type="button" class="btn btn-primary" id="joinLoyaltyProgram" data-loading-text="@joiningLabel" onclick=" joinLoyaltyProgram() ">@Html.Sitecore().Field("Join Loyalty Program Button", Html.Sitecore().CurrentItem)</button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    initActiveLoyaltyCards("loyaltySection");
+</script>

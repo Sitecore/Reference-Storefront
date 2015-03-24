@@ -1,0 +1,39 @@
+﻿@*//-----------------------------------------------------------------------
+// Copyright 2015 Sitecore Corporation A/S
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+// except in compliance with the License. You may obtain a copy of the License at
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software distributed under the
+// License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+// either express or implied. See the License for the specific language governing permissions
+// and limitations under the License.
+// -------------------------------------------------------------------------------------------*@
+
+<div id="S05-ProductPresentation" class="row">
+    <div class="col-md-6 col-sm-12">
+        @Html.Sitecore().Placeholder("productimages")
+    </div>
+    <div class="col-md-6 col-xs-12">
+        <div class="prod-info">
+            <div class="row">
+                <div class="col-md-6 hidden-sm hidden-xs">
+                    @Html.Sitecore().Placeholder("productrating")
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    @Html.Sitecore().Placeholder("socialconnector")
+                </div>
+                @Html.Sitecore().Placeholder("productinformation")
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    @Html.Sitecore().Placeholder("addtocart")
+                </div>
+                <div class="col-md-4 col-sm-4 hidden-xs">
+                    @Html.Sitecore().Placeholder("shareandprint")
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="prod-closing"></div>
+    </div>
+</div>

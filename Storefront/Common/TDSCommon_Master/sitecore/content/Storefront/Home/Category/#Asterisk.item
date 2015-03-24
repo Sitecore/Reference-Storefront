@@ -1,0 +1,51 @@
+----item----
+version: 1
+id: {CCF16E47-16D8-4F1C-AC6A-936DFE31CEA3}
+database: master
+path: /sitecore/content/Storefront/Home/Category/*
+parent: {F7CA44CB-51FE-471D-BDA2-DE47F8D7E086}
+name: *
+master: {00000000-0000-0000-0000-000000000000}
+template: {9DE07365-6B42-464B-B819-5423B563095C}
+templatekey: Category Page
+
+----version----
+language: en
+version: 1
+revision: 93b83742-f8dd-47fb-ba1c-991decb4ed97
+
+----field----
+field: {EC1F4944-D675-42F6-B354-A0A1BF04BFF8}
+name: Title
+key: title
+content-length: 1
+
+*
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20150108T213246Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+93b83742-f8dd-47fb-ba1c-991decb4ed97
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150320T125538:635624529380291782Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

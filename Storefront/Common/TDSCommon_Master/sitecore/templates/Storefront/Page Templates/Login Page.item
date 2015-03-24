@@ -1,0 +1,72 @@
+----item----
+version: 1
+id: {F409B9A7-B101-4DC4-AEDA-E15E09E7D719}
+database: master
+path: /sitecore/templates/Storefront/Page Templates/Login Page
+parent: {FBC0EE3B-9FBF-4356-8C0B-CA31A6BCAA00}
+name: Login Page
+master: {00000000-0000-0000-0000-000000000000}
+template: {AB86861A-6030-46C5-B394-E8F99E8B87DB}
+templatekey: Template
+
+----field----
+field: {12C33F3F-86C5-43A5-AEB4-5598CEC45116}
+name: __Base template
+key: __base template
+content-length: 77
+
+{1930BBEB-7805-471A-A3BE-4858AC7CF696}|{16E859D2-6542-407A-AC65-F34BCAD3EB3D}
+----field----
+field: {F7D48A55-2158-4F02-9356-756654404F73}
+name: __Standard values
+key: __standard values
+content-length: 38
+
+{01E72DC1-BAC5-486B-98A3-1A72EF979D3E}
+----field----
+field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
+name: __Icon
+key: __icon
+content-length: 22
+
+People/16x16/dude1.png
+----version----
+language: en
+version: 1
+revision: 14df7ea8-5a58-4b86-80d4-0f8c093e1405
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20141215T144439Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+14df7ea8-5a58-4b86-80d4-0f8c093e1405
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150216T183617:635597085774489727Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

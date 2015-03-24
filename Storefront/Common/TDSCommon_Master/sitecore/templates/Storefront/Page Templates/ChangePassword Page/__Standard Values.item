@@ -1,0 +1,142 @@
+----item----
+version: 1
+id: {E853F2F4-2FCC-474C-9FE8-A6070914E423}
+database: master
+path: /sitecore/templates/Storefront/Page Templates/ChangePassword Page/__Standard Values
+parent: {ED33AD84-9678-435D-831E-EDBF938BFEEB}
+name: __Standard Values
+master: {00000000-0000-0000-0000-000000000000}
+template: {ED33AD84-9678-435D-831E-EDBF938BFEEB}
+templatekey: ChangePassword Page
+
+----field----
+field: {F1A1FE9E-A60C-4DDB-A3A0-BB5B29FE732E}
+name: __Renderings
+key: __renderings
+content-length: 2390
+
+<r xmlns:xsd="http://www.w3.org/2001/XMLSchema" ><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}" l="{F5034347-7E92-41D7-B8EB-F51D1F1BCF1C}"><r id="{15A09072-CE89-4126-A9E4-17753FC726FF}" ph="top" uid="{0E2D603A-CF36-4EE2-B598-D2E06AEBD5AE}" /><r id="{B6C0593E-1C35-4C61-8DB5-E7C7AA19D955}" ph="topleft" uid="{17F64DAC-2A2C-4F61-A993-F3BC59203AA0}" /><r ds="" id="{FAA386D8-192F-4762-839D-D637BD11549F}" par="" ph="topright" uid="{1B0865BA-8725-40D7-B472-5466055F1834}" /><r ds="{9988B682-59C7-4319-8BF9-7071F132A5AD}" id="{9AA8E388-A6BD-46E1-A73B-DDEF601DE6F8}" par="" ph="topcenter" uid="{8C308774-5362-4996-A416-527ED85204F1}" /><r id="{11680CDD-D6CF-4F1A-A770-B9815A6F7CEC}" ph="messages" uid="{F1E3FD77-E094-40BC-A6FA-C7E66706A33C}" /><r id="{79167FB2-C7E0-4124-81C9-61AFBB279388}" ph="navigation" uid="{1A6AE860-A323-460D-B8D7-CEFA22469672}" /><r id="{0FA59DDC-5AEB-4ADB-B64B-D8D03B351680}" ph="navigationextra" uid="{D0FFD21B-BDDF-4C59-A150-C43C76CABF37}" /><r ds="{98CE979E-638E-4EE0-AD7F-05164173F1C1}" id="{DC1B9040-8694-456A-A5E6-81996BD1B2AA}" par="" ph="navigationextraleft" uid="{5D2C83EE-F8CA-41B9-BBF2-03CBC74D3F52}" /><r ds="{5886D851-1625-48AE-A787-84FC5B5EB271}" id="{582FEA78-404C-44D8-B6B4-356B080F5A7C}" par="" ph="navigationextraright" uid="{0D3D37F8-ED81-4F72-B7C2-8D5AF8EB0094}" /><r ds="{889A6934-BCDC-4294-94B7-6D141E7312B4}" id="{CFD437A6-404A-4C8C-8A41-EED2FB86D5DE}" par="" ph="navigationmain" uid="{3C2F52A6-A439-456D-A812-04A831DB8A0F}" /><r id="{A093583B-6870-44AD-B14E-54703B32E9B9}" ph="middle" uid="{040AABEE-E9FF-4135-A015-4660E39C2CFF}" /><r id="{2685E523-5828-4F75-9B4E-476EFE1DC2DC}" ph="center" uid="{977A116E-E4E3-4322-8917-267068421DA1}" /><r id="{BB67A786-B97E-4412-AC35-3BB650CBBB5C}" ph="center" uid="{B2A09B46-ACFE-4D73-BC9C-32D0C7A23639}" /><r ds="{F6504124-F766-43D0-824B-EB339CAE8E5F}" id="{2658217E-196A-4041-8F81-B8AFA7E377EE}" par="" ph="bottom" uid="{90413A71-AF3B-426B-938F-DCD2F2968374}" /></d><d id="{46D2F427-4CE5-4E1F-BA10-EF3636F43534}" l="{158292D8-6523-4052-8DEF-60DD6F112A09}"><r id="{A093583B-6870-44AD-B14E-54703B32E9B9}" ph="middle" uid="{2BA799C2-8912-4C07-93B4-B93183F80794}" /><r ds="" id="{2685E523-5828-4F75-9B4E-476EFE1DC2DC}" par="" ph="center" uid="{974B60AD-0909-4AE3-8B61-CEE3F1A4E8EA}" /><r ds="" id="{BB67A786-B97E-4412-AC35-3BB650CBBB5C}" par="" ph="center" uid="{4EF13732-1044-46C9-B49A-16BCEB1821C7}" /></d></r>
+----version----
+language: en
+version: 1
+revision: 2c3327cc-8675-44df-8c67-aacd080ce9b4
+
+----field----
+field: {727FFCA2-41BC-4CB2-BD07-328A2516FA67}
+name: New Password
+key: new password
+content-length: 12
+
+New Password
+----field----
+field: {18757981-E7F6-4AB1-95E6-4CA68B65D788}
+name: Repeat Password
+key: repeat password
+content-length: 15
+
+Repeat Password
+----field----
+field: {2CE72B31-F944-4A0B-9EA8-23AADEAD0C31}
+name: Current Password
+key: current password
+content-length: 16
+
+Current Password
+----field----
+field: {C8E323D4-3AC3-49E1-8322-619F0168D4FE}
+name: Save Changes Button
+key: save changes button
+content-length: 12
+
+Save Changes
+----field----
+field: {CD38A0FF-D6FA-4F14-810F-B50778663E10}
+name: Cancel Button
+key: cancel button
+content-length: 6
+
+Cancel
+----field----
+field: {2FA419B5-DA10-4B79-AFFC-F552628C893B}
+name: Back To My Account
+key: back to my account
+content-length: 18
+
+Back to My Account
+----field----
+field: {8443FF6D-0783-45FD-8657-07BEFFA9A0B0}
+name: Saving Changes Button
+key: saving changes button
+content-length: 14
+
+Saving Changes
+----field----
+field: {2998CB6A-5FD0-4D1E-96EF-5F3E148F8C40}
+name: Current Password Required Message
+key: current password required message
+content-length: 29
+
+Current Password is required.
+----field----
+field: {FD1AD1EB-CA9C-4808-93EF-09A2A28FF8C6}
+name: Password and Confirmation Must Match Message
+key: password and confirmation must match message
+content-length: 52
+
+The password and confirmation password do not match.
+----field----
+field: {EFD2B75F-7354-4EB4-86CD-6D13D911B06C}
+name: The Password Length Message
+key: the password length message
+content-length: 48
+
+The Password must be at least 6 characters long.
+----field----
+field: {04BF00DB-F5FB-41F7-8AB7-22408372A981}
+name: __Final Renderings
+key: __final renderings
+content-length: 540
+
+<r xmlns:p="p" xmlns:s="s" p:p="1" s:xsd="http://www.w3.org/2001/XMLSchema"><d id="{46D2F427-4CE5-4E1F-BA10-EF3636F43534}" s:l="{158292D8-6523-4052-8DEF-60DD6F112A09}"><r uid="{2BA799C2-8912-4C07-93B4-B93183F80794}" s:id="{A093583B-6870-44AD-B14E-54703B32E9B9}" s:ph="middle" /><r uid="{974B60AD-0909-4AE3-8B61-CEE3F1A4E8EA}" s:ds="" s:id="{2685E523-5828-4F75-9B4E-476EFE1DC2DC}" s:par="" s:ph="center" /><r uid="{4EF13732-1044-46C9-B49A-16BCEB1821C7}" s:ds="" s:id="{BB67A786-B97E-4412-AC35-3BB650CBBB5C}" s:par="" s:ph="center" /></d></r>
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20150203T174814Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+2c3327cc-8675-44df-8c67-aacd080ce9b4
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150313T145520:635618553202553233Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

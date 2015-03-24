@@ -1,0 +1,143 @@
+﻿@*//-----------------------------------------------------------------------
+    // Copyright 2015 Sitecore Corporation A/S
+    // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+    // except in compliance with the License. You may obtain a copy of the License at
+    //       http://www.apache.org/licenses/LICENSE-2.0
+    //
+    // Unless required by applicable law or agreed to in writing, software distributed under the
+    // License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+    // either express or implied. See the License for the specific language governing permissions
+    // and limitations under the License.
+    // -------------------------------------------------------------------------------------------*@
+
+@using Sitecore.Commerce.Entities.Inventory
+@using Sitecore.Reference.Storefront.Managers
+@model ProductViewModel
+@{
+    if (Model == null)
+    {
+        return;
+    }
+
+    bool isCategory = Model.Item.Template.Key.Equals("generalcategory", StringComparison.OrdinalIgnoreCase);
+    var brand = @Model.RenderField("Brand").ToString();
+}
+
+<div class="col-item">
+    <div class="photo">
+        @using (Html.EditFrame(Model.Item.Paths.FullPath, CommerceConstants.KnownItemPaths.EditFrameImages))
+        {
+            if (Model.Images != null && Model.Images.Count > 0)
+            {
+                <a href="@Model.GetLink()">
+                    <img src="@Model.Images[0].GetImageUrl(300, 300)" class="img-responsive" alt="product image" title="@Model.DisplayName" />
+                </a>
+            }
+            else
+            {
+                <a href="@Model.GetLink()">
+                    <img src="http://placehold.it/300x300" class="img-responsive" alt="product image" title="@Model.DisplayName" />
+                </a>
+            }
+        }
+    </div>
+    <div class="info">
+        <div class="row">
+            <div class="price col-md-12 col-xs-12">
+                <a href="@Model.GetLink()">
+                    <h5 class="twolines">@Model.DisplayName</h5>
+                </a>
+                @if (@brand != null && @brand.Length > 0)
+                {
+                    <p>@brand</p>
+                }
+                else
+                {
+                    <p class="nobrand">&nbsp;</p>
+                }
+                @if (!isCategory)
+                {
+                    if (Model.IsOnSale && Model.AdjustedPrice != null)
+                    {
+                        <h4 class="price-text-color" pid="priceNow">@Html.DisplayFor(model => Model.AdjustedPriceWithCurrency)</h4>
+                        <h5 class="price-before" pid="price">@Html.DisplayFor(model => Model.ListPriceWithCurrency)</h5>
+                        <span class="price-savings" pid="savings">@Html.Sitecore().Field("Save percent lead", Model.Rendering.RenderingItem) @Model.SavingsPercentage%</span>
+                    }
+                    else
+                    {
+                        <h4 class="price-text-color" pid="price">@Html.DisplayFor(model => Model.ListPriceWithCurrency)</h4>
+                        <h5 class="price-before"></h5>
+                        <span class="price-savings"></span>
+                        <span class="if-no-before-price"></span>
+                    }
+                    if (Model.StockStatus != null)
+                    {
+                        <span pid="stockStatus" class="price-stock">@Html.DisplayFor(model => Model.StockStatusName)</span>
+                        if (Model.StockAvailabilityDate != null)
+                        {
+                            <span pid="stockAvailabilityDate" class="price-stock"> / @Html.DisplayFor(model => Model.StockAvailabilityDate)</span>
+                        }
+                        else
+                        {
+                            <span class="price-stock"></span>
+                        }
+                    }
+                    else
+                    {
+                        <span class="price-stock">&nbsp;</span>
+                        <span class="price-stock"></span>
+                    }
+                }
+            </div>
+            @if (!isCategory)
+            {
+                <div class="rating hidden-sm hidden-xs col-md-12 col-xs-12">
+                    <ul>
+                        <li @(Model.CustomerAverageRating >= 1 ? "class=rated" : "")><span class="glyphicon glyphicon-star"></span></li>
+                        <li @(Model.CustomerAverageRating >= 2 ? "class=rated" : "")><span class="glyphicon glyphicon-star"></span></li>
+                        <li @(Model.CustomerAverageRating >= 3 ? "class=rated" : "")><span class="glyphicon glyphicon-star"></span></li>
+                        <li @(Model.CustomerAverageRating >= 4 ? "class=rated" : "")><span class="glyphicon glyphicon-star"></span></li>
+                        <li @(Model.CustomerAverageRating >= 5 ? "class=rated" : "")><span class="glyphicon glyphicon-star"></span></li>
+                    </ul>
+                </div>
+            }
+        </div>
+        @if (!isCategory)
+        {
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <div class="separator clear-left">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                <p class="btn-details">
+                                    <a href="@Model.GetLink()">
+                                        <span class="glyphicon glyphicon-th-list"></span> @Model.ProductDetailsLinkText
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <div class="separator clear-left">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                <p class="btn-details">
+                                    <a href="@Model.GetLink()">
+                                        <span></span> @Html.Sitecore().Field("Category", Model.Rendering.RenderingItem)
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="clearfix"> </div>
+    </div>
+</div>

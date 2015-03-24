@@ -1,0 +1,44 @@
+﻿@*//-----------------------------------------------------------------------
+// Copyright 2015 Sitecore Corporation A/S
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+// except in compliance with the License. You may obtain a copy of the License at
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software distributed under the
+// License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+// either express or implied. See the License for the specific language governing permissions
+// and limitations under the License.
+// -------------------------------------------------------------------------------------------*@
+
+@{
+    var languages = Sitecore.Context.Database.GetItem("/sitecore/System/Languages");    
+}
+<div id="B01-LanguageSelector" class="language-selector">
+    <a href="#" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+        <span class="glyphicon glyphicon-globe"></span>
+            @if (Sitecore.Context.Language != null)
+            {
+                @Sitecore.Context.Language.CultureInfo.DisplayName
+            }        
+    </a>
+
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        @foreach (Item language in languages.Children)
+        {
+            var lang = Sitecore.Data.Managers.LanguageManager.GetLanguage(language.Name.ToString()).CultureInfo.DisplayName;
+            if (lang != Sitecore.Context.Language.CultureInfo.DisplayName) { 
+            <li><a id="languageButton-@language.Name" href="#" onclick="SwitchToLanguage('@language.Name')">@lang</a></li>
+             }
+        }
+       
+    </ul>
+
+</div>
+
+<script type="text/javascript">
+    function SwitchToLanguage(language) {
+        var path = window.location.pathname.replace('/'+language+'/', '');
+        var newpath = window.location.protocol + '//' + window.location.hostname + "/" + language + path;
+        window.location = newpath;
+    }
+</script>

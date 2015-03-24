@@ -1,0 +1,281 @@
+----item----
+version: 1
+id: {4D316BBA-345F-4929-9E84-A2208C0F7AA6}
+database: master
+path: /sitecore/content/Storefront/Home/AccountManagement
+parent: {441B60D3-09BB-4111-A3AD-D10076B78B54}
+name: AccountManagement
+master: {00000000-0000-0000-0000-000000000000}
+template: {BA2BE451-96A9-42AE-B170-4D265C127E39}
+templatekey: AccountManagement Page
+
+----field----
+field: {F1A1FE9E-A60C-4DDB-A3A0-BB5B29FE732E}
+name: __Renderings
+key: __renderings
+content-length: 611
+
+<r xmlns:p="p" xmlns:s="s" p:p="1"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"><r uid="{37C79DCA-DADD-43D9-8785-CCACED2584DC}" p:before="r[@uid='{1A6AE860-A323-460D-B8D7-CEFA22469672}']" s:ds="" s:id="{11680CDD-D6CF-4F1A-A770-B9815A6F7CEC}" s:par="" s:ph="messages" /><r uid="{68759416-C2EB-4C72-9F18-D38EA04C013E}"><p:d /></r><r uid="{7208E256-3895-45C7-8141-F4D4A14265F8}" s:ds="{F6504124-F766-43D0-824B-EB339CAE8E5F}" s:id="{2658217E-196A-4041-8F81-B8AFA7E377EE}" s:ph="bottom" /><r uid="{90413A71-AF3B-426B-938F-DCD2F2968374}"><p:d /></r></d><d id="{46D2F427-4CE5-4E1F-BA10-EF3636F43534}"><p:d /></d></r>
+----version----
+language: en
+version: 1
+revision: 2c4420e5-014a-4714-8b20-5955501d3076
+
+----field----
+field: {EC1F4944-D675-42F6-B354-A0A1BF04BFF8}
+name: Title
+key: title
+content-length: 10
+
+My Account
+----field----
+field: {3B669CE1-FB96-4CA5-BF57-8F958DABCF7B}
+name: Date Label
+key: date label
+content-length: 5
+
+Date:
+----field----
+field: {EE964941-5302-4603-B24F-0437CEB488FA}
+name: Order Number Label
+key: order number label
+content-length: 13
+
+Order number:
+----field----
+field: {39033A36-1D97-43B0-A7E6-199D0F436C88}
+name: Status Label
+key: status label
+content-length: 7
+
+Status:
+----field----
+field: {30F5A63A-4816-45C0-8491-D962DA29CDF5}
+name: Profile Label
+key: profile label
+content-length: 8
+
+Profile:
+----field----
+field: {20D39BB7-A9C3-4AF4-89F6-32FDBDE25666}
+name: Name Label
+key: name label
+content-length: 5
+
+Name:
+----field----
+field: {85ECC994-FE65-4E56-80C4-4D4D59647691}
+name: Address Label
+key: address label
+content-length: 8
+
+Address:
+----field----
+field: {5236DAD4-702D-4CEE-888F-51E7953A89CE}
+name: Card Number Label
+key: card number label
+content-length: 12
+
+Card number:
+----field----
+field: {4FDED9AC-57F7-493C-9902-2F0ED5E1CD37}
+name: View All Orders Label
+key: view all orders label
+content-length: 15
+
+View all orders
+----field----
+field: {82A3D299-A37D-46FC-9ACA-289FCA0F4C6B}
+name: Add New Address Label
+key: add new address label
+content-length: 17
+
+Add a new address
+----field----
+field: {674E521C-D5E6-4EB7-BE33-8724E688766E}
+name: View All Label
+key: view all label
+content-length: 8
+
+View all
+----field----
+field: {F82B1DBA-709B-4106-9634-65365E9B1749}
+name: View Details Label
+key: view details label
+content-length: 12
+
+View details
+----field----
+field: {42074D5D-2228-4EA0-B621-5C7F852EE4E6}
+name: Primary Address Label
+key: primary address label
+content-length: 7
+
+Primary
+----field----
+field: {BCB8BFEE-F776-449B-907D-EDB7CFC29108}
+name: Change Password Label
+key: change password label
+content-length: 20
+
+Change your password
+----field----
+field: {7096038A-667B-4D2F-8829-1E4A715D49BF}
+name: Wishlist Name Label
+key: wishlist name label
+content-length: 14
+
+Wish list name
+----field----
+field: {4CD14B92-6943-4378-AF90-BCCA74AD6F33}
+name: Create New Wishlist Label
+key: create new wishlist label
+content-length: 20
+
+Create new wish list
+----field----
+field: {1CDCBA80-CDA3-4996-88AE-20F49807B25C}
+name: Orders Title
+key: orders title
+content-length: 13
+
+Recent orders
+----field----
+field: {62788F20-BADD-4A38-8EDC-3B23C786D2C9}
+name: Account Profile Title
+key: account profile title
+content-length: 15
+
+Account profile
+----field----
+field: {AEF06D94-A267-429F-9FF1-157BE7410D13}
+name: WishList Title
+key: wishlist title
+content-length: 12
+
+My wish list
+----field----
+field: {19666030-1D0E-4423-A7F6-8452C8C244F1}
+name: Address Book Title
+key: address book title
+content-length: 12
+
+Address book
+----field----
+field: {FC33E2CE-B900-4603-B406-1748E5FD07E9}
+name: Loyalty Title
+key: loyalty title
+content-length: 15
+
+Loyalty account
+----field----
+field: {03D294BC-6503-4239-B1F3-F13C0E87D705}
+name: Order Table Text
+key: order table text
+content-length: 109
+
+<p>Orders placed within the last 30 days are shown below.</p>
+<p>For a full list click "View all orders"</p>
+
+----field----
+field: {1B2E5B5E-251F-4E3C-8288-432E4902E52B}
+name: Account Profile Text
+key: account profile text
+content-length: 34
+
+        <p>Small message here</p>
+
+----field----
+field: {F1F07E2D-E278-44D9-8426-BC4595E297E6}
+name: WishList Empty Text
+key: wishlist empty text
+content-length: 194
+
+<p>You have not created any wish lists yet.</p>
+<p>Make a wish list to keep track of the tings you really want</p>
+<p>Make it public if you want to share your wishes with family and friends</p>
+
+----field----
+field: {4CFFC76A-61CC-420C-9E58-40CAFF8D0ED3}
+name: Loyalty Empty Text
+key: loyalty empty text
+content-length: 71
+
+<p>Get started on the path to the Gold level and start saving today</p>
+----field----
+field: {F6B4CA14-0A00-4A7F-88BE-684961D050B8}
+name: AddressBook Empty Text
+key: addressbook empty text
+content-length: 41
+
+        <p>Your address book is empty</p>
+----field----
+field: {5F4F242E-F947-4027-945B-D3DA9CA2D7F3}
+name: Joining Loyalty Program Button
+key: joining loyalty program button
+content-length: 11
+
+Joining ...
+----field----
+field: {67A50DC1-BBC7-4394-A142-8A0ADD91F050}
+name: Saving Button
+key: saving button
+content-length: 10
+
+Saving ...
+----field----
+field: {4CBE2BB0-D74C-451D-9444-FD1AEF7490C8}
+name: Create New Wishlist Button
+key: create new wishlist button
+content-length: 20
+
+Create new wish list
+----field----
+field: {2E90D854-47D3-4485-9C77-13F60CBC8F2C}
+name: Join Loyalty Program Button
+key: join loyalty program button
+content-length: 8
+
+Join now
+----field----
+field: {57AC22D6-7ABD-4A4E-95F7-98AFB47953AB}
+name: Save Changes Button
+key: save changes button
+content-length: 12
+
+Save changes
+----field----
+field: {F0ED76E4-62D9-4453-80E3-189FE2772287}
+name: Close Button
+key: close button
+content-length: 5
+
+Close
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20141218T070323Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+2c4420e5-014a-4714-8b20-5955501d3076
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150320T125410:635624528508850487Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

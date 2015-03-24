@@ -1,0 +1,361 @@
+﻿@*//-----------------------------------------------------------------------
+// Copyright 2015 Sitecore Corporation A/S
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+// except in compliance with the License. You may obtain a copy of the License at
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software distributed under the
+// License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+// either express or implied. See the License for the specific language governing permissions
+// and limitations under the License.
+// -------------------------------------------------------------------------------------------*@
+
+@{
+    // Contact Labels
+    var contactInfoHeaderLabel = Html.Sitecore().Field("Contact Information Header", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var emailAddressLabel = Html.Sitecore().Field("Email Address Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var confirmEmailAddressLabel = Html.Sitecore().Field("Confirm Email Address Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+
+    //Credit Card Labels
+    var paymentOptionsHeaderLabel = Html.Sitecore().Field("Payment Options Header", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var nameOnCardLabel = Html.Sitecore().Field("Name on Card Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var cardNumberLabel = Html.Sitecore().Field("Card Number Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var expirationDateLabel = Html.Sitecore().Field("Expiration Date Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var expirationYearLabel = Html.Sitecore().Field("Expiration Year Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var ccidLabel = Html.Sitecore().Field("CCID Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+
+    //Billing Labels
+    var billingAddressHeaderLabel = Html.Sitecore().Field("Billing Address Header", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var billingNameLabel = Html.Sitecore().Field("Billing Name Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var addressLabel = Html.Sitecore().Field("Address Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var cityLabel = Html.Sitecore().Field("City Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var zipCodeLabel = Html.Sitecore().Field("Zipcode Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var countryLabel = Html.Sitecore().Field("Country Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var stateLabel = Html.Sitecore().Field("State Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var sameAsShipping = Html.Sitecore().Field("Same Shipping Address", Html.Sitecore().CurrentItem.Children["Billing"]);
+
+    // Loyalty & Giftcards Labels
+    var promocardsHeaderLabel = Html.Sitecore().Field("Cards Header", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var applyGiftLabel = Html.Sitecore().Field("Apply Gift Card Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var subtitleGiftLabel = Html.Sitecore().Field("Subtitle Gift Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var paymentAmountLabel = Html.Sitecore().Field("Payment Amount Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var getBalanceButtonLabel = Html.Sitecore().Field("Get Balance Button", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var applyFullAmountButtonLabel = Html.Sitecore().Field("Apply Amount Button", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var addGiftCardButtonLabel = Html.Sitecore().Field("Add Gift Card Button", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var giftCardLabel = Html.Sitecore().Field("Gift Card Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var removeLabel = Html.Sitecore().Field("Remove Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var applyLoyaltyLabel = Html.Sitecore().Field("Apply Loyalty Card Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var subtitleLoyaltyLabel = Html.Sitecore().Field("Subtitle Loyalty Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var addLoyaltyCardButtonLabel = Html.Sitecore().Field("Add Loyalty Card Button", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var loyaltyCardLabel = Html.Sitecore().Field("Loyalty Card Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var gettingBalanceLabel = Html.Sitecore().Field("Getting Balance Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+
+    // Payment Information Labels
+    var paymentInfoHeaderLabel = Html.Sitecore().Field("Payment Info Header", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var paymentTotalLabel = Html.Sitecore().Field("Payment Total Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var taxesLabel = Html.Sitecore().Field("Taxes Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var savingsLabel = Html.Sitecore().Field("Savings Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var totalLabel = Html.Sitecore().Field("Total Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var chooseMethodLabel = Html.Sitecore().Field("Choose Payment Method Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+
+    var creditCardLabel = Html.Sitecore().Field("Credit Card Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var orderInformationLabel = Html.Sitecore().Field("Order Information Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var subtotalLabel = Html.Sitecore().Field("Subtotal Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var shippingCostLabel = Html.Sitecore().Field("Shipping Cost Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+}
+<div id="PleaseEnterANewIdNameHere" class="wrap-content-checkout">
+    <div class="col-md-12"><h3>@contactInfoHeaderLabel</h3></div>
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label for="BillingInput-Email">@emailAddressLabel *</label>
+                    <input type="text" class="form-control" id="BillingInput-Email" placeholder="@emailAddressLabel" data-bind="value: billingEmail">
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                    <label for="BillingInput-ConfirmEmail">@confirmEmailAddressLabel *</label>
+                    <input type="text" class="form-control" id="BillingInput-ConfirmEmail" placeholder="@confirmEmailAddressLabel" data-bind="value: billingConfirmEmail">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6" id="billingPayCardContainer" data-bind="with: creditCardPayment">
+            <div class="col-md-12">
+                <h3>@paymentOptionsHeaderLabel *</h3>
+            </div>
+            <div class="col-md-12" data-bind="visible: $parent.payCard">
+                <div class="payment">
+                    <select id="PaymentMethods" title="@chooseMethodLabel" class="form-control" data-bind="options: $parent.paymentMethods, optionsText:'Description', optionsValue:'ExternalId', value: paymentMethodID"></select>
+                </div>
+            </div>
+            <div class="col-md-12" data-bind="visible: $parent.payCard">
+                <div class="show-hide-payment" id="PaymentMethod">
+                    <div class="show-payment">
+                        <div class="form-group">
+                            <label for="creditCardPayment_CustomerNameOnPayment">@nameOnCardLabel *</label>
+                            <input type="text" class="form-control" id="creditCardPayment_CustomerNameOnPayment" placeholder="@nameOnCardLabel" data-bind="value: customerNameOnPayment, enable: $parent.creditCardEnable">
+                        </div>
+                    </div>
+                    <div class="show-payment">
+                        <div class="form-group">
+                            <label for="creditCardPayment_CreditCardNumber">@cardNumberLabel *</label>
+                            <input type="text" class="form-control" id="creditCardPayment_CreditCardNumber" placeholder="@cardNumberLabel" data-bind="value: creditCardNumber, enable: $parent.creditCardEnable">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="show-payment">
+                                <div class="form-group">
+                                    <label for="creditCardPayment_ExpirationMonth">@expirationDateLabel *</label>
+                                    <select id="creditCardPayment_ExpirationMonth" class="form-control" data-bind="options: expirationDates, optionsName:'Name', optionsValue:'Value', value: expirationMonth, enable: $parent.creditCardEnable"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="show-payment">
+                                <div class="form-group">
+                                    <label for="creditCardPayment_ExpirationYear">@expirationYearLabel *</label>
+                                    <select id="creditCardPayment_ExpirationYear" class="form-control" data-bind="options: expirationYears, optionsName:'Year', optionsValue:'Value', value: expirationYear, enable: $parent.creditCardEnable"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="show-payment">
+                                <div class="form-group">
+                                    <label for="creditCardPayment_ValidationCode">@ccidLabel *</label>
+                                    <input type="text" class="form-control" id="creditCardPayment_ValidationCode" placeholder="@ccidLabel" data-bind="value: validationCode, enable: $parent.creditCardEnable">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="show-payment">
+                                <div class="form-group">
+                                    <label for="creditCardPayment_Amount">@paymentAmountLabel *</label>
+                                    <input type="text" class="form-control" id="creditCardPayment_Amount" data-bind="value: creditCardAmount" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6" id="billingAddressContainer" data-bind="with: billingAddress">
+            <div class="col-md-12">
+                <h3>@billingAddressHeaderLabel</h3>
+            </div>
+            <div class="col-md-12">
+                <div class="billing">
+                    <select id="billingAddressSelect" class="form-control" data-bind="foreach: $root.userAddresses, value: $parent.selectedBillingAddress, enable: $parent.creditCardEnable" title="@sameAsShipping">
+                        <!-- ko if: externalId() === 'UseShipping' && $root.isShipAll -->
+                        <option data-bind="attr:{ value:externalId }, text: fullAddress"></option>
+                        <!-- /ko -->
+                        <!-- ko if: externalId() !== 'UseShipping' -->
+                        <option data-bind="attr:{ value:externalId }, text: fullAddress"></option>
+                        <!-- /ko -->
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="show-hide-payment" id="ShowBillingAddress">
+                    <input type="hidden" id="billingAddress-ExternalId" data-bind="value: externalId" />
+                    <div class="form-group">
+                        <label for="billingAddress-Name">@billingNameLabel *</label>
+                        <input type="text" class="form-control" id="billingAddress-Name" placeholder="@billingNameLabel" data-bind="value: name, enable: $parent.billingAddressEnable">
+                    </div>
+                    <div class="form-group">
+                        <label for="billingAddress-Address">@addressLabel *</label>
+                        <input type="text" class="form-control" id="billingAddress-Address" placeholder="@addressLabel" data-bind="value: address1, enable: $parent.billingAddressEnable">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="billingAddress-City">@cityLabel *</label>
+                                <input type="text" class="form-control" id="billingAddress-City" placeholder="@cityLabel" data-bind="value: city, enable: $parent.billingAddressEnable">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="billingAddress-Zipcode">@zipCodeLabel *</label>
+                                <input type="text" class="form-control" id="billingAddress-Zipcode" placeholder="@zipCodeLabel" data-bind="value: zipPostalCode, enable: $parent.billingAddressEnable">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="billingAddress-Country">@countryLabel *</label>
+                                <select id="billingAddress-Country" class="form-control" data-bind="options: $parent.countries, optionsText:'country', optionsValue:'code', value: country, enable: $parent.billingAddressEnable"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="billingAddress-State">@stateLabel *</label>
+                                <!-- ko if: states == 'undefined' -->
+                                <select id="billingAddress-State" class="form-control" data-bind="options: $parent.states, optionsText:'name', optionsValue:'code', value: state, enable: $parent.billingAddressEnable"></select>
+                                <!-- /ko -->
+                                <!-- ko if: states != 'undefined' -->
+                                <input type="text" class="form-control" id="billingAddress-State" placeholder="@stateLabel" data-bind="value: state, enable: $parent.billingAddressEnable">
+                                <!-- /ko -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" data-bind="visible:payGiftLoyaltyCard">
+        <h3>@promocardsHeaderLabel</h3>
+    </div>
+    <div class="col-md-12" data-bind="visible: payGiftCard, with: giftCardPayment" id="billingPayGiftCardContainer">
+        <div class="accordion-container">
+            <a href="#" class="accordion-toggle">
+                <span class="toggle-icon"><span class='glyphicon glyphicon-plus-sign'></span></span>@applyGiftLabel
+            </a>
+            <div class="accordion-content">
+                <div class="col-md-12"><h4>@subtitleGiftLabel</h4></div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="giftCardPayment_PaymentMethodID">@cardNumberLabel *</label>
+                        <input type="text" class="form-control" id="giftCardPayment_PaymentMethodID" placeholder="@cardNumberLabel" data-bind="value: giftCardNumber">
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-info" id="giftCardPayment_GetBalance" data-loading-text="@gettingBalanceLabel" data-bind="click: getBalance, enable: giftCardNumber().length > 0">@getBalanceButtonLabel</button>
+                        <span id="giftCardPayment_Balance" data-bind="text: formattedBalance"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="giftCardPayment_Amount">@paymentAmountLabel *</label>
+                        <input type="number" class="form-control" id="giftCardPayment_Amount" placeholder="@paymentAmountLabel" data-bind="value: giftCardAmount">
+                    </div>
+                    <div class="form-group" style="text-align: right;">
+                        <button type="button" class="btn btn-info" id="applyFullAmount_Button" data-bind="enable: balance() > 0, click: applyBalance">@applyFullAmountButtonLabel</button>
+                        <button type="button" class="btn btn-success" id="giftCardPayment_Button" data-bind="enable: enableAddCard, click: addCard">@addGiftCardButtonLabel</button>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="giftcard-status" id="giftCardPayment_Status" style="display:none;" data-bind="visible: isAdded">
+                        <!-- Only appears if a card has been added -->
+                        <p>
+                            @giftCardLabel:
+                            <span id="giftCardPayment_Number" data-bind="text: giftCardNumber"></span>
+                            <span> / </span>
+                            <span data-bind="text: $root.currencySymbol"></span>
+                            <span id="giftCardPayment_AppliedAmount" data-bind="text: giftCardAmount"></span>
+                        </p>
+                        <span class="delete">
+                            <a href="#" id="removeGiftCard" data-bind="click: removeCard"><span class="glyphicon glyphicon-remove"></span>@removeLabel</a>
+                        </span>
+                        <input type="text" id="addedGiftCard" style="visibility: hidden; display: none;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" data-bind="visible: payLoyaltyCard, with: loyaltyCardPayment" id="billingLoyaltyCardContainer">
+        <div class="accordion-container">
+            <a href="#" class="accordion-toggle">
+                <span class="toggle-icon"><span class='glyphicon glyphicon-plus-sign'></span></span>@applyLoyaltyLabel
+            </a>
+            <div class="accordion-content">
+                <div class="col-md-12">
+                    <h4>@subtitleLoyaltyLabel</h4>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="loyaltyCardPayment_PaymentMethodID">@cardNumberLabel *</label>
+                        <input type="text" class="form-control" id="loyaltyCardPayment_PaymentMethodID" placeholder="@cardNumberLabel" data-bind="value: loyaltyCardNumber">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="loyaltyCardPayment_Amount">@paymentAmountLabel *</label>
+                        <input type="number" class="form-control" id="loyaltyCardPayment_Amount" placeholder="@paymentAmountLabel" data-bind="value: loyaltyCardAmount">
+                    </div>
+                    <div class="form-group" style="text-align: right;">
+                        <button type="button" class="btn btn-success" id="loyaltyCardPayment_Button" data-bind="enable: enableAddCard, click: addCard">@addLoyaltyCardButtonLabel</button>
+                    </div>
+                </div>
+                <div class="col-md-12" id="loyaltyCardPayment_Status" style="display: none;" data-bind="visible: isAdded">
+                    <div class="giftcard-status">
+                        <!-- Only appears if a card has been added -->
+                        <p>
+                            @loyaltyCardLabel:
+                            <span id="loyaltyCardPayment_Number" data-bind="text: loyaltyCardNumber"></span>
+                            <span> / </span>
+                            <span data-bind="text: $root.currencySymbol"></span>
+                            <span id="loyaltyCardPayment_AppliedAmount" data-bind="text: loyaltyCardAmount"></span>
+                        </p>
+                        <span class="delete">
+                            <a href="#" id="removeLoyaltyCard" data-bind="click: removeCard"><span class="glyphicon glyphicon-remove"></span> @removeLabel</a>
+                        </span>
+                        <input type="text" id="addedLoyaltyCard" style="visibility:hidden; display:none;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="billingPaymentSummary" class="col-md-6">
+        <div class="col-md-12"><h3>@paymentInfoHeaderLabel</h3></div>
+        <div class="col-md-12 summary" data-bind="visible: $root.giftCardPayment().isAdded">
+            <span class="text">@giftCardLabel:</span>
+            <span class="amount">
+                <span data-bind="text: $root.currencySymbol"></span>
+                <span id="billingGiftCardAmount" data-bind="text: $root.giftCardPayment().giftCardAmount"></span>
+            </span>
+        </div>
+        <div class="col-md-12 summary" data-bind="visible: $root.loyaltyCardPayment().isAdded">
+            <span class="text">@loyaltyCardLabel:</span>
+            <span class="amount">
+                <span data-bind="text: $root.currencySymbol"></span>
+                <span id="billingLoyaltyCardAmount" data-bind="text: $root.loyaltyCardPayment().loyaltyCardAmount"></span>
+            </span>
+        </div>
+        <div class="col-md-12 summary" data-bind="visible: $root.creditCardPayment().isAdded">
+            <span class="text">@creditCardLabel:</span>
+            <span class="amount">
+                <span data-bind="text: $root.currencySymbol"></span>
+                <span id="billingCreditCardAmount" data-bind="text: $root.creditCardPayment().creditCardAmount"></span>
+            </span>
+        </div>
+        <div class="col-md-12 summary">
+            <span class="text">@paymentTotalLabel:</span>
+            <span class="amount">
+                <span data-bind="text: $root.currencySymbol"></span>
+                <span id="paymentTotal" data-bind="text: $root.paymentTotal()"></span>
+            </span>
+        </div>
+    </div>
+    <div id="billingTotalSummary" class="col-md-6">
+        <div class="col-md-12"><h3>@orderInformationLabel</h3></div>
+        <div class="col-md-12 summary">
+            <span class="text">@subtotalLabel:</span>
+            <span class="amount" id="billingSubTotal" data-bind="text: cart().subTotal" pid="subtotal"></span>
+        </div>
+        <div class="col-md-12 summary">
+            <span class="text">@shippingCostLabel:<span id="billingShippingCostLabel"></span></span>
+            <span class="amount" id="billingShippingCost" data-bind="text: cart().shippingTotal" pid="shippingTotal"></span>
+        </div>
+        <div class="col-md-12 summary">
+            <span class="text">@taxesLabel:</span>
+            <span class="amount" id="billingTaxTotal" data-bind="text: cart().taxTotal" pid="taxTotal"></span>
+        </div>
+        <div class="col-md-12 summary">
+            <span class="text">@savingsLabel:</span>
+            <span class="amount" id="billingDiscount" data-bind="text: cart().discount" pid="discountTotal"></span>
+        </div>
+        <div class="col-md-12 summary">
+            <span class="text">@totalLabel:</span>
+            <span class="amount" id="billingOrderTotal" data-bind="text: cart().total" pid="total"></span>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    initBillingPage();
+</script>

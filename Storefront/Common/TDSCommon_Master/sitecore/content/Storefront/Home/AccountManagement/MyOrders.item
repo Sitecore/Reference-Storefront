@@ -1,0 +1,79 @@
+----item----
+version: 1
+id: {9F6B0568-20E9-48F5-94B9-1188F5FB6E6E}
+database: master
+path: /sitecore/content/Storefront/Home/AccountManagement/MyOrders
+parent: {4D316BBA-345F-4929-9E84-A2208C0F7AA6}
+name: MyOrders
+master: {00000000-0000-0000-0000-000000000000}
+template: {040E1CDC-6620-4A3C-B965-CE5323C05984}
+templatekey: MyOrders Page
+
+----version----
+language: en
+version: 1
+revision: d3f81e66-a5ae-415c-9423-cab0e50b1b5f
+
+----field----
+field: {EC1F4944-D675-42F6-B354-A0A1BF04BFF8}
+name: Title
+key: title
+content-length: 11
+
+Your Orders
+----field----
+field: {36DF18A7-4794-4C9C-BC61-EA515494F82D}
+name: Back to My Account Label
+key: back to my account label
+content-length: 18
+
+Back to My Account
+----field----
+field: {B5CB89F5-AD33-4D61-9C99-BE47B0750D56}
+name: Order Number Label
+key: order number label
+content-length: 12
+
+Order number
+----field----
+field: {F4E176DC-4D51-408F-9CB3-6C22381E55B5}
+name: Order Date Label
+key: order date label
+content-length: 10
+
+Order date
+----field----
+field: {50067D29-1AF0-4AF8-B051-A507C0FA2E2A}
+name: Order Status Label
+key: order status label
+content-length: 12
+
+Order status
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20141229T175709Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+d3f81e66-a5ae-415c-9423-cab0e50b1b5f
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150320T125501:635624529016209795Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

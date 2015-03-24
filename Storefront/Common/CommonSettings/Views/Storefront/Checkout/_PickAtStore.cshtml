@@ -1,0 +1,52 @@
+﻿@*//-----------------------------------------------------------------------
+// Copyright 2015 Sitecore Corporation A/S
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+// except in compliance with the License. You may obtain a copy of the License at
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software distributed under the
+// License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+// either express or implied. See the License for the specific language governing permissions
+// and limitations under the License.
+// -------------------------------------------------------------------------------------------*@
+
+@{
+    var pickUpAtStoreHeader = Html.Sitecore().Field("Pick Up At Store Header", Html.Sitecore().CurrentItem.Children["Delivery"]).ToString().ToUpper();
+    var findStoreLabel = @Html.Sitecore().Field("Find Store Label", Html.Sitecore().CurrentItem.Children["Delivery"]);
+    var closeStoresLabel = Html.Sitecore().Field("Close Stores Label", Html.Sitecore().CurrentItem.Children["Delivery"]);
+}
+
+<div class="col-md-12">
+    <h1>@pickUpAtStoreHeader</h1>
+</div>
+<div class="col-md-8">
+    <h4>@findStoreLabel</h4>
+</div>
+<div class="col-md-4">
+    <h4>@closeStoresLabel</h4>
+</div>
+<div class="col-md-8">
+    <div class="input-group find-store">
+        <input type="text" id="StoreAddressSearch" class="form-control" placeholder="@Html.Sitecore().Field("Search Input Placeholder", Html.Sitecore().CurrentItem.Children["Delivery"])">
+        <span id="SearchStores" class="input-group-addon"><i class="fa fa-search"></i></span>
+    </div>
+    <div class="form-group">
+        <div id="storesMap" class="Flexible-container map-canvas"></div>
+    </div>
+</div>
+<div id="StoreSearchResultsContainer" class="col-md-4" style="display:none;" data-bind="foreach: stores">
+    <div class="map-stores toRemove availableStore" data-bind="css: externalId() === $parent.store().externalId() ? 'store-Selected' : '', click: $parent.changeSelectedStore, attr: { id: externalId }">
+        <strong class="badge pull-right" style="margin-left: 8px;" data-bind="text: locationCount"></strong>
+        <span pid="distance" class="store-distance" data-bind="text: distance"></span>
+        <div class="span3">
+            <h2 class="muted" pid="storeName" data-bind="text: name"></h2>
+            <p class="muted" pid="storeAddress1" data-bind="text: address().address1"></p>
+            <span class="muted" pid="storeCity" data-bind="text: address().city"></span>,
+            <span class="muted" pid="storeState" data-bind="text: address().state"></span>,
+            <span class="muted" pid="storeZipCode" data-bind="text: address().zipPostalCode"></span>
+            <span class="hide" pid="storeCountry" data-bind="text: address().country"></span>
+            <span class="hide" pid="storeId" data-bind="text: externalId"></span>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

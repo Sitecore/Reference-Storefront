@@ -1,0 +1,247 @@
+----item----
+version: 1
+id: {1E65A7D7-CEC0-43E1-A2C8-B441710AFD0B}
+database: master
+path: /sitecore/content/Storefront/Home/Checkout/Confirm
+parent: {A7D9C743-6E92-4CEF-8626-5C67D2AABF61}
+name: Confirm
+master: {00000000-0000-0000-0000-000000000000}
+template: {074320B7-E0CF-49AF-BE58-0DA379DF820F}
+templatekey: Confirm Page
+
+----field----
+field: {BA3F86A2-4A1C-4D78-B63D-91C2779C1B5E}
+name: __Sortorder
+key: __sortorder
+content-length: 3
+
+200
+----version----
+language: en
+version: 1
+revision: 7c06b143-1243-490d-b492-f6cdfd53a1bb
+
+----field----
+field: {F7164DDB-92FE-4CDF-823D-989C6F90739F}
+name: NextButtonLabel
+key: nextbuttonlabel
+content-length: 13
+
+Confirm order
+----field----
+field: {B62C80F1-DD74-4C89-B510-01EB49D49D95}
+name: PrevButtonLabel
+key: prevbuttonlabel
+content-length: 15
+
+Back to billing
+----field----
+field: {B8C45DEC-446B-445D-A2BD-5A313E6302EF}
+name: Product Details Label
+key: product details label
+content-length: 15
+
+Product details
+----field----
+field: {BFE51D46-BA02-46B5-B249-E66E0FD93A6D}
+name: Unit Price Label
+key: unit price label
+content-length: 10
+
+Unit price
+----field----
+field: {5D91B3A0-8126-44AC-82BE-B52EF403FBBA}
+name: Quantity Label
+key: quantity label
+content-length: 8
+
+Quantity
+----field----
+field: {521E1824-D65F-4394-988E-589A6BE42A17}
+name: Total Label
+key: total label
+content-length: 5
+
+Total
+----field----
+field: {57059042-8C55-4728-9E8A-81BBA8B6D5E2}
+name: Credits Header Label
+key: credits header label
+content-length: 15
+
+Loyalty Rewards
+----field----
+field: {08F6044B-E7D9-4732-A63A-BED676ED34FB}
+name: Apply Discount Credit Label
+key: apply discount credit label
+content-length: 19
+
+Apply discount card
+----field----
+field: {AD4808A1-FEAB-4F41-9B6C-9708462FF177}
+name: Subtitle Discount Credit Label
+key: subtitle discount credit label
+content-length: 49
+
+Enter a coupon code to apply to the current order
+----field----
+field: {107FB405-7E12-4307-8A8A-DC8EFB3F1D20}
+name: Promotion Code Label
+key: promotion code label
+content-length: 14
+
+Promotion code
+----field----
+field: {F995FFDA-5BCE-445B-AF7A-87F97865C88C}
+name: Add Promo Code Label
+key: add promo code label
+content-length: 18
+
+Add promotion code
+----field----
+field: {A00876BC-0935-4E34-B20B-C62A73770AF8}
+name: Apply Loyalty Credit Label
+key: apply loyalty credit label
+content-length: 18
+
+Your loyality card
+----field----
+field: {A0135993-71DE-4545-AAE2-689FE6D74654}
+name: Subtitle Loyalty Credit Label
+key: subtitle loyalty credit label
+content-length: 55
+
+Enter the information regarding your loyality card here
+----field----
+field: {5B9BB914-D42C-4791-8005-71AB64FFC53F}
+name: Add Discount Card Label
+key: add discount card label
+content-length: 17
+
+Add discount card
+----field----
+field: {6DDE7489-4439-4483-B8DF-3BA3B44E74DC}
+name: Shipping Address Label
+key: shipping address label
+content-length: 16
+
+Shipping address
+----field----
+field: {8C738971-A3E2-4AA2-BA36-5174E2143573}
+name: Edit Shipping Address Label
+key: edit shipping address label
+content-length: 21
+
+Edit shipping address
+----field----
+field: {BBE6905D-C685-4BCA-8E1B-E8A3D84710A0}
+name: Billing Address Label
+key: billing address label
+content-length: 15
+
+Billing address
+----field----
+field: {E8277201-5A95-464C-957C-CCC50FF74857}
+name: Edit Billing Address Label
+key: edit billing address label
+content-length: 20
+
+Edit billing address
+----field----
+field: {0624672E-1868-4954-8E34-34B22738FE71}
+name: Shipping Method Label
+key: shipping method label
+content-length: 15
+
+Shipping method
+----field----
+field: {77E7262F-AF31-45BA-926C-19C7D2E6643E}
+name: Edit Shipping Method Label
+key: edit shipping method label
+content-length: 20
+
+Edit shipping method
+----field----
+field: {B4C81E3B-DDBB-4177-92A6-A203AB4F11D9}
+name: Discount Code Label
+key: discount code label
+content-length: 13
+
+Discount code
+----field----
+field: {6532C046-9650-41A8-B93F-67C79251E8C3}
+name: Edit Discount Code Label
+key: edit discount code label
+content-length: 18
+
+Edit discount code
+----field----
+field: {013B350A-E2D8-497E-979B-7A19BD667944}
+name: Gift Cards Label
+key: gift cards label
+content-length: 10
+
+Gift cards
+----field----
+field: {6FF1121A-9C79-4103-BB4A-F76F85BE739A}
+name: Edit Gift Cards Label
+key: edit gift cards label
+content-length: 15
+
+Edit gift cards
+----field----
+field: {3F42AD47-5396-4365-BBB9-61AABC99986B}
+name: Payment Methods Label
+key: payment methods label
+content-length: 15
+
+Payment methods
+----field----
+field: {47F37A01-789A-45D9-B40B-AF82B289EE13}
+name: Edit Payment Methods Labe
+key: edit payment methods labe
+content-length: 20
+
+Edit payment methods
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20141121T070819
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+7c06b143-1243-490d-b492-f6cdfd53a1bb
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150111T022649:635565400091268594Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

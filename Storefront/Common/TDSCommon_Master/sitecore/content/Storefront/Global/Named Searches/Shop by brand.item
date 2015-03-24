@@ -1,0 +1,58 @@
+----item----
+version: 1
+id: {C85426EB-2702-47EC-9BAC-44FEE195218F}
+database: master
+path: /sitecore/content/Storefront/Global/Named Searches/Shop by brand
+parent: {58BE28BC-0398-4CE6-B565-A980CBDE7D4E}
+name: Shop by brand
+master: {00000000-0000-0000-0000-000000000000}
+template: {F3C0CD6C-9FA9-442D-BD3A-5A25E292F2F7}
+templatekey: Named Search
+
+----field----
+field: {AC51462C-8A8D-493B-9492-34D1F26F20F1}
+name: __Default Bucket Query
+key: __default bucket query
+content-length: 96
+
++commercesearchitemtype:product&brand:Fabrikam&+location:{08BFB57F-DAC9-4B11-90C5-5D19647899EF}&
+----version----
+language: en
+version: 1
+revision: c4a39e4d-7e17-4422-bf3a-7ca08410a7a2
+
+----field----
+field: {439CDD2A-66A9-4D67-913A-5B696327C867}
+name: Title
+key: title
+content-length: 13
+
+Shop by brand
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20141022T090026
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+c4a39e4d-7e17-4422-bf3a-7ca08410a7a2
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20141022T091925:635495663651000998
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

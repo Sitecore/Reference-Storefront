@@ -1,0 +1,156 @@
+----item----
+version: 1
+id: {E330D3E4-3AF7-4A88-BBAD-E5783072B63E}
+database: master
+path: /sitecore/content/Storefront/Home/ShoppingCart
+parent: {441B60D3-09BB-4111-A3AD-D10076B78B54}
+name: ShoppingCart
+master: {00000000-0000-0000-0000-000000000000}
+template: {A5A90B92-457C-490F-8B98-A54990772C75}
+templatekey: ShoppingCart Page
+
+----field----
+field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
+name: __Icon
+key: __icon
+content-length: 36
+
+Business/32x32/shoppingcart_full.png
+----field----
+field: {A4F985D9-98B3-4B52-AAAF-4344F6E747C6}
+name: __Workflow
+key: __workflow
+content-length: 38
+
+{A5BC37E7-ED96-4C1E-8590-A26E64DB55EA}
+----version----
+language: en
+version: 1
+revision: b39cd912-3785-4602-b757-65cb2c99309d
+
+----field----
+field: {EC1F4944-D675-42F6-B354-A0A1BF04BFF8}
+name: Title
+key: title
+content-length: 9
+
+Your Cart
+----field----
+field: {03972573-F2E1-4750-973C-ABE93FAE5F81}
+name: Payment Total Label
+key: payment total label
+content-length: 10
+
+Sub total:
+----field----
+field: {6C2B407A-476F-4B29-80B7-78526FF43645}
+name: Order Total Label
+key: order total label
+content-length: 6
+
+Total:
+----field----
+field: {3E503A8F-AD03-464E-B61D-09CC8D6E79F7}
+name: Order Total Header Label
+key: order total header label
+content-length: 19
+
+Shopping Cart Total
+----field----
+field: {71834529-FFDC-4D99-8203-86576CC04F33}
+name: Enter Coupon Code Message
+key: enter coupon code message
+content-length: 51
+
+Enter a discount code to apply to the shopping cart
+----field----
+field: {00A44708-3F62-40DA-BD5C-96EAFD85CAC2}
+name: Promo Code Label
+key: promo code label
+content-length: 13
+
+Discount code
+----field----
+field: {88C87F20-8237-4E2F-87F7-2D6B6EA43331}
+name: Add Promo Code Button
+key: add promo code button
+content-length: 17
+
+Add discount code
+----field----
+field: {4FE90BE9-09E0-4915-881E-0DEF17A3F3A0}
+name: Promo Code List Label
+key: promo code list label
+content-length: 14
+
+Discount code:
+----field----
+field: {7774845A-2602-442F-8741-2B34C1623100}
+name: Adding Promo Code Button
+key: adding promo code button
+content-length: 23
+
+Adding discount code...
+----field----
+field: {10C5A9BD-14ED-49F6-BA5C-70F4BD0BD4A1}
+name: Shipping Label
+key: shipping label
+content-length: 9
+
+Shipping:
+----field----
+field: {ED153781-E66A-49FA-8149-1EE7C6FC5452}
+name: Back To Shopping Button
+key: back to shopping button
+content-length: 16
+
+Back to shopping
+----field----
+field: {D8221196-CA94-4D7C-A67D-A9C5E0ED496C}
+name: Checkout Button
+key: checkout button
+content-length: 8
+
+Checkout
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20141119T095223Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+b39cd912-3785-4602-b757-65cb2c99309d
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150320T125656:635624530169211146Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {3E431DE1-525E-47A3-B6B0-1CCBEC3A8C98}
+name: __Workflow state
+key: __workflow state
+content-length: 38
+
+{FCA998C5-0CC3-4F91-94D8-0A4E6CAECE88}

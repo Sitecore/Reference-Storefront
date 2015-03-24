@@ -1,0 +1,121 @@
+----item----
+version: 1
+id: {D98D9F40-DA49-456C-9492-9BC8FDA95985}
+database: master
+path: /sitecore/templates/Commerce/Catalog/Commerce Category/__Standard Values
+parent: {4C4FD207-A9F7-443D-B32A-50AA33523661}
+name: __Standard Values
+master: {00000000-0000-0000-0000-000000000000}
+template: {4C4FD207-A9F7-443D-B32A-50AA33523661}
+templatekey: Commerce Category
+
+----field----
+field: {7E48EE19-93FC-4071-A192-470F1259EAE0}
+name: Runtime Search Facets
+key: runtime search facets
+content-length: 155
+
+{DCAD67E4-A0EB-4EBE-99B8-26C57DA43022}|{2095E6DD-758F-4108-9B3A-214ADB44F940}|{BCB31BCB-F921-4CC5-8DDE-0AA47EDB74C7}|{F80AC325-FE72-4242-8543-E421F0CD6E74}
+----field----
+field: {B5E7B1DF-4155-4862-8D81-1E63ED6D3BC2}
+name: Tools Navigation Facets
+key: tools navigation facets
+content-length: 155
+
+{3B423C39-C10C-4B4F-8692-B563CA632B31}|{F80AC325-FE72-4242-8543-E421F0CD6E74}|{BCB31BCB-F921-4CC5-8DDE-0AA47EDB74C7}|{154DC6DA-89C4-4704-8CDA-95994D794BEA}
+----field----
+field: {420373A7-F888-490A-ABD6-E1BA4FCB75E0}
+name: Tools Search Facets
+key: tools search facets
+content-length: 155
+
+{3B423C39-C10C-4B4F-8692-B563CA632B31}|{F80AC325-FE72-4242-8543-E421F0CD6E74}|{BCB31BCB-F921-4CC5-8DDE-0AA47EDB74C7}|{154DC6DA-89C4-4704-8CDA-95994D794BEA}
+----field----
+field: {05124B76-FA67-4123-87B9-16E1883E9244}
+name: Sort Fields
+key: sort fields
+content-length: 116
+
+{2095E6DD-758F-4108-9B3A-214ADB44F940}|{929CE3F4-5333-4F37-8C22-5C3BFE1BD57B}|{F80AC325-FE72-4242-8543-E421F0CD6E74}
+----field----
+field: {08B14202-D89B-42A5-A7AD-CD1F389DDB07}
+name: Items Per Page
+key: items per page
+content-length: 2
+
+12
+----field----
+field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
+name: __Icon
+key: __icon
+content-length: 21
+
+Core3/32x32/views.png
+----field----
+field: {83798D75-DF25-4C28-9327-E8BAC2B75292}
+name: __Insert Rules
+key: __insert rules
+content-length: 38
+
+{4664108F-D564-432F-9761-A9A4C4DA3629}
+----field----
+field: {F1A1FE9E-A60C-4DDB-A3A0-BB5B29FE732E}
+name: __Renderings
+key: __renderings
+content-length: 2409
+
+<r xmlns:xsd="http://www.w3.org/2001/XMLSchema"><d id="{46D2F427-4CE5-4E1F-BA10-EF3636F43534}" l="{14030E9F-CE92-49C6-AD87-7D49B50E42EA}"><r ds="" id="{493B3A83-0FA7-4484-8FC9-4680991CF743}" par="" ph="content" uid="{A08C9132-DBD1-474F-A2CA-6CA26A4AA650}" /></d><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}" l="{F5034347-7E92-41D7-B8EB-F51D1F1BCF1C}"><r id="{15A09072-CE89-4126-A9E4-17753FC726FF}" ph="top" uid="{0E2D603A-CF36-4EE2-B598-D2E06AEBD5AE}" /><r id="{B6C0593E-1C35-4C61-8DB5-E7C7AA19D955}" ph="topleft" uid="{17F64DAC-2A2C-4F61-A993-F3BC59203AA0}" /><r ds="" id="{FAA386D8-192F-4762-839D-D637BD11549F}" par="" ph="topright" uid="{1B0865BA-8725-40D7-B472-5466055F1834}" /><r ds="{9988B682-59C7-4319-8BF9-7071F132A5AD}" id="{9AA8E388-A6BD-46E1-A73B-DDEF601DE6F8}" par="" ph="topcenter" uid="{8C308774-5362-4996-A416-527ED85204F1}" /><r id="{79167FB2-C7E0-4124-81C9-61AFBB279388}" ph="navigation" uid="{1A6AE860-A323-460D-B8D7-CEFA22469672}" /><r id="{0FA59DDC-5AEB-4ADB-B64B-D8D03B351680}" ph="navigationextra" uid="{D0FFD21B-BDDF-4C59-A150-C43C76CABF37}" /><r ds="{98CE979E-638E-4EE0-AD7F-05164173F1C1}" id="{DC1B9040-8694-456A-A5E6-81996BD1B2AA}" par="" ph="navigationextraleft" uid="{5D2C83EE-F8CA-41B9-BBF2-03CBC74D3F52}" /><r ds="{5886D851-1625-48AE-A787-84FC5B5EB271}" id="{582FEA78-404C-44D8-B6B4-356B080F5A7C}" par="" ph="navigationextraright" uid="{0D3D37F8-ED81-4F72-B7C2-8D5AF8EB0094}" /><r ds="{889A6934-BCDC-4294-94B7-6D141E7312B4}" id="{CFD437A6-404A-4C8C-8A41-EED2FB86D5DE}" par="" ph="navigationmain" uid="{3C2F52A6-A439-456D-A812-04A831DB8A0F}" /><r ds="" id="{CE3FE888-F9DA-41F1-9A56-4AF550E43067}" par="Center Width=9" ph="middle" uid="{E3EFB876-220C-4E48-989E-8C151AEF092E}" /><r ds="" id="{F66A2EE3-93A5-45C3-8CAA-D8B85E8DCF8E}" par="" ph="left" uid="{F644A533-4B61-4022-B8E7-AE31BC36BAF3}" /><r ds="{97073912-C895-4FC7-A283-DD8DD309CCD7}" id="{8767AFF3-F7F2-47EC-92C0-8A24B0F18967}" par="" ph="center" uid="{1E7D9ACC-C928-4D56-AF64-22958148FD3B}" /><r id="{CFB07D55-452F-40D5-AA86-55D30F3C120D}" ph="center" uid="{3692090F-2F41-4B33-BF68-0F995F6EB535}" /><r ds="{1B0B70F6-BB9E-4AEB-BAEA-7045C076249E}" id="{4B8E6995-6881-47B2-97B8-2D89478B6EAE}" par="" ph="center" uid="{C4014A56-FA2D-46CC-B696-483D5543BCED}" /><r ds="{F6504124-F766-43D0-824B-EB339CAE8E5F}" id="{2658217E-196A-4041-8F81-B8AFA7E377EE}" par="" ph="bottom" uid="{90413A71-AF3B-426B-938F-DCD2F2968374}" /></d></r>
+----version----
+language: en
+version: 1
+revision: 111b0420-6017-4729-b28f-d8d2bf436db6
+
+----field----
+field: {738B32EE-B885-46A2-97C7-645915EBA217}
+name: ToolsIcon
+key: toolsicon
+content-length: 71
+
+/sitecore/shell/~/media/122647CAC996461CB9533979E27BCF2B.ashx?db=master
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20130521T133153
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+111b0420-6017-4729-b28f-d8d2bf436db6
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150106T100157:635561353176359884Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

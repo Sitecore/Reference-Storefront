@@ -1,0 +1,76 @@
+﻿@*//-----------------------------------------------------------------------
+// Copyright 2015 Sitecore Corporation A/S
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+// except in compliance with the License. You may obtain a copy of the License at
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software distributed under the
+// License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+// either express or implied. See the License for the specific language governing permissions
+// and limitations under the License.
+// -------------------------------------------------------------------------------------------*@
+
+@model Sitecore.Reference.Storefront.Models.RenderingModels.PaginationViewModel
+
+@{
+    int desiredPages = 5;
+    int.TryParse(Model.Rendering.Item["Pages on each side of current"], out desiredPages);
+}
+
+<div id="C06-Pagination" class="row">
+    @if (Model.Pagination.TotalResultCount > 0)
+    {
+        <div class="col-md-12">
+            <div class="pagination-container">
+                <ul class="pagination">
+                    <li @if (Model.Pagination.PageNumber == 0) { <text> class="disabled" </text> }><a href="@Url.AddPageNumber(Model.Pagination.PageNumber - 1, Model.QueryStringToken)">&laquo;</a></li>
+
+                    @if (Model.Pagination.NumberOfPages <= (desiredPages * 2) + 1)
+                    { 
+                        for (int i = 0; i < Model.Pagination.NumberOfPages; i++)
+                        {
+                            <li @if (Model.Pagination.PageNumber == i) { <text> class="active" </text> }><a href="@Url.AddPageNumber(i, Model.QueryStringToken)">@(i + 1)</a></li>
+                        }
+                    }
+                    else
+                    {
+                        int leftoverEndPages = 0;
+                        int leftoverStartPages = 0;
+                        int currentPage = Model.Pagination.PageNumber;
+
+                        int remainingPages = (int)Math.Ceiling((double)(Model.Pagination.TotalResultCount - Model.Pagination.EndResultIndex) / Model.Pagination.PageResultCount);
+                        int previousPages = Model.Pagination.StartResultIndex / Model.Pagination.PageResultCount;
+                        int endPage = currentPage + remainingPages;
+                        int startPage = currentPage - previousPages;
+
+                        if (remainingPages < desiredPages) { leftoverEndPages = desiredPages - remainingPages; }
+                        if (previousPages < desiredPages) { leftoverStartPages = desiredPages - previousPages; }
+
+                        if (leftoverEndPages == 0 && leftoverStartPages == 0)
+                        {
+                            endPage = currentPage + desiredPages;
+                            startPage = currentPage - desiredPages;
+                        }
+                        else if (leftoverEndPages > 0)
+                        {
+                            int startPages = desiredPages + leftoverEndPages;
+                            if (previousPages > startPages) { startPage = currentPage - startPages; }
+                        }
+                        else if (leftoverStartPages > 0)
+                        {
+                            int endPages = desiredPages + leftoverStartPages;
+                            if (remainingPages > endPages) { endPage = currentPage + endPages; }
+                        }
+
+                        for (int i = startPage; i <= endPage; i++)
+                        {
+                            <li @if (Model.Pagination.PageNumber == i) { <text> class="active" </text>  }><a href="@Url.AddPageNumber(i, Model.QueryStringToken)">@(i + 1)</a></li>
+                        }
+                    }
+
+                    <li @if (Model.Pagination.PageNumber == (Model.Pagination.NumberOfPages - 1)) { <text> class="disabled" </text> }><a href="@Url.AddPageNumber(Model.Pagination.PageNumber + 1, Model.QueryStringToken)">&raquo;</a></li>
+                </ul>
+            </div>
+        </div>
+    }
+</div>

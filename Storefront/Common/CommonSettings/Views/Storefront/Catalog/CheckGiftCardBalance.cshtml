@@ -1,0 +1,30 @@
+﻿@*//-----------------------------------------------------------------------
+// Copyright 2015 Sitecore Corporation A/S
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+// except in compliance with the License. You may obtain a copy of the License at
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software distributed under the
+// License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+// either express or implied. See the License for the specific language governing permissions
+// and limitations under the License.
+// -------------------------------------------------------------------------------------------*@
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="prod-variants-close"></div>
+</div>
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <h2>@Html.Sitecore().Field("Check Your Card Balance Label", Html.Sitecore().CurrentItem)</h2>
+
+    <div class="input-group giftcard-check">
+        <input type="text" class="form-control" id="GiftCardId" name="GiftCardId" placeholder="@Html.Sitecore().Field("Check Balance Label", Html.Sitecore().CurrentItem)">
+        <span class="input-group-btn">
+            <button id="CheckGiftCardBalanceButton" type="button" class="btn btn-primary" data-loading-text="@Html.Sitecore().Field("Checking Card  Balance Label", Html.Sitecore().CurrentItem)" onclick="CheckGiftCardBalance();" disabled="disabled">@Html.Sitecore().Field("Check Button", Html.Sitecore().CurrentItem)</button>
+        </span>
+    </div>
+</div>
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="balance-value">
+        <h5 id="balance-value"></h5>
+    </div>
+</div>

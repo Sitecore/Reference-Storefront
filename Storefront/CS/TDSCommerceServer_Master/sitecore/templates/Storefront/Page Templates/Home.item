@@ -1,0 +1,65 @@
+----item----
+version: 1
+id: {FB9DBD60-CBA2-490D-9C72-997271D576A3}
+database: master
+path: /sitecore/templates/Storefront/Page Templates/Home
+parent: {FBC0EE3B-9FBF-4356-8C0B-CA31A6BCAA00}
+name: Home
+master: {00000000-0000-0000-0000-000000000000}
+template: {AB86861A-6030-46C5-B394-E8F99E8B87DB}
+templatekey: Template
+
+----field----
+field: {12C33F3F-86C5-43A5-AEB4-5598CEC45116}
+name: __Base template
+key: __base template
+content-length: 116
+
+{16E859D2-6542-407A-AC65-F34BCAD3EB3D}|{57507DA9-3EEA-46AA-87E8-E64CDE2F73DC}|{BAD20A3E-C6FB-4211-BE75-571CBFDE0110}
+----field----
+field: {F7D48A55-2158-4F02-9356-756654404F73}
+name: __Standard values
+key: __standard values
+content-length: 38
+
+{2042C330-AE9C-4DA0-A19A-9BB40C739644}
+----field----
+field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
+name: __Icon
+key: __icon
+content-length: 22
+
+Network/16x16/home.png
+----version----
+language: en
+version: 1
+revision: 7e52c31d-c5e6-463c-b823-3e6473dd6ed3
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20141009T063840Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+7e52c31d-c5e6-463c-b823-3e6473dd6ed3
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150210T083948:635591543887949036Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

@@ -1,0 +1,51 @@
+----item----
+version: 1
+id: {605604DC-2DA1-4573-9A64-4D0A81C8B2CF}
+database: master
+path: /sitecore/templates/Storefront/Folder Templates/Links/__Standard Values
+parent: {0C4F68B2-5C50-4BF6-8693-E5D325C8D742}
+name: __Standard Values
+master: {00000000-0000-0000-0000-000000000000}
+template: {0C4F68B2-5C50-4BF6-8693-E5D325C8D742}
+templatekey: Links
+
+----field----
+field: {1172F251-DAD4-4EFB-A329-0C63500E4F1E}
+name: __Masters
+key: __masters
+content-length: 77
+
+{87C331AE-3293-4FD1-A5F2-A625523F3019}|{0C4F68B2-5C50-4BF6-8693-E5D325C8D742}
+----version----
+language: en
+version: 1
+revision: 79f06fac-dabc-42ab-aa42-89ebda4671c4
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20141021T085557
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+79f06fac-dabc-42ab-aa42-89ebda4671c4
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20141021T085742:635494786621745837
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\Admin

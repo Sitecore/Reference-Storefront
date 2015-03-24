@@ -1,0 +1,72 @@
+----item----
+version: 1
+id: {28AD8588-493A-4C5B-AA39-CC8740A586D6}
+database: master
+path: /sitecore/templates/Storefront/Data Templates/Product List Texts/__Standard Values
+parent: {72AADE9F-48C2-474A-84D2-F9FEE9107F12}
+name: __Standard Values
+master: {00000000-0000-0000-0000-000000000000}
+template: {72AADE9F-48C2-474A-84D2-F9FEE9107F12}
+templatekey: Product List Texts
+
+----version----
+language: en
+version: 1
+revision: d20aed38-9531-42fd-95e2-ec595fca8a77
+
+----field----
+field: {FC41DB11-ADFF-4E40-8ED1-34964C040328}
+name: Add To Cart Link Text
+key: add to cart link text
+content-length: 11
+
+Add to cart
+----field----
+field: {95017CF1-F08E-4EBA-B046-5ED9D52188C9}
+name: Product Page Link Text
+key: product page link text
+content-length: 12
+
+More details
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20141106T091100
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+d20aed38-9531-42fd-95e2-ec595fca8a77
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20141106T093050:635508630509656477
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

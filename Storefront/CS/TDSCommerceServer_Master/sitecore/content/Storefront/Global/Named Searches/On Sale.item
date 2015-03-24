@@ -1,0 +1,58 @@
+----item----
+version: 1
+id: {42542F09-0874-4771-8DC6-B7F4CA385923}
+database: master
+path: /sitecore/content/Storefront/Global/Named Searches/On Sale
+parent: {58BE28BC-0398-4CE6-B565-A980CBDE7D4E}
+name: On Sale
+master: {00000000-0000-0000-0000-000000000000}
+template: {F3C0CD6C-9FA9-442D-BD3A-5A25E292F2F7}
+templatekey: Named Search
+
+----field----
+field: {AC51462C-8A8D-493B-9492-34D1F26F20F1}
+name: __Default Bucket Query
+key: __default bucket query
+content-length: 117
+
++commercesearchitemtype:product&+location:{08BFB57F-DAC9-4B11-90C5-5D19647899EF}&_content:sleepingbags&_content:boots
+----version----
+language: en
+version: 1
+revision: c371229c-c0d1-4e81-8489-4ff3b4c95b57
+
+----field----
+field: {439CDD2A-66A9-4D67-913A-5B696327C867}
+name: Title
+key: title
+content-length: 7
+
+On Sale
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20141022T130036Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+c371229c-c0d1-4e81-8489-4ff3b4c95b57
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150320T174740:635624704609635599Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

@@ -1,0 +1,380 @@
+----item----
+version: 1
+id: {A97FB006-447F-4C29-B43A-05F73A1E3A11}
+database: master
+path: /sitecore/content/Storefront/Home/Checkout/Billing
+parent: {A7D9C743-6E92-4CEF-8626-5C67D2AABF61}
+name: Billing
+master: {00000000-0000-0000-0000-000000000000}
+template: {AD7EDCA2-FBF0-4664-842E-1DAA84B3CE32}
+templatekey: Billing Page
+
+----version----
+language: en
+version: 1
+revision: 6a42c17d-bd53-4293-bc45-1853cd4fd64c
+
+----field----
+field: {6D0902E3-C47C-4DE4-AEB9-2E06F0A8DA0C}
+name: Contact Information Header
+key: contact information header
+content-length: 19
+
+Contact information
+----field----
+field: {29457D5C-B582-4054-B746-114037C1A33E}
+name: Email Address Label
+key: email address label
+content-length: 13
+
+Email address
+----field----
+field: {2D004CDE-9269-4FA5-B523-F6C12F86CDC8}
+name: Confirm Email Address Label
+key: confirm email address label
+content-length: 21
+
+Confirm email address
+----field----
+field: {44E61890-4744-49DC-B9B0-8B8D0C8CFE50}
+name: Payment Options Header
+key: payment options header
+content-length: 15
+
+Payment options
+----field----
+field: {3252F170-4CB2-4ABA-8450-77FA42ED6688}
+name: Name on Card Label
+key: name on card label
+content-length: 12
+
+Name on card
+----field----
+field: {3BE0618A-8761-40DF-A27F-2C3C8153C283}
+name: Card Number Label
+key: card number label
+content-length: 11
+
+Card number
+----field----
+field: {7FC4ECAA-2AED-4ADE-B9E4-F1265C1E824C}
+name: Expiration Date Label
+key: expiration date label
+content-length: 15
+
+Expiration date
+----field----
+field: {B38E1871-9F00-4D57-8419-A67301675B31}
+name: Expiration Year Label
+key: expiration year label
+content-length: 15
+
+Expiration year
+----field----
+field: {A9D20A97-C056-430F-B076-368EA2D8AB03}
+name: CCID Label
+key: ccid label
+content-length: 4
+
+CCID
+----field----
+field: {00249BCB-F270-4EDD-8EC1-3DFE65136314}
+name: Billing Address Header
+key: billing address header
+content-length: 15
+
+Billing address
+----field----
+field: {3BB46433-5D5B-4187-B8CA-99A09117F1CB}
+name: Billing Name Label
+key: billing name label
+content-length: 12
+
+Billing name
+----field----
+field: {A1237227-60F6-43D5-B9F2-314510E74A03}
+name: Address Label
+key: address label
+content-length: 7
+
+Address
+----field----
+field: {EA2E2144-3429-4102-BA3B-9702CE0D60BC}
+name: City Label
+key: city label
+content-length: 4
+
+City
+----field----
+field: {E375ABA1-D631-4C68-B6DA-93E7DDF7CA24}
+name: Zipcode Label
+key: zipcode label
+content-length: 7
+
+Zipcode
+----field----
+field: {C84F3978-0801-460F-800D-046A261525B3}
+name: Country Label
+key: country label
+content-length: 14
+
+Country/Region
+----field----
+field: {A7EB1929-96B8-4670-B46E-D6D1F97E9BD0}
+name: State Label
+key: state label
+content-length: 14
+
+State/Province
+----field----
+field: {30E29F51-27EE-44C6-B227-1AEA9BAE36DE}
+name: Paypal Password
+key: paypal password
+content-length: 15
+
+Paypal password
+----field----
+field: {688BE7CA-7FE3-4B94-A671-FD23B0F763B9}
+name: SignIn Label
+key: signin label
+content-length: 7
+
+Sign in
+----field----
+field: {7CC2659F-F7CE-464F-A6EE-E154B14308F8}
+name: Same Shipping Address
+key: same shipping address
+content-length: 24
+
+Same as shipping address
+----field----
+field: {8B0E5E72-80FA-48C0-9F8E-A7A67B915EBB}
+name: Credit Card Label
+key: credit card label
+content-length: 11
+
+Credit Card
+----field----
+field: {362A19C3-A7E7-414C-9E52-593FADF5A8C7}
+name: Order Information Label
+key: order information label
+content-length: 17
+
+Order Information
+----field----
+field: {7C91B1E8-B599-4C1D-9EE2-4216E6DEB50F}
+name: Payment Info Header
+key: payment info header
+content-length: 19
+
+Payment information
+----field----
+field: {4CE9339C-AF1E-49EC-8C55-210E92F3C334}
+name: Shipping Cost Label
+key: shipping cost label
+content-length: 13
+
+Shipping Cost
+----field----
+field: {BBB53ED5-6422-43D7-9C16-6B3EC7B172E5}
+name: Subtotal Label
+key: subtotal label
+content-length: 8
+
+Subtotal
+----field----
+field: {86690679-3BE1-42C0-A5DE-96764A815AAC}
+name: Payment Total Label
+key: payment total label
+content-length: 13
+
+Payment total
+----field----
+field: {750F2ECB-4EC2-4E33-9786-E950DFF2793E}
+name: Taxes Label
+key: taxes label
+content-length: 3
+
+VAT
+----field----
+field: {FC614C3E-0667-43B4-9185-739312C9C8BE}
+name: Savings Label
+key: savings label
+content-length: 7
+
+Savings
+----field----
+field: {8724FB79-17C0-4602-A0FA-4681927AD591}
+name: Total Label
+key: total label
+content-length: 11
+
+Order total
+----field----
+field: {7C73B197-8938-48F6-A047-29D8443838B0}
+name: Choose Payment Method Label
+key: choose payment method label
+content-length: 23
+
+Choose a payment method
+----field----
+field: {8A11421A-F926-4E50-A55D-D23E08EC704A}
+name: Updating Loyalty Card Button
+key: updating loyalty card button
+content-length: 25
+
+Updating Loyalty Card ...
+----field----
+field: {04D47388-9794-44C5-B6D5-78AF663BCF3B}
+name: NextButtonLabel
+key: nextbuttonlabel
+content-length: 24
+
+Continue to confirmation
+----field----
+field: {B1A9C292-A7AA-40D8-86ED-B32840DD8DB1}
+name: PrevButtonLabel
+key: prevbuttonlabel
+content-length: 16
+
+Back to delivery
+----field----
+field: {BCDF63BD-683E-4173-8EF1-C5AD8B6E3CFB}
+name: Get Balance Button
+key: get balance button
+content-length: 11
+
+Get balance
+----field----
+field: {0BF8DCBF-08F2-4F50-80A1-A603D5342009}
+name: Apply Amount Button
+key: apply amount button
+content-length: 17
+
+Apply full amount
+----field----
+field: {0D330979-115C-4726-85D3-EA00FD4A9CB6}
+name: Add Loyalty Card Button
+key: add loyalty card button
+content-length: 16
+
+Add loyalty card
+----field----
+field: {A3F57B0A-9C20-4EB7-A7DF-8497979252CB}
+name: Add Gift Card Button
+key: add gift card button
+content-length: 13
+
+Add gift card
+----field----
+field: {03097782-47FF-4E76-9F48-0566F6B56949}
+name: Cards Header
+key: cards header
+content-length: 29
+
+Gift cards and Loyality cards
+----field----
+field: {37E9811A-B949-4D89-8637-26E8547C7BB8}
+name: Apply Gift Card Label
+key: apply gift card label
+content-length: 15
+
+Apply gift card
+----field----
+field: {964A0B0A-6597-4844-A9EA-A03C4B337DFB}
+name: Subtitle Gift Label
+key: subtitle gift label
+content-length: 51
+
+Enter the information regarding your gift card here
+----field----
+field: {93E161E7-A2C5-4304-AC45-FDC22FB577B9}
+name: Payment Amount Label
+key: payment amount label
+content-length: 14
+
+Payment amount
+----field----
+field: {162B5D9F-C092-4ECC-B9C2-56A0CCB123E9}
+name: Gift Card Label
+key: gift card label
+content-length: 9
+
+Gift card
+----field----
+field: {34BE9733-2FE0-4CB9-B949-8F796574729F}
+name: Remove Label
+key: remove label
+content-length: 6
+
+Remove
+----field----
+field: {B3759862-12BF-4972-A814-CBA16257BFB7}
+name: Apply Loyalty Card Label
+key: apply loyalty card label
+content-length: 18
+
+Apply loyalty card
+----field----
+field: {191DE834-5438-49EB-B4A7-F1C0D2CE7D6C}
+name: Subtitle Loyalty Label
+key: subtitle loyalty label
+content-length: 55
+
+Enter the information regarding your loyality card here
+----field----
+field: {82652DC1-D579-4F9B-828C-BD003EEE0C68}
+name: Loyalty Card Label
+key: loyalty card label
+content-length: 12
+
+Loyalty card
+----field----
+field: {B0649D6E-7AE1-4473-BEE2-75C31E8B3DDA}
+name: Getting Balance Label
+key: getting balance label
+content-length: 19
+
+Getting balance ...
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20141121T120805Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+6a42c17d-bd53-4293-bc45-1853cd4fd64c
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150224T035507:635603469071599165Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

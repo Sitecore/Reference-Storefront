@@ -1,0 +1,184 @@
+----item----
+version: 1
+id: {7536D18B-EBCF-4A24-9DDE-8BA77AA60DC0}
+database: master
+path: /sitecore/content/Storefront/Home/AccountManagement/MyOrder
+parent: {4D316BBA-345F-4929-9E84-A2208C0F7AA6}
+name: MyOrder
+master: {00000000-0000-0000-0000-000000000000}
+template: {D4D9E81A-C494-43AE-9851-410D09394CF8}
+templatekey: MyOrder Page
+
+----version----
+language: en
+version: 1
+revision: f4ee6e2c-d548-49a6-a982-bad734a0281d
+
+----field----
+field: {EC1F4944-D675-42F6-B354-A0A1BF04BFF8}
+name: Title
+key: title
+content-length: 10
+
+Your Order
+----field----
+field: {9E13E4AD-A169-42EF-BB85-F8257A080B00}
+name: Order Number Label
+key: order number label
+content-length: 12
+
+Order number
+----field----
+field: {E4D24DDF-4336-4A36-8252-6DB88EF93FE9}
+name: Order Date Label
+key: order date label
+content-length: 10
+
+Order date
+----field----
+field: {B7BC66A7-2FBD-4A75-BAE1-B4255C4896BF}
+name: Order Status Label
+key: order status label
+content-length: 12
+
+Order Status
+----field----
+field: {8809E952-4681-4F4B-AEDE-199F27929ECF}
+name: Color Label
+key: color label
+content-length: 5
+
+Color
+----field----
+field: {DB9C6C0C-9A3E-45A3-A14B-5921F37BFD69}
+name: Delivery Label
+key: delivery label
+content-length: 8
+
+Delivery
+----field----
+field: {258B65F7-553D-4B86-9642-9F1AD528EE55}
+name: Savings Label
+key: savings label
+content-length: 7
+
+Savings
+----field----
+field: {1FAF7AFC-168A-4793-97EA-42C28AF2AAF9}
+name: Promotion Codes Label
+key: promotion codes label
+content-length: 15
+
+Promotion Codes
+----field----
+field: {AC13E44D-DF37-4619-A140-225553293FE7}
+name: Loyalty Card Label
+key: loyalty card label
+content-length: 12
+
+Loyalty Card
+----field----
+field: {3564A1F4-4988-47B1-A8BF-FC00969E22D1}
+name: Subtotal Label
+key: subtotal label
+content-length: 8
+
+Subtotal
+----field----
+field: {06126E2E-1A2F-42C4-8B74-CD7AA7E6C4AF}
+name: Shipping Total Label
+key: shipping total label
+content-length: 14
+
+Shipping total
+----field----
+field: {7EC57576-A58A-465D-9E5E-EBFD9EB94980}
+name: Tax Total Label
+key: tax total label
+content-length: 3
+
+VAT
+----field----
+field: {BD92CEE4-B867-4D67-9708-3F0B6D33BF6D}
+name: Order Total Label
+key: order total label
+content-length: 11
+
+Order Total
+----field----
+field: {0DD06FFB-7B7A-4B83-92BC-C92664CD10B0}
+name: Shipping Address Label
+key: shipping address label
+content-length: 16
+
+Shipping Address
+----field----
+field: {97D77995-A3BA-4C22-AED5-094174626610}
+name: Billing Address Label
+key: billing address label
+content-length: 15
+
+Billing Address
+----field----
+field: {C97AFCFE-8170-4E47-A7A6-0775B7E94E14}
+name: Shipping Method Label
+key: shipping method label
+content-length: 15
+
+Shipping Method
+----field----
+field: {577520DE-AA1E-46FE-8AEF-872E19301CFC}
+name: Payments Label
+key: payments label
+content-length: 8
+
+Payments
+----field----
+field: {AE228CB9-9406-4ED4-939D-ED4A7DF09652}
+name: View All Orders Label
+key: view all orders label
+content-length: 15
+
+View All Orders
+----field----
+field: {2846E9BF-663C-48E3-92C7-75B77D8ADDEF}
+name: Your Products Header
+key: your products header
+content-length: 13
+
+Your Products
+----field----
+field: {F53A75B0-CB77-42DE-9976-94CAB83ED6F0}
+name: Loyalty Rewards Header
+key: loyalty rewards header
+content-length: 15
+
+Loyalty Rewards
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20150105T204831Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+f4ee6e2c-d548-49a6-a982-bad734a0281d
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150320T125455:635624528959356937Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

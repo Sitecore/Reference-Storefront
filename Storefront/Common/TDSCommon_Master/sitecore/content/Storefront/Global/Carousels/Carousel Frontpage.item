@@ -1,0 +1,65 @@
+----item----
+version: 1
+id: {6FDBA2A7-5C7E-468C-8906-9DC8464843D2}
+database: master
+path: /sitecore/content/Storefront/Global/Carousels/Carousel Frontpage
+parent: {0D72BF2C-E9E1-483A-839E-444908C43402}
+name: Carousel Frontpage
+master: {00000000-0000-0000-0000-000000000000}
+template: {C37D966D-AE09-401E-84B9-FE0C2C70E342}
+templatekey: Carousel
+
+----version----
+language: en
+version: 1
+revision: d1e8c546-cccd-4adf-b918-e874d88eb283
+
+----field----
+field: {891ED9B4-05DF-48BB-BE32-BE0CA2CD421B}
+name: Slides
+key: slides
+content-length: 116
+
+{4565AD10-6D3C-48ED-B0BF-621E595880AA}|{946327B4-16D4-4EAF-8DCF-C57792C6295A}|{C2551CE4-6DDE-4666-9881-E79635DE7AE3}
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\Admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20141021T045021
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\Admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+d1e8c546-cccd-4adf-b918-e874d88eb283
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20141021T045605:635494641650206247
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\Admin

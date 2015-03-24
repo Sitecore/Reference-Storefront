@@ -1,0 +1,100 @@
+----item----
+version: 1
+id: {F6504124-F766-43D0-824B-EB339CAE8E5F}
+database: master
+path: /sitecore/content/Storefront/Global/Site Spots/Footer Navigation
+parent: {50CA28D4-C93C-435B-92DA-866276A1BFDF}
+name: Footer Navigation
+master: {00000000-0000-0000-0000-000000000000}
+template: {87F2F2B9-CD50-4B78-9A27-FD853D5476B9}
+templatekey: Footer Navigation
+
+----field----
+field: {BE2A3F6C-5608-422C-83C2-653A18EC75FD}
+name: QuickLinks Left
+key: quicklinks left
+content-length: 38
+
+{38EDD590-FCC3-45C4-9231-3056F7C9BB7C}
+----field----
+field: {15E2BCCE-41D8-4F55-A7B5-832FA2FBF003}
+name: QuickLinks Middle Left
+key: quicklinks middle left
+content-length: 38
+
+{BE891052-E65A-4C5F-9F52-88D288E96974}
+----field----
+field: {03224123-CD60-4332-94F9-E075AA600941}
+name: QuickLinks Middle Right
+key: quicklinks middle right
+content-length: 38
+
+{54E0708F-7431-4711-A527-67C164ED5C73}
+----field----
+field: {2DE01AF0-982A-4DB7-8AD0-9D94AC98C16C}
+name: QuickLinks Right
+key: quicklinks right
+content-length: 38
+
+{A52E8682-7CDF-4C95-8AD9-F22BCA07EB4C}
+----version----
+language: en
+version: 1
+revision: b811cdc4-4ee1-4d57-ac91-cd3a90734361
+
+----field----
+field: {6E701B19-9FFA-4165-A920-229B00DC9098}
+name: QuickLinks Left Title
+key: quicklinks left title
+content-length: 19
+
+Company information
+----field----
+field: {3BF250E5-0BEB-49A3-AC06-2D3C9FE0068F}
+name: QuickLinks Middle Left Title
+key: quicklinks middle left title
+content-length: 19
+
+Account information
+----field----
+field: {E66895E7-249F-4200-B685-6F67ACBB2C91}
+name: QuickLinks Middle Right Title
+key: quicklinks middle right title
+content-length: 12
+
+Site options
+----field----
+field: {F7D2ACD8-133F-44D5-9FE1-ACBE7301D956}
+name: QuickLinks Right Title
+key: quicklinks right title
+content-length: 9
+
+Follow us
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20141105T092512
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+b811cdc4-4ee1-4d57-ac91-cd3a90734361
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20141105T093723:635507770436152854
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

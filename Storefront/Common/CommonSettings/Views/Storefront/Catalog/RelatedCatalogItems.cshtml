@@ -1,0 +1,58 @@
+﻿@*//-----------------------------------------------------------------------
+// Copyright 2015 Sitecore Corporation A/S
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+// except in compliance with the License. You may obtain a copy of the License at
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software distributed under the
+// License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+// either express or implied. See the License for the specific language governing permissions
+// and limitations under the License.
+// -------------------------------------------------------------------------------------------*@
+
+@model RelatedCatalogItemsViewModel
+
+@if (Model != null && Model.RelatedProducts != null && Model.RelatedProducts.Count > 0)
+{
+    <div id="C02-ProductRecommendation" class="wrap-content-recommended">
+        <div class="col-md-9">
+            <!-- Styling div - Container -->
+            <div class="product-slide">
+                <ul class="nav nav-tabs nav-justified">
+                    @{
+    var first = true;
+    foreach (var relationship in Model.RelatedProducts)
+    {
+        <li class=@(first ? "active" : "")>
+            <a href="#" class="product-recommendation-click" data-carousel-id="carousel-@relationship.RelationshipName.Replace(' ', '-').ToLowerInvariant()">
+                @relationship.RelationshipDescription
+            </a>
+        </li>
+        first = false;
+    }
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <!-- Controls -->
+            <div class="product-controls">
+                <div class="controls pull-right">
+                    <a class="left glyphicon glyphicon-chevron-left btn btn-info" href="#carousel-@Model.RelatedProducts[0].RelationshipName.Replace(' ', '-').ToLowerInvariant()" data-slide="prev"></a>
+                    <a class="right glyphicon glyphicon-chevron-right btn btn-info" href="#carousel-@Model.RelatedProducts[0].RelationshipName.Replace(' ', '-').ToLowerInvariant()" data-slide="next"></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            @for (int i = 0; i < Model.RelatedProducts.Count; i++)
+            {
+                var categoryViewModel = Model.RelatedProducts[i];
+                categoryViewModel.Initialize(Model.Rendering);
+
+                <div class="carousel slide product-slider" id="carousel-@Model.RelatedProducts[i].RelationshipName.Replace(' ', '-').ToLowerInvariant()" data-ride="carousel" data-interval="false" @(i != 0 ? "style=display:none;" : "")>
+                    @Html.Partial("~/Views/Storefront/Catalog/_RelatedCatalogItemsSlide.cshtml", categoryViewModel)
+                </div>
+            }
+        </div>
+    </div>
+}

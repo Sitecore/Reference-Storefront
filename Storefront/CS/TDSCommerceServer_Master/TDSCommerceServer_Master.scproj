@@ -1,0 +1,479 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{fd2eacba-3eb3-41e4-965b-e06b5f96e619}</ProjectGuid>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <SourceWebPhysicalPath>..\CSF</SourceWebPhysicalPath>
+    <SourceWebProject>{304f09ad-2fc3-453f-b016-50a1f842e3a9}|CSF\Commerce.Storefront.csproj</SourceWebProject>
+    <SourceWebVirtualPath>/Commerce.Storefront.csproj</SourceWebVirtualPath>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <EnableUpdateable>true</EnableUpdateable>
+    <UseMerge>true</UseMerge>
+    <SingleAssemblyName>TDSProject_Master</SingleAssemblyName>
+    <UseWebConfigReplacement>false</UseWebConfigReplacement>
+    <DeleteAppCodeCompiledFiles>true</DeleteAppCodeCompiledFiles>
+    <LegacyFileReplacement>false</LegacyFileReplacement>
+    <AssemblyName>TDSCommerceServer_Master</AssemblyName>
+    <Name>Sitecore.Reference.Storefront.Powered.by.CommerceServer</Name>
+    <RootNamespace>TDSProject_Master</RootNamespace>
+    <SccProjectName>
+    </SccProjectName>
+    <SccProvider>
+    </SccProvider>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SitecoreDatabase>master</SitecoreDatabase>
+    <ChangePostStepBuild>powershell.exe -ExecutionPolicy Unrestricted -FILE "$(SolutionDir)..\..\live\MojaveTools\SCScripts\ModifyPostStep.ps1" "$(SolutionDir)CS\$(AssemblyName)\Package_$(Configuration)\$(Name).update" "$(PostStepTarget)"</ChangePostStepBuild>
+    <EnableCodeGeneration>false</EnableCodeGeneration>
+    <AssemblyStatus>Include</AssemblyStatus>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>.\Debug\</OutputPath>
+    <RecursiveDeployAction>Ignore</RecursiveDeployAction>
+    <SitecoreDeployFolder>
+    </SitecoreDeployFolder>
+    <SitecoreWebUrl>http://localhost:7667</SitecoreWebUrl>
+    <SitecoreAccessGuid>3a6d874f-0fb2-4d5d-bd15-b4cc7b14003f</SitecoreAccessGuid>
+    <InstallSitecoreConnector>True</InstallSitecoreConnector>
+    <PackageAuthor>Sitecore Corporation</PackageAuthor>
+    <PackagePublisher>Sitecore Corporation</PackagePublisher>
+    <PackageVersion>
+    </PackageVersion>
+    <PackageReadme>This is the Readme.
+You have now read the Readme.
+</PackageReadme>
+    <SitecoreAssemblyPath>..\..\Lib\Sitecore</SitecoreAssemblyPath>
+    <GeneratePackage>True</GeneratePackage>
+    <SeperateFilesAndItems>False</SeperateFilesAndItems>
+    <AddDateTimeToPackageName>False</AddDateTimeToPackageName>
+    <EnableValidations>True</EnableValidations>
+    <ValidationSettingsFilePath>.\TDSCommerceServer_Master_Debug.xml</ValidationSettingsFilePath>
+    <PackageName>Sitecore.Reference.Storefront.Powered.by.CommerceServer</PackageName>
+    <DisableFileDeployment>False</DisableFileDeployment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>.\Release\</OutputPath>
+    <RecursiveDeployAction>Ignore</RecursiveDeployAction>
+    <SitecoreDeployFolder>
+    </SitecoreDeployFolder>
+    <SitecoreWebUrl>http://localhost:7667</SitecoreWebUrl>
+    <SitecoreAccessGuid>3a6d874f-0fb2-4d5d-bd15-b4cc7b14003f</SitecoreAccessGuid>
+    <InstallSitecoreConnector>True</InstallSitecoreConnector>
+    <PackageAuthor>Sitecore Corporation</PackageAuthor>
+    <PackagePublisher>Sitecore Corporation</PackagePublisher>
+    <PackageVersion>
+    </PackageVersion>
+    <PackageReadme>This is the Readme.
+You have now read the Readme.
+</PackageReadme>
+    <SitecoreAssemblyPath>..\..\Lib\Sitecore</SitecoreAssemblyPath>
+    <GeneratePackage>True</GeneratePackage>
+    <SeperateFilesAndItems>False</SeperateFilesAndItems>
+    <AddDateTimeToPackageName>False</AddDateTimeToPackageName>
+    <PackageName>Sitecore.Reference.Storefront.Powered.by.CommerceServer</PackageName>
+    <EnableValidations>True</EnableValidations>
+    <ValidationSettingsFilePath>.\TDSCommerceServer_Master_Release.xml</ValidationSettingsFilePath>
+    <DisableFileDeployment>False</DisableFileDeployment>
+  </PropertyGroup>
+  <ItemGroup>
+    <AssemblyAttributes Include="AssemblyFileVersion">
+      <Value>$(AssemblyFileVersion)</Value>
+    </AssemblyAttributes>
+    <AssemblyAttributes Include="AssemblyVersion">
+      <Value>$(AssemblyVersion)</Value>
+    </AssemblyAttributes>
+  </ItemGroup>
+  <ItemGroup Condition=" '$(Configuration)' == 'Debug' " />
+  <ItemGroup>
+    <ProjectReference Include="..\CSF\Commerce.Storefront.csproj">
+      <Project>{304f09ad-2fc3-453f-b016-50a1f842e3a9}</Project>
+      <Name>Commerce.Storefront</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <SitecoreItem Include="sitecore\Commerce.item">
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\Commerce\Catalog Management.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\Commerce\Catalog Management\Catalogs.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+      <DeployAlwaysFields>Selected Catalogs|</DeployAlwaysFields>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\Commerce\Countries and Geographical Regions.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\Commerce\Countries and Geographical Regions\Canada.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\Commerce\Countries and Geographical Regions\Canada\Ontario.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\Commerce\Countries and Geographical Regions\Canada\Quebec.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\Commerce\Countries and Geographical Regions\United States.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\Commerce\Countries and Geographical Regions\United States\New York.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\Commerce\Countries and Geographical Regions\United States\Washington.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\Commerce\Payment Options.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\Commerce\Payment Options\PayCard.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\Commerce\Settings.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\Commerce\Settings\Catalog.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\Commerce\Settings\Catalog\Default Catalog.item">
+      <ItemDeployment>AlwaysUpdate</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+      <DeployAlwaysFields>Catalog|</DeployAlwaysFields>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\Commerce\Shipping Options.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\Commerce\Shipping Options\Email.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\Commerce\Shipping Options\Select delivery options by item.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\Commerce\Shipping Options\Ship Items.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content.item">
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Named Searches.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Named Searches\On Sale.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Product Search Lists.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Product Search Lists\Recommended Products.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\QuickLinks.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\QuickLinks\Account information.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+      <DeployAlwaysFields>QuickLinks.en|</DeployAlwaysFields>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\QuickLinks\Site options.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+      <DeployAlwaysFields>QuickLinks.en|</DeployAlwaysFields>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\QuickLinks\TopBarLinks.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+      <DeployAlwaysFields>QuickLinks.en|</DeployAlwaysFields>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Home.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+      <DeployAlwaysFields>Catalogs|Category Images|Default Image|Product Images|</DeployAlwaysFields>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Home\Product catalog.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+      <DeployAlwaysFields>CategoryDatasource|</DeployAlwaysFields>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\media library.item">
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\media library\Images.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\media library\Images\Storefront.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\media library\Images\Storefront\General.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\media library\Images\Storefront\General\Promotions.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\media library\Images\Storefront\General\Promotions\GiftCard01.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates.item">
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Commerce Server Configuration.item">
+      <ItemDeployment>AlwaysUpdate</ItemDeployment>
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Commerce Server Configuration\__Standard Values.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>AlwaysUpdate</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Commerce Server Configuration\Storefront Configuration.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>AlwaysUpdate</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Commerce Server Configuration\Storefront Configuration\Supports Gift Card Payment.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>AlwaysUpdate</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Commerce Server Configuration\Storefront Configuration\Supports Loyalty Program.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>AlwaysUpdate</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Commerce Server Configuration\Storefront Configuration\Supports Wishlists.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>AlwaysUpdate</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Countries and Geographical Regions.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Countries and Geographical Regions\__Standard Values.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Country.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Country\__Standard Values.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Country\Data.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Country\Data\Country Code.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Country\Data\Name.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Geographical Region.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Geographical Region\Data.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Geographical Region\Data\Name.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Geographical Region\Data\Region Code.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Payment Option.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Payment Option\Data.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Payment Option\Data\CS Payment Methods.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Payment Option\Data\Payment Option Value.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Payment Options.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Payment Options\__Standard Values.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Shipping Option.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Shipping Option\Data.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Shipping Option\Data\CS Shipping Methods.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Shipping Option\Data\Shipping Option Value.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Shipping Options.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\Shipping Options\__Standard Values.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\Home.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+      <DeployAlwaysFields>__Base template|</DeployAlwaysFields>
+    </SitecoreItem>
+  </ItemGroup>
+  <ItemGroup>
+    <ExcludedAssemblies Include="AntiXssLibrary.dll" />
+    <ExcludedAssemblies Include="Castle.Core.dll" />
+    <ExcludedAssemblies Include="Castle.Windsor.dll" />
+    <ExcludedAssemblies Include="CommerceMessageManager.dll" />
+    <ExcludedAssemblies Include="CommerceMessageManager.resources.dll" />
+    <ExcludedAssemblies Include="HtmlSanitizationLibrary.dll" />
+    <ExcludedAssemblies Include="Sitecore.Reference.Storefront.Powered.by.CommerceServer.dll" />
+    <ExcludedAssemblies Include="Sitecore.Reference.Storefront.Powered.by.CommerceServer.xml" />
+    <ExcludedAssemblies Include="WebActivatorEx.dll" />
+    <ExcludedAssemblies Include="WebGrease.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\HedgehogDevelopment\SitecoreProject\v9.0\HedgehogDevelopment.SitecoreProject.targets" />
+  <!-- Sign the binary output before it gets packaged in the TDS .update file
+  Signing is only done on production builds CI and Release.  
+  Pathing is all relative. Only a single binary can be signed. -->
+  <!-- Start of signing process -->
+  <Target Name="BeforeSitecoreBuild" Condition="Exists('..\..\..\..\AgentID.txt')">
+    <CallTarget Targets="InitializeSigningParameters" />
+    <CallTarget Targets="SignSingleRel" />
+    <CallTarget Targets="SignSingleCI" />
+    <CallTarget Targets="AfterSigning" />
+  </Target>
+  <Target Name="SignSingleRel" Condition=" '$(CIBuild)'=='Rel' ">
+    <Exec Command="powershell.exe -ExecutionPolicy Unrestricted -FILE ..\..\..\..\Live\MojaveTools\SignSingle.ps1 $(AgentID) $(BuildDef) ..\CSF\bin Sitecore.Reference.Storefront.Powered.by.CommerceServer.dll Rel" WorkingDirectory="." ContinueOnError="false" />
+  </Target>
+  <Target Name="SignSingleCI" Condition=" '$(CIBuild)'=='CI' ">
+    <Exec Command="powershell.exe -ExecutionPolicy Unrestricted -FILE ..\..\..\..\Live\MojaveTools\SignSingle.ps1 $(AgentID) $(BuildDef) ..\CSF\bin Sitecore.Reference.Storefront.Powered.by.CommerceServer.dll CI" WorkingDirectory="." ContinueOnError="false" />
+  </Target>
+  <Target Name="InitializeSigningParameters">
+    <ReadLinesFromFile File="..\..\..\..\AgentID.txt">
+      <Output TaskParameter="Lines" ItemName="ID" />
+    </ReadLinesFromFile>
+    <ReadLinesFromFile File="..\..\..\..\BuildDef.txt">
+      <Output TaskParameter="Lines" ItemName="Def" />
+    </ReadLinesFromFile>
+    <ReadLinesFromFile File="..\..\..\..\CIBuild.txt">
+      <Output TaskParameter="Lines" ItemName="Bld" />
+    </ReadLinesFromFile>
+    <ReadLinesFromFile File="..\..\..\..\Version.txt">
+      <Output TaskParameter="Lines" ItemName="Ver" />
+    </ReadLinesFromFile>
+    <PropertyGroup>
+      <AgentID>@(ID->'%(Identity)')</AgentID>
+      <BuildDef>@(Def->'%(Identity)')</BuildDef>
+      <CIBuild>@(Bld->'%(Identity)')</CIBuild>
+      <PackageVersion>@(Ver->'%(Identity)')</PackageVersion>
+    </PropertyGroup>
+    <!-- Create the readme -->
+    <Message Text="AgentID: $(AgentID)" />
+    <Message Text="BuildDef: $(BuildDef)" />
+    <Message Text="CIBuild: $(CIBuild)" />
+    <Message Text="PackageVersion: $(PackageVersion)" />
+    <Message Text="PackageReadme: $(PackageReadme)" />
+  </Target>
+  <Target Name="AfterSigning">
+    <!-- Wait for powershell to finish >
+    <Exec Command="..\..\..\..\..\BuildTools\Sleep.exe 120" /-->
+    <!-- Copy signed output to correct locations -->
+    <Copy SourceFiles="..\CSF\bin\Sitecore.Reference.Storefront.Powered.by.CommerceServer.dll" DestinationFolder="..\..\..\..\binaries\$(configuration)" />
+    <Copy SourceFiles="..\CSF\bin\Sitecore.Reference.Storefront.Powered.by.CommerceServer.pdb" DestinationFolder="..\..\..\..\binaries\$(configuration)" />
+    <!--Copy SourceFiles="..\CSF\bin\Sitecore.Commerce.Storefront.dll" DestinationFolder=".\Release\bin" /-->
+    <!-- Copy the sign logs to binaries\release folder and delete them in the package release folder -->
+    <ItemGroup>
+      <SignLogsR Include=".\Release\bin\SignLogs\*.txt" />
+      <SignLogsW Include="..\CSF\bin\SignLogs\*.txt" />
+    </ItemGroup>
+    <Copy SourceFiles="@(SignLogsW)" DestinationFolder="..\..\..\..\binaries\$(configuration)\Signlogs" />
+    <Delete Files="@(SignLogsW)" />
+    <Delete Files="@(SignLogsR)" />
+    <RemoveDir Directories=".\Release\bin\SignLogs" />
+  </Target>
+  <!-- End of signing process -->
+  <Target Name="BeforeGeneratePackage">
+    <Message Text="Removing the license file before creating the package" Importance="high" />
+    <ItemGroup>
+      <licenseFile Include=".\$(configuration)\License.txt" />
+    </ItemGroup>
+    <Message Text="Removing the following files: @(licenseFile)" Importance="high" />
+    <Delete Files="@(licenseFile)" />
+  </Target>
+</Project>

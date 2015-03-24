@@ -1,0 +1,60 @@
+﻿@*//-----------------------------------------------------------------------
+// Copyright 2015 Sitecore Corporation A/S
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+// except in compliance with the License. You may obtain a copy of the License at
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software distributed under the
+// License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+// either express or implied. See the License for the specific language governing permissions
+// and limitations under the License.
+// -------------------------------------------------------------------------------------------*@
+
+@using Sitecore.Reference.Storefront.Models;
+@model Sitecore.Reference.Storefront.Models.RenderingModels.MultipleProductSearchResults
+@{
+    if (Model == null || Model.ProductSearchResults == null || !Model.ProductSearchResults.Any())
+    {
+        return;
+    }
+}
+
+<div id="C02-ProductRecommendation" class="wrap-content-recomended">
+    <div class="col-md-9">
+        <!-- Styling div - Container -->
+        <div class="product-slide">
+            <ul class="nav nav-tabs nav-justified">
+                @{
+                    var first = true;
+
+                    foreach (ProductSearchResultViewModel productSearchResult in Model.ProductSearchResults)
+                    {
+                        <li class=@(first ? "active" : "")><a href="#" class="product-recommendation-click" data-carousel-id="carousel-@productSearchResult.DisplayName.Replace(' ', '-').ToLowerInvariant()">@productSearchResult.DisplayName</a></li>
+                        first = false;
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <!-- Controls -->
+        <div class="product-controls">
+            <div class="controls pull-right">
+                <a class="left glyphicon glyphicon-chevron-left btn btn-info" href="#carousel-@Model.ProductSearchResults.ElementAt(0).DisplayName.Replace(' ', '-').ToLowerInvariant()" data-slide="prev"></a>
+                <a class="right glyphicon glyphicon-chevron-right btn btn-info" href="#carousel-@Model.ProductSearchResults.ElementAt(0).DisplayName.Replace(' ', '-').ToLowerInvariant()" data-slide="next"></a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        @for (int i = 0; i < Model.ProductSearchResults.Count; i++)
+        {
+            var searchResultsModel = Model.ProductSearchResults.ElementAt(i);
+
+            <div class="carousel slide product-slider" id="carousel-@Model.ProductSearchResults.ElementAt(i).DisplayName.Replace(' ', '-').ToLowerInvariant()" data-ride="carousel" data-interval="false" @(i != 0 ? "style=display:none;" : "")>
+                @Html.Partial("~/Views/Storefront/Catalog/_FourProductSlide.cshtml", searchResultsModel)
+
+            </div>
+        }
+
+    </div>
+</div>

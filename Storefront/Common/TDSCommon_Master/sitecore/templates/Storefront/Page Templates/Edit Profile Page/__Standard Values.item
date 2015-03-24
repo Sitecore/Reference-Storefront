@@ -1,0 +1,184 @@
+----item----
+version: 1
+id: {08A588CD-81F5-48BD-9B07-C2BDC71B612E}
+database: master
+path: /sitecore/templates/Storefront/Page Templates/Edit Profile Page/__Standard Values
+parent: {292B2761-F08F-4D9A-9820-87CF7CBED2CC}
+name: __Standard Values
+master: {00000000-0000-0000-0000-000000000000}
+template: {292B2761-F08F-4D9A-9820-87CF7CBED2CC}
+templatekey: Edit Profile Page
+
+----field----
+field: {F1A1FE9E-A60C-4DDB-A3A0-BB5B29FE732E}
+name: __Renderings
+key: __renderings
+content-length: 2364
+
+<r xmlns:xsd="http://www.w3.org/2001/XMLSchema" ><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}" l="{F5034347-7E92-41D7-B8EB-F51D1F1BCF1C}"><r id="{15A09072-CE89-4126-A9E4-17753FC726FF}" ph="top" uid="{0E2D603A-CF36-4EE2-B598-D2E06AEBD5AE}" /><r id="{B6C0593E-1C35-4C61-8DB5-E7C7AA19D955}" ph="topleft" uid="{17F64DAC-2A2C-4F61-A993-F3BC59203AA0}" /><r ds="" id="{FAA386D8-192F-4762-839D-D637BD11549F}" par="" ph="topright" uid="{1B0865BA-8725-40D7-B472-5466055F1834}" /><r ds="{9988B682-59C7-4319-8BF9-7071F132A5AD}" id="{9AA8E388-A6BD-46E1-A73B-DDEF601DE6F8}" par="" ph="topcenter" uid="{8C308774-5362-4996-A416-527ED85204F1}" /><r id="{11680CDD-D6CF-4F1A-A770-B9815A6F7CEC}" ph="messages" uid="{2434C82A-C2BF-4BA8-9163-06565866796E}" /><r id="{79167FB2-C7E0-4124-81C9-61AFBB279388}" ph="navigation" uid="{1A6AE860-A323-460D-B8D7-CEFA22469672}" /><r id="{0FA59DDC-5AEB-4ADB-B64B-D8D03B351680}" ph="navigationextra" uid="{D0FFD21B-BDDF-4C59-A150-C43C76CABF37}" /><r ds="{98CE979E-638E-4EE0-AD7F-05164173F1C1}" id="{DC1B9040-8694-456A-A5E6-81996BD1B2AA}" par="" ph="navigationextraleft" uid="{5D2C83EE-F8CA-41B9-BBF2-03CBC74D3F52}" /><r ds="{5886D851-1625-48AE-A787-84FC5B5EB271}" id="{582FEA78-404C-44D8-B6B4-356B080F5A7C}" par="" ph="navigationextraright" uid="{0D3D37F8-ED81-4F72-B7C2-8D5AF8EB0094}" /><r ds="{889A6934-BCDC-4294-94B7-6D141E7312B4}" id="{CFD437A6-404A-4C8C-8A41-EED2FB86D5DE}" par="" ph="navigationmain" uid="{3C2F52A6-A439-456D-A812-04A831DB8A0F}" /><r id="{A093583B-6870-44AD-B14E-54703B32E9B9}" ph="middle" uid="{F720367A-12C1-4818-887C-EB6B70A32640}" /><r id="{2685E523-5828-4F75-9B4E-476EFE1DC2DC}" ph="center" uid="{977A116E-E4E3-4322-8917-267068421DA1}" /><r id="{0AD697A5-B069-4AC5-8F18-488DAE074A06}" ph="center" uid="{6B3F72C0-DE53-48DB-90C6-AE1C4A2741E3}" /><r ds="{F6504124-F766-43D0-824B-EB339CAE8E5F}" id="{2658217E-196A-4041-8F81-B8AFA7E377EE}" par="" ph="bottom" uid="{90413A71-AF3B-426B-938F-DCD2F2968374}" /></d><d id="{46D2F427-4CE5-4E1F-BA10-EF3636F43534}" l="{158292D8-6523-4052-8DEF-60DD6F112A09}"><r id="{A093583B-6870-44AD-B14E-54703B32E9B9}" ph="middle" uid="{AFAD3A52-5D00-4F87-9DFF-ED4211885A99}" /><r id="{2685E523-5828-4F75-9B4E-476EFE1DC2DC}" ph="center" uid="{5177212F-976E-4785-A814-95BEFFF565C5}" /><r id="{0AD697A5-B069-4AC5-8F18-488DAE074A06}" ph="center" uid="{47733CBE-2A33-4704-BE99-5D9C0089650A}" /></d></r>
+----version----
+language: en
+version: 1
+revision: 0856b439-22a0-4a70-a6aa-2ff14cb71e60
+
+----field----
+field: {C25982D9-ECD0-45C0-9E49-2ADE473CCE7C}
+name: Title
+key: title
+content-length: 15
+
+Account Profile
+----field----
+field: {13C97726-033B-4E1A-9837-2F9FB2DF7C20}
+name: First Name
+key: first name
+content-length: 10
+
+First name
+----field----
+field: {3C9C1491-4030-454D-9DEC-EA30510B5B43}
+name: Surname
+key: surname
+content-length: 7
+
+Surname
+----field----
+field: {7413052F-1CFF-4B3D-862E-DDA7DA617E48}
+name: Email
+key: email
+content-length: 5
+
+Email
+----field----
+field: {E93C0A73-85EE-4968-9FE9-94DDEAE5297A}
+name: Repeat Email
+key: repeat email
+content-length: 12
+
+Repeat email
+----field----
+field: {C003AF96-E780-4E0D-B45C-1C45E5E8F912}
+name: Save Changes Button
+key: save changes button
+content-length: 12
+
+Save changes
+----field----
+field: {4328139F-4801-4930-AB9E-510A69A62473}
+name: Cancel Button
+key: cancel button
+content-length: 6
+
+Cancel
+----field----
+field: {A4115EA4-306F-43E5-B4D7-6346A2CBEB2C}
+name: Back To My Account
+key: back to my account
+content-length: 18
+
+Back to My Account
+----field----
+field: {A1E4E7F0-F89D-4682-8B5D-06B58CC76885}
+name: Saving Changes Button
+key: saving changes button
+content-length: 9
+
+Saving...
+----field----
+field: {2EF9BDB1-9827-40C5-8975-3409196963D1}
+name: Telephone Number Placeholder
+key: telephone number placeholder
+content-length: 10
+
+1-111-1111
+----field----
+field: {E8F1A5FF-D477-4A85-9312-C9939EA8DA3B}
+name: Password Placeholder
+key: password placeholder
+content-length: 8
+
+Password
+----field----
+field: {B3EA88CE-8B8F-49EC-9239-1F00812EF4EF}
+name: Email Placeholder
+key: email placeholder
+content-length: 5
+
+Email
+----field----
+field: {E3707BA5-AF84-4ABE-A7BA-D8C24C37C6AA}
+name: First Name Placeholder
+key: first name placeholder
+content-length: 10
+
+First name
+----field----
+field: {A341E52D-4255-489F-AD23-5FCA201F77F9}
+name: Last Name Placeholder
+key: last name placeholder
+content-length: 9
+
+Last name
+----field----
+field: {8B121B2F-9782-4C87-BC05-7825C940AAAB}
+name: First Name Required Message
+key: first name required message
+content-length: 27
+
+The first name is required.
+----field----
+field: {109A8E80-C052-4F8E-8A7E-5878CF467E71}
+name: Last Name Required Message
+key: last name required message
+content-length: 26
+
+The last name is required.
+----field----
+field: {0C1B7DAD-D2D0-4640-AD1E-EBE31F159D51}
+name: Email Required Message
+key: email required message
+content-length: 22
+
+The email is required.
+----field----
+field: {460C9B9E-8723-49FF-8DBA-03AB18379DA6}
+name: Telephone Number Required Message
+key: telephone number required message
+content-length: 33
+
+The telephone number is required.
+----field----
+field: {04BF00DB-F5FB-41F7-8AB7-22408372A981}
+name: __Final Renderings
+key: __final renderings
+content-length: 465
+
+<r xmlns:p="p" xmlns:s="s" p:p="1"><d id="{46D2F427-4CE5-4E1F-BA10-EF3636F43534}" s:l="{158292D8-6523-4052-8DEF-60DD6F112A09}"><r uid="{AFAD3A52-5D00-4F87-9DFF-ED4211885A99}" s:id="{A093583B-6870-44AD-B14E-54703B32E9B9}" s:ph="middle" /><r uid="{5177212F-976E-4785-A814-95BEFFF565C5}" s:id="{2685E523-5828-4F75-9B4E-476EFE1DC2DC}" s:ph="center" /><r uid="{47733CBE-2A33-4704-BE99-5D9C0089650A}" s:id="{0AD697A5-B069-4AC5-8F18-488DAE074A06}" s:ph="center" /></d></r>
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20150122T083125Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+0856b439-22a0-4a70-a6aa-2ff14cb71e60
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150313T150413:635618558539611030Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

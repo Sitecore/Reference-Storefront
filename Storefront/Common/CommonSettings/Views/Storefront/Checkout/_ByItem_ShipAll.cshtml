@@ -1,0 +1,96 @@
+﻿@*//-----------------------------------------------------------------------
+// Copyright 2015 Sitecore Corporation A/S
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+// except in compliance with the License. You may obtain a copy of the License at
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software distributed under the
+// License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+// either express or implied. See the License for the specific language governing permissions
+// and limitations under the License.
+// -------------------------------------------------------------------------------------------*@
+
+@{
+    // Header
+    var headerShipAllLabel = Html.Sitecore().Field("Ship All Items Label", Html.Sitecore().CurrentItem.Children["Delivery"]);
+    var shippingAddressLabel = Html.Sitecore().Field("Shipping Address Label", Html.Sitecore().CurrentItem.Children["Delivery"]);
+    var chooseAddressLabel = Html.Sitecore().Field("Choose Address Book Label", Html.Sitecore().CurrentItem.Children["Delivery"]);
+    var addressLabel = Html.Sitecore().Field("Choose Address Label", Html.Sitecore().CurrentItem.Children["Delivery"]);
+    var shippingNameLabel = Html.Sitecore().Field("Shipping Name Label", Html.Sitecore().CurrentItem.Children["Delivery"]);
+    var cityLabel = Html.Sitecore().Field("City Label", Html.Sitecore().CurrentItem.Children["Delivery"]);
+    var countryLabel = Html.Sitecore().Field("Country Label", Html.Sitecore().CurrentItem.Children["Delivery"]);
+    var stateLabel = Html.Sitecore().Field("State Label", Html.Sitecore().CurrentItem.Children["Delivery"]);
+    var address1Label = Html.Sitecore().Field("Address Label", Html.Sitecore().CurrentItem.Children["Delivery"]);
+    var zipcodeLabel = Html.Sitecore().Field("Zipcode Label", Html.Sitecore().CurrentItem.Children["Delivery"]);
+    var viewButtonLabel = Html.Sitecore().Field("View Button Label", Html.Sitecore().CurrentItem.Children["Delivery"]);
+    var viewButtonLoadingLabel = Html.Sitecore().Field("View Button Loading Label", Html.Sitecore().CurrentItem.Children["Delivery"]);
+    var otherAddressLabel = Html.Sitecore().Field("Choose Other Address Label", Html.Sitecore().CurrentItem.Children["Delivery"]);
+    var availableShippingOptionsLabel = Html.Sitecore().Field("Available Shipping Options Label", Html.Sitecore().CurrentItem.Children["Delivery"]); 
+}
+
+<div class="col-md-12">
+    <h1>SHIP THIS ITEM</h1>
+</div>
+<div data-bind="attr: { id: 'shipAllAddressContainer'+ externalCartLineId }, with: shippingAddress">
+    <div class="col-md-12">
+        <h3>@shippingAddressLabel:</h3>
+    </div>
+    <div class="col-md-4 col-md-offset-8">
+        <div class="form-group" data-bind="visible: $root.isAuthenticated">
+            <label data-bind="attr: { for:'ShippingAddressSelect-'+ $parent.externalCartLineId }">@chooseAddressLabel</label>
+            <select class="form-control" data-bind="foreach: $root.userAddresses, value: $parent.selectedShippingAddress, attr: { id:'ShippingAddressSelect-'+ $parent.externalCartLineId }" title="@addressLabel" title2="@otherAddressLabel">
+                <!-- ko if: externalId() != 'UseShipping' -->
+                <option data-bind="attr:{ value:externalId }, text: fullAddress"></option>
+                <!-- /ko -->
+            </select>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group required-field">
+            <label data-bind="attr:{for:'ShipAllItemsInput-Name-'+ $parent.externalCartLineId}">@shippingNameLabel<span class="required">*</span></label>
+            <input type="text" class="form-control" data-bind="attr:{id:'ShipAllItemsInput-Name-'+ $parent.externalCartLineId}, value: name, event: {change: $parent.shippingAddressFieldChanged}" placeholder="@shippingNameLabel">
+        </div>
+        <div class="form-group required-field">
+            <label data-bind="attr:{for:'ShipAllItemsInput-City-'+ $parent.externalCartLineId}">@cityLabel<span class="required">*</span> </label>
+            <input type="text" class="form-control" data-bind="attr:{id:'ShipAllItemsInput-City-'+ $parent.externalCartLineId}, value: city, event: {change: $parent.shippingAddressFieldChanged}" placeholder="@cityLabel">
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group required-field">
+            <label data-bind="attr:{for:'ShipAllItemsInput-Country-'+ $parent.externalCartLineId}">@countryLabel<span class="required">*</span></label>
+            <select class="form-control" data-bind="attr:{id:'ShipAllItemsInput-Country-'+ $parent.externalCartLineId}, options: $root.countries, optionsText:'country', optionsValue:'code', value: country, event: {change: $parent.shippingAddressFieldChanged}"></select>
+        </div>
+        <div class="form-group">
+            <label data-bind="attr:{for:'ShipAllItemsInput-State-'+ $parent.externalCartLineId}">@stateLabel</label>
+            <!-- ko if: states == 'undefined' -->
+            <select class="form-control" data-bind="attr:{id:'ShipAllItemsInput-State-'+ $parent.externalCartLineId}, options: $root.states, optionsText:'name', optionsValue:'code', value: state, event: {change: $parent.shippingAddressFieldChanged}"></select>
+            <!-- /ko -->
+            <!-- ko if: states != 'undefined' -->
+            <input type="text" class="form-control" data-bind="attr:{id:'ShipAllItemsInput-State-'+ $parent.externalCartLineId}, value: state, event: {change: $parent.shippingAddressFieldChanged}" placeholder="@stateLabel">
+            <!-- /ko -->
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label data-bind="attr:{for:'ShipAllItemsInput-Address-'+ $parent.externalCartLineId}">@address1Label</label>
+            <input type="text" class="form-control" data-bind="attr:{id:'ShipAllItemsInput-Address-'+ $parent.externalCartLineId}, value: address1, event: {change: $parent.shippingAddressFieldChanged}" placeholder="@address1Label">
+        </div>
+        <div class="form-group">
+            <label data-bind="attr:{for:'ShipAllItemsInput-Zipcode-'+ $parent.externalCartLineId}">@zipcodeLabel</label>
+            <input type="text" class="form-control" data-bind="attr:{id:'ShipAllItemsInput-Zipcode-'+ $parent.externalCartLineId}, value: zipPostalCode, event: {change: $parent.shippingAddressFieldChanged}" placeholder="@zipcodeLabel">
+        </div>
+    </div>
+    <input type="text" data-bind="attr:{id:'ShipAllItemsInput-ExternalId-'+ $parent.externalCartLineId}, value: externalId" style="visibility: hidden; display: none;" />
+</div>
+<div data-bind="attr:{id:'shipAllOptionsContainer'+ externalCartLineId}">
+    <div class="col-md-12"><h3>@availableShippingOptionsLabel:</h3></div>
+    <div class="col-md-3">
+        <button data-bind="attr:{id:'lineGetShippingMethods-'+ externalCartLineId}" type="button" data-loading-text="@viewButtonLoadingLabel" class="btn btn-default lineGetShippingMethods">@viewButtonLabel</button>
+    </div>
+    <div class="col-md-9">
+        <div class="form-group shipping-options" data-bind="foreach: shippingMethods, attr:{id:'shippingMethodsContainer-'+ externalCartLineId}">
+            <input type="radio" style="margin-left:20px" data-bind="attr: {'name': 'shippingMethodId-' + $parent.externalCartLineId ,'id': 'method-' + description, 'data-name':description, pvalue: id}, checkMe: $parent.shippingMethod, event: {change: $parent.selectShippingMethod}">
+            <label data-bind="text: description" style="vertical-align: middle;"></label>
+        </div>
+    </div>
+</div>

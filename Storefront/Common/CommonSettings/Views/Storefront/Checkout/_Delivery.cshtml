@@ -1,0 +1,50 @@
+﻿@*//-----------------------------------------------------------------------
+// Copyright 2015 Sitecore Corporation A/S
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+// except in compliance with the License. You may obtain a copy of the License at
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software distributed under the
+// License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+// either express or implied. See the License for the specific language governing permissions
+// and limitations under the License.
+// -------------------------------------------------------------------------------------------*@
+
+<div class="wrap-content-checkout">
+    <div class="col-md-12">
+        <div class="delivery-form">
+            <div class="col-md-8">
+                <p>@Html.Sitecore().Field("DeliveryPreference", Html.Sitecore().CurrentItem.Children["Delivery"])</p>
+            </div>
+            <div class="col-md-4">
+                <select id="orderShippingPreference" class="form-control" data-bind="foreach: orderShippingOptions, value: selectedShippingOption">
+                    <!-- ko if: $index() == 0 -->
+                    <option value="0">@Html.Sitecore().Field("Delivery Option Label", Html.Sitecore().CurrentItem.Children["Delivery"])</option>
+                    <!-- /ko -->
+                    <option data-bind="text: Name, value: ShippingOptionType.Value"></option>
+                </select>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="col-md-12" id="ShipAllItems" data-bind="visible: $root.isShipAll" style="display: none;">
+        @Html.Partial("~/Views/Storefront/Checkout/_ShipAll.cshtml")
+    </div>
+    <div class="col-md-12" id="PickupStore" data-bind="visible: $root.isShipToStore" style="display: none;">
+        @Html.Partial("~/Views/Storefront/Checkout/_PickAtStore.cshtml")
+    </div>
+    <div class="col-md-12" id="SendByEmail" data-bind="visible: $root.isShipToEmail" style="display: none;">
+        @Html.Partial("~/Views/Storefront/Checkout/_SendByEmail.cshtml")
+    </div>
+    <div id="DeliveryOptionsByItems" data-bind="visible: $root.isShipItems" style="display: none;">
+        @Html.Partial("~/Views/Storefront/Checkout/_PickDeliveryByItem.cshtml")
+    </div>
+</div>
+
+<script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&mkt=en-us"></script>
+<input type="hidden" id="deliveryMethodSet" />
+
+<script type="text/javascript">
+    setupCheckoutPage();
+    InitDeliveryPage();
+</script>

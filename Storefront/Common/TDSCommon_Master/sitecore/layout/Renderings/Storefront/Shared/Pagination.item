@@ -1,0 +1,79 @@
+----item----
+version: 1
+id: {4B8E6995-6881-47B2-97B8-2D89478B6EAE}
+database: master
+path: /sitecore/layout/Renderings/Storefront/Shared/Pagination
+parent: {44BD03A4-2010-425F-9D12-6D14940C762A}
+name: Pagination
+master: {00000000-0000-0000-0000-000000000000}
+template: {2A3E91A0-7987-44B5-AB34-35C2D9DE83B9}
+templatekey: Controller rendering
+
+----field----
+field: {E64AD073-DFCC-4D20-8C0B-FE5AA6226CD7}
+name: Controller
+key: controller
+content-length: 7
+
+Catalog
+----field----
+field: {DED9E431-3604-4921-A4B3-A6EC7636A5B6}
+name: Controller Action
+key: controller action
+content-length: 10
+
+Pagination
+----field----
+field: {B5B27AF1-25EF-405C-87CE-369B3A004016}
+name: Datasource Location
+key: datasource location
+content-length: 46
+
+/sitecore/content/Storefront/Global/Site Spots
+----field----
+field: {1A7C85E5-DC0B-490D-9187-BB1DBCB4C72F}
+name: Datasource Template
+key: datasource template
+content-length: 63
+
+/sitecore/templates/Storefront/Rendering Datasources/Pagination
+----field----
+field: {C7C26117-DBB1-42B2-AB5E-F7223845CCA3}
+name: __Thumbnail
+key: __thumbnail
+content-length: 58
+
+<image mediaid="{419CC3E7-5C0C-4B31-935E-56755F95D8FA}" />
+----version----
+language: en
+version: 1
+revision: 8db7c60f-0796-44c8-bcee-14ff14f37dfb
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20141023T063015
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+8db7c60f-0796-44c8-bcee-14ff14f37dfb
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20141106T101922:635508659627778028
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

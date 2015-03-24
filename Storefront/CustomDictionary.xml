@@ -1,0 +1,47 @@
+<Dictionary>
+  <Words>
+    <!--<Unrecognized>
+      <Word>knokker</Word>
+    </Unrecognized>-->
+    <Recognized>
+      <Word>Captcha</Word>
+      <Word>ReCaptcha</Word>
+      <Word>CSRF</Word>
+      <Word>Ascx</Word>
+      <Word>Contrib</Word>
+      <Word>Mvc</Word>
+      <Word>Api</Word>
+      <Word>Auth</Word>
+      <Word>param</Word>
+      <Word>json</Word>
+      <Word>Xslts</Word>
+      <Word>Utils</Word>
+      <Word>jQuery</Word>
+      <Word>Solr</Word>
+      <Word>Sitecore</Word>
+      <Word>Obec</Word>
+    </Recognized>
+    <Compound>
+      <Term CompoundAlternate="QueryString">querystring</Term>
+      <Term CompoundAlternate="FileName">Filename</Term>
+    </Compound>
+    <!--<Deprecated>
+      <Term PreferredAlternate=""></Term>
+    </Deprecated>
+    <Compound>
+      <Term CompoundAlternate=""></Term>
+    </Compound>
+    <DiscreteExceptions>
+      <Term></Term>
+    </DiscreteExceptions>-->
+  </Words>
+  <Acronyms>
+    <CasingExceptions>
+      <Acronym>CSRF</Acronym>
+      <Acronym>ASCX</Acronym>
+      <Acronym>MVC</Acronym>
+      <Acronym>Api</Acronym>
+      <Acronym>Xslt</Acronym>
+    </CasingExceptions>
+  </Acronyms>
+</Dictionary>

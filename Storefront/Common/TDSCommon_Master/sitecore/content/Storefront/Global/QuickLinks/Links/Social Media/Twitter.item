@@ -1,0 +1,65 @@
+----item----
+version: 1
+id: {CDB7D4A4-07EB-46E5-A4AF-EF3DC794EEC3}
+database: master
+path: /sitecore/content/Storefront/Global/QuickLinks/Links/Social Media/Twitter
+parent: {5BE2EF93-F2F7-4DF2-803F-0589C4B1FC5D}
+name: Twitter
+master: {00000000-0000-0000-0000-000000000000}
+template: {87C331AE-3293-4FD1-A5F2-A625523F3019}
+templatekey: QuickLink
+
+----version----
+language: en
+version: 1
+revision: d8f3d6d9-e428-4162-9736-9fcb6b6d5729
+
+----field----
+field: {B861B1ED-2820-4AD8-B169-8928AC381634}
+name: Link
+key: link
+content-length: 98
+
+<link text="Twitter" linktype="external" url="http://www.twitter.com" anchor="" target="_blank" />
+----field----
+field: {6CB9EB87-680B-4CB9-9946-9BAEB553F6B8}
+name: Text
+key: text
+content-length: 7
+
+Twitter
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20141105T093256
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+d8f3d6d9-e428-4162-9736-9fcb6b6d5729
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20141105T093336:635507768161175841
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

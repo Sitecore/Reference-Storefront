@@ -1,0 +1,107 @@
+----item----
+version: 1
+id: {9592355F-401F-4FD8-9EA2-1EDCEDD9302B}
+database: master
+path: /sitecore/templates/Storefront/Rendering Datasources/Product Information/__Standard Values
+parent: {917BAFA7-4CD6-44B5-9DAC-59FC063A9743}
+name: __Standard Values
+master: {00000000-0000-0000-0000-000000000000}
+template: {917BAFA7-4CD6-44B5-9DAC-59FC063A9743}
+templatekey: Product Information
+
+----field----
+field: {BA3F86A2-4A1C-4D78-B63D-91C2779C1B5E}
+name: __Sortorder
+key: __sortorder
+content-length: 3
+
+300
+----version----
+language: en
+version: 1
+revision: cd3ddf6d-0132-46f8-8f54-4d4e5082231e
+
+----field----
+field: {BC3FB1F0-651E-44CC-9820-BCD5B20AA04B}
+name: Category
+key: category
+content-length: 8
+
+Category
+----field----
+field: {6B8C24DA-F3DD-40A8-86AD-2979736786AD}
+name: Item number
+key: item number
+content-length: 12
+
+Item number:
+----field----
+field: {246545E8-3349-4188-9B81-2AA923F28BBF}
+name: Description
+key: description
+content-length: 12
+
+Description:
+----field----
+field: {07CAA1DA-E5EC-43BD-B2D8-38716A98A082}
+name: Color
+key: color
+content-length: 6
+
+Color:
+----field----
+field: {1C4B65A9-7BA7-46A5-A832-CC587BF4BF37}
+name: Size
+key: size
+content-length: 5
+
+Size:
+----field----
+field: {06A6A591-CB8B-480B-87E5-D87AEAE9CB20}
+name: Save percent lead
+key: save percent lead
+content-length: 10
+
+Save up to
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20141106T115553Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+cd3ddf6d-0132-46f8-8f54-4d4e5082231e
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150320T185151:635624743113250600Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

@@ -1,0 +1,43 @@
+﻿@*//-----------------------------------------------------------------------
+// Copyright 2015 Sitecore Corporation A/S
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+// except in compliance with the License. You may obtain a copy of the License at
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software distributed under the
+// License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+// either express or implied. See the License for the specific language governing permissions
+// and limitations under the License.
+// -------------------------------------------------------------------------------------------*@
+
+@using Sitecore.Extensions
+@model Sitecore.Reference.Storefront.Models.RenderingModels.NavigationViewModel
+@{
+    if (Model == null || Model.ChildCategories == null || !Model.ChildCategories.Any())
+    {
+        return;
+    }
+
+    var siteContext = CommerceTypeLoader.CreateInstance<ISiteContext>();
+    var name = string.Empty;
+    var catalogItem = siteContext.CurrentCatalogItem;
+    if (catalogItem != null)
+    {
+        name = catalogItem.Name;
+    }
+
+}
+
+<div id="CategoryNavigation" class="category-nav-container">
+    <h5>Categories</h5>
+    <div class="@siteContext.CurrentCatalogItem.DisplayName.Replace(" ", "").ToLower()-list">
+        <ul class="@siteContext.CurrentCatalogItem.DisplayName.ToLower()">
+            @foreach (var category in Model.ChildCategories)
+            {
+                var cModel = new CategoryViewModel(category);
+
+                <li class="@(string.Equals(name, cModel.Name, StringComparison.OrdinalIgnoreCase) ? "active" : "")"><a href="@cModel.GetLink()">@category.DisplayName</a></li>
+            }
+        </ul>
+    </div>
+</div>

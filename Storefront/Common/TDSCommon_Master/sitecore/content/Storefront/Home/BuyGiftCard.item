@@ -1,0 +1,79 @@
+----item----
+version: 1
+id: {75475811-76AB-4B20-88F4-804DEBF34563}
+database: master
+path: /sitecore/content/Storefront/Home/BuyGiftCard
+parent: {441B60D3-09BB-4111-A3AD-D10076B78B54}
+name: BuyGiftCard
+master: {00000000-0000-0000-0000-000000000000}
+template: {23DD8A7E-1710-446B-B712-C223716505E9}
+templatekey: GiftCard Page
+
+----version----
+language: en
+version: 1
+revision: ad66028b-a546-43ae-b7b6-0b9b85e8e4fc
+
+----field----
+field: {EC1F4944-D675-42F6-B354-A0A1BF04BFF8}
+name: Title
+key: title
+content-length: 9
+
+Gift Card
+----field----
+field: {880F53C2-C05D-4C16-97D5-1E0F0506A484}
+name: Checking Card  Balance Label
+key: checking card  balance label
+content-length: 20
+
+Checking balance ...
+----field----
+field: {F88A7128-1783-4755-8D0F-4E17398594D8}
+name: Check Your Card Balance Label
+key: check your card balance label
+content-length: 31
+
+Check balance on your gift card
+----field----
+field: {FF47948D-0CDF-4CF8-8E2A-4BD113776A2E}
+name: Check Balance Label
+key: check balance label
+content-length: 13
+
+Check balance
+----field----
+field: {8AD0F057-ACA2-4B4D-BC47-81ABB60D437B}
+name: Check Button
+key: check button
+content-length: 5
+
+Check
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20150115T171906Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+ad66028b-a546-43ae-b7b6-0b9b85e8e4fc
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150320T125528:635624529280613059Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

@@ -1,0 +1,186 @@
+----item----
+version: 1
+id: {0F4C1374-5B25-4EB9-AC38-5AB567BA4CB0}
+database: master
+path: /sitecore/content/Storefront/Home/Login
+parent: {441B60D3-09BB-4111-A3AD-D10076B78B54}
+name: Login
+master: {00000000-0000-0000-0000-000000000000}
+template: {F409B9A7-B101-4DC4-AEDA-E15E09E7D719}
+templatekey: Login Page
+
+----field----
+field: {769DCA41-4C8A-4F0C-A078-82C1FF929C59}
+name: Email Address Placeholder
+key: email address placeholder
+content-length: 13
+
+Email Address
+----field----
+field: {C3A24E20-8391-4568-AFFE-AB48DF628FE5}
+name: Password Placeholder
+key: password placeholder
+content-length: 8
+
+Password
+----field----
+field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
+name: __Icon
+key: __icon
+content-length: 22
+
+People/16x16/dude1.png
+----field----
+field: {A4F985D9-98B3-4B52-AAAF-4344F6E747C6}
+name: __Workflow
+key: __workflow
+content-length: 38
+
+{A5BC37E7-ED96-4C1E-8590-A26E64DB55EA}
+----version----
+language: en
+version: 1
+revision: 2ca3572f-1daa-4500-93a2-39ccbc0a6fc4
+
+----field----
+field: {EC1F4944-D675-42F6-B354-A0A1BF04BFF8}
+name: Title
+key: title
+content-length: 7
+
+Sign Up
+----field----
+field: {9F832330-D023-478C-93FC-220C1129C714}
+name: Signing Button
+key: signing button
+content-length: 11
+
+Signing ...
+----field----
+field: {C38AA797-891E-40DE-8B95-D1D502CD3261}
+name: Customer Message 1
+key: customer message 1
+content-length: 19
+
+Returning customers
+----field----
+field: {F5ED105B-6576-4A4C-B5BD-61D69C4B4C51}
+name: Customer Message 2
+key: customer message 2
+content-length: 36
+
+Enter you email address and password
+----field----
+field: {147CFB98-67FD-459E-8A8E-4A8092075350}
+name: Email
+key: email
+content-length: 13
+
+Email Address
+----field----
+field: {32D9809A-9D32-4F3C-BC15-317BF66DD194}
+name: Password
+key: password
+content-length: 8
+
+Password
+----field----
+field: {BDBDC686-D372-484A-B650-B6FD48BAF3A3}
+name: Sign In Button
+key: sign in button
+content-length: 7
+
+Sign in
+----field----
+field: {8408455C-FA71-4AF1-976F-59D1F70169C2}
+name: Register New Account
+key: register new account
+content-length: 20
+
+Register new account
+----field----
+field: {A5461769-1021-4358-8395-108D39606CB0}
+name: Guest Checkout Button
+key: guest checkout button
+content-length: 17
+
+Checkout as guest
+----field----
+field: {32230721-8845-4A48-8020-5C5B3D3C9569}
+name: Facebook Button
+key: facebook button
+content-length: 19
+
+Connect to facebook
+----field----
+field: {B2AFD9F7-2E3D-4EAA-A0CF-A82D1C308EC1}
+name: Facebook Text
+key: facebook text
+content-length: 150
+
+                <h3>Additional sign in options</h3>
+                <p>You will be automatically registered with us if you are a first-time user.</p>
+
+----field----
+field: {FD6DE0AA-3C18-41DF-B3B1-55ED5F16A46E}
+name: Forgot Password
+key: forgot password
+content-length: 16
+
+Forgot password?
+----field----
+field: {CC1189E1-1FDC-4396-BE4D-C5A5B107B7EB}
+name: Email Missing Message
+key: email missing message
+content-length: 22
+
+The email is required.
+----field----
+field: {2DD792A4-EE8B-4227-8580-F12071658C89}
+name: Password Missing Message
+key: password missing message
+content-length: 25
+
+The password is required.
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20141119T095223Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+2ca3572f-1daa-4500-93a2-39ccbc0a6fc4
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150320T125627:635624529875630576Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {3E431DE1-525E-47A3-B6B0-1CCBEC3A8C98}
+name: __Workflow state
+key: __workflow state
+content-length: 38
+
+{FCA998C5-0CC3-4F91-94D8-0A4E6CAECE88}

@@ -1,0 +1,65 @@
+----item----
+version: 1
+id: {6820281F-3BB3-41B4-8C93-7771EEA496D0}
+database: master
+path: /sitecore/templates/Commerce/Catalog/Commerce Dynamic Category
+parent: {963E797C-3687-4C0E-A0CE-1AAAF310F186}
+name: Commerce Dynamic Category
+master: {00000000-0000-0000-0000-000000000000}
+template: {AB86861A-6030-46C5-B394-E8F99E8B87DB}
+templatekey: Template
+
+----field----
+field: {12C33F3F-86C5-43A5-AEB4-5598CEC45116}
+name: __Base template
+key: __base template
+content-length: 77
+
+{E55834FB-7C93-44A2-87C0-62BEBA282CED}|{CB5F3E43-EAF7-4EDB-8235-674745D95059}
+----field----
+field: {F7D48A55-2158-4F02-9356-756654404F73}
+name: __Standard values
+key: __standard values
+content-length: 38
+
+{6F2A43FA-30E7-4199-B7D4-8943A94FD6E1}
+----version----
+language: en
+version: 1
+revision: 6d58cb22-a135-4a26-9df2-5c67eeaba510
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20130809T144418
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+6d58cb22-a135-4a26-9df2-5c67eeaba510
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20130903T130959:635138105995822820
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

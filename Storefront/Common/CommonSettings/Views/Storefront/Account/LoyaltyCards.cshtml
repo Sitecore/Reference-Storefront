@@ -1,0 +1,139 @@
+﻿@*//-----------------------------------------------------------------------
+// Copyright 2015 Sitecore Corporation A/S
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+// except in compliance with the License. You may obtain a copy of the License at
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software distributed under the
+// License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+// either express or implied. See the License for the specific language governing permissions
+// and limitations under the License.
+// -------------------------------------------------------------------------------------------*@
+
+@using Sitecore.Reference.Storefront.Managers
+
+<div class="wrap-main-content">
+    <div class="row" id="loyaltyCardsSection">
+        <div class="col-md-12">
+            <h2>
+                <span class="back-to-myaccount pull-right">
+                    <a href="@StorefrontManager.StorefrontUri("/accountmanagement")">
+                        <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span> @Html.Sitecore().Field("Back To My Account Label", Html.Sitecore().CurrentItem)
+                    </a>
+                </span>
+            </h2>
+        </div>
+        <div class="row" id="loyaltyCards" data-bind="if: isNotEmpty">
+            <div class="col-md-12">
+                <div class="col-md-12"><h3>@Html.Sitecore().Field("Your Loyalty Card Header", Html.Sitecore().CurrentItem):</h3></div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="loyaltyCardChange">@Html.Sitecore().Field("Card number", Html.Sitecore().CurrentItem)</label>
+                        <select id="loyaltyCardChange" class="form-control" data-bind='options: LoyaltyCards(), optionsValue : "CardNumber", optionsText: "CardNumber", value: selectedCard'></select>
+                    </div>
+                </div>
+            </div>
+            <div id="eachCard" data-bind="with: $root.card">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-12"><h3>@Html.Sitecore().Field("Programs Per Card Header", Html.Sitecore().CurrentItem):</h3></div>
+                        <div class="col-md-12" data-bind="foreach: Programs">
+                            <div class="card-program loyalty-details" data-bind="click: $root.changeTiers, css: $root.program().ProgramId == ProgramId ? 'selected' : 'un-selected'">
+                                <h5 data-bind="text: Name"></h5>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" data-bind="with: $root.program">
+                        <div class="col-md-12"><h3>@Html.Sitecore().Field("Tier Progress Header", Html.Sitecore().CurrentItem):</h3></div>
+                        <div class="col-md-12" data-bind="foreach: LoyaltyTiers">
+                            <div class="tier-label bg-success" data-bind="visible: IsElegible == true">
+                                <h5 data-bind="text: Description"></h5>
+                                <div class="expiration-date">
+                                    @Html.Sitecore().Field("Expires Label", Html.Sitecore().CurrentItem) <span data-bind="text: ValidTo"></span>
+                                </div>
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="tier-label bg-not-avaliable" data-bind="visible: IsElegible == false">
+                                <h5 data-bind="text: Description"></h5>
+                                <span class="not-avaliable">@Html.Sitecore().Field("Not Yet Eligible Label", Html.Sitecore().CurrentItem)</span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-12"><h3>@Html.Sitecore().Field("Points Per Card Header", Html.Sitecore().CurrentItem):</h3></div>
+                        <div class="col-md-12" data-bind="foreach: RewardPoints">
+                            <div class="card-program" data-bind="click: $root.changeTransactions">
+                                <h5 data-bind="text: Description"></h5>
+                                <div class="tier-label loyalty-details" data-bind="css: $root.point().RewardPointId == RewardPointId ? 'selected' : 'un-selected'">
+                                    <table class="table table-hover small-list">
+                                        <tr class="header">
+                                            <td>@Html.Sitecore().Field("Issued Points Label", Html.Sitecore().CurrentItem):</td>
+                                            <td>@Html.Sitecore().Field("Active Points Label", Html.Sitecore().CurrentItem):</td>
+                                            <td>@Html.Sitecore().Field("Used Points Label", Html.Sitecore().CurrentItem):</td>
+                                            <td>@Html.Sitecore().Field("Expired Points Label", Html.Sitecore().CurrentItem):</td>
+                                            <td>@Html.Sitecore().Field("Type Label", Html.Sitecore().CurrentItem):</td>
+                                        </tr>
+                                        <tr>
+                                            <td data-bind="text: IssuedPoints"></td>
+                                            <td data-bind="text: ActivePoints"></td>
+                                            <td data-bind="text: UsedPoints"></td>
+                                            <td data-bind="text: ExpiredPoints"></td>
+                                            <td data-bind="text: RewardPointType"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" data-bind="with: $root.point">
+                        <div class="col-md-12"><h3>@Html.Sitecore().Field("Transaction History Header", Html.Sitecore().CurrentItem):</h3></div>
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-hover small-list">
+                                    <thead>
+                                        <tr class="header">
+                                            <td>@Html.Sitecore().Field("Transaction Number Label", Html.Sitecore().CurrentItem):</td>
+                                            <td>@Html.Sitecore().Field("Date Label", Html.Sitecore().CurrentItem):</td>
+                                            <td>@Html.Sitecore().Field("Time Label", Html.Sitecore().CurrentItem):</td>
+                                            <td>@Html.Sitecore().Field("Store Label", Html.Sitecore().CurrentItem):</td>
+                                            <td>@Html.Sitecore().Field("Type Label", Html.Sitecore().CurrentItem):</td>
+                                            <td>@Html.Sitecore().Field("Points Label", Html.Sitecore().CurrentItem):</td>
+                                            <td>@Html.Sitecore().Field("Expiration Date Label", Html.Sitecore().CurrentItem):</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-bind="foreach: Transactions">
+                                        <tr data-bind="css: {'odd': $index() % 2 == 0}">
+                                            <td data-bind="text: ExternalId"></td>
+                                            <td data-bind="text: EntryDate"></td>
+                                            <td data-bind="text: EntryTime"></td>
+                                            <td data-bind="text: Store"></td>
+                                            <td data-bind="text: EntryType"></td>
+                                            <td data-bind="text: Points"></td>
+                                            <td data-bind="text: ExpirationDate"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="loyaltyCardsEmpty" data-bind="if: isEmpty">
+            @Html.Sitecore().Field("Loyalty Cards Empty Text", Html.Sitecore().CurrentItem)
+        </div>
+        <div class="col-md-12 border-top">
+            <a href="@StorefrontManager.StorefrontUri("/accountmanagement")" class="btn btn-default">@Html.Sitecore().Field("Back To My Account Label", Html.Sitecore().CurrentItem)</a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    initLoyaltyCards("loyaltyCardsSection");
+</script>

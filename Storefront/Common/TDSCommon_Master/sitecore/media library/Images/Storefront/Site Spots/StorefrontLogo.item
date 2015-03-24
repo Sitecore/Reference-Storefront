@@ -1,0 +1,163 @@
+----item----
+version: 1
+id: {8D55638A-C918-41A0-81CD-99A42B887058}
+database: master
+path: /sitecore/media library/Images/Storefront/Site Spots/StorefrontLogo
+parent: {6DE2C7E4-89EE-40E1-B50D-2670F3E0965C}
+name: StorefrontLogo
+master: {00000000-0000-0000-0000-000000000000}
+template: {F1828A2C-7E5D-4BBD-98CA-320474871548}
+templatekey: Image
+
+----field----
+field: {40E50ED9-BA07-4702-992E-A912738D32DC}
+name: Blob
+key: blob
+content-length: 766
+
+R0lGODdh5gBBAOMAAMzMzJaWlrGxsZycnKOjo6qqqre3t76+vsXFxQAAAAAAAAAAAAAAAAAAAAAA
+AAAAACwAAAAA5gBBAAAE/hDISau9OOvNu/9gKI5kaZ5oqq5s675wLM90bd94ru987//AoHBILBqP
+yKRyyWw6n9CodEqtWq/YrHbL7Xq/4LB4TC6bz+i0es1uu9/wuHxOr9vv+Lx+z+/7NwZ/TQIDAQMC
+FoSGgRWKBActBYYUAZWWAZCCPQSXAQUUkpeIE6GWCCsGlYwSnZWZmjqpAYgCrhIHqgChpwC4AQYI
+hZ8pCJXDE5WjsD4GA8e5vQTDxb8StQPWlSqc2BXJy0TUqxTiEpzDvq+U2gCWGbLqrLPgQ5wBvBWS
+A7yFo+UWlgzICpChkLMC6ioRKEQAHz0dteZ5q7QPmcR21S5IKrAxg69L5q9aVXyYQxaBC5YGhLz4
+7QK1Sg7zKQzVTZczBL6Okazha+QFbhaVQdNoTINBCfCI1txJoxAmDdQy9ZPw74KscQAlVqUQkWmN
+iFip4oN27pYtDE6XZhWaEeeErl5lUNP5Viu0a9kIYkhFgFPYCcLMPsVVU19cGRFjIs0VaoIvYIHR
+/kqllqsrBPaoGsPZ8vALp50o2AsIqpNieXovuQQ9dCDF055TsHbH1WBYR/HWDSuFAUEBhlibGSoA
+O7bx48iTK1/OvLnz59CjS59Ovbr169iza9/Ovbv37+DDix9Pvrz58+jTz4gAADs=
+----field----
+field: {22EAC599-F13B-4607-A89D-C091763A467D}
+name: Width
+key: width
+content-length: 3
+
+230
+----field----
+field: {DE2CA9E4-C117-4C8A-A139-1FF4B199D15A}
+name: Height
+key: height
+content-length: 2
+
+65
+----field----
+field: {C06867FE-9A43-4C7D-B739-48780492D06F}
+name: Extension
+key: extension
+content-length: 3
+
+gif
+----field----
+field: {6F47A0A5-9C94-4B48-ABEB-42D38DEF6054}
+name: Mime Type
+key: mime type
+content-length: 9
+
+image/gif
+----field----
+field: {6954B7C7-2487-423F-8600-436CB3B6DC0E}
+name: Size
+key: size
+content-length: 3
+
+560
+----field----
+field: {CB09946F-3218-4823-87D2-D5007C199A96}
+name: Dimensions
+key: dimensions
+content-length: 8
+
+230 x 65
+----field----
+field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
+name: __Icon
+key: __icon
+content-length: 61
+
+~/media/8D55638AC91841A081CD99A42B887058.ashx?h=16&thn=1&w=16
+----version----
+language: de-DE
+version: 1
+revision: 5bf356c9-0594-40f8-b263-fa7d617828a2
+
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 34
+
+20141021T043640:635494630000465031
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+5bf356c9-0594-40f8-b263-fa7d617828a2
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20141021T043640:635494630000777537
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin
+----version----
+language: en
+version: 1
+revision: 5d325fc6-1048-4c4a-9a7d-d6af37d0b36c
+
+----field----
+field: {65885C44-8FCD-4A7F-94F1-EE63703FE193}
+name: Alt
+key: alt
+content-length: 4
+
+Logo
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20141021T043640
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+5d325fc6-1048-4c4a-9a7d-d6af37d0b36c
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20141022T032913:635495453536004640
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

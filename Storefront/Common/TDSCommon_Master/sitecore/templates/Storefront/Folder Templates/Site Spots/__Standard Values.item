@@ -1,0 +1,58 @@
+----item----
+version: 1
+id: {5D84CE0B-6B63-4317-A225-6B131D04C7B0}
+database: master
+path: /sitecore/templates/Storefront/Folder Templates/Site Spots/__Standard Values
+parent: {4E47DCB0-D735-4F1D-B369-2BB80597B0E4}
+name: __Standard Values
+master: {00000000-0000-0000-0000-000000000000}
+template: {4E47DCB0-D735-4F1D-B369-2BB80597B0E4}
+templatekey: Site Spots
+
+----field----
+field: {1172F251-DAD4-4EFB-A329-0C63500E4F1E}
+name: __Masters
+key: __masters
+content-length: 311
+
+{1FF7F566-A109-43C2-BDE8-32ED25E35225}|{3DEAA741-69D6-4CBF-BA89-079F22202ADE}|{DAB02003-2A0E-4A83-B187-69429C935290}|{F73F2DD4-F64F-4134-90B2-0B16E37DF630}|{7395B9E1-6AFA-4D63-91ED-8A8BE11D26B0}|{87F2F2B9-CD50-4B78-9A27-FD853D5476B9}|{917BAFA7-4CD6-44B5-9DAC-59FC063A9743}|{72AADE9F-48C2-474A-84D2-F9FEE9107F12}
+----version----
+language: en
+version: 1
+revision: 66c7082b-b806-49f6-bbde-0d4413c164f9
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20141021T041523
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+66c7082b-b806-49f6-bbde-0d4413c164f9
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20141106T093353:635508632333477302
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

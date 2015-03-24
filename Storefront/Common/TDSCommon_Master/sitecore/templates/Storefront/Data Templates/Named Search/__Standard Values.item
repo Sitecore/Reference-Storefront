@@ -1,0 +1,58 @@
+----item----
+version: 1
+id: {1F58FB66-F522-46C9-B134-C694E30C7213}
+database: master
+path: /sitecore/templates/Storefront/Data Templates/Named Search/__Standard Values
+parent: {F3C0CD6C-9FA9-442D-BD3A-5A25E292F2F7}
+name: __Standard Values
+master: {00000000-0000-0000-0000-000000000000}
+template: {F3C0CD6C-9FA9-442D-BD3A-5A25E292F2F7}
+templatekey: Named Search
+
+----field----
+field: {A0CB3965-8884-4C7A-8815-B6B2E5CED162}
+name: __Editors
+key: __editors
+content-length: 38
+
+{59F53BBB-D1F5-4E38-8EBA-0D73109BB59B}
+----version----
+language: en
+version: 1
+revision: f9efdef4-88a1-47dd-969a-9c999d9732b8
+
+----field----
+field: {439CDD2A-66A9-4D67-913A-5B696327C867}
+name: Title
+key: title
+content-length: 5
+
+$name
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20141022T082757
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+f9efdef4-88a1-47dd-969a-9c999d9732b8
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20141022T090525:635495655251693806
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

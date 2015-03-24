@@ -1,0 +1,65 @@
+----item----
+version: 1
+id: {5DBED34E-FFBE-49CA-B420-DBFE45A85B85}
+database: master
+path: /sitecore/Commerce/Countries and Geographical Regions/Canada
+parent: {60315CFC-A399-4380-B159-6FBFF6B9E949}
+name: Canada
+master: {00000000-0000-0000-0000-000000000000}
+template: {9086E8E0-55AD-443F-99AF-CFF0F95E7138}
+templatekey: Country
+
+----field----
+field: {F8487720-7F38-40F3-A689-C5CA1722B809}
+name: Country Code
+key: country code
+content-length: 2
+
+CA
+----field----
+field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
+name: __Icon
+key: __icon
+content-length: 27
+
+Flags/32x32/flag_canada.png
+----version----
+language: en
+version: 1
+revision: 638e8c03-455d-4263-b2e6-03385ed4a392
+
+----field----
+field: {2E19E838-DF61-4CD1-ABB7-106945E60901}
+name: Name
+key: name
+content-length: 6
+
+Canada
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20150210T111112Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+638e8c03-455d-4263-b2e6-03385ed4a392
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150210T111255:635591635757165449Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

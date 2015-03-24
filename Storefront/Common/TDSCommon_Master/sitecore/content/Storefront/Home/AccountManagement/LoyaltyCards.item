@@ -1,0 +1,212 @@
+----item----
+version: 1
+id: {76749831-FD3B-4B09-98D0-F54A1CF84084}
+database: master
+path: /sitecore/content/Storefront/Home/AccountManagement/LoyaltyCards
+parent: {4D316BBA-345F-4929-9E84-A2208C0F7AA6}
+name: LoyaltyCards
+master: {00000000-0000-0000-0000-000000000000}
+template: {CDEF717D-E2FD-4D31-91C3-3B1D6F479F00}
+templatekey: LoyaltyCards Page
+
+----version----
+language: en
+version: 1
+revision: 0f729ad7-d240-4924-9dbc-5cd44cdbd1cc
+
+----field----
+field: {EC1F4944-D675-42F6-B354-A0A1BF04BFF8}
+name: Title
+key: title
+content-length: 13
+
+Loyalty Cards
+----field----
+field: {79EF34F0-6ADE-47B6-9157-26FAFF6FD78C}
+name: Card Number Label
+key: card number label
+content-length: 11
+
+Card number
+----field----
+field: {06581D7E-762C-4F8F-8121-FA3CE293EE54}
+name: Loyalty Points Label
+key: loyalty points label
+content-length: 14
+
+Loyalty points
+----field----
+field: {B3CA9D15-B86E-4BAA-A0D9-CD45B7706F05}
+name: Transaction Number Label
+key: transaction number label
+content-length: 18
+
+Transaction number
+----field----
+field: {DCF86F3E-D266-46C9-AB44-229442459C41}
+name: Date Label
+key: date label
+content-length: 4
+
+Date
+----field----
+field: {FF667DAB-4937-446C-9C7B-423C88827948}
+name: Time Label
+key: time label
+content-length: 4
+
+Time
+----field----
+field: {2FE5AC33-A7DD-4632-9073-4EC683B8F21E}
+name: Store Label
+key: store label
+content-length: 5
+
+Store
+----field----
+field: {6B12E26A-444A-40B6-920A-8F1C35A9C3C6}
+name: Type Label
+key: type label
+content-length: 4
+
+Type
+----field----
+field: {FC3A59C9-A0D5-496F-86F3-9570626F5176}
+name: Points Label
+key: points label
+content-length: 6
+
+Points
+----field----
+field: {691131F8-1CB6-4598-944F-A6650E76D385}
+name: Expiration Date Label
+key: expiration date label
+content-length: 15
+
+Expiration date
+----field----
+field: {68BF97B5-1754-4F07-85AC-F718BB71ABDB}
+name: Not Yet Eligible Label
+key: not yet eligible label
+content-length: 16
+
+Not yet elegible
+----field----
+field: {5EF9112B-C58D-405B-A003-669156E9CAAC}
+name: Back To My Account Label
+key: back to my account label
+content-length: 18
+
+Back to My Account
+----field----
+field: {393FACBA-35C0-45EF-9618-23E3222F7936}
+name: Expires Label
+key: expires label
+content-length: 7
+
+Expires
+----field----
+field: {71164685-510B-4B23-83D5-202B57785758}
+name: Issued Points Label
+key: issued points label
+content-length: 13
+
+Issued points
+----field----
+field: {AA312CA7-FC09-4A2D-90FF-C67DF417E200}
+name: Active Points Label
+key: active points label
+content-length: 13
+
+Active Points
+----field----
+field: {5DC975A5-3EC3-467F-A317-D3C36958DD33}
+name: Used Points Label
+key: used points label
+content-length: 11
+
+Used points
+----field----
+field: {CBA04A95-279A-4FC8-83B7-989DF3366B29}
+name: Expired Points Label
+key: expired points label
+content-length: 14
+
+Expired points
+----field----
+field: {4E4FBC22-CFC3-4239-AD74-BDAB59F75518}
+name: Your Loyalty Card Header
+key: your loyalty card header
+content-length: 17
+
+Your loyalty card
+----field----
+field: {B9217FFA-213D-43E3-A9CC-5293AB82EA29}
+name: Programs Per Card Header
+key: programs per card header
+content-length: 17
+
+Programs per card
+----field----
+field: {4532D6AE-B7B2-4ECC-9DE1-72937A9AEB00}
+name: Transaction History Header
+key: transaction history header
+content-length: 19
+
+Transaction history
+----field----
+field: {AA7A2C29-A8D2-46FD-B31C-2C0D78EB681E}
+name: Points Per Card Header
+key: points per card header
+content-length: 15
+
+Points per card
+----field----
+field: {F2BCCEC0-4DAC-47A5-A126-AD4C7CB1B513}
+name: Tier Progress Header
+key: tier progress header
+content-length: 13
+
+Tier progress
+----field----
+field: {BAFC2CF9-966B-4EFC-8162-01BACE18D918}
+name: Card Details Title
+key: card details title
+content-length: 12
+
+Card Details
+----field----
+field: {C19F5F91-F89B-43D8-B057-52A79A06FA49}
+name: Loyalty Cards Empty Text
+key: loyalty cards empty text
+content-length: 32
+
+<p>You have no loyalty cards</p>
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20150111T190957Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+0f729ad7-d240-4924-9dbc-5cd44cdbd1cc
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150320T125448:635624528887204797Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

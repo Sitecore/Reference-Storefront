@@ -1,0 +1,44 @@
+----item----
+version: 1
+id: {465C3B0C-6E48-4C08-BA32-96B510B5FBC2}
+database: master
+path: /sitecore/content/Storefront/Global/Spots
+parent: {67A61D44-9C33-4490-8F6E-AE6C1819682F}
+name: Spots
+master: {00000000-0000-0000-0000-000000000000}
+template: {320189D4-5172-40E0-8DD0-0AB356E9A943}
+templatekey: Spots
+
+----version----
+language: en
+version: 1
+revision: df649730-1137-45e1-a7ea-07a6e52ca9ee
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20141021T041616
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+df649730-1137-45e1-a7ea-07a6e52ca9ee
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20141021T041616:635494617762789694
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

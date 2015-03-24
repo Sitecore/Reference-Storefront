@@ -1,0 +1,65 @@
+----item----
+version: 1
+id: {1C2480BB-86D5-4689-B4AB-2DD67BA35221}
+database: master
+path: /sitecore/content/Storefront/Global/QuickLinks/Links/Footer/Store catalogs
+parent: {22D28B39-F1F7-487A-9DDC-71C31AD123C6}
+name: Store catalogs
+master: {00000000-0000-0000-0000-000000000000}
+template: {87C331AE-3293-4FD1-A5F2-A625523F3019}
+templatekey: QuickLink
+
+----version----
+language: en
+version: 1
+revision: 0cbfa9c5-45c8-4d09-87d0-4e43b4bf5537
+
+----field----
+field: {B861B1ED-2820-4AD8-B169-8928AC381634}
+name: Link
+key: link
+content-length: 114
+
+<link text="" linktype="internal" class="" title=""  querystring="" id="{F6EF6372-3323-44D3-83B9-7514A3C6621A}" />
+----field----
+field: {6CB9EB87-680B-4CB9-9946-9BAEB553F6B8}
+name: Text
+key: text
+content-length: 14
+
+Store catalogs
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20141105T093053
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+0cbfa9c5-45c8-4d09-87d0-4e43b4bf5537
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20141124T080947:635524133872742011
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

@@ -1,0 +1,58 @@
+----item----
+version: 1
+id: {9C6FF190-CB49-42F1-9F16-FD5D97D8FD69}
+database: master
+path: /sitecore/content/Storefront/Home/Company
+parent: {441B60D3-09BB-4111-A3AD-D10076B78B54}
+name: Company
+master: {00000000-0000-0000-0000-000000000000}
+template: {CE35EFE0-01EA-4F43-B124-66FC4B0663EF}
+templatekey: Pages Folder
+
+----field----
+field: {39C4902E-9960-4469-AEEF-E878E9C8218F}
+name: __Hidden
+key: __hidden
+content-length: 1
+
+1
+----field----
+field: {BA3F86A2-4A1C-4D78-B63D-91C2779C1B5E}
+name: __Sortorder
+key: __sortorder
+content-length: 3
+
+200
+----version----
+language: en
+version: 1
+revision: e3a8ee57-3f2a-4dab-bbd1-1efedb643556
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20141117T065909
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+e3a8ee57-3f2a-4dab-bbd1-1efedb643556
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150109T084847:635563901272586009Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

@@ -1,0 +1,114 @@
+----item----
+version: 1
+id: {A7D9C743-6E92-4CEF-8626-5C67D2AABF61}
+database: master
+path: /sitecore/content/Storefront/Home/Checkout
+parent: {441B60D3-09BB-4111-A3AD-D10076B78B54}
+name: Checkout
+master: {00000000-0000-0000-0000-000000000000}
+template: {CAF02D6D-5CB8-4995-B4F3-E4ED6F54E5A7}
+templatekey: Checkout Page
+
+----field----
+field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
+name: __Icon
+key: __icon
+content-length: 36
+
+Business/32x32/shoppingcart_full.png
+----field----
+field: {BA3F86A2-4A1C-4D78-B63D-91C2779C1B5E}
+name: __Sortorder
+key: __sortorder
+content-length: 3
+
+300
+----field----
+field: {A4F985D9-98B3-4B52-AAAF-4344F6E747C6}
+name: __Workflow
+key: __workflow
+content-length: 38
+
+{A5BC37E7-ED96-4C1E-8590-A26E64DB55EA}
+----version----
+language: en
+version: 1
+revision: abb2f088-9099-44b6-b0d6-cbd3d25de9f5
+
+----field----
+field: {9B303130-F463-4DCE-A25F-CA1877C950EB}
+name: Processing Label
+key: processing label
+content-length: 14
+
+Processing ...
+----field----
+field: {F93E527F-F7D8-4DD7-81C1-1D78258BEA60}
+name: Delivery Information Label
+key: delivery information label
+content-length: 20
+
+DELIVERY INFORMATION
+----field----
+field: {2F7B36FD-C055-4CE3-8096-A196E209ED22}
+name: Billing Information Label
+key: billing information label
+content-length: 19
+
+BILLING INFORMATION
+----field----
+field: {DC264DC6-6E66-44BE-A58E-0D76F7A00614}
+name: Confirmation Label
+key: confirmation label
+content-length: 21
+
+CONFIRMATION & REVIEW
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20141119T045223
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+abb2f088-9099-44b6-b0d6-cbd3d25de9f5
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150224T144944:635603861843340062Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {3E431DE1-525E-47A3-B6B0-1CCBEC3A8C98}
+name: __Workflow state
+key: __workflow state
+content-length: 38
+
+{FCA998C5-0CC3-4F91-94D8-0A4E6CAECE88}
+----field----
+field: {001DD393-96C5-490B-924A-B0F25CD9EFD8}
+name: __Lock
+key: __lock
+content-length: 5
+
+<r />
