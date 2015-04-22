@@ -1120,8 +1120,8 @@ end sub
     <tns:ContactEmail />
     <tns:DefaultUrl />
     <tns:Type>Self</tns:Type>
-    <tns:CreatedDate>2015-03-08T01:22:59.9-05:00</tns:CreatedDate>
-    <tns:LastModifiedDate>2015-03-08T01:22:59.9-05:00</tns:LastModifiedDate>
+    <tns:CreatedDate>2015-04-06T06:58:24.487-04:00</tns:CreatedDate>
+    <tns:LastModifiedDate>2015-04-06T06:58:24.487-04:00</tns:LastModifiedDate>
     <tns:LastModifiedBy>anonymous</tns:LastModifiedBy>
     <tns:DeletedDate>1899-12-31T19:00:00-05:00</tns:DeletedDate>
   </tns:Customer>
@@ -1137,8 +1137,8 @@ end sub
     <tns:CampaignLevelGoaling>true</tns:CampaignLevelGoaling>
     <tns:NumberOfEventsOrdered>0</tns:NumberOfEventsOrdered>
     <tns:CustomerName>Default Customer</tns:CustomerName>
-    <tns:CreatedDate>2015-03-08T01:22:59.943-05:00</tns:CreatedDate>
-    <tns:LastModifiedDate>2015-03-08T01:22:59.943-05:00</tns:LastModifiedDate>
+    <tns:CreatedDate>2015-04-06T06:58:24.527-04:00</tns:CreatedDate>
+    <tns:LastModifiedDate>2015-04-06T06:58:24.527-04:00</tns:LastModifiedDate>
     <tns:LastModifiedBy>anonymous</tns:LastModifiedBy>
     <tns:DeletedDate>1899-12-31T19:00:00-05:00</tns:DeletedDate>
   </tns:Campaign>
@@ -1167,9 +1167,9 @@ end sub
     <tns:UsageOption>Public</tns:UsageOption>
     <tns:CodeGenerationStatus>Queued</tns:CodeGenerationStatus>
     <tns:CodeGenerationError />
-    <tns:CreatedDate>2015-03-08T01:22:59.983-05:00</tns:CreatedDate>
-    <tns:LastModifiedDate>2015-03-08T01:22:59.983-05:00</tns:LastModifiedDate>
-    <tns:LastModifiedBy>anonymous</tns:LastModifiedBy>
+    <tns:CreatedDate>2015-04-06T06:58:24.567-04:00</tns:CreatedDate>
+    <tns:LastModifiedDate>2015-04-07T01:38:59.343-04:00</tns:LastModifiedDate>
+    <tns:LastModifiedBy>DK\mbe</tns:LastModifiedBy>
   </tns:PromoCodeDefinition>
   <tns:Discount xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <tns:Id>1</tns:Id>
@@ -1180,10 +1180,10 @@ end sub
     <tns:Description />
     <tns:Active>true</tns:Active>
     <tns:StartDate>1999-12-31T19:00:00-05:00</tns:StartDate>
-    <tns:EndDate>2015-03-27T18:59:59-04:00</tns:EndDate>
-    <tns:CreatedDate>2015-03-08T01:23:00.217-05:00</tns:CreatedDate>
-    <tns:LastModifiedDate>2015-03-08T01:23:00.32-05:00</tns:LastModifiedDate>
-    <tns:LastModifiedBy>anonymous</tns:LastModifiedBy>
+    <tns:EndDate>2017-08-01T18:59:59-04:00</tns:EndDate>
+    <tns:CreatedDate>2015-04-06T06:58:24.8-04:00</tns:CreatedDate>
+    <tns:LastModifiedDate>2015-04-07T01:39:01.063-04:00</tns:LastModifiedDate>
+    <tns:LastModifiedBy>DK\mbe</tns:LastModifiedBy>
     <tns:DeletedDate>1899-12-31T19:00:00-05:00</tns:DeletedDate>
     <tns:CreativeId>1</tns:CreativeId>
     <tns:ExposureLimit>1</tns:ExposureLimit>

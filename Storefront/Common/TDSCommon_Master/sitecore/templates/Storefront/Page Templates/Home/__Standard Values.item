@@ -17,6 +17,20 @@ content-length: 60
 
 /sitecore/content/Storefront/Global/Site Spots/No Datasource
 ----field----
+field: {E147B56A-CE65-4EAD-AB90-A561BF4B389B}
+name: Max Number of WishLists
+key: max number of wishlists
+content-length: 2
+
+10
+----field----
+field: {D3512838-C09A-4388-B8E9-65A3E1FEF1F1}
+name: Max Number of WishList Items
+key: max number of wishlist items
+content-length: 2
+
+10
+----field----
 field: {8B1D9D97-A517-48D8-BD62-7CB01366FD3C}
 name: Product List Texts
 key: product list texts
@@ -40,7 +54,7 @@ content-length: 2581
 ----version----
 language: en
 version: 1
-revision: 70898053-a9bf-4728-b63b-75a60c71752c
+revision: eb693409-cdc1-431a-bf2c-7e8616cbd71e
 
 ----field----
 field: {04BF00DB-F5FB-41F7-8AB7-22408372A981}
@@ -62,14 +76,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-70898053-a9bf-4728-b63b-75a60c71752c
+eb693409-cdc1-431a-bf2c-7e8616cbd71e
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 35
 
-20150316T233319:635621455998706019Z
+20150409T055708:635641558285695681Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

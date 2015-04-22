@@ -21,6 +21,7 @@ namespace Sitecore.Reference.Storefront
     using Sitecore.Commerce.Services;
     using System;
     using System.Collections.Generic;
+    using Sitecore.Data.Items;
 
     /// <summary>
     /// Simple static methods for use in the MVC application.
@@ -82,7 +83,7 @@ namespace Sitecore.Reference.Storefront
             {
                 Sitecore.Diagnostics.Log.Error(message.Message, owner);
             }
-        }              
+        }
 
         /// <summary>
         /// Logs the exception.
@@ -109,6 +110,30 @@ namespace Sitecore.Reference.Storefront
             }
 
             return text ?? string.Empty;
+        }
+
+        /// <summary>
+        /// Gets the anchor from link tag.
+        /// </summary>
+        /// <param name="item">The link item.</param>
+        /// <returns>The "url" portion of the link only.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters")]
+        public static string GetAnchorFromLinkTag(Item item)
+        {
+            string linkString = item["Link"];
+
+            int startPosition = linkString.IndexOf("url=", StringComparison.OrdinalIgnoreCase);
+            if (startPosition >= 0)
+            {
+                startPosition += 5; // add space for the double quote
+                int endPosition = linkString.IndexOf("\"", startPosition, StringComparison.OrdinalIgnoreCase);
+                if (endPosition >= 0)
+                {
+                    return linkString.Substring(startPosition, endPosition - startPosition);
+                }
+            }
+
+            return string.Empty;
         }
     }
 }

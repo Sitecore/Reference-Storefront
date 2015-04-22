@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        @Html.LabelFor(m => m.UserName, Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.Email, Html.Sitecore().CurrentItem))
+                        @Html.LabelFor(m => m.UserName, Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.Email, Html.Sitecore().CurrentItem))<span class="required">*</span>
 
                         @Html.TextBoxFor(m => m.UserName, 
                         new 
@@ -45,7 +45,7 @@
                 </div>
                 <div class="col-md-6 col-sm-6">
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Password, Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.Password, Html.Sitecore().CurrentItem))
+                        @Html.LabelFor(m => m.Password, Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.Password, Html.Sitecore().CurrentItem))<span class="required">*</span>
                         @Html.PasswordFor(m => m.Password, 
                         new 
                         {
@@ -62,7 +62,7 @@
                 </div>
                 <div class="col-md-6 col-sm-6">
                     <div class="form-group">
-                        @Html.LabelFor(m => m.ConfirmPassword, Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.PasswordAgain, Html.Sitecore().CurrentItem))
+                        @Html.LabelFor(m => m.ConfirmPassword, Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.PasswordAgain, Html.Sitecore().CurrentItem))<span class="required">*</span>
                         @Html.PasswordFor(m => m.ConfirmPassword, 
                         new 
                         {
@@ -87,7 +87,7 @@
         <div class="col-md-6">
             <div class="row">
                 <div class="col-md-12 spot-single-image">
-                    <img src="http://placehold.it/750x430" class="img-responsive" alt="a" />
+                        @Html.Sitecore().Field("Image", Html.Sitecore().CurrentItem, new { Parameters = new Sitecore.Collections.SafeDictionary<string> { { "class", "img-responsive" } } })
                 </div>
             </div>
         </div>

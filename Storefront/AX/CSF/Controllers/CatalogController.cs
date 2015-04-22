@@ -47,6 +47,7 @@ namespace Sitecore.Reference.Storefront.Controllers
     using Sitecore.Reference.Storefront.Models.SitecoreItemModels;
     using Sitecore.Reference.Storefront.SitecorePipelines;
     using Sitecore.Reference.Storefront.ExtensionMethods;
+    using Sitecore.Reference.Storefront.Extensions;
 
     /// <summary>
     /// Used to manage the data and view retrieval for catalog pages
@@ -397,7 +398,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// <returns>The action result.</returns>
         public ActionResult VisitedProductDetailsPage()
         {
-            this.CatalogManager.VisitedProductDetailsPage();
+            this.CatalogManager.VisitedProductDetailsPage(this.CurrentStorefront);
             return this.View(CurrentRenderingView);
         }
 
@@ -407,7 +408,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// <returns>The action result.</returns>
         public ActionResult VisitedCategoryPage()
         {
-            this.CatalogManager.VisitedCategoryPage();
+            this.CatalogManager.VisitedCategoryPage(this.CurrentStorefront);
             return this.View(CurrentRenderingView);
         }
 
@@ -797,7 +798,7 @@ namespace Sitecore.Reference.Storefront.Controllers
             model.StockStatusName = StorefrontManager.GetProductStockStatusName(stockInfo.Status);
             if (stockInfo.AvailabilityDate != null & stockInfo.AvailabilityDate.HasValue)
             {
-                model.StockAvailabilityDate = stockInfo.AvailabilityDate.Value.ToShortDateString();
+                model.StockAvailabilityDate = stockInfo.AvailabilityDate.Value.ToDisplayedDate();
             }
         }
 

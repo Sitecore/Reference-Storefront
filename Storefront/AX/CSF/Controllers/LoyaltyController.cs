@@ -85,9 +85,13 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// </summary>
         /// <returns>My loyalty cards view</returns>
         [HttpGet]
-        [Authorize]
         public override ActionResult Index()
         {
+            if (!Context.User.IsAuthenticated)
+            {
+                return Redirect("/login");
+            }
+
             return View(this.CurrentRenderingView);
         }
 

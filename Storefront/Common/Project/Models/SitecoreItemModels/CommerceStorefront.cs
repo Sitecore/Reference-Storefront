@@ -240,6 +240,48 @@ namespace Sitecore.Reference.Storefront.Models.SitecoreItemModels
         }
 
         /// <summary>
+        /// Gets the maximum number of addresses.
+        /// </summary>
+        /// <value>
+        /// The maximum number of addresses.
+        /// </value>
+        public virtual int MaxNumberOfAddresses
+        {
+            get
+            {
+                return MainUtil.GetInt(this.HomeItem[StorefrontConstants.KnownFieldNames.MaxNumberOfAddresses], 10);
+            }
+        }
+
+        /// <summary>
+        /// Gets the maximum number of wish lists.
+        /// </summary>
+        /// <value>
+        /// The maximum number of wish lists.
+        /// </value>
+        public virtual int MaxNumberOfWishLists
+        {
+            get
+            {
+                return MainUtil.GetInt(this.HomeItem[StorefrontConstants.KnownFieldNames.MaxNumberOfWishLists], 10);
+            }
+        }
+
+        /// <summary>
+        /// Gets the maximum number of wish list items.
+        /// </summary>
+        /// <value>
+        /// The maximum number of wish list items.
+        /// </value>
+        public virtual int MaxNumberOfWishListItems
+        {
+            get
+            {
+                return MainUtil.GetInt(this.HomeItem[StorefrontConstants.KnownFieldNames.MaxNumberOfWishListItems], 10);
+            }
+        }
+
+        /// <summary>
         /// The Title of the Page
         /// </summary>
         /// <returns>The title.</returns>

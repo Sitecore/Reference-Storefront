@@ -35,9 +35,9 @@ namespace Sitecore.Reference.Storefront
         public static class KnownFieldNames
         {
             /// <summary>
-            /// The use ax checkout control field.
+            /// The maximum number of loyalty programs to join field.
             /// </summary>
-            public static readonly string UseAXCheckoutControl = "Use AX Checkout Control";
+            public static readonly string MaxNumberOfLoyaltyProgramsToJoin = "Max Number of Loyalty Programs To Join";
         }
     }
 }

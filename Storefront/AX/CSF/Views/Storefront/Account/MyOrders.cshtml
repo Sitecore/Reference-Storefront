@@ -12,6 +12,7 @@
 
 @using Sitecore.Commerce.Entities.Orders
 @using Sitecore.Reference.Storefront.Managers
+@using Sitecore.Reference.Storefront.Extensions
 @model List<OrderHeader>
 
 <div class="wrap-main-content">
@@ -43,7 +44,7 @@
                         }
                         <tr>
                             <td><a href="@StorefrontManager.StorefrontUri("/accountmanagement/myorder")?id=@order.ExternalId">@commerceOrder.ExternalId</a></td>
-                            <td><a href="@StorefrontManager.StorefrontUri("/accountmanagement/myorder")?id=@order.ExternalId">@commerceOrder.LastModified.ToShortDateString()</a></td>
+                            <td><a href="@StorefrontManager.StorefrontUri("/accountmanagement/myorder")?id=@order.ExternalId">@commerceOrder.LastModified.ToDisplayedDate()</a></td>
                             <td><a href="@StorefrontManager.StorefrontUri("/accountmanagement/myorder")?id=@order.ExternalId">@commerceOrder.Status</a></td>
                             <td><a href="@StorefrontManager.StorefrontUri("/accountmanagement/myorder")?id=@order.ExternalId"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></td>
                         </tr>

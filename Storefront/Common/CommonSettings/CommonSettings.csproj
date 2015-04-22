@@ -86,6 +86,7 @@
     <Content Include="Content\Storefront\bootstrap-addins.css" />
     <Content Include="Content\Storefront\bootstrap-theme.css" />
     <Content Include="Content\Storefront\bootstrap.css" />
+    <Content Include="Content\Storefront\font-awesome.min.css" />
     <Content Include="Content\Storefront\sitecore-theme.css" />
     <Content Include="Images\loading.gif" />
     <Content Include="img\glyphicons-halflings-white.png" />
@@ -155,51 +156,21 @@
     <Content Include="Scripts\Storefront\wishlist.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="web.config" />
-    <Content Include="Views\Storefront\Account\Addresses.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Views\Storefront\Account\EditProfile.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Views\Storefront\Account\ForgotPassword.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Views\Storefront\Account\Index.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Views\Storefront\Account\Login.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Views\Storefront\Account\LoyaltyCards.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Views\Storefront\Account\MyWishList.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Views\Storefront\Account\MyWishLists.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Views\Storefront\Account\Register.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Views\Storefront\Account\ForgotPasswordConfirmation.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Views\Storefront\Account\_AccountProfile.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Views\Storefront\Account\_AddressBook.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Views\Storefront\Account\_LoyaltyAccount.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Views\Storefront\Account\_RecentOrders.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Views\Storefront\Account\_WishLists.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Views\Storefront\Account\Addresses.cshtml" />
+    <Content Include="Views\Storefront\Account\EditProfile.cshtml" />
+    <Content Include="Views\Storefront\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Storefront\Account\Index.cshtml" />
+    <Content Include="Views\Storefront\Account\Login.cshtml" />
+    <Content Include="Views\Storefront\Account\LoyaltyCards.cshtml" />
+    <Content Include="Views\Storefront\Account\MyWishList.cshtml" />
+    <Content Include="Views\Storefront\Account\MyWishLists.cshtml" />
+    <Content Include="Views\Storefront\Account\Register.cshtml" />
+    <Content Include="Views\Storefront\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Storefront\Account\_AccountProfile.cshtml" />
+    <Content Include="Views\Storefront\Account\_AddressBook.cshtml" />
+    <Content Include="Views\Storefront\Account\_LoyaltyAccount.cshtml" />
+    <Content Include="Views\Storefront\Account\_RecentOrders.cshtml" />
+    <Content Include="Views\Storefront\Account\_WishLists.cshtml" />
     <Content Include="Views\Storefront\Catalog\AddGiftCardToCart.cshtml" />
     <Content Include="Views\Storefront\Catalog\AddToCart.cshtml" />
     <Content Include="Views\Storefront\Catalog\CheckGiftCardBalance.cshtml" />
@@ -277,6 +248,8 @@
     <Content Include="Views\Storefront\Catalog\ProductPresentation.cshtml" />
     <Content Include="sharplinter.conf" />
     <Content Include="Views\Storefront\Shared\_PrintLayout.cshtml" />
+    <Content Include="Views\Storefront\Shared\SearchEvent.cshtml" />
+    <Content Include="Views\Storefront\Shared\PrintOnly.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

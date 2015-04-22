@@ -244,7 +244,11 @@
     <Compile Include="Models\VariantViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Search\ComputedFields\SiteContentItem.cs" />
+    <Compile Include="Services\CatalogRequest.cs" />
+    <Compile Include="Services\CatalogResult.cs" />
     <Compile Include="Services\CatalogServiceProvider.cs" />
+    <Compile Include="Services\SearchInitiatedResult.cs" />
+    <Compile Include="Services\SearchInitiatedRequest.cs" />
     <Compile Include="Services\VisitedCategoryPageRequest.cs" />
     <Compile Include="Services\VisitedCategoryPageResult.cs" />
     <Compile Include="Services\VisitedProductDetailsPageRequest.cs" />
@@ -253,12 +257,13 @@
     <Compile Include="SitecorePipelines\OrderOutcome.cs" />
     <Compile Include="SitecorePipelines\ProductItemResolver.cs" />
     <Compile Include="SitecorePipelines\RegisterDataModelExtensionsBase.cs" />
+    <Compile Include="SitecorePipelines\SecuredPageProcessor.cs" />
+    <Compile Include="SitecorePipelines\TriggerSearchPageEvent.cs" />
     <Compile Include="SitecorePipelines\TriggerVisitedCategoryPagePageEvent.cs" />
     <Compile Include="SitecorePipelines\TriggerVisitedProductDetailsPagePageEvent.cs" />
     <Compile Include="StorefrontConstants.cs" />
     <Compile Include="CommonTexts.cs" />
     <Compile Include="Util\CartCacheHelper.cs" />
-    <Compile Include="Util\CartCookieHelper.cs" />
     <Compile Include="Util\CatalogUrlManager.cs" />
     <Compile Include="Util\EaPlanInfo.cs" />
     <Compile Include="Util\FrameEditor.cs" />

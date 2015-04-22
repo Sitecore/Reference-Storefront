@@ -130,8 +130,8 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
             this.ShopName = giftCard.ShopName;
             this.CurrencyCode = giftCard.CurrencyCode;
             this.Balance = giftCard.Balance;
-            this.FormattedBalance = giftCard.Balance.ToCurrency();
-            this.OriginalAmount = giftCard.OriginalAmount.ToCurrency();
+            this.FormattedBalance = giftCard.Balance.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
+            this.OriginalAmount = giftCard.OriginalAmount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
             this.Description = giftCard.Description;
         }
     }

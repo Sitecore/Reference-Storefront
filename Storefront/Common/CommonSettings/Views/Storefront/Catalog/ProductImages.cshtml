@@ -10,6 +10,7 @@
 // and limitations under the License.
 // -------------------------------------------------------------------------------------------*@
 
+@using Sitecore.Reference.Storefront.Managers;
 @model ProductViewModel
 @{
     if (Model == null)
@@ -22,7 +23,7 @@
     <div class="prod-img">
         @if (Model.Images == null || !Model.Images.Any())
         {
-            <img src="http://placehold.it/770x625" class="img-responsive" alt="a" id="prod-large-view">
+            @Html.Sitecore().Field("Image", Html.Sitecore().CurrentItem, new { Parameters = new Sitecore.Collections.SafeDictionary<string> { { "class", "img-responsive" }, { "id", "prod-large-view" } } })
         }
         else
         {

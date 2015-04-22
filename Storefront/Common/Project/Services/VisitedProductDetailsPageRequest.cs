@@ -18,6 +18,7 @@
 namespace Sitecore.Reference.Storefront.Services
 {
     using Sitecore.Commerce.Services;
+    using Sitecore.Diagnostics;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -26,19 +27,31 @@ namespace Sitecore.Reference.Storefront.Services
     /// <summary>
     /// The request parameters required to trigger the page event to track visits to the product details page.
     /// </summary>
-    public class VisitedProductDetailsPageRequest : ServiceProviderRequest
+    public class VisitedProductDetailsPageRequest : CatalogRequest
     {
         private string _productId;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="VisitedProductDetailsPageRequest"/> class
+        /// Initializes a new instance of the <see cref="VisitedProductDetailsPageRequest" /> class
         /// </summary>
+        /// <param name="shopName">Name of the shop.</param>
         /// <param name="productId">The product ID.</param>
-        public VisitedProductDetailsPageRequest([NotNull] string productId)
+        public VisitedProductDetailsPageRequest([NotNull] string shopName, [NotNull] string productId)
         {
-            Sitecore.Diagnostics.Assert.ArgumentNotNullOrEmpty(productId, "productId");
+            Assert.ArgumentNotNullOrEmpty(shopName, "shopName");
+            Assert.ArgumentNotNullOrEmpty(productId, "productId");
+
+            this.ShopName = shopName;
             this.ProductId = productId;
         }
+
+        /// <summary>
+        /// Gets or sets the name of the shop.
+        /// </summary>
+        /// <value>
+        /// The name of the shop.
+        /// </value>
+        public string ShopName { get; set; }
 
         /// <summary>
         /// Gets or sets the product ID.

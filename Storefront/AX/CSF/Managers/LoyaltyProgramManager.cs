@@ -25,6 +25,7 @@ namespace Sitecore.Reference.Storefront.Managers
     using Sitecore.Commerce.Connect.CommerceServer.Orders.Models;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Globalization;
 
     /// <summary>
     /// Defines the LoyaltyProgramManager class.
@@ -89,6 +90,25 @@ namespace Sitecore.Reference.Storefront.Managers
                 return new ManagerResponse<JoinLoyaltyProgramResult, LoyaltyCard>(result, null);
             }
 
+            var errorResult = new JoinLoyaltyProgramResult() { Success = false };
+
+            // Limit the number of loyalty programs a user may join.
+            var currentLoyaltyProgramResult = this.GetLoyaltyCards(storefront, visitorContext.UserId);
+            if (!currentLoyaltyProgramResult.ServiceProviderResult.Success)
+            {
+                currentLoyaltyProgramResult.ServiceProviderResult.SystemMessages.ToList().ForEach(m => errorResult.SystemMessages.Add(m));
+                return new ManagerResponse<JoinLoyaltyProgramResult, LoyaltyCard>(errorResult, null);
+            }
+
+            int maxLoyaltyProgramsToJoin = ((DynamicsStorefront)StorefrontManager.CurrentStorefront).MaxNumberOfLoyaltyProgramsToJoin;
+            if (currentLoyaltyProgramResult.Result.Count() >= maxLoyaltyProgramsToJoin)
+            {
+                var message = StorefrontManager.GetSystemMessage("MaxLoyaltyProgramsToJoinReached");
+                message = string.Format(CultureInfo.InvariantCulture, message, maxLoyaltyProgramsToJoin);
+                errorResult.SystemMessages.Add(new Commerce.Services.SystemMessage() { Message = message });
+                return new ManagerResponse<JoinLoyaltyProgramResult, LoyaltyCard>(errorResult, null);
+            }
+            
             var cart = (CommerceCart)cartResult.ServiceProviderResult.Cart;
             var request = new Sitecore.Commerce.Connect.DynamicsRetail.Services.LoyaltyPrograms.JoinLoyaltyProgramRequest(visitorContext.UserId, storefront.ShopName) { CartId = cart.ExternalId };
             result = this.LoyaltyProgramServiceProvider.JoinLoyaltyProgram(request);

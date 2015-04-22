@@ -27,6 +27,7 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
     using Sitecore.Reference.Storefront.Models;
     using Sitecore.Commerce.Connect.CommerceServer;
     using Sitecore.Commerce.Connect.CommerceServer.Caching;
+    using Sitecore.Reference.Storefront.Managers;
     
     /// <summary>
     /// Class representing a ProductItemResolver
@@ -204,11 +205,11 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
 
             if (string.IsNullOrEmpty(data.Catalog))
             {
-                var defaultCatalogItem = Context.Database.GetItem(CommerceConstants.KnownItemIds.DefaultCatalog);
+                var defaultCatalog = StorefrontManager.CurrentStorefront.DefaultCatalog;
 
-                if (defaultCatalogItem != null)
+                if (defaultCatalog != null)
                 {
-                    data.Catalog = defaultCatalogItem[CommerceConstants.KnownFieldIds.CatalogSettingValue];
+                    data.Catalog = defaultCatalog.Name;
                 }
             }
 

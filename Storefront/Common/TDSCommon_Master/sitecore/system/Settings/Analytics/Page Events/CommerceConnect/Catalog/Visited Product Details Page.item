@@ -2,8 +2,8 @@
 version: 1
 id: {677A4020-299A-470C-BA1B-64B8CEBE0803}
 database: master
-path: /sitecore/system/Settings/Analytics/Page Events/Storefront/Visited Product Details Page
-parent: {A0D2EB31-A8F5-4BF9-8961-BA56811324F7}
+path: /sitecore/system/Settings/Analytics/Page Events/CommerceConnect/Catalog/Visited Product Details Page
+parent: {ABC8A509-8343-4BB4-B87F-6E50856D18FD}
 name: Visited Product Details Page
 master: {00000000-0000-0000-0000-000000000000}
 template: {059CFBDF-49FC-4F14-A4E5-B63E1E1AFB1E}
@@ -26,7 +26,7 @@ content-length: 38
 ----version----
 language: en
 version: 1
-revision: 7490fba5-a168-4de7-8954-204f5ccd199f
+revision: 38e7ccce-aef4-4f40-b018-4b19c7d5d4bc
 
 ----field----
 field: {797466F5-763B-4299-B6AD-E4192BF21222}
@@ -48,14 +48,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-7490fba5-a168-4de7-8954-204f5ccd199f
+38e7ccce-aef4-4f40-b018-4b19c7d5d4bc
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 35
 
-20150109T203517:635564325175765273Z
+20150419T104114:635650368740890569Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

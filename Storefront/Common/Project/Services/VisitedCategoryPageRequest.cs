@@ -18,6 +18,7 @@
 namespace Sitecore.Reference.Storefront.Services
 {
     using Sitecore.Commerce.Services;
+    using Sitecore.Diagnostics;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -26,19 +27,31 @@ namespace Sitecore.Reference.Storefront.Services
     /// <summary>
     /// The request parameters required to trigger the page event to track visits to the product details page.
     /// </summary>
-    public class VisitedCategoryPageRequest : ServiceProviderRequest
+    public class VisitedCategoryPageRequest : CatalogRequest
     {
         private string _categoryName;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="VisitedCategoryPageRequest"/> class
+        /// Initializes a new instance of the <see cref="VisitedCategoryPageRequest" /> class
         /// </summary>
+        /// <param name="shopName">Name of the shop.</param>
         /// <param name="categoryName">The category name.</param>
-        public VisitedCategoryPageRequest([NotNull] string categoryName)
+        public VisitedCategoryPageRequest([NotNull] string shopName, [NotNull] string categoryName)
         {
-            Sitecore.Diagnostics.Assert.ArgumentNotNullOrEmpty(categoryName, "categoryName");
+            Assert.ArgumentNotNullOrEmpty(shopName, "shopName");
+            Assert.ArgumentNotNullOrEmpty(categoryName, "categoryName");
+
+            this.ShopName = shopName;
             this.CategoryName = categoryName;
         }
+
+        /// <summary>
+        /// Gets or sets the name of the shop.
+        /// </summary>
+        /// <value>
+        /// The name of the shop.
+        /// </value>
+        public string ShopName { get; set; }
 
         /// <summary>
         /// Gets or sets the category name.

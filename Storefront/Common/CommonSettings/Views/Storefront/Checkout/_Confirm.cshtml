@@ -274,8 +274,8 @@
                             <span id="confirm-creditCardExpMonth" data-bind=" text: expirationMonth"></span> - <span id="confirm-creditCardExpYear" data-bind="text: expirationYear"></span>
                         </li>
                         <li id="confirm-creditCardAmount">
-                            <span data-bind="text: $root.currencySymbol"></span>
                             <span data-bind="text: creditCardAmount"></span>
+                            <span data-bind="text: $root.currencyCode"></span>
                         </li>
                     </ul>
                     <!-- /ko -->
@@ -284,8 +284,8 @@
                     <ul class="footer-lists" data-bind="with: giftCardPayment" id="confirm-giftCardContainer">
                         <li id="confirm-giftCardNumber" data-bind="text: giftCardNumber"></li>
                         <li id="confirm-giftCardAmount">
-                            <span data-bind="text: $root.currencySymbol"></span>
                             <span data-bind="text: giftCardAmount"></span>
+                            <span data-bind="text: $root.currencyCode"></span>
                         </li>
                     </ul>
                     <!-- /ko -->
@@ -294,8 +294,8 @@
                     <ul class="footer-lists" data-bind="with: loyaltyCardPayment" id="confirm-loyaltyCardContainer">
                         <li id="confirm-loyaltyCardNumber" data-bind="text: loyaltyCardNumber"></li>
                         <li id="confirm-loyaltyCardAmount">
-                            <span data-bind="text: $root.currencySymbol"></span>
                             <span data-bind="text: loyaltyCardAmount"></span>
+                            <span data-bind="text: $root.currencyCode"></span>
                         </li>
                     </ul>
                     <!-- /ko -->

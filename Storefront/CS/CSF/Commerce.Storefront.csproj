@@ -263,18 +263,16 @@
     <Content Include="License.txt" />
     <Content Include="OrderObjectMappings.xml" />
     <Content Include="OrderPipelineMappings.xml" />
-    <Content Include="App_Config\Include\SC.Commerce.Storefront\Commerce.Storefront.Index.Lucene.config">
+    <Content Include="App_Config\Include\Reference.Storefront\Reference.Storefront.Index.Lucene.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Config\Include\SC.Commerce.Storefront\Commerce.Storefront.Index.Solr.config.example">
+    <Content Include="App_Config\Include\Reference.Storefront\Reference.Storefront.Index.Solr.config.example">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Config\Include\SC.Commerce.Storefront\Sitecore.ItemWebApi.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="App_Config\Include\Reference.Storefront\Sitecore.ItemWebApi.config" />
     <Content Include="Sitecore\Copyrights\CastleWinsor_Apache.txt" />
     <Content Include="Sitecore\Copyrights\Knockout.Validation_MIT.txt" />
     <Content Include="Sitecore\Copyrights\Microsoft.AspNet.Mvc_rtw_enu.htm" />
@@ -284,22 +282,22 @@
     <Content Include="Sitecore\Copyrights\Microsoft.Web.Infrastructure-eula.htm" />
     <Content Include="Sitecore\Copyrights\Newtonsoft.Json_MIT.txt" />
     <Content Include="Sitecore\Copyrights\WebActivatorEx_MSPL.txt" />
-    <Content Include="App_Config\Include\SC.Commerce.Storefront\Commerce.Storefront.Catalog.config">
+    <Content Include="App_Config\Include\Reference.Storefront\Reference.Storefront.Catalog.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Config\Include\SC.Commerce.Storefront\Commerce.Storefront.Customer.config">
+    <Content Include="App_Config\Include\Reference.Storefront\Reference.Storefront.Customer.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Config\Include\SC.Commerce.Storefront\Commerce.Storefront.Orders.config">
+    <Content Include="App_Config\Include\Reference.Storefront\Reference.Storefront.Orders.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Config\Include\SC.Commerce.Storefront\Commerce.Storefront.Shipping.config">
+    <Content Include="App_Config\Include\Reference.Storefront\Reference.Storefront.Shipping.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Config\Include\SC.Commerce.Storefront\Commerce.Storefront.Payments.config">
+    <Content Include="App_Config\Include\Reference.Storefront\Reference.Storefront.Payments.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Config\Include\SC.Commerce.Storefront\Commerce.Storefront.Carts.config">
+    <Content Include="App_Config\Include\Reference.Storefront\Reference.Storefront.Carts.config">
       <SubType>Designer</SubType>
     </Content>
     <None Include="Properties\PublishProfiles\DynamicsRetail.pubxml" />
@@ -307,12 +305,8 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="web.config" />
-    <Content Include="Views\Storefront\Account\MyOrders.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Views\Storefront\Account\MyOrder.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Views\Storefront\Account\MyOrders.cshtml" />
+    <Content Include="Views\Storefront\Account\MyOrder.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -419,7 +413,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Config\Include\SC.Commerce.Storefront\Commerce.Storefront.config">
+    <Content Include="App_Config\Include\Reference.Storefront\Reference.Storefront.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>

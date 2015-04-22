@@ -20,6 +20,7 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
     using Newtonsoft.Json;
     using Sitecore.Analytics;
     using Sitecore.Analytics.Outcome;
+    using Sitecore.Analytics.Outcome.Extensions;
     using Sitecore.Analytics.Outcome.Model;
     using Sitecore.Commerce.Connect.CommerceServer;
     using Sitecore.Commerce.Entities.Orders;
@@ -49,17 +50,14 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
             Assert.ArgumentCondition(args.Result is SubmitVisitorOrderResult, "args.Result", "args.Result is SubmitVisitorOrderResult");
             if (args.Result.Success)
             {
-                // Instantiate the outcome manager.
-                var manager = Factory.CreateObject("outcome/outcomeManager", true) as OutcomeManager;
-
-                if (manager != null)
+                if (Tracker.Current != null)
                 {
                     SubmitVisitorOrderResult result = args.Result as SubmitVisitorOrderResult;
                     Order orderFromResult = result.Order;
                     Assert.ArgumentNotNull(orderFromResult, "order result");                   
 
                     var contactId = Guid.Empty;
-                    if (Tracker.Current != null && Tracker.Current.Contact != null)
+                    if (Tracker.Current.Contact != null)
                     {
                         contactId = Tracker.Current.Contact.ContactId;
                     }
@@ -68,14 +66,13 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
                     {
                         var serializedOrder = SerializeOrder(orderFromResult);                    
 
-                        //// TODO After upgrading to the Sitecore 8.0 update-2 use Tracker.Current.RegisterContactOutcome instead of the OutcomeManager                   
-                        // Register the outcome.
                         var outcome = new ContactOutcome(ID.NewID, StorefrontConstants.KnownItemIds.ProductPurchaseOutcome, new ID(contactId));
                         outcome.CustomValues["ShopName"] = orderFromResult.ShopName;
                         outcome.CustomValues["ExternalId"] = orderFromResult.ExternalId;
                         outcome.CustomValues["Order"] = serializedOrder;
-                        outcome.MonetaryValue = orderFromResult.Total.Amount;                      
-                        manager.Save(outcome);
+                        outcome.MonetaryValue = orderFromResult.Total.Amount;
+
+                        Tracker.Current.RegisterContactOutcome(outcome);
                     }
                     catch (Exception ex)
                     {
@@ -90,7 +87,7 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
         /// </summary>
         /// <param name="order">The order.</param>
         /// <returns>Serialized order</returns>
-        private static string SerializeOrder(Order order)
+        public virtual string SerializeOrder(Order order)
         {
             string serializedOrder = string.Empty;
             var lines = new List<Dictionary<string, object>>();

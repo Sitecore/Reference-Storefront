@@ -42,6 +42,11 @@ namespace Sitecore.Reference.Storefront
             /// The default number of items per page
             /// </summary>
             public static readonly int DefaultItemsPerPage = 12;
+
+            /// <summary>
+            /// The default currency to be applied.  This is temporary until the multi-currency support is integrated in all facets of the sytem.
+            /// </summary>
+            public static readonly string DefaultCurrencyCode = "USD";
         }
 
         /// <summary>
@@ -157,6 +162,11 @@ namespace Sitecore.Reference.Storefront
             public static readonly string FillFormMessage = "Fill Form Message";
 
             /// <summary>
+            /// The generate secure link field.
+            /// </summary>
+            public static readonly string GenerateSecureLink = "Generate Secure Link";
+
+            /// <summary>
             /// The guest checkout button
             /// </summary>
             public static readonly string GuestCheckoutButton = "Guest Checkout Button";
@@ -250,6 +260,21 @@ namespace Sitecore.Reference.Storefront
             /// The sender email address field.
             /// </summary>
             public static readonly string SenderEmailAddress = "Sender Email Address";
+
+            /// <summary>
+            /// The maximum number of addresses field.
+            /// </summary>
+            public static readonly string MaxNumberOfAddresses = "Max Number of Addresses";
+
+            /// <summary>
+            /// The maximum number of wishlists field.
+            /// </summary>
+            public static readonly string MaxNumberOfWishLists = "Max Number of WishLists";
+
+            /// <summary>
+            /// The maxnumber of wish list items field.
+            /// </summary>
+            public static readonly string MaxNumberOfWishListItems = "Max Number of WishList Items";
         }
 
         /// <summary>
@@ -269,6 +294,12 @@ namespace Sitecore.Reference.Storefront
             /// </summary>
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes")]
             public static readonly ID StandardPage = new ID("{16E859D2-6542-407A-AC65-F34BCAD3EB3D}");
+
+            /// <summary>
+            /// The ID of the Secured Page template.
+            /// </summary>
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes")]
+            public static readonly ID SecuredPage = new ID("{02CCCF95-7BE5-4549-81F9-AC97A22D6816}");
         }
 
         /// <summary>
@@ -377,6 +408,21 @@ namespace Sitecore.Reference.Storefront
             /// The name of the CategoryName page event data.
             /// </summary>
             public static readonly string CategoryName = "CategoryName";
+
+            /// <summary>
+            /// The shop name page event data.
+            /// </summary>
+            public static readonly string ShopName = "ShopName";
+
+            /// <summary>
+            /// The search term page event data.
+            /// </summary>
+            public static readonly string SearchTerm = "SearchTerm";
+
+            /// <summary>
+            /// The number of hits page event data.
+            /// </summary>
+            public static readonly string NumberOfHits = "NumberOfHits";
         }
 
         /// <summary>
@@ -385,6 +431,11 @@ namespace Sitecore.Reference.Storefront
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible", Justification = "Required for access purposes")]
         public static class PipelineNames
         {
+            /// <summary>
+            /// The name of the SearchInitiated pipeline.
+            /// </summary>
+            public const string SearchInitiated = Prefix + "searchInitiated";
+
             /// <summary>
             /// The name of the VisitedProductDetailsPage pipeline.
             /// </summary>

@@ -48,7 +48,7 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
             this.Color = product.Properties["Color"] as string;
             this.LineDiscount = ((CommerceTotal)line.Total).LineItemDiscountAmount.ToString(Sitecore.Context.Language.CultureInfo);
             this.Quantity = line.Quantity.ToString(Sitecore.Context.Language.CultureInfo);
-            this.LineTotal = line.Total.Amount.ToCurrency();
+            this.LineTotal = line.Total.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
             this.ExternalLineId = line.ExternalId;
             this.ProductId = product.ProductId;
             this.VariantId = product.ProductVariantId;
@@ -60,7 +60,7 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
 
             if (product.Price.Amount != 0M)
             {
-                this.LinePrice = product.Price.Amount.ToCurrency();
+                this.LinePrice = product.Price.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
             }
             
             var imageInfo = product.Properties["_product_Images"] as string;
@@ -75,7 +75,7 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
             if (giftCardAmount != null)
             {
                 decimal amount = System.Convert.ToDecimal(giftCardAmount, Sitecore.Context.Language.CultureInfo);
-                this.GiftCardAmount = amount.ToCurrency();
+                this.GiftCardAmount = amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
             }
         }
         

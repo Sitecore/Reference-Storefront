@@ -24,6 +24,7 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
     using Sitecore.Commerce.Entities.Carts;
     using Sitecore.Commerce.Services;
     using Sitecore.Commerce.Connect.CommerceServer;
+    using Sitecore.Reference.Storefront.Extensions;
 
     /// <summary>
     /// Emits the Json result of a Cart request.
@@ -148,12 +149,12 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
             }
 
             var commerceTotal = (CommerceTotal)cart.Total;
-            this.Subtotal = commerceTotal.Subtotal.ToString("C", Context.Language.CultureInfo);
-            this.TaxTotal = cart.Total.TaxTotal.Amount.ToString("C", Context.Language.CultureInfo);
-            this.Total = cart.Total.Amount.ToString("C", Context.Language.CultureInfo);
+            this.Subtotal = commerceTotal.Subtotal.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
+            this.TaxTotal = cart.Total.TaxTotal.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
+            this.Total = cart.Total.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
             this.TotalAmount = cart.Total.Amount;
-            this.Discount = commerceTotal.OrderLevelDiscountAmount.ToString("C", Context.Language.CultureInfo);
-            this.ShippingTotal = commerceTotal.ShippingTotal.ToString("C", Context.Language.CultureInfo);
+            this.Discount = commerceTotal.OrderLevelDiscountAmount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
+            this.ShippingTotal = commerceTotal.ShippingTotal.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
         }
     }
 }

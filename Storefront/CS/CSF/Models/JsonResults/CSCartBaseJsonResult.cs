@@ -19,10 +19,9 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
 {
     using Sitecore.Commerce.Connect.CommerceServer.Orders.Models;
     using Sitecore.Commerce.Services;
+    using Sitecore.Reference.Storefront.Extensions;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Web;
 
     /// <summary>
     /// Defines the CSCartBaseJsonResult class.
@@ -67,6 +66,14 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
                     this.PromoCodes.Add(promoCode);
                 }
             }
+
+            decimal totalSavings = 0;
+            foreach (var lineitem in cart.Lines)
+            {
+                totalSavings += ((CommerceTotal)lineitem.Total).LineItemDiscountAmount;
+            }
+
+            this.Discount = totalSavings.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
         }
     }
 }

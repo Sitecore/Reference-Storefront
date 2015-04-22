@@ -30,6 +30,8 @@ namespace Sitecore.Reference.Storefront.Managers
     using Sitecore.Data.Items;
     using Sitecore.Reference.Storefront.Models.SitecoreItemModels;
     using Sitecore.Commerce.Entities.Inventory;
+    using System.Web;
+    using System;
 
     /// <summary>
     /// The manager for storefronts
@@ -84,6 +86,68 @@ namespace Sitecore.Reference.Storefront.Managers
         public static string StorefrontUri(string route)
         {
             return route;
+        }
+
+        /// <summary>
+        /// Used to return an external link in HTTP or HTTPS depending on the current state of the request.
+        /// </summary>
+        /// <param name="externalLink">The base URL string.</param>
+        /// <returns>Returns the external link.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1055:UriReturnValuesShouldNotBeStrings")]
+        public static string ExternalUri(string externalLink)
+        {
+            if (HttpContext.Current.Request.IsSecureConnection)
+            {
+                return "https://" + externalLink;
+            }
+            else
+            {
+                return "http://" + externalLink;
+            }
+        }
+
+        /// <summary>
+        /// Selects the external URI based on the security of the current request connection.
+        /// </summary>
+        /// <param name="unsecuredConnection">The unsecured connection.</param>
+        /// <param name="securedConnection">The secured connection.</param>
+        /// <returns>The proper url to use.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1055:UriReturnValuesShouldNotBeStrings")]
+        public static string SelectExternalUri(string unsecuredConnection, string securedConnection)
+        {
+            if (HttpContext.Current.Request.IsSecureConnection)
+            {
+                return securedConnection;
+            }
+            else
+            {
+                return unsecuredConnection;
+            }
+        }
+
+        /// <summary>
+        /// Returns a secure HTTPS link.
+        /// </summary>
+        /// <param name="route">The route.</param>
+        /// <returns>The HTTPS link.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1055:UriReturnValuesShouldNotBeStrings")]
+        public static string SecureStorefrontUri(string route)
+        {
+            if (HttpContext.Current.Request.IsSecureConnection)
+            {
+                return route;
+            }
+            else
+            {
+                UrlBuilder builder = new UrlBuilder(HttpContext.Current.Request.Url);
+
+                if (!route.StartsWith("/", StringComparison.OrdinalIgnoreCase))
+                {
+                    route = "/" + route;
+                }
+
+                return string.Format(CultureInfo.InvariantCulture, "https://{0}{1}", builder.Host, route);
+            }
         }
 
         /// <summary>

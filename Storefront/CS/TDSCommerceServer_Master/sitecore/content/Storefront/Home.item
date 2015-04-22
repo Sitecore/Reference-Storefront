@@ -55,9 +55,9 @@ contoso
 field: {239412BD-046D-4C97-98BA-17B5FB07F004}
 name: ShopName
 key: shopname
-content-length: 10
+content-length: 7
 
-Storefront
+website
 ----field----
 field: {0D2D45C1-783B-4A72-A797-F5907BC37CFE}
 name: DefaultCartName
@@ -88,11 +88,18 @@ content-length: 15
 10|20|25|50|100
 ----field----
 field: {A8925EB2-72E3-4636-9F21-C894A61975B8}
-name: Sender Mail Address
-key: sender mail address
+name: Sender Email Address
+key: sender email address
 content-length: 41
 
 no-reply@sitecore.commerce.storefront.com
+----field----
+field: {7FD4CA02-383C-45E1-902D-C3ED9E4A112F}
+name: Max Number of Addresses
+key: max number of addresses
+content-length: 1
+
+6
 ----field----
 field: {CC553205-A4D2-4FEB-B722-9B41E9FA5271}
 name: TrackingCookieName
@@ -124,8 +131,15 @@ content-length: 312
 ----version----
 language: en
 version: 1
-revision: 337530e0-52f7-481d-8407-fd53198416e8
+revision: bf4f8a1a-12ef-40c9-8bdf-e7eee80d2af0
 
+----field----
+field: {EC1F4944-D675-42F6-B354-A0A1BF04BFF8}
+name: Title
+key: title
+content-length: 20
+
+Reference Storefront
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
 name: __Created
@@ -146,14 +160,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-337530e0-52f7-481d-8407-fd53198416e8
+bf4f8a1a-12ef-40c9-8bdf-e7eee80d2af0
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 35
 
-20150318T152817:635622892976330011Z
+20150402T084144:635635609046482497Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

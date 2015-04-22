@@ -19,6 +19,7 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
 {
     using Sitecore.Diagnostics;
     using Sitecore.Commerce.Entities.LoyaltyPrograms;
+    using Sitecore.Reference.Storefront.Extensions;
 
     /// <summary>
     /// Json result for loyalty transaction operations.
@@ -91,9 +92,9 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
 
             this.ExternalId = transaction.ExternalId;
             this.EntryTime = transaction.EntryDateTime.ToShortTimeString();
-            this.EntryDate = transaction.EntryDateTime.ToShortDateString();
+            this.EntryDate = transaction.EntryDateTime.ToDisplayedDate();
             this.EntryType = transaction.EntryType.Name;
-            this.ExpirationDate = transaction.ExpirationDate.ToShortDateString();
+            this.ExpirationDate = transaction.ExpirationDate.ToDisplayedDate();
             this.Points = transaction.RewardPointAmount.ToString(Sitecore.Context.Language.CultureInfo);
             this.Store = transaction.ShopName;
         }

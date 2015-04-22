@@ -38,7 +38,7 @@
     <RecursiveDeployAction>Ignore</RecursiveDeployAction>
     <SitecoreDeployFolder>
     </SitecoreDeployFolder>
-    <SitecoreWebUrl>http://localhost:7665</SitecoreWebUrl>
+    <SitecoreWebUrl>http://localhost:7667</SitecoreWebUrl>
     <SitecoreAccessGuid>3a6d874f-0fb2-4d5d-bd15-b4cc7b14003f</SitecoreAccessGuid>
     <InstallSitecoreConnector>True</InstallSitecoreConnector>
     <PackageAuthor>Sitecore Corporation</PackageAuthor>
@@ -62,7 +62,7 @@ You have now read the Readme.
     <RecursiveDeployAction>Ignore</RecursiveDeployAction>
     <SitecoreDeployFolder>
     </SitecoreDeployFolder>
-    <SitecoreWebUrl>http://localhost:7665</SitecoreWebUrl>
+    <SitecoreWebUrl>http://localhost:7667</SitecoreWebUrl>
     <SitecoreAccessGuid>3a6d874f-0fb2-4d5d-bd15-b4cc7b14003f</SitecoreAccessGuid>
     <InstallSitecoreConnector>True</InstallSitecoreConnector>
     <PackageAuthor>Sitecore Corporation</PackageAuthor>
@@ -205,6 +205,10 @@ You have now read the Readme.
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\AuthenticationProviderError.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
     <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\CartNotFoundError.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
@@ -217,7 +221,27 @@ You have now read the Readme.
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\InvalidEmailError.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\InvalidPasswordError.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
     <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\InvalidShippingAddress.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\MaxAddresseLimitReached.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\MaxWishListLimitReached.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\MaxWishListLineLimitReached.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
@@ -225,7 +249,43 @@ You have now read the Readme.
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\PasswordRetrievalAnswerInvalid.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\PasswordRetrievalQuestionInvalid.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\SubmitOrderHasEmptyCart.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\UnknownMembershipProviderError.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\UpdateUserProfileError.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\UserAlreadyExists.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\UserNameForEmailExists.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\UserNameInvalid.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
     <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\UserNotFoundError.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\UserRejectedError.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
@@ -392,6 +452,10 @@ You have now read the Readme.
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
     <SitecoreItem Include="sitecore\content\Storefront\Global\Site Spots\Add Gift Card To Cart.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Site Spots\AddToCart.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
@@ -812,6 +876,10 @@ You have now read the Readme.
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
+    <SitecoreItem Include="sitecore\layout\Renderings\Storefront\Search\SearchEvent.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
     <SitecoreItem Include="sitecore\layout\Renderings\Storefront\Search\SearchResultsFacets.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
@@ -889,6 +957,10 @@ You have now read the Readme.
     </SitecoreItem>
     <SitecoreItem Include="sitecore\layout\Renderings\Storefront\Shared\Pagination.item">
       <Icon>/temp/IconCache/Software/16x16/element.png</Icon>
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\layout\Renderings\Storefront\Shared\PrintOnly.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
@@ -1007,6 +1079,26 @@ You have now read the Readme.
       <ItemDeployment>DeployOnce</ItemDeployment>
       <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
     </SitecoreItem>
+    <SitecoreItem Include="sitecore\media library\Images\Storefront\General.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\media library\Images\Storefront\General\PlaceHolders.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\media library\Images\Storefront\General\PlaceHolders\300x300.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\media library\Images\Storefront\General\PlaceHolders\550x330.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\media library\Images\Storefront\General\PlaceHolders\750x430.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\media library\Images\Storefront\General\PlaceHolders\770x625.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
     <SitecoreItem Include="sitecore\media library\Images\Storefront\Site Spots.item">
       <Icon>/temp/IconCache/Applications/16x16/folder.png</Icon>
       <ItemDeployment>DeployOnce</ItemDeployment>
@@ -1044,15 +1136,25 @@ You have now read the Readme.
       <ItemDeployment>DeployOnce</ItemDeployment>
       <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
     </SitecoreItem>
+    <SitecoreItem Include="sitecore\system\Settings\Analytics\Page Events\CommerceConnect.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\system\Settings\Analytics\Page Events\CommerceConnect\Catalog.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\system\Settings\Analytics\Page Events\CommerceConnect\Catalog\Visited Category Page.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\system\Settings\Analytics\Page Events\CommerceConnect\Catalog\Visited Product Details Page.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
     <SitecoreItem Include="sitecore\system\Settings\Analytics\Page Events\Storefront.item">
       <ItemDeployment>DeployOnce</ItemDeployment>
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
     </SitecoreItem>
-    <SitecoreItem Include="sitecore\system\Settings\Analytics\Page Events\Storefront\Visited Category Page.item">
-      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
-      <ItemDeployment>DeployOnce</ItemDeployment>
-    </SitecoreItem>
-    <SitecoreItem Include="sitecore\system\Settings\Analytics\Page Events\Storefront\Visited Product Details Page.item">
+    <SitecoreItem Include="sitecore\system\Settings\Analytics\Page Events\Storefront\Search Initiated.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
@@ -1233,6 +1335,18 @@ You have now read the Readme.
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Base Templates\Commerce Storefront\Storefront\Max Number of Addresses.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Base Templates\Commerce Storefront\Storefront\Max Number of WishList Items.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Base Templates\Commerce Storefront\Storefront\Max Number of WishLists.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
     <SitecoreItem Include="sitecore\templates\Storefront\Base Templates\Commerce Storefront\Storefront\RouteKey.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
@@ -1367,6 +1481,10 @@ You have now read the Readme.
     </SitecoreItem>
     <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\QuickLink\QuickLink.item">
       <Icon>/temp/IconCache/network/32x32/link.png</Icon>
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Data Templates\QuickLink\QuickLink\Generate Secure Link.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
@@ -3216,6 +3334,10 @@ You have now read the Readme.
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\Secured Page.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
     <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\ShoppingCart Page.item">
       <Icon>/temp/IconCache/Business/32x32/shoppingcart_full.png</Icon>
       <ItemDeployment>DeployOnce</ItemDeployment>
@@ -3337,6 +3459,10 @@ You have now read the Readme.
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\Standard Page\Display\Image.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
     <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\Standard Page\Display\SummaryText.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
@@ -3382,6 +3508,18 @@ You have now read the Readme.
     <SitecoreItem Include="sitecore\templates\Storefront\Rendering Datasources\Add Gift Card To Cart\Labels\Quantity Label.item">
       <ItemDeployment>DeployOnce</ItemDeployment>
       <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Rendering Datasources\AddToCart.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Rendering Datasources\AddToCart\Labels.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Rendering Datasources\AddToCart\Labels\Quantity Label.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
     <SitecoreItem Include="sitecore\templates\Storefront\Rendering Datasources\Carousel.item">
       <Icon>/temp/IconCache/Control/32x32/splitter_ver_h.png</Icon>
@@ -3907,6 +4045,10 @@ You have now read the Readme.
     <!-- Copy signed output to correct locations -->
     <Copy SourceFiles="..\..\AX\CSF\bin\Sitecore.Reference.Storefront.Common.dll" DestinationFolder="..\..\..\..\binaries\$(configuration)" />
     <Copy SourceFiles="..\..\AX\CSF\bin\Sitecore.Reference.Storefront.Common.pdb" DestinationFolder="..\..\..\..\binaries\$(configuration)" />
+    <Copy SourceFiles="..\..\AX\CSF\bin\Sitecore.Reference.Storefront.Common.dll" DestinationFolder="..\..\Common\CommonSettings\bin" />
+    <Copy SourceFiles="..\..\AX\CSF\bin\Sitecore.Reference.Storefront.Common.dll" DestinationFolder="..\..\Common\Project\bin\Release" />
+    <Copy SourceFiles="..\..\AX\CSF\bin\Sitecore.Reference.Storefront.Common.dll" DestinationFolder="..\..\Common\TDSCommon_Master\Release\bin" />
+    <Copy SourceFiles="..\..\AX\CSF\bin\Sitecore.Reference.Storefront.Common.dll" DestinationFolder="..\..\CS\CSF\bin" />
     <!--Copy SourceFiles="..\..\AX\CSF\bin\Sitecore.Reference.Storefront.Common.dll" DestinationFolder=".\Release\bin" /-->
     <!-- Copy the sign logs to binaries\release folder and delete them in the package release folder -->
     <ItemGroup>

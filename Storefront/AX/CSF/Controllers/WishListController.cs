@@ -85,9 +85,13 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// </summary>
         /// <returns>My wish lists view</returns>
         [HttpGet]
-        [Authorize]
         public override ActionResult Index()
         {
+            if (!Context.User.IsAuthenticated)
+            {
+                return Redirect("/login");
+            }
+
             return View(this.CurrentRenderingView);
         }
 
@@ -99,9 +103,13 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// Returns the view with wish lists details
         /// </returns>
         [HttpGet]
-        [Authorize]
         public ActionResult ViewWishList(string id)
         {
+            if (!Context.User.IsAuthenticated)
+            {
+                return Redirect("/login");
+            }
+
             return View(this.CurrentRenderingView);
         }
 

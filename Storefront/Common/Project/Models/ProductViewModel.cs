@@ -155,7 +155,7 @@ namespace Sitecore.Reference.Storefront.Models
         {
             get
             {
-                return this.ListPrice.HasValue ? this.ListPrice.ToCurrency() : string.Empty;
+                return this.ListPrice.HasValue ? this.ListPrice.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode) : string.Empty;
             }
         }
 
@@ -218,7 +218,7 @@ namespace Sitecore.Reference.Storefront.Models
         {
             get
             {
-                return this.AdjustedPrice.HasValue ? this.AdjustedPrice.ToCurrency() : string.Empty;
+                return this.AdjustedPrice.HasValue ? this.AdjustedPrice.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode) : string.Empty;
             }
         }
 
@@ -235,8 +235,8 @@ namespace Sitecore.Reference.Storefront.Models
                 }
 
                 var percentage = decimal.Floor(100 * (this.ListPrice.Value - this.AdjustedPrice.Value) / this.ListPrice.Value);
-                var roundedPercentage = percentage + (5 - (percentage % 5));
-                return roundedPercentage;
+                int integerPart = (int)percentage;
+                return integerPart == 0 ? 1M : (decimal)integerPart;
             }
         }
 
@@ -250,12 +250,7 @@ namespace Sitecore.Reference.Storefront.Models
         {
             get
             {
-                if (!string.IsNullOrWhiteSpace(Item["OnSale"]))
-                {
-                    return Item["OnSale"] == "1";
-                }
-
-                return false;
+                return (this.AdjustedPrice.HasValue && this.ListPrice.HasValue && this.AdjustedPrice < this.ListPrice);
             }
         }
         

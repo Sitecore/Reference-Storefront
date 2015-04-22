@@ -36,7 +36,7 @@
             else
             {
                 <a href="@Model.GetLink()">
-                    <img src="http://placehold.it/300x300" class="img-responsive" alt="product image" title="@Model.DisplayName" />
+                    @Html.Sitecore().Field("Image", Html.Sitecore().CurrentItem, new { Parameters = new Sitecore.Collections.SafeDictionary<string> { { "class", "img-responsive" }, { "title", @Model.DisplayName } } })
                 </a>
             }
         }
@@ -57,7 +57,7 @@
                 }
                 @if (!isCategory)
                 {
-                    if (Model.IsOnSale && Model.AdjustedPrice != null)
+                    if (Model.IsOnSale)
                     {
                         <h4 class="price-text-color" pid="priceNow">@Html.DisplayFor(model => Model.AdjustedPriceWithCurrency)</h4>
                         <h5 class="price-before" pid="price">@Html.DisplayFor(model => Model.ListPriceWithCurrency)</h5>

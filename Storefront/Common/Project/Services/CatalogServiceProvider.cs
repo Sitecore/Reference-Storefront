@@ -52,5 +52,16 @@ namespace Sitecore.Reference.Storefront.Services
         {
             return this.RunPipeline<VisitedProductDetailsPageRequest, VisitedProductDetailsPageResult>(StorefrontConstants.PipelineNames.VisitedProductDetailsPage, request);
         }
+
+        /// <summary>
+        /// Searches the initiated.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>The service response.</returns>
+        [NotNull]
+        public virtual SearchInitiatedResult SearchInitiated([NotNull] SearchInitiatedRequest request)
+        {
+            return this.RunPipeline<SearchInitiatedRequest, SearchInitiatedResult>(StorefrontConstants.PipelineNames.SearchInitiated, request);
+        }
     }
 }

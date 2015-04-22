@@ -14,7 +14,8 @@
 @using Sitecore.Reference.Storefront.Managers
 @using Sitecore.Data.Fields
 @using System.Linq;
-@using System.Linq.Expressions;
+@using System.Linq.Expressions
+@using Sitecore.Reference.Storefront
 @model CommerceOrder
 @{
     var parties = Model.Parties;
@@ -55,7 +56,7 @@
                         @Html.Sitecore().Field("Order Date Label", Html.Sitecore().CurrentItem):
                     </span>
                 <span id="confirm-orderDate">
-                        @Model.Created.ToShortDateString()
+                        @Model.Created.ToDisplayedDate()
                     </span>
             </p>
             <p class="order-status">
@@ -145,13 +146,13 @@
                                         <p class="cart-email" pid="lineEmail">@email</p>
                                     }
                                 </td>
-                                <td class="cart-price" pid="price">@product.Price.Amount.ToCurrency()</td>
+                                <td class="cart-price" pid="price">@product.Price.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)</td>
                                 <td class="cart-quantity text-center" style="width: 10%;" pid="quantity">@cartLine.Quantity</td>
                                 <td class="cart-total">
-                                    <p pid="total">@lineTotal.Amount.ToCurrency()</p>
+                                    <p pid="total">@lineTotal.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)</p>
                                     @if (savings > 0)
                                     {
-                                        <span pid="discount" class="savings">@Html.Sitecore().Field("You save Label", Html.Sitecore().CurrentItem) @savings.ToCurrency()</span>
+                                        <span pid="discount" class="savings">@Html.Sitecore().Field("You save Label", Html.Sitecore().CurrentItem) @savings.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)</span>
                                     }
                                 </td>
                             </tr>
@@ -200,23 +201,23 @@
                 <div class="col-md-12">
                     <div class="col-md-12 summary">
                         <span class="text">@Html.Sitecore().Field("Subtotal Label", Html.Sitecore().CurrentItem):</span>
-                        <span class="amount" pid="subtotal" id="confirm-subtotal">@total.Subtotal.ToCurrency()</span>
+                        <span class="amount" pid="subtotal" id="confirm-subtotal">@total.Subtotal.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)</span>
                     </div>
                     <div class="col-md-12 summary">
                         <span class="text">@Html.Sitecore().Field("Shipping Total Label", Html.Sitecore().CurrentItem):</span>
-                        <span class="amount" pid="shippingTotal" id="confirm-shippingTotal">@total.ShippingTotal.ToCurrency()</span>
+                        <span class="amount" pid="shippingTotal" id="confirm-shippingTotal">@total.ShippingTotal.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)</span>
                     </div>
                     <div class="col-md-12 summary">
                         <span class="text">@Html.Sitecore().Field("Tax Total Label", Html.Sitecore().CurrentItem):</span>
-                        <span class="amount" pid="taxTotal" id="confirm-taxTotal">@total.TaxTotal.Amount.ToCurrency()</span>
+                        <span class="amount" pid="taxTotal" id="confirm-taxTotal">@total.TaxTotal.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)</span>
                     </div>
                     <div class="col-md-12 summary">
                         <span class="text">@Html.Sitecore().Field("Savings Label", Html.Sitecore().CurrentItem):</span>
-                        <span class="amount" pid="discountTotal" id="confirm-discountTotal">@total.OrderLevelDiscountAmount.ToCurrency()</span>
+                        <span class="amount" pid="discountTotal" id="confirm-discountTotal">@total.OrderLevelDiscountAmount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)</span>
                     </div>
                     <div class="col-md-12 total">
                         <span class="text">@Html.Sitecore().Field("Order total Label", Html.Sitecore().CurrentItem):</span>
-                        <span class="amount" pid="total" id="confirm-total">@total.Amount.ToCurrency()</span>
+                        <span class="amount" pid="total" id="confirm-total">@total.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)</span>
                     </div>
                 </div>
             </div>

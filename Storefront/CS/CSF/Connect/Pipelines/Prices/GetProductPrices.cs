@@ -61,9 +61,17 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Prices
                 Dictionary<string, Price> prices = new Dictionary<string, Price>();
 
                 // BasePrice is a List price and ListPrice is Adjusted price 
-                if (isList && product.HasProperty("BasePrice") && product["BasePrice"] != null)
+                if (isList)
                 {
-                    prices.Add("List", new Price { PriceType = "List", Amount = (product["BasePrice"] as decimal?).Value });
+                    if (product.HasProperty("BasePrice") && product["BasePrice"] != null)
+                    {
+                        prices.Add("List", new Price { PriceType = "List", Amount = (product["BasePrice"] as decimal?).Value });
+                    }
+                    else
+                    {
+                        // No base price is defined, the List price is set to the actual ListPrice define in the catalog
+                        prices.Add("List", new Price { PriceType = "List", Amount = product.ListPrice });
+                    }
                 }               
 
                 if (isAdjusted && !product.IsListPriceNull())

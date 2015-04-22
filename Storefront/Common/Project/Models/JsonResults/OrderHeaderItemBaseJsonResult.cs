@@ -20,6 +20,7 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
     using Sitecore.Commerce.Entities.Orders;
     using Sitecore.Reference.Storefront.Managers;
     using Sitecore.Commerce.Connect.CommerceServer.Orders.Models;
+    using Sitecore.Reference.Storefront.Extensions;
 
     /// <summary>
     /// Json result for order header operations.
@@ -34,7 +35,7 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
         {
             this.ExternalId = header.ExternalId;
             this.Status = header.Status;
-            this.LastModified = ((CommerceOrderHeader)header).LastModified.ToShortDateString();
+            this.LastModified = ((CommerceOrderHeader)header).LastModified.ToDisplayedDate();
             this.DetailsUrl = string.Concat(StorefrontManager.StorefrontUri("/accountmanagement/myorder"), "?id=", header.ExternalId);
             this.OrderId = header.ExternalId;
         }

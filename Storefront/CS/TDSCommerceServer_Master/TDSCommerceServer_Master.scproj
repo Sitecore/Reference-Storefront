@@ -226,7 +226,7 @@ You have now read the Readme.
     <SitecoreItem Include="sitecore\content\Storefront\Home.item">
       <ItemDeployment>DeployOnce</ItemDeployment>
       <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
-      <DeployAlwaysFields>Catalogs|Category Images|Default Image|Product Images|</DeployAlwaysFields>
+      <DeployAlwaysFields>Catalogs|Category Images|Default Image|Max Number of Addresses|Product Images|</DeployAlwaysFields>
     </SitecoreItem>
     <SitecoreItem Include="sitecore\content\Storefront\Home\Product catalog.item">
       <ItemDeployment>DeployOnce</ItemDeployment>

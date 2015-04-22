@@ -10,6 +10,7 @@
 // and limitations under the License.
 // -------------------------------------------------------------------------------------------*@
 
+@using Sitecore.Reference.Storefront.Managers
 <div class="wrap-content-checkout">
     <div class="col-md-12">
         <div class="delivery-form">
@@ -41,7 +42,7 @@
     </div>
 </div>
 
-<script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&mkt=en-us"></script>
+<script type="text/javascript" src="@StorefrontManager.SelectExternalUri("http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&mkt=en-us", "https://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&s=1&mkt=en-us")"></script>
 <input type="hidden" id="deliveryMethodSet" />
 
 <script type="text/javascript">

@@ -199,7 +199,8 @@ namespace Sitecore.Reference.Storefront.Controllers
 
                         result.ShippingMethods = new List<ShippingMethod>();
                         result.CartLoyaltyCardNumber = cart.LoyaltyCardID;
-                        result.CurrencySymbol = Context.Language.CultureInfo.NumberFormat.CurrencySymbol;
+
+                        result.CurrencyCode = StorefrontConstants.Settings.DefaultCurrencyCode;
 
                         this.AddShippingOptionsToResult(result, cart);
                         if (result.Success)

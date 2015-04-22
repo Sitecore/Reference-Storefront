@@ -12,7 +12,7 @@ templatekey: Error Page
 ----version----
 language: en
 version: 1
-revision: 358c47ab-a634-48b4-8aca-eee8b24cb284
+revision: c034b634-72e5-4217-9647-d6846c2f7e02
 
 ----field----
 field: {EC1F4944-D675-42F6-B354-A0A1BF04BFF8}
@@ -25,7 +25,7 @@ Error
 field: {A9ED0F86-13AB-4EF7-A0A3-5C5046DD77E1}
 name: Page Text
 key: page text
-content-length: 379
+content-length: 387
 
  <h1>
         Oops - We´re so sorry
@@ -35,7 +35,7 @@ content-length: 379
     </h5>
     <div class="error-page-content">
         <p>The page you are looking for doesn't exist or some other error has occured.</p>
-        <p>Go to our <a href="~/">home page</a> or try the <a href="javascript:history.back()">previous page</a></p>
+        <p>Go to our <a href="/">home page</a> or try the <a href="javascript:history.back()">previous page</a></p>
     </div>
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -50,14 +50,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-358c47ab-a634-48b4-8aca-eee8b24cb284
+c034b634-72e5-4217-9647-d6846c2f7e02
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 35
 
-20150320T125545:635624529459996134Z
+20150420T084805:635651164859686626Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

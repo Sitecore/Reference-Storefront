@@ -230,7 +230,7 @@ function CheckoutDataViewModel(data) {
     // common //
     self.expirationDates = expirationDates;
     self.expirationYears = expirationYears;
-    self.currencySymbol = ko.observable(data.CurrencySymbol);
+    self.currencyCode = ko.observable(data.CurrencyCode);
 
     var Country = function (name, code) {
         this.country = name;

@@ -245,8 +245,8 @@
                             @giftCardLabel:
                             <span id="giftCardPayment_Number" data-bind="text: giftCardNumber"></span>
                             <span> / </span>
-                            <span data-bind="text: $root.currencySymbol"></span>
                             <span id="giftCardPayment_AppliedAmount" data-bind="text: giftCardAmount"></span>
+                            <span data-bind="text: $root.currencyCode"></span>
                         </p>
                         <span class="delete">
                             <a href="#" id="removeGiftCard" data-bind="click: removeCard"><span class="glyphicon glyphicon-remove"></span>@removeLabel</a>
@@ -288,8 +288,8 @@
                             @loyaltyCardLabel:
                             <span id="loyaltyCardPayment_Number" data-bind="text: loyaltyCardNumber"></span>
                             <span> / </span>
-                            <span data-bind="text: $root.currencySymbol"></span>
                             <span id="loyaltyCardPayment_AppliedAmount" data-bind="text: loyaltyCardAmount"></span>
+                            <span data-bind="text: $root.currencyCode"></span>
                         </p>
                         <span class="delete">
                             <a href="#" id="removeLoyaltyCard" data-bind="click: removeCard"><span class="glyphicon glyphicon-remove"></span> @removeLabel</a>
@@ -305,29 +305,29 @@
         <div class="col-md-12 summary" data-bind="visible: $root.giftCardPayment().isAdded">
             <span class="text">@giftCardLabel:</span>
             <span class="amount">
-                <span data-bind="text: $root.currencySymbol"></span>
                 <span id="billingGiftCardAmount" data-bind="text: $root.giftCardPayment().giftCardAmount"></span>
+                <span data-bind="text: $root.currencyCode"></span>
             </span>
         </div>
         <div class="col-md-12 summary" data-bind="visible: $root.loyaltyCardPayment().isAdded">
             <span class="text">@loyaltyCardLabel:</span>
             <span class="amount">
-                <span data-bind="text: $root.currencySymbol"></span>
                 <span id="billingLoyaltyCardAmount" data-bind="text: $root.loyaltyCardPayment().loyaltyCardAmount"></span>
+                <span data-bind="text: $root.currencyCode"></span>
             </span>
         </div>
         <div class="col-md-12 summary" data-bind="visible: $root.creditCardPayment().isAdded">
             <span class="text">@creditCardLabel:</span>
             <span class="amount">
-                <span data-bind="text: $root.currencySymbol"></span>
                 <span id="billingCreditCardAmount" data-bind="text: $root.creditCardPayment().creditCardAmount"></span>
+                <span data-bind="text: $root.currencyCode"></span>
             </span>
         </div>
         <div class="col-md-12 summary">
             <span class="text">@paymentTotalLabel:</span>
             <span class="amount">
-                <span data-bind="text: $root.currencySymbol"></span>
                 <span id="paymentTotal" data-bind="text: $root.paymentTotal()"></span>
+                <span data-bind="text: $root.currencyCode"></span>
             </span>
         </div>
     </div>

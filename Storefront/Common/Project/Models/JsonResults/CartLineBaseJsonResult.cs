@@ -51,10 +51,10 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
 
             this.DisplayName = product.DisplayName;
             this.Color = product.Properties["Color"] as string;
-            this.LineDiscount = ((CommerceTotal)line.Total).LineItemDiscountAmount.ToCurrency();
+            this.LineDiscount = ((CommerceTotal)line.Total).LineItemDiscountAmount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
             this.Quantity = line.Quantity.ToString(Context.Language.CultureInfo);
-            this.LinePrice = product.Price.Amount.ToCurrency();
-            this.LineTotal = line.Total.Amount.ToCurrency();
+            this.LinePrice = product.Price.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
+            this.LineTotal = line.Total.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
             this.ExternalCartLineId = StringUtility.RemoveCurlyBrackets(line.ExternalCartLineId);
             this.ProductUrl = product.ProductId.Equals(StorefrontManager.CurrentStorefront.GiftCardProductId, StringComparison.OrdinalIgnoreCase)
                 ? StorefrontManager.StorefrontUri("/buygiftcard")

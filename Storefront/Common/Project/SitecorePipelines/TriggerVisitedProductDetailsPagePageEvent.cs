@@ -56,6 +56,7 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
             var request = args.Request as VisitedProductDetailsPageRequest;
             if (request != null)
             {
+                data.Add(StorefrontConstants.PageEventDataNames.ShopName, request.ShopName);
                 data.Add(StorefrontConstants.PageEventDataNames.ProductId, request.ProductId);
                 data.Add(StorefrontConstants.PageEventDataNames.ParentCategoryName, request.ParentCategoryName ?? string.Empty);
                 data.Add(StorefrontConstants.PageEventDataNames.CatalogName, request.CatalogName ?? string.Empty);

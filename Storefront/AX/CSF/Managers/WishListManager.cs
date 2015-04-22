@@ -28,6 +28,7 @@ namespace Sitecore.Reference.Storefront.Managers
     using Sitecore.Diagnostics;
     using Sitecore.Reference.Storefront.Models.InputModels;
     using Sitecore.Reference.Storefront.Models.SitecoreItemModels;
+    using System.Globalization;
 
     /// <summary>
     /// Defines the WishListManager class.
@@ -97,6 +98,24 @@ namespace Sitecore.Reference.Storefront.Managers
             Assert.ArgumentNotNull(storefront, "storefront");
             Assert.ArgumentNotNull(visitorContext, "visitorContext");
             Assert.ArgumentNotNullOrEmpty(wishListName, "wishListName");
+
+            CreateWishListResult errorResult = new CreateWishListResult() { Success = false };
+
+            // Limit the number of wish list that can get created.
+            var wishListResponse = this.GetWishLists(storefront, visitorContext);
+            if (!wishListResponse.ServiceProviderResult.Success)
+            {
+                wishListResponse.ServiceProviderResult.SystemMessages.ToList().ForEach(m => errorResult.SystemMessages.Add(m));
+                return new ManagerResponse<CreateWishListResult, WishList>(errorResult, null);
+            }
+
+            if (wishListResponse.Result.Count() >= StorefrontManager.CurrentStorefront.MaxNumberOfWishLists)
+            {
+                var message = StorefrontManager.GetSystemMessage("MaxWishListLimitReached");
+                message = string.Format(CultureInfo.InvariantCulture, message, StorefrontManager.CurrentStorefront.MaxNumberOfWishLists); 
+                errorResult.SystemMessages.Add(new Commerce.Services.SystemMessage() { Message = message });
+                return new ManagerResponse<CreateWishListResult, WishList>(errorResult, null);
+            }
 
             var request = new CreateWishListRequest(visitorContext.UserId, wishListName, storefront.ShopName);
             var result = this.WishListServiceProvider.CreateWishList(request);
@@ -272,6 +291,24 @@ namespace Sitecore.Reference.Storefront.Managers
             Assert.ArgumentNotNull(visitorContext, "visitorContext");
             Assert.ArgumentNotNull(lines, "lines");
             Assert.ArgumentNotNullOrEmpty(wishListId, "wishListId");
+
+            var errorResult = new AddLinesToWishListResult() { Success = false };
+
+            // Limit the number of wish list lines that can get created.
+            var wishListResult = this.GetWishList(storefront, visitorContext, wishListId);
+            if (!wishListResult.ServiceProviderResult.Success)
+            {
+                wishListResult.ServiceProviderResult.SystemMessages.ToList().ForEach(m => errorResult.SystemMessages.Add(m));
+                return new ManagerResponse<AddLinesToWishListResult, WishList>(errorResult, null);
+            }
+
+            if (wishListResult.Result.Lines.Count() >= StorefrontManager.CurrentStorefront.MaxNumberOfWishListItems)
+            {
+                var message = StorefrontManager.GetSystemMessage("MaxWishListLineLimitReached");
+                message = string.Format(CultureInfo.InvariantCulture, message, StorefrontManager.CurrentStorefront.MaxNumberOfWishLists);
+                errorResult.SystemMessages.Add(new Commerce.Services.SystemMessage() { Message = message });
+                return new ManagerResponse<AddLinesToWishListResult, WishList>(errorResult, null);
+            }
 
             var request = new AddLinesToWishListRequest(new WishList { UserId = visitorContext.UserId, CustomerId = visitorContext.UserId, ExternalId = wishListId, ShopName = storefront.ShopName }, lines);
             var result = this.WishListServiceProvider.AddLinesToWishList(request);

@@ -1,0 +1,44 @@
+----item----
+version: 1
+id: {11084221-2F5F-4835-8EFE-B8819CEB7947}
+database: master
+path: /sitecore/templates/Storefront
+parent: {3C1715FE-6A13-4FCF-845F-DE308BA9741D}
+name: Storefront
+master: {00000000-0000-0000-0000-000000000000}
+template: {0437FEE2-44C9-46A6-ABE9-28858D9FEE8C}
+templatekey: Template Folder
+
+----version----
+language: en
+version: 1
+revision: 27518da3-95c8-4e82-a6b5-32b23b8aa436
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 15
+
+20141009T023721
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+27518da3-95c8-4e82-a6b5-32b23b8aa436
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 34
+
+20141022T032701:635495452212117998
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

@@ -70,7 +70,7 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
             Assert.ArgumentNotNull(cart, "cart");
 
             this.LineItemCount = ((CommerceCart)cart).LineItemCount;
-            this.Total = ((CommerceTotal)cart.Total).Subtotal.ToCurrency();
+            this.Total = ((CommerceTotal)cart.Total).Subtotal.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
         }
     }
 }

@@ -9,10 +9,17 @@ master: {00000000-0000-0000-0000-000000000000}
 template: {87C331AE-3293-4FD1-A5F2-A625523F3019}
 templatekey: QuickLink
 
+----field----
+field: {BA2DAACE-B30A-4489-9F25-DDD852C1B171}
+name: Generate Secure Link
+key: generate secure link
+content-length: 1
+
+1
 ----version----
 language: en
 version: 1
-revision: b85a8e79-8caf-4369-9be9-979b9e50d79f
+revision: 8b9df7bc-1fbd-4d34-a6d9-333b580449a5
 
 ----field----
 field: {B861B1ED-2820-4AD8-B169-8928AC381634}
@@ -41,14 +48,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-b85a8e79-8caf-4369-9be9-979b9e50d79f
+8b9df7bc-1fbd-4d34-a6d9-333b580449a5
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 35
 
-20141217T073343:635543984235231558Z
+20150331T054252:635633773727758419Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

@@ -32,6 +32,7 @@ namespace Sitecore.Reference.Storefront.Managers
     using Sitecore.Reference.Storefront.Connect.Pipelines.Arguments;
     using CSFServices = Sitecore.Reference.Storefront.Connect.Services;
     using Sitecore.Commerce.Services.Orders;
+    using Sitecore.Commerce.Services;
 
     /// <summary>
     /// Defines the OrderManager class.
@@ -84,15 +85,32 @@ namespace Sitecore.Reference.Storefront.Managers
             Assert.ArgumentNotNull(inputModel, "inputModel");
 
             SubmitVisitorOrderResult errorResult = new SubmitVisitorOrderResult { Success = false };
-            
+
             var response = this.CartManager.GetCurrentCart(storefront, visitorContext, true);
             if (!response.ServiceProviderResult.Success || response.Result == null)
             {
-                errorResult.SystemMessages.ToList().AddRange(response.ServiceProviderResult.SystemMessages);
+                response.ServiceProviderResult.SystemMessages.ToList().ForEach(m => errorResult.SystemMessages.Add(m));
                 return new ManagerResponse<SubmitVisitorOrderResult, CommerceOrder>(errorResult, null);
             }
 
             var cart = (CommerceCart)response.ServiceProviderResult.Cart;
+
+            if (cart.Lines.Count == 0)
+            {
+                errorResult.SystemMessages.Add(new SystemMessage { Message = StorefrontManager.GetSystemMessage("SubmitOrderHasEmptyCart") });
+                return new ManagerResponse<SubmitVisitorOrderResult, CommerceOrder>(errorResult, null);
+            }
+
+            var cartChanges = new CommerceCart();
+
+            cartChanges.Properties["Email"] = inputModel.UserEmail;
+
+            var updateCartResult = this.CartManager.UpdateCart(storefront, visitorContext, cart, cartChanges);
+            if (!updateCartResult.ServiceProviderResult.Success)
+            {
+                response.ServiceProviderResult.SystemMessages.ToList().ForEach(m => errorResult.SystemMessages.Add(m));
+                return new ManagerResponse<SubmitVisitorOrderResult, CommerceOrder>(errorResult, null);
+            }
 
             var request = new SubmitVisitorOrderRequest(cart);
             request.RefreshCart(true);

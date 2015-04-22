@@ -22,6 +22,7 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
     using Sitecore.Diagnostics;
     using Sitecore.Commerce.Connect.CommerceServer.Inventory.Models;
     using Sitecore.Reference.Storefront.Managers;
+    using Sitecore.Reference.Storefront.Extensions;
 
     /// <summary>
     /// The Json result of a request to retrieve product stock information.
@@ -104,7 +105,7 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
             this.Count = stockInfo.Count < 0 ? 0 : stockInfo.Count;
             if (stockInfo.AvailabilityDate != null & stockInfo.AvailabilityDate.HasValue)
             {
-                this.AvailabilityDate = stockInfo.AvailabilityDate.Value.ToShortDateString();
+                this.AvailabilityDate = stockInfo.AvailabilityDate.Value.ToDisplayedDate();
             }
         }
     }

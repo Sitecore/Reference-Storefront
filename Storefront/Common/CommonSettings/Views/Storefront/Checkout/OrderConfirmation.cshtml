@@ -10,6 +10,7 @@
 // and limitations under the License.
 // -------------------------------------------------------------------------------------------*@
 
+@using Sitecore.Reference.Storefront.Managers;
 <div id="orderConfirmationContainer" class="wrap-main-content">
     <div id="##" class="wrap-content-title-text">
         <div class="col-md-6" id="printConfirmationArea">
@@ -38,7 +39,7 @@
                 </a>
             </span>
         </div>
-        <div class="col-md-6 spot-single-image"><img src="http://placehold.it/550x330" class="img-responsive" alt="a" /></div>
+        <div class="col-md-6 spot-single-image">@Html.Sitecore().Field("Image", Html.Sitecore().CurrentItem, new { Parameters = new Sitecore.Collections.SafeDictionary<string> { { "class", "img-responsive" } } })</div>
     </div>
 </div>
 <script type="text/javascript">

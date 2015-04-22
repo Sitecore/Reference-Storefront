@@ -11,33 +11,40 @@
 // -------------------------------------------------------------------------------------------*@
 
 @{
-    var languages = Sitecore.Context.Database.GetItem("/sitecore/System/Languages");    
+    var languages = Sitecore.Context.Database.GetItem("/sitecore/System/Languages");
+    var currentLanguage = Sitecore.Context.Language;
 }
+
 <div id="B01-LanguageSelector" class="language-selector">
     <a href="#" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
         <span class="glyphicon glyphicon-globe"></span>
-            @if (Sitecore.Context.Language != null)
-            {
-                @Sitecore.Context.Language.CultureInfo.DisplayName
-            }        
+        @if (currentLanguage != null)
+        {
+            @currentLanguage.CultureInfo.DisplayName
+        }
     </a>
 
-    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-        @foreach (Item language in languages.Children)
-        {
-            var lang = Sitecore.Data.Managers.LanguageManager.GetLanguage(language.Name.ToString()).CultureInfo.DisplayName;
-            if (lang != Sitecore.Context.Language.CultureInfo.DisplayName) { 
-            <li><a id="languageButton-@language.Name" href="#" onclick="SwitchToLanguage('@language.Name')">@lang</a></li>
-             }
-        }
-       
-    </ul>
+    @*Show language drop menu if count greater than 1*@
+    @if (languages.Children.Count() > 1)
+    {
+        <ul class="dropdown-menu language-menu" role="menu" aria-labelledby="dLabel">
+            @foreach (Sitecore.Data.Items.Item language in languages.Children)
+            {
+                var lang = Sitecore.Data.Managers.LanguageManager.GetLanguage(language.Name.ToString()).CultureInfo.DisplayName;
+                if (lang != currentLanguage.CultureInfo.DisplayName)
+                {
+                    <li><a id="languageButton-@language.Name" href="#" onclick="SwitchToLanguage('@language.Name', '@currentLanguage.Name')">@lang</a></li>
+                }
+            }
+        </ul>
+    }
 
 </div>
 
 <script type="text/javascript">
-    function SwitchToLanguage(language) {
-        var path = window.location.pathname.replace('/'+language+'/', '');
+    function SwitchToLanguage(language, currentLanguage) {
+        var path = window.location.pathname.replace('/' + currentLanguage + '/', '');
+        path = (path.charAt(0) === "/") ? path : "/" + path;
         var newpath = window.location.protocol + '//' + window.location.hostname + "/" + language + path;
         window.location = newpath;
     }

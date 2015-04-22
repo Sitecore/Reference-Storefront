@@ -38,6 +38,9 @@
 
                 Sitecore.Data.Fields.CheckboxField showWhenAuthenticated = link.Fields[StorefrontConstants.KnownFieldNames.ShowWhenAuthenticated];
                 Sitecore.Data.Fields.CheckboxField showAlways = link.Fields[StorefrontConstants.KnownFieldNames.ShowAlways];
+                Sitecore.Data.Fields.CheckboxField generateSecureLink = link.Fields[StorefrontConstants.KnownFieldNames.GenerateSecureLink];
+
+                string linkString = link["Link"];
 
                 bool show =  (showAlways.Checked) || (showWhenAuthenticated.Checked && Request.IsAuthenticated) || (!showWhenAuthenticated.Checked && !Request.IsAuthenticated);
             
@@ -45,13 +48,23 @@
                 { 
                     if (displayPipe)
                     {
-                        <li class="quicklink-space"> | </li>        
+                        <li class="quicklink-space"> | </li>
                     }
                     else
                     {
                         displayPipe = true;
                     }
-                    <li>@Html.Sitecore().Field("Link", link, new { text = Html.Sitecore().Field("Text", link) })</li>
+
+                    if (generateSecureLink.Checked)
+                    {
+                        string anchorUrl = Helpers.GetAnchorFromLinkTag(link);
+                        string urlString = StorefrontManager.SecureStorefrontUri(anchorUrl);
+                        <li><a href="@urlString">@Html.Sitecore().Field("Text", link)</a></li>
+                    }
+                    else
+                    {
+                        <li>@Html.Sitecore().Field("Link", link, new { text = Html.Sitecore().Field("Text", link) })</li>
+                    }
                 }
             }
         }

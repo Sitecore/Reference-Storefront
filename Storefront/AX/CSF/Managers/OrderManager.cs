@@ -30,6 +30,7 @@ namespace Sitecore.Reference.Storefront.Managers
     using System.Linq;
     using WebGrease.Css.Extensions;
     using Sitecore.Commerce.Connect.CommerceServer;
+    using Sitecore.Commerce.Services;
 
     /// <summary>
     /// Defines the OrderManager class.
@@ -75,6 +76,7 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <returns>
         /// The manager response where the new CommerceOrder is returned in the Result.
         /// </returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
         public ManagerResponse<SubmitVisitorOrderResult, CommerceOrder> SubmitVisitorOrder([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext, [NotNull] SubmitOrderInputModel inputModel)
         {
             Assert.ArgumentNotNull(storefront, "storefront");
@@ -90,6 +92,12 @@ namespace Sitecore.Reference.Storefront.Managers
             }
 
             var cart = (CommerceCart)response.ServiceProviderResult.Cart;
+
+            if (cart.Lines.Count == 0)
+            {
+                result.SystemMessages.Add(new SystemMessage { Message = StorefrontManager.GetSystemMessage("SubmitOrderHasEmptyCart") });
+                return new ManagerResponse<SubmitVisitorOrderResult, CommerceOrder>(result, null);
+            }
 
             // payments and billing address will be save as part of submit order
             var payments = new List<PaymentInfo>();

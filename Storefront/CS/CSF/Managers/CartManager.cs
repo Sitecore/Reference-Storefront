@@ -732,6 +732,31 @@ namespace Sitecore.Reference.Storefront.Managers
             return new ManagerResponse<CartResult, CommerceCart>(result, result.Cart as CommerceCart);
         }
 
+        /// <summary>
+        /// Updates the cart.
+        /// </summary>
+        /// <param name="storefront">The storefront.</param>
+        /// <param name="visitorContext">The visitor context.</param>
+        /// <param name="cart">The cart.</param>
+        /// <param name="cartChanges">The cart changes.</param>
+        /// <returns>The manager response with the updated cart.</returns>
+        public virtual ManagerResponse<CartResult, CommerceCart> UpdateCart([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext, [NotNull] CommerceCart cart, [NotNull] CommerceCart cartChanges)
+        {
+            Assert.ArgumentNotNull(storefront, "storefront");
+            Assert.ArgumentNotNull(visitorContext, "visitorContext");
+            Assert.ArgumentNotNull(cart, "cart");
+            Assert.ArgumentNotNull(cartChanges, "cartChanges");
+
+            var updateCartRequest = new UpdateCartRequest(cart, cartChanges);
+            var result = this.CartServiceProvider.UpdateCart(updateCartRequest);
+            if (!result.Success)
+            {
+                Helpers.LogSystemMessages(result.SystemMessages, result);
+            }
+
+            return new ManagerResponse<CartResult, CommerceCart>(result, result.Cart as CommerceCart);
+        }
+
         #endregion
 
         #region Methods (protected, virtual)

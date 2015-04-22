@@ -45,16 +45,16 @@ namespace Sitecore.Reference.Storefront.Models.SitecoreItemModels
         }
 
         /// <summary>
-        /// Gets a value indicating whether [use ax checkout].
+        /// Gets the maximum number of loyalty programs a user can join.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if [use ax checkout]; otherwise, <c>false</c>.
+        /// The maximum number of loyalty programs a user can join.
         /// </value>
-        public bool UseAXCheckout
+        public int MaxNumberOfLoyaltyProgramsToJoin
         {
             get
             {
-                return MainUtil.GetBool(this.InnerItem[DynamicsStorefrontConstants.KnownFieldNames.UseAXCheckoutControl], false);
+                return MainUtil.GetInt(this.HomeItem[DynamicsStorefrontConstants.KnownFieldNames.MaxNumberOfLoyaltyProgramsToJoin], 1);
             }
         }
     }

@@ -178,12 +178,17 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <summary>
         /// Registers an event specifying that the category page has been visited.
         /// </summary>
+        /// <param name="storefront">The storefront.</param>
         /// <param name="categoryName">The category name.</param>
         /// <param name="catalogName">The catalog name.</param>
-        /// <returns>A <see cref="VisitedCategoryPageResult"/> specifying the result of the service request.</returns>
-        public VisitedCategoryPageResult VisitedCategoryPage([NotNull] string categoryName, string catalogName)
+        /// <returns>
+        /// A <see cref="VisitedCategoryPageResult" /> specifying the result of the service request.
+        /// </returns>
+        public VisitedCategoryPageResult VisitedCategoryPage([NotNull] CommerceStorefront storefront, [NotNull] string categoryName, string catalogName)
         {
-            var request = new VisitedCategoryPageRequest(categoryName);
+            Assert.ArgumentNotNull(storefront, "storefront");
+
+            var request = new VisitedCategoryPageRequest(storefront.ShopName, categoryName);
             request.CatalogName = catalogName;
             return this.CatalogServiceProvider.VisitedCategoryPage(request);
         }
@@ -191,13 +196,18 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <summary>
         /// Registers an event specifying that the product details page has been visited.
         /// </summary>
+        /// <param name="storefront">The storefront.</param>
         /// <param name="productId">the product id.</param>
         /// <param name="parentCategoryName">the parent category name.</param>
         /// <param name="catalogName">the catalog name.</param>
-        /// <returns>A <see cref="VisitedProductDetailsPageResult"/> specifying the result of the service request.</returns>
-        public VisitedProductDetailsPageResult VisitedProductDetailsPage([NotNull] string productId, string parentCategoryName, string catalogName)
+        /// <returns>
+        /// A <see cref="VisitedProductDetailsPageResult" /> specifying the result of the service request.
+        /// </returns>
+        public VisitedProductDetailsPageResult VisitedProductDetailsPage([NotNull] CommerceStorefront storefront, [NotNull] string productId, string parentCategoryName, string catalogName)
         {
-            var request = new VisitedProductDetailsPageRequest(productId);
+            Assert.ArgumentNotNull(storefront, "storefront");
+
+            var request = new VisitedProductDetailsPageRequest(storefront.ShopName, productId);
             request.ParentCategoryName = parentCategoryName;
             request.CatalogName = catalogName;
             return this.CatalogServiceProvider.VisitedProductDetailsPage(request);
@@ -416,41 +426,81 @@ namespace Sitecore.Reference.Storefront.Managers
             }
 
             return 0;
-        }       
+        }
 
         /// <summary>
         /// Visiteds the product details page.
         /// </summary>
-        /// <returns>The manager response</returns>
-        public virtual ManagerResponse<VisitedProductDetailsPageResult, bool> VisitedProductDetailsPage()
+        /// <param name="storefront">The storefront.</param>
+        /// <returns>
+        /// The manager response
+        /// </returns>
+        public virtual ManagerResponse<VisitedProductDetailsPageResult, bool> VisitedProductDetailsPage([NotNull] CommerceStorefront storefront)
         {
-            var request = new VisitedProductDetailsPageRequest(CatalogUrlManager.ExtractItemIdFromCurrentUrl())
+            Assert.ArgumentNotNull(storefront, "storefront");
+
+            var request = new VisitedProductDetailsPageRequest(storefront.ShopName, CatalogUrlManager.ExtractItemIdFromCurrentUrl())
             {
                 ParentCategoryName = CatalogUrlManager.ExtractCategoryNameFromCurrentUrl(),
                 CatalogName = CatalogUrlManager.ExtractCatalogNameFromCurrentUrl()
             };
 
             var result = this.CatalogServiceProvider.VisitedProductDetailsPage(request);
+            if (!result.Success)
+            {
+                Helpers.LogSystemMessages(result.SystemMessages, result);
+            }
 
-            Helpers.LogSystemMessages(result.SystemMessages, result);
             return new ManagerResponse<VisitedProductDetailsPageResult, bool>(result, result.Success);
         }
 
         /// <summary>
         /// Visiteds the category page.
         /// </summary>
-        /// <returns>The manager response</returns>
-        public virtual ManagerResponse<VisitedCategoryPageResult, bool> VisitedCategoryPage()
+        /// <param name="storefront">The storefront.</param>
+        /// <returns>
+        /// The manager response
+        /// </returns>
+        public virtual ManagerResponse<VisitedCategoryPageResult, bool> VisitedCategoryPage([NotNull] CommerceStorefront storefront)
         {
-            var request = new VisitedCategoryPageRequest(CatalogUrlManager.ExtractItemIdFromCurrentUrl())
+            Assert.ArgumentNotNull(storefront, "storefront");
+
+            var request = new VisitedCategoryPageRequest(storefront.ShopName, CatalogUrlManager.ExtractItemIdFromCurrentUrl())
             {
                 CatalogName = CatalogUrlManager.ExtractCatalogNameFromCurrentUrl()
             };
 
-            var result = this.CatalogServiceProvider.VisitedCategoryPage(request); 
+            var result = this.CatalogServiceProvider.VisitedCategoryPage(request);
+            if (!result.Success)
+            {
+                Helpers.LogSystemMessages(result.SystemMessages, result);
+            }
 
-            Helpers.LogSystemMessages(result.SystemMessages, result);
             return new ManagerResponse<VisitedCategoryPageResult, bool>(result, result.Success);
+        }
+
+        /// <summary>
+        /// Registers the search event.
+        /// </summary>
+        /// <param name="storefront">The storefront.</param>
+        /// <param name="searchKeyword">The search keyword.</param>
+        /// <param name="numberOfHits">The number of hits.</param>
+        /// <returns>
+        /// The manager response
+        /// </returns>
+        public virtual ManagerResponse<SearchInitiatedResult, bool> RegisterSearchEvent([NotNull] CommerceStorefront storefront, string searchKeyword, int numberOfHits)
+        {
+            Assert.ArgumentNotNull(storefront, "storefront");
+            Assert.ArgumentNotNullOrEmpty(searchKeyword, "searchKeyword");
+
+            var request = new SearchInitiatedRequest(storefront.ShopName, searchKeyword, numberOfHits);
+            var result = this.CatalogServiceProvider.SearchInitiated(request);
+            if (!result.Success)
+            {
+                Helpers.LogSystemMessages(result.SystemMessages, result);
+            }
+
+            return new ManagerResponse<SearchInitiatedResult, bool>(result, result.Success);
         }
 
         #region Protected helper methods
