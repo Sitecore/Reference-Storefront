@@ -1,4 +1,6 @@
-Sitecore Reference Storefront powered by Microsoft Dynamics AX for Retail or powered by Commerce Server
+This is the home of the Sitecore Reference storefront, which comes in two versions:
+- Sitecore Reference Storefront (Sitecore Commerce powered by Microsoft Dynamics)
+- Sitecore Reference Storefront (Sitecore Commerce powered by Commerce Server)
 
 Copyright 2015 Sitecore Corporation A/S
 
