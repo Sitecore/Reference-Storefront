@@ -1,4 +1,4 @@
-Sitecore Reference Storefront powered by Microsoft Dynamics and powered by Commerce Server
+Sitecore Reference Storefront powered by Microsoft Dynamics AX for Retail or powered by Commerce Server
 
 Copyright 2015 Sitecore Corporation A/S
 
