@@ -1,5 +1,5 @@
 This is the home of the Sitecore Reference storefront, which comes in two versions:
-- Sitecore Reference Storefront (Sitecore Commerce powered by Microsoft Dynamics)
+- Sitecore Reference Storefront (Sitecore Commerce powered by Microsoft Dynamics(r))
 - Sitecore Reference Storefront (Sitecore Commerce powered by Commerce Server)
 
 Copyright 2015 Sitecore Corporation A/S
