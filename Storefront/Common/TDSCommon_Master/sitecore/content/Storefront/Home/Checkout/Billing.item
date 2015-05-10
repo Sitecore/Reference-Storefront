@@ -12,7 +12,7 @@ templatekey: Billing Page
 ----version----
 language: en
 version: 1
-revision: 6a42c17d-bd53-4293-bc45-1853cd4fd64c
+revision: 0b9dbdfe-2b0b-470b-84e4-dc591583f73f
 
 ----field----
 field: {6D0902E3-C47C-4DE4-AEB9-2E06F0A8DA0C}
@@ -270,9 +270,9 @@ Add gift card
 field: {03097782-47FF-4E76-9F48-0566F6B56949}
 name: Cards Header
 key: cards header
-content-length: 29
+content-length: 28
 
-Gift cards and Loyality cards
+Gift cards and Loyalty cards
 ----field----
 field: {37E9811A-B949-4D89-8637-26E8547C7BB8}
 name: Apply Gift Card Label
@@ -319,9 +319,9 @@ Apply loyalty card
 field: {191DE834-5438-49EB-B4A7-F1C0D2CE7D6C}
 name: Subtitle Loyalty Label
 key: subtitle loyalty label
-content-length: 55
+content-length: 54
 
-Enter the information regarding your loyality card here
+Enter the information regarding your loyalty card here
 ----field----
 field: {82652DC1-D579-4F9B-828C-BD003EEE0C68}
 name: Loyalty Card Label
@@ -363,14 +363,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-6a42c17d-bd53-4293-bc45-1853cd4fd64c
+0b9dbdfe-2b0b-470b-84e4-dc591583f73f
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 35
 
-20150224T035507:635603469071599165Z
+20150503T050403:635662262436451184Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

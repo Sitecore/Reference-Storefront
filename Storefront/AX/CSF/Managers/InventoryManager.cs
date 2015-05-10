@@ -18,6 +18,7 @@
 namespace Sitecore.Reference.Storefront.Managers
 {
     using System;
+    using System.Linq;
     using Sitecore.Commerce.Connect.CommerceServer.Inventory;
     using Sitecore.Commerce.Contacts;
     using Sitecore.Commerce.Entities.Inventory;
@@ -29,6 +30,7 @@ namespace Sitecore.Reference.Storefront.Managers
     using System.Collections.Generic;
     using Sitecore.Commerce.Connect.CommerceServer.Inventory.Models;
     using Sitecore.Reference.Storefront.Models.InputModels;
+    using Sitecore.Reference.Storefront.Models;
 
     /// <summary>
     /// Defines the InventoryManager class.
@@ -77,6 +79,71 @@ namespace Sitecore.Reference.Storefront.Managers
         #endregion
 
         #region Methods (public, virtual)
+
+        /// <summary>
+        /// Gets the product stock status.
+        /// </summary>
+        /// <param name="storefront">The storefront.</param>
+        /// <param name="productViewModels">The product view models.</param>
+        public virtual void GetProductsStockStatus([NotNull] CommerceStorefront storefront, List<ProductViewModel> productViewModels)
+        {
+            if (productViewModels == null || !productViewModels.Any())
+            {
+                return;
+            }
+
+            var products = new List<CommerceInventoryProduct>();
+            foreach (var viewModel in productViewModels)
+            {
+                if (viewModel.Variants != null && viewModel.Variants.Any())
+                {
+                    foreach (var variant in viewModel.Variants)
+                    {
+                        products.Add(new CommerceInventoryProduct
+                        {
+                            ProductId = viewModel.ProductId,
+                            CatalogName = viewModel.CatalogName,
+                            VariantId = variant.VariantId
+                        });
+                    }
+                }
+                else
+                {
+                    products.Add(new CommerceInventoryProduct { ProductId = viewModel.ProductId, CatalogName = viewModel.CatalogName });
+                }
+            }
+
+            if (products.Any())
+            {
+                var response = this.GetStockInformation(storefront, products, StockDetailsLevel.All);
+                if (response.Result != null)
+                {
+                    var stockInfoList = response.Result.ToList();
+
+                    foreach (var viewModel in productViewModels)
+                    {
+                        StockInformation foundItem = null;
+                        if (viewModel.Variants != null && viewModel.Variants.Any())
+                        {
+                            foreach (var variant in viewModel.Variants)
+                            {
+                                foundItem = stockInfoList.Find(p => p.Product.ProductId == viewModel.ProductId && ((CommerceInventoryProduct)p.Product).VariantId == variant.VariantId);
+                            }
+                        }
+                        else
+                        {
+                            foundItem = stockInfoList.Find(p => p.Product.ProductId == viewModel.ProductId);
+                        }
+
+                        if (foundItem != null)
+                        {
+                            viewModel.StockStatus = foundItem.Status;
+                            viewModel.StockStatusName = StorefrontManager.GetProductStockStatusName(foundItem.Status);
+                        }
+                    }
+                }
+            }
+        }
 
         /// <summary>
         /// Gets the stock information.

@@ -57,5 +57,24 @@ namespace Sitecore.Reference.Storefront.Models.SitecoreItemModels
                 return MainUtil.GetInt(this.HomeItem[DynamicsStorefrontConstants.KnownFieldNames.MaxNumberOfLoyaltyProgramsToJoin], 1);
             }
         }
+        
+        /// <summary>
+        /// Gets the channel identifier.
+        /// </summary>
+        /// <value>
+        /// The channel identifier.
+        /// </value>
+        public virtual string ChannelId
+        {
+            get
+            {
+                if (this.InnerItem == null)
+                {
+                    return string.Empty;
+                }
+
+                return this.InnerItem[DynamicsStorefrontConstants.KnownFieldNames.ChannelId];
+            }
+        }
     }
 }

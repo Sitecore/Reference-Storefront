@@ -106,7 +106,9 @@ namespace Sitecore.Reference.Storefront.Managers
             var request = new GetProductBulkPricesRequest(catalogName, productIds, priceTypeIds);
             var result = this.PricingServiceProvider.GetProductBulkPrices(request);
 
-            Helpers.LogSystemMessages(result.SystemMessages, result);
+            // Currently, both Categories and Products are passed in and are waiting for a fix to filter the categories out.  Until then, this code is commented
+            // out as it generates an unecessary Error event indicating the product cannot be found.
+            // Helpers.LogSystemMessages(result.SystemMessages, result);
             return new ManagerResponse<GetProductBulkPricesResult, IDictionary<string, Dictionary<string, Price>>>(result, result.Prices == null ? new Dictionary<string, Dictionary<string, Price>>() : result.Prices);
         }
 

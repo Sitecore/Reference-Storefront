@@ -19,6 +19,8 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
 {
     using Sitecore.Analytics;
     using Sitecore.Commerce.Automation.MarketingAutomation;
+    using Sitecore.Commerce.Connect.CommerceServer.Orders.Models;
+    using Sitecore.Commerce.Connect.DynamicsRetail.Entities.Orders;
     using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Orders;
     using Sitecore.Commerce.Multishop;
@@ -119,13 +121,11 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
         protected virtual void AddContactToPlan(string contactIdentifier, Order order, ID planId, ID initialStateId)
         {
             Dictionary<string, object> customDictionary = new Dictionary<string, object>();
-            ////  TODO add the order after the Order serialization problem is fixed
-            ////   customDictionary.Add(order.ExternalId, order);
-            customDictionary.Add(order.ExternalId, order.OrderID);
+            customDictionary.Add(order.ExternalId, order);           
             Dictionary<string, object> customData = new Dictionary<string, object>();
             customData.Add("commerce.orders", customDictionary);
             CommerceAutomationHelper.AddContactToState(contactIdentifier, planId, initialStateId, customData);
-        }
+        }       
 
         #endregion
     }

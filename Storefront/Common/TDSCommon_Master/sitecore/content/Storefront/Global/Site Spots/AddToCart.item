@@ -12,7 +12,7 @@ templatekey: AddToCart
 ----version----
 language: en
 version: 1
-revision: 28d6c4db-dc88-4026-a8bd-3a67b14b5e10
+revision: 310a14a9-80b0-41fb-aec8-4c55760c1820
 
 ----field----
 field: {524BCD07-A070-4B7B-9BFB-9D3B84ECE74B}
@@ -21,6 +21,27 @@ key: quantity label
 content-length: 9
 
 Quantity:
+----field----
+field: {CCC6D8B6-A3CE-4E5A-B70A-297E62666ACE}
+name: AddingToCart Label
+key: addingtocart label
+content-length: 17
+
+Adding to Cart...
+----field----
+field: {FA500705-683D-4F84-AFF5-29585F782D72}
+name: AddToCart Label
+key: addtocart label
+content-length: 11
+
+Add to cart
+----field----
+field: {9B65D17B-8FD2-476E-848E-727BE76A0B49}
+name: Invalid Variant
+key: invalid variant
+content-length: 40
+
+This color/size combination is not valid
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
@@ -48,14 +69,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-28d6c4db-dc88-4026-a8bd-3a67b14b5e10
+310a14a9-80b0-41fb-aec8-4c55760c1820
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 35
 
-20150421T100255:635652073756223815Z
+20150426T092249:635656369696320214Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

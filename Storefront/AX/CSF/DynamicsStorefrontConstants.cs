@@ -17,12 +17,6 @@
 
 namespace Sitecore.Reference.Storefront
 {
-    using Sitecore.Data;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
-
     /// <summary>
     /// Defines the StorefrontConstants class.
     /// </summary>
@@ -38,6 +32,22 @@ namespace Sitecore.Reference.Storefront
             /// The maximum number of loyalty programs to join field.
             /// </summary>
             public static readonly string MaxNumberOfLoyaltyProgramsToJoin = "Max Number of Loyalty Programs To Join";
+
+            /// <summary>
+            /// The AX channel id.
+            /// </summary>
+            public static readonly string ChannelId = "ChannelId";
+        }
+
+        /// <summary>
+        /// Known storefront properties names.
+        /// </summary>
+        public static class KnownPropertiesNames
+        {
+            /// <summary>
+            /// The AX channel id.
+            /// </summary>
+            public static readonly string ChannelId = "ChannelId";
         }
     }
 }

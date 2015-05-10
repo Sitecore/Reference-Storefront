@@ -34,40 +34,5 @@ namespace Sitecore.Reference.Storefront
         /// "Done creating and deploying enagagement plans." text
         /// </summary>
         public const string CreateDeployEngagementPlansComplete = "Done creating and deploying engagement plans.";
-
-        /// <summary>
-        /// "Could not load mailtemplate:  from {0}" text
-        /// </summary>
-        public const string CouldNotLoadTemplateMessageError = "Could not load mailtemplate {0}";
-
-        /// <summary>
-        /// "Could not find subject for email {0}" text
-        /// </summary>
-        public const string CouldNotFindEmailSubjectMessageError = "Could not find subject for email {0}";
-
-        /// <summary>
-        /// "Could not find body for email {0}" text
-        /// </summary>
-        public const string CouldNotFindEmailBodyMessageError = "Could not find body for email {0}";
-
-        /// <summary>
-        /// "Could not find field  {0}" text
-        /// </summary>
-        public const string CouldNotFindFieldMessageError = "Could not find field  {0}";
-
-        /// <summary>
-        /// "'{0}' is not a valid email address. Check '{2}' field in mail template '{1}'" text
-        /// </summary>
-        public const string InvalidEmailAddressMessageError = "'{0}' is not a valid email address";
-
-        /// <summary>
-        /// Mail sent to {0} with subject: {1}" text
-        /// </summary>
-        public const string MailSentToMessage = "Mail sent to {0} with subject: {1}";
-
-        /// <summary>
-        /// "Could not send Mail: '{0}' To:{1}" text
-        /// </summary>
-        public const string CouldNotSendMailMessageError = "Could not send Mail: '{0}' To:{1}";
     }
 }

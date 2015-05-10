@@ -19,7 +19,7 @@ content-length: 3
 ----version----
 language: en
 version: 1
-revision: 7c06b143-1243-490d-b492-f6cdfd53a1bb
+revision: 14af40aa-dfea-472a-a4f3-11b21f7a83e7
 
 ----field----
 field: {F7164DDB-92FE-4CDF-823D-989C6F90739F}
@@ -102,16 +102,16 @@ Add promotion code
 field: {A00876BC-0935-4E34-B20B-C62A73770AF8}
 name: Apply Loyalty Credit Label
 key: apply loyalty credit label
-content-length: 18
+content-length: 17
 
-Your loyality card
+Your loyalty card
 ----field----
 field: {A0135993-71DE-4545-AAE2-689FE6D74654}
 name: Subtitle Loyalty Credit Label
 key: subtitle loyalty credit label
-content-length: 55
+content-length: 54
 
-Enter the information regarding your loyality card here
+Enter the information regarding your loyalty card here
 ----field----
 field: {5B9BB914-D42C-4791-8005-71AB64FFC53F}
 name: Add Discount Card Label
@@ -204,6 +204,27 @@ content-length: 20
 
 Edit payment methods
 ----field----
+field: {D8619DC5-A4C3-4E1B-A535-B5FC308E74EB}
+name: Discount Label
+key: discount label
+content-length: 9
+
+Discount:
+----field----
+field: {6029191F-8851-496B-86E7-4BFF30CFEE46}
+name: Color Label
+key: color label
+content-length: 6
+
+Color:
+----field----
+field: {239A6669-1815-4BD9-960F-056553C521DE}
+name: Delivery Label
+key: delivery label
+content-length: 9
+
+Delivery:
+----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
 key: __owner
@@ -230,14 +251,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-7c06b143-1243-490d-b492-f6cdfd53a1bb
+14af40aa-dfea-472a-a4f3-11b21f7a83e7
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 35
 
-20150111T022649:635565400091268594Z
+20150503T050335:635662262156601266Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

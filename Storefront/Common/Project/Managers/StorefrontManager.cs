@@ -39,7 +39,6 @@ namespace Sitecore.Reference.Storefront.Managers
     public static class StorefrontManager
     {
         private const string IndexNameFormat = "sitecore_{0}_index";
-        private static Dictionary<string, string> _statuses; 
         
         /// <summary>
         /// Gets the current sitecontext
@@ -151,6 +150,16 @@ namespace Sitecore.Reference.Storefront.Managers
         }
 
         /// <summary>
+        /// Gets the HTML system message.
+        /// </summary>
+        /// <param name="messageKey">The message key.</param>
+        /// <returns>The system message as an HtmlString/</returns>
+        public static HtmlString GetHtmlSystemMessage(string messageKey)
+        {
+            return new HtmlString(GetSystemMessage(messageKey));
+        }
+
+            /// <summary>
         /// Gets the system message.
         /// </summary>
         /// <param name="messageKey">The message key.</param>
@@ -166,7 +175,7 @@ namespace Sitecore.Reference.Storefront.Managers
                 var searchResults = context.GetQueryable<SearchResultItem>();
                 searchResults = searchResults.Where(item => item.Path.StartsWith(contentStartPath));
                 searchResults = searchResults.Where(item => item.Language == SearchNavigation.CurrentLanguageName);
-                searchResults = searchResults.Where(item => item[StorefrontConstants.KnownFieldNames.Key] == messageKey);
+                searchResults = searchResults.Where(item => item.Name == messageKey);
 
                 var results = searchResults.GetResults();
                 var response = SearchResponse.CreateFromSearchResultsItems(new CommerceSearchOptions(), results);
@@ -183,7 +192,7 @@ namespace Sitecore.Reference.Storefront.Managers
                 }
 
                 var value = resultItem.Fields[StorefrontConstants.KnownFieldNames.Value];
-                return value == null ? string.Empty : value.ToString();
+                return value == null ? string.Empty : value.Value;
             }
         }
 
@@ -199,43 +208,16 @@ namespace Sitecore.Reference.Storefront.Managers
                 return string.Empty;
             }
 
-            var statusName = status.Name;
-            if (_statuses != null && _statuses.ContainsKey(statusName))
+            string contentStartPath = CurrentStorefront.GlobalItem.Axes.GetItem(string.Concat(StorefrontConstants.KnowItemNames.Lookups, "/", StorefrontConstants.KnowItemNames.InventoryStatuses)).Paths.Path;
+            string statusPath = contentStartPath + "/" + status.Name;
+
+            Item inventoryItem = Sitecore.Context.Database.GetItem(statusPath);
+            if (inventoryItem == null)
             {
-                return _statuses[statusName];
+                return status.Name;
             }
 
-            _statuses = new Dictionary<string, string>();
-            var lookups = CurrentStorefront.GlobalItem.Children[StorefrontConstants.KnowItemNames.Lookups];
-            if (lookups == null)
-            {
-                return statusName;
-            }
-
-            var inventoryStatuses = lookups.Children[StorefrontConstants.KnowItemNames.InventoryStatuses];
-            if (inventoryStatuses == null)
-            {
-                return statusName;
-            }
-
-            if (!inventoryStatuses.Children.Any())
-            {
-                return statusName;
-            }
-
-            foreach (Item statusItem in inventoryStatuses.Children)
-            {
-                var value = statusItem.Fields[StorefrontConstants.KnownFieldNames.Value];
-                var key = statusItem.Name;
-                if (value == null || _statuses.ContainsKey(key))
-                {
-                    continue;
-                }
-
-                _statuses.Add(key, value.ToString());
-            }
-
-            return _statuses.ContainsKey(statusName) ? _statuses[statusName] : statusName;
+            return inventoryItem[StorefrontConstants.KnownFieldNames.Value];
         }
     }
 }

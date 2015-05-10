@@ -127,7 +127,7 @@ function CheckoutDataViewModel(data) {
 
     // billing //
     self.billingEmail = ko.validatedObservable(self.userEmail).extend({ required: true, email: true });
-    self.billingConfirmEmail = ko.validatedObservable(self.userEmail).extend({ validation: { validator: mustEqual, message: 'Emails do not match.', params: self.billingEmail } });
+    self.billingConfirmEmail = ko.validatedObservable(self.userEmail).extend({ validation: { validator: mustEqual, message: GetMessage('EmailsMustMatchMessage'), params: self.billingEmail } });
     self.payCard = false;
     self.payGiftCard = false;
     self.payLoyaltyCard = false;

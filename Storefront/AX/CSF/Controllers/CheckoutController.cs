@@ -16,22 +16,23 @@
 
 namespace Sitecore.Reference.Storefront.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
     using Sitecore.Commerce.Connect.CommerceServer;
     using Sitecore.Commerce.Connect.CommerceServer.Orders.Models;
+    using Sitecore.Commerce.Connect.DynamicsRetail.Entities;
     using Sitecore.Commerce.Contacts;
     using Sitecore.Commerce.Entities.Payments;
     using Sitecore.Commerce.Entities.Shipping;
     using Sitecore.Diagnostics;
+    using Sitecore.Reference.Storefront.ExtensionMethods;
     using Sitecore.Reference.Storefront.Managers;
     using Sitecore.Reference.Storefront.Models.InputModels;
     using Sitecore.Reference.Storefront.Models.JsonResults;
     using Sitecore.Reference.Storefront.Models.RenderingModels;
-    using CommerceParty = Sitecore.Commerce.Connect.DynamicsRetail.Entities.CommerceParty;
-    using Sitecore.Reference.Storefront.ExtensionMethods;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
+    using System.Web.UI;
 
     /// <summary>
     /// Handles all calls to checkout
@@ -183,6 +184,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateJsonAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult GetCheckoutData()
         {
             try
@@ -244,6 +246,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateJsonAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult SubmitOrder(SubmitOrderInputModel inputModel)
         {
             try
@@ -284,6 +287,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateJsonAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult GetShippingMethods(GetShippingMethodsInputModel inputModel)
         {
             try
@@ -321,6 +325,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateJsonAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult SetShippingMethods(SetShippingMethodsInputModel inputModel)
         {
             try
@@ -367,6 +372,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateJsonAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult SetPaymentMethods(PaymentInputModel inputModel)
         {
             try
@@ -406,6 +412,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateJsonAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult GetNearbyStores(GetNearbyStoresInputModel inputModel)
         {
             try
@@ -446,6 +453,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateJsonAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult GetAvailableStates(GetAvailableStatesInputModel model)
         {
             try
@@ -485,6 +493,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateJsonAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult UpdateLoyaltyCard(LoyaltyCardInputModelItem model)
         {
             try
@@ -528,7 +537,7 @@ namespace Sitecore.Reference.Storefront.Controllers
                 return;
             }
 
-            var addresses = new List<CommerceParty>();
+            var addresses = new List<CustomCommerceParty>();
             var response = this.AccountManager.GetCurrentUserParties(this.CurrentStorefront, this.CurrentVisitorContext);
             if (response.ServiceProviderResult.Success && response.Result != null)
             {

@@ -20,7 +20,8 @@
     }
 
     bool isCategory = Model.Item.Template.Key.Equals("generalcategory", StringComparison.OrdinalIgnoreCase);
-    var brand = @Model.RenderField("Brand").ToString();
+    var brand = @Model.RenderField("Brand");
+    var brandLength = brand.ToString().Length;
 }
 
 <div class="col-item">
@@ -47,7 +48,7 @@
                 <a href="@Model.GetLink()">
                     <h5 class="twolines">@Model.DisplayName</h5>
                 </a>
-                @if (@brand != null && @brand.Length > 0)
+                @if (@brand != null && @brandLength > 0)
                 {
                     <p>@brand</p>
                 }

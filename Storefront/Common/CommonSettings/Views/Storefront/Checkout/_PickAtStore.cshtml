@@ -11,7 +11,7 @@
 // -------------------------------------------------------------------------------------------*@
 
 @{
-    var pickUpAtStoreHeader = Html.Sitecore().Field("Pick Up At Store Header", Html.Sitecore().CurrentItem.Children["Delivery"]).ToString().ToUpper();
+    var pickUpAtStoreHeader = Html.Sitecore().Field("Pick Up At Store Header", Html.Sitecore().CurrentItem.Children["Delivery"]);
     var findStoreLabel = @Html.Sitecore().Field("Find Store Label", Html.Sitecore().CurrentItem.Children["Delivery"]);
     var closeStoresLabel = Html.Sitecore().Field("Close Stores Label", Html.Sitecore().CurrentItem.Children["Delivery"]);
 }

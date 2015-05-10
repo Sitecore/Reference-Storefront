@@ -18,6 +18,7 @@
 namespace Sitecore.Reference.Storefront
 {
     using Sitecore.Commerce.Connect.CommerceServer.Orders.Models;
+    using Sitecore.Commerce.Connect.DynamicsRetail.Entities;
     using Sitecore.Commerce.Connect.DynamicsRetail.Entities.Carts;
     using Sitecore.Commerce.Entities.GiftCards;
     using Sitecore.Commerce.Entities.LoyaltyPrograms;
@@ -40,7 +41,7 @@ namespace Sitecore.Reference.Storefront
         /// </summary>
         /// <param name="items">The items.</param>
         /// <returns>The translated list of CommerceParty objects.</returns>
-        public static List<Sitecore.Commerce.Connect.DynamicsRetail.Entities.CommerceParty> ToParties(this IEnumerable<PartyInputModelItem> items)
+        public static List<CustomCommerceParty> ToParties(this IEnumerable<PartyInputModelItem> items)
         {
             return (from PartyInputModelItem item in items select item.ToParty()).ToList();
         }
@@ -50,9 +51,9 @@ namespace Sitecore.Reference.Storefront
         /// </summary>
         /// <param name="item">The item.</param>
         /// <returns>The CommerceParty instance.</returns>
-        public static Sitecore.Commerce.Connect.DynamicsRetail.Entities.CommerceParty ToParty(this PartyInputModelItem item)
+        public static CustomCommerceParty ToParty(this PartyInputModelItem item)
         {
-            var party = new Sitecore.Commerce.Connect.DynamicsRetail.Entities.CommerceParty
+            var party = new CustomCommerceParty
             {
                 Address1 = item.Address1,
                 City = item.City,

@@ -292,6 +292,7 @@
     <Content Include="App_Config\Include\Reference.Storefront\Reference.Storefront.Catalog.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="App_Config\Include\Reference.Storefront\Commerce.Storefront.Processing.config" />
     <None Include="Properties\PublishProfiles\DynamicsRetail.pubxml" />
     <Content Include="MergeFiles\Merge.Commerce.Storefront.config">
       <SubType>Designer</SubType>
@@ -360,7 +361,6 @@
     <Compile Include="SitecorePipelines\InitializeBundles.cs" />
     <Compile Include="SitecorePipelines\InitializeRoutes.cs" />
     <Compile Include="SitecorePipelines\RegisterDataModelExtensions.cs" />
-    <Compile Include="Texts.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Infrastructure\DependenciesInstaller.cs" />
     <Compile Include="Infrastructure\WindsorControllerFactory.cs" />

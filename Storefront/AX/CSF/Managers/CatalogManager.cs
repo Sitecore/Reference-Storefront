@@ -109,12 +109,17 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <summary>
         /// The <see cref="RelatedCatalogItemsViewModel" /> representing the related catalog items.
         /// </summary>
+        /// <param name="storefront">The storefront.</param>
         /// <param name="catalogItem">The catalog item.</param>
         /// <param name="rendering">The target renering.</param>
-        /// <returns>The related catalog item view model.</returns>
+        /// <returns>
+        /// The related catalog item view model.
+        /// </returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "Derived class is prefered.")]
-        public RelatedCatalogItemsViewModel GetRelationshipsFromItem(Item catalogItem, Rendering rendering)
+        public RelatedCatalogItemsViewModel GetRelationshipsFromItem([NotNull] CommerceStorefront storefront, Item catalogItem, Rendering rendering)
         {
+            Assert.ArgumentNotNull(storefront, "storefront");
+
             if (catalogItem != null &&
                 catalogItem.Fields.Contains(CommerceConstants.KnownFieldIds.RelationshipList) &&
                 !string.IsNullOrEmpty(catalogItem[CommerceConstants.KnownFieldIds.RelationshipList]))
@@ -124,11 +129,11 @@ namespace Sitecore.Reference.Storefront.Managers
                     !string.IsNullOrWhiteSpace(rendering.RenderingItem.InnerItem["RelationshipsToDisplay"]))
                 {
                     var relationshipsToDisplay = rendering.RenderingItem.InnerItem["RelationshipsToDisplay"].Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
-                    return this.GetRelationshipsFromField(field, rendering, relationshipsToDisplay);
+                    return this.GetRelationshipsFromField(storefront, field, rendering, relationshipsToDisplay);
                 }
                 else
                 {
-                    return this.GetRelationshipsFromField(field, rendering);
+                    return this.GetRelationshipsFromField(storefront, field, rendering);
                 }
             }
 
@@ -138,23 +143,33 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <summary>
         /// Gets a lists of target items from a relationship field
         /// </summary>
+        /// <param name="storefront">The storefront.</param>
         /// <param name="field">the relationship field</param>
         /// <param name="rendering">The target renering.</param>
-        /// <returns>a list of relationship targets or null if no items found</returns>
-        public RelatedCatalogItemsViewModel GetRelationshipsFromField(RelationshipField field, Rendering rendering)
+        /// <returns>
+        /// a list of relationship targets or null if no items found
+        /// </returns>
+        public RelatedCatalogItemsViewModel GetRelationshipsFromField([NotNull] CommerceStorefront storefront, RelationshipField field, Rendering rendering)
         {
-            return GetRelationshipsFromField(field, rendering, null);
+            Assert.ArgumentNotNull(storefront, "storefront");
+
+            return GetRelationshipsFromField(storefront, field, rendering, null);
         }
 
         /// <summary>
         /// Gets a lists of target items from a relationship field
         /// </summary>
+        /// <param name="storefront">The storefront.</param>
         /// <param name="field">the relationship field</param>
         /// <param name="rendering">The target renering.</param>
         /// <param name="relationshipNames">the names of the relationships, to retrieve (for example upsell).</param>
-        /// <returns>a list of relationship targets or null if no items found</returns>
-        public RelatedCatalogItemsViewModel GetRelationshipsFromField(RelationshipField field, Rendering rendering, IEnumerable<string> relationshipNames)
+        /// <returns>
+        /// a list of relationship targets or null if no items found
+        /// </returns>
+        public RelatedCatalogItemsViewModel GetRelationshipsFromField([NotNull] CommerceStorefront storefront, RelationshipField field, Rendering rendering, IEnumerable<string> relationshipNames)
         {
+            Assert.ArgumentNotNull(storefront, "storefront");
+
             relationshipNames = relationshipNames ?? Enumerable.Empty<string>();
             relationshipNames = relationshipNames.Select(s => s.Trim());
             var model = new RelatedCatalogItemsViewModel();
@@ -162,11 +177,11 @@ namespace Sitecore.Reference.Storefront.Managers
             if (field != null)
             {
                 var productRelationshipInfoList = field.GetProductRelationships();
-                var productModelList = this.GroupRelationshipsByDescription(field, relationshipNames, productRelationshipInfoList, rendering);
+                var productModelList = this.GroupRelationshipsByDescription(storefront, field, relationshipNames, productRelationshipInfoList, rendering);
                 model.RelatedProducts.AddRange(productModelList);
 
                 var categoryRelationshipInfoList = field.GetCategoryRelationships();
-                var categoryModelList = this.GroupRelationshipsByDescription(field, relationshipNames, categoryRelationshipInfoList, rendering);
+                var categoryModelList = this.GroupRelationshipsByDescription(storefront, field, relationshipNames, categoryRelationshipInfoList, rendering);
                 model.RelatedCategories.AddRange(categoryModelList);
             }
 
@@ -394,24 +409,6 @@ namespace Sitecore.Reference.Storefront.Managers
         }
 
         /// <summary>
-        /// Gets the product stock status.
-        /// </summary>
-        /// <param name="productViewModels">The product view models.</param>
-        public virtual void GetProductsStockStatus(List<ProductViewModel> productViewModels)
-        {
-            if (productViewModels == null || !productViewModels.Any())
-            {
-                return;
-            }
-
-            foreach (var productViewProduct in productViewModels)
-            {
-                productViewProduct.StockStatus = SearchNavigation.GetProductStockStatusFromIndex(productViewProduct.ProductId);
-                productViewProduct.StockStatusName = StorefrontManager.GetProductStockStatusName(productViewProduct.StockStatus);
-            }
-        }
-
-        /// <summary>
         /// Gets the product rating.
         /// </summary>
         /// <param name="productItem">The product item.</param>
@@ -590,6 +587,7 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <summary>
         /// Groups the provided relationships by name, and converts them into a list of <see cref="CategoryViewModel" /> objects.
         /// </summary>
+        /// <param name="storefront">The storefront.</param>
         /// <param name="field">The relationship field.</param>
         /// <param name="relationshipNames">The names of the relationships to retrieve.</param>
         /// <param name="productRelationshipInfoList">The list of rerlationships to group and convert.</param>
@@ -598,7 +596,7 @@ namespace Sitecore.Reference.Storefront.Managers
         /// The grouped relationships converted into a list of <see cref="CategoryViewModel" /> objects.
         /// </returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "Specific type is desired here.")]
-        protected IEnumerable<CategoryViewModel> GroupRelationshipsByDescription(RelationshipField field, IEnumerable<string> relationshipNames, IEnumerable<CatalogRelationshipInformation> productRelationshipInfoList, Rendering rendering)
+        protected IEnumerable<CategoryViewModel> GroupRelationshipsByDescription([NotNull] CommerceStorefront storefront, RelationshipField field, IEnumerable<string> relationshipNames, IEnumerable<CatalogRelationshipInformation> productRelationshipInfoList, Rendering rendering)
         {
             Dictionary<string, CategoryViewModel> relationshipGroups = new Dictionary<string, CategoryViewModel>(StringComparer.OrdinalIgnoreCase);
 
@@ -626,12 +624,30 @@ namespace Sitecore.Reference.Storefront.Managers
                         var productModel = new ProductViewModel(targetItem);
                         productModel.Initialize(rendering);
                         productModel.CustomerAverageRating = this.GetProductRating(targetItem);
-                        this.GetProductPrice(productModel);
 
-                        //// TODO UNCOMMENT THESE LINES AFTER STOCK INFO IS ADDED TO AX INDEXES
-                        //// this.GetProductsStockStatus(new List<ProductViewModel> { productModel });
                         categoryModel.ChildProducts.Add(productModel);
                     }
+                }
+            }
+
+            if (relationshipGroups.Count > 0)
+            {
+                List<ProductViewModel> productViewModelList = new List<ProductViewModel>();
+
+                foreach (string key in relationshipGroups.Keys)
+                {
+                    CategoryViewModel viewModel = relationshipGroups[key];
+                    var childProducts = viewModel.ChildProducts;
+                    if (childProducts != null && childProducts.Count > 0)
+                    {
+                        productViewModelList.AddRange(childProducts);
+                    }
+                }
+
+                if (productViewModelList.Count > 0)
+                {
+                    this.GetProductBulkPrices(productViewModelList);
+                    this.InventoryManager.GetProductsStockStatus(storefront, productViewModelList);
                 }
             }
 

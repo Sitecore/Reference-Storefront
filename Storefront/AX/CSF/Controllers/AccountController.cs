@@ -38,6 +38,7 @@ namespace Sitecore.Reference.Storefront.Controllers
     using Sitecore.Links;
     using Models = Sitecore.Commerce.Connect.DynamicsRetail.Entities;
     using Sitecore.Reference.Storefront.ExtensionMethods;
+    using System.Web.UI;
 
     /// <summary>
     /// Used to handle all account actions
@@ -101,7 +102,8 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// The default action for the main page for the account section
         /// </summary>
         /// <returns>The view for the section</returns>
-        [HttpGet]       
+        [HttpGet]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public override ActionResult Index()
         {
             if (!Context.User.IsAuthenticated)
@@ -120,6 +122,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings", MessageId = "0#", Justification = "url not required in webpage")]
         [HttpGet]
         [AllowAnonymous]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
@@ -145,6 +148,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// <returns>The view to display to the user</returns>
         [HttpGet]
         [AllowAnonymous]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult Register()
         {
             return View(this.CurrentRenderingView);
@@ -155,6 +159,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// </summary>
         /// <returns>The view to display address book</returns>
         [HttpGet]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult Addresses()
         {
             if (!Context.User.IsAuthenticated)
@@ -172,6 +177,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// Profile Edit Page
         /// </returns>
         [HttpGet]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult EditProfile()
         {
             var model = new ProfileModel();
@@ -203,6 +209,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// <returns>The view to display.</returns>
         [HttpGet]
         [AllowAnonymous]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult ForgotPassword()
         {
             return View(this.CurrentRenderingView);
@@ -213,6 +220,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// </summary>
         /// <returns>Change password view</returns>
         [HttpGet]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult ChangePassword()
         {
             if (!Context.User.IsAuthenticated)
@@ -230,6 +238,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// <returns>The forgot password confirmation view</returns>
         [HttpGet]
         [AllowAnonymous]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult ForgotPasswordConfirmation(string userName)
         {
             ViewBag.UserName = userName;
@@ -247,6 +256,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult Register(RegisterUserInputModel inputModel)
         {
             try
@@ -263,8 +273,15 @@ namespace Sitecore.Reference.Storefront.Controllers
                 var response = this.AccountManager.RegisterUser(this.CurrentStorefront, inputModel);
                 if (response.ServiceProviderResult.Success && response.Result != null)
                 {
-                    result.Initialize(response.Result);
-                    this.AccountManager.Login(CurrentStorefront, CurrentVisitorContext, response.Result.UserName, inputModel.Password, false);
+                    var isLoggedIn = this.AccountManager.Login(CurrentStorefront, CurrentVisitorContext, response.Result.UserName, inputModel.Password, false);
+                    if (isLoggedIn)
+                    {
+                        result.Initialize(response.Result);
+                    }
+                    else
+                    {
+                        result.SetErrors(new List<string> { StorefrontManager.GetSystemMessage("CouldNotCreatedUser") });
+                    }
                 }
                 else
                 {
@@ -289,6 +306,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult Login(LoginModel model)
         {
             if (ModelState.IsValid && this.AccountManager.Login(CurrentStorefront, CurrentVisitorContext, UpdateUserName(model.UserName), model.Password, model.RememberMe))
@@ -311,6 +329,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult ChangePassword(ChangePasswordInputModel inputModel)
         {
             try
@@ -347,6 +366,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// The view to display all orders for current user
         /// </returns>
         [HttpGet]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult MyOrders()
         {
             if (!Context.User.IsAuthenticated)
@@ -367,6 +387,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// The view to display order details
         /// </returns>
         [HttpGet]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult MyOrder(string id)
         {
             if (!Context.User.IsAuthenticated)
@@ -386,6 +407,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [HttpPost]
         [Authorize]
         [ValidateJsonAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult RecentOrders()
         {
             try
@@ -467,6 +489,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [HttpPost]
         [Authorize]
         [ValidateJsonAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult AddressList()
         {
             try
@@ -494,6 +517,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [HttpPost]
         [Authorize]
         [ValidateJsonAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult AddressDelete(DeletePartyInputModelItem model)
         {
             try
@@ -507,7 +531,7 @@ namespace Sitecore.Reference.Storefront.Controllers
                     return Json(validationResult, JsonRequestBehavior.AllowGet);
                 }
 
-                var addresses = new List<Models.CommerceParty>();
+                var addresses = new List<Models.CustomCommerceParty>();
                 var response = this.AccountManager.RemovePartiesFromCurrentUser(this.CurrentStorefront, this.CurrentVisitorContext, model.ExternalId);
                 var result = new AddressListItemJsonResult(response.ServiceProviderResult);
                 if (response.ServiceProviderResult.Success)
@@ -534,6 +558,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [HttpPost]
         [Authorize]
         [ValidateJsonAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult AddressModify(PartyInputModelItem model)
         {
             try
@@ -547,14 +572,14 @@ namespace Sitecore.Reference.Storefront.Controllers
                     return Json(validationResult, JsonRequestBehavior.AllowGet);
                 }
 
-                var addresses = new List<Models.CommerceParty>();
+                var addresses = new List<Models.CustomCommerceParty>();
                 var userResponse = this.AccountManager.GetUser(Context.User.Name);
                 var result = new AddressListItemJsonResult(userResponse.ServiceProviderResult);
                 if (userResponse.ServiceProviderResult.Success && userResponse.Result != null)
                 {
                     var commerceUser = userResponse.Result;
                     var customer = new CommerceCustomer { ExternalId = commerceUser.ExternalId };
-                    var party = new Models.CommerceParty
+                    var party = new Models.CustomCommerceParty
                                 {
                                     ExternalId = model.ExternalId,
                                     Name = model.Name,
@@ -579,19 +604,19 @@ namespace Sitecore.Reference.Storefront.Controllers
                         }
                         else
                         {
-                            var response = this.AccountManager.AddParties(this.CurrentStorefront, customer, new List<Models.CommerceParty> { party });
-                            result.SetErrors(response.ServiceProviderResult);
-                            if (response.ServiceProviderResult.Success)
-                            {
-                                addresses = this.AllAddresses(result);
-                            }
-
-                            result.Initialize(addresses, null);
+                            var response = this.AccountManager.AddParties(this.CurrentStorefront, customer, new List<Models.CustomCommerceParty> { party });
+                        result.SetErrors(response.ServiceProviderResult);
+                        if (response.ServiceProviderResult.Success)
+                        {
+                            addresses = this.AllAddresses(result);
                         }
+
+                        result.Initialize(addresses, null);
+                    }
                     }
                     else
                     {
-                        var response = this.AccountManager.UpdateParties(this.CurrentStorefront, customer, new List<Models.CommerceParty> { party });
+                        var response = this.AccountManager.UpdateParties(this.CurrentStorefront, customer, new List<Models.CustomCommerceParty> { party });
                         result.SetErrors(response.ServiceProviderResult);
                         if (response.ServiceProviderResult.Success)
                         {
@@ -620,6 +645,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult UpdateProfile(ProfileModel model)
         {
             try
@@ -667,6 +693,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateJsonAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult GetCurrentUser()
         {
             try
@@ -702,6 +729,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult ForgotPassword(ForgotPasswordInputModel model)
         {
             try
@@ -742,12 +770,20 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// <returns>The updated user name</returns>
         public virtual string UpdateUserName(string userName)
         {
-            var defaultDomain = CommerceServerSitecoreConfig.Current.DefaultCommerceUsersDomain;
-            if (string.IsNullOrWhiteSpace(defaultDomain))
+            string defaultDomain;
+            if (Context.Site != null && Context.Site.Domain != null && !string.IsNullOrEmpty(Context.Site.Domain.Name))
             {
-                defaultDomain = CommerceConstants.ProfilesStrings.CommerceUsersDomainName;
+                defaultDomain = Context.Site.Domain.Name;
             }
-
+            else
+            {
+                defaultDomain = CommerceServerSitecoreConfig.Current.DefaultCommerceUsersDomain;
+                if (string.IsNullOrWhiteSpace(defaultDomain))
+                {
+                    defaultDomain = CommerceConstants.ProfilesStrings.CommerceUsersDomainName;
+                }
+            }
+            
             return !userName.StartsWith(defaultDomain, StringComparison.OrdinalIgnoreCase) ? string.Concat(defaultDomain, @"\", userName) : userName;
         }
 
@@ -774,9 +810,9 @@ namespace Sitecore.Reference.Storefront.Controllers
             return countries;
         }
 
-        private List<Models.CommerceParty> AllAddresses(AddressListItemJsonResult result)
+        private List<Models.CustomCommerceParty> AllAddresses(AddressListItemJsonResult result)
         {
-            var addresses = new List<Models.CommerceParty>();
+            var addresses = new List<Models.CustomCommerceParty>();
             var response = this.AccountManager.GetCurrentUserParties(this.CurrentStorefront, this.CurrentVisitorContext);
             if (response.ServiceProviderResult.Success && response.Result != null)
             {

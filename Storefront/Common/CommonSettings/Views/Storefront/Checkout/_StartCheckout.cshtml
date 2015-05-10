@@ -11,12 +11,19 @@
 // -------------------------------------------------------------------------------------------*@
 
 @using Sitecore.Reference.Storefront.Models.RenderingModels;
+@using Sitecore.Reference.Storefront.Managers;
 @model CartRenderingModel
 @{
     if (Model == null)
     {
         return;
     }
+
+    var requiredFieldMessage = @StorefrontManager.GetHtmlSystemMessage("RequiredFieldMessage");
+    var requiredEmailMessage = @StorefrontManager.GetHtmlSystemMessage("RequiredEmailMessage");
+    var requiredNumberMessage = @StorefrontManager.GetHtmlSystemMessage("RequiredNumberMessage");
+    var emailsMustMatchMessage = @StorefrontManager.GetHtmlSystemMessage("EmailsMustMatchMessage");
+    var selectDeliveryFirstMessage = @StorefrontManager.GetHtmlSystemMessage("SelectDeliveryFirstMessage");
 }
 
 <div id="checkoutContainer" class="row">
@@ -39,6 +46,13 @@
     }
 
     <script type="text/javascript">
+        ko.validation.localize({ required: '@requiredFieldMessage' });
+        ko.validation.localize({ email: '@requiredEmailMessage' });
+        ko.validation.localize({ number: '@requiredNumberMessage' });
+
+        AddMessage('SelectDeliveryFirstMessage', '@selectDeliveryFirstMessage');
+        AddMessage('EmailsMustMatchMessage', '@emailsMustMatchMessage');
+
         initCheckoutData();
     </script>
 </div>

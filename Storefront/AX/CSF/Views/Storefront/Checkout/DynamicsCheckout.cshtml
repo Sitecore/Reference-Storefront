@@ -17,6 +17,7 @@
 @{
     Layout = null;
     var confirmPageUrl = StorefrontManager.StorefrontUri("checkout/OrderConfirmation");
+    var cartButtonContinueLabel = @Html.Sitecore().Field("Cart Button Continue", Html.Sitecore().CurrentItem);
 }
 
 <!DOCTYPE html>
@@ -31,7 +32,7 @@
     @Html.CheckoutControlHeader(confirmPageUrl, false, false)
 </head>
 <body>
-    <a class="msax-PaddingRight5" href="@StorefrontManager.StorefrontHome">@Translate.Text(Sitecore.Reference.Storefront.Texts.CartButtonContinue)</a>
+    <a class="msax-PaddingRight5" href="@StorefrontManager.StorefrontHome">@cartButtonContinueLabel</a>
    
     @Html.CheckoutControl(false)
 </body>

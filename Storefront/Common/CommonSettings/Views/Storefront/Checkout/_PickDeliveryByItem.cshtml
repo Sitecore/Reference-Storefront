@@ -11,7 +11,7 @@
 // -------------------------------------------------------------------------------------------*@
 
 @{
-    var selectDeliveryOptionsHeader = Html.Sitecore().Field("Select Delivery Options Header", Html.Sitecore().CurrentItem.Children["Delivery"]).ToString().ToUpper();
+    var selectDeliveryOptionsHeader = Html.Sitecore().Field("Select Delivery Options Header", Html.Sitecore().CurrentItem.Children["Delivery"]);
     var deliveryOptionLabel = @Html.Sitecore().Field("Delivery Option Label", Html.Sitecore().CurrentItem.Children["Delivery"]);
     var openDeliveryInfoLabel = Html.Sitecore().Field("Open Delivery Info Label", Html.Sitecore().CurrentItem.Children["Delivery"]);
     var closeDeliveryInfoLabel = Html.Sitecore().Field("Close Delivery Info Label", Html.Sitecore().CurrentItem.Children["Delivery"]);

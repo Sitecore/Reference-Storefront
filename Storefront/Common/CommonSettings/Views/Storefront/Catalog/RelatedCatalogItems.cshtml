@@ -21,14 +21,16 @@
                 <ul class="nav nav-tabs nav-justified">
                     @{
     var first = true;
+    int index = 0;
     foreach (var relationship in Model.RelatedProducts)
     {
         <li class=@(first ? "active" : "")>
-            <a href="#" class="product-recommendation-click" data-carousel-id="carousel-@relationship.RelationshipName.Replace(' ', '-').ToLowerInvariant()">
+            <a href="#" class="product-recommendation-click" data-carousel-id="carousel-@relationship.RelationshipName.Replace(' ', '-').ToLowerInvariant()-@index.ToString()">
                 @relationship.RelationshipDescription
             </a>
         </li>
         first = false;
+        index++;
     }
                     }
                 </ul>
@@ -38,8 +40,8 @@
             <!-- Controls -->
             <div class="product-controls">
                 <div class="controls pull-right">
-                    <a class="left glyphicon glyphicon-chevron-left btn btn-info" href="#carousel-@Model.RelatedProducts[0].RelationshipName.Replace(' ', '-').ToLowerInvariant()" data-slide="prev"></a>
-                    <a class="right glyphicon glyphicon-chevron-right btn btn-info" href="#carousel-@Model.RelatedProducts[0].RelationshipName.Replace(' ', '-').ToLowerInvariant()" data-slide="next"></a>
+                    <a class="left glyphicon glyphicon-chevron-left btn btn-info" href="#carousel-@Model.RelatedProducts[0].RelationshipName.Replace(' ', '-').ToLowerInvariant()-0" data-slide="prev"></a>
+                    <a class="right glyphicon glyphicon-chevron-right btn btn-info" href="#carousel-@Model.RelatedProducts[0].RelationshipName.Replace(' ', '-').ToLowerInvariant()-0" data-slide="next"></a>
                 </div>
             </div>
         </div>
@@ -49,7 +51,7 @@
                 var categoryViewModel = Model.RelatedProducts[i];
                 categoryViewModel.Initialize(Model.Rendering);
 
-                <div class="carousel slide product-slider" id="carousel-@Model.RelatedProducts[i].RelationshipName.Replace(' ', '-').ToLowerInvariant()" data-ride="carousel" data-interval="false" @(i != 0 ? "style=display:none;" : "")>
+                <div class="carousel slide product-slider" id="carousel-@Model.RelatedProducts[i].RelationshipName.Replace(' ', '-').ToLowerInvariant()-@i.ToString()" data-ride="carousel" data-interval="false" @(i != 0 ? "style=display:none;" : "")>
                     @Html.Partial("~/Views/Storefront/Catalog/_RelatedCatalogItemsSlide.cshtml", categoryViewModel)
                 </div>
             }

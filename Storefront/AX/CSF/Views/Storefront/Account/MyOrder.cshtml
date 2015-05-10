@@ -1,22 +1,25 @@
 ﻿@*//-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
-// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
-// except in compliance with the License. You may obtain a copy of the License at
-//       http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software distributed under the
-// License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
-// either express or implied. See the License for the specific language governing permissions
-// and limitations under the License.
-// -------------------------------------------------------------------------------------------*@
+    // Copyright 2015 Sitecore Corporation A/S
+    // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+    // except in compliance with the License. You may obtain a copy of the License at
+    //       http://www.apache.org/licenses/LICENSE-2.0
+    //
+    // Unless required by applicable law or agreed to in writing, software distributed under the
+    // License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+    // either express or implied. See the License for the specific language governing permissions
+    // and limitations under the License.
+    // -------------------------------------------------------------------------------------------*@
 
 @using Sitecore.Commerce.Entities.Carts
 @using Sitecore.Reference.Storefront.Managers
 @using Sitecore.Data.Fields
 @using System.Linq;
-@using System.Linq.Expressions
+@using System.Linq.Expressions;
+@using Sitecore.Commerce.Connect.CommerceServer.Orders.Models
+@using Sitecore.Data.Items
 @using Sitecore.Reference.Storefront
-@model CommerceOrder
+@using Sitecore.Reference.Storefront.Extensions
+@model Sitecore.Commerce.Connect.CommerceServer.Orders.Models.CommerceOrder
 @{
     var parties = Model.Parties;
     var shippings = Model.Shipping;
@@ -41,33 +44,33 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-        <div class="col-md-12">
-            <button type="button" class="btn btn-default" onclick="printPage()"><span class="glyphicon glyphicon-print"></span></button>
-            <p class="order-number">
-                <span>
+            <div class="col-md-12">
+                <button type="button" class="btn btn-default" onclick="printPage()"><span class="glyphicon glyphicon-print"></span></button>
+                <p class="order-number">
+                    <span>
                         @Html.Sitecore().Field("Order Number Label", Html.Sitecore().CurrentItem):
                     </span>
-                <span id="confirm-orderNumber">
+                    <span id="confirm-orderNumber">
                         @Model.TrackingNumber
                     </span>
-            </p>
-            <p class="order-date">
-                <span>
+                </p>
+                <p class="order-date">
+                    <span>
                         @Html.Sitecore().Field("Order Date Label", Html.Sitecore().CurrentItem):
                     </span>
-                <span id="confirm-orderDate">
+                    <span id="confirm-orderDate">
                         @Model.Created.ToDisplayedDate()
                     </span>
-            </p>
-            <p class="order-status">
-                <span>
+                </p>
+                <p class="order-status">
+                    <span>
                         @Html.Sitecore().Field("Order Status Label", Html.Sitecore().CurrentItem):
                     </span>
-                <span id="confirm-orderStatus">
+                    <span id="confirm-orderStatus">
                         @Model.Status
                     </span>
-            </p>
-        </div>
+                </p>
+            </div>
             <div class="col-md-12">
                 <h3>@Html.Sitecore().Field("Your Products Header", Html.Sitecore().CurrentItem)</h3>
             </div>
@@ -87,16 +90,16 @@
                             var lineShippingAddress = cartLine.Properties["ShippingAddress"] as CommerceParty;
                             var email = cartLine.Properties["ElectronicDeliveryEmail"] as string;
                             var image = string.Empty;
-                            var images = cartLine.Properties["Images"] as Field;
+                            var images = cartLine.Properties["Images"] as string;
                             if (images != null)
                             {
-                                MediaItem imageItem = Sitecore.Context.Database.GetItem(images.Value.Split('|')[0]);
+                                MediaItem imageItem = Sitecore.Context.Database.GetItem(images.Split('|')[0]);
                                 image = imageItem.GetImageUrl(110, 110);
                             }
 
                             var isGiftCard = product.ProductId == StorefrontManager.CurrentStorefront.GiftCardProductId;
                             var productUrl = isGiftCard ? StorefrontManager.StorefrontUri("/buygiftcard") : StorefrontManager.StorefrontUri("/product/" + product.ProductId);
-
+                            var offers = cartLine.GetPropertyValue("OfferNames") as string;
                             <tr>
                                 <td class="cart-image hidden-sm hidden-xs"><img src="@image" class="img-responsive" alt="a" pid="image" /></td>
                                 <td class="cart-info">
@@ -146,13 +149,25 @@
                                         <p class="cart-email" pid="lineEmail">@email</p>
                                     }
                                 </td>
-                                <td class="cart-price" pid="price">@product.Price.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)</td>
+                                <td class="cart-price">
+                                    <p pid="price">@product.Price.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)</p>
+                                    @if (!string.IsNullOrEmpty(offers))
+                                    {
+                                        <span>
+                                            <span>@Html.Sitecore().Field("Discount Label", Html.Sitecore().CurrentItem): </span>
+                                            <span pid="discountNames" class="savings">@offers</span>
+                                        </span>
+                                    }
+                                </td>
                                 <td class="cart-quantity text-center" style="width: 10%;" pid="quantity">@cartLine.Quantity</td>
                                 <td class="cart-total">
                                     <p pid="total">@lineTotal.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)</p>
                                     @if (savings > 0)
                                     {
-                                        <span pid="discount" class="savings">@Html.Sitecore().Field("You save Label", Html.Sitecore().CurrentItem) @savings.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)</span>
+                                        <span class="savings">
+                                            <span>@Html.Sitecore().Field("Savings Label", Html.Sitecore().CurrentItem) </span>
+                                            <span pid="discount">@savings.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)</span>
+                                        </span>
                                     }
                                 </td>
                             </tr>

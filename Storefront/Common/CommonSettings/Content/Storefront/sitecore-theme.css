@@ -781,6 +781,7 @@ p {
     font-size: 120%;
     font-weight: normal;
     border-bottom: 1px solid #E1E1E1;
+    clear: left;
 }
 
 .facets-container ul {

@@ -110,18 +110,17 @@ namespace Sitecore.Reference.Storefront.Managers
             Assert.ArgumentNotNullOrEmpty(password, "password");
 
             var isLoggedIn = AuthenticationManager.Login(userName, password, persistent);
-            if (isLoggedIn)
+            if (!isLoggedIn)
             {
-                string anonymousVisitorId = visitorContext.VisitorId;
-
-                Tracker.Current.Session.Identify(userName);
-
-                visitorContext.SetCommerceUser(this.ResolveCommerceUser().Result);
-
-                this.CartManager.MergeCarts(storefront, visitorContext, anonymousVisitorId);
+                return false;
             }
 
-            return isLoggedIn;
+            string anonymousVisitorId = visitorContext.VisitorId;
+            Tracker.Current.Session.Identify(userName);
+            visitorContext.SetCommerceUser(this.ResolveCommerceUser().Result);
+            this.CartManager.MergeCarts(storefront, visitorContext, anonymousVisitorId);
+
+            return true;
         }
 
         /// <summary>
@@ -150,11 +149,36 @@ namespace Sitecore.Reference.Storefront.Managers
             if (!result.Success || result.CommerceUser == null)
             {
                 var message = StorefrontManager.GetSystemMessage("UserNotFoundError");
-                result.SystemMessages.Add(new SystemMessage { Message = string.IsNullOrEmpty(message) ? Translate.Text(Sitecore.Reference.Storefront.Texts.UserNotFoundError) : message });
+                result.SystemMessages.Add(new SystemMessage { Message = message });
             }
 
             Helpers.LogSystemMessages(result.SystemMessages, result);
             return new ManagerResponse<GetUserResult, CommerceUser>(result, result.CommerceUser);
+        }
+
+        /// <summary>
+        /// Gets the users.
+        /// </summary>
+        /// <param name="storefront">The storefront.</param>
+        /// <param name="userName">The username.</param>
+        /// <returns>
+        /// The manager response where a list of users is returned in the response.
+        /// </returns>
+        public virtual ManagerResponse<GetUsersResult, IList<CommerceUser>> GetUsers([NotNull] CommerceStorefront storefront, string userName)
+        {
+            Assert.ArgumentNotNullOrEmpty(userName, "userName");
+
+            var criteria = new UserSearchCriteria { UserName = userName, ShopName = storefront.ShopName };
+            var request = new GetUsersRequest(criteria);
+            var result = this.CustomerServiceProvider.GetUsers(request);
+            if (!result.Success || result.CommerceUsers == null)
+            {
+                var message = StorefrontManager.GetSystemMessage("UserNotFoundError");
+                result.SystemMessages.Add(new SystemMessage { Message = message });
+            }
+
+            Helpers.LogSystemMessages(result.SystemMessages, result);
+            return new ManagerResponse<GetUsersResult, IList<CommerceUser>>(result, result.CommerceUsers);
         }
 
         /// <summary>
@@ -251,21 +275,21 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <param name="storefront">The storefront.</param>
         /// <param name="user">The user.</param>
         /// <returns>The manager response where the list of parties is returned in the response.</returns>
-        public virtual ManagerResponse<GetPartiesResult, IEnumerable<CommerceParty>> GetParties([NotNull] CommerceStorefront storefront, [NotNull] CommerceCustomer user)
+        public virtual ManagerResponse<GetPartiesResult, IEnumerable<CustomCommerceParty>> GetParties([NotNull] CommerceStorefront storefront, [NotNull] CommerceCustomer user)
         {
             Assert.ArgumentNotNull(storefront, "storefront");
             Assert.ArgumentNotNull(user, "user");
 
             var request = new GetPartiesRequest(user);
             var result = this.CustomerServiceProvider.GetParties(request);
-            var partyList = result.Success && result.Parties != null ? (result.Parties).Cast<CommerceParty>() : new List<CommerceParty>();
+            var partyList = result.Success && result.Parties != null ? (result.Parties).Cast<CustomCommerceParty>() : new List<CustomCommerceParty>();
 
             if (!result.Success)
             {
                 Helpers.LogSystemMessages(result.SystemMessages, result);
             }
 
-            return new ManagerResponse<GetPartiesResult, IEnumerable<CommerceParty>>(result, partyList);
+            return new ManagerResponse<GetPartiesResult, IEnumerable<CustomCommerceParty>>(result, partyList);
         }
 
         /// <summary>
@@ -274,7 +298,7 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <param name="storefront">The storefront.</param>
         /// <param name="visitorContext">The visitor context.</param>
         /// <returns>The manager response where the list of parties is returned in the response.</returns>
-        public virtual ManagerResponse<GetPartiesResult, IEnumerable<CommerceParty>> GetCurrentUserParties([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext)
+        public virtual ManagerResponse<GetPartiesResult, IEnumerable<CustomCommerceParty>> GetCurrentUserParties([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext)
         {
             Assert.ArgumentNotNull(storefront, "storefront");
             Assert.ArgumentNotNull(visitorContext, "visitorContext");
@@ -284,7 +308,7 @@ namespace Sitecore.Reference.Storefront.Managers
             if (!getUserResponse.ServiceProviderResult.Success || getUserResponse.Result == null)
             {
                 result.SystemMessages.ToList().AddRange(getUserResponse.ServiceProviderResult.SystemMessages);
-                return new ManagerResponse<GetPartiesResult, IEnumerable<CommerceParty>>(result, null);
+                return new ManagerResponse<GetPartiesResult, IEnumerable<CustomCommerceParty>>(result, null);
             }
 
             return this.GetParties(storefront, new CommerceCustomer { ExternalId = getUserResponse.Result.ExternalId });
@@ -297,7 +321,7 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <param name="user">The user.</param>
         /// <param name="parties">The parties.</param>
         /// <returns>The manager result where the success flag is returned as the Result.</returns>
-        public virtual ManagerResponse<CustomerResult, bool> RemoveParties([NotNull] CommerceStorefront storefront, [NotNull] CommerceCustomer user, List<CommerceParty> parties)
+        public virtual ManagerResponse<CustomerResult, bool> RemoveParties([NotNull] CommerceStorefront storefront, [NotNull] CommerceCustomer user, List<CustomCommerceParty> parties)
         {
             Assert.ArgumentNotNull(storefront, "storefront");
             Assert.ArgumentNotNull(user, "user");
@@ -337,7 +361,7 @@ namespace Sitecore.Reference.Storefront.Managers
             }
 
             var customer = new CommerceCustomer { ExternalId = getUserResponse.Result.ExternalId };
-            var parties = new List<CommerceParty> { new CommerceParty { ExternalId = addressExternalId } };
+            var parties = new List<CustomCommerceParty> { new CustomCommerceParty { ExternalId = addressExternalId } };
 
             return this.RemoveParties(storefront, customer, parties);
         }
@@ -349,7 +373,7 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <param name="user">The user.</param>
         /// <param name="parties">The parties.</param>
         /// <returns>The manager result where the success flag is returned as the Result.</returns>
-        public virtual ManagerResponse<CustomerResult, bool> UpdateParties([NotNull] CommerceStorefront storefront, [NotNull] CommerceCustomer user, List<CommerceParty> parties)
+        public virtual ManagerResponse<CustomerResult, bool> UpdateParties([NotNull] CommerceStorefront storefront, [NotNull] CommerceCustomer user, List<CustomCommerceParty> parties)
         {
             Assert.ArgumentNotNull(storefront, "storefront");
             Assert.ArgumentNotNull(user, "user");
@@ -372,7 +396,7 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <param name="user">The user.</param>
         /// <param name="parties">The parties.</param>
         /// <returns>The manager result where the success flag is returned as the Result.</returns>
-        public virtual ManagerResponse<AddPartiesResult, bool> AddParties([NotNull] CommerceStorefront storefront, [NotNull] CommerceCustomer user, List<CommerceParty> parties)
+        public virtual ManagerResponse<AddPartiesResult, bool> AddParties([NotNull] CommerceStorefront storefront, [NotNull] CommerceCustomer user, List<CustomCommerceParty> parties)
         {
             Assert.ArgumentNotNull(storefront, "storefront");
             Assert.ArgumentNotNull(user, "user");
@@ -440,13 +464,13 @@ namespace Sitecore.Reference.Storefront.Managers
             Assert.ArgumentNotNullOrEmpty(inputModel.NewPassword, "inputModel.NewPassword");
 
             var userName = visitorContext.UserName;
-            
+
             var request = new UpdatePasswordRequest(userName, inputModel.OldPassword, inputModel.NewPassword);
             var result = this.CustomerServiceProvider.UpdatePassword(request);
             if (!result.Success && !result.SystemMessages.Any())
             {
                 var message = StorefrontManager.GetSystemMessage("PasswordCouldNotBeReset");
-                result.SystemMessages.Add(new SystemMessage { Message = string.IsNullOrEmpty(message) ? Translate.Text(Sitecore.Reference.Storefront.Texts.PasswordCouldNotBeReset) : message });
+                result.SystemMessages.Add(new SystemMessage { Message = message });
 
                 Helpers.LogSystemMessages(result.SystemMessages, result);
             }
@@ -520,7 +544,7 @@ namespace Sitecore.Reference.Storefront.Managers
                 return new ManagerResponse<CustomerResult, bool>(customerResult, false);
             }
 
-            var addressesToUpdate = new List<CommerceParty>();
+            var addressesToUpdate = new List<CustomCommerceParty>();
 
             var notPrimary = userPartiesResponse.Result.SingleOrDefault(address => address.IsPrimary);
             if (notPrimary != null)

@@ -44,9 +44,49 @@
     <PackagePublisher>Sitecore Corporation</PackagePublisher>
     <PackageVersion>
     </PackageVersion>
-    <PackageReadme>This is the Readme.
-You have now read the Readme.
-</PackageReadme>
+    <PackageReadme>Sitecore Reference Storefront 8.0 for Sitecore Commerce powered by Commerce Server
+--------------------------------------------------------------------------------------------------------------------------
+
+The solution is licensed under the Apache License, Version 2.0 (the "License"). You may obtain a copy of the License at 
+
+       http://www.apache.org/licenses/LICENSE-2.0 
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  
+
+In order to contribute as an individual or company, you will have to sign an agreement and get it approved by Sitecore. For more information and in order to obtain agreement forms, visit GitHub 
+
+--------------------------------------------------------------------------------------------------------------------------
+Prerequisites:
+
+•  .NET Framework 4.5 
+•  ASP.NET MVC 5.1 
+•  Microsoft SQL Server 2014, Microsoft SQL Server 2012 , Microsoft SQL Server 2008 R2 or Microsoft SQL Server 2008 with Service Pack 1 and Cumulative Update 2 
+•  MongoDB Database 2.6.1 or later (for Sitecore xDB) 
+•  Sitecore Experience Platform 8.0 rev.150223 (Update-2) or later.
+•  Sitecore Commerce powered by Microsoft Dynamics 8.0 rev 125 (SCpbMD - including CS Version 11.2)
+•  Sitecore.Reference.Storefront.Common.8.1.217.0 update file
+
+--------------------------------------------------------------------------------------------------------------------------
+Sitecore Reference Storefront runs on:
+
+•  Sitecore Experience Platform 8.0 rev.150223 (Update-2) or later.
+
+--------------------------------------------------------------------------------------------------------------------------
+Sitecore Reference Storefront has been tested on:
+
+•  Sitecore Commerce powered by Microsoft Dynamics 8.0 rev 125 (SCpbMD)
+•  Sitecore Experience Platform 8.0 rev.150223 (Update-2)
+•  The storefront was tested using the following browsers: 
+
+   a. Internet Explorer 11 
+   b. Firefox 36 
+   c. Chrome 41
+
+--------------------------------------------------------------------------------------------------------------------------
+Sitecore® is a registered trademark. All other brand and
+product names are the property of their respective holders.
+The contents of this document are the property of Sitecore.
+Copyright © 2001-2015 Sitecore. All rights reserved.</PackageReadme>
     <SitecoreAssemblyPath>..\..\Lib\Sitecore</SitecoreAssemblyPath>
     <GeneratePackage>True</GeneratePackage>
     <SeperateFilesAndItems>False</SeperateFilesAndItems>
@@ -69,9 +109,49 @@ You have now read the Readme.
     <PackagePublisher>Sitecore Corporation</PackagePublisher>
     <PackageVersion>
     </PackageVersion>
-    <PackageReadme>This is the Readme.
-You have now read the Readme.
-</PackageReadme>
+    <PackageReadme>Sitecore Reference Storefront 8.0 for Sitecore Commerce powered by Commerce Server
+--------------------------------------------------------------------------------------------------------------------------
+
+The solution is licensed under the Apache License, Version 2.0 (the "License"). You may obtain a copy of the License at 
+
+       http://www.apache.org/licenses/LICENSE-2.0 
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  
+
+In order to contribute as an individual or company, you will have to sign an agreement and get it approved by Sitecore. For more information and in order to obtain agreement forms, visit GitHub 
+
+--------------------------------------------------------------------------------------------------------------------------
+Prerequisites:
+
+•  .NET Framework 4.5 
+•  ASP.NET MVC 5.1 
+•  Microsoft SQL Server 2014, Microsoft SQL Server 2012 , Microsoft SQL Server 2008 R2 or Microsoft SQL Server 2008 with Service Pack 1 and Cumulative Update 2 
+•  MongoDB Database 2.6.1 or later (for Sitecore xDB) 
+•  Sitecore Experience Platform 8.0 rev.150223 (Update-2) or later.
+•  Sitecore Commerce powered by Microsoft Dynamics 8.0 rev 125 (SCpbMD - including CS Version 11.2)
+•  Sitecore.Reference.Storefront.Common.8.1.217.0 update file
+
+--------------------------------------------------------------------------------------------------------------------------
+Sitecore Reference Storefront runs on:
+
+•  Sitecore Experience Platform 8.0 rev.150223 (Update-2) or later.
+
+--------------------------------------------------------------------------------------------------------------------------
+Sitecore Reference Storefront has been tested on:
+
+•  Sitecore Commerce powered by Microsoft Dynamics 8.0 rev 125 (SCpbMD)
+•  Sitecore Experience Platform 8.0 rev.150223 (Update-2)
+•  The storefront was tested using the following browsers: 
+
+   a. Internet Explorer 11 
+   b. Firefox 36 
+   c. Chrome 41
+
+--------------------------------------------------------------------------------------------------------------------------
+Sitecore® is a registered trademark. All other brand and
+product names are the property of their respective holders.
+The contents of this document are the property of Sitecore.
+Copyright © 2001-2015 Sitecore. All rights reserved.</PackageReadme>
     <SitecoreAssemblyPath>..\..\Lib\Sitecore</SitecoreAssemblyPath>
     <GeneratePackage>True</GeneratePackage>
     <SeperateFilesAndItems>False</SeperateFilesAndItems>

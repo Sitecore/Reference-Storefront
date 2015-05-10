@@ -32,6 +32,7 @@ namespace Sitecore.Reference.Storefront.Controllers
     using System.Web.Mvc;
     using Sitecore.Commerce.Connect.CommerceServer;
     using Sitecore.Reference.Storefront.ExtensionMethods;
+    using System.Web.UI;
 
     /// <summary>
     /// Handles all calls to checkout
@@ -146,6 +147,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateJsonAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult GetCheckoutData()
         {
             try
@@ -207,6 +209,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateJsonAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult SubmitOrder(SubmitOrderInputModel inputModel)
         {
             try
@@ -247,6 +250,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateJsonAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult GetShippingMethods(GetShippingMethodsInputModel inputModel)
         {
             try
@@ -286,6 +290,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateJsonAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult SetShippingMethods(SetShippingMethodsInputModel inputModel)
         {
             try
@@ -325,6 +330,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateJsonAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult SetPaymentMethods(PaymentInputModel inputModel)
         {
             try
@@ -366,6 +372,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateJsonAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult GetNearbyStoresJson(GetNearbyStoresInputModel inputModel)
         {
             Assert.ArgumentNotNull(inputModel, "inputModel");
@@ -386,6 +393,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateJsonAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult GetAvailableStates(GetAvailableStatesInputModel model)
         {
             try

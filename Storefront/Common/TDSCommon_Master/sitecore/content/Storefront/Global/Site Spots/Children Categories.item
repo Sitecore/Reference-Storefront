@@ -1,0 +1,44 @@
+----item----
+version: 1
+id: {105E330B-2D30-4C15-8993-B0E60B383FE4}
+database: master
+path: /sitecore/content/Storefront/Global/Site Spots/Children Categories
+parent: {50CA28D4-C93C-435B-92DA-866276A1BFDF}
+name: Children Categories
+master: {00000000-0000-0000-0000-000000000000}
+template: {B58709FF-0E93-4D44-BE8E-8E644D8D27CC}
+templatekey: Children Categories
+
+----version----
+language: en
+version: 1
+revision: 8d389d1c-d07e-4b55-9fe0-9a26905874ac
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20150503T070957Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+8d389d1c-d07e-4b55-9fe0-9a26905874ac
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 35
+
+20150503T070957:635662337971181798Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

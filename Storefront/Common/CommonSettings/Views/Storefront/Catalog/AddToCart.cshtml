@@ -18,8 +18,11 @@
     {
         return;
     }
-    
+
     var quantityLabel = Html.Sitecore().Field("Quantity Label", Html.Sitecore().CurrentItem);
+    var addToCartLabel = Html.Sitecore().Field("AddToCart Label", Html.Sitecore().CurrentItem);
+    var addingToCartLabel = Html.Sitecore().Field("AddingToCart Label", Html.Sitecore().CurrentItem);
+    var invalidVariantText = Html.Sitecore().Field("Invalid Variant", Html.Sitecore().CurrentItem);
 }
 
 <div id="C12-AddToCart" class="add-to-basket">
@@ -45,15 +48,15 @@
             </div>
         </div>
 
-        <button id="AddToCartButton" type="submit" class="btn btn-success" data-loading-text="@Translate.Text(Sitecore.Reference.Storefront.Texts.ProductLabelAddingToCart)">
-            @Translate.Text(Sitecore.Reference.Storefront.Texts.ProductLabelAddToCart)
+        <button id="AddToCartButton" type="submit" class="btn btn-success" data-loading-text="@addingToCartLabel">
+            @addToCartLabel
         </button>
     }
 </div>
 
 @if (Model.Variants != null && Model.Variants.Any())
 {
-    <span id="InvalidVariant" style="display:none">@Translate.Text(Sitecore.Reference.Storefront.Texts.InvalidVariant)</span>
+    <span id="InvalidVariant" style="display:none">@invalidVariantText</span>
     <script type="text/javascript">
         @foreach (var variant in Model.Variants) {
             @:AddVariantCombination('@variant.Size', '@variant.ProductColor', '@variant.Id');

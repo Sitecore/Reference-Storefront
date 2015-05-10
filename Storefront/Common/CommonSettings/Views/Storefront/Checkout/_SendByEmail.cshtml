@@ -11,7 +11,7 @@
 // -------------------------------------------------------------------------------------------*@
 
 @{
-    var sendByEmailHeaderLabel = Html.Sitecore().Field("Send By Email Header", Html.Sitecore().CurrentItem.Children["Delivery"]).ToString().ToUpper();
+    var sendByEmailHeaderLabel = Html.Sitecore().Field("Send By Email Header", Html.Sitecore().CurrentItem.Children["Delivery"]);
     var sendToMeLabel = Html.Sitecore().Field("Send To Me Label", Html.Sitecore().CurrentItem.Children["Delivery"]);
     var recilientEmailLabel = Html.Sitecore().Field("Recipient Email Label", Html.Sitecore().CurrentItem.Children["Delivery"]);
     var writeMessageLabel = Html.Sitecore().Field("Write Message Label", Html.Sitecore().CurrentItem.Children["Delivery"]);

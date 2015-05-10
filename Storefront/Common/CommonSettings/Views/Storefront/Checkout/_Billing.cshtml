@@ -10,7 +10,12 @@
 // and limitations under the License.
 // -------------------------------------------------------------------------------------------*@
 
+@using Sitecore.Reference.Storefront;
+
 @{
+    var currencyDecimalSeparator = Sitecore.Context.Language.CultureInfo.NumberFormat.CurrencyDecimalSeparator;
+    var currencyGroupSeparator = Sitecore.Context.Language.CultureInfo.NumberFormat.CurrencyGroupSeparator;
+    
     // Contact Labels
     var contactInfoHeaderLabel = Html.Sitecore().Field("Contact Information Header", Html.Sitecore().CurrentItem.Children["Billing"]);
     var emailAddressLabel = Html.Sitecore().Field("Email Address Label", Html.Sitecore().CurrentItem.Children["Billing"]);
@@ -136,7 +141,7 @@
                             <div class="show-payment">
                                 <div class="form-group">
                                     <label for="creditCardPayment_Amount">@paymentAmountLabel *</label>
-                                    <input type="text" class="form-control" id="creditCardPayment_Amount" data-bind="value: creditCardAmount" disabled>
+                                    <input type="text" class="form-control" id="creditCardPayment_Amount" data-bind="value: formatCurrency(creditCardAmount, 2, '@currencyDecimalSeparator', '@StorefrontConstants.Settings.DefaultCurrencyCode', '@currencyGroupSeparator')" disabled>
                                 </div>
                             </div>
                         </div>
@@ -305,28 +310,28 @@
         <div class="col-md-12 summary" data-bind="visible: $root.giftCardPayment().isAdded">
             <span class="text">@giftCardLabel:</span>
             <span class="amount">
-                <span id="billingGiftCardAmount" data-bind="text: $root.giftCardPayment().giftCardAmount"></span>
+                <span id="billingGiftCardAmount" data-bind="text: formatCurrency($root.giftCardPayment().giftCardAmount, 2, '@currencyDecimalSeparator', '', '@currencyGroupSeparator')"></span>
                 <span data-bind="text: $root.currencyCode"></span>
             </span>
         </div>
         <div class="col-md-12 summary" data-bind="visible: $root.loyaltyCardPayment().isAdded">
             <span class="text">@loyaltyCardLabel:</span>
             <span class="amount">
-                <span id="billingLoyaltyCardAmount" data-bind="text: $root.loyaltyCardPayment().loyaltyCardAmount"></span>
+                <span id="billingLoyaltyCardAmount" data-bind="text: formatCurrency($root.loyaltyCardPayment().loyaltyCardAmount, 2, '@currencyDecimalSeparator', '', '@currencyGroupSeparator')"></span>
                 <span data-bind="text: $root.currencyCode"></span>
             </span>
         </div>
         <div class="col-md-12 summary" data-bind="visible: $root.creditCardPayment().isAdded">
             <span class="text">@creditCardLabel:</span>
             <span class="amount">
-                <span id="billingCreditCardAmount" data-bind="text: $root.creditCardPayment().creditCardAmount"></span>
+                <span id="billingCreditCardAmount" data-bind="text: formatCurrency($root.creditCardPayment().creditCardAmount, 2, '@currencyDecimalSeparator', '', '@currencyGroupSeparator')"></span>
                 <span data-bind="text: $root.currencyCode"></span>
             </span>
         </div>
         <div class="col-md-12 summary">
             <span class="text">@paymentTotalLabel:</span>
             <span class="amount">
-                <span id="paymentTotal" data-bind="text: $root.paymentTotal()"></span>
+                <span id="paymentTotal" data-bind="text: formatCurrency($root.paymentTotal(), 2, '@currencyDecimalSeparator', '', '@currencyGroupSeparator')"></span>
                 <span data-bind="text: $root.currencyCode"></span>
             </span>
         </div>

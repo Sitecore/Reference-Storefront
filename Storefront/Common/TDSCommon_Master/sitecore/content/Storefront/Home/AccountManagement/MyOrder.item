@@ -12,7 +12,7 @@ templatekey: MyOrder Page
 ----version----
 language: en
 version: 1
-revision: f4ee6e2c-d548-49a6-a982-bad734a0281d
+revision: e35ecf7b-b1d1-49f3-9d18-fb2573b38bf9
 
 ----field----
 field: {EC1F4944-D675-42F6-B354-A0A1BF04BFF8}
@@ -141,6 +141,13 @@ content-length: 15
 
 View All Orders
 ----field----
+field: {8FB602A4-1F4C-4D47-929E-5507E697A555}
+name: Discount Label
+key: discount label
+content-length: 8
+
+Discount
+----field----
 field: {2846E9BF-663C-48E3-92C7-75B77D8ADDEF}
 name: Your Products Header
 key: your products header
@@ -167,14 +174,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-f4ee6e2c-d548-49a6-a982-bad734a0281d
+e35ecf7b-b1d1-49f3-9d18-fb2573b38bf9
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 35
 
-20150320T125455:635624528959356937Z
+20150409T203552:635642085529308437Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

@@ -69,8 +69,8 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
                         var outcome = new ContactOutcome(ID.NewID, StorefrontConstants.KnownItemIds.ProductPurchaseOutcome, new ID(contactId));
                         outcome.CustomValues["ShopName"] = orderFromResult.ShopName;
                         outcome.CustomValues["ExternalId"] = orderFromResult.ExternalId;
-                        outcome.CustomValues["Order"] = serializedOrder;
-                        outcome.MonetaryValue = orderFromResult.Total.Amount;
+                        outcome.CustomValues["Order"] = JsonConvert.SerializeObject(orderFromResult);
+                        outcome.MonetaryValue = orderFromResult.Total.Amount;                      
 
                         Tracker.Current.RegisterContactOutcome(outcome);
                     }

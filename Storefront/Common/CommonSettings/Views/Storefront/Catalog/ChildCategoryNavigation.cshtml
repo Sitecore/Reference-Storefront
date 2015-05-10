@@ -18,6 +18,8 @@
         return;
     }
 
+    var categoriesLabel = Html.Sitecore().Field("Categories Label", Html.Sitecore().CurrentItem);
+
     var siteContext = CommerceTypeLoader.CreateInstance<ISiteContext>();
     var name = string.Empty;
     var catalogItem = siteContext.CurrentCatalogItem;
@@ -29,7 +31,7 @@
 }
 
 <div id="CategoryNavigation" class="category-nav-container">
-    <h5>Categories</h5>
+    <h5>@categoriesLabel</h5>
     <div class="@siteContext.CurrentCatalogItem.DisplayName.Replace(" ", "").ToLower()-list">
         <ul class="@siteContext.CurrentCatalogItem.DisplayName.ToLower()">
             @foreach (var category in Model.ChildCategories)

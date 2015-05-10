@@ -19,7 +19,7 @@ content-length: 1
 ----version----
 language: en
 version: 1
-revision: c4fa2c04-1ac0-4714-99e9-6682456ef143
+revision: a4aae5cf-52bd-4b13-a79b-b68c9a86b182
 
 ----field----
 field: {971AE443-6884-4C59-80A3-0B325C0524B9}
@@ -41,21 +41,21 @@ name: Pick Up At Store Header
 key: pick up at store header
 content-length: 22
 
-Pick Up Items At Store
+PICK UP ITEMS AT STORE
 ----field----
 field: {8614B786-115C-4CD8-A66B-BB80EB89B6EB}
 name: Select Delivery Options Header
 key: select delivery options header
 content-length: 32
 
-Select Delivery Options by Items
+SELECT DELIVERY OPTIONS BY ITEMS
 ----field----
 field: {DED5A5D3-9A5B-4FB4-84FA-6BCD9B69FF00}
 name: Send By Email Header
 key: send by email header
 content-length: 13
 
-Send By Email
+SEND BY EMAIL
 ----field----
 field: {B52F3D52-C8FC-48A6-ACDF-56A54653B886}
 name: NextButtonLabel
@@ -265,14 +265,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-c4fa2c04-1ac0-4714-99e9-6682456ef143
+a4aae5cf-52bd-4b13-a79b-b68c9a86b182
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 35
 
-20150305T230212:635611933326373913Z
+20150429T104912:635659013521731409Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

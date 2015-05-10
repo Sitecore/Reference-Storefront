@@ -17,6 +17,7 @@
     var selectLabel = @Html.Sitecore().Field("Select Label", Html.Sitecore().CurrentItem);
     var newAddresLabel = @Html.Sitecore().Field("New Address Label", Html.Sitecore().CurrentItem);
     var deleteButtonLabel = @Html.Sitecore().Field("Delete Address Button", Html.Sitecore().CurrentItem);
+    var requiredFieldMessage = @StorefrontManager.GetHtmlSystemMessage("RequiredFieldMessage");
 }
 
 <div class="wrap-main-content" id="addressesSection">
@@ -83,5 +84,6 @@
 </div>
 
 <script type="text/javascript">
+    ko.validation.localize({ required: '@requiredFieldMessage' });
     initAddressList("addressesSection");
 </script>

@@ -38,6 +38,7 @@ namespace Sitecore.Reference.Storefront.Controllers
     using CSFConnectModels = Sitecore.Reference.Storefront.Connect.Models;
     using Sitecore.Reference.Storefront.ExtensionMethods;
     using System.Globalization;
+    using System.Web.UI;
 
     /// <summary>
     /// Used to handle all account actions
@@ -101,7 +102,8 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// The default action for the main page for the account section
         /// </summary>
         /// <returns>The view for the section</returns>
-        [HttpGet]       
+        [HttpGet]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public override ActionResult Index()
         {
             if (!Context.User.IsAuthenticated)
@@ -120,6 +122,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings", MessageId = "0#", Justification = "url not required in webpage")]
         [HttpGet]
         [AllowAnonymous]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
@@ -145,6 +148,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// <returns>The view to display to the user</returns>
         [HttpGet]
         [AllowAnonymous]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult Register()
         {
             return View(this.CurrentRenderingView);
@@ -155,6 +159,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// </summary>
         /// <returns>The view to display address book</returns>
         [HttpGet]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult Addresses()
         {
             if (!Context.User.IsAuthenticated)
@@ -172,6 +177,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// Profile Edit Page
         /// </returns>
         [HttpGet]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult EditProfile()
         {
             var model = new ProfileModel();
@@ -203,6 +209,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// <returns>The view to display.</returns>
         [HttpGet]
         [AllowAnonymous]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult ForgotPassword()
         {
             return View(this.CurrentRenderingView);
@@ -215,6 +222,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// <returns>The forgot password confirmation view.</returns>
         [HttpGet]
         [AllowAnonymous]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult ForgotPasswordConfirmation(string userName)
         {
             ViewBag.UserName = userName;
@@ -227,6 +235,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// </summary>
         /// <returns>Chagne password view</returns>
         [HttpGet]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult ChangePassword()
         {
             if (!Context.User.IsAuthenticated)
@@ -247,6 +256,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult Register(RegisterUserInputModel inputModel)
         {
             try
@@ -289,6 +299,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult Login(LoginModel model)
         {
             if (ModelState.IsValid && this.AccountManager.Login(CurrentStorefront, CurrentVisitorContext, UpdateUserName(model.UserName), model.Password, model.RememberMe))
@@ -311,6 +322,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult ChangePassword(ChangePasswordInputModel inputModel)
         {
             try
@@ -347,6 +359,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// The view to display all orders for current user
         /// </returns>
         [HttpGet]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult MyOrders()
         {
             if (!Context.User.IsAuthenticated)
@@ -367,6 +380,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// The view to display order details
         /// </returns>
         [HttpGet]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult MyOrder(string id)
         {
             if (!Context.User.IsAuthenticated)
@@ -386,6 +400,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [HttpPost]
         [Authorize]
         [ValidateJsonAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult RecentOrders()
         {
             try
@@ -467,6 +482,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [HttpPost]
         [Authorize]
         [ValidateJsonAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult AddressList()
         {
             try
@@ -494,6 +510,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [HttpPost]
         [Authorize]
         [ValidateJsonAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult AddressDelete(DeletePartyInputModelItem model)
         {
             try
@@ -536,6 +553,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [HttpPost]
         [Authorize]
         [ValidateJsonAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult AddressModify(PartyInputModelItem model)
         {
             try
@@ -624,6 +642,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult UpdateProfile(ProfileModel model)
         {
             try
@@ -671,6 +690,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateJsonAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult GetCurrentUser()
         {
             try
@@ -706,6 +726,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult ForgotPassword(ForgotPasswordInputModel model)
         {
             try

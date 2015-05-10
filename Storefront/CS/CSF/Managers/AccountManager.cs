@@ -152,7 +152,7 @@ namespace Sitecore.Reference.Storefront.Managers
             if (!result.Success || result.CommerceUser == null)
             {
                 var message = StorefrontManager.GetSystemMessage("UserNotFoundError");
-                result.SystemMessages.Add(new SystemMessage { Message = string.IsNullOrEmpty(message) ? Translate.Text(Sitecore.Reference.Storefront.Texts.UserNotFoundError) : message });
+                result.SystemMessages.Add(new SystemMessage { Message = message });
             }
 
             Helpers.LogSystemMessages(result.SystemMessages, result);
@@ -442,7 +442,7 @@ namespace Sitecore.Reference.Storefront.Managers
             if (!result.Success && !result.SystemMessages.Any())
             {
                 var message = StorefrontManager.GetSystemMessage("PasswordCouldNotBeReset");
-                result.SystemMessages.Add(new SystemMessage { Message = string.IsNullOrEmpty(message) ? Translate.Text(Sitecore.Reference.Storefront.Texts.PasswordCouldNotBeReset) : message });
+                result.SystemMessages.Add(new SystemMessage { Message = message });
             }
 
             if (!result.Success)
@@ -489,7 +489,7 @@ namespace Sitecore.Reference.Storefront.Managers
                     {
                         var message = StorefrontManager.GetSystemMessage("CouldNotSentEmailError");
                         result.Success = false;
-                        result.SystemMessages.Add(new SystemMessage { Message = string.IsNullOrEmpty(message) ? Translate.Text(Sitecore.Reference.Storefront.Texts.CouldNotSentEmailError) : message });
+                        result.SystemMessages.Add(new SystemMessage { Message = message });
                     }
                 }
                 catch (Exception e)

@@ -114,7 +114,7 @@ namespace Sitecore.Reference.Storefront.Managers
             else
             {
                 var message = StorefrontManager.GetSystemMessage("CartNotFoundError");
-                cartResult.SystemMessages.Add(new SystemMessage { Message = string.IsNullOrEmpty(message) ? Translate.Text(Sitecore.Reference.Storefront.Texts.CartNotFoundError) : message });
+                cartResult.SystemMessages.Add(new SystemMessage { Message = message });
             }
 
             this.AddBasketErrorsToResult(cartResult.Cart as CommerceCart, cartResult);
@@ -139,7 +139,7 @@ namespace Sitecore.Reference.Storefront.Managers
             if (!cartResult.Success || cartResult.Cart == null)
             {
                 var message = StorefrontManager.GetSystemMessage("CartNotFoundError");
-                cartResult.SystemMessages.Add(new SystemMessage { Message = string.IsNullOrEmpty(message) ? Translate.Text(Sitecore.Reference.Storefront.Texts.CartNotFoundError) : message });
+                cartResult.SystemMessages.Add(new SystemMessage { Message = message });
                 return new ManagerResponse<CartResult, bool>(cartResult, cartResult.Success);
             }
 
@@ -204,7 +204,7 @@ namespace Sitecore.Reference.Storefront.Managers
             if (!cartResult.Success || cartResult.Cart == null)
             {
                 var message = StorefrontManager.GetSystemMessage("CartNotFoundError");
-                cartResult.SystemMessages.Add(new SystemMessage { Message = string.IsNullOrEmpty(message) ? Translate.Text(Sitecore.Reference.Storefront.Texts.CartNotFoundError) : message });
+                cartResult.SystemMessages.Add(new SystemMessage { Message = message });
                 return new ManagerResponse<CartResult, CommerceCart>(cartResult, cartResult.Cart as CommerceCart);
             }
 
@@ -250,7 +250,7 @@ namespace Sitecore.Reference.Storefront.Managers
             if (!cartResult.Success || cartResult.Cart == null)
             {
                 var message = StorefrontManager.GetSystemMessage("CartNotFoundError");
-                cartResult.SystemMessages.Add(new SystemMessage { Message = string.IsNullOrEmpty(message) ? Translate.Text(Sitecore.Reference.Storefront.Texts.CartNotFoundError) : message });
+                cartResult.SystemMessages.Add(new SystemMessage { Message = message });
                 return new ManagerResponse<CartResult, CommerceCart>(cartResult, cartResult.Cart as CommerceCart);
             }
 
@@ -303,7 +303,7 @@ namespace Sitecore.Reference.Storefront.Managers
             if (!cartResult.Success || cartResult.Cart == null)
             {
                 var message = StorefrontManager.GetSystemMessage("CartNotFoundError");
-                cartResult.SystemMessages.Add(new SystemMessage { Message = string.IsNullOrEmpty(message) ? Translate.Text(Sitecore.Reference.Storefront.Texts.CartNotFoundError) : message });
+                cartResult.SystemMessages.Add(new SystemMessage { Message = message });
                 return new ManagerResponse<AddPromoCodeResult, CommerceCart>(result, cartResult.Cart as CommerceCart);
             }
 
@@ -343,7 +343,7 @@ namespace Sitecore.Reference.Storefront.Managers
             if (!cartResult.Success || cartResult.Cart == null)
             {
                 var message = StorefrontManager.GetSystemMessage("CartNotFoundError");
-                cartResult.SystemMessages.Add(new SystemMessage { Message = string.IsNullOrEmpty(message) ? Translate.Text(Sitecore.Reference.Storefront.Texts.CartNotFoundError) : message });
+                cartResult.SystemMessages.Add(new SystemMessage { Message = message });
                 return new ManagerResponse<RemovePromoCodeResult, CommerceCart>(result, cartResult.Cart as CommerceCart);
             }
 
@@ -516,7 +516,7 @@ namespace Sitecore.Reference.Storefront.Managers
             if (!cartResult.Success || cartResult.Cart == null)
             {
                 var message = StorefrontManager.GetSystemMessage("CartNotFoundError");
-                cartResult.SystemMessages.Add(new SystemMessage { Message = string.IsNullOrEmpty(message) ? Translate.Text(Sitecore.Reference.Storefront.Texts.CartNotFoundError) : message });
+                cartResult.SystemMessages.Add(new SystemMessage { Message = message });
                 return new ManagerResponse<CartResult, CommerceCart>(cartResult, cartResult.Cart as CommerceCart);
             }
 

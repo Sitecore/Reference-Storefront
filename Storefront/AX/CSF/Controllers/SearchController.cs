@@ -32,6 +32,7 @@ namespace Sitecore.Reference.Storefront.Controllers
     using Sitecore.Reference.Storefront.Models;
     using Sitecore.Reference.Storefront.Models.RenderingModels;
     using Sitecore.Reference.Storefront.Models.SitecoreItemModels;
+    using System.Web.UI;
 
     /// <summary>
     /// Manages all search related requests
@@ -47,7 +48,7 @@ namespace Sitecore.Reference.Storefront.Controllers
 
         #endregion
 
-        #region Properties
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SearchController"/> class.
@@ -95,6 +96,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// <param name="pageSize">Size of the page.</param>
         /// <param name="sortDirection">The sort direction.</param>
         /// <returns>The search event view (empty)</returns>
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult SearchEvent(
             [Bind(Prefix = StorefrontConstants.QueryStrings.SearchKeyword)] string searchKeyword,
             [Bind(Prefix = StorefrontConstants.QueryStrings.Paging)] int? pageNumber,
@@ -108,10 +110,7 @@ namespace Sitecore.Reference.Storefront.Controllers
             {
                 var searchResult = this.GetChildProducts(searchInfo.SearchOptions, searchKeyword, searchInfo.Catalog.Name);
 
-                if (!string.IsNullOrWhiteSpace(searchKeyword))
-                {
-                    this.CatalogManager.RegisterSearchEvent(this.CurrentStorefront, searchKeyword, searchResult.TotalItemCount);
-                }
+                this.CatalogManager.RegisterSearchEvent(this.CurrentStorefront, searchKeyword, searchResult.TotalItemCount);
             }
 
             return this.View(this.CurrentRenderingView);
@@ -189,7 +188,7 @@ namespace Sitecore.Reference.Storefront.Controllers
             [Bind(Prefix = StorefrontConstants.QueryStrings.SortDirection)] CommerceConstants.SortDirection? sortDirection)
         {
             var searchInfo = this.GetSearchInfo(searchKeyword, pageNumber, facetValues, sortField, pageSize, sortDirection);
-            var viewModel = GetProductListViewModel(searchInfo.SearchOptions, searchInfo.SortFields, searchInfo.SearchKeyword, searchInfo.Catalog.Name, this.CurrentRendering);
+            var viewModel = GetProductListViewModel(this.CurrentStorefront, searchInfo.SearchOptions, searchInfo.SortFields, searchInfo.SearchKeyword, searchInfo.Catalog.Name, this.CurrentRendering);
             return this.View(this.GetAbsoluteRenderingView("/Catalog/ProductList"), viewModel);
         }
 
@@ -342,14 +341,19 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// <summary>
         /// Builds a category view model or retrieves it if it already exists
         /// </summary>
+        /// <param name="storefront">The storefront.</param>
         /// <param name="productSearchOptions">The product options class for finding child products</param>
         /// <param name="sortFields">The fields to sort he results on</param>
         /// <param name="searchKeyword">The keyword to search for</param>
         /// <param name="catalogName">The name of the catalog to search against</param>
         /// <param name="rendering">The rendering to initialize the model with</param>
-        /// <returns>A category view model</returns>
-        protected virtual CategoryViewModel GetProductListViewModel(CommerceSearchOptions productSearchOptions, IEnumerable<CommerceQuerySort> sortFields, string searchKeyword, string catalogName, Rendering rendering)
+        /// <returns>
+        /// A category view model
+        /// </returns>
+        protected virtual CategoryViewModel GetProductListViewModel([NotNull] CommerceStorefront storefront, CommerceSearchOptions productSearchOptions, IEnumerable<CommerceQuerySort> sortFields, string searchKeyword, string catalogName, Rendering rendering)
         {
+            Assert.ArgumentNotNull(storefront, "storefront");
+
             if (this.CurrentSiteContext.Items[CurrentCategoryViewModelKeyName] == null)
             {
                 var categoryViewModel = new CategoryViewModel();
@@ -361,8 +365,7 @@ namespace Sitecore.Reference.Storefront.Controllers
                 {
                     this.CatalogManager.GetProductBulkPrices(categoryViewModel.ChildProducts);
 
-                    //// TODO UNCOMMENT THESE LINES AFTER STOCK INFO IS ADDED TO AX INDEXES
-                    //// this.CatalogManager.GetProductsStockStatus(categoryViewModel.ChildProducts);
+                    this.CatalogManager.InventoryManager.GetProductsStockStatus(storefront, categoryViewModel.ChildProducts);
 
                     foreach (var productViewModel in categoryViewModel.ChildProducts)
                     {

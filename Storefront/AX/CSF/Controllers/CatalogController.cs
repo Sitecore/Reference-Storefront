@@ -48,6 +48,7 @@ namespace Sitecore.Reference.Storefront.Controllers
     using Sitecore.Reference.Storefront.SitecorePipelines;
     using Sitecore.Reference.Storefront.ExtensionMethods;
     using Sitecore.Reference.Storefront.Extensions;
+    using System.Web.UI;
 
     /// <summary>
     /// Used to manage the data and view retrieval for catalog pages
@@ -66,7 +67,7 @@ namespace Sitecore.Reference.Storefront.Controllers
 
         #endregion
 
-        #region Properties
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CatalogController" /> class.
@@ -195,9 +196,7 @@ namespace Sitecore.Reference.Storefront.Controllers
 
                 var products = multipleProductSearchResults.ProductSearchResults.SelectMany(productSearchResult => productSearchResult.Products).ToList();
                 this.CatalogManager.GetProductBulkPrices(products);
-
-                //// TODO UNCOMMENT THESE LINES AFTER STOCK INFO IS ADDED TO AX INDEXES
-                //// this.CatalogManager.GetProductsStockStatus(products);
+                this.InventoryManager.GetProductsStockStatus(this.CurrentStorefront, products);
 
                 foreach (var productViewModel in products)
                 {
@@ -446,12 +445,12 @@ namespace Sitecore.Reference.Storefront.Controllers
             {
                 // This is a Wild Card
                 var productViewModel = this.GetWildCardProductViewModel();
-                var relatedCatalogItemsModel = this.CatalogManager.GetRelationshipsFromItem(productViewModel.Item, this.CurrentRendering);
+                var relatedCatalogItemsModel = this.CatalogManager.GetRelationshipsFromItem(this.CurrentStorefront, productViewModel.Item, this.CurrentRendering);
                 return this.View(CurrentRenderingView, relatedCatalogItemsModel);
             }
             else
             {
-                var relatedCatalogItemsModel = this.CatalogManager.GetRelationshipsFromItem(this.Item, this.CurrentRendering);
+                var relatedCatalogItemsModel = this.CatalogManager.GetRelationshipsFromItem(this.CurrentStorefront, this.Item, this.CurrentRendering);
                 return this.View(CurrentRenderingView, relatedCatalogItemsModel);
             }
         }
@@ -495,6 +494,8 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// </returns>
         [HttpPost]
         [ValidateJsonAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
         public JsonResult GetCurrentProductStockInfo(ProductStockInfoInputModel model)
         {
             try
@@ -562,6 +563,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateJsonAntiForgeryToken]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult CheckGiftCardBalance(GetGiftCardBalanceInputModel inputModel)
         {
             try
@@ -601,6 +603,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [HttpPost]
         [ValidateJsonAntiForgeryToken]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "SignUp")]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public JsonResult SignUpForBackInStockNotification(SignUpForNotificationInputModel model)
         {
             try
@@ -834,9 +837,7 @@ namespace Sitecore.Reference.Storefront.Controllers
             if (childProducts != null && childProducts.SearchResultItems.Count > 0)
             {
                 this.CatalogManager.GetProductBulkPrices(categoryViewModel.ChildProducts);
-
-                //// TODO UNCOMMENT THESE LINES AFTER STOCK INFO IS ADDED TO AX INDEXES
-                //// this.CatalogManager.GetProductsStockStatus(categoryViewModel.ChildProducts);
+                this.InventoryManager.GetProductsStockStatus(this.CurrentStorefront, categoryViewModel.ChildProducts);
 
                 foreach (var productViewModel in categoryViewModel.ChildProducts)
                 {

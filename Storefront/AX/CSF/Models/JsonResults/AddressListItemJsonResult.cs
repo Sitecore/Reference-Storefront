@@ -56,7 +56,7 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
             foreach (var address in addresses)
             {
                 var result = new AddressItemJsonResult();
-                result.Initialize(address as CommerceParty);
+                result.Initialize(address as CustomCommerceParty);
                 this.Addresses.Add(result);
             }         
         }

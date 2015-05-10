@@ -33,7 +33,7 @@ content-length: 38
 ----version----
 language: en
 version: 1
-revision: abb2f088-9099-44b6-b0d6-cbd3d25de9f5
+revision: cd32fa44-57bb-43d4-937a-f304cfb3364a
 
 ----field----
 field: {9B303130-F463-4DCE-A25F-CA1877C950EB}
@@ -64,6 +64,13 @@ content-length: 21
 
 CONFIRMATION & REVIEW
 ----field----
+field: {C8DBEFC1-E3A6-4839-8556-14D2CCFD3AB4}
+name: Cart Button Continue
+key: cart button continue
+content-length: 17
+
+Continue shopping
+----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
 name: __Created
 key: __created
@@ -83,14 +90,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-abb2f088-9099-44b6-b0d6-cbd3d25de9f5
+cd32fa44-57bb-43d4-937a-f304cfb3364a
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 35
 
-20150224T144944:635603861843340062Z
+20150426T091545:635656365457618262Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

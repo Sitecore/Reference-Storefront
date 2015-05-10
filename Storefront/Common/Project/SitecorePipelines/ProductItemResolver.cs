@@ -19,11 +19,9 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
 {
     using System.Web;
     using System.Web.Routing;
-
     using Sitecore.Data;
     using Sitecore.Pipelines;
     using Sitecore.Web;
-
     using Sitecore.Reference.Storefront.Models;
     using Sitecore.Commerce.Connect.CommerceServer;
     using Sitecore.Commerce.Connect.CommerceServer.Caching;

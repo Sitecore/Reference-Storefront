@@ -54,7 +54,8 @@
                             data_val_length_min = "6",
                             data_val_length_max = "100",
                             data_val_length = string.Format(Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.PasswordLengthMessage, Html.Sitecore().CurrentItem).ToString(), 6),
-                            @class = "form-control" 
+                            @class = "form-control",
+                            autocomplete = "off"
                         })
 
                         @Html.ValidationMessageFor(m => m.Password)
@@ -70,7 +71,8 @@
                             data_val_required = Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.PasswordMissingMessage, Html.Sitecore().CurrentItem),
                             data_val_equalto_other = "*.Password",
                             data_val_equalto = Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.PasswordsDoNotMatchMessage, Html.Sitecore().CurrentItem),
-                            @class = "form-control" 
+                            @class = "form-control",
+                            autocomplete = "off"
                         })
 
                         @Html.ValidationMessageFor(m => m.ConfirmPassword)

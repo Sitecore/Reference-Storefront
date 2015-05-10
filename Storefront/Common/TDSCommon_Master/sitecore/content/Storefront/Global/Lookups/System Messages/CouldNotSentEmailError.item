@@ -9,11 +9,6 @@ master: {00000000-0000-0000-0000-000000000000}
 template: {73C120C2-846F-456C-B096-19EAAE4F6258}
 templatekey: LookupKeyValue
 
-----version----
-language: en
-version: 1
-revision: 052c098c-eeea-4dd6-9557-5e52c9896a8b
-
 ----field----
 field: {180436B0-AFFB-41E2-B6E8-A3BC8812A9F7}
 name: Key
@@ -21,6 +16,11 @@ key: key
 content-length: 22
 
 CouldNotSentEmailError
+----version----
+language: en
+version: 1
+revision: 052c098c-eeea-4dd6-9557-5e52c9896a8b
+
 ----field----
 field: {DE73A874-CB1A-470D-80A2-818CABA4F0E5}
 name: Value

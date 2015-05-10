@@ -405,7 +405,6 @@
     <Compile Include="Connect\Services\Orders\GetShippingMethodsResult.cs" />
     <Compile Include="SitecorePipelines\InitializeBundles.cs" />
     <Compile Include="SitecorePipelines\InitializeRoutes.cs" />
-    <Compile Include="Texts.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Infrastructure\DependenciesInstaller.cs" />
     <Compile Include="Infrastructure\WindsorControllerFactory.cs" />

@@ -16,14 +16,6 @@
     <contentSearch>
       <indexConfigurations>
         <defaultSolrIndexConfiguration type="Sitecore.ContentSearch.SolrProvider.SolrIndexConfiguration, Sitecore.ContentSearch.SolrProvider">
-
-          <fieldMap type="Sitecore.ContentSearch.SolrProvider.SolrFieldMap, Sitecore.ContentSearch.SolrProvider">
-            <fieldNames hint="raw:AddFieldByFieldName">
-              <field fieldName="customerfavorites" storageType="NO" indexType="TOKENIZED" vectorType="NO" boost="1f" returnType="bool" settingType="Sitecore.ContentSearch.SolrProvider.SolrSearchFieldConfiguration, Sitecore.ContentSearch.SolrProvider"/>
-              <field fieldName="stafffavorites" storageType="NO" indexType="TOKENIZED" vectorType="NO" boost="1f" returnType="bool" settingType="Sitecore.ContentSearch.SolrProvider.SolrSearchFieldConfiguration, Sitecore.ContentSearch.SolrProvider"/>
-              <field fieldName="customeraveragerating" storageType="NO" indexType="TOKENIZED" vectorType="NO" boost="1f" returnType="double" settingType="Sitecore.ContentSearch.SolrProvider.SolrSearchFieldConfiguration, Sitecore.ContentSearch.SolrProvider"/>
-            </fieldNames>
-          </fieldMap>
           
           <fields hint="raw:AddComputedIndexField">
             <field fieldName="ProductColor" returnType="stringCollection">Sitecore.Commerce.Connect.CommerceServer.Search.ComputedFields.CommerceVariants, Sitecore.Commerce.Connect.CommerceServer</field>

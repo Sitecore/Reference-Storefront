@@ -50,8 +50,8 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
         public override void Initialize(Party address)
         {
             base.Initialize(address);
-            this.Name = ((CommerceParty)address).Name;
-            this.IsPrimary = ((CommerceParty)address).IsPrimary;
+            this.Name = ((CustomCommerceParty)address).Name;
+            this.IsPrimary = ((CustomCommerceParty)address).IsPrimary;
         }
     }
 }

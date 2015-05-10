@@ -10,6 +10,18 @@
 // and limitations under the License.
 // -------------------------------------------------------------------------------------------
 
+// Localized message dictionary
+// -
+var messageDictionary = new Array();
+
+function AddMessage(key, value) {
+    messageDictionary[key] = value;
+}
+
+function GetMessage(key) {
+    return messageDictionary[key];
+}
+
 // AJAX Extensions
 // -
 AddAntiForgeryToken = function (data) {
@@ -132,6 +144,10 @@ var queryStringParamerterPageSize = "ps";
 var queryStringParameterSiteContentPage = "scpg";
 var queryStringParameterSiteContentPageSize = "scps";
 
+$(document).load(function() {
+    setEqualHeight($(".product-list div.col-sm-4"));
+})
+
 $(document).ready(function () {
     $('.product-recommendation-click').on('click', productRecommendationClick);
 
@@ -200,8 +216,6 @@ $(document).ready(function () {
 
         $('#prod-large-view').attr('src', $(this).attr('href'));
     });
-
-    setEqualHeight($(".product-list div.col-sm-4"));
 });
 
 function changeClass(e) {
@@ -246,7 +260,7 @@ function printPage() {
     var w = window.open(location);
 
     w.onload = function () {
-        w.print();
+        $(document).ajaxStart().ajaxStop(w.print());
     };
 }
 
@@ -260,3 +274,28 @@ function setEqualHeight(columns) {
     });
     columns.height(tallestcolumn);
 }
+
+function formatCurrency(x, precision, seperator, isoCurrencySymbol, groupSeperator) {
+    var options = {
+        precision: precision || 2,
+        seperator: seperator || ',',
+        groupSeperator: groupSeperator || " "
+    }
+
+    var currencyValue = (x.__ko_proto__ === ko.dependentObservable || x.__ko_proto__ === ko.observable) ? x() : x;
+
+    var formatted = parseFloat(currencyValue, 10).toFixed(options.precision);
+
+    var regex = new RegExp('^(\\d+)[^\\d](\\d{' + options.precision + '})$');
+    formatted = formatted.replace(regex, '$1' + options.seperator + '$2');
+    formatted = formatted.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1" + options.groupSeperator)
+
+    if (isoCurrencySymbol && isoCurrencySymbol.length > 0) {
+        return formatted + " " + isoCurrencySymbol;
+    }
+    else {
+        return formatted;
+    }
+}
+
+

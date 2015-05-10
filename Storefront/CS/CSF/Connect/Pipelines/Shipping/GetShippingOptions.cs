@@ -103,7 +103,7 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Shipping
         protected virtual void TranslateToShippingOption(Item shippingOptionItem, ShippingOption shippingOption)
         {
             shippingOption.ExternalId = shippingOptionItem.ID.Guid.ToString();
-            shippingOption.Name = shippingOptionItem.DisplayName;
+            shippingOption.Name = shippingOptionItem[CommerceServerStorefrontConstants.KnownFieldNames.Value];
             shippingOption.ShopName = this.GetShopName();
             shippingOption.ShippingOptionType = MainUtil.GetInt(shippingOptionItem[CommerceServerStorefrontConstants.KnownFieldNames.ShippingOptionValue], 0);
         }

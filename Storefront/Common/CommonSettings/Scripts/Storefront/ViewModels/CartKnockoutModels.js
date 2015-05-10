@@ -39,7 +39,7 @@ function LineItemData(line) {
     self.isLineShipToStore = ko.observable(false);
     self.isLineShipToEmail = ko.observable(false);
     self.showShipOptionContent = ko.observable(false);
-    self.selectedShippingOptionName = ko.observable('please select delivery first');
+    self.selectedShippingOptionName = ko.observable(GetMessage('SelectDeliveryFirstMessage'));
     self.toggleShipContent = function () {
         self.showShipOptionContent(!self.showShipOptionContent());
     };

@@ -198,6 +198,15 @@ namespace Sitecore.Reference.Storefront.Controllers
         }
 
         /// <summary>
+        /// Prints the only.
+        /// </summary>
+        /// <returns>The PrintOnly view.</returns>
+        public ActionResult PrintOnly()
+        {
+            return View(this.CurrentRenderingView);
+        }
+
+        /// <summary>
         /// Gets the Social connector.
         /// </summary>
         /// <returns>SocialConnector view</returns>

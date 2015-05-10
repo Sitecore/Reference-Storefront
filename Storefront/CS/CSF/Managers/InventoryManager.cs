@@ -18,6 +18,7 @@
 namespace Sitecore.Reference.Storefront.Managers
 {
     using System;
+    using System.Linq;
     using Sitecore.Commerce.Connect.CommerceServer.Inventory.Models;
     using Sitecore.Reference.Storefront.Models.InputModels;
     using Sitecore.Commerce.Connect.CommerceServer.Inventory;
@@ -29,6 +30,7 @@ namespace Sitecore.Reference.Storefront.Managers
     using Sitecore.Configuration;
     using Sitecore.Diagnostics;
     using System.Collections.Generic;
+    using Sitecore.Reference.Storefront.Models;
 
     /// <summary>
     /// Defines the InventoryManager class.
@@ -79,6 +81,71 @@ namespace Sitecore.Reference.Storefront.Managers
         #region Methods (public, virtual)
 
         /// <summary>
+        /// Gets the product stock status.
+        /// </summary>
+        /// <param name="storefront">The storefront.</param>
+        /// <param name="productViewModels">The product view models.</param>
+        public virtual void GetProductsStockStatus([NotNull] CommerceStorefront storefront, List<ProductViewModel> productViewModels)
+        {
+            if (productViewModels == null || !productViewModels.Any())
+            {
+                return;
+            }
+
+            var products = new List<CommerceInventoryProduct>();
+            foreach (var viewModel in productViewModels)
+            {
+                if (viewModel.Variants != null && viewModel.Variants.Any())
+                {
+                    foreach (var variant in viewModel.Variants)
+                    {
+                        products.Add(new CommerceInventoryProduct
+                        {
+                            ProductId = viewModel.ProductId,
+                            CatalogName = viewModel.CatalogName,
+                            VariantId = variant.VariantId
+                        });
+                    }
+                }
+                else
+                {
+                    products.Add(new CommerceInventoryProduct { ProductId = viewModel.ProductId, CatalogName = viewModel.CatalogName });
+                }
+            }
+
+            if (products.Any())
+            {
+                var response = this.GetStockInformation(storefront, products, StockDetailsLevel.All);
+                if (response.Result != null)
+                {
+                    var stockInfoList = response.Result.ToList();
+
+                    foreach (var viewModel in productViewModels)
+                    {
+                        StockInformation foundItem = null;
+                        if (viewModel.Variants != null && viewModel.Variants.Any())
+                        {
+                            foreach (var variant in viewModel.Variants)
+                            {
+                                foundItem = stockInfoList.Find(p => p.Product.ProductId == viewModel.ProductId && ((CommerceInventoryProduct)p.Product).VariantId == variant.VariantId);
+                            }
+                        }
+                        else
+                        {
+                            foundItem = stockInfoList.Find(p => p.Product.ProductId == viewModel.ProductId);
+                        }
+
+                        if (foundItem != null)
+                        {
+                            viewModel.StockStatus = foundItem.Status;
+                            viewModel.StockStatusName = StorefrontManager.GetProductStockStatusName(foundItem.Status);
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets the stock information.
         /// </summary>
         /// <param name="storefront">The storefront.</param>
@@ -95,7 +162,9 @@ namespace Sitecore.Reference.Storefront.Managers
             var request = new GetStockInformationRequest(storefront.ShopName, products, detailsLevel) { Location = this._obecContext.InventoryLocation, VisitorId = this.ContactFactory.GetContact() };
             var result = this.InventoryServiceProvider.GetStockInformation(request);
 
-            Helpers.LogSystemMessages(result.SystemMessages, result);
+            // Currently, both Categories and Products are passed in and are waiting for a fix to filter the categories out.  Until then, this code is commented
+            // out as it generates an unecessary Error event indicating the product cannot be found.
+            // Helpers.LogSystemMessages(result.SystemMessages, result);
             return new ManagerResponse<GetStockInformationResult, IEnumerable<StockInformation>>(result, result.StockInformation ?? new List<StockInformation>());
         }
 

@@ -19,7 +19,7 @@ content-length: 1140
 ----version----
 language: en
 version: 1
-revision: d2d88ea7-0378-40e6-95ca-f1e5a7e9ba6d
+revision: 12fc5be0-88ef-4974-948d-68554d561f88
 
 ----field----
 field: {BCAE4882-2C82-42D7-8B33-D269CB521E36}
@@ -74,9 +74,9 @@ Order total:
 field: {782EC575-8B6D-4F75-B020-21126AE25A21}
 name: Total Savings Label
 key: total savings label
-content-length: 14
+content-length: 15
 
-Total savings:
+Total discount:
 ----field----
 field: {3E503A8F-AD03-464E-B61D-09CC8D6E79F7}
 name: Order Total Header Label
@@ -102,9 +102,9 @@ Discount:
 field: {F1CDCC4B-3183-4465-BFA7-3DAE152CAFA9}
 name: Savings Label
 key: savings label
-content-length: 8
+content-length: 9
 
-Savings:
+Discount:
 ----field----
 field: {71834529-FFDC-4D99-8203-86576CC04F33}
 name: Enter Coupon Code Message
@@ -181,14 +181,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-d2d88ea7-0378-40e6-95ca-f1e5a7e9ba6d
+12fc5be0-88ef-4974-948d-68554d561f88
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 35
 
-20150313T153741:635618578610066091Z
+20150426T123518:635656485180725894Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

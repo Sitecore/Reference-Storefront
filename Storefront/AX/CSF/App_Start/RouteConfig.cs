@@ -134,11 +134,6 @@ namespace Sitecore.Reference.Storefront
                 });
 
             routes.MapRoute(
-                name: "GetGiftCardBalance",
-                url: "checkout/GetGiftCardBalance/{giftCardId}",
-                defaults: new { controller = "Checkout", action = "GetGiftCardBalance", id = UrlParameter.Optional, giftCardId = UrlParameter.Optional });
-
-            routes.MapRoute(
                 name: "GetNearbyStores",
                 url: "checkout/GetNearbyStores",
                 defaults: new { controller = "Checkout", action = "GetNearbyStores", id = UrlParameter.Optional, latitude = UrlParameter.Optional, longitude = UrlParameter.Optional });
