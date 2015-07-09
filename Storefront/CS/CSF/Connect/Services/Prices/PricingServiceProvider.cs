@@ -40,9 +40,9 @@ namespace Sitecore.Reference.Storefront.Connect.Services.Prices
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>Returns product bulk prices.</returns>
-        public virtual GetProductBulkPricesResult GetProductBulkPrices(GetProductBulkPricesRequest request)
+        public virtual Sitecore.Commerce.Services.Prices.GetProductBulkPricesResult GetProductBulkPrices(GetProductBulkPricesRequest request)
         {
-            return this.RunPipeline<GetProductBulkPricesRequest, GetProductBulkPricesResult>("commerce.prices.getProductBulkPrices", request);
+            return this.RunPipeline<GetProductBulkPricesRequest, Sitecore.Commerce.Services.Prices.GetProductBulkPricesResult>("commerce.prices.getProductBulkPrices", request);
         }
 
         /// <summary>
@@ -50,9 +50,9 @@ namespace Sitecore.Reference.Storefront.Connect.Services.Prices
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>Returns product prices.</returns>
-        public virtual GetProductPricesResult GetProductPrices(GetProductPricesRequest request)
+        public virtual Sitecore.Commerce.Services.Prices.GetProductPricesResult GetProductPrices(GetProductPricesRequest request)
         {
-            return this.RunPipeline<GetProductPricesRequest, GetProductPricesResult>("commerce.prices.getProductPrices", request);
+            return this.RunPipeline<GetProductPricesRequest, Sitecore.Commerce.Services.Prices.GetProductPricesResult>("commerce.prices.getProductPrices", request);
         }
     }
 }

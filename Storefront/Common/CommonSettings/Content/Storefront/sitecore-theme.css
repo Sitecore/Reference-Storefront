@@ -431,6 +431,10 @@ p {
     text-align: center;
 }
 
+.starting-from-price {
+    color: #219FD1;
+    text-align: center;
+}
 
 .price-before {
     font-size: 105%;

@@ -365,7 +365,7 @@ namespace Sitecore.Reference.Storefront.Controllers
                 if (childProducts != null && childProducts.SearchResultItems.Count > 0)
                 {
                     this.CatalogManager.GetProductBulkPrices(categoryViewModel.ChildProducts);
-                    this.CatalogManager.InventoryManager.GetProductsStockStatus(this.CurrentStorefront, categoryViewModel.ChildProducts);
+                    this.CatalogManager.InventoryManager.GetProductsStockStatusForList(this.CurrentStorefront, categoryViewModel.ChildProducts);
                     foreach (var productViewModel in categoryViewModel.ChildProducts)
                     {
                         Item productItem = childProducts.SearchResultItems.Where(item => item.Name == productViewModel.ProductId).Single();

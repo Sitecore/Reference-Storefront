@@ -38,6 +38,7 @@ namespace Sitecore.Reference.Storefront.Managers
     using Sitecore.Globalization;
     using RefSFModels = Sitecore.Reference.Storefront.Connect.Models;
     using System.Globalization;
+    using Sitecore.Reference.Storefront.Extensions;
 
     /// <summary>
     /// Defines the CartManager class.
@@ -104,7 +105,9 @@ namespace Sitecore.Reference.Storefront.Managers
                 return new ManagerResponse<CartResult, CommerceCart>(result, cart);
             }
 
-            CartResult cartResult = this.LoadCartByName(storefront.ShopName, storefront.DefaultCartName, visitorContext.UserId, refresh);
+            // With cart caching enabled (via Shared Sessions) it is now ok to refresh the cart (i.e. run the CS pipelines) without causing
+            // any performance problems.  This is required to ensure we get the cart images after cart is invalidated by the update line item.
+            CartResult cartResult = this.LoadCartByName(storefront.ShopName, storefront.DefaultCartName, visitorContext.UserId, true);
             if (cartResult.Success && cartResult.Cart != null)
             {
                 cart = cartResult.Cart as CommerceCart;
@@ -502,10 +505,11 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <param name="storefront">The storefront.</param>
         /// <param name="visitorContext">The visitor context.</param>
         /// <param name="anonymousVisitorId">The anonymous visitor identifier.</param>
+        /// <param name="anonymousVisitorCart">The anonymous visitor cart.</param>
         /// <returns>
         /// The manager response where the merged cart is returned in the result.
         /// </returns>
-        public virtual ManagerResponse<CartResult, CommerceCart> MergeCarts([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext, string anonymousVisitorId)
+        public virtual ManagerResponse<CartResult, CommerceCart> MergeCarts([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext, string anonymousVisitorId, Cart anonymousVisitorCart)
         {
             Assert.ArgumentNotNull(storefront, "storefront");
             Assert.ArgumentNotNull(visitorContext, "visitorContext");
@@ -522,28 +526,23 @@ namespace Sitecore.Reference.Storefront.Managers
 
             CommerceCart currentCart = (CommerceCart)cartResult.Cart;
             var result = new CartResult { Cart = currentCart, Success = true };
-            var cartCache = CommerceTypeLoader.CreateInstance<CartCacheHelper>();
 
             if (userId != anonymousVisitorId)
             {
-                cartCache.InvalidateCartCache(userId);
-                CommerceCart anonymousCart = cartCache.GetCart(anonymousVisitorId);
-
-                if (anonymousCart != null && anonymousCart.Lines.Any())
+                if (anonymousVisitorCart != null && anonymousVisitorCart.Lines.Any())
                 {
-                    cartCache.InvalidateCartCache(anonymousVisitorId);
-                    if ((currentCart.ShopName == anonymousCart.ShopName) || (currentCart.ExternalId != anonymousCart.ExternalId))
+                    if ((currentCart.ShopName == anonymousVisitorCart.ShopName) || (currentCart.ExternalId != anonymousVisitorCart.ExternalId))
                     {
-                        var mergeCartRequest = new MergeCartRequest(anonymousCart, currentCart);
+                        var mergeCartRequest = new MergeCartRequest(anonymousVisitorCart, currentCart);
                         result = this.CartServiceProvider.MergeCart(mergeCartRequest);
                         if (result.Success)
                         {
-                            var updateCartRequest = new UpdateCartLinesRequest(result.Cart, anonymousCart.Lines);
+                            var updateCartRequest = new UpdateCartLinesRequest(result.Cart, anonymousVisitorCart.Lines);
                             updateCartRequest.RefreshCart(true);
                             result = this.CartServiceProvider.UpdateCartLines(updateCartRequest);
                             if (result.Success)
                             {
-                                this.CartServiceProvider.DeleteCart(new DeleteCartRequest(anonymousCart));
+                                this.CartServiceProvider.DeleteCart(new DeleteCartRequest(anonymousVisitorCart));
                             }
                         }
                     }
@@ -552,6 +551,8 @@ namespace Sitecore.Reference.Storefront.Managers
 
             if (result.Success && result.Cart != null)
             {
+                var cartCache = CommerceTypeLoader.CreateInstance<CartCacheHelper>();
+                cartCache.InvalidateCartCache(anonymousVisitorId);
                 cartCache.AddCartToCache(result.Cart as CommerceCart);
             }
 

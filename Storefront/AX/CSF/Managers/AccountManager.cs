@@ -109,6 +109,8 @@ namespace Sitecore.Reference.Storefront.Managers
             Assert.ArgumentNotNullOrEmpty(userName, "userName");
             Assert.ArgumentNotNullOrEmpty(password, "password");
 
+            var anonymousVisitorCart = this.CartManager.GetCurrentCart(storefront, visitorContext).Result;
+
             var isLoggedIn = AuthenticationManager.Login(userName, password, persistent);
             if (!isLoggedIn)
             {
@@ -118,7 +120,8 @@ namespace Sitecore.Reference.Storefront.Managers
             string anonymousVisitorId = visitorContext.VisitorId;
             Tracker.Current.Session.Identify(userName);
             visitorContext.SetCommerceUser(this.ResolveCommerceUser().Result);
-            this.CartManager.MergeCarts(storefront, visitorContext, anonymousVisitorId);
+
+            this.CartManager.MergeCarts(storefront, visitorContext, anonymousVisitorId, anonymousVisitorCart);
 
             return true;
         }

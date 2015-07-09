@@ -42,7 +42,7 @@
                 foreach (var category in Model.ChildCategories)
                 {
                     var cModel = new CategoryViewModel(category);
-                    <li class="@(string.Equals(name, cModel.Name, StringComparison.OrdinalIgnoreCase) ? "active" : "")"><a href="@cModel.GetLink()">@cModel.DisplayName</a></li>
+                    <li class="@(string.Equals(name, cModel.Name, StringComparison.OrdinalIgnoreCase) ? "active" : "")"><a href="@cModel.GetLink()">@cModel.DisplayNameRender</a></li>
                 }
             }
         </ul>

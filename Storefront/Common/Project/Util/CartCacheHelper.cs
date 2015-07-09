@@ -24,6 +24,7 @@ namespace Sitecore.Reference.Storefront
     using Sitecore.Commerce.Connect.CommerceServer.Caching;
     using Sitecore.Commerce.Connect.CommerceServer.Orders.Models;
     using System;
+    using Sitecore.Analytics;
     
     /// <summary>
     /// Cart Cache Helper
@@ -48,17 +49,10 @@ namespace Sitecore.Reference.Storefront
         /// <param name="customerId">the customer id</param>
         public virtual void InvalidateCartCache([NotNull]string customerId)
         {
-            var cacheProvider = this.GetCacheProvider();
-
-            var id = this.GetCustomerId(customerId);
-            
-            if (!cacheProvider.Contains(CommerceConstants.KnownCachePrefixes.Sitecore, CommerceConstants.KnownCacheNames.CommerceCartCache, id))
+            if (Tracker.Current.Contact.Attachments.ContainsKey(StorefrontConstants.TrackerAttachmentKeys.CustomerCartKey))
             {
-                var msg = string.Format(CultureInfo.InvariantCulture, "CartCacheHelper::InvalidateCartCache - Cart for customer id {0} is not in the cache!", id);
-                CommerceTrace.Current.Write(msg);
+                Tracker.Current.Contact.Attachments.Remove(StorefrontConstants.TrackerAttachmentKeys.CustomerCartKey);
             }
-
-            cacheProvider.RemoveData(CommerceConstants.KnownCachePrefixes.Sitecore, CommerceConstants.KnownCacheNames.CommerceCartCache, id);
         }
 
         /// <summary>
@@ -68,17 +62,12 @@ namespace Sitecore.Reference.Storefront
         /// <returns>The CommerceCart.</returns>
         public virtual CommerceCart AddCartToCache(CommerceCart cart)
         {
-            var cacheProvider = this.GetCacheProvider();
-
-            var id = this.GetCustomerId(cart.CustomerId);
-
-            if (cacheProvider.Contains(CommerceConstants.KnownCachePrefixes.Sitecore, CommerceConstants.KnownCacheNames.CommerceCartCache, id))
+            if (Tracker.Current.Contact.Attachments.ContainsKey(StorefrontConstants.TrackerAttachmentKeys.CustomerCartKey))
             {
-                var msg = string.Format(CultureInfo.InvariantCulture, "CartCacheHelper::AddCartToCache - Cart for customer id {0} is already in the cache!", id);
-                CommerceTrace.Current.Write(msg);
+                Tracker.Current.Contact.Attachments.Remove(StorefrontConstants.TrackerAttachmentKeys.CustomerCartKey);
             }
-            
-            cacheProvider.AddData(CommerceConstants.KnownCachePrefixes.Sitecore, CommerceConstants.KnownCacheNames.CommerceCartCache, id, cart);
+
+            Tracker.Current.Contact.Attachments.Add(StorefrontConstants.TrackerAttachmentKeys.CustomerCartKey, cart);
 
             return cart;
         }
@@ -90,31 +79,13 @@ namespace Sitecore.Reference.Storefront
         /// <returns>A Cart. Returns null if no cart is in the cache</returns>
         public virtual CommerceCart GetCart([NotNull]string customerId)
         {
-            var cacheProvider = this.GetCacheProvider();
-
-            var id = this.GetCustomerId(customerId);
-
-            var cart = cacheProvider.GetData<CommerceCart>(CommerceConstants.KnownCachePrefixes.Sitecore, CommerceConstants.KnownCacheNames.CommerceCartCache, id);
-
-            if (cart == null)
+            CommerceCart theCart = null;
+            if (Tracker.Current.Contact.Attachments.ContainsKey(StorefrontConstants.TrackerAttachmentKeys.CustomerCartKey))
             {
-                var msg = string.Format(CultureInfo.InvariantCulture, "CartCacheHelper::GetCart - Cart for customerId {0} does not exist in the cache!", id);
-                CommerceTrace.Current.Write(msg);
+                theCart = Tracker.Current.Contact.Attachments[StorefrontConstants.TrackerAttachmentKeys.CustomerCartKey] as CommerceCart;
             }
 
-            return cart;
-        }
-
-        /// <summary>
-        /// Gets the cache provider
-        /// </summary>
-        /// <returns>the cahce provider</returns>
-        protected virtual ICacheProvider GetCacheProvider()
-        {
-            var cacheProvider = CommerceTypeLoader.GetCacheProvider(CommerceConstants.KnownCacheNames.CommerceCartCache);
-            Assert.IsNotNull(cacheProvider, "Could not retrieve the cache provider '{0}'.", CommerceConstants.KnownCacheNames.CommerceCartCache);
-
-            return cacheProvider;
+            return theCart;
         }
 
         /// <summary>

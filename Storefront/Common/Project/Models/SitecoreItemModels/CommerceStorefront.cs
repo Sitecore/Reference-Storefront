@@ -109,6 +109,20 @@ namespace Sitecore.Reference.Storefront.Models.SitecoreItemModels
         }
 
         /// <summary>
+        /// Gets a value indicating whether the inventory index file should be used when displaying product lists.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if the inventory index file should be used; otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool UseIndexFileForProductStatusInLists
+        {
+            get
+            {
+                return MainUtil.GetBool(this.HomeItem[StorefrontConstants.KnownFieldNames.UseIndexFileForProductStatusInLists], false);
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the name of the shop.
         /// </summary>
         /// <value>The name of the shop.</value>
@@ -297,6 +311,15 @@ namespace Sitecore.Reference.Storefront.Models.SitecoreItemModels
         public virtual string NameTitle()
         {
             return this.InnerItem == null ? "default" : this.InnerItem["Name Title"];
+        }
+
+        /// <summary>
+        /// Gets the map key credentials.
+        /// </summary>
+        /// <returns>The map key credentials.</returns>
+        public virtual string GetMapKey()
+        {
+            return this.HomeItem[StorefrontConstants.KnownFieldNames.MapKey];
         }
     }
 }

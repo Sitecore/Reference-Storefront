@@ -322,10 +322,7 @@
     <Compile Include="App_Start\WindsorConfig.cs" />
     <Compile Include="Connect\Models\CommerceParty.cs" />
     <Compile Include="Connect\Models\EmailParty.cs" />
-    <Compile Include="Connect\Pipelines\Arguments\GetProductBulkPricesRequest.cs" />
-    <Compile Include="Connect\Pipelines\Arguments\GetProductBulkPricesResult.cs" />
     <Compile Include="Connect\Pipelines\Arguments\GetProductPricesRequest.cs" />
-    <Compile Include="Connect\Pipelines\Arguments\GetProductPricesResult.cs" />
     <Compile Include="Connect\Pipelines\Arguments\TranslateCommerceAddressProfileToEntityRequest.cs" />
     <Compile Include="Connect\Pipelines\Arguments\TranslateEntityToCommerceAddressProfileRequest.cs" />
     <Compile Include="Connect\Pipelines\Arguments\TranslateEntityToOrderAddressRequest.cs" />
@@ -340,6 +337,7 @@
     <Compile Include="Connect\Pipelines\Orders\SubmitVisitorOrder.cs" />
     <Compile Include="Connect\Pipelines\Orders\TranslateShipmentToEntity.cs" />
     <Compile Include="Connect\Pipelines\Prices\GetProductBulkPrices.cs" />
+    <Compile Include="Connect\Pipelines\Prices\GetProductBulkPricesFromIndex.cs" />
     <Compile Include="Connect\Pipelines\Prices\GetProductPrices.cs" />
     <Compile Include="Connect\Pipelines\Customers\AddParties.cs" />
     <Compile Include="Connect\Pipelines\Customers\CustomerPipelineProcessor.cs" />
@@ -403,6 +401,8 @@
     <Compile Include="Connect\Models\ShippingOptionType.cs" />
     <Compile Include="Connect\Services\Orders\GetShippingMethodsRequest.cs" />
     <Compile Include="Connect\Services\Orders\GetShippingMethodsResult.cs" />
+    <Compile Include="Search\VariantIndexInfo.cs" />
+    <Compile Include="Search\VariantInfoComputedField.cs" />
     <Compile Include="SitecorePipelines\InitializeBundles.cs" />
     <Compile Include="SitecorePipelines\InitializeRoutes.cs" />
     <Compile Include="GlobalSuppressions.cs" />

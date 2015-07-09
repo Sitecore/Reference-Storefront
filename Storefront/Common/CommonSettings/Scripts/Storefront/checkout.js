@@ -196,10 +196,14 @@ function initObservables() {
     methodsViewModel = new MethodsViewModel();
 }
 
-function initCheckoutData() {
+var abde = null;
+
+function initCheckoutData(abdeContext) {
     getExpirationDates();
     getExpirationYears();
     getCheckoutData();
+
+    abde = abdeContext;
 }
 
 // ----- SHIPPING ----- //
@@ -380,13 +384,14 @@ function setShippingMethodsResponse(data, success, sender) {
 
 // ----- MAP & STORES ----- //
 var map = null;
+
 function getMap(storesMapContainer) {
     if (map) {
         //map.dispose();
     }
 
     var mapOptions = {
-        credentials: "AoDuh-y-4c57psY4ebQAurV-wFTFCfphVB_5TdyjFKv-eBiyU_bnUcMrAPT0BE1k", // TODO this has to be a settings
+        credentials: abde,
         zoom: 1,
         disableTouchInput: true
     };

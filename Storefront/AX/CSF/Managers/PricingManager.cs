@@ -19,9 +19,9 @@ namespace Sitecore.Reference.Storefront.Managers
 {
     using System.Collections.Generic;
     using Sitecore.Commerce.Entities.Prices;
-    using Sitecore.Commerce.Services.Prices;
     using Sitecore.Diagnostics;
     using Sitecore.Reference.Storefront.Models.SitecoreItemModels;
+    using Sitecore.Commerce.Services.Prices;
 
     /// <summary>
     /// Defines the PricingManager class.
@@ -79,13 +79,16 @@ namespace Sitecore.Reference.Storefront.Managers
         /// Gets the product bulk prices.
         /// </summary>
         /// <param name="storefront">The storefront.</param>
+        /// <param name="catalogName">Name of the catalog.</param>
         /// <param name="productIds">The product ids.</param>
-        /// <returns>The manager response with the list of prices in the Result.</returns>
-        public virtual ManagerResponse<GetProductBulkPricesResult, IDictionary<string, Price>> GetProductBulkPrices([NotNull] CommerceStorefront storefront, IEnumerable<string> productIds)
+        /// <returns>
+        /// The manager response with the list of prices in the Result.
+        /// </returns>
+        public virtual ManagerResponse<GetProductBulkPricesResult, IDictionary<string, Price>> GetProductBulkPrices([NotNull] CommerceStorefront storefront, string catalogName, IEnumerable<string> productIds)
         {
             Assert.ArgumentNotNull(storefront, "storefront");
 
-            var request = new GetProductBulkPricesRequest(productIds);
+            var request = new Sitecore.Reference.Storefront.Connect.Pipelines.Arguments.GetProductBulkPricesRequest(catalogName, productIds);
             var result = this.PricingServiceProvider.GetProductBulkPrices(request);
 
             Helpers.LogSystemMessages(result.SystemMessages, result);

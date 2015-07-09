@@ -19,6 +19,7 @@ namespace Sitecore.Reference.Storefront.Managers
 {
     using Sitecore.Commerce.Entities.Prices;
     using Sitecore.Diagnostics;
+    using Sitecore.Reference.Storefront.Connect.Models;
     using Sitecore.Reference.Storefront.Connect.Pipelines.Arguments;
     using Sitecore.Reference.Storefront.Connect.Services.Prices;
     using Sitecore.Reference.Storefront.Models.SitecoreItemModels;
@@ -29,7 +30,7 @@ namespace Sitecore.Reference.Storefront.Managers
     /// </summary>
     public class PricingManager : BaseManager
     {
-        private static string[] defaultPriceTypeIds = new string[2] { "List", "Adjusted" };
+        private static string[] defaultPriceTypeIds = new string[] { PriceTypes.List, PriceTypes.Adjusted, PriceTypes.LowestPricedVariant, PriceTypes.LowestPricedVariantListPrice, PriceTypes.HighestPricedVariant };
 
         #region Constructors
 
@@ -69,7 +70,7 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <param name="includeVariants">if set to <c>true</c> [include variants].</param>
         /// <param name="priceTypeIds">The price type ids.</param>
         /// <returns>The manager response with the list of prices in the Result.</returns>
-        public virtual ManagerResponse<GetProductPricesResult, IDictionary<string, Dictionary<string, Price>>> GetProductPrices([NotNull] CommerceStorefront storefront, string catalogName, string productId, bool includeVariants, params string[] priceTypeIds)
+        public virtual ManagerResponse<Sitecore.Commerce.Services.Prices.GetProductPricesResult, IDictionary<string, Price>> GetProductPrices([NotNull] CommerceStorefront storefront, string catalogName, string productId, bool includeVariants, params string[] priceTypeIds)
         {
             Assert.ArgumentNotNull(storefront, "storefront");
 
@@ -83,7 +84,7 @@ namespace Sitecore.Reference.Storefront.Managers
             var result = this.PricingServiceProvider.GetProductPrices(request);
 
             Helpers.LogSystemMessages(result.SystemMessages, result);
-            return new ManagerResponse<GetProductPricesResult, IDictionary<string, Dictionary<string, Price>>>(result, result.Prices == null ? new Dictionary<string, Dictionary<string, Price>>() : result.Prices);
+            return new ManagerResponse<Sitecore.Commerce.Services.Prices.GetProductPricesResult, IDictionary<string, Price>>(result, result.Prices == null ? new Dictionary<string,  Price>() : result.Prices);
         }
 
         /// <summary>
@@ -94,7 +95,7 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <param name="productIds">The product ids.</param>
         /// <param name="priceTypeIds">The price type ids.</param>
         /// <returns>The manager response with the list of prices in the Result.</returns>
-        public virtual ManagerResponse<GetProductBulkPricesResult, IDictionary<string, Dictionary<string, Price>>> GetProductBulkPrices([NotNull] CommerceStorefront storefront, string catalogName, IEnumerable<string> productIds, params string[] priceTypeIds)
+        public virtual ManagerResponse<Sitecore.Commerce.Services.Prices.GetProductBulkPricesResult, IDictionary<string, Price>> GetProductBulkPrices([NotNull] CommerceStorefront storefront, string catalogName, IEnumerable<string> productIds, params string[] priceTypeIds)
         {
             Assert.ArgumentNotNull(storefront, "storefront");
 
@@ -109,7 +110,7 @@ namespace Sitecore.Reference.Storefront.Managers
             // Currently, both Categories and Products are passed in and are waiting for a fix to filter the categories out.  Until then, this code is commented
             // out as it generates an unecessary Error event indicating the product cannot be found.
             // Helpers.LogSystemMessages(result.SystemMessages, result);
-            return new ManagerResponse<GetProductBulkPricesResult, IDictionary<string, Dictionary<string, Price>>>(result, result.Prices == null ? new Dictionary<string, Dictionary<string, Price>>() : result.Prices);
+            return new ManagerResponse<Sitecore.Commerce.Services.Prices.GetProductBulkPricesResult, IDictionary<string, Price>>(result, result.Prices == null ? new Dictionary<string, Price>() : result.Prices);
         }
 
         #endregion

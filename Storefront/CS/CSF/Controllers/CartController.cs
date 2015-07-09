@@ -27,7 +27,9 @@ namespace Sitecore.Reference.Storefront.Controllers
     using Sitecore.Reference.Storefront.Models.InputModels;
     using Sitecore.Reference.Storefront.Models.JsonResults;
     using Sitecore.Reference.Storefront.ExtensionMethods;
+    using Sitecore.Reference.Storefront.Extensions;
     using System.Web.UI;
+using Sitecore.Commerce.Entities.Carts;
 
     /// <summary>
     /// Defines the shopping cart controller type.
@@ -255,6 +257,8 @@ namespace Sitecore.Reference.Storefront.Controllers
                 if (response.ServiceProviderResult.Success && response.Result != null)
                 {
                     result.Initialize(response.Result);
+
+                    this.PerformBasketErrorCheck(response.Result);
                 }
 
                 return Json(result, JsonRequestBehavior.AllowGet);
@@ -295,6 +299,8 @@ namespace Sitecore.Reference.Storefront.Controllers
                 if (response.ServiceProviderResult.Success && response.Result != null)
                 {
                     result.Initialize(response.Result);
+
+                    this.PerformBasketErrorCheck(response.Result);
                 }
 
                 return Json(result, JsonRequestBehavior.AllowGet);
@@ -387,5 +393,20 @@ namespace Sitecore.Reference.Storefront.Controllers
         }
 
         #endregion
+
+        /// <summary>
+        /// Performs the basket error check.
+        /// </summary>
+        /// <param name="cart">The cart.</param>
+        protected virtual void PerformBasketErrorCheck(CartBase cart)
+        {
+            if (cart.HasBasketErrors())
+            {
+                // We clear the cart from the cache when basket errors are detected.  This stops the message from being displayed over and over as the
+                // cart will be retrieved again from CS and the pipelines will be executed.
+                var cartCache = CommerceTypeLoader.CreateInstance<CartCacheHelper>();
+                cartCache.InvalidateCartCache(this.CurrentVisitorContext.GetCustomerId());
+            }
+        }
     }
 }

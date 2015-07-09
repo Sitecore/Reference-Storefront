@@ -81,6 +81,10 @@
     <Reference Include="CommerceMessageManager">
       <HintPath>..\Lib\CommerceServer\CommerceMessageManager.dll</HintPath>
     </Reference>
+    <Reference Include="CommerceServer.Core.Catalog, Version=10.0.0.0, Culture=neutral, PublicKeyToken=f5c79cb11734af7a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Lib\CommerceServer.Core.Catalog.dll</HintPath>
+    </Reference>
     <Reference Include="CommerceServer.Core.CrossTier, Version=10.0.0.0, Culture=neutral, PublicKeyToken=f5c79cb11734af7a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Lib\CommerceServer.Core.CrossTier.dll</HintPath>
@@ -314,6 +318,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="App_Start\WindsorConfig.cs" />
+    <Compile Include="Connect\Pipelines\Prices\GetProductBulkPricesFromIndex.cs" />
     <Compile Include="Controllers\AXBaseController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\LandingController.cs" />
@@ -357,6 +362,8 @@
     <Compile Include="Models\JsonResults\AddressItemJsonResult.cs" />
     <Compile Include="Models\SitecoreItemModels\DynamicsStorefront.cs" />
     <Compile Include="DynamicsStorefrontConstants.cs" />
+    <Compile Include="Search\VariantIndexInfo.cs" />
+    <Compile Include="Search\VariantInfoComputedField.cs" />
     <Compile Include="SitecorePipelines\AddOrderToEAPlan.cs" />
     <Compile Include="SitecorePipelines\InitializeBundles.cs" />
     <Compile Include="SitecorePipelines\InitializeRoutes.cs" />

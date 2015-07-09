@@ -24,15 +24,37 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Prices
     using Sitecore.Commerce.Entities.Prices;
     using Sitecore.Commerce.Services;
     using Sitecore.Diagnostics;
+    using Sitecore.Reference.Storefront.Connect.Models;
     using Sitecore.Reference.Storefront.Connect.Pipelines.Arguments;
     using System;
+    using System.Linq;
     using System.Collections.Generic;
+    using Sitecore.Commerce.Entities;
 
     /// <summary>
     /// Pipeline is used to get product prices
     /// </summary>
     public class GetProductPrices : PricePipelineProcessor
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetProductPrices"/> class.
+        /// </summary>
+        /// <param name="entityFactory">The entity factory.</param>
+        public GetProductPrices([NotNull] IEntityFactory entityFactory)
+        {
+            Assert.ArgumentNotNull(entityFactory, "entityFactory");
+
+            this.EntityFactory = entityFactory;
+        }
+
+        /// <summary>
+        /// Gets or sets the entity factory.
+        /// </summary>
+        /// <value>
+        /// The entity factory.
+        /// </value>
+        public IEntityFactory EntityFactory { get; set; }
+
         /// <summary>
         /// Processes the specified arguments.
         /// </summary>
@@ -42,60 +64,70 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Prices
             Assert.ArgumentNotNull(args, "args");
             Assert.ArgumentNotNull(args.Request, "args.request");
             Assert.ArgumentCondition(args.Request is GetProductPricesRequest, "args.Request", "args.Request is GetProductPricesRequest");
-            Assert.ArgumentCondition(args.Result is GetProductPricesResult, "args.Result", "args.Result is GetProductPricesResult");
+            Assert.ArgumentCondition(args.Result is Sitecore.Commerce.Services.Prices.GetProductPricesResult, "args.Result", "args.Result is GetProductPricesResult");
 
             GetProductPricesRequest request = (GetProductPricesRequest)args.Request;
-            GetProductPricesResult result = (GetProductPricesResult)args.Result;
+            Sitecore.Commerce.Services.Prices.GetProductPricesResult result = (Sitecore.Commerce.Services.Prices.GetProductPricesResult)args.Result;
 
             Assert.ArgumentNotNull(request.ProductCatalogName, "request.ProductCatalogName");
             Assert.ArgumentNotNull(request.ProductId, "request.ProductId");
             Assert.ArgumentNotNull(request.PriceTypeIds, "request.PriceTypeIds");
 
             ICatalogRepository catalogRepository = CommerceTypeLoader.CreateInstance<ICatalogRepository>();
-            bool isList = Array.FindIndex(request.PriceTypeIds as string[], t => t.IndexOf("List", StringComparison.OrdinalIgnoreCase) >= 0) > -1;
-            bool isAdjusted = Array.FindIndex(request.PriceTypeIds as string[], t => t.IndexOf("Adjusted", StringComparison.OrdinalIgnoreCase) >= 0) > -1;
+            bool isList = request.PriceTypeIds.FirstOrDefault(x => x.Equals(PriceTypes.List, StringComparison.OrdinalIgnoreCase)) != null;
+            bool isAdjusted = request.PriceTypeIds.FirstOrDefault(x => x.Equals(PriceTypes.Adjusted, StringComparison.OrdinalIgnoreCase)) != null;
 
             try
             {
                 var product = catalogRepository.GetProductReadOnly(request.ProductCatalogName, request.ProductId);
-                Dictionary<string, Price> prices = new Dictionary<string, Price>();
+
+                ExtendedCommercePrice extendedPrice = this.EntityFactory.Create<ExtendedCommercePrice>("Price");
 
                 // BasePrice is a List price and ListPrice is Adjusted price 
                 if (isList)
                 {
                     if (product.HasProperty("BasePrice") && product["BasePrice"] != null)
                     {
-                        prices.Add("List", new Price { PriceType = "List", Amount = (product["BasePrice"] as decimal?).Value });
+                        extendedPrice.Amount = (product["BasePrice"] as decimal?).Value;
                     }
                     else
                     {
                         // No base price is defined, the List price is set to the actual ListPrice define in the catalog
-                        prices.Add("List", new Price { PriceType = "List", Amount = product.ListPrice });
+                        extendedPrice.Amount = product.ListPrice;
                     }
                 }               
 
                 if (isAdjusted && !product.IsListPriceNull())
                 {
-                    prices.Add("Adjusted", new Price { PriceType = "Adjusted", Amount = product.ListPrice });
-                } 
+                    extendedPrice.ListPrice = product.ListPrice;
+                }
 
-                result.Prices.Add(request.ProductId, prices);
+                result.Prices.Add(request.ProductId, extendedPrice);
+
                 if (request.IncludeVariantPrices && product is ProductFamily)
                 {
                     foreach (Variant variant in ((ProductFamily)product).Variants)
                     {
-                        Dictionary<string, Price> variantPrices = new Dictionary<string, Price>();
-                        if (isList && product.HasProperty("BasePrice") && variant["BasePriceVariant"] != null)
+                        ExtendedCommercePrice variantExtendedPrice = this.EntityFactory.Create<ExtendedCommercePrice>("Price");
+
+                        bool hasBasePrice = product.HasProperty("BasePrice");
+
+                        if (hasBasePrice && variant["BasePriceVariant"] != null)
                         {
-                            variantPrices.Add("List", new Price { PriceType = "List", Amount = (variant["BasePriceVariant"] as decimal?).Value });
+                            variantExtendedPrice.Amount = (variant["BasePriceVariant"] as decimal?).Value;
                         }                      
 
-                        if (isAdjusted && !variant.IsListPriceNull())
+                        if (!variant.IsListPriceNull())
                         {
-                            variantPrices.Add("Adjusted", new Price { PriceType = "Adjusted", Amount = variant.ListPrice });
+                            variantExtendedPrice.ListPrice = variant.ListPrice;
+
+                            if (!hasBasePrice)
+                            {
+                                variantExtendedPrice.Amount = variant.ListPrice;
+                            }
                         }
 
-                        result.Prices.Add(variant.VariantId, variantPrices);
+                        result.Prices.Add(variant.VariantId.Trim(), variantExtendedPrice);
                     }
                 }
             }

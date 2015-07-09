@@ -33,13 +33,17 @@ namespace Sitecore.Reference.Storefront.Infrastructure
     /// </summary>
     private readonly IWindsorContainer container;
 
+    private readonly IHttpControllerActivator defaultActivator;
+
     /// <summary>
-    /// Initializes a new instance of the <see cref="WindsorHttpControllerActivator"/> class.
+    /// Initializes a new instance of the <see cref="WindsorHttpControllerActivator" /> class.
     /// </summary>
     /// <param name="container">The container.</param>
-    public WindsorHttpControllerActivator(IWindsorContainer container)
+    /// <param name="defaultActivator">The default activator.</param>
+    public WindsorHttpControllerActivator(IWindsorContainer container, IHttpControllerActivator defaultActivator)
     {
       this.container = container;
+      this.defaultActivator = defaultActivator;
     }
 
     /// <summary>
@@ -53,11 +57,20 @@ namespace Sitecore.Reference.Storefront.Infrastructure
     /// </returns>
     public IHttpController Create(HttpRequestMessage request, HttpControllerDescriptor controllerDescriptor, Type controllerType)
     {
-      var controller = (IHttpController)this.container.Resolve(controllerType);
+        IHttpController controller;
 
-      request.RegisterForDispose(new Release(() => this.container.Release(controller)));
+        try
+        {
+            controller = (IHttpController)this.container.Resolve(controllerType);
 
-      return controller;
+            request.RegisterForDispose(new Release(() => this.container.Release(controller)));
+        }
+        catch (Exception)
+        {
+            controller = this.defaultActivator.Create(request, controllerDescriptor, controllerType);
+        }
+
+        return controller;
     }
 
     /// <summary>

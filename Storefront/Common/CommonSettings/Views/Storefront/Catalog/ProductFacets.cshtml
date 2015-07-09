@@ -30,7 +30,7 @@
                     <label for="color-toggle"> + </label>
                     <input type="checkbox" id="color-toggle" class="toggle-facets" />
                     <div class="@facet.DisplayName.ToLower().Replace(" ", "")-list">
-                        <ul class="@facet.DisplayName.ToLower()">
+                        <ul class="facet-@facet.DisplayName.ToLower()">
                             @foreach (var value in facet.FoundValues)
                             {
                                 var facetCount = value.AggregateCount;

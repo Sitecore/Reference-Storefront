@@ -38,6 +38,13 @@ content-length: 65
 
 /sitecore/content/Storefront/Global/Site Spots/Product List Texts
 ----field----
+field: {01C98AE9-82BB-4237-ACDD-BA5B0A518F2F}
+name: Use Index File For Product Status In Lists
+key: use index file for product status in lists
+content-length: 1
+
+1
+----field----
 field: {BA3F86A2-4A1C-4D78-B63D-91C2779C1B5E}
 name: __Sortorder
 key: __sortorder
@@ -54,7 +61,7 @@ content-length: 2581
 ----version----
 language: en
 version: 1
-revision: eb693409-cdc1-431a-bf2c-7e8616cbd71e
+revision: 373204f1-5b45-4397-a1a9-9af0d267a57e
 
 ----field----
 field: {04BF00DB-F5FB-41F7-8AB7-22408372A981}
@@ -76,14 +83,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-eb693409-cdc1-431a-bf2c-7e8616cbd71e
+373204f1-5b45-4397-a1a9-9af0d267a57e
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 35
 
-20150409T055708:635641558285695681Z
+20150630T064227:635712433478453866Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

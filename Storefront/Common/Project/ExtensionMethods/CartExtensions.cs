@@ -15,9 +15,12 @@
 // and limitations under the License.
 // -------------------------------------------------------------------------------------------
 
-namespace Sitecore.Commerce.Services.Carts
+namespace Sitecore.Reference.Storefront.Extensions
 {
+    using Sitecore.Commerce.Connect.CommerceServer.Orders.Models;
     using Sitecore.Commerce.Connect.CommerceServer.Orders.Pipelines;
+    using Sitecore.Commerce.Entities.Carts;
+    using Sitecore.Commerce.Services.Carts;
 
     /// <summary>
     /// Some utility methods for working with cart requests
@@ -42,6 +45,17 @@ namespace Sitecore.Commerce.Services.Carts
             {
                 info.Refresh = refresh;
             }
+        }
+
+        /// <summary>
+        /// Determines whether [has basket errors] [the specified cart].
+        /// </summary>
+        /// <param name="cart">The cart.</param>
+        /// <returns>True if basket errors have been detected; Otherwise false.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "This functionality only pertains to Carts and not entities.")]
+        public static bool HasBasketErrors(this CartBase cart)
+        {
+            return cart.Properties.ContainsProperty("_Basket_Errors");
         }
     }
 }

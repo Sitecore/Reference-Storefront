@@ -58,15 +58,60 @@
                 }
                 @if (!isCategory)
                 {
-                    if (Model.IsOnSale)
+                    bool isVariant = Model.LowestPricedVariantAdjustedPrice.HasValue;
+                    bool isOnSale = false;
+                    string adjustedPriceWithCurrency = string.Empty;
+                    string listPriceWithCurrency = string.Empty;
+                    decimal savingsPercentage = 0.0M;
+                    decimal listPrice = 0.0M;
+                    decimal adjustedPrice = 0.0M;
+                    bool displayStartingFrom = false;
+
+                    if (isVariant && Model.LowestPricedVariantListPrice.HasValue)
                     {
-                        <h4 class="price-text-color" pid="priceNow">@Html.DisplayFor(model => Model.AdjustedPriceWithCurrency)</h4>
-                        <h5 class="price-before" pid="price">@Html.DisplayFor(model => Model.ListPriceWithCurrency)</h5>
-                        <span class="price-savings" pid="savings">@Html.Sitecore().Field("Save percent lead", Model.Rendering.RenderingItem) @Model.SavingsPercentage%</span>
+                        adjustedPrice = Model.LowestPricedVariantAdjustedPrice.Value;
+                        listPrice = Model.LowestPricedVariantListPrice.Value;
+                        displayStartingFrom = (Model.HighestPricedVariantAdjustedPrice.HasValue && adjustedPrice < Model.HighestPricedVariantAdjustedPrice.Value);
+
+                        adjustedPriceWithCurrency = Model.LowestPricedVariantAdjustedPriceWithCurrency;
+                        isOnSale = (adjustedPrice < listPrice);
+                        if (isOnSale)
+                        {
+                            listPriceWithCurrency = Model.LowestPricedVariantListPriceWithCurrency;
+                            savingsPercentage = Model.VariantSavingsPercentage;
+                        }
+                        else
+                        {
+                            listPriceWithCurrency = adjustedPriceWithCurrency;
+                        }
                     }
                     else
                     {
-                        <h4 class="price-text-color" pid="price">@Html.DisplayFor(model => Model.ListPriceWithCurrency)</h4>
+                        listPriceWithCurrency = Model.ListPriceWithCurrency;
+                        adjustedPrice = Model.AdjustedPrice.Value;
+                        listPrice = (Model.ListPrice.HasValue) ? Model.ListPrice.Value : 0.0M;
+                        
+                        isOnSale = Model.IsOnSale;
+                        if (isOnSale)
+                        {
+                            adjustedPriceWithCurrency = Model.AdjustedPriceWithCurrency;
+                            savingsPercentage = Model.SavingsPercentage;
+                        }
+                    }
+
+                    if (displayStartingFrom)
+                    {
+                        <h4 class="starting-from-price" pid="lowestVariantPrice">Starting from</h4>
+                    }
+                    if (isOnSale)
+                    {
+                        <h4 class="price-text-color" pid="priceNow">@Html.DisplayFor(model => adjustedPriceWithCurrency)</h4>
+                        <h5 class="price-before" pid="price">@Html.DisplayFor(model => listPriceWithCurrency)</h5>
+                        <span class="price-savings" pid="savings">@Html.Sitecore().Field("Save percent lead", Model.Rendering.RenderingItem) @savingsPercentage%</span>
+                    }
+                    else
+                    {
+                        <h4 class="price-text-color" pid="price">@Html.DisplayFor(model => listPriceWithCurrency)</h4>
                         <h5 class="price-before"></h5>
                         <span class="price-savings"></span>
                         <span class="if-no-before-price"></span>

@@ -38,7 +38,7 @@
     <RecursiveDeployAction>Ignore</RecursiveDeployAction>
     <SitecoreDeployFolder>
     </SitecoreDeployFolder>
-    <SitecoreWebUrl>http://localhost:7667</SitecoreWebUrl>
+    <SitecoreWebUrl>http://localhost:7665</SitecoreWebUrl>
     <SitecoreAccessGuid>3a6d874f-0fb2-4d5d-bd15-b4cc7b14003f</SitecoreAccessGuid>
     <InstallSitecoreConnector>True</InstallSitecoreConnector>
     <PackageAuthor>Sitecore Corporation</PackageAuthor>
@@ -278,6 +278,14 @@ Copyright © 2001-2015 Sitecore. All rights reserved.</PackageReadme>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
     <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\Inventory Statuses\PreOrderable.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\Relationships.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\Relationships\UpSell.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
@@ -1441,6 +1449,18 @@ Copyright © 2001-2015 Sitecore. All rights reserved.</PackageReadme>
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Base Templates\Commerce Storefront\Storefront Configuration.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Base Templates\Commerce Storefront\Storefront Configuration\Map Key.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Base Templates\Commerce Storefront\Storefront Configuration\Use Index File For Product Status In Lists.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
     <SitecoreItem Include="sitecore\templates\Storefront\Base Templates\Commerce Storefront\Storefront.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
@@ -1756,6 +1776,14 @@ Copyright © 2001-2015 Sitecore. All rights reserved.</PackageReadme>
     </SitecoreItem>
     <SitecoreItem Include="sitecore\templates\Storefront\Folder Templates\QuickLinks\__Standard Values.item">
       <Icon>/temp/IconCache/Applications/32x32/folder_network.png</Icon>
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Folder Templates\Relationships.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Folder Templates\Relationships\__Standard Values.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
@@ -3687,14 +3715,6 @@ Copyright © 2001-2015 Sitecore. All rights reserved.</PackageReadme>
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
-    <SitecoreItem Include="sitecore\templates\Storefront\Rendering Datasources\AddToCart\Texts.item">
-      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
-      <ItemDeployment>DeployOnce</ItemDeployment>
-    </SitecoreItem>
-    <SitecoreItem Include="sitecore\templates\Storefront\Rendering Datasources\AddToCart\Texts\Invalid Variant.item">
-      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
-      <ItemDeployment>DeployOnce</ItemDeployment>
-    </SitecoreItem>
     <SitecoreItem Include="sitecore\templates\Storefront\Rendering Datasources\Carousel.item">
       <Icon>/temp/IconCache/Control/32x32/splitter_ver_h.png</Icon>
       <ItemDeployment>DeployOnce</ItemDeployment>
@@ -3976,6 +3996,10 @@ Copyright © 2001-2015 Sitecore. All rights reserved.</PackageReadme>
     </SitecoreItem>
     <SitecoreItem Include="sitecore\templates\Storefront\Rendering Datasources\Product Information\Info texts.item">
       <Icon>/temp/IconCache/Applications/32x32/document_info.png</Icon>
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Rendering Datasources\Product Information\Info texts\Invalid Variant.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>

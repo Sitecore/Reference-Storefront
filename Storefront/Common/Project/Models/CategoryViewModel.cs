@@ -82,6 +82,28 @@ namespace Sitecore.Reference.Storefront.Models
         public string RelationshipDescription { get; set; }
 
         /// <summary>
+        /// Gets the relationship description Sitecore html renderer.
+        /// </summary>
+        /// <value>
+        /// The relationship description renderer.
+        /// </value>
+        public HtmlString RelationshipDescriptionRenderer
+        {
+            get
+            {
+                return PageContext.Current.HtmlHelper.Sitecore().Field("Value", this.LookupRelationshipItem);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the lookup relationship name Sitecore item.
+        /// </summary>
+        /// <value>
+        /// The lookup relationship item.
+        /// </value>
+        public Item LookupRelationshipItem { get; set; }
+
+        /// <summary>
         /// Gets the Product DisplayName.
         /// </summary>
         public string DisplayName
@@ -89,6 +111,17 @@ namespace Sitecore.Reference.Storefront.Models
             get
             {
                 return Item.DisplayName;
+            }
+        }
+
+        /// <summary>
+        /// Gets the display name as an html string
+        /// </summary>
+        public HtmlString DisplayNameRender
+        {
+            get
+            {
+                return PageContext.Current.HtmlHelper.Sitecore().Field(Sitecore.FieldIDs.DisplayName.ToString(), this.Item);
             }
         }
 

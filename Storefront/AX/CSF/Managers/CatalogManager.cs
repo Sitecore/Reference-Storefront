@@ -38,6 +38,7 @@ namespace Sitecore.Reference.Storefront.Managers
     using Sitecore.Reference.Storefront.Models.RenderingModels;
     using Sitecore.Commerce.Connect.CommerceServer.Orders.Models;
     using Sitecore.Commerce.Entities.Prices;
+    using Sitecore.Reference.Storefront.Connect.Models;
 
     /// <summary>
     /// CatalogManager class
@@ -378,6 +379,17 @@ namespace Sitecore.Reference.Storefront.Managers
                 {
                     productViewModel.ListPrice = price.Amount;
                     productViewModel.AdjustedPrice = ((CommercePrice)price).ListPrice;
+
+                    // The current implementation assumes all variants have the same price as the product.  We need to set the variant
+                    // prices so they will render properly.
+                    if (productViewModel.Variants.Any())
+                    {
+                        foreach (var variant in productViewModel.Variants)
+                        {
+                            variant.ListPrice = productViewModel.ListPrice;
+                            variant.AdjustedPrice = productViewModel.AdjustedPrice;
+                        }
+                    }
                 }
             }           
         }
@@ -393,8 +405,9 @@ namespace Sitecore.Reference.Storefront.Managers
                 return;
             }
 
+            var catalogName = productViewModels.Select(p => p.CatalogName).First().ToString();
             var productIds = productViewModels.Select(p => p.ProductId).ToArray();
-            var pricesResponse = this.PricingManager.GetProductBulkPrices(StorefrontManager.CurrentStorefront, productIds);
+            var pricesResponse = this.PricingManager.GetProductBulkPrices(StorefrontManager.CurrentStorefront, catalogName, productIds);
             var prices = pricesResponse != null && pricesResponse.ServiceProviderResult.Success && pricesResponse.Result != null ? pricesResponse.Result : new Dictionary<string, Price>();
 
             foreach (var productViewModel in productViewModels)
@@ -404,7 +417,7 @@ namespace Sitecore.Reference.Storefront.Managers
                 {
                     productViewModel.ListPrice = price.Amount;
                     productViewModel.AdjustedPrice = ((CommercePrice)price).ListPrice;
-                }               
+                }
             }
         }
 
@@ -606,7 +619,9 @@ namespace Sitecore.Reference.Storefront.Managers
                 {
                     if (!relationshipNames.Any() || relationshipNames.Contains(relationshipInfo.RelationshipName, StringComparer.OrdinalIgnoreCase))
                     {
-                        var relationshipDescription = string.IsNullOrWhiteSpace(relationshipInfo.RelationshipDescription) ? relationshipInfo.RelationshipName : relationshipInfo.RelationshipDescription;
+                        Item lookupItem = null;
+                        bool usingRelationshipName = string.IsNullOrWhiteSpace(relationshipInfo.RelationshipDescription);
+                        var relationshipDescription = usingRelationshipName ? StorefrontManager.GetRelationshipName(relationshipInfo.RelationshipName, out lookupItem) : relationshipInfo.RelationshipDescription;
                         CategoryViewModel categoryModel = null;
                         if (!relationshipGroups.TryGetValue(relationshipDescription, out categoryModel))
                         {
@@ -614,7 +629,8 @@ namespace Sitecore.Reference.Storefront.Managers
                             {
                                 ChildProducts = new List<ProductViewModel>(),
                                 RelationshipName = relationshipInfo.RelationshipName,
-                                RelationshipDescription = relationshipDescription
+                                RelationshipDescription = relationshipDescription,
+                                LookupRelationshipItem = (usingRelationshipName) ? lookupItem : null
                             };
                             relationshipGroups[relationshipDescription] = categoryModel;
                         }
@@ -647,7 +663,7 @@ namespace Sitecore.Reference.Storefront.Managers
                 if (productViewModelList.Count > 0)
                 {
                     this.GetProductBulkPrices(productViewModelList);
-                    this.InventoryManager.GetProductsStockStatus(storefront, productViewModelList);
+                    this.InventoryManager.GetProductsStockStatusForList(storefront, productViewModelList);
                 }
             }
 

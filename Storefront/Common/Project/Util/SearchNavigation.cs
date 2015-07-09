@@ -32,6 +32,7 @@ namespace Sitecore.Reference.Storefront
     using System.Linq;
     using System.Linq.Expressions;
     using Sitecore.Commerce.Entities.Inventory;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Static helper class to aid with search for navigation
@@ -378,6 +379,8 @@ namespace Sitecore.Reference.Storefront
         /// <returns>A list of child products</returns>
         public static SearchResponse GetCategoryChildCategories(ID categoryId, CommerceSearchOptions searchOptions)
         {
+            SearchResponse response = new SearchResponse();
+
             var searchManager = CommerceTypeLoader.CreateInstance<ICommerceSearchManager>();
             var searchIndex = searchManager.GetIndex();
 
@@ -386,20 +389,31 @@ namespace Sitecore.Reference.Storefront
                 var searchResults = context.GetQueryable<CommerceBaseCatalogSearchResultItem>()
                     .Where(item => item.CommerceSearchItemType == CommerceSearchResultItemType.Category)
                     .Where(item => item.Language == CurrentLanguageName)
-                    .Where(item => item.CommerceAncestorIds.Contains(categoryId))
-                    .Select(p => new CommerceBaseCatalogSearchResultItem()
+                    .Where(item => item.ItemId == categoryId)
+                    .Select(p => p);
+
+                var list = searchResults.ToList();
+                if (list.Count > 0)
+                {
+                    if (list[0].Fields.ContainsKey(StorefrontConstants.KnownIndexFields.ChildCategoriesSequence))
                     {
-                        ItemId = p.ItemId,
-                        Uri = p.Uri
-                    });
+                        var childCategoryDelimitedString = list[0][StorefrontConstants.KnownIndexFields.ChildCategoriesSequence];
 
-                searchResults = searchManager.AddSearchOptionsToQuery<CommerceBaseCatalogSearchResultItem>(searchResults, searchOptions);
+                        string[] categoryIdArray = childCategoryDelimitedString.Split('|');
 
-                var results = searchResults.GetResults();
-                var response = SearchResponse.CreateFromSearchResultsItems(searchOptions, results);
-
-                return response;
+                        foreach (var childCategoryId in categoryIdArray)
+                        {
+                            var childCategoryItem = Sitecore.Context.Database.GetItem(ID.Parse(childCategoryId));
+                            if (childCategoryItem != null)
+                            {
+                                response.ResponseItems.Add(childCategoryItem);
+                            }
+                        }
+                    }
+                }
             }
+
+            return response;
         }
 
         /// <summary>

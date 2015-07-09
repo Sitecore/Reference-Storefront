@@ -196,7 +196,7 @@ namespace Sitecore.Reference.Storefront.Controllers
 
                 var products = multipleProductSearchResults.ProductSearchResults.SelectMany(productSearchResult => productSearchResult.Products).ToList();
                 this.CatalogManager.GetProductBulkPrices(products);
-                this.InventoryManager.GetProductsStockStatus(this.CurrentStorefront, products);
+                this.InventoryManager.GetProductsStockStatusForList(this.CurrentStorefront, products);
 
                 foreach (var productViewModel in products)
                 {
@@ -837,7 +837,7 @@ namespace Sitecore.Reference.Storefront.Controllers
             if (childProducts != null && childProducts.SearchResultItems.Count > 0)
             {
                 this.CatalogManager.GetProductBulkPrices(categoryViewModel.ChildProducts);
-                this.InventoryManager.GetProductsStockStatus(this.CurrentStorefront, categoryViewModel.ChildProducts);
+                this.InventoryManager.GetProductsStockStatusForList(this.CurrentStorefront, categoryViewModel.ChildProducts);
 
                 foreach (var productViewModel in categoryViewModel.ChildProducts)
                 {

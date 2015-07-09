@@ -32,6 +32,7 @@ namespace Sitecore.Reference.Storefront.Managers
     using Sitecore.Commerce.Entities.Inventory;
     using System.Web;
     using System;
+    using Sitecore.Diagnostics;
 
     /// <summary>
     /// The manager for storefronts
@@ -159,48 +160,26 @@ namespace Sitecore.Reference.Storefront.Managers
             return new HtmlString(GetSystemMessage(messageKey));
         }
 
-            /// <summary>
+        /// <summary>
         /// Gets the system message.
         /// </summary>
         /// <param name="messageKey">The message key.</param>
-        /// <returns>A system message based on the key</returns>
-        public static string GetSystemMessage(string messageKey)
+        /// <param name="insertBracketsWhenNotFound">if set to <c>true</c> and the itemName is not found, the itemName is returned with surrounding brackets.</param>
+        /// <returns>
+        /// A system message based on the key
+        /// </returns>
+        public static string GetSystemMessage(string messageKey, bool insertBracketsWhenNotFound = true)
         {
-            string indexName = string.Format(CultureInfo.InvariantCulture, IndexNameFormat, Context.Database.Name);
-            string contentStartPath = CurrentStorefront.GlobalItem.Axes.GetItem(string.Concat(StorefrontConstants.KnowItemNames.Lookups, "/", StorefrontConstants.KnowItemNames.SystemMessages)).Paths.Path;
-            var searchIndex = ContentSearchManager.GetIndex(indexName);
+            Item lookupItem = null;
 
-            using (var context = searchIndex.CreateSearchContext())
-            {
-                var searchResults = context.GetQueryable<SearchResultItem>();
-                searchResults = searchResults.Where(item => item.Path.StartsWith(contentStartPath));
-                searchResults = searchResults.Where(item => item.Language == SearchNavigation.CurrentLanguageName);
-                searchResults = searchResults.Where(item => item.Name == messageKey);
-
-                var results = searchResults.GetResults();
-                var response = SearchResponse.CreateFromSearchResultsItems(new CommerceSearchOptions(), results);
-
-                if (response.ResponseItems == null || response.TotalItemCount == 0)
-                {
-                    return string.Empty;
-                }
-
-                var resultItem = response.ResponseItems.FirstOrDefault();
-                if (resultItem == null)
-                {
-                    return string.Empty;
-                }
-
-                var value = resultItem.Fields[StorefrontConstants.KnownFieldNames.Value];
-                return value == null ? string.Empty : value.Value;
-            }
+            return Lookup(StorefrontConstants.KnowItemNames.SystemMessages, messageKey, out lookupItem, insertBracketsWhenNotFound);
         }
 
         /// <summary>
         /// Gets the name of the product stock status.
         /// </summary>
         /// <param name="status">The status.</param>
-        /// <returns>Aa stock status localizable name from the site content</returns>
+        /// <returns>A stock status localizable name from the site content</returns>
         public static string GetProductStockStatusName(StockStatus status)
         {
             if (status == null)
@@ -208,16 +187,63 @@ namespace Sitecore.Reference.Storefront.Managers
                 return string.Empty;
             }
 
-            string contentStartPath = CurrentStorefront.GlobalItem.Axes.GetItem(string.Concat(StorefrontConstants.KnowItemNames.Lookups, "/", StorefrontConstants.KnowItemNames.InventoryStatuses)).Paths.Path;
-            string statusPath = contentStartPath + "/" + status.Name;
+            Item lookupItem = null;
 
-            Item inventoryItem = Sitecore.Context.Database.GetItem(statusPath);
-            if (inventoryItem == null)
+            return Lookup(StorefrontConstants.KnowItemNames.InventoryStatuses, status.Name, out lookupItem, true);
+        }
+
+        /// <summary>
+        /// Gets the name of the relationship.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="lookupItem">The lookup item.</param>
+        /// <returns>
+        /// A relationship name localizable from the site content.
+        /// </returns>
+        public static string GetRelationshipName(string name, out Item lookupItem)
+        {
+            return Lookup(StorefrontConstants.KnowItemNames.Relationships, name, out lookupItem, true);
+        }
+
+        /// <summary>
+        /// Lookups a specific node in the "Lookups" global area based on the given table and item name.
+        /// </summary>
+        /// <param name="tableName">Name of the table.</param>
+        /// <param name="itemName">Name of the item.</param>
+        /// <param name="lookupItem">The lookup item.</param>
+        /// <param name="insertBracketsWhenNotFound">if set to <c>true</c> and the itemName is not found, the itemName is returned with surrounding brackets.</param>
+        /// <returns>
+        /// The located item value if the item was found;  Otherwise string.Empty if the itemName is empty or [itemName] if no item was defined.
+        /// </returns>
+        public static string Lookup(string tableName, string itemName, out Item lookupItem, bool insertBracketsWhenNotFound)
+        {
+            Assert.ArgumentNotNullOrEmpty(tableName, "tableName");
+
+            lookupItem = null;
+
+            if (string.IsNullOrWhiteSpace(itemName))
             {
-                return status.Name;
+                return string.Empty;
             }
 
-            return inventoryItem[StorefrontConstants.KnownFieldNames.Value];
+            string contentStartPath = CurrentStorefront.GlobalItem.Axes.GetItem(string.Concat(StorefrontConstants.KnowItemNames.Lookups, "/", tableName)).Paths.Path;
+            string statusPath = contentStartPath + "/" + itemName;
+
+            Item item = Sitecore.Context.Database.GetItem(statusPath);
+            if (item == null)
+            {
+                if (insertBracketsWhenNotFound)
+                {
+                    return string.Format(CultureInfo.InvariantCulture, "[{0}]", itemName);
+                }
+                else
+                {
+                    return itemName;
+                }
+            }
+
+            lookupItem = item;
+            return item[StorefrontConstants.KnownFieldNames.Value];
         }
     }
 }

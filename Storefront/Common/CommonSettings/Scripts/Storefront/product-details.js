@@ -10,6 +10,43 @@
 // and limitations under the License.
 // -------------------------------------------------------------------------------------------
 
+var VariantInfoModel = function (variantId, size, color, priceBefore, priceNow, isOnSale, savingsMessage) {
+    var self = this;
+
+    self.variantId = variantId;
+    self.size = size;
+    self.color = color;
+    self.priceNow = priceNow;
+    self.priceBefore = priceBefore;
+    self.isOnSale = isOnSale;
+    self.savingsMessage = savingsMessage;
+}
+
+var priceInfoVM = null;
+
+var PriceInfoViewModel = function () {
+    self = this;
+
+    self.priceBefore = ko.observable();
+    self.priceNow = ko.observable();
+    self.savingsMessage = ko.observable();
+
+    self.switchInfo = function (priceBefore, priceNow, isOnSale, savingsMessage) {
+        self.priceNow(priceNow);
+        self.priceBefore(priceBefore);
+        self.savingsMessage(savingsMessage);
+
+        if (!isOnSale) {
+            $("#priceWithSavings").hide()
+            $("#priceOnly").show();
+        }
+        else {
+            $("#priceWithSavings").show()
+            $("#priceOnly").hide();
+        }
+    };
+}
+
 function AddToCartSuccess(data) {
     if (data.Success) {
         $("#addToCartSuccess").show().fadeOut(4000);
@@ -27,12 +64,12 @@ function AddToCartFailure(data) {
     $('#AddToCartButton').button('reset');
 }
 
-function AddVariantCombination(size, productColor, id) {
+function AddVariantCombination(size, productColor, id, listPrice, adjustedPrice, isOnSale, savingsMessage) {
     if (!window.variantCombinationsArray) {
         window.variantCombinationsArray = new Array();
     }
 
-    window.variantCombinationsArray[size + '_' + productColor] = id;
+    window.variantCombinationsArray[size + '_' + productColor] = new VariantInfoModel(id, size, productColor, listPrice, adjustedPrice, isOnSale, savingsMessage);
 }
 
 function VariantSelectionChanged() {
@@ -49,17 +86,20 @@ function VariantSelectionChanged() {
 
     ClearGlobalMessages();
     $('#AddToCartButton').removeAttr('disabled');
-    var variantId = GetVariantIdByCombination(size, color);
-    if (variantId == -1) {
+    var variantInfo = GetVariantIdByCombination(size, color);
+    if (variantInfo == -1) {
         var data = [];
         data.Success = false;
         data.Errors = [$("#InvalidVariant").text()];
         ShowGlobalMessages(data);
         $('#AddToCartButton').attr('disabled', 'disabled');
     } else {
-        $('#VariantId').val(variantId);
+        $('#VariantId').val(variantInfo.variantId);
         if (stockInfoVM) {
             stockInfoVM.switchInfo();
+        }
+        if (priceInfoVM) {
+            priceInfoVM.switchInfo(variantInfo.priceBefore, variantInfo.priceNow, variantInfo.isOnSale, variantInfo.savingsMessage);
         }
     }
 }

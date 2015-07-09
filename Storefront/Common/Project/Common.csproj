@@ -50,6 +50,10 @@
     <Reference Include="AntiXssLibrary">
       <HintPath>..\..\packages\AntiXSS.4.2.1\lib\net40\AntiXssLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="CommerceServer.Core.Catalog, Version=10.0.0.0, Culture=neutral, PublicKeyToken=f5c79cb11734af7a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Lib\CommerceServer.Core.Catalog.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -129,6 +133,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connect\Arguments\GetProductBulkPricesRequest.cs" />
+    <Compile Include="Connect\Models\ExtendedCommercePrice.cs" />
+    <Compile Include="Connect\Models\PriceTypes.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="ExtensionMethods\CartExtensions.cs" />
     <Compile Include="ExtensionMethods\HtmlExtensions.cs" />
@@ -243,6 +250,7 @@
     <Compile Include="Models\VariantPropertiesEqualityComparer.cs" />
     <Compile Include="Models\VariantViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Search\ComputedFields\ChildCategoriesComputedField.cs" />
     <Compile Include="Search\ComputedFields\SiteContentItem.cs" />
     <Compile Include="Services\CatalogRequest.cs" />
     <Compile Include="Services\CatalogResult.cs" />
@@ -286,6 +294,7 @@
       <Link>CustomDictionary.xml</Link>
     </CodeAnalysisDictionary>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

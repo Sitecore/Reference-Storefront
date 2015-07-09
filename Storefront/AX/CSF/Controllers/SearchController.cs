@@ -365,7 +365,7 @@ namespace Sitecore.Reference.Storefront.Controllers
                 {
                     this.CatalogManager.GetProductBulkPrices(categoryViewModel.ChildProducts);
 
-                    this.CatalogManager.InventoryManager.GetProductsStockStatus(storefront, categoryViewModel.ChildProducts);
+                    this.CatalogManager.InventoryManager.GetProductsStockStatusForList(storefront, categoryViewModel.ChildProducts);
 
                     foreach (var productViewModel in categoryViewModel.ChildProducts)
                     {

@@ -275,6 +275,16 @@ namespace Sitecore.Reference.Storefront
             /// The maxnumber of wish list items field.
             /// </summary>
             public static readonly string MaxNumberOfWishListItems = "Max Number of WishList Items";
+
+            /// <summary>
+            /// The "Use index file for product status in lists" field.
+            /// </summary>
+            public static readonly string UseIndexFileForProductStatusInLists = "Use Index File For Product Status In Lists";
+
+            /// <summary>
+            /// The map key field.
+            /// </summary>
+            public static readonly string MapKey = "Map Key";
         }
 
         /// <summary>
@@ -326,6 +336,11 @@ namespace Sitecore.Reference.Storefront
             /// The inventory statuses template name
             /// </summary>
             public static readonly string InventoryStatuses = "Inventory Statuses";
+
+            /// <summary>
+            /// The relationships template name.
+            /// </summary>
+            public static readonly string Relationships = "Relationships";
         }
 
         /// <summary>
@@ -534,6 +549,11 @@ namespace Sitecore.Reference.Storefront
             /// The name of the preorderable index field.
             /// </summary>
             public static readonly string PreOrderable = "preorderable";
+
+            /// <summary>
+            /// The child categories sequence index field.
+            /// </summary>
+            public static readonly string ChildCategoriesSequence = "childcategoriessequence";
         }
 
         /// <summary>
@@ -590,6 +610,18 @@ namespace Sitecore.Reference.Storefront
             /// Name of the shipping address
             /// </summary>
             public static readonly string ShippingAddressName = "Shipping";
+        }
+
+        /// <summary>
+        /// The tracker attachment keys used to store customer related data.
+        /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible", Justification = "Required for access purposes")]
+        public static class TrackerAttachmentKeys
+        {
+            /// <summary>
+            /// The customer cart key.
+            /// </summary>
+            public static readonly string CustomerCartKey = "CustomerCart";
         }
     }
 }

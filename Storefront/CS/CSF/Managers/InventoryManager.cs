@@ -81,6 +81,27 @@ namespace Sitecore.Reference.Storefront.Managers
         #region Methods (public, virtual)
 
         /// <summary>
+        /// Gets the products stock status where lists of products are displayed on the site.
+        /// </summary>
+        /// <param name="storefront">The storefront.</param>
+        /// <param name="productViewModels">The product view models.</param>
+        public virtual void GetProductsStockStatusForList([NotNull] CommerceStorefront storefront, List<ProductViewModel> productViewModels)
+        {
+            if (!StorefrontManager.CurrentStorefront.UseIndexFileForProductStatusInLists)
+            {
+                this.GetProductsStockStatus(storefront, productViewModels);
+            }
+            else
+            {
+                foreach (var viewModel in productViewModels)
+                {
+                    viewModel.StockStatus = SearchNavigation.GetProductStockStatusFromIndex(viewModel.ProductId);
+                    viewModel.StockStatusName = StorefrontManager.GetProductStockStatusName(viewModel.StockStatus);
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets the product stock status.
         /// </summary>
         /// <param name="storefront">The storefront.</param>

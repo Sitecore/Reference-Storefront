@@ -28,6 +28,7 @@ namespace Sitecore.Reference.Storefront.Managers
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
     using Sitecore.Mvc.Presentation;
+    using Sitecore.Reference.Storefront.Connect.Models;
     using Sitecore.Reference.Storefront.Models;
     using Sitecore.Reference.Storefront.Models.RenderingModels;
     using Sitecore.Reference.Storefront.Models.SitecoreItemModels;
@@ -336,7 +337,7 @@ namespace Sitecore.Reference.Storefront.Managers
         /// </summary>
         /// <param name="categoryId">The category identifier.</param>
         /// <returns>The category.</returns>
-        public Category GetCategory(string categoryId) 
+        public Category GetCategory(string categoryId)
         {
             var categoryItem = SearchNavigation.GetCategory(categoryId, CurrentCatalog.Name);
             return GetCategory(categoryItem);
@@ -375,39 +376,27 @@ namespace Sitecore.Reference.Storefront.Managers
             if (pricesResponse != null && pricesResponse.ServiceProviderResult.Success && pricesResponse.Result != null)
             {
                 Price price;
-                Dictionary<string, Price> prices;
-                if (pricesResponse.Result.TryGetValue(productViewModel.ProductId, out prices))
-                {                    
-                    if (prices.TryGetValue("List", out price))
-                    {
-                        productViewModel.ListPrice = price.Amount;
-                    }
-
-                    if (prices.TryGetValue("Adjusted", out price))
-                    {
-                        productViewModel.AdjustedPrice = price.Amount;
-                    }
+                if (pricesResponse.Result.TryGetValue(productViewModel.ProductId, out price))
+                {
+                    ExtendedCommercePrice extendedPrice = (ExtendedCommercePrice)price;
+                    productViewModel.ListPrice = price.Amount;
+                    productViewModel.AdjustedPrice = extendedPrice.ListPrice;
                 }
 
                 if (includeVariants)
                 {
                     foreach (var variant in productViewModel.Variants)
                     {
-                        if (pricesResponse.Result.TryGetValue(variant.VariantId, out prices))
+                        if (pricesResponse.Result.TryGetValue(variant.VariantId, out price))
                         {
-                            if (prices.TryGetValue("List", out price))
-                            {
-                                variant.ListPrice = price.Amount;
-                            }
+                            ExtendedCommercePrice extendedPrice = (ExtendedCommercePrice)price;
 
-                            if (prices.TryGetValue("Adjusted", out price))
-                            {
-                                variant.AdjustedPrice = price.Amount;
-                            }
+                            variant.ListPrice = extendedPrice.Amount;
+                            variant.AdjustedPrice = extendedPrice.ListPrice;
                         }
                     }
-                }                
-            } 
+                }
+            }
         }
 
         /// <summary>
@@ -422,27 +411,25 @@ namespace Sitecore.Reference.Storefront.Managers
             }
 
             var catalogName = productViewModels.Select(p => p.CatalogName).First().ToString();
-            var productIds = productViewModels.Select(p => p.ProductId).ToList();           
+            var productIds = productViewModels.Select(p => p.ProductId).ToList();
 
             var pricesResponse = this.PricingManager.GetProductBulkPrices(StorefrontManager.CurrentStorefront, catalogName, productIds, null);
-            var prices = pricesResponse != null && pricesResponse.Result != null ? pricesResponse.Result : new Dictionary<string, Dictionary<string, Price>>();
+            var prices = pricesResponse != null && pricesResponse.Result != null ? pricesResponse.Result : new Dictionary<string, Price>();
 
             foreach (var productViewModel in productViewModels)
             {
                 Price price;
-                Dictionary<string, Price> productPrices;
-                if (prices.Any() && prices.TryGetValue(productViewModel.ProductId, out productPrices))
+                if (prices.Any() && prices.TryGetValue(productViewModel.ProductId, out price))
                 {
-                    if (productPrices.TryGetValue("List", out price))
-                    {
-                        productViewModel.ListPrice = price.Amount;
-                    }
+                    ExtendedCommercePrice extendedPrice = (ExtendedCommercePrice)price;
 
-                    if (productPrices.TryGetValue("Adjusted", out price))
-                    {
-                        productViewModel.AdjustedPrice = price.Amount;
-                    }
-                }     
+                    productViewModel.ListPrice = extendedPrice.Amount;
+                    productViewModel.AdjustedPrice = extendedPrice.ListPrice;
+
+                    productViewModel.LowestPricedVariantAdjustedPrice = extendedPrice.LowestPricedVariant;
+                    productViewModel.LowestPricedVariantListPrice = extendedPrice.LowestPricedVariantListPrice;
+                    productViewModel.HighestPricedVariantAdjustedPrice = extendedPrice.HighestPricedVariant;
+                }
             }
         }
 
@@ -537,7 +524,7 @@ namespace Sitecore.Reference.Storefront.Managers
 
             return new ManagerResponse<SearchInitiatedResult, bool>(result, result.Success);
         }
-        
+
         #region Protected helper methods
 
         /// <summary>
@@ -644,7 +631,9 @@ namespace Sitecore.Reference.Storefront.Managers
                 {
                     if (!relationshipNames.Any() || relationshipNames.Contains(relationshipInfo.RelationshipName, StringComparer.OrdinalIgnoreCase))
                     {
-                        var relationshipDescription = string.IsNullOrWhiteSpace(relationshipInfo.RelationshipDescription) ? relationshipInfo.RelationshipName : relationshipInfo.RelationshipDescription;
+                        Item lookupItem = null;
+                        bool usingRelationshipName = string.IsNullOrWhiteSpace(relationshipInfo.RelationshipDescription);
+                        var relationshipDescription = string.IsNullOrWhiteSpace(relationshipInfo.RelationshipDescription) ? StorefrontManager.GetRelationshipName(relationshipInfo.RelationshipName, out lookupItem) : relationshipInfo.RelationshipDescription;
                         CategoryViewModel categoryModel = null;
                         if (!relationshipGroups.TryGetValue(relationshipDescription, out categoryModel))
                         {
@@ -652,7 +641,8 @@ namespace Sitecore.Reference.Storefront.Managers
                             {
                                 ChildProducts = new List<ProductViewModel>(),
                                 RelationshipName = relationshipInfo.RelationshipName,
-                                RelationshipDescription = relationshipDescription
+                                RelationshipDescription = relationshipDescription,
+                                LookupRelationshipItem = (usingRelationshipName) ? lookupItem : null
                             };
 
                             relationshipGroups[relationshipDescription] = categoryModel;
@@ -687,13 +677,13 @@ namespace Sitecore.Reference.Storefront.Managers
                 if (productViewModelList.Count > 0)
                 {
                     this.GetProductBulkPrices(productViewModelList);
-                    this.InventoryManager.GetProductsStockStatus(storefront, productViewModelList);
+                    this.InventoryManager.GetProductsStockStatusForList(storefront, productViewModelList);
                 }
             }
 
             return relationshipGroups.Values;
         }
 
-       #endregion
+        #endregion
     }
 }

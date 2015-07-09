@@ -101,6 +101,38 @@ namespace Sitecore.Reference.Storefront.Models
         }
 
         /// <summary>
+        /// Gets a value indicating whether this instance is on sale.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is on sale; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsOnSale
+        {
+            get
+            {
+                return (this.AdjustedPrice.HasValue && this.ListPrice.HasValue && this.AdjustedPrice < this.ListPrice);
+            }
+        }
+
+        /// <summary>
+        /// Gets the percentage savings for the product.
+        /// </summary>
+        public decimal SavingsPercentage
+        {
+            get
+            {
+                if (!this.ListPrice.HasValue || !this.AdjustedPrice.HasValue || this.ListPrice.Value <= this.AdjustedPrice.Value)
+                {
+                    return 0;
+                }
+
+                var percentage = decimal.Floor(100 * (this.ListPrice.Value - this.AdjustedPrice.Value) / this.ListPrice.Value);
+                int integerPart = (int)percentage;
+                return integerPart == 0 ? 1M : (decimal)integerPart;
+            }
+        }
+
+        /// <summary>
         /// Gets the Variant Color.
         /// </summary>
         public string ProductColor

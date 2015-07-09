@@ -141,6 +141,17 @@ namespace Sitecore.Reference.Storefront.Models
         }
 
         /// <summary>
+        /// Gets the display name as an html string
+        /// </summary>
+        public HtmlString DisplayNameRender
+        {
+            get
+            {
+                return PageContext.Current.HtmlHelper.Sitecore().Field(Sitecore.FieldIDs.DisplayName.ToString(), this.Item);
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the Product ListPrice.
         /// </summary>
         public decimal? ListPrice { get; set; }
@@ -229,16 +240,72 @@ namespace Sitecore.Reference.Storefront.Models
         {
             get
             {
-                if (!this.ListPrice.HasValue || !this.AdjustedPrice.HasValue || this.ListPrice.Value <= this.AdjustedPrice.Value)
-                {
-                    return 0;
-                }
-
-                var percentage = decimal.Floor(100 * (this.ListPrice.Value - this.AdjustedPrice.Value) / this.ListPrice.Value);
-                int integerPart = (int)percentage;
-                return integerPart == 0 ? 1M : (decimal)integerPart;
+                return this.CalculateSavingsPercentage(this.AdjustedPrice, this.ListPrice);
             }
         }
+
+        /// <summary>
+        /// Gets or sets the lowest priced variant adjusted price.
+        /// </summary>
+        /// <value>
+        /// The lowest priced variant adjusted price.
+        /// </value>
+        public decimal? LowestPricedVariantAdjustedPrice { get; set; }
+
+        /// <summary>
+        /// Gets the lowest priced variant adjusted price with currency.
+        /// </summary>
+        /// <value>
+        /// The lowest priced variant adjusted price with currency.
+        /// </value>
+        public string LowestPricedVariantAdjustedPriceWithCurrency
+        {
+            get
+            {
+                return this.LowestPricedVariantAdjustedPrice.HasValue ? this.LowestPricedVariantAdjustedPrice.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode) : string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the lowest priced variant list price.
+        /// </summary>
+        /// <value>
+        /// The lowest priced variant list price.
+        /// </value>
+        public decimal? LowestPricedVariantListPrice { get; set; }
+
+        /// <summary>
+        /// Gets the lowest priced variant list price with currency.
+        /// </summary>
+        /// <value>
+        /// The lowest priced variant list price with currency.
+        /// </value>
+        public string LowestPricedVariantListPriceWithCurrency
+        {
+            get
+            {
+                return this.LowestPricedVariantListPrice.HasValue ? this.LowestPricedVariantListPrice.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode) : string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Gets the percentage savings for the variant.
+        /// </summary>
+        public decimal VariantSavingsPercentage
+        {
+            get
+            {
+                return this.CalculateSavingsPercentage(this.LowestPricedVariantAdjustedPrice, this.LowestPricedVariantListPrice);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the highest priced variant adjusted price.
+        /// </summary>
+        /// <value>
+        /// The highest priced variant adjusted price.
+        /// </value>
+        public decimal? HighestPricedVariantAdjustedPrice { get; set; }
 
         /// <summary>
         /// Gets a value indicating whether this instance is on sale.
@@ -471,6 +538,24 @@ namespace Sitecore.Reference.Storefront.Models
             return this.ProductId.Equals(StorefrontManager.CurrentStorefront.GiftCardProductId, StringComparison.OrdinalIgnoreCase)
              ? StorefrontManager.StorefrontUri("/buygiftcard")
              : LinkManager.GetDynamicUrl(Item);
+        }
+
+        /// <summary>
+        /// Calculates the savings percentage.
+        /// </summary>
+        /// <param name="adjustedPrice">The adjusted price.</param>
+        /// <param name="listPrice">The list price.</param>
+        /// <returns>The savings percentage</returns>
+        public decimal CalculateSavingsPercentage(decimal? adjustedPrice, decimal? listPrice)
+        {
+            if (!adjustedPrice.HasValue || !listPrice.HasValue || listPrice.Value <= adjustedPrice.Value)
+            {
+                return 0;
+            }
+
+            var percentage = decimal.Floor(100 * (listPrice.Value - adjustedPrice.Value) / listPrice.Value);
+            int integerPart = (int)percentage;
+            return integerPart == 0 ? 1M : (decimal)integerPart;
         }
     }
 }

@@ -19,7 +19,7 @@ content-length: 3
 ----version----
 language: en
 version: 1
-revision: cd3ddf6d-0132-46f8-8f54-4d4e5082231e
+revision: 1c9ebeaf-e06f-4e3e-b405-10d5926292c7
 
 ----field----
 field: {BC3FB1F0-651E-44CC-9820-BCD5B20AA04B}
@@ -64,6 +64,13 @@ content-length: 10
 
 Save up to
 ----field----
+field: {BD40D1D4-406A-4BB9-82FF-A306C448F4C5}
+name: Invalid Variant
+key: invalid variant
+content-length: 40
+
+This color/size combination is not valid
+----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
 key: __owner
@@ -90,14 +97,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-cd3ddf6d-0132-46f8-8f54-4d4e5082231e
+1c9ebeaf-e06f-4e3e-b405-10d5926292c7
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 35
 
-20150320T185151:635624743113250600Z
+20150629T101951:635711699914925682Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

@@ -36,13 +36,6 @@ content-length: 11
 
 Add to cart
 ----field----
-field: {9B65D17B-8FD2-476E-848E-727BE76A0B49}
-name: Invalid Variant
-key: invalid variant
-content-length: 40
-
-This color/size combination is not valid
-----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
 key: __owner

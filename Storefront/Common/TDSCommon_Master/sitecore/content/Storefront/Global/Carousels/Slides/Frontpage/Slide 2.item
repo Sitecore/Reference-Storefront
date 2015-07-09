@@ -12,7 +12,7 @@ templatekey: Slide
 ----version----
 language: en
 version: 1
-revision: 88fea559-ea2b-44bc-866d-a474bb468330
+revision: 9feadff0-ebc2-4141-895c-6cdf030ebed6
 
 ----field----
 field: {51A720DA-CD19-4573-BF52-F90CEF743E9E}
@@ -25,20 +25,16 @@ content-length: 58
 field: {8368A4A8-B63D-4835-8478-1DAF2E4AF6F8}
 name: Title
 key: title
-content-length: 34
+content-length: 72
 
-Oh there's a loneliness inside her
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec molestie.
 ----field----
 field: {035E53AD-6996-4C3C-9B2F-54221B60DCDC}
 name: Text
 key: text
-content-length: 195
+content-length: 143
 
-And she'd do anything to fill it in
-And though it's red blood bleeding from her now,
-It feels like cold blue ice in her heart
-When all the colors mix together
-To grey, and it breaks her heart
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum dolor justo, feugiat nec lacinia at, scelerisque nec enim. Proin pulvinar. 
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
@@ -66,18 +62,18 @@ name: __Revision
 key: __revision
 content-length: 36
 
-88fea559-ea2b-44bc-866d-a474bb468330
+9feadff0-ebc2-4141-895c-6cdf030ebed6
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
-content-length: 34
+content-length: 35
 
-20141021T071958:635494727989286312
+20150629T111118:635711730789747105Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
 key: __updated by
 content-length: 14
 
-sitecore\Admin
+sitecore\admin

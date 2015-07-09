@@ -50,8 +50,10 @@ namespace Sitecore.Reference.Storefront
         /// </summary>
         public static void ConfigureContainer()
         {
+            var defaultActivator = System.Web.Http.GlobalConfiguration.Configuration.Services.GetService(typeof(IHttpControllerActivator)) as IHttpControllerActivator;
+
             System.Web.Mvc.ControllerBuilder.Current.SetControllerFactory(new WindsorControllerFactory(Container.Kernel));
-            System.Web.Http.GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpControllerActivator), new WindsorHttpControllerActivator(Container));
+            System.Web.Http.GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpControllerActivator), new WindsorHttpControllerActivator(Container, defaultActivator));
         }
 
         /// <summary>

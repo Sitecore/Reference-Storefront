@@ -38,7 +38,7 @@
             {
                 var cModel = new CategoryViewModel(category);
 
-                <li class="@(string.Equals(name, cModel.Name, StringComparison.OrdinalIgnoreCase) ? "active" : "")"><a href="@cModel.GetLink()">@category.DisplayName</a></li>
+                <li class="@(string.Equals(name, cModel.Name, StringComparison.OrdinalIgnoreCase) ? "active" : "")"><a href="@cModel.GetLink()">@cModel.DisplayNameRender</a></li>
             }
         </ul>
     </div>

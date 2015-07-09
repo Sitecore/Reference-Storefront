@@ -18,11 +18,13 @@
     {
         return;
     }
+
+    var invalidVariantText = Html.Sitecore().Field("Invalid Variant", Html.Sitecore().CurrentItem);
 }
 
 <div id="C11-ProductInformation">
     <div class="col-md-12 col-xs-12">
-        <h1 id="displayName">@Model.DisplayName</h1>
+        <h1 id="displayName">@Model.DisplayNameRender</h1>
     </div>
     <div class="col-md-12 col-xs-12">
         <p>
@@ -41,24 +43,25 @@
             @Model.RenderField("Features")
         </div>
     </div>
-    @if (Model.IsOnSale)
-    {
-        <div class="col-md-12 col-xs-12">
-            <h3 class="price-now">
-                <span id="priceNow">@Html.DisplayFor(model => Model.AdjustedPriceWithCurrency)</span>
-                <span class="savings" id="savings">@Html.Sitecore().Field("Save percent lead", Model.Rendering.RenderingItem) @Model.SavingsPercentage%</span>
-            </h3>
+
+    <div id="price-info">
+        <div id="priceWithSavings">
+            <div class="col-md-12 col-xs-12">
+                <h3 class="price-now">
+                    <span id="priceNow" data-bind="text: priceNow"></span>
+                    <span class="savings" id="savings" data-bind="text: savingsMessage"></span>
+                </h3>
+            </div>
+            <div class="col-md-12 col-xs-12">
+                <h4 class="price-before" id="price-before" data-bind="text: priceBefore"></h4>
+            </div>
         </div>
-        <div class="col-md-12 col-xs-12">
-            <h4 class="price-before" id="price">@Html.DisplayFor(model => Model.ListPriceWithCurrency)</h4>
+        <div id="priceOnly">
+            <div class="col-md-12 col-xs-12">
+                <h3 class="price-now" id="price" data-bind="text: priceNow"></h3>
+            </div>
         </div>
-    }
-    else
-    {
-        <div class="col-md-12 col-xs-12">
-            <h3 class="price-now" id="price">@Html.DisplayFor(model => Model.ListPriceWithCurrency)</h3>
-        </div>
-    }
+    </div>
 
     <div class="col-md-12 col-xs-12">
         <input type="hidden" value="@Model.ProductId" id="product-id" />
@@ -175,3 +178,34 @@
         </div>
     </div>
 </div>
+
+<span id="InvalidVariant" style="display:none">@invalidVariantText</span>
+
+<script type="text/javascript">
+    priceInfoVM = new PriceInfoViewModel();
+    ko.applyBindingsWithValidation(priceInfoVM, document.getElementById('price-info'));
+
+    @if (Model.Variants != null && Model.Variants.Any())
+    {
+        foreach (var variant in Model.Variants)
+        {
+            string savingsMessage = string.Empty;
+            if (variant.IsOnSale)
+            {
+                savingsMessage = Html.Sitecore().Field("Save percent lead", Model.Rendering.RenderingItem) + " " + variant.SavingsPercentage + "%";
+            }
+
+            @:AddVariantCombination('@variant.Size', '@variant.ProductColor', '@variant.Id', '@variant.ListPrice.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)', '@variant.AdjustedPrice.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)', @variant.IsOnSale.ToString().ToLower(), '@savingsMessage');
+                    }
+                }
+    else
+    {
+        string savingsMessage = string.Empty;
+        if (Model.IsOnSale)
+        {
+            savingsMessage = Html.Sitecore().Field("Save percent lead", Model.Rendering.RenderingItem) + " " + Model.SavingsPercentage +"%";
+        }
+
+        @:priceInfoVM.switchInfo('@Model.ListPriceWithCurrency', '@Model.AdjustedPriceWithCurrency', @Model.IsOnSale.ToString().ToLower(), '@savingsMessage');
+                }
+</script>
