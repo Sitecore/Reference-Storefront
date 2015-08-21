@@ -6,6 +6,7 @@ For download of binary packages and documentation go to Releases by following th
 
 For information about how to get started contributing to the project, read the FAQ in the Wiki 
 
+
 Copyright 2015 Sitecore Corporation A/S
 
 Licensed under the Apache License, Version 2.0 (the "License");
