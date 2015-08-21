@@ -2,7 +2,7 @@ This is the home of the Sitecore Reference storefront, which comes in two versio
 - Sitecore Reference Storefront (Sitecore Commerce powered by Microsoft Dynamics(r))
 - Sitecore Reference Storefront (Sitecore Commerce powered by Commerce Server)
 
-For download of binary packages and documentation go to Releases by following the link above (https://github.com/Sitecore/Reference-Storefront/releases)
+For download of binary packages and documentation go to [Releases] (https://github.com/Sitecore/Reference-Storefront/releases)  by following the link above
 
 For information about how to get started contributing to the project, read the FAQ in the Wiki 
 
