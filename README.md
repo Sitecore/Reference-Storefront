@@ -4,12 +4,12 @@ This is the home of the Sitecore Reference storefront, which comes in two versio
 
 For download of binary packages and documentation go to [Releases] (https://github.com/Sitecore/Reference-Storefront/releases)  by following the link above
 
-For information about how to get started contributing to the project, read the FAQ in the Wiki 
+For information about how to get started contributing to the project, read the [FAQ] (https://github.com/Sitecore/Reference-Storefront/wiki/FAQ) in the [Wiki] (https://github.com/Sitecore/Reference-Storefront/wiki) 
 
 
 Copyright 2015 Sitecore Corporation A/S
 
-Licensed under the Apache License, Version 2.0 (the "License");
+Licensed under the [Apache License] (http://www.apache.org/licenses/LICENSE-2.0), Version 2.0 (the "License");
 You may not use this solution except in compliance with the License.
 
 You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
