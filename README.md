@@ -1,6 +1,6 @@
 This is the home of the Sitecore Reference storefront, which comes in two versions:
-- Sitecore Reference Storefront (Sitecore Commerce powered by Microsoft Dynamics(r))
-- Sitecore Reference Storefront (Sitecore Commerce powered by Commerce Server)
+- Sitecore Reference Storefront for SCpbCS (Sitecore Commerce powered by Commerce Server)
+- Sitecore Reference Storefront for SCpbMD (Sitecore Commerce powered by Microsoft Dynamics(r))
 
 **For download of binary packages and documentation** go to [Releases] (https://github.com/Sitecore/Reference-Storefront/releases)  by following the link
 
