@@ -4,7 +4,7 @@ This is the home of the Sitecore Reference storefront, which comes in two versio
 
 **For download of binary packages and documentation** go to [Releases] (https://github.com/Sitecore/Reference-Storefront/releases)  by following the link
 
-For information about how to get started contributing to the project, read the [FAQ] (https://github.com/Sitecore/Reference-Storefront/wiki/Contributor-License-Agreement-FAQ) in the [Wiki] (https://github.com/Sitecore/Reference-Storefront/wiki) 
+For information about how to start contributing to the project, read the [FAQ] (https://github.com/Sitecore/Reference-Storefront/wiki/Contributor-License-Agreement-FAQ) in the [Wiki] (https://github.com/Sitecore/Reference-Storefront/wiki) 
 
 
 Copyright 2015 Sitecore Corporation A/S
