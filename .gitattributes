@@ -1,0 +1,5 @@
+*.item text=crlf
+*.cs text=crlf
+*.sln text=crlf
+*.csproj text=crlf
+*.scproj text=crlf
