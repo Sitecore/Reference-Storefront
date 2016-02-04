@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="MailUtil.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Defines the MailUtil class.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -80,7 +80,7 @@ namespace Sitecore.Reference.Storefront.Util
             Item mailTemplate = mailTemplates.Children[templateName];
             if (mailTemplate == null)
             {
-                string message = StorefrontManager.GetSystemMessage("CouldNotLoadTemplateMessageError");
+                string message = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.CouldNotLoadTemplateMessageError);
                 Log.Error(Translate.Text(string.Format(CultureInfo.InvariantCulture, message, templateName)), this);
                 return false;
             }
@@ -88,7 +88,7 @@ namespace Sitecore.Reference.Storefront.Util
             var subjectField = mailTemplate.Fields[StorefrontConstants.KnownFieldNames.Subject];
             if (subjectField == null)
             {
-                string message = StorefrontManager.GetSystemMessage("CouldNotFindEmailSubjectMessageError");
+                string message = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.CouldNotFindEmailSubjectMessageError);
                 Log.Error(Translate.Text(string.Format(CultureInfo.InvariantCulture, message, templateName)), this);
                 return false;
             }
@@ -96,7 +96,7 @@ namespace Sitecore.Reference.Storefront.Util
             var bodyField = mailTemplate.Fields[StorefrontConstants.KnownFieldNames.Body];
             if (bodyField == null)
             {
-                string message = StorefrontManager.GetSystemMessage("CouldNotFindEmailBodyMessageError");
+                string message = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.CouldNotFindEmailBodyMessageError);
                 Log.Error(Translate.Text(string.Format(CultureInfo.InvariantCulture, message, templateName)), this);
                 return false;
             }
@@ -158,13 +158,13 @@ namespace Sitecore.Reference.Storefront.Util
             {
                 MainUtil.SendMail(message);
 
-                string infoMessage = StorefrontManager.GetSystemMessage("MailSentToMessage");
+                string infoMessage = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.MailSentToMessage);
                 Log.Info(Translate.Text(string.Format(CultureInfo.InvariantCulture, infoMessage, message.To, message.Subject)), "SendMailFromTemplate");
                 return true;
             }
             catch (Exception e)
             {
-                string errorMessage = StorefrontManager.GetSystemMessage("CouldNotSendMailMessageError");
+                string errorMessage = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.CouldNotSendMailMessageError);
                 Log.Error(Translate.Text(string.Format(CultureInfo.InvariantCulture, errorMessage, message.Subject, message.To)), e, "SendMailFromTemplate");
                 return false;
             }

@@ -48,6 +48,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Sitecore.Kernel">
+      <HintPath>..\..\..\Lib\Sitecore\Sitecore.Kernel.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -185,8 +188,7 @@
     <Content Include="Views\Storefront\Catalog\ProductRecommendation.cshtml" />
     <Content Include="Views\Storefront\Catalog\RelatedCatalogItems.cshtml" />
     <Content Include="Views\Storefront\Catalog\SiteContentList.cshtml" />
-    <Content Include="Views\Storefront\Catalog\VisitedCategoryPage.cshtml" />
-    <Content Include="Views\Storefront\Catalog\VisitedProductDetailsPage.cshtml" />
+    <Content Include="Views\Storefront\Catalog\CategoryPageHeader.cshtml" />
     <Content Include="Views\Storefront\Catalog\_FourProductSlide.cshtml" />
     <Content Include="Views\Storefront\Catalog\_ProductSummary.cshtml" />
     <Content Include="Views\Storefront\Catalog\_RelatedCatalogItemsSlide.cshtml" />
@@ -250,6 +252,8 @@
     <Content Include="Views\Storefront\Shared\_PrintLayout.cshtml" />
     <Content Include="Views\Storefront\Shared\SearchEvent.cshtml" />
     <Content Include="Views\Storefront\Shared\PrintOnly.cshtml" />
+    <Content Include="Views\Storefront\Shared\CurrencyMenu.cshtml" />
+    <Content Include="Views\Storefront\Shared\Empty.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

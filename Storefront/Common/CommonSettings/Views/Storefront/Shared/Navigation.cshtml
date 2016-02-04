@@ -1,5 +1,5 @@
 ﻿@*//-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -30,22 +30,23 @@
     <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
             @{
-                var siteContext = CommerceTypeLoader.CreateInstance<ISiteContext>();
-
-                var catalogItem = siteContext.CurrentCatalogItem;
-                var name = string.Empty;
-                if (catalogItem != null)
-                {
-                    name = catalogItem.Name;
-                }
-
                 foreach (var category in Model.ChildCategories)
                 {
                     var cModel = new CategoryViewModel(category);
-                    <li class="@(string.Equals(name, cModel.Name, StringComparison.OrdinalIgnoreCase) ? "active" : "")"><a href="@cModel.GetLink()">@cModel.DisplayNameRender</a></li>
+                    <li><a href="@cModel.GetLink()" itemid="@cModel.Item.ID.ToString()">@cModel.DisplayNameRender</a></li>
                 }
             }
         </ul>
+
+        <script type="text/javascript">
+            if (currentCategory !== null) {
+                var pathname = window.location.pathname;
+                var item = $(".navbar-nav").find('a[itemid="' + currentCategory + '"]');
+                if (item.length) {
+                    item.parent().addClass('active');
+                }
+            }
+        </script>
     </div>
     <div>
     </div>

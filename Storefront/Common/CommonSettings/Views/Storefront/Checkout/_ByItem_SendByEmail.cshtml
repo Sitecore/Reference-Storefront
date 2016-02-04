@@ -1,5 +1,5 @@
 ﻿@*//-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -11,10 +11,13 @@
 // -------------------------------------------------------------------------------------------*@
 
 @{
-    var sendByEmailHeaderLabel = Html.Sitecore().Field("Send By Email Header", Html.Sitecore().CurrentItem.Children["Delivery"]);
-    var sendToMeLabel = Html.Sitecore().Field("Send To Me Label", Html.Sitecore().CurrentItem.Children["Delivery"]);
-    var recilientEmailLabel = Html.Sitecore().Field("Recipient Email Label", Html.Sitecore().CurrentItem.Children["Delivery"]);
-    var writeMessageLabel = Html.Sitecore().Field("Write Message Label", Html.Sitecore().CurrentItem.Children["Delivery"]);
+    var deliveryPage = Html.Sitecore().CurrentItem.Children["Delivery"];
+
+    var sendByEmailHeaderLabel = Html.Sitecore().Field("Send By Email Header", deliveryPage);
+    var sendToMeLabel = Html.Sitecore().Field("Send To Me Label", deliveryPage);
+    var recilientEmailLabel = Html.Sitecore().Field("Recipient Email Label", deliveryPage);
+    var recilientEmailLabelPlaceholder = deliveryPage["Recipient Email Label"];
+    var writeMessageLabel = Html.Sitecore().Field("Write Message Label", deliveryPage);
  }
 
 <div class="col-md-12">
@@ -31,7 +34,7 @@
 <div class="col-md-12">
     <div class="form-group">
         <label data-bind="attr:{for:'shippingEmailAddress-'+ externalCartLineId}">@recilientEmailLabel*</label>
-        <input type="text" class="form-control" data-bind="attr: {id:'shippingEmailAddress-'+ externalCartLineId}, value: shippingEmail" placeholder="@recilientEmailLabel">
+        <input type="text" class="form-control" data-bind="attr: {id:'shippingEmailAddress-'+ externalCartLineId}, value: shippingEmail" placeholder="@recilientEmailLabelPlaceholder">
     </div>
 </div>
 <div class="col-md-12">

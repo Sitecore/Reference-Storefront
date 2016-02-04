@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="MiniCartBaseJsonResult.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Emits the Json result of a MiniCart update request.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -22,6 +22,7 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
     using Sitecore.Diagnostics;
     using Sitecore.Commerce.Services;
     using Sitecore.Reference.Storefront.Extensions;
+    using Sitecore.Reference.Storefront.Managers;
 
     /// <summary>
     /// Defines the MiniCartJsonResult class.
@@ -70,7 +71,7 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
             Assert.ArgumentNotNull(cart, "cart");
 
             this.LineItemCount = ((CommerceCart)cart).LineItemCount;
-            this.Total = ((CommerceTotal)cart.Total).Subtotal.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
+            this.Total = ((CommerceTotal)cart.Total).Subtotal.ToCurrency(StorefrontManager.GetCustomerCurrency());
         }
     }
 }

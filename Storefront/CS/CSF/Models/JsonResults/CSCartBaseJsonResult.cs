@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="CSCartBaseJsonResult.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>CS Reference Storefront specific version/overrides of the common CartBaseJsonResult.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -20,6 +20,7 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
     using Sitecore.Commerce.Connect.CommerceServer.Orders.Models;
     using Sitecore.Commerce.Services;
     using Sitecore.Reference.Storefront.Extensions;
+    using Sitecore.Reference.Storefront.Managers;
     using System;
     using System.Linq;
 
@@ -73,7 +74,7 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
                 totalSavings += ((CommerceTotal)lineitem.Total).LineItemDiscountAmount;
             }
 
-            this.Discount = totalSavings.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
+            this.Discount = totalSavings.ToCurrency(StorefrontManager.GetCustomerCurrency());
         }
     }
 }

@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="CommerceStorefront.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Defines the CommerceStorefront class.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -21,6 +21,11 @@ namespace Sitecore.Reference.Storefront.Models.SitecoreItemModels
     using Sitecore.Reference.Storefront.Managers;
     using Sitecore.Data.Items;
     using Sitecore.Mvc.Presentation;
+    using Sitecore.Data;
+    using Sitecore.Reference.Storefront.Exceptions;
+    using Sitecore.Data.Fields;
+    using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// Defines the CommerceStorefront class
@@ -293,6 +298,59 @@ namespace Sitecore.Reference.Storefront.Models.SitecoreItemModels
             {
                 return MainUtil.GetInt(this.HomeItem[StorefrontConstants.KnownFieldNames.MaxNumberOfWishListItems], 10);
             }
+        }
+
+        /// <summary>
+        /// Gets the default currency.
+        /// </summary>
+        /// <value>
+        /// The default currency.
+        /// </value>
+        /// <exception cref="Sitecore.Reference.Storefront.Exceptions.DefaultCurrencyNotSetException">The default currency must be set on the Home item of the Storefront.</exception>
+        public virtual string DefaultCurrency
+        {
+            get
+            {
+                string linkedCurrency = this.HomeItem[StorefrontConstants.KnownFieldNames.DefaultCurrency];
+                if (!string.IsNullOrWhiteSpace(linkedCurrency))
+                {
+                    return Sitecore.Context.Database.GetItem(ID.Parse(linkedCurrency)).Name;
+                }
+
+                throw new DefaultCurrencyNotSetException(StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.DefaultCurrencyNotSetException));
+            }
+        }
+
+        /// <summary>
+        /// Gets the supported currencies.
+        /// </summary>
+        /// <value>
+        /// The supported currencies.
+        /// </value>
+        public virtual List<string> SupportedCurrencies
+        {
+            get
+            {
+                List<string> returnValues = new List<string>();
+
+                MultilistField supportedCurrenciesList = this.HomeItem.Fields[StorefrontConstants.KnownFieldNames.SupportedCurrencies];
+                if (supportedCurrenciesList != null)
+                {
+                    returnValues.AddRange(supportedCurrenciesList.TargetIDs.Select(id => this.HomeItem.Database.GetItem(id).Name));
+                }
+
+                return returnValues;
+            }
+        }
+
+        /// <summary>
+        /// Determines whether the given currency is supported by the storefront.
+        /// </summary>
+        /// <param name="currency">The currency.</param>
+        /// <returns>True if the currency is supported but the storefront; Otherwise false.</returns>
+        public virtual bool IsSupportedCurrency(string currency)
+        {
+            return this.SupportedCurrencies.Exists(x => x.Equals(currency, System.StringComparison.OrdinalIgnoreCase));
         }
 
         /// <summary>

@@ -19,7 +19,7 @@ content-length: 1
 ----version----
 language: en
 version: 1
-revision: a4aae5cf-52bd-4b13-a79b-b68c9a86b182
+revision: 8182ba12-0ec0-467f-9ddc-c9c264e4283a
 
 ----field----
 field: {971AE443-6884-4C59-80A3-0B325C0524B9}
@@ -70,6 +70,13 @@ key: prevbuttonlabel
 content-length: 17
 
 Continue shopping
+----field----
+field: {6E4A71EA-31C3-4FAF-890C-E61372A46A96}
+name: Ship This Item Header
+key: ship this item header
+content-length: 14
+
+SHIP THIS ITEM
 ----field----
 field: {3F864C66-8A6A-447E-A569-B17C106ADD9C}
 name: Close Delivery Info Label
@@ -265,14 +272,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-a4aae5cf-52bd-4b13-a79b-b68c9a86b182
+8182ba12-0ec0-467f-9ddc-c9c264e4283a
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
-content-length: 35
+content-length: 16
 
-20150429T104912:635659013521731409Z
+20150928T083421Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

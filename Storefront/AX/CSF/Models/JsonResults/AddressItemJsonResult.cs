@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="AddressItemJsonResult.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Defines the AddressItemJsonResult class.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -17,6 +17,7 @@
 
 namespace Sitecore.Reference.Storefront.Models.JsonResults
 {
+    using Commerce.Connect.CommerceServer.Orders.Models;
     using Sitecore.Commerce.Connect.DynamicsRetail.Entities;
     using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Services;
@@ -50,8 +51,8 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
         public override void Initialize(Party address)
         {
             base.Initialize(address);
-            this.Name = ((CustomCommerceParty)address).Name;
-            this.IsPrimary = ((CustomCommerceParty)address).IsPrimary;
+            this.Name = ((CommerceParty)address).Name;
+            this.IsPrimary = ((CommerceParty)address).IsPrimary;
         }
     }
 }

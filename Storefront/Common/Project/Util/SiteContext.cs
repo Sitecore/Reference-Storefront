@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="SiteContext.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Defines the SiteContext class.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -33,6 +33,7 @@ namespace Sitecore.Reference.Storefront
         private const string CurrentCatalogItemKey = "_CurrentCatallogItem";
         private const string IsCategoryKey = "_IsCategory";
         private const string IsProductKey = "_IsProduct";
+        private const string UrlContainsCategoryKey = "_UrlContainsCategory";
 
         /// <summary>
         /// Gets the current HTTP context.
@@ -70,10 +71,10 @@ namespace Sitecore.Reference.Storefront
                 this.Items[CurrentCatalogItemKey] = item;
                 if (item != null)
                 {
-                    Template t = TemplateManager.GetTemplate(item.TemplateID, Sitecore.Context.Database);
+                    var itemType = item.ItemType();
 
-                    this.Items[IsCategoryKey] = t.DescendsFrom(CommerceConstants.KnownTemplateIds.CommerceCategoryTemplate);
-                    this.Items[IsProductKey] = t.DescendsFrom(CommerceConstants.KnownTemplateIds.CommerceProductTemplate);
+                    this.Items[IsCategoryKey] = (itemType == StorefrontConstants.ItemTypes.Category);
+                    this.Items[IsProductKey] = (itemType == StorefrontConstants.ItemTypes.Product);
                 }
                 else
                 {
@@ -108,6 +109,25 @@ namespace Sitecore.Reference.Storefront
             get
             {
                 return (this.Items[IsProductKey] != null) ? (bool)this.Items[IsProductKey] : false;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the current url contains the category.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if the url contains the category; otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool UrlContainsCategory
+        {
+            get
+            {
+                return (this.Items[UrlContainsCategoryKey] != null) ? (bool)this.Items[UrlContainsCategoryKey] : false;
+            }
+
+            set
+            {
+                this.Items[UrlContainsCategoryKey] = value;
             }
         }
     }

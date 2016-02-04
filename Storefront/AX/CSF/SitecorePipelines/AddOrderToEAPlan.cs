@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="AddOrderToEAPlan.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Defines the AddOrderToEAPlan class.</summary>
 //---------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -20,7 +20,6 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
     using Sitecore.Analytics;
     using Sitecore.Commerce.Automation.MarketingAutomation;
     using Sitecore.Commerce.Connect.CommerceServer.Orders.Models;
-    using Sitecore.Commerce.Connect.DynamicsRetail.Entities.Orders;
     using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Orders;
     using Sitecore.Commerce.Multishop;

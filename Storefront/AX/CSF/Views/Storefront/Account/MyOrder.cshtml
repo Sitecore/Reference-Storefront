@@ -1,5 +1,5 @@
 ﻿@*//-----------------------------------------------------------------------
-    // Copyright 2015 Sitecore Corporation A/S
+    // Copyright 2016 Sitecore Corporation A/S
     // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
     // except in compliance with the License. You may obtain a copy of the License at
     //       http://www.apache.org/licenses/LICENSE-2.0
@@ -29,7 +29,7 @@
     var total = Model.Total as CommerceTotal;
     var adjustments = Model.Adjustments;
     var lines = Model.Lines;
-    var individualShipping = lines.Count > 1 && (shippings == null || shippings.Count == 0);
+    var individualShipping = lines.Count > 1 && Model.BuyerCustomerParty == null;
 
     var loyaltyRewards = payments.Where(p => p.PartyID.Equals("LoyaltyCard", StringComparison.OrdinalIgnoreCase)).Select(p => p.PaymentMethodID).ToList();
 }
@@ -67,7 +67,7 @@
                         @Html.Sitecore().Field("Order Status Label", Html.Sitecore().CurrentItem):
                     </span>
                     <span id="confirm-orderStatus">
-                        @Model.Status
+                        @StorefrontManager.GetOrderStatusName(Model.Status)
                     </span>
                 </p>
             </div>
@@ -165,7 +165,7 @@
                                     @if (savings > 0)
                                     {
                                         <span class="savings">
-                                            <span>@Html.Sitecore().Field("Savings Label", Html.Sitecore().CurrentItem) </span>
+                                            <span>@Html.Sitecore().Field("Discount Label", Html.Sitecore().CurrentItem) </span>
                                             <span pid="discount">@savings.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)</span>
                                         </span>
                                     }

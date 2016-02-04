@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="StockInfoBaseJsonResult.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Defines the StockInfoBaseJsonResult class.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -87,6 +87,14 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
         public double Count { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether this instance can show sign up for notification.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance can show sign up for notification; otherwise, <c>false</c>.
+        /// </value>
+        public bool CanShowSignupForNotification { get; set; }
+
+        /// <summary>
         /// Initializes the specified stock infos.
         /// </summary>
         /// <param name="stockInfo">The stock information.</param>
@@ -103,6 +111,7 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
             this.VariantId = string.IsNullOrEmpty(((CommerceInventoryProduct)stockInfo.Product).VariantId) ? string.Empty : ((CommerceInventoryProduct)stockInfo.Product).VariantId;
             this.Status = StorefrontManager.GetProductStockStatusName(stockInfo.Status);
             this.Count = stockInfo.Count < 0 ? 0 : stockInfo.Count;
+            this.CanShowSignupForNotification = Sitecore.Context.User.IsAuthenticated;
             if (stockInfo.AvailabilityDate != null & stockInfo.AvailabilityDate.HasValue)
             {
                 this.AvailabilityDate = stockInfo.AvailabilityDate.Value.ToDisplayedDate();

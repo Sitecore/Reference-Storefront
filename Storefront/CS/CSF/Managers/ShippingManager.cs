@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="ShippingManager.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>The manager class responsible for encapsulating the shipping logic for the site.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -91,18 +91,18 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <returns>
         /// The manager response where the shipping methods are returned in the Result.
         /// </returns>
-        public ManagerResponse<Connect.Services.Orders.GetShippingMethodsResult, IReadOnlyCollection<ShippingMethod>> GetShippingMethods([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext, [NotNull] GetShippingMethodsInputModel inputModel)
+        public ManagerResponse<GetShippingMethodsResult, IReadOnlyCollection<ShippingMethod>> GetShippingMethods([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext, [NotNull] GetShippingMethodsInputModel inputModel)
         {
             Assert.ArgumentNotNull(storefront, "storefront");
             Assert.ArgumentNotNull(visitorContext, "visitorContext");
             Assert.ArgumentNotNull(inputModel, "inputModel");
 
-            var errorResult = new Connect.Services.Orders.GetShippingMethodsResult { Success = false };
+            var errorResult = new GetShippingMethodsResult { Success = false };
             var cartResult = this.CartManager.GetCurrentCart(storefront, visitorContext);
             if (!cartResult.ServiceProviderResult.Success || cartResult.Result == null)
             {
                 errorResult.SystemMessages.ToList().AddRange(cartResult.ServiceProviderResult.SystemMessages);
-                return new ManagerResponse<Connect.Services.Orders.GetShippingMethodsResult, IReadOnlyCollection<ShippingMethod>>(errorResult, null);
+                return new ManagerResponse<GetShippingMethodsResult, IReadOnlyCollection<ShippingMethod>>(errorResult, null);
             }
 
             var cart = cartResult.Result;
@@ -124,10 +124,10 @@ namespace Sitecore.Reference.Storefront.Managers
                     Lines = (inputModel.Lines != null) ? inputModel.Lines.ToCommerceCartLines().Cast<CartLine>().ToList() : null
                 };
 
-            var result = this.ShippingServiceProvider.GetShippingMethods<Connect.Services.Orders.GetShippingMethodsRequest, Connect.Services.Orders.GetShippingMethodsResult>(request);
+            var result = this.ShippingServiceProvider.GetShippingMethods<Connect.Services.Orders.GetShippingMethodsRequest, GetShippingMethodsResult>(request);
 
             Helpers.LogSystemMessages(errorResult.SystemMessages, errorResult);
-            return new ManagerResponse<Connect.Services.Orders.GetShippingMethodsResult, IReadOnlyCollection<ShippingMethod>>(result, result.ShippingMethods);
+            return new ManagerResponse<GetShippingMethodsResult, IReadOnlyCollection<ShippingMethod>>(result, result.ShippingMethods);
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <param name="visitorContext">The visitor context.</param>
         /// <param name="option">The option.</param>
         /// <returns>The manager response where the shipping methods are returned in the result.</returns>
-        public ManagerResponse<Connect.Services.Orders.GetShippingMethodsResult, IReadOnlyCollection<ShippingMethod>> GetShippingMethods([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext, [NotNull] ShippingOption option)
+        public ManagerResponse<GetShippingMethodsResult, IReadOnlyCollection<ShippingMethod>> GetShippingMethods([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext, [NotNull] ShippingOption option)
         {
             Assert.ArgumentNotNull(storefront, "storefront");
             Assert.ArgumentNotNull(visitorContext, "visitorContext");
@@ -146,10 +146,10 @@ namespace Sitecore.Reference.Storefront.Managers
             // TODO: Remove hard coded language - will be fixed in connect.
             var request = new Connect.Services.Orders.GetShippingMethodsRequest("en-us", option, null);
 
-            var result = this.ShippingServiceProvider.GetShippingMethods<Connect.Services.Orders.GetShippingMethodsRequest, Connect.Services.Orders.GetShippingMethodsResult>(request);
+            var result = this.ShippingServiceProvider.GetShippingMethods<Connect.Services.Orders.GetShippingMethodsRequest, GetShippingMethodsResult>(request);
 
             Helpers.LogSystemMessages(result.SystemMessages, result);
-            return new ManagerResponse<Connect.Services.Orders.GetShippingMethodsResult, IReadOnlyCollection<ShippingMethod>>(result, result.ShippingMethods);
+            return new ManagerResponse<GetShippingMethodsResult, IReadOnlyCollection<ShippingMethod>>(result, result.ShippingMethods);
         }
     }
 }

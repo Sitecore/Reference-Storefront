@@ -24,6 +24,27 @@ content-length: 20
 
 MultipleProductLists
 ----field----
+field: {3D08DB46-2267-41B0-BC52-BE69FD618633}
+name: Cacheable
+key: cacheable
+content-length: 1
+
+1
+----field----
+field: {F3E7E552-D7C8-469B-A150-69E4E14AB35C}
+name: ClearOnIndexUpdate
+key: clearonindexupdate
+content-length: 1
+
+1
+----field----
+field: {C81ED375-7C73-4815-8EA5-8CCFC4056929}
+name: VaryByCurrency
+key: varybycurrency
+content-length: 1
+
+1
+----field----
 field: {B5B27AF1-25EF-405C-87CE-369B3A004016}
 name: Datasource Location
 key: datasource location
@@ -47,7 +68,7 @@ content-length: 58
 ----version----
 language: en
 version: 1
-revision: b16fb966-c335-4c50-89df-d9afedb672e3
+revision: 6000409e-35ef-4e62-ad22-0a24809ff165
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -62,14 +83,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-b16fb966-c335-4c50-89df-d9afedb672e3
+6000409e-35ef-4e62-ad22-0a24809ff165
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
-content-length: 34
+content-length: 16
 
-20141107T030137:635509260977516057
+20151006T144706Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

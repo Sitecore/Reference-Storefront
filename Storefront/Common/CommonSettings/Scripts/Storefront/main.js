@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -158,15 +158,17 @@ $(document).ready(function () {
             var fieldName = val.substr(0, val.length - 1);
             var direction = val.charAt(val.length - 1) == queryStringParamerterSortDirectionAscShort ? queryStringParamerterSortDirectionAsc : queryStringParamerterSortDirectionDesc;
 
-            var url = new Uri(window.location.href)
-                .deleteQueryParam(queryStringParamerterSort)
-                .deleteQueryParam(queryStringParamerterSortDirection)
-                .addQueryParam(queryStringParamerterSort, fieldName)
-                .addQueryParam(queryStringParamerterSortDirection, direction)
-                .deleteQueryParam(queryStringParamerterPage)
-                .toString();
+            AJAXPost(StorefrontUri("api/sitecore/catalog/sortorderapplied"), "{\"sortField\":\"" + fieldName + "\", \"sortDirection\":\"" + direction + "\"}", function (data, success, sender) {
+                var url = new Uri(window.location.href)
+                    .deleteQueryParam(queryStringParamerterSort)
+                    .deleteQueryParam(queryStringParamerterSortDirection)
+                    .addQueryParam(queryStringParamerterSort, fieldName)
+                    .addQueryParam(queryStringParamerterSortDirection, direction)
+                    .deleteQueryParam(queryStringParamerterPage)
+                    .toString();
 
-            window.location.href = url;
+                window.location.href = url;
+            });
         }
         else {
             resetUrl();

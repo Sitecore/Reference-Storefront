@@ -1,5 +1,5 @@
 ﻿@*//-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -11,62 +11,77 @@
 // -------------------------------------------------------------------------------------------*@
 
 @using Sitecore.Reference.Storefront;
+@using Sitecore.Reference.Storefront.Managers;
 
 @{
+    var currencyCode = StorefrontManager.GetCustomerCurrency();
     var currencyDecimalSeparator = Sitecore.Context.Language.CultureInfo.NumberFormat.CurrencyDecimalSeparator;
     var currencyGroupSeparator = Sitecore.Context.Language.CultureInfo.NumberFormat.CurrencyGroupSeparator;
+
+    var billingPage = Html.Sitecore().CurrentItem.Children["Billing"];
     
     // Contact Labels
-    var contactInfoHeaderLabel = Html.Sitecore().Field("Contact Information Header", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var emailAddressLabel = Html.Sitecore().Field("Email Address Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var confirmEmailAddressLabel = Html.Sitecore().Field("Confirm Email Address Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var contactInfoHeaderLabel = Html.Sitecore().Field("Contact Information Header", billingPage);
+    var emailAddressLabel = Html.Sitecore().Field("Email Address Label", billingPage);
+    var emailAddressLabelPlaceholder = billingPage["Email Address Label"];
+    var confirmEmailAddressLabel = Html.Sitecore().Field("Confirm Email Address Label", billingPage);
+    var confirmEmailAddressLabelPlaceholder = billingPage["Confirm Email Address Label"];
 
     //Credit Card Labels
-    var paymentOptionsHeaderLabel = Html.Sitecore().Field("Payment Options Header", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var nameOnCardLabel = Html.Sitecore().Field("Name on Card Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var cardNumberLabel = Html.Sitecore().Field("Card Number Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var expirationDateLabel = Html.Sitecore().Field("Expiration Date Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var expirationYearLabel = Html.Sitecore().Field("Expiration Year Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var ccidLabel = Html.Sitecore().Field("CCID Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var paymentOptionsHeaderLabel = Html.Sitecore().Field("Payment Options Header", billingPage);
+    var nameOnCardLabel = Html.Sitecore().Field("Name on Card Label", billingPage);
+    var nameOnCardLabelPlaceholder = billingPage["Name on Card Label"];
+    var cardNumberLabel = Html.Sitecore().Field("Card Number Label", billingPage);
+    var cardNumberLabelPlaceholder = billingPage["Card Number Label"];
+    var expirationDateLabel = Html.Sitecore().Field("Expiration Date Label", billingPage);
+    var expirationYearLabel = Html.Sitecore().Field("Expiration Year Label", billingPage);
+    var ccidLabel = Html.Sitecore().Field("CCID Label", billingPage);
+    var ccidLabelPlaceholder = billingPage["CCID Label"];
 
     //Billing Labels
-    var billingAddressHeaderLabel = Html.Sitecore().Field("Billing Address Header", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var billingNameLabel = Html.Sitecore().Field("Billing Name Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var addressLabel = Html.Sitecore().Field("Address Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var cityLabel = Html.Sitecore().Field("City Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var zipCodeLabel = Html.Sitecore().Field("Zipcode Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var countryLabel = Html.Sitecore().Field("Country Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var stateLabel = Html.Sitecore().Field("State Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var sameAsShipping = Html.Sitecore().Field("Same Shipping Address", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var billingAddressHeaderLabel = Html.Sitecore().Field("Billing Address Header", billingPage);
+    var billingNameLabel = Html.Sitecore().Field("Billing Name Label", billingPage);
+    var billingNameLabelPlaceholder = billingPage["Billing Name Label"];
+    var addressLabel = Html.Sitecore().Field("Address Label", billingPage);
+    var addressLabelPlaceholder = billingPage["Address Label"];
+    var cityLabel = Html.Sitecore().Field("City Label", billingPage);
+    var cityLabelPlaceholder = billingPage["City Label"];
+    var zipCodeLabel = Html.Sitecore().Field("Zipcode Label", billingPage);
+    var zipCodeLabelPlaceholder = billingPage["Zipcode Label"];
+    var countryLabel = Html.Sitecore().Field("Country Label", billingPage);
+    var stateLabel = Html.Sitecore().Field("State Label", billingPage);
+    var stateLabelPlaceholder = billingPage["State Label"];
+    var sameAsShipping = Html.Sitecore().Field("Same Shipping Address", billingPage);
 
     // Loyalty & Giftcards Labels
-    var promocardsHeaderLabel = Html.Sitecore().Field("Cards Header", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var applyGiftLabel = Html.Sitecore().Field("Apply Gift Card Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var subtitleGiftLabel = Html.Sitecore().Field("Subtitle Gift Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var paymentAmountLabel = Html.Sitecore().Field("Payment Amount Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var getBalanceButtonLabel = Html.Sitecore().Field("Get Balance Button", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var applyFullAmountButtonLabel = Html.Sitecore().Field("Apply Amount Button", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var addGiftCardButtonLabel = Html.Sitecore().Field("Add Gift Card Button", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var giftCardLabel = Html.Sitecore().Field("Gift Card Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var removeLabel = Html.Sitecore().Field("Remove Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var applyLoyaltyLabel = Html.Sitecore().Field("Apply Loyalty Card Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var subtitleLoyaltyLabel = Html.Sitecore().Field("Subtitle Loyalty Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var addLoyaltyCardButtonLabel = Html.Sitecore().Field("Add Loyalty Card Button", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var loyaltyCardLabel = Html.Sitecore().Field("Loyalty Card Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var gettingBalanceLabel = Html.Sitecore().Field("Getting Balance Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var promocardsHeaderLabel = Html.Sitecore().Field("Cards Header", billingPage);
+    var applyGiftLabel = Html.Sitecore().Field("Apply Gift Card Label", billingPage);
+    var subtitleGiftLabel = Html.Sitecore().Field("Subtitle Gift Label", billingPage);
+    var paymentAmountLabel = Html.Sitecore().Field("Payment Amount Label", billingPage);
+    var paymentAmountLabelPlaceholder = billingPage["Payment Amount Label"];
+    var getBalanceButtonLabel = Html.Sitecore().Field("Get Balance Button", billingPage);
+    var applyFullAmountButtonLabel = Html.Sitecore().Field("Apply Amount Button", billingPage);
+    var addGiftCardButtonLabel = Html.Sitecore().Field("Add Gift Card Button", billingPage);
+    var giftCardLabel = Html.Sitecore().Field("Gift Card Label", billingPage);
+    var removeLabel = Html.Sitecore().Field("Remove Label", billingPage);
+    var applyLoyaltyLabel = Html.Sitecore().Field("Apply Loyalty Card Label", billingPage);
+    var subtitleLoyaltyLabel = Html.Sitecore().Field("Subtitle Loyalty Label", billingPage);
+    var addLoyaltyCardButtonLabel = Html.Sitecore().Field("Add Loyalty Card Button", billingPage);
+    var loyaltyCardLabel = Html.Sitecore().Field("Loyalty Card Label", billingPage);
+    var gettingBalanceLabel = billingPage["Getting Balance Label"];
 
     // Payment Information Labels
-    var paymentInfoHeaderLabel = Html.Sitecore().Field("Payment Info Header", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var paymentTotalLabel = Html.Sitecore().Field("Payment Total Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var taxesLabel = Html.Sitecore().Field("Taxes Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var savingsLabel = Html.Sitecore().Field("Savings Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var totalLabel = Html.Sitecore().Field("Total Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var chooseMethodLabel = Html.Sitecore().Field("Choose Payment Method Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var paymentInfoHeaderLabel = Html.Sitecore().Field("Payment Info Header", billingPage);
+    var paymentTotalLabel = Html.Sitecore().Field("Payment Total Label", billingPage);
+    var taxesLabel = Html.Sitecore().Field("Taxes Label", billingPage);
+    var savingsLabel = Html.Sitecore().Field("Savings Label", billingPage);
+    var totalLabel = Html.Sitecore().Field("Total Label", billingPage);
+    var chooseMethodLabel = billingPage["Choose Payment Method Label"];
 
-    var creditCardLabel = Html.Sitecore().Field("Credit Card Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var orderInformationLabel = Html.Sitecore().Field("Order Information Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var subtotalLabel = Html.Sitecore().Field("Subtotal Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var shippingCostLabel = Html.Sitecore().Field("Shipping Cost Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var creditCardLabel = Html.Sitecore().Field("Credit Card Label", billingPage);
+    var orderInformationLabel = Html.Sitecore().Field("Order Information Label", billingPage);
+    var subtotalLabel = Html.Sitecore().Field("Subtotal Label", billingPage);
+    var shippingCostLabel = Html.Sitecore().Field("Shipping Cost Label", billingPage);
 }
 <div id="PleaseEnterANewIdNameHere" class="wrap-content-checkout">
     <div class="col-md-12"><h3>@contactInfoHeaderLabel</h3></div>
@@ -75,13 +90,13 @@
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
                     <label for="BillingInput-Email">@emailAddressLabel *</label>
-                    <input type="text" class="form-control" id="BillingInput-Email" placeholder="@emailAddressLabel" data-bind="value: billingEmail">
+                    <input type="text" class="form-control" id="BillingInput-Email" placeholder="@emailAddressLabelPlaceholder" data-bind="value: billingEmail">
                 </div>
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="form-group">
                     <label for="BillingInput-ConfirmEmail">@confirmEmailAddressLabel *</label>
-                    <input type="text" class="form-control" id="BillingInput-ConfirmEmail" placeholder="@confirmEmailAddressLabel" data-bind="value: billingConfirmEmail">
+                    <input type="text" class="form-control" id="BillingInput-ConfirmEmail" placeholder="@confirmEmailAddressLabelPlaceholder" data-bind="value: billingConfirmEmail">
                 </div>
             </div>
         </div>
@@ -101,13 +116,13 @@
                     <div class="show-payment">
                         <div class="form-group">
                             <label for="creditCardPayment_CustomerNameOnPayment">@nameOnCardLabel *</label>
-                            <input type="text" class="form-control" id="creditCardPayment_CustomerNameOnPayment" placeholder="@nameOnCardLabel" data-bind="value: customerNameOnPayment, enable: $parent.creditCardEnable">
+                            <input type="text" class="form-control" id="creditCardPayment_CustomerNameOnPayment" placeholder="@nameOnCardLabelPlaceholder" data-bind="value: customerNameOnPayment, enable: $parent.creditCardEnable">
                         </div>
                     </div>
                     <div class="show-payment">
                         <div class="form-group">
                             <label for="creditCardPayment_CreditCardNumber">@cardNumberLabel *</label>
-                            <input type="text" class="form-control" id="creditCardPayment_CreditCardNumber" placeholder="@cardNumberLabel" data-bind="value: creditCardNumber, enable: $parent.creditCardEnable">
+                            <input type="text" class="form-control" id="creditCardPayment_CreditCardNumber" placeholder="@cardNumberLabelPlaceholder" data-bind="value: creditCardNumber, enable: $parent.creditCardEnable">
                         </div>
                     </div>
                     <div class="row">
@@ -133,7 +148,7 @@
                             <div class="show-payment">
                                 <div class="form-group">
                                     <label for="creditCardPayment_ValidationCode">@ccidLabel *</label>
-                                    <input type="text" class="form-control" id="creditCardPayment_ValidationCode" placeholder="@ccidLabel" data-bind="value: validationCode, enable: $parent.creditCardEnable">
+                                    <input type="text" class="form-control" id="creditCardPayment_ValidationCode" placeholder="@ccidLabelPlaceholder" data-bind="value: validationCode, enable: $parent.creditCardEnable">
                                 </div>
                             </div>
                         </div>
@@ -141,7 +156,7 @@
                             <div class="show-payment">
                                 <div class="form-group">
                                     <label for="creditCardPayment_Amount">@paymentAmountLabel *</label>
-                                    <input type="text" class="form-control" id="creditCardPayment_Amount" data-bind="value: formatCurrency(creditCardAmount, 2, '@currencyDecimalSeparator', '@StorefrontConstants.Settings.DefaultCurrencyCode', '@currencyGroupSeparator')" disabled>
+                                    <input type="text" class="form-control" id="creditCardPayment_Amount" data-bind="value: formatCurrency(creditCardAmount, 2, '@currencyDecimalSeparator', '@currencyCode', '@currencyGroupSeparator')" disabled>
                                 </div>
                             </div>
                         </div>
@@ -170,23 +185,23 @@
                     <input type="hidden" id="billingAddress-ExternalId" data-bind="value: externalId" />
                     <div class="form-group">
                         <label for="billingAddress-Name">@billingNameLabel *</label>
-                        <input type="text" class="form-control" id="billingAddress-Name" placeholder="@billingNameLabel" data-bind="value: name, enable: $parent.billingAddressEnable">
+                        <input type="text" class="form-control" id="billingAddress-Name" placeholder="@billingNameLabelPlaceholder" data-bind="value: name, enable: $parent.billingAddressEnable">
                     </div>
                     <div class="form-group">
                         <label for="billingAddress-Address">@addressLabel *</label>
-                        <input type="text" class="form-control" id="billingAddress-Address" placeholder="@addressLabel" data-bind="value: address1, enable: $parent.billingAddressEnable">
+                        <input type="text" class="form-control" id="billingAddress-Address" placeholder="@addressLabelPlaceholder" data-bind="value: address1, enable: $parent.billingAddressEnable">
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="billingAddress-City">@cityLabel *</label>
-                                <input type="text" class="form-control" id="billingAddress-City" placeholder="@cityLabel" data-bind="value: city, enable: $parent.billingAddressEnable">
+                                <input type="text" class="form-control" id="billingAddress-City" placeholder="@cityLabelPlaceholder" data-bind="value: city, enable: $parent.billingAddressEnable">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="billingAddress-Zipcode">@zipCodeLabel *</label>
-                                <input type="text" class="form-control" id="billingAddress-Zipcode" placeholder="@zipCodeLabel" data-bind="value: zipPostalCode, enable: $parent.billingAddressEnable">
+                                <input type="text" class="form-control" id="billingAddress-Zipcode" placeholder="@zipCodeLabelPlaceholder" data-bind="value: zipPostalCode, enable: $parent.billingAddressEnable">
                             </div>
                         </div>
                     </div>
@@ -204,7 +219,7 @@
                                 <select id="billingAddress-State" class="form-control" data-bind="options: $parent.states, optionsText:'name', optionsValue:'code', value: state, enable: $parent.billingAddressEnable"></select>
                                 <!-- /ko -->
                                 <!-- ko if: states != 'undefined' -->
-                                <input type="text" class="form-control" id="billingAddress-State" placeholder="@stateLabel" data-bind="value: state, enable: $parent.billingAddressEnable">
+                                <input type="text" class="form-control" id="billingAddress-State" placeholder="@stateLabelPlaceholder" data-bind="value: state, enable: $parent.billingAddressEnable">
                                 <!-- /ko -->
                             </div>
                         </div>
@@ -226,7 +241,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="giftCardPayment_PaymentMethodID">@cardNumberLabel *</label>
-                        <input type="text" class="form-control" id="giftCardPayment_PaymentMethodID" placeholder="@cardNumberLabel" data-bind="value: giftCardNumber">
+                        <input type="text" class="form-control" id="giftCardPayment_PaymentMethodID" placeholder="@cardNumberLabelPlaceholder" data-bind="value: giftCardNumber">
                     </div>
                     <div class="form-group">
                         <button type="button" class="btn btn-info" id="giftCardPayment_GetBalance" data-loading-text="@gettingBalanceLabel" data-bind="click: getBalance, enable: giftCardNumber().length > 0">@getBalanceButtonLabel</button>
@@ -236,7 +251,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="giftCardPayment_Amount">@paymentAmountLabel *</label>
-                        <input type="number" class="form-control" id="giftCardPayment_Amount" placeholder="@paymentAmountLabel" data-bind="value: giftCardAmount">
+                        <input type="number" class="form-control" id="giftCardPayment_Amount" placeholder="@paymentAmountLabelPlaceholder" data-bind="value: giftCardAmount">
                     </div>
                     <div class="form-group" style="text-align: right;">
                         <button type="button" class="btn btn-info" id="applyFullAmount_Button" data-bind="enable: balance() > 0, click: applyBalance">@applyFullAmountButtonLabel</button>
@@ -274,13 +289,13 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="loyaltyCardPayment_PaymentMethodID">@cardNumberLabel *</label>
-                        <input type="text" class="form-control" id="loyaltyCardPayment_PaymentMethodID" placeholder="@cardNumberLabel" data-bind="value: loyaltyCardNumber">
+                        <input type="text" class="form-control" id="loyaltyCardPayment_PaymentMethodID" placeholder="@cardNumberLabelPlaceholder" data-bind="value: loyaltyCardNumber">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="loyaltyCardPayment_Amount">@paymentAmountLabel *</label>
-                        <input type="number" class="form-control" id="loyaltyCardPayment_Amount" placeholder="@paymentAmountLabel" data-bind="value: loyaltyCardAmount">
+                        <input type="number" class="form-control" id="loyaltyCardPayment_Amount" placeholder="@paymentAmountLabelPlaceholder" data-bind="value: loyaltyCardAmount">
                     </div>
                     <div class="form-group" style="text-align: right;">
                         <button type="button" class="btn btn-success" id="loyaltyCardPayment_Button" data-bind="enable: enableAddCard, click: addCard">@addLoyaltyCardButtonLabel</button>

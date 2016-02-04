@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="AccountController.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Defines the AccountController class.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -187,7 +187,7 @@ namespace Sitecore.Reference.Storefront.Controllers
                 return Redirect("/login");
             }
 
-            var commerceUser = this.AccountManager.GetUser(this.CurrentVisitorContext.UserName).Result;
+            var commerceUser = this.AccountManager.GetUser(Context.User.Name).Result;
 
             if (commerceUser == null)
             {
@@ -280,7 +280,7 @@ namespace Sitecore.Reference.Storefront.Controllers
                     }
                     else
                     {
-                        result.SetErrors(new List<string> { StorefrontManager.GetSystemMessage("CouldNotCreatedUser") });
+                        result.SetErrors(new List<string> { StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.CouldNotCreateUser) });
                     }
                 }
                 else
@@ -455,7 +455,7 @@ namespace Sitecore.Reference.Storefront.Controllers
 
             if (Context.User.IsAuthenticated && !Context.User.Profile.IsAdministrator)
             {
-                var commerceUser = this.AccountManager.GetUser(this.CurrentVisitorContext.UserName).Result;
+                var commerceUser = this.AccountManager.GetUser(Context.User.Name).Result;
                 if (commerceUser != null)
                 {
                     model.FirstName = commerceUser.FirstName;
@@ -531,7 +531,7 @@ namespace Sitecore.Reference.Storefront.Controllers
                     return Json(validationResult, JsonRequestBehavior.AllowGet);
                 }
 
-                var addresses = new List<Models.CustomCommerceParty>();
+                var addresses = new List<CommerceParty>();
                 var response = this.AccountManager.RemovePartiesFromCurrentUser(this.CurrentStorefront, this.CurrentVisitorContext, model.ExternalId);
                 var result = new AddressListItemJsonResult(response.ServiceProviderResult);
                 if (response.ServiceProviderResult.Success)
@@ -572,14 +572,14 @@ namespace Sitecore.Reference.Storefront.Controllers
                     return Json(validationResult, JsonRequestBehavior.AllowGet);
                 }
 
-                var addresses = new List<Models.CustomCommerceParty>();
+                var addresses = new List<CommerceParty>();
                 var userResponse = this.AccountManager.GetUser(Context.User.Name);
                 var result = new AddressListItemJsonResult(userResponse.ServiceProviderResult);
                 if (userResponse.ServiceProviderResult.Success && userResponse.Result != null)
                 {
                     var commerceUser = userResponse.Result;
                     var customer = new CommerceCustomer { ExternalId = commerceUser.ExternalId };
-                    var party = new Models.CustomCommerceParty
+                    var party = new CommerceParty
                                 {
                                     ExternalId = model.ExternalId,
                                     Name = model.Name,
@@ -598,25 +598,25 @@ namespace Sitecore.Reference.Storefront.Controllers
                         int numberOfAddresses = this.AllAddresses(result).Count;
                         if (numberOfAddresses >= StorefrontManager.CurrentStorefront.MaxNumberOfAddresses)
                         {
-                            var message = StorefrontManager.GetSystemMessage("MaxAddresseLimitReached");
+                            var message = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.MaxAddressLimitReached);
                             result.Errors.Add(string.Format(CultureInfo.InvariantCulture, message, numberOfAddresses));
                             result.Success = false;
                         }
                         else
                         {
-                            var response = this.AccountManager.AddParties(this.CurrentStorefront, customer, new List<Models.CustomCommerceParty> { party });
-                        result.SetErrors(response.ServiceProviderResult);
-                        if (response.ServiceProviderResult.Success)
-                        {
-                            addresses = this.AllAddresses(result);
-                        }
+                            var response = this.AccountManager.AddParties(this.CurrentStorefront, customer, new List<CommerceParty> { party });
+                            result.SetErrors(response.ServiceProviderResult);
+                            if (response.ServiceProviderResult.Success)
+                            {
+                                addresses = this.AllAddresses(result);
+                            }
 
-                        result.Initialize(addresses, null);
-                    }
+                            result.Initialize(addresses, null);
+                        }
                     }
                     else
                     {
-                        var response = this.AccountManager.UpdateParties(this.CurrentStorefront, customer, new List<Models.CustomCommerceParty> { party });
+                        var response = this.AccountManager.UpdateParties(this.CurrentStorefront, customer, new List<CommerceParty> { party });
                         result.SetErrors(response.ServiceProviderResult);
                         if (response.ServiceProviderResult.Success)
                         {
@@ -705,7 +705,7 @@ namespace Sitecore.Reference.Storefront.Controllers
                     return Json(anonymousResult, JsonRequestBehavior.AllowGet);
                 }
 
-                var response = this.AccountManager.GetUser(this.CurrentVisitorContext.UserName);
+                var response = this.AccountManager.GetUser(Context.User.Name);
                 var result = new UserBaseJsonResult(response.ServiceProviderResult);
                 if (response.ServiceProviderResult.Success && response.Result != null)
                 {
@@ -810,9 +810,9 @@ namespace Sitecore.Reference.Storefront.Controllers
             return countries;
         }
 
-        private List<Models.CustomCommerceParty> AllAddresses(AddressListItemJsonResult result)
+        private List<CommerceParty> AllAddresses(AddressListItemJsonResult result)
         {
-            var addresses = new List<Models.CustomCommerceParty>();
+            var addresses = new List<CommerceParty>();
             var response = this.AccountManager.GetCurrentUserParties(this.CurrentStorefront, this.CurrentVisitorContext);
             if (response.ServiceProviderResult.Success && response.Result != null)
             {

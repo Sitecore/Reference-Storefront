@@ -23,10 +23,24 @@ key: controller action
 content-length: 15
 
 SocialConnector
+----field----
+field: {3D08DB46-2267-41B0-BC52-BE69FD618633}
+name: Cacheable
+key: cacheable
+content-length: 1
+
+1
+----field----
+field: {11490DA4-BBC2-4397-8DF2-6DB2EF445081}
+name: VaryByUrlPath
+key: varybyurlpath
+content-length: 1
+
+1
 ----version----
 language: en
 version: 1
-revision: 43decc1e-151d-4934-a6b1-0b986d09cb26
+revision: 21880f3c-5d0a-4b07-b5ae-13e1728f3063
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -41,14 +55,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-43decc1e-151d-4934-a6b1-0b986d09cb26
+21880f3c-5d0a-4b07-b5ae-13e1728f3063
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
-content-length: 35
+content-length: 16
 
-20150217T162731:635597872517285466Z
+20150831T112245Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

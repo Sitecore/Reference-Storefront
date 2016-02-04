@@ -1,5 +1,5 @@
 ﻿@*//-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -20,7 +20,7 @@
         return;
     }
 
-    var addingLabel = Html.Sitecore().Field("Adding To Cart Label", Html.Sitecore().CurrentItem);
+    var addingLabel = Html.Sitecore().CurrentItem["Adding To Cart Label"];
     var addLabel = Html.Sitecore().Field("Add To Cart Button", Html.Sitecore().CurrentItem);
     var giftCardAmountLabel = Html.Sitecore().Field("Gift Card Amount Label", Html.Sitecore().CurrentItem);
     var quantityLabel = Html.Sitecore().Field("Quantity Label", Html.Sitecore().CurrentItem);

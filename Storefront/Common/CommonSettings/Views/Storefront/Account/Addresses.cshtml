@@ -1,5 +1,5 @@
 ﻿@*//-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -12,11 +12,12 @@
 
 @using Sitecore.Reference.Storefront.Managers
 @{
-    var savingLabel = @Html.Sitecore().Field("Saving Label", Html.Sitecore().CurrentItem);
-    var deletingLabel = @Html.Sitecore().Field("Deleting Label", Html.Sitecore().CurrentItem);
-    var selectLabel = @Html.Sitecore().Field("Select Label", Html.Sitecore().CurrentItem);
-    var newAddresLabel = @Html.Sitecore().Field("New Address Label", Html.Sitecore().CurrentItem);
+    var savingLabel = @Html.Sitecore().CurrentItem["Saving Label"];
+    var deletingLabel = @Html.Sitecore().CurrentItem["Deleting Label"];
+    var selectLabel = @Html.Sitecore().CurrentItem["Select Label"];
+    var newAddresLabel = @Html.Sitecore().CurrentItem["New Address Label"];
     var deleteButtonLabel = @Html.Sitecore().Field("Delete Address Button", Html.Sitecore().CurrentItem);
+    var deleteButtonLabelText = @Html.Sitecore().CurrentItem["Delete Address Button"];
     var requiredFieldMessage = @StorefrontManager.GetHtmlSystemMessage("RequiredFieldMessage");
 }
 
@@ -41,11 +42,11 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="addressBook-Name">@Html.Sitecore().Field("Name Label", Html.Sitecore().CurrentItem)<span class="required">*</span></label>
-                    <input type="text" class="form-control" id="addressBook-Name" placeholder="@Html.Sitecore().Field("Name Label", Html.Sitecore().CurrentItem)" data-bind="text: name, value: name" required>
+                    <input type="text" class="form-control" id="addressBook-Name" placeholder="@Html.Sitecore().CurrentItem["Name Label"]" data-bind="text: name, value: name" required>
                 </div>
                 <div class="form-group">
                     <label for="addressBook-City">@Html.Sitecore().Field("City Label", Html.Sitecore().CurrentItem)<span class="required">*</span></label>
-                    <input type="text" class="form-control" id="addressBook-City" placeholder="@Html.Sitecore().Field("City Label", Html.Sitecore().CurrentItem)" data-bind="text: city, value: city" required>
+                    <input type="text" class="form-control" id="addressBook-City" placeholder="@Html.Sitecore().CurrentItem["City Label"]" data-bind="text: city, value: city" required>
                 </div>
             </div>
             <div class="col-md-4">
@@ -56,17 +57,17 @@
                 <div class="form-group">
                     <label for="addressBook-State">@Html.Sitecore().Field("State Label", Html.Sitecore().CurrentItem)<span class="required">*</span></label>
                     @*<select id="addressBook-State" class="form-control" data-bind='options: states(), optionsValue: "code", optionsText: "name", value: State'></select>*@
-                    <input type="text" class="form-control" id="addressBook-State" placeholder="@Html.Sitecore().Field("State Label", Html.Sitecore().CurrentItem)" data-bind="text: state, value: state" required>
+                    <input type="text" class="form-control" id="addressBook-State" placeholder="@Html.Sitecore().CurrentItem["State Label"]" data-bind="text: state, value: state" required>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="addressBook-Address">@Html.Sitecore().Field("Address Label", Html.Sitecore().CurrentItem)<span class="required">*</span></label>
-                    <input type="text" class="form-control" id="addressBook-Address" placeholder="@Html.Sitecore().Field("Address Label", Html.Sitecore().CurrentItem)" data-bind="text: address1, value: address1" required>
+                    <input type="text" class="form-control" id="addressBook-Address" placeholder="@Html.Sitecore().CurrentItem["Address Label"]" data-bind="text: address1, value: address1" required>
                 </div>
                 <div class="form-group">
                     <label for="addressBook-Zipcode">@Html.Sitecore().Field("Zip Code Label", Html.Sitecore().CurrentItem)<span class="required">*</span></label>
-                    <input type="text" class="form-control" id="addressBook-Zipcode" placeholder="@Html.Sitecore().Field("Zip Code Label", Html.Sitecore().CurrentItem)" data-bind="text: zipPostalCode, value: zipPostalCode" required>
+                    <input type="text" class="form-control" id="addressBook-Zipcode" placeholder="@Html.Sitecore().CurrentItem["Zip Code Label"]" data-bind="text: zipPostalCode, value: zipPostalCode" required>
                 </div>
             </div>
             <div class="col-md-12">
@@ -78,7 +79,7 @@
     </div>
     <div class="col-md-12 border-top">
         <button type="button" id="saveAddress" class="btn btn-primary" data-bind="click: saveAddress, enable: enableSave" data-loading-text="@savingLabel">@Html.Sitecore().Field("Save Changes Button", Html.Sitecore().CurrentItem)</button>
-        <button type="button" id="deleteAddress" class="btn btn-primary" data-bind="click: deleteAddress, enable: enableDelete" data-loading-text="@deletingLabel" data-text="@deleteButtonLabel">@deleteButtonLabel</button>
+        <button type="button" id="deleteAddress" class="btn btn-primary" data-bind="click: deleteAddress, enable: enableDelete" data-loading-text="@deletingLabel" data-text="@deleteButtonLabelText">@deleteButtonLabel</button>
         <a type="button" id="cancelChanges" class="btn btn-default" href="@StorefrontManager.StorefrontUri("/accountmanagement")">@Html.Sitecore().Field("Cancel Button", Html.Sitecore().CurrentItem)</a>
     </div>
 </div>

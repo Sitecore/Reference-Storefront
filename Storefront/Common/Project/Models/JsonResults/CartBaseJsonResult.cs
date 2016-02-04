@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="CartBaseJsonResult.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Defines the CartBaseJsonResult class.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -25,6 +25,7 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
     using Sitecore.Commerce.Services;
     using Sitecore.Commerce.Connect.CommerceServer;
     using Sitecore.Reference.Storefront.Extensions;
+    using Sitecore.Reference.Storefront.Managers;
 
     /// <summary>
     /// Emits the Json result of a Cart request.
@@ -131,6 +132,14 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
             this.Lines = new List<CartLineBaseJsonResult>();
             this.Adjustments = new List<CartAdjustmentBaseJsonResult>();
             this.PromoCodes = new List<string>();
+            var currencyCode = StorefrontManager.GetCustomerCurrency();
+
+            this.Subtotal = 0.0M.ToCurrency(currencyCode);
+            this.TaxTotal = 0.0M.ToCurrency(currencyCode);
+            this.Total = 0.0M.ToCurrency(currencyCode);
+            this.TotalAmount = 0.0M;
+            this.Discount = 0.0M.ToCurrency(currencyCode);
+            this.ShippingTotal = 0.0M.ToCurrency(currencyCode);
 
             if (cart == null)
             {
@@ -149,12 +158,13 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
             }
 
             var commerceTotal = (CommerceTotal)cart.Total;
-            this.Subtotal = commerceTotal.Subtotal.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
-            this.TaxTotal = cart.Total.TaxTotal.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
-            this.Total = cart.Total.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
+
+            this.Subtotal = commerceTotal.Subtotal.ToCurrency(currencyCode);
+            this.TaxTotal = cart.Total.TaxTotal.Amount.ToCurrency(currencyCode);
+            this.Total = cart.Total.Amount.ToCurrency(currencyCode);
             this.TotalAmount = cart.Total.Amount;
-            this.Discount = commerceTotal.OrderLevelDiscountAmount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
-            this.ShippingTotal = commerceTotal.ShippingTotal.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
+            this.Discount = commerceTotal.OrderLevelDiscountAmount.ToCurrency(currencyCode);
+            this.ShippingTotal = commerceTotal.ShippingTotal.ToCurrency(currencyCode);
         }
     }
 }

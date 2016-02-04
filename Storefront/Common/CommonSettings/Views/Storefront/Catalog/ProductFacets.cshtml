@@ -1,5 +1,5 @@
 ﻿@*//-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -33,6 +33,7 @@
                         <ul class="facet-@facet.DisplayName.ToLower()">
                             @foreach (var value in facet.FoundValues)
                             {
+                                bool addingFacet = true;
                                 var facetCount = value.AggregateCount;
                                 if (value.IsValid())
                                 {
@@ -45,6 +46,12 @@
                                         case "0":
                                             name = "No";
                                             break;
+                                        case "true":
+                                            name = "Yes";
+                                            break;
+                                        case "false":
+                                            name = "No";
+                                            break;                                            
                                     }
 
                                     var isActveFacet = string.Empty;
@@ -53,10 +60,12 @@
                                         if (activeFacet.Values.Contains(value.Name))
                                         {
                                             isActveFacet = "class=active";
+                                            addingFacet = false;
                                         }
                                     }
 
-                                    <li @isActveFacet><a href="@Url.AddToFacets(facet.Name, value.Name)"><span pid="facetName">@name</span> <span pid="facetCount">(@facetCount)</span></a></li>
+                                    int jsIsActive = addingFacet ? 1 : 0;
+                                    <li @isActveFacet><a onclick="FireFacetApplied('@facet.Name', '@value.Name', @jsIsActive, '@Url.AddToFacets(facet.Name, value.Name)')"><span pid="facetName">@name</span> <span pid="facetCount">(@facetCount)</span></a></li>
                                 }
                             }
                         </ul>
@@ -66,3 +75,12 @@
         }
     </div>
 </div>
+
+<script type="text/javascript">
+    function FireFacetApplied(facetName, facetValue, isApplied, url) {
+        var facet = facetName + "=" + facetValue;
+        AJAXPost(StorefrontUri("api/sitecore/catalog/facetapplied"), "{\"facetValue\":\"" + facet + "\", \"isApplied\":" + isApplied + "}", function (data, success, sender) {
+            window.location.href = url;
+        });
+    }
+</script>

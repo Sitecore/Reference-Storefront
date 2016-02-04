@@ -1,10 +1,10 @@
 ﻿//---------------------------------------------------------------------
 // <copyright file="InputModelExtension.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Extensions for dealing with the translation of action requests .</summary>
 //---------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -41,7 +41,7 @@ namespace Sitecore.Reference.Storefront
         /// </summary>
         /// <param name="items">The items.</param>
         /// <returns>The translated list of CommerceParty objects.</returns>
-        public static List<CustomCommerceParty> ToParties(this IEnumerable<PartyInputModelItem> items)
+        public static List<CommerceParty> ToParties(this IEnumerable<PartyInputModelItem> items)
         {
             return (from PartyInputModelItem item in items select item.ToParty()).ToList();
         }
@@ -51,9 +51,9 @@ namespace Sitecore.Reference.Storefront
         /// </summary>
         /// <param name="item">The item.</param>
         /// <returns>The CommerceParty instance.</returns>
-        public static CustomCommerceParty ToParty(this PartyInputModelItem item)
+        public static CommerceParty ToParty(this PartyInputModelItem item)
         {
-            var party = new CustomCommerceParty
+            var party = new CommerceParty
             {
                 Address1 = item.Address1,
                 City = item.City,
@@ -194,9 +194,9 @@ namespace Sitecore.Reference.Storefront
                 return ShippingOptionType.ElectronicDelivery;
             }
 
-            if (optionType.Equals(Sitecore.Commerce.Connect.DynamicsRetail.Entities.Shipping.ShippingOptionType.DeliverItemsIndividually.Value.ToString(CultureInfo.InvariantCulture), StringComparison.OrdinalIgnoreCase))
+            if (optionType.Equals(ShippingOptionType.DeliverItemsIndividually.Value.ToString(CultureInfo.InvariantCulture), StringComparison.OrdinalIgnoreCase))
             {
-                return Sitecore.Commerce.Connect.DynamicsRetail.Entities.Shipping.ShippingOptionType.DeliverItemsIndividually;
+                return ShippingOptionType.DeliverItemsIndividually;
             }
 
             return ShippingOptionType.None;

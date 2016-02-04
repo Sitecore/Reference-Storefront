@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="TranslateEntityToOrderAddress.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Pipeline used to a party to a CS order address.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -22,7 +22,6 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Carts
     using Sitecore.Commerce.Connect.CommerceServer.Pipelines;
     using Sitecore.Commerce.Entities;
     using Sitecore.Diagnostics;
-    using Sitecore.Reference.Storefront.Connect.Models;
     using Sitecore.Reference.Storefront.Connect.Pipelines.Arguments;
     using System;
     using System.Collections.Generic;
@@ -65,26 +64,43 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Carts
             Assert.ArgumentNotNull(args.Request, "args.request");
             Assert.ArgumentNotNull(args.Result, "args.result");
 
-            RefSFArguments.TranslateEntityToOrderAddressRequest request = (RefSFArguments.TranslateEntityToOrderAddressRequest)args.Request;
-            Assert.ArgumentNotNull(request.SourceParty, "request.SourceParty");
-            Assert.ArgumentNotNull(request.DestinationAddress, "request.DestinationAddress");
+            Party requestSourceParty;
+            OrderAddress requestDestinationAddress;
+            if (args.Request is RefSFArguments.TranslateEntityToOrderAddressRequest)
+            {
+                var refStorefrontRequest = (RefSFArguments.TranslateEntityToOrderAddressRequest)args.Request;
+                Assert.ArgumentNotNull(refStorefrontRequest.SourceParty, "request.SourceParty");
+                Assert.ArgumentNotNull(refStorefrontRequest.DestinationAddress, "request.DestinationAddress");
 
-            if (request.SourceParty is ConnectOrderModels.CommerceParty)
-            {
-                this.TranslateCommerceParty(request.SourceParty as ConnectOrderModels.CommerceParty, request.DestinationAddress);
-            }
-            else if (request.SourceParty is EmailParty)
-            {
-                this.TranslateEmailParty(request.SourceParty as EmailParty, request.DestinationAddress);
+                requestSourceParty = refStorefrontRequest.SourceParty;
+                requestDestinationAddress = refStorefrontRequest.DestinationAddress;
             }
             else
             {
-                this.TranslateCustomParty(request.SourceParty, request.DestinationAddress);
+                var csConnectRequest = (Sitecore.Commerce.Connect.CommerceServer.Orders.Pipelines.TranslateEntityToOrderAddressRequest)args.Request;
+                Assert.ArgumentNotNull(csConnectRequest.SourceParty, "request.SourceParty");
+                Assert.ArgumentNotNull(csConnectRequest.DestinationAddress, "request.DestinationAddress");
+
+                requestSourceParty = csConnectRequest.SourceParty;
+                requestDestinationAddress = csConnectRequest.DestinationAddress;
+            }
+
+            if (requestSourceParty is ConnectOrderModels.CommerceParty)
+            {
+                this.TranslateCommerceParty(requestSourceParty as ConnectOrderModels.CommerceParty, requestDestinationAddress);
+            }
+            else if (requestSourceParty is EmailParty)
+            {
+                this.TranslateEmailParty(requestSourceParty as EmailParty, requestDestinationAddress);
+            }
+            else
+            {
+                this.TranslateCustomParty(requestSourceParty, requestDestinationAddress);
             }
 
             TranslateEntityToOrderAddressResult result = (TranslateEntityToOrderAddressResult)args.Result;
 
-            result.Address = request.DestinationAddress;
+            result.Address = requestDestinationAddress;
         }
 
         /// <summary>

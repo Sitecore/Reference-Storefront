@@ -1,0 +1,51 @@
+----item----
+version: 1
+id: {CD6317D9-96A8-45BC-8BB9-31269FA00E34}
+database: master
+path: /sitecore/content/Storefront/Global/Lookups/Relationships/Retail Related
+parent: {2936F37F-9E6A-43CB-8D88-4911D39999BE}
+name: Retail Related
+master: {00000000-0000-0000-0000-000000000000}
+template: {1510C85E-5B24-44F6-9593-9F5DC0DDE15A}
+templatekey: LookupValue
+
+----version----
+language: en
+version: 1
+revision: c424efd4-f9f1-4653-9ce8-0c7bec115e08
+
+----field----
+field: {78D69990-1451-4DED-8AA5-A2CAB4F404D6}
+name: Value
+key: value
+content-length: 14
+
+Retail Related
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20160119T124333Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+c424efd4-f9f1-4653-9ce8-0c7bec115e08
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20160119T142133Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

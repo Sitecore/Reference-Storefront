@@ -23,10 +23,31 @@ key: controller action
 content-length: 11
 
 TopBarLinks
+----field----
+field: {3D08DB46-2267-41B0-BC52-BE69FD618633}
+name: Cacheable
+key: cacheable
+content-length: 1
+
+1
+----field----
+field: {8D9232B0-613F-440B-A2FA-DCDD80FBD33E}
+name: VaryByLogin
+key: varybylogin
+content-length: 1
+
+1
+----field----
+field: {0E54A8DC-72AD-4372-A7C7-BB4773FAD44D}
+name: VaryByUser
+key: varybyuser
+content-length: 1
+
+1
 ----version----
 language: en
 version: 1
-revision: ed19dc17-99ba-44d0-a3df-4748f70d0adf
+revision: c6b76aba-e842-4ac5-aece-009dd7d84d21
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -41,14 +62,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-ed19dc17-99ba-44d0-a3df-4748f70d0adf
+c6b76aba-e842-4ac5-aece-009dd7d84d21
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
-content-length: 35
+content-length: 16
 
-20150217T163055:635597874555453631Z
+20150903T065543Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

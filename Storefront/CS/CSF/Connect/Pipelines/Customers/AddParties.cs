@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="AddParties.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Pipeline processor responsible for adding parties (addresses) to a CS user profile.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -18,6 +18,7 @@
 namespace Sitecore.Reference.Storefront.Connect.Pipelines.Customers
 {
     using CommerceServer.Core.Runtime.Profiles;
+    using Sitecore.Commerce.Connect.CommerceServer.Orders.Models;
     using Sitecore.Commerce.Connect.CommerceServer.Pipelines;
     using Sitecore.Commerce.Connect.CommerceServer.Profiles.Models;
     using Sitecore.Commerce.Entities;
@@ -26,7 +27,6 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Customers
     using Sitecore.Reference.Storefront.Connect.Pipelines.Arguments;
     using System.Collections.Generic;
     using System.Linq;
-    using RefSFModels = Sitecore.Reference.Storefront.Connect.Models;
 
     /// <summary>
     /// Defines the AddParties class.
@@ -87,9 +87,9 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Customers
 
                 Party newParty = null;
 
-                if (party is RefSFModels.CommerceParty)
+                if (party is CommerceParty)
                 {
-                    newParty = this.ProcessCommerceParty(result, customerProfile, party as RefSFModels.CommerceParty);
+                    newParty = this.ProcessCommerceParty(result, customerProfile, party as CommerceParty);
                 }
                 else
                 {
@@ -110,7 +110,7 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Customers
         /// <param name="customerProfile">The customer profile.</param>
         /// <param name="partyToAdd">The party to add.</param>
         /// <returns>Newly created party.</returns>
-        protected virtual Party ProcessCommerceParty(AddPartiesResult result, Profile customerProfile, RefSFModels.CommerceParty partyToAdd)
+        protected virtual Party ProcessCommerceParty(AddPartiesResult result, Profile customerProfile, CommerceParty partyToAdd)
         {
             Assert.ArgumentNotNull(partyToAdd.Name, "partyToAdd.Name");
             Assert.ArgumentNotNull(partyToAdd.ExternalId, "partyToAdd.ExternalId");
@@ -151,7 +151,7 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Customers
 
             customerProfile.Update();
 
-            var newParty = this.EntityFactory.Create<RefSFModels.CommerceParty>("Party");
+            var newParty = this.EntityFactory.Create<CommerceParty>("Party");
             TranslateCommerceAddressProfileToEntityRequest requestToEntity = new TranslateCommerceAddressProfileToEntityRequest(addressProfile, newParty);
             PipelineUtility.RunCommerceConnectPipeline<TranslateCommerceAddressProfileToEntityRequest, CommerceResult>(CommerceServerStorefrontConstants.PipelineNames.TranslateCommerceAddressProfileToEntity, requestToEntity);
 

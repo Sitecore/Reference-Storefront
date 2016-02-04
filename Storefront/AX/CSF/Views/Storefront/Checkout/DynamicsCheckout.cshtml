@@ -1,5 +1,5 @@
 ﻿@*//-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -12,6 +12,7 @@
 
 @using Microsoft.Dynamics.Retail.Ecommerce.Sdk.Controls
 @using Sitecore.Globalization
+@using Sitecore.Reference.Storefront
 @using Sitecore.Reference.Storefront.Managers
 
 @{
@@ -32,7 +33,20 @@
     @Html.CheckoutControlHeader(confirmPageUrl, false, false)
 </head>
 <body>
+    <input type="hidden" value="@StorefrontManager.CurrentStorefront.InnerItem[DynamicsStorefrontConstants.KnownFieldNames.ChannelId]" id="channelid" />
     <a class="msax-PaddingRight5" href="@StorefrontManager.StorefrontHome">@cartButtonContinueLabel</a>
+
+    <script type="text/javascript">
+        var channelId = $("#channelid").val();
+        $(document).ready(function (e) {
+            $.ajaxSetup({
+                global: true,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('channelid', channelId);
+                }
+            });
+        })
+    </script>
    
     @Html.CheckoutControl(false)
 </body>

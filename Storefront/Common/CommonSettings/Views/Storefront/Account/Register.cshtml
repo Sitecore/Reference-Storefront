@@ -1,5 +1,5 @@
 ﻿@*//-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -13,7 +13,7 @@
 @using Sitecore.Reference.Storefront.Managers;
 @model RegisterModel
 @{
-    var registering = @Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.Registering, Html.Sitecore().CurrentItem);            
+    var registering = Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.Registering];
 }
 @using (Ajax.BeginForm("Register", "Account", null, new AjaxOptions { OnBegin = "SetLoadingButton", OnSuccess = "RegisterSuccess", OnFailure = "RegisterFailure", HttpMethod = "Post" }, new { @id = "RegisterForm" }))
 {
@@ -30,13 +30,12 @@
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        @Html.LabelFor(m => m.UserName, Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.Email, Html.Sitecore().CurrentItem))<span class="required">*</span>
-
+                        <label for="UserName">@Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.Email, Html.Sitecore().CurrentItem)</label><span class="required">*</span>
                         @Html.TextBoxFor(m => m.UserName, 
                         new 
                         {
-                            placeholder = Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.EmailAddressPlaceholder, Html.Sitecore().CurrentItem),
-                            data_val_required = Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.EmailMissingMessage, Html.Sitecore().CurrentItem),
+                            placeholder = Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.EmailAddressPlaceholder],
+                            data_val_required = Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.EmailMissingMessage],
                             @class = "form-control"
                         })
 
@@ -45,15 +44,15 @@
                 </div>
                 <div class="col-md-6 col-sm-6">
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Password, Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.Password, Html.Sitecore().CurrentItem))<span class="required">*</span>
+                        <label for="Password">@Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.Password, Html.Sitecore().CurrentItem)</label><span class="required">*</span>
                         @Html.PasswordFor(m => m.Password, 
                         new 
                         {
-                            placeholder = Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.PasswordPlaceholder, Html.Sitecore().CurrentItem),
-                            data_val_required = Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.PasswordMissingMessage, Html.Sitecore().CurrentItem),
+                            placeholder = Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.PasswordPlaceholder],
+                            data_val_required = Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.PasswordMissingMessage],
                             data_val_length_min = "6",
                             data_val_length_max = "100",
-                            data_val_length = string.Format(Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.PasswordLengthMessage, Html.Sitecore().CurrentItem).ToString(), 6),
+                            data_val_length = string.Format(Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.PasswordLengthMessage].ToString(), 6),
                             @class = "form-control",
                             autocomplete = "off"
                         })
@@ -63,14 +62,14 @@
                 </div>
                 <div class="col-md-6 col-sm-6">
                     <div class="form-group">
-                        @Html.LabelFor(m => m.ConfirmPassword, Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.PasswordAgain, Html.Sitecore().CurrentItem))<span class="required">*</span>
+                        <label for="ConfirmPassword">@Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.PasswordAgain, Html.Sitecore().CurrentItem)</label><span class="required">*</span>
                         @Html.PasswordFor(m => m.ConfirmPassword, 
                         new 
                         {
-                            placeholder = Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.PasswordPlaceholder, Html.Sitecore().CurrentItem),
-                            data_val_required = Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.PasswordMissingMessage, Html.Sitecore().CurrentItem),
+                            placeholder = Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.PasswordPlaceholder],
+                            data_val_required = Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.PasswordMissingMessage],
                             data_val_equalto_other = "*.Password",
-                            data_val_equalto = Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.PasswordsDoNotMatchMessage, Html.Sitecore().CurrentItem),
+                            data_val_equalto = Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.PasswordsDoNotMatchMessage],
                             @class = "form-control",
                             autocomplete = "off"
                         })

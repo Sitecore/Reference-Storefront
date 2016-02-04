@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="CatalogController.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Defines the CheckoutController class.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -49,6 +49,7 @@ namespace Sitecore.Reference.Storefront.Controllers
     using Sitecore.Reference.Storefront.ExtensionMethods;
     using Sitecore.Reference.Storefront.Extensions;
     using System.Web.UI;
+    using Sitecore.Reference.Storefront.Util;
 
     /// <summary>
     /// Used to manage the data and view retrieval for catalog pages
@@ -77,12 +78,16 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// <param name="accountManager">The account manager.</param>
         /// <param name="catalogManager">The catalog manager.</param>
         /// <param name="giftCardManager">The gift card manager.</param>
+        /// <param name="pricingManager">The pricing manager.</param>
+        /// <param name="cartManager">The cart manager.</param>
         public CatalogController(
             [NotNull] InventoryManager inventoryManager,
             [NotNull] ContactFactory contactFactory,
             [NotNull] AccountManager accountManager,
             [NotNull] CatalogManager catalogManager,
-            [NotNull] GiftCardManager giftCardManager)
+            [NotNull] GiftCardManager giftCardManager,
+            [NotNull] PricingManager pricingManager,
+            [NotNull] CartManager cartManager)
             : base(accountManager, contactFactory)
         {
             Assert.ArgumentNotNull(inventoryManager, "inventoryManager");
@@ -90,9 +95,27 @@ namespace Sitecore.Reference.Storefront.Controllers
             Assert.ArgumentNotNull(giftCardManager, "giftCardManager");
 
             this.InventoryManager = inventoryManager;
-            this.CatalogManager = catalogManager; 
+            this.CatalogManager = catalogManager;
             this.GiftCardManager = giftCardManager;
+            this.PricingManager = pricingManager;
+            this.CartManager = cartManager;
         }
+
+        /// <summary>
+        /// Gets or sets the cart manager.
+        /// </summary>
+        /// <value>
+        /// The cart manager.
+        /// </value>
+        public CartManager CartManager { get; protected set; }
+
+        /// <summary>
+        /// Gets or sets the pricing manager.
+        /// </summary>
+        /// <value>
+        /// The pricing manager.
+        /// </value>
+        public PricingManager PricingManager { get; protected set; }
 
         /// <summary>
         /// Gets or sets the inventory manager.
@@ -127,6 +150,57 @@ namespace Sitecore.Reference.Storefront.Controllers
         public ActionResult HomePage()
         {
             return View(CurrentRenderingView);
+        }
+
+        /// <summary>
+        /// Currencies the menu.
+        /// </summary>
+        /// <returns>The currency menu.</returns>
+        public ActionResult CurrencyMenu()
+        {
+            var currencyMenuModel = new CurrencyMenuViewModel();
+
+            var response = this.PricingManager.GetSupportedCurrencies(this.CurrentStorefront, this.CurrentStorefront.DefaultCatalog.Name);
+            if (response.ServiceProviderResult.Success)
+            {
+                currencyMenuModel.Initialize(this.CurrentRendering, response.ServiceProviderResult);
+            }
+
+            return View(this.CurrentRenderingView, currencyMenuModel);
+        }
+
+        /// <summary>
+        /// Switches the currency.
+        /// </summary>
+        /// <param name="currency">The currency.</param>
+        /// <returns>The Json result.</returns>
+        [HttpPost]
+        public JsonResult SwitchCurrency(string currency)
+        {
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(currency))
+                {
+                    if (this.CurrentStorefront.IsSupportedCurrency(currency))
+                    {
+                        this.PricingManager.CurrencyChosenPageEvent(this.CurrentStorefront, currency);
+                        this.CartManager.UpdateCartCurrency(this.CurrentStorefront, this.CurrentVisitorContext, currency);
+                        StorefrontManager.SetCustomerCurrency(currency);
+                    }
+                    else
+                    {
+                        var json = new BaseJsonResult { Success = false };
+                        json.Errors.Add(StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.InvalidCurrencyError));
+                        return json;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                return Json(new BaseJsonResult("SwitchCurrency", e), JsonRequestBehavior.AllowGet);
+            }
+
+            return new JsonResult();
         }
 
         /// <summary>
@@ -195,7 +269,7 @@ namespace Sitecore.Reference.Storefront.Controllers
                 multipleProductSearchResults.DisplayName = datasource.DisplayName;
 
                 var products = multipleProductSearchResults.ProductSearchResults.SelectMany(productSearchResult => productSearchResult.Products).ToList();
-                this.CatalogManager.GetProductBulkPrices(products);
+                this.CatalogManager.GetProductBulkPrices(this.CurrentVisitorContext, products);
                 this.InventoryManager.GetProductsStockStatusForList(this.CurrentStorefront, products);
 
                 foreach (var productViewModel in products)
@@ -204,12 +278,12 @@ namespace Sitecore.Reference.Storefront.Controllers
                         .SelectMany(productSearchResult => productSearchResult.SearchResultItems)
                         .Where(item => item.Name == productViewModel.ProductId).FirstOrDefault();
                     productViewModel.CustomerAverageRating = this.CatalogManager.GetProductRating(productItem);
-                }    
+                }
 
-                return View(CurrentRenderingView, multipleProductSearchResults);
+                return View(this.GetRenderingView("ProductRecommendation"), multipleProductSearchResults);
             }
 
-            return View(CurrentRenderingView);
+            return View(this.GetRenderingView("ProductRecommendation"));
         }
 
         /// <summary>
@@ -239,7 +313,7 @@ namespace Sitecore.Reference.Storefront.Controllers
             }
             else
             {
-                currentCategory = this.CatalogManager.GetCategory(Item);
+                currentCategory = this.CatalogManager.GetCategory(Sitecore.Context.Item);
             }
 
             if (currentCategory == null)
@@ -323,6 +397,8 @@ namespace Sitecore.Reference.Storefront.Controllers
             var currentCategory = this.CatalogManager.GetCurrentCategoryByUrl();
             var productSearchOptions = new CommerceSearchOptions(pageSize.GetValueOrDefault(currentCategory.ItemsPerPage), pageNumber.GetValueOrDefault(0));
 
+            this.SetSortParameters(currentCategory, ref sortField, ref sortDirection);
+
             UpdateOptionsWithFacets(currentCategory.RequiredFacets, facetValues, productSearchOptions);
             UpdateOptionsWithSorting(sortField, sortDirection, productSearchOptions);
 
@@ -358,16 +434,25 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// <param name="pageNumber">The page number.</param>
         /// <param name="pageSize">Size of the page.</param>
         /// <param name="facetValues">The facet values.</param>
-        /// <returns>The product facet view.</returns>
+        /// <param name="sortField">The sort field.</param>
+        /// <param name="sortDirection">The sort direction.</param>
+        /// <returns>
+        /// The product facet view.
+        /// </returns>
         public ActionResult ProductFacets(
             [Bind(Prefix = StorefrontConstants.QueryStrings.Paging)] int? pageNumber,
             [Bind(Prefix = StorefrontConstants.QueryStrings.PageSize)] int? pageSize,
-            [Bind(Prefix = StorefrontConstants.QueryStrings.Facets)] string facetValues)
+            [Bind(Prefix = StorefrontConstants.QueryStrings.Facets)] string facetValues,
+            [Bind(Prefix = StorefrontConstants.QueryStrings.Sort)] string sortField,
+            [Bind(Prefix = StorefrontConstants.QueryStrings.SortDirection)] CommerceConstants.SortDirection? sortDirection)
         {
             var currentCategory = this.CatalogManager.GetCurrentCategoryByUrl();
             var productSearchOptions = new CommerceSearchOptions(pageSize.GetValueOrDefault(currentCategory.ItemsPerPage), pageNumber.GetValueOrDefault(0));
 
+            this.SetSortParameters(currentCategory, ref sortField, ref sortDirection);
+
             UpdateOptionsWithFacets(currentCategory.RequiredFacets, facetValues, productSearchOptions);
+            UpdateOptionsWithSorting(sortField, sortDirection, productSearchOptions);
             var viewModel = GetProductFacetsViewModel(productSearchOptions, currentCategory.InnerItem, this.CurrentRendering);
 
             return View(this.CurrentRenderingView, viewModel);
@@ -392,23 +477,72 @@ namespace Sitecore.Reference.Storefront.Controllers
         }
 
         /// <summary>
-        /// The action for logging a visit to the product details page.
+        /// Categories page header called only once per category page.
         /// </summary>
-        /// <returns>The action result.</returns>
-        public ActionResult VisitedProductDetailsPage()
+        /// <returns>The resulting view.</returns>
+        public ActionResult CategoryPageHeader()
         {
-            this.CatalogManager.VisitedProductDetailsPage(this.CurrentStorefront);
-            return this.View(CurrentRenderingView);
+            Category currentCategory;
+
+            //This is a Wild Card - Wild card pages are named "*"
+            if (Item.Name == "*")
+            {
+                currentCategory = this.CatalogManager.GetCurrentCategoryByUrl();
+            }
+            else
+            {
+                currentCategory = this.CatalogManager.GetCategory(Sitecore.Context.Item);
+            }
+
+            if (currentCategory == null)
+            {
+                return View(CurrentRenderingView, null);
+            }
+
+            CategoryViewModel model = new CategoryViewModel(currentCategory.InnerItem);
+            model.Initialize(this.CurrentRendering);
+
+            return this.View(CurrentRenderingView, model);
         }
 
         /// <summary>
-        /// The action for logging a visit to a category page.
+        /// Facets the applied.
         /// </summary>
-        /// <returns>The action result.</returns>
-        public ActionResult VisitedCategoryPage()
+        /// <param name="facetValue">The facet value.</param>
+        /// <param name="isApplied">The is applied.</param>
+        /// <returns>
+        /// The action result.
+        /// </returns>
+        [HttpPost]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
+        public JsonResult FacetApplied(string facetValue, bool? isApplied)
         {
-            this.CatalogManager.VisitedCategoryPage(this.CurrentStorefront);
-            return this.View(CurrentRenderingView);
+            if (!string.IsNullOrWhiteSpace(facetValue) && isApplied.HasValue)
+            {
+                this.CatalogManager.FacetApplied(this.CurrentStorefront, facetValue, isApplied.Value);
+            }
+
+            return new BaseJsonResult();
+        }
+
+        /// <summary>
+        /// Sorts the order applied.
+        /// </summary>
+        /// <param name="sortField">The sort field.</param>
+        /// <param name="sortDirection">The sort direction.</param>
+        /// <returns>
+        /// The action result.
+        /// </returns>
+        [HttpPost]
+        [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
+        public JsonResult SortOrderApplied(string sortField, CommerceConstants.SortDirection? sortDirection)
+        {
+            if (!string.IsNullOrWhiteSpace(sortField))
+            {
+                this.CatalogManager.SortOrderApplied(this.CurrentStorefront, sortField, sortDirection);
+            }
+
+            return new BaseJsonResult();
         }
 
         /// <summary>
@@ -417,21 +551,61 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// <returns>The product view</returns>
         public ActionResult Product()
         {
-            //Wild card pages are named "*"
-            if (this.Item.Name == "*")
+            ProductViewModel model = null;
+            return this.GetProductInformation(out model);
+        }
+
+        /// <summary>
+        /// The action for logging a visiteds the product details page event.
+        /// </summary>
+        /// <returns>
+        /// The action result.
+        /// </returns>
+        public ActionResult VisitedProductDetailsPage()
+        {
+            ProductViewModel model = null;
+            this.GetProductInformation(out model);
+
+            if (model != null)
             {
-                // This is a Wild Card
-                var productViewModel = this.GetWildCardProductViewModel();
-                return this.View(CurrentRenderingView, productViewModel);
+                this.CatalogManager.VisitedProductDetailsPage(this.CurrentStorefront, model.ProductId, model.ProductName, model.ParentCategoryId, model.ParentCategoryName);
             }
 
-            //Special handling for gift card
-            if (this.Item.Name.ToLower(CultureInfo.InvariantCulture) == ProductItemResolver.BuyGiftCardUrlRoute)
+            return this.View(this.GetAbsoluteRenderingView(StorefrontConstants.Views.Empty));
+        }
+
+        /// <summary>
+        /// The action for logging a visit to a category page.
+        /// </summary>
+        /// <returns>
+        /// The action result.
+        /// </returns>
+        public ActionResult VisitedCategoryPage()
+        {
+            Category currentCategory;
+
+            var lastCategoryId = CategoryCookieHelper.GetLastVisitedCategory(this.CurrentVisitorContext.GetCustomerId());
+
+            //This is a Wild Card - Wild card pages are named "*"
+            if (Item.Name == "*")
             {
-                this.Item = SearchNavigation.GetProduct(StorefrontManager.CurrentStorefront.GiftCardProductId, CurrentCatalog.Name);
+                currentCategory = this.CatalogManager.GetCurrentCategoryByUrl();
+            }
+            else
+            {
+                currentCategory = this.CatalogManager.GetCategory(Sitecore.Context.Item);
             }
 
-            return this.View(CurrentRenderingView, GetProductViewModel(this.Item, CurrentRendering));
+            if (currentCategory != null)
+            {
+                if (string.IsNullOrWhiteSpace(lastCategoryId) || !lastCategoryId.Equals(currentCategory.Name))
+                {
+                    this.CatalogManager.VisitedCategoryPage(this.CurrentStorefront, currentCategory.Name, currentCategory.DisplayName);
+                    CategoryCookieHelper.SetLastVisitedCategory(this.CurrentVisitorContext.GetCustomerId(), currentCategory.Name);
+                }
+            }
+
+            return this.View(this.GetAbsoluteRenderingView(StorefrontConstants.Views.Empty));
         }
 
         /// <summary>
@@ -445,12 +619,12 @@ namespace Sitecore.Reference.Storefront.Controllers
             {
                 // This is a Wild Card
                 var productViewModel = this.GetWildCardProductViewModel();
-                var relatedCatalogItemsModel = this.CatalogManager.GetRelationshipsFromItem(this.CurrentStorefront, productViewModel.Item, this.CurrentRendering);
+                var relatedCatalogItemsModel = this.CatalogManager.GetRelationshipsFromItem(this.CurrentStorefront, this.CurrentVisitorContext, productViewModel.Item, this.CurrentRendering);
                 return this.View(CurrentRenderingView, relatedCatalogItemsModel);
             }
             else
             {
-                var relatedCatalogItemsModel = this.CatalogManager.GetRelationshipsFromItem(this.CurrentStorefront, this.Item, this.CurrentRendering);
+                var relatedCatalogItemsModel = this.CatalogManager.GetRelationshipsFromItem(this.CurrentStorefront, this.CurrentVisitorContext, this.Item, this.CurrentRendering);
                 return this.View(CurrentRenderingView, relatedCatalogItemsModel);
             }
         }
@@ -521,7 +695,7 @@ namespace Sitecore.Reference.Storefront.Controllers
                         {
                             ProductId = productId,
                             CatalogName = catalogName,
-                            VariantId = item["VariantId"]
+                            VariantId = item.Name
                         });
                     }
                 }
@@ -714,17 +888,10 @@ namespace Sitecore.Reference.Storefront.Controllers
 
             if (Item != null)
             {
-                var searchResponse = SearchNavigation.GetCategoryChildCategories(categoryItem.ID, searchOptions);
-
-                returnList.AddRange(searchResponse.ResponseItems);
-
-                totalCategoryCount = searchResponse.TotalItemCount;
-                totalPageCount = searchResponse.TotalPageCount;
+                return SearchNavigation.GetCategoryChildCategories(categoryItem.ID, searchOptions);
             }
 
-            var results = new CategorySearchResults(returnList, totalCategoryCount, totalPageCount, searchOptions.StartPageIndex, new List<FacetCategory>());
-
-            return results;
+            return new CategorySearchResults(returnList, totalCategoryCount, totalPageCount, searchOptions.StartPageIndex, new List<FacetCategory>());
         }
 
         /// <summary>
@@ -751,7 +918,20 @@ namespace Sitecore.Reference.Storefront.Controllers
             }
 
             var productViewModel = new ProductViewModel(productItem);
-            productViewModel.Initialize(rendering, variants);            
+            productViewModel.Initialize(rendering, variants);
+
+            productViewModel.ProductName = productViewModel.DisplayName;
+
+            if (this.CurrentSiteContext.UrlContainsCategory)
+            {
+                productViewModel.ParentCategoryId = CatalogUrlManager.ExtractCategoryNameFromCurrentUrl();
+
+                var category = this.CatalogManager.GetCategory(productViewModel.ParentCategoryId);
+                if (category != null)
+                {
+                    productViewModel.ParentCategoryName = category.DisplayName;
+                }
+            }
 
             //Special handling for gift card
             if (productViewModel.ProductId == StorefrontManager.CurrentStorefront.GiftCardProductId)
@@ -759,7 +939,7 @@ namespace Sitecore.Reference.Storefront.Controllers
                 productViewModel.GiftCardAmountOptions = GetGiftCardAmountOptions();
             }
 
-            this.CatalogManager.GetProductPrice(productViewModel);
+            this.CatalogManager.GetProductPrice(this.CurrentVisitorContext, productViewModel);
             productViewModel.CustomerAverageRating = this.CatalogManager.GetProductRating(productItem);
 
             this.CurrentSiteContext.Items[CurrentProductViewModelKeyName] = productViewModel;
@@ -836,14 +1016,14 @@ namespace Sitecore.Reference.Storefront.Controllers
             categoryViewModel.Initialize(rendering, childProducts, sortFields, productSearchOptions);
             if (childProducts != null && childProducts.SearchResultItems.Count > 0)
             {
-                this.CatalogManager.GetProductBulkPrices(categoryViewModel.ChildProducts);
+                this.CatalogManager.GetProductBulkPrices(this.CurrentVisitorContext, categoryViewModel.ChildProducts);
                 this.InventoryManager.GetProductsStockStatusForList(this.CurrentStorefront, categoryViewModel.ChildProducts);
 
                 foreach (var productViewModel in categoryViewModel.ChildProducts)
                 {
-                    Item productItem = childProducts.SearchResultItems.Where(item => item.Name == productViewModel.ProductId).Single();                        
+                    Item productItem = childProducts.SearchResultItems.Where(item => item.Name == productViewModel.ProductId).Single();
                     productViewModel.CustomerAverageRating = this.CatalogManager.GetProductRating(productItem);
-                }                
+                }
             }
 
             if (!noCache)
@@ -897,40 +1077,47 @@ namespace Sitecore.Reference.Storefront.Controllers
             var totalPageCount = 0;
             var totalProductCount = 0;
 
-            if (Item != null)
+            string childProductsCacheKey = string.Format(CultureInfo.InvariantCulture, "ChildProductSearch_{0}", categoryItem.ID.ToString());
+
+            if (!this.CurrentSiteContext.Items.Contains(childProductsCacheKey))
             {
-                SearchResponse searchResponse = null;
-                if (CatalogUtility.IsItemDerivedFromCommerceTemplate(categoryItem, CommerceConstants.KnownTemplateIds.CommerceDynamicCategoryTemplate) || categoryItem.TemplateName == "Commerce Named Search")
+                if (Item != null)
                 {
-                    try
+                    SearchResponse searchResponse = null;
+                    if (CatalogUtility.IsItemDerivedFromCommerceTemplate(categoryItem, CommerceConstants.KnownTemplateIds.CommerceDynamicCategoryTemplate) || categoryItem.TemplateName == "Commerce Named Search")
                     {
-                        var defaultBucketQuery = categoryItem[CommerceConstants.KnownSitecoreFieldNames.DefaultBucketQuery];
-                        var persistendBucketFilter = categoryItem[CommerceConstants.KnownSitecoreFieldNames.PersistentBucketFilter];
-                        persistendBucketFilter = CleanLanguageFromFilter(persistendBucketFilter);
-                        searchResponse = SearchNavigation.SearchCatalogItems(defaultBucketQuery, persistendBucketFilter, searchOptions);
+                        try
+                        {
+                            var defaultBucketQuery = categoryItem[CommerceConstants.KnownSitecoreFieldNames.DefaultBucketQuery];
+                            var persistendBucketFilter = categoryItem[CommerceConstants.KnownSitecoreFieldNames.PersistentBucketFilter];
+                            persistendBucketFilter = CleanLanguageFromFilter(persistendBucketFilter);
+                            searchResponse = SearchNavigation.SearchCatalogItems(defaultBucketQuery, persistendBucketFilter, searchOptions);
+                        }
+                        catch (Exception ex)
+                        {
+                            Helpers.LogException(ex, this);
+                        }
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        Helpers.LogException(ex, this);
+                        searchResponse = SearchNavigation.GetCategoryProducts(categoryItem.ID, searchOptions);
                     }
-                }
-                else
-                {
-                    searchResponse = SearchNavigation.GetCategoryProducts(categoryItem.ID, searchOptions);
+
+                    if (searchResponse != null)
+                    {
+                        returnList.AddRange(searchResponse.ResponseItems);
+
+                        totalProductCount = searchResponse.TotalItemCount;
+                        totalPageCount = searchResponse.TotalPageCount;
+                        facets = searchResponse.Facets;
+                    }
                 }
 
-                if (searchResponse != null)
-                {
-                    returnList.AddRange(searchResponse.ResponseItems);
-
-                    totalProductCount = searchResponse.TotalItemCount;
-                    totalPageCount = searchResponse.TotalPageCount;
-                    facets = searchResponse.Facets;
-                }
+                var results = new SearchResults(returnList, totalProductCount, totalPageCount, searchOptions.StartPageIndex, facets);
+                this.CurrentSiteContext.Items[childProductsCacheKey] = results;
             }
 
-            var results = new SearchResults(returnList, totalProductCount, totalPageCount, searchOptions.StartPageIndex, facets);
-            return results;
+            return (SearchResults)this.CurrentSiteContext.Items[childProductsCacheKey];
         }
 
         /// <summary>
@@ -1026,6 +1213,50 @@ namespace Sitecore.Reference.Storefront.Controllers
             return newFilter.ToString();
         }
 
+        /// <summary>
+        /// Gets the product information.
+        /// </summary>
+        /// <param name="productViewModel">The product view model.</param>
+        /// <returns>The product view</returns>
+        protected ActionResult GetProductInformation(out ProductViewModel productViewModel)
+        {
+            //Wild card pages are named "*"
+            if (this.Item.Name == "*")
+            {
+                // This is a Wild Card
+                productViewModel = this.GetWildCardProductViewModel();
+                return this.View(CurrentRenderingView, productViewModel);
+            }
+
+            //Special handling for gift card
+            if (this.Item.Name.ToLower(CultureInfo.InvariantCulture) == ProductItemResolver.BuyGiftCardUrlRoute)
+            {
+                this.Item = SearchNavigation.GetProduct(StorefrontManager.CurrentStorefront.GiftCardProductId, CurrentCatalog.Name);
+            }
+
+            productViewModel = GetProductViewModel(this.Item, CurrentRendering);
+            return this.View(CurrentRenderingView, productViewModel);
+        }
+
+        /// <summary>
+        /// Sets the sort parameters.
+        /// </summary>
+        /// <param name="category">The category.</param>
+        /// <param name="sortField">The sort field.</param>
+        /// <param name="sortOrder">The sort order.</param>
+        protected void SetSortParameters(Category category, ref string sortField, ref CommerceConstants.SortDirection? sortOrder)
+        {
+            if (string.IsNullOrWhiteSpace(sortField))
+            {
+                var sortfieldList = category.SortFields;
+                if (sortfieldList != null && sortfieldList.Count > 0)
+                {
+                    sortField = sortfieldList[0].Name;
+                    sortOrder = CommerceConstants.SortDirection.Asc;
+                }
+            }
+        }
+
         private static List<KeyValuePair<string, decimal?>> GetGiftCardAmountOptions()
         {
             string[] options = StorefrontManager.CurrentStorefront.GiftCardAmountOptions.Split('|');
@@ -1041,7 +1272,7 @@ namespace Sitecore.Reference.Storefront.Controllers
             }
 
             return null;
-        }       
+        }
 
         private ProductViewModel GetWildCardProductViewModel()
         {
@@ -1075,7 +1306,7 @@ namespace Sitecore.Reference.Storefront.Controllers
             }
 
             return productViewModel;
-        }        
+        }
 
         #endregion
     }

@@ -44,49 +44,58 @@
     <PackagePublisher>Sitecore Corporation</PackagePublisher>
     <PackageVersion>
     </PackageVersion>
-    <PackageReadme>Sitecore Reference Storefront 8.0 for Sitecore Commerce powered by Commerce Server
---------------------------------------------------------------------------------------------------------------------------
+    <PackageReadme>&lt;p style="TEXT-ALIGN: center; font-weight:bold"&gt;
+    Sitecore Reference Storefront 8.1 for Sitecore Commerce 8.1 powered by Microsoft Dynamics &amp;#174;
 
-The solution is licensed under the Apache License, Version 2.0 (the "License"). You may obtain a copy of the License at 
+    &lt;div&gt;
+        &lt;hr size="2" width="100%" /&gt;
+    &lt;/div&gt;
+&lt;p&gt;The solution is licensed under the Apache License, Version 2.0 (the "License"). You may obtain a copy of the License at &lt;/p&gt;
+&lt;p style="margin-left:100px"&gt;
+    &lt;a href="http://www.apache.org/licenses/LICENSE-2.0"&gt;http://www.apache.org/licenses/LICENSE-2.0&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&lt;/p&gt;
+&lt;p&gt;In order to contribute as an individual or company, you will have to sign an agreement and get it approved by Sitecore. For more information and in order to obtain agreement forms, visit GitHub&lt;/p&gt;
+&lt;div&gt;
+    &lt;hr size="2" width="100%" /&gt;
+&lt;/div&gt;
+&lt;p&gt;
+    &lt;strong&gt;Prerequisites: &lt;/strong&gt;
+&lt;/p&gt;
+&lt;ul type="disc"&gt;
+    &lt;li&gt;Sitecore Experience Platform 8.1 update-1 or later&lt;/li&gt;
+    &lt;li&gt;Sitecore Commerce Connect 8.1&lt;/li&gt;
+    &lt;li&gt;Sitecore Commerce 8.1 powered by Microsoft Dynamics &amp;#174; (SCpbCS - including CS Version 11.3)&lt;/li&gt;
+    &lt;li&gt;Sitecore Reference Storefront Common 8.1&lt;/li&gt;
 
-       http://www.apache.org/licenses/LICENSE-2.0 
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  
-
-In order to contribute as an individual or company, you will have to sign an agreement and get it approved by Sitecore. For more information and in order to obtain agreement forms, visit GitHub 
-
---------------------------------------------------------------------------------------------------------------------------
-Prerequisites:
-
-•  .NET Framework 4.5 
-•  ASP.NET MVC 5.1 
-•  Microsoft SQL Server 2014, Microsoft SQL Server 2012 , Microsoft SQL Server 2008 R2 or Microsoft SQL Server 2008 with Service Pack 1 and Cumulative Update 2 
-•  MongoDB Database 2.6.1 or later (for Sitecore xDB) 
-•  Sitecore Experience Platform 8.0 rev.150223 (Update-2) or later.
-•  Sitecore Commerce powered by Microsoft Dynamics 8.0 rev 125 (SCpbMD - including CS Version 11.2)
-•  Sitecore.Reference.Storefront.Common.8.1.217.0 update file
-
---------------------------------------------------------------------------------------------------------------------------
-Sitecore Reference Storefront runs on:
-
-•  Sitecore Experience Platform 8.0 rev.150223 (Update-2) or later.
-
---------------------------------------------------------------------------------------------------------------------------
-Sitecore Reference Storefront has been tested on:
-
-•  Sitecore Commerce powered by Microsoft Dynamics 8.0 rev 125 (SCpbMD)
-•  Sitecore Experience Platform 8.0 rev.150223 (Update-2)
-•  The storefront was tested using the following browsers: 
-
-   a. Internet Explorer 11 
-   b. Firefox 36 
-   c. Chrome 41
-
---------------------------------------------------------------------------------------------------------------------------
-Sitecore® is a registered trademark. All other brand and
-product names are the property of their respective holders.
-The contents of this document are the property of Sitecore.
-Copyright © 2001-2015 Sitecore. All rights reserved.</PackageReadme>
+&lt;/ul&gt;
+&lt;div&gt;
+    &lt;hr size="2" width="100%" /&gt;
+&lt;/div&gt;
+&lt;p&gt;
+    &lt;strong&gt;Sitecore Reference Storefront has been tested on: &lt;/strong&gt;
+&lt;/p&gt;
+&lt;ul type="disc"&gt;
+    &lt;li&gt;Sitecore Experience Platform 8.1 update-1&lt;/li&gt;
+    &lt;li&gt;Sitecore Commerce 8.1 powered by Microsoft Dynamics &amp;#174; (SCpbCS - including CS Version 11.3)&lt;/li&gt;
+    &lt;li&gt;The storefront was tested using the following browsers: &lt;/li&gt;
+    &lt;ul type="circle"&gt;
+        &lt;li&gt;Internet Explorer 11 &lt;/li&gt;
+        &lt;li&gt;Firefox 43 &lt;/li&gt;
+        &lt;li&gt;Chrome 48&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/ul&gt;
+&lt;div&gt;
+    &lt;hr size="2" width="100%" /&gt;
+&lt;/div&gt;
+&lt;p style="TEXT-ALIGN: center; font-weight:bold"&gt;
+    Sitecore&amp;reg; is a registered trademark.
+    &lt;br /&gt; All other brand and product names are the property of their respective holders.
+    &lt;br /&gt; The contents of this document are the property of Sitecore.
+    &lt;br /&gt;Copyright &amp;copy; 2001-2016 Sitecore. All rights reserved.
+&lt;/p&gt;
+&lt;/p&gt;
+</PackageReadme>
     <SitecoreAssemblyPath>..\..\Lib\Sitecore</SitecoreAssemblyPath>
     <GeneratePackage>True</GeneratePackage>
     <SeperateFilesAndItems>False</SeperateFilesAndItems>
@@ -95,6 +104,7 @@ Copyright © 2001-2015 Sitecore. All rights reserved.</PackageReadme>
     <ValidationSettingsFilePath>.\TDSProject_Master_Debug.xml</ValidationSettingsFilePath>
     <PackageName>Sitecore.Reference.Storefront.Powered.by.Microsoft.Dynamics</PackageName>
     <DisableFileDeployment>False</DisableFileDeployment>
+    <PackageExcludeCode>False</PackageExcludeCode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DebugSymbols>false</DebugSymbols>
@@ -109,49 +119,58 @@ Copyright © 2001-2015 Sitecore. All rights reserved.</PackageReadme>
     <PackagePublisher>Sitecore Corporation</PackagePublisher>
     <PackageVersion>
     </PackageVersion>
-    <PackageReadme>Sitecore Reference Storefront 8.0 for Sitecore Commerce powered by Commerce Server
---------------------------------------------------------------------------------------------------------------------------
+    <PackageReadme>&lt;p style="TEXT-ALIGN: center; font-weight:bold"&gt;
+    Sitecore Reference Storefront 8.1 for Sitecore Commerce 8.1 powered by Microsoft Dynamics &amp;#174;
 
-The solution is licensed under the Apache License, Version 2.0 (the "License"). You may obtain a copy of the License at 
+    &lt;div&gt;
+        &lt;hr size="2" width="100%" /&gt;
+    &lt;/div&gt;
+&lt;p&gt;The solution is licensed under the Apache License, Version 2.0 (the "License"). You may obtain a copy of the License at &lt;/p&gt;
+&lt;p style="margin-left:100px"&gt;
+    &lt;a href="http://www.apache.org/licenses/LICENSE-2.0"&gt;http://www.apache.org/licenses/LICENSE-2.0&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&lt;/p&gt;
+&lt;p&gt;In order to contribute as an individual or company, you will have to sign an agreement and get it approved by Sitecore. For more information and in order to obtain agreement forms, visit GitHub&lt;/p&gt;
+&lt;div&gt;
+    &lt;hr size="2" width="100%" /&gt;
+&lt;/div&gt;
+&lt;p&gt;
+    &lt;strong&gt;Prerequisites: &lt;/strong&gt;
+&lt;/p&gt;
+&lt;ul type="disc"&gt;
+    &lt;li&gt;Sitecore Experience Platform 8.1 update-1 or later&lt;/li&gt;
+    &lt;li&gt;Sitecore Commerce Connect 8.1&lt;/li&gt;
+    &lt;li&gt;Sitecore Commerce 8.1 powered by Microsoft Dynamics &amp;#174; (SCpbCS - including CS Version 11.3)&lt;/li&gt;
+    &lt;li&gt;Sitecore Reference Storefront Common 8.1&lt;/li&gt;
 
-       http://www.apache.org/licenses/LICENSE-2.0 
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  
-
-In order to contribute as an individual or company, you will have to sign an agreement and get it approved by Sitecore. For more information and in order to obtain agreement forms, visit GitHub 
-
---------------------------------------------------------------------------------------------------------------------------
-Prerequisites:
-
-•  .NET Framework 4.5 
-•  ASP.NET MVC 5.1 
-•  Microsoft SQL Server 2014, Microsoft SQL Server 2012 , Microsoft SQL Server 2008 R2 or Microsoft SQL Server 2008 with Service Pack 1 and Cumulative Update 2 
-•  MongoDB Database 2.6.1 or later (for Sitecore xDB) 
-•  Sitecore Experience Platform 8.0 rev.150223 (Update-2) or later.
-•  Sitecore Commerce powered by Microsoft Dynamics 8.0 rev 125 (SCpbMD - including CS Version 11.2)
-•  Sitecore.Reference.Storefront.Common.8.1.217.0 update file
-
---------------------------------------------------------------------------------------------------------------------------
-Sitecore Reference Storefront runs on:
-
-•  Sitecore Experience Platform 8.0 rev.150223 (Update-2) or later.
-
---------------------------------------------------------------------------------------------------------------------------
-Sitecore Reference Storefront has been tested on:
-
-•  Sitecore Commerce powered by Microsoft Dynamics 8.0 rev 125 (SCpbMD)
-•  Sitecore Experience Platform 8.0 rev.150223 (Update-2)
-•  The storefront was tested using the following browsers: 
-
-   a. Internet Explorer 11 
-   b. Firefox 36 
-   c. Chrome 41
-
---------------------------------------------------------------------------------------------------------------------------
-Sitecore® is a registered trademark. All other brand and
-product names are the property of their respective holders.
-The contents of this document are the property of Sitecore.
-Copyright © 2001-2015 Sitecore. All rights reserved.</PackageReadme>
+&lt;/ul&gt;
+&lt;div&gt;
+    &lt;hr size="2" width="100%" /&gt;
+&lt;/div&gt;
+&lt;p&gt;
+    &lt;strong&gt;Sitecore Reference Storefront has been tested on: &lt;/strong&gt;
+&lt;/p&gt;
+&lt;ul type="disc"&gt;
+    &lt;li&gt;Sitecore Experience Platform 8.1 update-1&lt;/li&gt;
+    &lt;li&gt;Sitecore Commerce 8.1 powered by Microsoft Dynamics &amp;#174; (SCpbCS - including CS Version 11.3)&lt;/li&gt;
+    &lt;li&gt;The storefront was tested using the following browsers: &lt;/li&gt;
+    &lt;ul type="circle"&gt;
+        &lt;li&gt;Internet Explorer 11 &lt;/li&gt;
+        &lt;li&gt;Firefox 43 &lt;/li&gt;
+        &lt;li&gt;Chrome 48&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/ul&gt;
+&lt;div&gt;
+    &lt;hr size="2" width="100%" /&gt;
+&lt;/div&gt;
+&lt;p style="TEXT-ALIGN: center; font-weight:bold"&gt;
+    Sitecore&amp;reg; is a registered trademark.
+    &lt;br /&gt; All other brand and product names are the property of their respective holders.
+    &lt;br /&gt; The contents of this document are the property of Sitecore.
+    &lt;br /&gt;Copyright &amp;copy; 2001-2016 Sitecore. All rights reserved.
+&lt;/p&gt;
+&lt;/p&gt;
+</PackageReadme>
     <SitecoreAssemblyPath>..\..\Lib\Sitecore</SitecoreAssemblyPath>
     <GeneratePackage>True</GeneratePackage>
     <SeperateFilesAndItems>False</SeperateFilesAndItems>
@@ -160,6 +179,7 @@ Copyright © 2001-2015 Sitecore. All rights reserved.</PackageReadme>
     <EnableValidations>True</EnableValidations>
     <ValidationSettingsFilePath>.\TDSProject_Master_Release.xml</ValidationSettingsFilePath>
     <DisableFileDeployment>False</DisableFileDeployment>
+    <PackageExcludeCode>False</PackageExcludeCode>
   </PropertyGroup>
   <ItemGroup>
     <AssemblyAttributes Include="AssemblyFileVersion">
@@ -206,6 +226,28 @@ Copyright © 2001-2015 Sitecore. All rights reserved.</PackageReadme>
       <ItemDeployment>DeployOnce</ItemDeployment>
       <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
     </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\Order Statuses.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\Order Statuses\Pending.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\Relationships.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\Relationships\CustomersWhoBoughtThisAlsoBought.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\Relationships\FrequentlyBoughtTogether.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\Relationships\Retail Related.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
     <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages.item">
       <ItemDeployment>DeployOnce</ItemDeployment>
       <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
@@ -213,6 +255,10 @@ Copyright © 2001-2015 Sitecore. All rights reserved.</PackageReadme>
     <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\MaxLoyaltyProgramsToJoinReached.item">
       <ItemDeployment>DeployOnce</ItemDeployment>
       <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\Microsoft_Dynamics_Commerce_Runtime_InvalidAddress.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
     </SitecoreItem>
     <SitecoreItem Include="sitecore\content\Storefront\Global\Named Searches.item">
       <ItemDeployment>AlwaysUpdate</ItemDeployment>
@@ -233,6 +279,37 @@ Copyright © 2001-2015 Sitecore. All rights reserved.</PackageReadme>
     </SitecoreItem>
     <SitecoreItem Include="sitecore\content\Storefront\Global\Product Search Lists\Recommended Products.item">
       <ItemDeployment>AlwaysUpdate</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\system.item">
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+      <ItemDeployment>AlwaysUpdate</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\system\Settings.item">
+      <ItemDeployment>AlwaysUpdate</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\system\Settings\Buckets.item">
+      <ItemDeployment>AlwaysUpdate</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\system\Settings\Buckets\Facets.item">
+      <ItemDeployment>AlwaysUpdate</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\system\Settings\Buckets\Facets\Commerce Rating.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+      <DeployAlwaysFields>Parameters|</DeployAlwaysFields>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\system\Settings\Buckets\Search Types.item">
+      <ItemDeployment>AlwaysUpdate</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\system\Settings\Buckets\Search Types\Commerce Rating.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+      <DeployAlwaysFields>Field|</DeployAlwaysFields>
     </SitecoreItem>
     <SitecoreItem Include="sitecore\templates.item">
       <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
@@ -287,7 +364,7 @@ Copyright © 2001-2015 Sitecore. All rights reserved.</PackageReadme>
     <Exec Command="powershell.exe -ExecutionPolicy Unrestricted -FILE ..\..\..\..\Live\MojaveTools\SignSingle.ps1 $(AgentID) $(BuildDef) ..\CSF\bin Sitecore.Reference.Storefront.Powered.by.Microsoft.Dynamics.dll Rel" WorkingDirectory="." ContinueOnError="false" />
   </Target>
   <Target Name="SignSingleCI" Condition=" '$(CIBuild)'=='CI' ">
-    <Exec Command="powershell.exe -ExecutionPolicy Unrestricted -FILE ..\..\..\..\Live\MojaveTools\SignSingle.ps1 $(AgentID) $(BuildDef) ..\CSF\bin Sitecore.Reference.Storefront.Powered.by.Microsoft.Dynamics.dll CI" WorkingDirectory="." ContinueOnError="false" />
+    <Exec Command="powershell.exe -ExecutionPolicy Unrestricted -FILE ..\..\..\..\Live\MojaveTools\SignSingle.ps1 $(AgentID) $(BuildDef) ..\CSF\bin Sitecore.Reference.Storefront.Powered.by.Microsoft.Dynamics.dll Rel" WorkingDirectory="." ContinueOnError="false" />
   </Target>
   <Target Name="InitializeSigningParameters">
     <ReadLinesFromFile File="..\..\..\..\AgentID.txt">

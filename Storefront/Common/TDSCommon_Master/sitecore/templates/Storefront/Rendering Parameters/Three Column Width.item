@@ -13,9 +13,9 @@ templatekey: Template
 field: {12C33F3F-86C5-43A5-AEB4-5598CEC45116}
 name: __Base template
 key: __base template
-content-length: 38
+content-length: 77
 
-{8CA06D6A-B353-44E8-BC31-B528C7306971}
+{8CA06D6A-B353-44E8-BC31-B528C7306971}|{3C2797BB-6EBB-4BFF-9AE8-82DB2E42E29B}
 ----field----
 field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
 name: __Icon
@@ -26,7 +26,7 @@ applications/32x32/gear.png
 ----version----
 language: en
 version: 1
-revision: 5b57ab7f-d821-42b8-808b-ecba62149899
+revision: 115e2e31-1ff8-47c1-bba4-dd8c711ffff9
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -48,14 +48,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-5b57ab7f-d821-42b8-808b-ecba62149899
+115e2e31-1ff8-47c1-bba4-dd8c711ffff9
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
-content-length: 34
+content-length: 16
 
-20141107T040348:635509298286602540
+20150915T083144Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="SearchExtensions.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Defines the SearchExtensions class.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -32,10 +32,13 @@ namespace Sitecore.Reference.Storefront.Extensions
         /// <param name="facet">The facet to clean</param>
         public static void Clean(this CommerceQueryFacet facet)
         {
-            var items = facet.FoundValues.Where(v => string.IsNullOrEmpty(v.Name) || v.AggregateCount == 0);
-            items.ToList().ForEach(v => facet.FoundValues.Remove(v));
+            if (facet.FoundValues != null)
+            {
+                var items = facet.FoundValues.Where(v => string.IsNullOrEmpty(v.Name) || v.AggregateCount == 0);
+                items.ToList().ForEach(v => facet.FoundValues.Remove(v));
+            }
         }
-        
+
         /// <summary>
         /// Checks to make sure a facet is valid for use
         /// </summary>
@@ -45,7 +48,7 @@ namespace Sitecore.Reference.Storefront.Extensions
         {
             facet.Clean();
 
-            if (facet.FoundValues.Count > 0)
+            if (facet.FoundValues != null && facet.FoundValues.Count > 0)
             {
                 return true;
             }

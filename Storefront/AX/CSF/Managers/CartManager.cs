@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="CartManager.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>The manager class responsible for encapsulating the cart business logic for the site.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -112,11 +112,45 @@ namespace Sitecore.Reference.Storefront.Managers
             }
             else
             {
-                var message = StorefrontManager.GetSystemMessage("CartNotFoundError");
+                var message = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.CartNotFoundError);
                 cartResult.SystemMessages.Add(new SystemMessage { Message = message });
             }
 
             return new ManagerResponse<CartResult, CommerceCart>(cartResult, cart);
+        }
+
+        /// <summary>
+        /// Updates the cart currency.
+        /// </summary>
+        /// <param name="storefront">The storefront.</param>
+        /// <param name="visitorContext">The visitor context.</param>
+        /// <param name="currencyCode">The currency code.</param>
+        /// <returns>The manager response.</returns>
+        public virtual ManagerResponse<CartResult, bool> UpdateCartCurrency([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext, [NotNull] string currencyCode)
+        {
+            Assert.ArgumentNotNull(storefront, "storefront");
+            Assert.ArgumentNotNull(visitorContext, "visitorContext");
+            Assert.ArgumentNotNullOrEmpty(currencyCode, "currencyCode");
+
+            var result = this.GetCurrentCart(storefront, visitorContext);
+            if (!result.ServiceProviderResult.Success)
+            {
+                return new ManagerResponse<CartResult, bool>(new CartResult { Success = false }, false);
+            }
+
+            var cart = result.Result;
+            var changes = new CommerceCart() { CurrencyCode = currencyCode };
+
+            var updateCartResult = this.UpdateCart(storefront, visitorContext, cart, changes);
+            if (updateCartResult.ServiceProviderResult.Success)
+            {
+                var cartCache = CommerceTypeLoader.CreateInstance<CartCacheHelper>();
+                string customerId = visitorContext.GetCustomerId();
+
+                cartCache.InvalidateCartCache(customerId);
+            }
+
+            return new ManagerResponse<CartResult, bool>(updateCartResult.ServiceProviderResult, updateCartResult.ServiceProviderResult.Success);
         }
 
         /// <summary>
@@ -135,7 +169,7 @@ namespace Sitecore.Reference.Storefront.Managers
             var cartResult = this.LoadCartByName(storefront.ShopName, storefront.DefaultCartName, visitorContext.UserId, false);
             if (!cartResult.Success || cartResult.Cart == null)
             {
-                var message = StorefrontManager.GetSystemMessage("CartNotFoundError");
+                var message = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.CartNotFoundError);
                 cartResult.SystemMessages.Add(new SystemMessage { Message = message });
                 return new ManagerResponse<CartResult, bool>(cartResult, cartResult.Success);
             }
@@ -203,7 +237,7 @@ namespace Sitecore.Reference.Storefront.Managers
             var cartResult = this.LoadCartByName(storefront.ShopName, storefront.DefaultCartName, visitorContext.UserId, false);
             if (!cartResult.Success || cartResult.Cart == null)
             {
-                var message = StorefrontManager.GetSystemMessage("CartNotFoundError");
+                var message = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.CartNotFoundError);
                 cartResult.SystemMessages.Add(new SystemMessage
                 {
                     Message = message
@@ -250,7 +284,7 @@ namespace Sitecore.Reference.Storefront.Managers
             var cartResult = this.LoadCartByName(storefront.ShopName, storefront.DefaultCartName, visitorContext.UserId);
             if (!cartResult.Success || cartResult.Cart == null)
             {
-                var message = StorefrontManager.GetSystemMessage("CartNotFoundError");
+                var message = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.CartNotFoundError);
                 cartResult.SystemMessages.Add(new SystemMessage
                 {
                     Message = message
@@ -301,7 +335,7 @@ namespace Sitecore.Reference.Storefront.Managers
             var cartResult = this.LoadCartByName(storefront.ShopName, storefront.DefaultCartName, visitorContext.UserId);
             if (!cartResult.Success || cartResult.Cart == null)
             {
-                var message = StorefrontManager.GetSystemMessage("CartNotFoundError");
+                var message = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.CartNotFoundError);
                 cartResult.SystemMessages.Add(new SystemMessage
                 {
                     Message = message
@@ -344,7 +378,7 @@ namespace Sitecore.Reference.Storefront.Managers
             var cartResult = this.LoadCartByName(storefront.ShopName, storefront.DefaultCartName, visitorContext.UserId);
             if (!cartResult.Success || cartResult.Cart == null)
             {
-                var message = StorefrontManager.GetSystemMessage("CartNotFoundError");
+                var message = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.CartNotFoundError);
                 cartResult.SystemMessages.Add(new SystemMessage
                 {
                     Message = message
@@ -400,7 +434,7 @@ namespace Sitecore.Reference.Storefront.Managers
 
             var internalShippingList = inputModel.ShippingMethods.ToShippingInfoList();
             var orderPreferenceType = InputModelExtension.GetShippingOptionType(inputModel.OrderShippingPreferenceType);
-            if (orderPreferenceType != Sitecore.Commerce.Connect.DynamicsRetail.Entities.Shipping.ShippingOptionType.DeliverItemsIndividually)
+            if (orderPreferenceType != ShippingOptionType.DeliverItemsIndividually)
             {
                 foreach (var shipping in internalShippingList)
                 {
@@ -440,7 +474,7 @@ namespace Sitecore.Reference.Storefront.Managers
             var cartResult = this.LoadCartByName(storefront.ShopName, storefront.DefaultCartName, userId);
             if (!cartResult.Success || cartResult.Cart == null)
             {
-                var message = StorefrontManager.GetSystemMessage("CartNotFoundError");
+                var message = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.CartNotFoundError);
                 cartResult.SystemMessages.Add(new SystemMessage { Message = message });
                 return new ManagerResponse<CartResult, CommerceCart>(cartResult, cartResult.Cart as CommerceCart);
             }
@@ -466,6 +500,31 @@ namespace Sitecore.Reference.Storefront.Managers
                 cartCache.InvalidateCartCache(userId);
                 cartCache.InvalidateCartCache(anonymousVisitorId);
                 cartCache.AddCartToCache(result.Cart as CommerceCart);
+            }
+
+            return new ManagerResponse<CartResult, CommerceCart>(result, result.Cart as CommerceCart);
+        }
+
+        /// <summary>
+        /// Updates the cart.
+        /// </summary>
+        /// <param name="storefront">The storefront.</param>
+        /// <param name="visitorContext">The visitor context.</param>
+        /// <param name="cart">The cart.</param>
+        /// <param name="cartChanges">The cart changes.</param>
+        /// <returns>The manager response with the updated cart.</returns>
+        public virtual ManagerResponse<CartResult, CommerceCart> UpdateCart([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext, [NotNull] CommerceCart cart, [NotNull] CommerceCart cartChanges)
+        {
+            Assert.ArgumentNotNull(storefront, "storefront");
+            Assert.ArgumentNotNull(visitorContext, "visitorContext");
+            Assert.ArgumentNotNull(cart, "cart");
+            Assert.ArgumentNotNull(cartChanges, "cartChanges");
+
+            var updateCartRequest = new UpdateCartRequest(cart, cartChanges);
+            var result = this.CartServiceProvider.UpdateCart(updateCartRequest);
+            if (!result.Success)
+            {
+                Helpers.LogSystemMessages(result.SystemMessages, result);
             }
 
             return new ManagerResponse<CartResult, CommerceCart>(result, result.Cart as CommerceCart);
@@ -533,7 +592,7 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <param name="cart">the cart</param>
         /// <param name="party">the party info</param>
         /// <returns>the updated cart</returns>
-        protected virtual CartResult AddPartyToCart([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext, [NotNull] CommerceCart cart, [NotNull] CustomCommerceParty party)
+        protected virtual CartResult AddPartyToCart([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext, [NotNull] CommerceCart cart, [NotNull] CommerceParty party)
         {
             Assert.ArgumentNotNull(cart, "cart");
             Assert.ArgumentNotNull(party, "party");
@@ -556,7 +615,7 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <param name="cart">the cart</param>
         /// <param name="party">the party info</param>
         /// <returns>the updated cart</returns>
-        protected virtual CartResult RemovePartyFromCart([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext, [NotNull] CommerceCart cart, [NotNull] CustomCommerceParty party)
+        protected virtual CartResult RemovePartyFromCart([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext, [NotNull] CommerceCart cart, [NotNull] CommerceParty party)
         {
             Assert.ArgumentNotNull(cart, "cart");
             Assert.ArgumentNotNull(party, "party");
@@ -579,7 +638,7 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <param name="cart">the cart</param>
         /// <param name="parties">the party info</param>
         /// <returns>the updated cart</returns>
-        protected virtual CartResult UpdatePartiesInCart([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext, [NotNull] CommerceCart cart, [NotNull] List<CustomCommerceParty> parties)
+        protected virtual CartResult UpdatePartiesInCart([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext, [NotNull] CommerceCart cart, [NotNull] List<CommerceParty> parties)
         {
             Assert.ArgumentNotNull(cart, "cart");
             Assert.ArgumentNotNull(parties, "parties");

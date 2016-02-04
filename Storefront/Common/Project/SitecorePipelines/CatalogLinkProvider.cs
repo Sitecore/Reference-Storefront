@@ -1,10 +1,10 @@
 ﻿//---------------------------------------------------------------------
 // <copyright file="CatalogLinkProvider.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>The catelog link provider</summary>
 //---------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -22,6 +22,8 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
     using Sitecore.Links;
+    using Sitecore.Reference.Storefront.Managers;
+    using System.Globalization;
 
     /// <summary>
     /// Class to help build dynamic urls
@@ -99,29 +101,35 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
             Assert.ArgumentNotNull(options, "options");
 
             var url = string.Empty;
-            var searchManager = CommerceTypeLoader.CreateInstance<ICommerceSearchManager>();
-            if (this.UseShopLinks)
+            var itemType = item.ItemType();
+
+            bool productCatalogLinkRequired = Sitecore.Web.WebUtil.GetRawUrl().IndexOf(ProductItemResolver.NavigationItemName, System.StringComparison.OrdinalIgnoreCase) >= 0;
+            if (productCatalogLinkRequired)
             {
-                if (searchManager.IsItemProduct(item))
+                url = CatalogUrlManager.BuildProductCatalogLink(item);
+            } 
+            else if (this.UseShopLinks)
+            {
+                if (itemType == StorefrontConstants.ItemTypes.Product)
                 {
                     url = CatalogUrlManager.BuildProductShopLink(item, this.IncludeCatalog, this.IncludeFriendlyName, true);
                 }
-                else if (searchManager.IsItemCategory(item))
+                else if (itemType == StorefrontConstants.ItemTypes.Category)
                 {
                     url = CatalogUrlManager.BuildCategoryShopLink(item, this.IncludeCatalog, this.IncludeFriendlyName);
                 }
-                else if (this.UseShopLinks && searchManager.IsItemVariant(item))
+                else if (itemType == StorefrontConstants.ItemTypes.Variant)
                 {
                     url = CatalogUrlManager.BuildVariantShopLink(item, this.IncludeCatalog, this.IncludeFriendlyName, true);
                 }
             }
             else
             {
-                if (searchManager.IsItemProduct(item))
+                if (itemType == StorefrontConstants.ItemTypes.Product)
                 {
                     url = CatalogUrlManager.BuildProductLink(item, this.IncludeCatalog, this.IncludeFriendlyName);
                 }
-                else if (searchManager.IsItemCategory(item))
+                else if (itemType == StorefrontConstants.ItemTypes.Category)
                 {
                     url = CatalogUrlManager.BuildCategoryLink(item, this.IncludeCatalog, this.IncludeFriendlyName);
                 }

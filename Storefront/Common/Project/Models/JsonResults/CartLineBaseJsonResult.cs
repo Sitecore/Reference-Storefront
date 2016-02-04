@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="CartLineBaseJsonResult.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Defines the CartLineBaseJsonResult class.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -49,12 +49,14 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
                 this.Image = line.Images[0].GetImageUrl(100, 100);
             }
 
+            var userCurrency = StorefrontManager.GetCustomerCurrency();
+
             this.DisplayName = product.DisplayName;
             this.Color = product.Properties["Color"] as string;
-            this.LineDiscount = ((CommerceTotal)line.Total).LineItemDiscountAmount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
+            this.LineDiscount = ((CommerceTotal)line.Total).LineItemDiscountAmount.ToCurrency(this.GetCurrencyCode(userCurrency, ((CommerceTotal)line.Total).CurrencyCode));
             this.Quantity = line.Quantity.ToString(Context.Language.CultureInfo);
-            this.LinePrice = product.Price.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
-            this.LineTotal = line.Total.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
+            this.LinePrice = product.Price.Amount.ToCurrency(this.GetCurrencyCode(userCurrency, product.Price.CurrencyCode));
+            this.LineTotal = line.Total.Amount.ToCurrency(this.GetCurrencyCode(userCurrency, line.Total.CurrencyCode));
             this.ExternalCartLineId = StringUtility.RemoveCurlyBrackets(line.ExternalCartLineId);
             this.ProductUrl = product.ProductId.Equals(StorefrontManager.CurrentStorefront.GiftCardProductId, StringComparison.OrdinalIgnoreCase)
                 ? StorefrontManager.StorefrontUri("/buygiftcard")
@@ -148,5 +150,21 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
         /// </summary>
         /// <value>The line shipping options.</value>
         public IEnumerable<ShippingOption> ShippingOptions { get; set; }
+
+        /// <summary>
+        /// Gets the currency code.
+        /// </summary>
+        /// <param name="userCurrency">The user currency.</param>
+        /// <param name="currency">The currency.</param>
+        /// <returns>The proper currency to use.</returns>
+        protected string GetCurrencyCode(string userCurrency, string currency)
+        {
+            if (string.IsNullOrWhiteSpace(currency))
+            {
+                return userCurrency;
+            }
+
+            return currency;
+        }
     }
 }

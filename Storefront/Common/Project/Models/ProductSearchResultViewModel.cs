@@ -1,9 +1,9 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="ProductSearchResultViewModel.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -17,7 +17,10 @@
 namespace Sitecore.Reference.Storefront.Models
 {
     using System.Collections.Generic;
+    using Sitecore.Mvc;
     using Sitecore.Mvc.Presentation;
+    using Sitecore.Data.Items;
+    using System.Web;
 
     /// <summary>
     /// Used to represent a product search result item
@@ -37,6 +40,28 @@ namespace Sitecore.Reference.Storefront.Models
         /// Gets or sets the Displayname to show
         /// </summary>
         public string DisplayName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the named search item.
+        /// </summary>
+        /// <value>
+        /// The named search item.
+        /// </value>
+        public Item NamedSearchItem { get; set; }
+
+        /// <summary>
+        /// Gets the named search item display name html render string.
+        /// </summary>
+        /// <value>
+        /// The named search item display name render.
+        /// </value>
+        public HtmlString NamedSearchItemDisplayNameRender
+        {
+            get
+            {
+                return PageContext.Current.HtmlHelper.Sitecore().Field(StorefrontConstants.KnownFieldNames.Title, this.NamedSearchItem);
+            }
+        }
 
         /// <summary>
         /// Gets or sets the products.
@@ -61,6 +86,7 @@ namespace Sitecore.Reference.Storefront.Models
             }
 
             this.DisplayName = searchResult.DisplayName;
+            this.NamedSearchItem = searchResult.NamedSearchItem;
             this.Products = new List<ProductViewModel>();
             foreach (var child in searchResult.SearchResultItems)
             {

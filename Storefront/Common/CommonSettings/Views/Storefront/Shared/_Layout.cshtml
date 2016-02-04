@@ -1,5 +1,5 @@
 ﻿@*//-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -10,7 +10,14 @@
 // and limitations under the License.
 // -------------------------------------------------------------------------------------------*@
 
+@using Sitecore.Reference.Storefront;
 @using Sitecore.Reference.Storefront.Managers;
+
+@{
+    var siteContext = CommerceTypeLoader.CreateInstance<ISiteContext>();
+    bool isCategory = siteContext.IsCategory;
+    var catalogItem = siteContext.CurrentCatalogItem;
+}
 
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -42,6 +49,15 @@
     <![endif]-->
 </head>
 <body>
+    <script type="text/javascript">
+        var currentCategory;
+
+        @if (isCategory && catalogItem != null)
+        {
+            @:currentCategory = "@catalogItem.ID.ToString()";
+        }
+    </script>
+
     @Html.Sitecore().AnalyticsVisitorIdentification()
 
     <form id="_CRSFform" action="#" method="post">

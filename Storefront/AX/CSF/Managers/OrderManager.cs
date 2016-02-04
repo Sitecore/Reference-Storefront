@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="OrderManager.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>The manager class responsible for encapsulating the order business logic for the site.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -30,6 +30,7 @@ namespace Sitecore.Reference.Storefront.Managers
     using System.Linq;
     using WebGrease.Css.Extensions;
     using Sitecore.Commerce.Connect.CommerceServer;
+    using Sitecore.Commerce.Connect.CommerceServer.Orders;
     using Sitecore.Commerce.Services;
 
     /// <summary>
@@ -95,7 +96,7 @@ namespace Sitecore.Reference.Storefront.Managers
 
             if (cart.Lines.Count == 0)
             {
-                result.SystemMessages.Add(new SystemMessage { Message = StorefrontManager.GetSystemMessage("SubmitOrderHasEmptyCart") });
+                result.SystemMessages.Add(new SystemMessage { Message = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.SubmitOrderHasEmptyCart) });
                 return new ManagerResponse<SubmitVisitorOrderResult, CommerceOrder>(result, null);
             }
 
@@ -143,17 +144,17 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <returns>
         /// The manager response where the available states are returned in the Result.
         /// </returns>
-        public ManagerResponse<GetAvailableStatesResult, Dictionary<string, string>> GetAvailableStates([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext, [NotNull] string countryCode)
+        public ManagerResponse<GetAvailableRegionsResult, Dictionary<string, string>> GetAvailableStates([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext, [NotNull] string countryCode)
         {
             Assert.ArgumentNotNull(storefront, "storefront");
             Assert.ArgumentNotNull(visitorContext, "visitorContext");
             Assert.ArgumentNotNullOrEmpty(countryCode, "countryCode");
 
-            var request = new GetAvailableStatesRequest(countryCode);
-            var result = ((CommerceOrderServiceProvider)this.OrderServiceProvider).GetAvailableStates(request);
+            var request = new GetAvailableRegionsRequest(countryCode);
+            var result = ((CommerceOrderServiceProvider)this.OrderServiceProvider).GetAvailableRegions(request);
 
             Helpers.LogSystemMessages(result.SystemMessages, result);
-            return new ManagerResponse<GetAvailableStatesResult, Dictionary<string, string>>(result, result.AvailableStates);
+            return new ManagerResponse<GetAvailableRegionsResult, Dictionary<string, string>>(result, new Dictionary<string, string>(result.AvailableRegions));
         }
 
         /// <summary>
@@ -211,7 +212,7 @@ namespace Sitecore.Reference.Storefront.Managers
             var result = ((CommerceOrderServiceProvider)this.OrderServiceProvider).GetAvailableCountries(request);
 
             Helpers.LogSystemMessages(result.SystemMessages, result);
-            return new ManagerResponse<GetAvailableCountriesResult, Dictionary<string, string>>(result, result.AvailableCountries);
+            return new ManagerResponse<GetAvailableCountriesResult, Dictionary<string, string>>(result, new Dictionary<string, string>(result.AvailableCountries));
         }
     }
 }

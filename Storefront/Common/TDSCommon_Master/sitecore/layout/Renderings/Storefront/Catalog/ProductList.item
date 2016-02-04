@@ -24,6 +24,34 @@ content-length: 8
 
 Category
 ----field----
+field: {3D08DB46-2267-41B0-BC52-BE69FD618633}
+name: Cacheable
+key: cacheable
+content-length: 1
+
+1
+----field----
+field: {F3E7E552-D7C8-469B-A150-69E4E14AB35C}
+name: ClearOnIndexUpdate
+key: clearonindexupdate
+content-length: 1
+
+1
+----field----
+field: {11490DA4-BBC2-4397-8DF2-6DB2EF445081}
+name: VaryByUrlPath
+key: varybyurlpath
+content-length: 1
+
+1
+----field----
+field: {C81ED375-7C73-4815-8EA5-8CCFC4056929}
+name: VaryByCurrency
+key: varybycurrency
+content-length: 1
+
+1
+----field----
 field: {308E88F5-CD6E-4F8F-BAFE-95A47DEDEFDC}
 name: Editable
 key: editable
@@ -40,7 +68,7 @@ content-length: 58
 ----version----
 language: en
 version: 1
-revision: 26e52f65-1f87-4558-ac4a-fdab138dc3b3
+revision: 4ff99fa4-fd97-440f-ae83-dfd043938dfa
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -55,14 +83,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-26e52f65-1f87-4558-ac4a-fdab138dc3b3
+4ff99fa4-fd97-440f-ae83-dfd043938dfa
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
-content-length: 34
+content-length: 16
 
-20141107T031032:635509266323406290
+20151004T064900Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

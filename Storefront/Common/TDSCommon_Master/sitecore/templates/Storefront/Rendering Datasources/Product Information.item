@@ -13,9 +13,9 @@ templatekey: Template
 field: {12C33F3F-86C5-43A5-AEB4-5598CEC45116}
 name: __Base template
 key: __base template
-content-length: 38
+content-length: 77
 
-{1930BBEB-7805-471A-A3BE-4858AC7CF696}
+{1930BBEB-7805-471A-A3BE-4858AC7CF696}|{41E220D2-6345-4488-8B27-3E68E5D92BAF}
 ----field----
 field: {F7D48A55-2158-4F02-9356-756654404F73}
 name: __Standard values
@@ -33,7 +33,7 @@ People/32x32/cube_yellow_edit.png
 ----version----
 language: en
 version: 1
-revision: 87fe33f4-837d-4408-b5be-0b8dad9d9933
+revision: 7f379aac-f80e-4921-afa7-acf86ee0d29d
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -55,14 +55,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-87fe33f4-837d-4408-b5be-0b8dad9d9933
+7f379aac-f80e-4921-afa7-acf86ee0d29d
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
-content-length: 34
+content-length: 16
 
-20141106T065553:635508537537682145
+20150915T082655Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

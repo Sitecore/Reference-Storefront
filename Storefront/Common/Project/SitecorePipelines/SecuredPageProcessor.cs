@@ -1,11 +1,11 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="SecuredPageProcessor.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Defines the Sitecore httpBeginRequest processor responsible for redirecting 
 // Secured Pages to HTTPS.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -20,6 +20,7 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
 {
     using Sitecore.Data.Managers;
     using Sitecore.Pipelines;
+    using Sitecore.Reference.Storefront.Managers;
     using System.Web;
 
     /// <summary>
@@ -33,18 +34,14 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
         /// <param name="args">The arguments.</param>
         public virtual void Process(PipelineArgs args)
         {
-            if (Sitecore.Context.Item != null)
+            if (Sitecore.Context.Item != null && StorefrontManager.EnforceHttps)
             {
-                var template = TemplateManager.GetTemplate(Sitecore.Context.Item);
-                if (template != null)
+                if (Sitecore.Context.Item.ItemType() == StorefrontConstants.ItemTypes.SecuredPage)
                 {
-                    if (template.DescendsFromOrEquals(StorefrontConstants.KnownTemplateItemIds.SecuredPage))
+                    if (!HttpContext.Current.Request.IsSecureConnection)
                     {
-                        if (!HttpContext.Current.Request.IsSecureConnection)
-                        {
-                            string url = HttpContext.Current.Request.Url.ToString().Replace("http://", "https://");
-                            HttpContext.Current.Response.Redirect(url, true);
-                        }
+                        string url = HttpContext.Current.Request.Url.ToString().Replace("http://", "https://");
+                        HttpContext.Current.Response.Redirect(url, true);
                     }
                 }
             }

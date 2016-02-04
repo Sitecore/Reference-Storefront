@@ -1,10 +1,10 @@
 ﻿//---------------------------------------------------------------------
 // <copyright file="CatalogUrlManager.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>The CatalogUrlManager class</summary>
 //---------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -25,17 +25,17 @@ namespace Sitecore.Reference.Storefront
     using Sitecore.Diagnostics;
     using System;
     using System.Text;
+    using System.Globalization;
 
     /// <summary>
     /// Helper class used to build product and category links
     /// </summary>
     public static class CatalogUrlManager
     {
-        private const string UrlTokenDelimiter = "_";
-        private const string EncodedDelimiter = "[[_]]";
-
-        private static string[] invalidPathCharacters = new string[] { "<", ">", "*", "%", "&", ":", "\\", "?", ".", "\"", " " };
-        private static Lazy<ICommerceSearchManager> searchManagerLoader = new Lazy<ICommerceSearchManager>(() => CommerceTypeLoader.CreateInstance<ICommerceSearchManager>());
+        private static string _urlTokenDelimiter = Sitecore.Configuration.Settings.GetSetting("Storefront.UrlTokenDelimiter", "_");
+        private static string _encodedDelimiter = Sitecore.Configuration.Settings.GetSetting("Storefront.EncodedDelimiter", "[[_]]");
+        private static string[] _invalidPathCharacters = new string[] { "<", ">", "*", "%", "&", ":", "\\", "?", ".", "\"", " " };
+        private static Lazy<ICommerceSearchManager> _searchManagerLoader = new Lazy<ICommerceSearchManager>(() => CommerceTypeLoader.CreateInstance<ICommerceSearchManager>());
 
         private static bool IncludeLanguage
         {
@@ -51,6 +51,23 @@ namespace Sitecore.Reference.Storefront
 
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Builds the product catalog link (category and product).
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns>
+        /// The category or product link.
+        /// </returns>
+        public static string BuildProductCatalogLink(Item item)
+        {
+            var productCatalogItem = StorefrontManager.CurrentStorefront.HomeItem.Axes.GetChild(ProductItemResolver.NavigationItemName);
+            string categoryDatasource = productCatalogItem["CategoryDatasource"];
+            Assert.IsNotNullOrEmpty(categoryDatasource, "Product Catalog item missing CategoryDatasource.");
+            string parentPath = item.Paths.FullPath;
+            string path = parentPath.Replace(categoryDatasource, string.Empty);
+            return string.Format(CultureInfo.InvariantCulture, "/{0}{1}", ProductItemResolver.NavigationItemName, path);
         }
 
         /// <summary>
@@ -144,7 +161,7 @@ namespace Sitecore.Reference.Storefront
                 if (!string.IsNullOrEmpty(itemFriendlyName))
                 {
                     route.Append(EncodeUrlToken(itemFriendlyName, true));
-                    route.Append(UrlTokenDelimiter);
+                    route.Append(_urlTokenDelimiter);
                 }
 
                 route.Append(EncodeUrlToken(itemName, false));
@@ -295,7 +312,7 @@ namespace Sitecore.Reference.Storefront
                 if (!string.IsNullOrEmpty(categoryName))
                 {
                     route.Append(EncodeUrlToken(categoryName, true));
-                    route.Append(UrlTokenDelimiter);
+                    route.Append(_urlTokenDelimiter);
                 }
 
                 route.Append(EncodeUrlToken(categoryId, false));
@@ -307,7 +324,7 @@ namespace Sitecore.Reference.Storefront
                     if (!string.IsNullOrEmpty(productName))
                     {
                         route.Append(EncodeUrlToken(productName, true));
-                        route.Append(UrlTokenDelimiter);
+                        route.Append(_urlTokenDelimiter);
                     }
 
                     route.Append(EncodeUrlToken(productId, false));
@@ -319,7 +336,7 @@ namespace Sitecore.Reference.Storefront
                         if (!string.IsNullOrEmpty(variantName))
                         {
                             route.Append(EncodeUrlToken(variantName, true));
-                            route.Append(UrlTokenDelimiter);
+                            route.Append(_urlTokenDelimiter);
                         }
 
                         route.Append(EncodeUrlToken(variantId, false));
@@ -391,9 +408,9 @@ namespace Sitecore.Reference.Storefront
         public static string ExtractItemId(string folder)
         {
             var itemName = folder;
-            if (folder != null && folder.Contains(UrlTokenDelimiter))
+            if (folder != null && folder.Contains(_urlTokenDelimiter))
             {
-                var tokens = folder.Split(new[] { UrlTokenDelimiter }, StringSplitOptions.None);
+                var tokens = folder.Split(new[] { _urlTokenDelimiter }, StringSplitOptions.None);
                 itemName = tokens[tokens.Length - 1];
             }
 
@@ -408,9 +425,9 @@ namespace Sitecore.Reference.Storefront
         public static string ExtractItemName(string folder)
         {
             var itemName = string.Empty;
-            if (folder != null && folder.Contains(UrlTokenDelimiter))
+            if (folder != null && folder.Contains(_urlTokenDelimiter))
             {
-                var tokens = folder.Split(new[] { UrlTokenDelimiter }, StringSplitOptions.None);
+                var tokens = folder.Split(new[] { _urlTokenDelimiter }, StringSplitOptions.None);
                 itemName = tokens[tokens.Length - 2];
             }
 
@@ -463,7 +480,7 @@ namespace Sitecore.Reference.Storefront
         {
             Assert.ArgumentNotNull(item, "item");
 
-            if (searchManagerLoader.Value.IsItemCatalog(item) || searchManagerLoader.Value.IsItemVirtualCatalog(item))
+            if (_searchManagerLoader.Value.IsItemCatalog(item) || _searchManagerLoader.Value.IsItemVirtualCatalog(item))
             {
                 itemName = ProductItemResolver.ProductUrlRoute;
                 itemFriendlyName = string.Empty;
@@ -485,13 +502,13 @@ namespace Sitecore.Reference.Storefront
             {
                 if (removeInvalidPathCharacters)
                 {
-                    foreach (var character in invalidPathCharacters)
+                    foreach (var character in _invalidPathCharacters)
                     {
                         urlToken = urlToken.Replace(character, string.Empty);
                     }
                 }
 
-                urlToken = Uri.EscapeDataString(urlToken).Replace(UrlTokenDelimiter, EncodedDelimiter);
+                urlToken = Uri.EscapeDataString(urlToken).Replace(_urlTokenDelimiter, _encodedDelimiter);
             }
 
             return urlToken;
@@ -501,7 +518,7 @@ namespace Sitecore.Reference.Storefront
         {
             if (!string.IsNullOrEmpty(urlToken))
             {
-                urlToken = Uri.UnescapeDataString(urlToken).Replace(EncodedDelimiter, UrlTokenDelimiter);
+                urlToken = Uri.UnescapeDataString(urlToken).Replace(_encodedDelimiter, _urlTokenDelimiter);
             }
 
             return urlToken;

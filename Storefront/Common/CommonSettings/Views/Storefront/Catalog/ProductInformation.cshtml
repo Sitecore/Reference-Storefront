@@ -1,17 +1,19 @@
 ﻿@*//-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
-// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
-// except in compliance with the License. You may obtain a copy of the License at
-//       http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software distributed under the
-// License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
-// either express or implied. See the License for the specific language governing permissions
-// and limitations under the License.
-// -------------------------------------------------------------------------------------------*@
+    // Copyright 2016 Sitecore Corporation A/S
+    // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+    // except in compliance with the License. You may obtain a copy of the License at
+    //       http://www.apache.org/licenses/LICENSE-2.0
+    //
+    // Unless required by applicable law or agreed to in writing, software distributed under the
+    // License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+    // either express or implied. See the License for the specific language governing permissions
+    // and limitations under the License.
+    // -------------------------------------------------------------------------------------------*@
 
 @using Sitecore.Commerce.Entities.Inventory
 @using Sitecore.Reference.Storefront.Managers
+@using Sitecore.Reference.Storefront
+@using Sitecore.Reference.Storefront.Models
 @model ProductViewModel
 @{
     if (Model == null)
@@ -20,6 +22,7 @@
     }
 
     var invalidVariantText = Html.Sitecore().Field("Invalid Variant", Html.Sitecore().CurrentItem);
+    var currencyCode = StorefrontManager.GetCustomerCurrency();
 }
 
 <div id="C11-ProductInformation">
@@ -82,12 +85,9 @@
                 / <span id="stockAvailabilityDate" data-bind="text: selectedStockInfo().availabilityDate"></span>
                 <!-- /ko -->
             </div>
-            @if (Sitecore.Context.User.IsAuthenticated)
-            {
-                <a id="signForStockNotification" data-toggle="modal" data-target="#signForNotificationModal" title="@Html.Sitecore().Field("Sign Up For Notification Tooltip", Model.Rendering.RenderingItem)" data-bind="visible: selectedStockInfo().isOutOfStock">
-                    @Html.Sitecore().Field("Sign Up For Notification Label", Model.Rendering.RenderingItem)
-                </a>
-            }
+            <a id="signForStockNotification" data-toggle="modal" data-target="#signForNotificationModal" title="@Html.Sitecore().CurrentItem["Sign Up For Notification Tooltip"]" data-bind="visible: selectedStockInfo().showSignUpForNotification">
+                @Html.Sitecore().Field("Sign Up For Notification Label", Model.Rendering.RenderingItem)
+            </a>
         </div>
     </div>
     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -101,7 +101,7 @@
                     <select class="form-control" name="Variant_Color" id="variantColor" onchange=" VariantSelectionChanged() ">
                         @foreach (var color in colors)
                         {
-                            <option value="@color.ProductColor">@color.ProductColor</option>
+                            <option value="@color.ProductColor.GetHashCode()">@color.ProductColor</option>
                         }
                     </select>
                 </div>
@@ -120,7 +120,7 @@
                     <select class="form-control" name="Variant_Size" id="variantSize" onchange="VariantSelectionChanged()">
                         @foreach (var size in sizes)
                         {
-                            <option value="@size.Size">@size.Size</option>
+                            <option value="@size.Size.GetHashCode()">@size.Size</option>
                         }
                     </select>
                 </div>
@@ -192,20 +192,26 @@
             string savingsMessage = string.Empty;
             if (variant.IsOnSale)
             {
-                savingsMessage = Html.Sitecore().Field("Save percent lead", Model.Rendering.RenderingItem) + " " + variant.SavingsPercentage + "%";
+                string percentLead = Html.Sitecore().CurrentRendering.Item["Save percent lead"];
+                savingsMessage = percentLead + " " + variant.SavingsPercentage + "%";
             }
 
-            @:AddVariantCombination('@variant.Size', '@variant.ProductColor', '@variant.Id', '@variant.ListPrice.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)', '@variant.AdjustedPrice.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)', @variant.IsOnSale.ToString().ToLower(), '@savingsMessage');
+            string sizeValue = string.IsNullOrWhiteSpace(variant.Size) ? string.Empty : variant.Size.GetHashCode().ToString();
+            string colorValue = string.IsNullOrWhiteSpace(variant.ProductColor) ? string.Empty : variant.ProductColor.GetHashCode().ToString();
+            
+            @:AddVariantCombination('@sizeValue', '@colorValue', '@variant.Id', '@variant.ListPrice.ToCurrency(currencyCode)', '@variant.AdjustedPrice.ToCurrency(currencyCode)', @variant.IsOnSale.ToString().ToLower(), '@savingsMessage');
                     }
-                }
+            }
     else
     {
         string savingsMessage = string.Empty;
         if (Model.IsOnSale)
         {
-            savingsMessage = Html.Sitecore().Field("Save percent lead", Model.Rendering.RenderingItem) + " " + Model.SavingsPercentage +"%";
+            string percentLead = Html.Sitecore().CurrentRendering.Item["Save percent lead"];
+            savingsMessage = percentLead + " " + Model.SavingsPercentage + "%";
         }
 
         @:priceInfoVM.switchInfo('@Model.ListPriceWithCurrency', '@Model.AdjustedPriceWithCurrency', @Model.IsOnSale.ToString().ToLower(), '@savingsMessage');
-                }
+     }
 </script>
+

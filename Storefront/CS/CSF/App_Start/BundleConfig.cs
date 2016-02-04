@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="BundleConfig.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Defines the BundleConfig class.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -30,7 +30,7 @@ namespace Sitecore.Reference.Storefront
         /// <param name="bundles">The bundles collection to add to</param>
         public static void RegisterBundles(BundleCollection bundles)
         {
-            BundleTable.EnableOptimizations = false;
+            //// BundleTable.EnableOptimizations = false;
 
             bundles.Add(new ScriptBundle("~/js/jquery").Include(
                         "~/Scripts/jquery-{version}.js", 
@@ -54,9 +54,6 @@ namespace Sitecore.Reference.Storefront
                         "~/Scripts/knockout-{version}.js",
                         "~/Scripts/knockout.validation-{version}.js"));                      
 
-            bundles.Add(new StyleBundle("~/styles/checkout").Include(
-               "~/Content/checkout.css"));
-
             bundles.Add(new StyleBundle("~/styles/storefront").Include(
                 "~/Content/Storefront/bootstrap.css",
                 "~/Content/Storefront/bootstrap-addins.css",
@@ -71,7 +68,6 @@ namespace Sitecore.Reference.Storefront
                 "~/Scripts/autoNumeric.js",
                 ////"~/Scripts/Storefront/knockout-3.2.0.debug.js",
                 "~/Scripts/Storefront/main.js",
-                "~/Scripts/Storefront/minicart.js",
                 "~/Scripts/Storefront/debug-knockout.js",
                 "~/Scripts/Storefront/ViewModels/errorsummary_VM.js",
                 "~/Scripts/Storefront/ViewModels/minicart_VM.js",

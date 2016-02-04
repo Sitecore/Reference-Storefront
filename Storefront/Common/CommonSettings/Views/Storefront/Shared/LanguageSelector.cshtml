@@ -1,5 +1,5 @@
 ﻿@*//-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -9,6 +9,8 @@
 // either express or implied. See the License for the specific language governing permissions
 // and limitations under the License.
 // -------------------------------------------------------------------------------------------*@
+
+@using Sitecore.Data.Managers;
 
 @{
     var languages = Sitecore.Context.Database.GetItem("/sitecore/System/Languages");
@@ -20,7 +22,7 @@
         <span class="glyphicon glyphicon-globe"></span>
         @if (currentLanguage != null)
         {
-            @currentLanguage.CultureInfo.DisplayName
+            @currentLanguage.GetDisplayName().Split(':')[1].TrimStart()
         }
     </a>
 
@@ -33,7 +35,9 @@
                 var lang = Sitecore.Data.Managers.LanguageManager.GetLanguage(language.Name.ToString()).CultureInfo.DisplayName;
                 if (lang != currentLanguage.CultureInfo.DisplayName)
                 {
-                    <li><a id="languageButton-@language.Name" href="#" onclick="SwitchToLanguage('@language.Name', '@currentLanguage.Name')">@lang</a></li>
+                    var locLanguage = Sitecore.Data.Managers.LanguageManager.GetLanguage(language.Name);
+                    var dispName = locLanguage.GetDisplayName().Split(':')[1].TrimStart();
+                    <li><a id="languageButton-@language.Name" href="#" onclick="SwitchToLanguage('@language.Name', '@currentLanguage.Name')">@dispName</a></li>
                 }
             }
         </ul>
@@ -45,7 +49,7 @@
     function SwitchToLanguage(language, currentLanguage) {
         var path = window.location.pathname.replace('/' + currentLanguage + '/', '');
         path = (path.charAt(0) === "/") ? path : "/" + path;
-        var newpath = window.location.protocol + '//' + window.location.hostname + "/" + language + path;
+        var newpath = window.location.protocol + '//' + window.location.hostname + "/" + language + path + window.location.search;
         window.location = newpath;
     }
 </script>

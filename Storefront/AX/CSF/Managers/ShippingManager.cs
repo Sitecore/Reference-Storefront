@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="ShippingManager.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>The manager class responsible for encapsulating the shipping logic for the site.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -92,18 +92,18 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <returns>
         /// The manager response where the shipping methods are returned in the Result.
         /// </returns>
-        public ManagerResponse<GetDeliveryMethodsResult, IReadOnlyCollection<ShippingMethod>> GetShippingMethods([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext, [NotNull] GetShippingMethodsInputModel inputModel)
+        public ManagerResponse<GetShippingMethodsResult, IReadOnlyCollection<ShippingMethod>> GetShippingMethods([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext, [NotNull] GetShippingMethodsInputModel inputModel)
         {
             Assert.ArgumentNotNull(storefront, "storefront");
             Assert.ArgumentNotNull(visitorContext, "visitorContext");
             Assert.ArgumentNotNull(inputModel, "inputModel");
 
-            GetDeliveryMethodsResult result = new GetDeliveryMethodsResult { Success = false };
+            GetShippingMethodsResult result = new GetShippingMethodsResult { Success = false };
             var cartResult = this.CartManager.GetCurrentCart(storefront, visitorContext);
             if (!cartResult.ServiceProviderResult.Success || cartResult.Result == null)
             {
                 result.SystemMessages.ToList().AddRange(cartResult.ServiceProviderResult.SystemMessages);
-                return new ManagerResponse<GetDeliveryMethodsResult, IReadOnlyCollection<ShippingMethod>>(result, null);
+                return new ManagerResponse<GetShippingMethodsResult, IReadOnlyCollection<ShippingMethod>>(result, null);
             }
 
             var cart = cartResult.Result;
@@ -117,8 +117,8 @@ namespace Sitecore.Reference.Storefront.Managers
                     Lines = (inputModel.Lines != null) ? inputModel.Lines.ToCommerceCartLines() : null 
                 };
 
-            result = this.ShippingServiceProvider.GetShippingMethods<GetShippingMethodsRequest, GetDeliveryMethodsResult>(request);
-            return new ManagerResponse<GetDeliveryMethodsResult, IReadOnlyCollection<ShippingMethod>>(result, result.ShippingMethods);
+            result = this.ShippingServiceProvider.GetShippingMethods<GetShippingMethodsRequest, GetShippingMethodsResult>(request);
+            return new ManagerResponse<GetShippingMethodsResult, IReadOnlyCollection<ShippingMethod>>(result, result.ShippingMethods);
         }
     }
 }

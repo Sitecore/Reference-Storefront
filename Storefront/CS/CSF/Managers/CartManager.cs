@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="CartManager.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>The manager class responsible for encapsulating the cart business logic for the site.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -36,7 +36,6 @@ namespace Sitecore.Reference.Storefront.Managers
     using Sitecore.Commerce.Connect.CommerceServer;
     using Sitecore.Commerce.Services;
     using Sitecore.Globalization;
-    using RefSFModels = Sitecore.Reference.Storefront.Connect.Models;
     using System.Globalization;
     using Sitecore.Reference.Storefront.Extensions;
 
@@ -89,9 +88,21 @@ namespace Sitecore.Reference.Storefront.Managers
         /// </returns>
         public virtual ManagerResponse<CartResult, CommerceCart> GetCurrentCart([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext, bool refresh = false)
         {
-            var cartCache = CommerceTypeLoader.CreateInstance<CartCacheHelper>();
-            string customerId = visitorContext.GetCustomerId();
+            return this.GetCurrentCart(storefront, visitorContext.GetCustomerId(), refresh);
+        }
 
+        /// <summary>
+        /// Returns the current user cart.
+        /// </summary>
+        /// <param name="storefront">The storefront.</param>
+        /// <param name="customerId">The customer identifier.</param>
+        /// <param name="refresh">if set to <c>true</c> [refresh].</param>
+        /// <returns>
+        /// The manager response where the modified CommerceCart is returned in the Result.
+        /// </returns>
+        public virtual ManagerResponse<CartResult, CommerceCart> GetCurrentCart([NotNull] CommerceStorefront storefront, [NotNull] string customerId, bool refresh = false)
+        {
+            var cartCache = CommerceTypeLoader.CreateInstance<CartCacheHelper>();
             if (refresh)
             {
                 cartCache.InvalidateCartCache(customerId);
@@ -105,9 +116,7 @@ namespace Sitecore.Reference.Storefront.Managers
                 return new ManagerResponse<CartResult, CommerceCart>(result, cart);
             }
 
-            // With cart caching enabled (via Shared Sessions) it is now ok to refresh the cart (i.e. run the CS pipelines) without causing
-            // any performance problems.  This is required to ensure we get the cart images after cart is invalidated by the update line item.
-            CartResult cartResult = this.LoadCartByName(storefront.ShopName, storefront.DefaultCartName, visitorContext.UserId, true);
+            CartResult cartResult = this.LoadCartByName(storefront.ShopName, storefront.DefaultCartName, customerId, refresh);
             if (cartResult.Success && cartResult.Cart != null)
             {
                 cart = cartResult.Cart as CommerceCart;
@@ -116,13 +125,49 @@ namespace Sitecore.Reference.Storefront.Managers
             }
             else
             {
-                var message = StorefrontManager.GetSystemMessage("CartNotFoundError");
+                var message = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.CartNotFoundError);
                 cartResult.SystemMessages.Add(new SystemMessage { Message = message });
             }
 
             this.AddBasketErrorsToResult(cartResult.Cart as CommerceCart, cartResult);
 
             return new ManagerResponse<CartResult, CommerceCart>(cartResult, cart);
+        }
+
+        /// <summary>
+        /// Updates the cart currency.
+        /// </summary>
+        /// <param name="storefront">The storefront.</param>
+        /// <param name="visitorContext">The visitor context.</param>
+        /// <param name="currencyCode">The currency code.</param>
+        /// <returns>
+        /// The manager response.
+        /// </returns>
+        public virtual ManagerResponse<CartResult, bool> UpdateCartCurrency([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext, [NotNull] string currencyCode)
+        {
+            Assert.ArgumentNotNull(storefront, "storefront");
+            Assert.ArgumentNotNull(visitorContext, "visitorContext");
+            Assert.ArgumentNotNullOrEmpty(currencyCode, "currencyCode");
+
+            var result = this.GetCurrentCart(storefront, visitorContext);
+            if (!result.ServiceProviderResult.Success)
+            {
+                return new ManagerResponse<CartResult, bool>(new CartResult { Success = false }, false);
+            }
+
+            var cart = result.Result;
+            var changes = new CommerceCart() { CurrencyCode = currencyCode };
+
+            var updateCartResult = this.UpdateCart(storefront, visitorContext, cart, changes);
+            if (updateCartResult.ServiceProviderResult.Success)
+            {
+                var cartCache = CommerceTypeLoader.CreateInstance<CartCacheHelper>();
+                string customerId = visitorContext.GetCustomerId();
+
+                cartCache.InvalidateCartCache(customerId);
+            }
+
+            return new ManagerResponse<CartResult, bool>(updateCartResult.ServiceProviderResult, updateCartResult.ServiceProviderResult.Success);
         }
 
         /// <summary>
@@ -141,7 +186,7 @@ namespace Sitecore.Reference.Storefront.Managers
             var cartResult = this.LoadCartByName(storefront.ShopName, storefront.DefaultCartName, visitorContext.UserId, false);
             if (!cartResult.Success || cartResult.Cart == null)
             {
-                var message = StorefrontManager.GetSystemMessage("CartNotFoundError");
+                var message = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.CartNotFoundError);
                 cartResult.SystemMessages.Add(new SystemMessage { Message = message });
                 return new ManagerResponse<CartResult, bool>(cartResult, cartResult.Success);
             }
@@ -206,7 +251,7 @@ namespace Sitecore.Reference.Storefront.Managers
             var cartResult = this.LoadCartByName(storefront.ShopName, storefront.DefaultCartName, visitorContext.UserId, false);
             if (!cartResult.Success || cartResult.Cart == null)
             {
-                var message = StorefrontManager.GetSystemMessage("CartNotFoundError");
+                var message = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.CartNotFoundError);
                 cartResult.SystemMessages.Add(new SystemMessage { Message = message });
                 return new ManagerResponse<CartResult, CommerceCart>(cartResult, cartResult.Cart as CommerceCart);
             }
@@ -252,7 +297,7 @@ namespace Sitecore.Reference.Storefront.Managers
             var cartResult = this.LoadCartByName(storefront.ShopName, storefront.DefaultCartName, visitorContext.UserId);
             if (!cartResult.Success || cartResult.Cart == null)
             {
-                var message = StorefrontManager.GetSystemMessage("CartNotFoundError");
+                var message = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.CartNotFoundError);
                 cartResult.SystemMessages.Add(new SystemMessage { Message = message });
                 return new ManagerResponse<CartResult, CommerceCart>(cartResult, cartResult.Cart as CommerceCart);
             }
@@ -305,7 +350,7 @@ namespace Sitecore.Reference.Storefront.Managers
             var cartResult = this.LoadCartByName(storefront.ShopName, storefront.DefaultCartName, visitorContext.UserId);
             if (!cartResult.Success || cartResult.Cart == null)
             {
-                var message = StorefrontManager.GetSystemMessage("CartNotFoundError");
+                var message = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.CartNotFoundError);
                 cartResult.SystemMessages.Add(new SystemMessage { Message = message });
                 return new ManagerResponse<AddPromoCodeResult, CommerceCart>(result, cartResult.Cart as CommerceCart);
             }
@@ -345,7 +390,7 @@ namespace Sitecore.Reference.Storefront.Managers
             var cartResult = this.LoadCartByName(storefront.ShopName, storefront.DefaultCartName, visitorContext.UserId);
             if (!cartResult.Success || cartResult.Cart == null)
             {
-                var message = StorefrontManager.GetSystemMessage("CartNotFoundError");
+                var message = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.CartNotFoundError);
                 cartResult.SystemMessages.Add(new SystemMessage { Message = message });
                 return new ManagerResponse<RemovePromoCodeResult, CommerceCart>(result, cartResult.Cart as CommerceCart);
             }
@@ -410,7 +455,7 @@ namespace Sitecore.Reference.Storefront.Managers
 
             var internalShippingList = inputModel.ShippingMethods.ToShippingInfoList();
             var orderPreferenceType = InputModelExtension.GetShippingOptionType(inputModel.OrderShippingPreferenceType);
-            if (orderPreferenceType != RefSFModels.ShippingOptionType.DeliverItemsIndividually)
+            if (orderPreferenceType != ShippingOptionType.DeliverItemsIndividually)
             {
                 foreach (var shipping in internalShippingList)
                 {
@@ -519,7 +564,7 @@ namespace Sitecore.Reference.Storefront.Managers
             var cartResult = this.LoadCartByName(storefront.ShopName, storefront.DefaultCartName, userId, true);
             if (!cartResult.Success || cartResult.Cart == null)
             {
-                var message = StorefrontManager.GetSystemMessage("CartNotFoundError");
+                var message = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.CartNotFoundError);
                 cartResult.SystemMessages.Add(new SystemMessage { Message = message });
                 return new ManagerResponse<CartResult, CommerceCart>(cartResult, cartResult.Cart as CommerceCart);
             }
@@ -529,7 +574,10 @@ namespace Sitecore.Reference.Storefront.Managers
 
             if (userId != anonymousVisitorId)
             {
-                if (anonymousVisitorCart != null && anonymousVisitorCart.Lines.Any())
+                var anonymousCartHasPromocodes = (anonymousVisitorCart is CommerceCart) &&
+                    ((CommerceCart)anonymousVisitorCart).OrderForms.Any(of => of.PromoCodes.Any());
+
+                if (anonymousVisitorCart != null && (anonymousVisitorCart.Lines.Any() || anonymousCartHasPromocodes))
                 {
                     if ((currentCart.ShopName == anonymousVisitorCart.ShopName) || (currentCart.ExternalId != anonymousVisitorCart.ExternalId))
                     {
@@ -774,6 +822,7 @@ namespace Sitecore.Reference.Storefront.Managers
         {
             var request = new LoadCartByNameRequest(shopName, cartName, userName);
             request.RefreshCart(refreshCart);
+
             var result = this.CartServiceProvider.LoadCart(request);
 
             Helpers.LogSystemMessages(result.SystemMessages, result);
@@ -937,9 +986,9 @@ namespace Sitecore.Reference.Storefront.Managers
         /// </summary>
         /// <param name="inputModelList">The input model list.</param>
         /// <returns>A list of email parties if the email shipping method has been specified.</returns>
-        protected virtual List<RefSFModels.EmailParty> GetEmailAddressPartiesFromShippingMethods(List<ShippingMethodInputModelItem> inputModelList)
+        protected virtual List<EmailParty> GetEmailAddressPartiesFromShippingMethods(List<ShippingMethodInputModelItem> inputModelList)
         {
-            List<RefSFModels.EmailParty> emailPartyList = null;
+            List<EmailParty> emailPartyList = null;
 
             if (inputModelList != null && inputModelList.Any())
             {
@@ -950,10 +999,10 @@ namespace Sitecore.Reference.Storefront.Managers
                     {
                         if (emailPartyList == null)
                         {
-                            emailPartyList = new List<RefSFModels.EmailParty>();
+                            emailPartyList = new List<EmailParty>();
                         }
 
-                        RefSFModels.EmailParty party = new RefSFModels.EmailParty();
+                        EmailParty party = new EmailParty();
 
                         party.ExternalId = Guid.NewGuid().ToString();
                         party.Name = string.Format(CultureInfo.InvariantCulture, "{0}{1}", CommerceServerStorefrontConstants.CartConstants.EmailAddressNamePrefix, i);
@@ -984,7 +1033,7 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <returns>
         /// The manager response with a cart in the result.
         /// </returns>
-        protected virtual AddPartiesResult SetShippingAddresses(CommerceStorefront storefront, VisitorContext visitorContext, CommerceCart cart, List<PartyInputModelItem> shippingAddresses, List<RefSFModels.EmailParty> emailPartyList)
+        protected virtual AddPartiesResult SetShippingAddresses(CommerceStorefront storefront, VisitorContext visitorContext, CommerceCart cart, List<PartyInputModelItem> shippingAddresses, List<EmailParty> emailPartyList)
         {
             var errorResult = new AddPartiesResult { Success = false };
 
@@ -1032,9 +1081,9 @@ namespace Sitecore.Reference.Storefront.Managers
                         partyList.Add(party);
                     }
                 }
-                else if (party is RefSFModels.EmailParty)
+                else if (party is EmailParty)
                 {
-                    if (((RefSFModels.EmailParty)party).Name.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+                    if (((EmailParty)party).Name.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
                     {
                         partyList.Add(party);
                     }

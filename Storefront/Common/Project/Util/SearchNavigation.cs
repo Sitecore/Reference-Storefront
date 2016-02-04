@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="SearchNavigation.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Defines the SearchNavigation class.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -33,6 +33,9 @@ namespace Sitecore.Reference.Storefront
     using System.Linq.Expressions;
     using Sitecore.Commerce.Entities.Inventory;
     using System.Collections.Generic;
+    using Sitecore.Reference.Storefront.Models;
+    using Sitecore.Reference.Storefront.Managers;
+    using Sitecore.Reference.Storefront.Search;
 
     /// <summary>
     /// Static helper class to aid with search for navigation
@@ -132,9 +135,10 @@ namespace Sitecore.Reference.Storefront
                     })
                     .Take(1);
 
-                if (categoryQuery.Any())
+                var foundSearchItem = categoryQuery.FirstOrDefault();
+                if (foundSearchItem != null)
                 {
-                    result = categoryQuery.First().GetItem();
+                    result = foundSearchItem.GetItem();
                 }
             }
 
@@ -161,7 +165,7 @@ namespace Sitecore.Reference.Storefront
                     .Where(item => item.CommerceSearchItemType == CommerceSearchResultItemType.Product)
                     .Where(item => item.CatalogName == catalogName)
                     .Where(item => item.Language == CurrentLanguageName)
-                    .Where(item => item.Name == productId)
+                    .Where(item => item.CatalogItemId == productId.ToLowerInvariant())
                     .Select(p => new CommerceProductSearchResultItem()
                     {
                         ItemId = p.ItemId,
@@ -169,9 +173,10 @@ namespace Sitecore.Reference.Storefront
                     })
                     .Take(1);
 
-                if (productQuery.Any())
+                var foundSearchItem = productQuery.FirstOrDefault();
+                if (foundSearchItem != null)
                 {
-                    result = productQuery.First().GetItem();
+                    result = foundSearchItem.GetItem();
                 }
             }
 
@@ -318,7 +323,7 @@ namespace Sitecore.Reference.Storefront
             using (var context = searchIndex.CreateSearchContext())
             {
                 var searchResults = context.GetQueryable<CommerceProductSearchResultItem>()
-                    .Where(item => item.Content.Contains(keyword))
+                    .Where(item => item.Name.Equals(keyword) || item["_displayname"].Equals(keyword) || item.Content.Contains(keyword))
                     .Where(item => item.CommerceSearchItemType == CommerceSearchResultItemType.Product || item.CommerceSearchItemType == CommerceSearchResultItemType.Category)
                     .Where(item => item.CatalogName == catalogName)
                     .Where(item => item.Language == CurrentLanguageName)
@@ -377,9 +382,9 @@ namespace Sitecore.Reference.Storefront
         /// <param name="categoryId">The parent category id</param>
         /// <param name="searchOptions">The paging options for this query</param>
         /// <returns>A list of child products</returns>
-        public static SearchResponse GetCategoryChildCategories(ID categoryId, CommerceSearchOptions searchOptions)
+        public static CategorySearchResults GetCategoryChildCategories(ID categoryId, CommerceSearchOptions searchOptions)
         {
-            SearchResponse response = new SearchResponse();
+            List<Item> childCategoryList = new List<Item>();
 
             var searchManager = CommerceTypeLoader.CreateInstance<ICommerceSearchManager>();
             var searchIndex = searchManager.GetIndex();
@@ -406,78 +411,128 @@ namespace Sitecore.Reference.Storefront
                             var childCategoryItem = Sitecore.Context.Database.GetItem(ID.Parse(childCategoryId));
                             if (childCategoryItem != null)
                             {
-                                response.ResponseItems.Add(childCategoryItem);
+                                childCategoryList.Add(childCategoryItem);
                             }
                         }
                     }
                 }
             }
 
-            return response;
+            return new CategorySearchResults(childCategoryList, childCategoryList.Count, 1, 1, new List<FacetCategory>());
         }
 
         /// <summary>
         /// Gets the index of the product stock status from.
         /// </summary>
-        /// <param name="productId">The product identifier.</param>
-        /// <returns>A product stcok status</returns>
-        public static StockStatus GetProductStockStatusFromIndex(string productId)
+        /// <param name="viewModelList">The view model list.</param>
+        public static void GetProductStockStatusFromIndex(List<ProductViewModel> viewModelList)
         {
+            if (viewModelList == null || viewModelList.Count == 0)
+            {
+                return;
+            }
+
             var searchManager = CommerceTypeLoader.CreateInstance<ICommerceSearchManager>();
             var searchIndex = searchManager.GetIndex();
 
             using (var context = searchIndex.CreateSearchContext())
             {
-                var predicate = PredicateBuilder.Create<SearchResultItem>(item => item[StorefrontConstants.KnownIndexFields.InStockLocations].Contains("Default"));
+                var predicate = PredicateBuilder.Create<InventorySearchResultItem>(item => item[StorefrontConstants.KnownIndexFields.InStockLocations].Contains("Default"));
                 predicate = predicate.Or(item => item[StorefrontConstants.KnownIndexFields.OutOfStockLocations].Contains("Default"));
                 predicate = predicate.Or(item => item[StorefrontConstants.KnownIndexFields.OrderableLocations].Contains("Default"));
                 predicate = predicate.Or(item => item[StorefrontConstants.KnownIndexFields.PreOrderable].Contains("0"));
 
-                var searchResults = context.GetQueryable<CommerceProductSearchResultItem>()
+                var searchResults = context.GetQueryable<InventorySearchResultItem>()
                     .Where(item => item.CommerceSearchItemType == CommerceSearchResultItemType.Product)
                     .Where(item => item.Language == SearchNavigation.CurrentLanguageName)
-                    .Where(item => item.Name == productId)
-                    .Where(predicate);
+                    .Where(BuildProductIdListPredicate(viewModelList))
+                    .Where(predicate)
+                    .Select(x => new { x.OutOfStockLocations, x.OrderableLocations, x.PreOrderable, x.InStockLocations, x.Fields, x.Name });
 
                 var results = searchResults.GetResults();
-                var result = results.FirstOrDefault();
-                if (results.TotalSearchResults == 0 || result == null)
+                if (results.TotalSearchResults == 0)
                 {
-                    return null;
+                    return;
                 }
 
-                var resultDocument = result.Document;
-                if (resultDocument == null)
+                foreach (var result in results)
                 {
-                    return null;
-                }
+                    var resultDocument = result.Document;
+                    if (resultDocument == null)
+                    {
+                        continue;
+                    }
 
-                var isInStock = resultDocument.Fields.ContainsKey(StorefrontConstants.KnownIndexFields.InStockLocations)
-                                && resultDocument.Fields[StorefrontConstants.KnownIndexFields.InStockLocations] != null;
-                if (isInStock)
-                {
-                    return StockStatus.InStock;
-                }
+                    StockStatus status = null;
 
-                var isPreOrderable = resultDocument.Fields.ContainsKey(StorefrontConstants.KnownIndexFields.PreOrderable)
-                                     && result.Document[StorefrontConstants.KnownIndexFields.PreOrderable] != null
-                                     && result.Document[StorefrontConstants.KnownIndexFields.PreOrderable].Equals("1", StringComparison.OrdinalIgnoreCase);
-                if (isPreOrderable)
-                {
-                    return StockStatus.PreOrderable;
-                }
+                    var isInStock = resultDocument.Fields.ContainsKey(StorefrontConstants.KnownIndexFields.InStockLocations)
+                                    && resultDocument.Fields[StorefrontConstants.KnownIndexFields.InStockLocations] != null;
+                    if (isInStock)
+                    {
+                        status = StockStatus.InStock;
+                    }
+                    else
+                    {
+                        var isPreOrderable = resultDocument.Fields.ContainsKey(StorefrontConstants.KnownIndexFields.PreOrderable)
+                                             && result.Document.PreOrderable != null
+                                             && (result.Document.PreOrderable.Equals("1", StringComparison.OrdinalIgnoreCase)
+                                                || result.Document.PreOrderable.Equals("true", StringComparison.OrdinalIgnoreCase));
+                        if (isPreOrderable)
+                        {
+                            status = StockStatus.PreOrderable;
+                        }
+                        else
+                        {
+                            var isOutOfStock = resultDocument.Fields.ContainsKey(StorefrontConstants.KnownIndexFields.OutOfStockLocations)
+                                               && result.Document.OutOfStockLocations != null;
+                            var isBackOrderable = resultDocument.Fields.ContainsKey(StorefrontConstants.KnownIndexFields.OrderableLocations)
+                                                  && result.Document.OrderableLocations != null;
+                            if (isOutOfStock && isBackOrderable)
+                            {
+                                status = StockStatus.BackOrderable;
+                            }
+                            else
+                            {
+                                status = isOutOfStock ? StockStatus.OutOfStock : null;
+                            }
+                        }
+                    }
 
-                var isOutOfStock = resultDocument.Fields.ContainsKey(StorefrontConstants.KnownIndexFields.OutOfStockLocations)
-                                   && result.Document[StorefrontConstants.KnownIndexFields.OutOfStockLocations] != null;
-                var isBackOrderable = resultDocument.Fields.ContainsKey(StorefrontConstants.KnownIndexFields.OrderableLocations)
-                                      && result.Document[StorefrontConstants.KnownIndexFields.OrderableLocations] != null;
-                if (isOutOfStock && isBackOrderable)
-                {
-                    return StockStatus.BackOrderable;
+                    var foundModel = viewModelList.Find(x => x.ProductId == result.Document.Name);
+                    if (foundModel != null)
+                    {
+                        foundModel.StockStatus = status;
+                        foundModel.StockStatusName = StorefrontManager.GetProductStockStatusName(foundModel.StockStatus);
+                    }
                 }
-
-                return isOutOfStock ? StockStatus.OutOfStock : null;
             }
+        }
+
+        /// <summary>
+        /// Builds the product identifier list predicate.
+        /// </summary>
+        /// <param name="viewModelList">The view model list.</param>
+        /// <returns>The search predicate ORing the product ids.</returns>
+        private static Expression<Func<InventorySearchResultItem, bool>> BuildProductIdListPredicate(List<ProductViewModel> viewModelList)
+        {
+            Expression<Func<InventorySearchResultItem, bool>> predicate = null;
+
+            bool isFirst = true;
+            foreach (var viewModel in viewModelList)
+            {
+                if (isFirst)
+                {
+                    predicate = PredicateBuilder.Create<InventorySearchResultItem>(p => p.CatalogItemId == viewModel.ProductId.ToLowerInvariant());
+                }
+                else
+                {
+                    predicate = predicate.Or(p => p.CatalogItemId == viewModel.ProductId.ToLowerInvariant());
+                }
+
+                isFirst = false;
+            }
+
+            return predicate;
         }
 
         /// <summary>

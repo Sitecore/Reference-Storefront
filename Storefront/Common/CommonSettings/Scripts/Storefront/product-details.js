@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -24,7 +24,8 @@ var VariantInfoModel = function (variantId, size, color, priceBefore, priceNow, 
 
 var priceInfoVM = null;
 
-var PriceInfoViewModel = function () {
+var PriceInfoViewModel = function ()
+{
     self = this;
 
     self.priceBefore = ko.observable();
@@ -192,6 +193,9 @@ var StockInfoViewModel = function(info) {
     self.availabilityDate = populate ? ko.observable(info.AvailabilityDate) : ko.observable();
     self.showSingleLabel = populate ? ko.observable(info.Count === 1) : ko.observable(false);
     self.isOutOfStock = populate ? ko.observable(info.Status === "Out-Of-Stock") : ko.observable(false);
+    self.canShowSignupForNotification = populate ? ko.observable(info.CanShowSignupForNotification) : ko.observable(false);
+
+    self.showSignUpForNotification = self.canShowSignupForNotification() && self.isOutOfStock();
 }
 
 var StockInfoListViewModel = function () {

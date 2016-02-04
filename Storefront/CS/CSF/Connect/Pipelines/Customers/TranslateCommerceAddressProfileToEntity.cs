@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="TranslateCommerceAddressProfileToEntity.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Pipeline processor used to translate a Commerce Server address to a Party.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -18,11 +18,11 @@
 namespace Sitecore.Reference.Storefront.Connect.Pipelines.Customers
 {
     using CommerceServer.Core.Runtime.Profiles;
+    using Sitecore.Commerce.Connect.CommerceServer.Orders.Models;
     using Sitecore.Commerce.Connect.CommerceServer.Pipelines;
     using Sitecore.Commerce.Entities;
     using Sitecore.Diagnostics;
     using Sitecore.Reference.Storefront.Connect.Pipelines.Arguments;
-    using RefSFModels = Sitecore.Reference.Storefront.Connect.Models;
 
     /// <summary>
     /// Defines the TranslateCommerceAddressProfileToEntity class.
@@ -44,9 +44,9 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Customers
             Assert.ArgumentNotNull(request.SourceProfile, "request.SourceProfile");
             Assert.ArgumentNotNull(request.DestinationParty, "request.DestinationParty");
 
-            if (request.DestinationParty is RefSFModels.CommerceParty)
+            if (request.DestinationParty is CommerceParty)
             {
-                this.TranslateToCommerceParty(request.SourceProfile, request.DestinationParty as RefSFModels.CommerceParty);
+                this.TranslateToCommerceParty(request.SourceProfile, request.DestinationParty as CommerceParty);
             }
             else
             {
@@ -59,7 +59,7 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Customers
         /// </summary>
         /// <param name="profile">The profile.</param>
         /// <param name="party">The party.</param>
-        protected virtual void TranslateToCommerceParty(CommerceServer.Core.Runtime.Profiles.Profile profile, RefSFModels.CommerceParty party)
+        protected virtual void TranslateToCommerceParty(CommerceServer.Core.Runtime.Profiles.Profile profile, CommerceParty party)
         {
             party.ExternalId = this.Get<string>(profile, "GeneralInfo.address_id");
             party.FirstName = this.Get<string>(profile, "GeneralInfo.first_name");
@@ -84,7 +84,7 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Customers
         /// </summary>
         /// <param name="profile">The profile.</param>
         /// <param name="party">The party.</param>
-        protected virtual void TranslateToCommercePartyCustomProperties(Profile profile, RefSFModels.CommerceParty party)
+        protected virtual void TranslateToCommercePartyCustomProperties(Profile profile, CommerceParty party)
         {
         }
 

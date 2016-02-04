@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commerce.Storefront", "CS\C
 EndProject
 Project("{CAA73BB0-EF22-4D79-A57E-DF67B3BA9C80}") = "TDSCommerceServer_Master", "CS\TDSCommerceServer_Master\TDSCommerceServer_Master.scproj", "{FD2EACBA-3EB3-41E4-965B-E06B5F96E619}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAndSchemas", "DataAndSchemas", "{971CA6AB-E662-453D-994B-47D549BE44D5}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Commerce.Storefront.ProfileDatabase", "CS\Commerce.Storefront.ProfileDatabase\Commerce.Storefront.ProfileDatabase.sqlproj", "{02CF30F7-BC9C-4730-9094-5944125EC20C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,8 +47,17 @@ Global
 		{FD2EACBA-3EB3-41E4-965B-E06B5F96E619}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD2EACBA-3EB3-41E4-965B-E06B5F96E619}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FD2EACBA-3EB3-41E4-965B-E06B5F96E619}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{02CF30F7-BC9C-4730-9094-5944125EC20C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02CF30F7-BC9C-4730-9094-5944125EC20C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02CF30F7-BC9C-4730-9094-5944125EC20C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{02CF30F7-BC9C-4730-9094-5944125EC20C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02CF30F7-BC9C-4730-9094-5944125EC20C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02CF30F7-BC9C-4730-9094-5944125EC20C}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{02CF30F7-BC9C-4730-9094-5944125EC20C} = {971CA6AB-E662-453D-994B-47D549BE44D5}
 	EndGlobalSection
 EndGlobal

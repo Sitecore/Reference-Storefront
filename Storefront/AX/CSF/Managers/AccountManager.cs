@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="AccountManager.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>The manager class responsible for encapsulating the account business logic for the site.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -17,6 +17,7 @@
 
 namespace Sitecore.Reference.Storefront.Managers
 {
+    using Commerce.Connect.CommerceServer.Orders.Models;
     using Sitecore.Analytics;
     using Sitecore.Commerce.Connect.CommerceServer;
     using Sitecore.Commerce.Connect.CommerceServer.Configuration;
@@ -151,7 +152,7 @@ namespace Sitecore.Reference.Storefront.Managers
             var result = this.CustomerServiceProvider.GetUser(request);
             if (!result.Success || result.CommerceUser == null)
             {
-                var message = StorefrontManager.GetSystemMessage("UserNotFoundError");
+                var message = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.UserNotFoundError);
                 result.SystemMessages.Add(new SystemMessage { Message = message });
             }
 
@@ -176,7 +177,7 @@ namespace Sitecore.Reference.Storefront.Managers
             var result = this.CustomerServiceProvider.GetUsers(request);
             if (!result.Success || result.CommerceUsers == null)
             {
-                var message = StorefrontManager.GetSystemMessage("UserNotFoundError");
+                var message = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.UserNotFoundError);
                 result.SystemMessages.Add(new SystemMessage { Message = message });
             }
 
@@ -257,7 +258,7 @@ namespace Sitecore.Reference.Storefront.Managers
             else
             {
                 // user is authenticated, but not in the CommerceUsers domain - probably here because we are in edit or preview mode
-                var message = StorefrontManager.GetSystemMessage("UpdateUserProfileError");
+                var message = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.UpdateUserProfileError);
                 message = string.Format(CultureInfo.InvariantCulture, message, Context.User.LocalName);
                 result = new UpdateUserResult { Success = false };
 
@@ -278,21 +279,21 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <param name="storefront">The storefront.</param>
         /// <param name="user">The user.</param>
         /// <returns>The manager response where the list of parties is returned in the response.</returns>
-        public virtual ManagerResponse<GetPartiesResult, IEnumerable<CustomCommerceParty>> GetParties([NotNull] CommerceStorefront storefront, [NotNull] CommerceCustomer user)
+        public virtual ManagerResponse<GetPartiesResult, IEnumerable<CommerceParty>> GetParties([NotNull] CommerceStorefront storefront, [NotNull] CommerceCustomer user)
         {
             Assert.ArgumentNotNull(storefront, "storefront");
             Assert.ArgumentNotNull(user, "user");
 
             var request = new GetPartiesRequest(user);
             var result = this.CustomerServiceProvider.GetParties(request);
-            var partyList = result.Success && result.Parties != null ? (result.Parties).Cast<CustomCommerceParty>() : new List<CustomCommerceParty>();
+            var partyList = result.Success && result.Parties != null ? (result.Parties).Cast<CommerceParty>() : new List<CommerceParty>();
 
             if (!result.Success)
             {
                 Helpers.LogSystemMessages(result.SystemMessages, result);
             }
 
-            return new ManagerResponse<GetPartiesResult, IEnumerable<CustomCommerceParty>>(result, partyList);
+            return new ManagerResponse<GetPartiesResult, IEnumerable<CommerceParty>>(result, partyList);
         }
 
         /// <summary>
@@ -301,7 +302,7 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <param name="storefront">The storefront.</param>
         /// <param name="visitorContext">The visitor context.</param>
         /// <returns>The manager response where the list of parties is returned in the response.</returns>
-        public virtual ManagerResponse<GetPartiesResult, IEnumerable<CustomCommerceParty>> GetCurrentUserParties([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext)
+        public virtual ManagerResponse<GetPartiesResult, IEnumerable<CommerceParty>> GetCurrentUserParties([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext)
         {
             Assert.ArgumentNotNull(storefront, "storefront");
             Assert.ArgumentNotNull(visitorContext, "visitorContext");
@@ -311,7 +312,7 @@ namespace Sitecore.Reference.Storefront.Managers
             if (!getUserResponse.ServiceProviderResult.Success || getUserResponse.Result == null)
             {
                 result.SystemMessages.ToList().AddRange(getUserResponse.ServiceProviderResult.SystemMessages);
-                return new ManagerResponse<GetPartiesResult, IEnumerable<CustomCommerceParty>>(result, null);
+                return new ManagerResponse<GetPartiesResult, IEnumerable<CommerceParty>>(result, null);
             }
 
             return this.GetParties(storefront, new CommerceCustomer { ExternalId = getUserResponse.Result.ExternalId });
@@ -324,7 +325,7 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <param name="user">The user.</param>
         /// <param name="parties">The parties.</param>
         /// <returns>The manager result where the success flag is returned as the Result.</returns>
-        public virtual ManagerResponse<CustomerResult, bool> RemoveParties([NotNull] CommerceStorefront storefront, [NotNull] CommerceCustomer user, List<CustomCommerceParty> parties)
+        public virtual ManagerResponse<CustomerResult, bool> RemoveParties([NotNull] CommerceStorefront storefront, [NotNull] CommerceCustomer user, List<CommerceParty> parties)
         {
             Assert.ArgumentNotNull(storefront, "storefront");
             Assert.ArgumentNotNull(user, "user");
@@ -364,7 +365,7 @@ namespace Sitecore.Reference.Storefront.Managers
             }
 
             var customer = new CommerceCustomer { ExternalId = getUserResponse.Result.ExternalId };
-            var parties = new List<CustomCommerceParty> { new CustomCommerceParty { ExternalId = addressExternalId } };
+            var parties = new List<CommerceParty> { new CommerceParty { ExternalId = addressExternalId } };
 
             return this.RemoveParties(storefront, customer, parties);
         }
@@ -376,7 +377,7 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <param name="user">The user.</param>
         /// <param name="parties">The parties.</param>
         /// <returns>The manager result where the success flag is returned as the Result.</returns>
-        public virtual ManagerResponse<CustomerResult, bool> UpdateParties([NotNull] CommerceStorefront storefront, [NotNull] CommerceCustomer user, List<CustomCommerceParty> parties)
+        public virtual ManagerResponse<CustomerResult, bool> UpdateParties([NotNull] CommerceStorefront storefront, [NotNull] CommerceCustomer user, List<CommerceParty> parties)
         {
             Assert.ArgumentNotNull(storefront, "storefront");
             Assert.ArgumentNotNull(user, "user");
@@ -399,7 +400,7 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <param name="user">The user.</param>
         /// <param name="parties">The parties.</param>
         /// <returns>The manager result where the success flag is returned as the Result.</returns>
-        public virtual ManagerResponse<AddPartiesResult, bool> AddParties([NotNull] CommerceStorefront storefront, [NotNull] CommerceCustomer user, List<CustomCommerceParty> parties)
+        public virtual ManagerResponse<AddPartiesResult, bool> AddParties([NotNull] CommerceStorefront storefront, [NotNull] CommerceCustomer user, List<CommerceParty> parties)
         {
             Assert.ArgumentNotNull(storefront, "storefront");
             Assert.ArgumentNotNull(user, "user");
@@ -472,7 +473,7 @@ namespace Sitecore.Reference.Storefront.Managers
             var result = this.CustomerServiceProvider.UpdatePassword(request);
             if (!result.Success && !result.SystemMessages.Any())
             {
-                var message = StorefrontManager.GetSystemMessage("PasswordCouldNotBeReset");
+                var message = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.PasswordCouldNotBeReset);
                 result.SystemMessages.Add(new SystemMessage { Message = message });
 
                 Helpers.LogSystemMessages(result.SystemMessages, result);
@@ -547,7 +548,7 @@ namespace Sitecore.Reference.Storefront.Managers
                 return new ManagerResponse<CustomerResult, bool>(customerResult, false);
             }
 
-            var addressesToUpdate = new List<CustomCommerceParty>();
+            var addressesToUpdate = new List<CommerceParty>();
 
             var notPrimary = userPartiesResponse.Result.SingleOrDefault(address => address.IsPrimary);
             if (notPrimary != null)
@@ -622,34 +623,34 @@ namespace Sitecore.Reference.Storefront.Managers
             switch (createStatus)
             {
                 case MembershipCreateStatus.DuplicateUserName:
-                    return StorefrontManager.GetSystemMessage("UserAlreadyExists");
+                    return StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.UserAlreadyExists);
 
                 case MembershipCreateStatus.DuplicateEmail:
-                    return StorefrontManager.GetSystemMessage("UserNameForEmailExists");
+                    return StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.UserNameForEmailExists);
 
                 case MembershipCreateStatus.InvalidPassword:
-                    return StorefrontManager.GetSystemMessage("InvalidPasswordError");
+                    return StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.InvalidPasswordError);
 
                 case MembershipCreateStatus.InvalidEmail:
-                    return StorefrontManager.GetSystemMessage("InvalidEmailError");
+                    return StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.InvalidEmailError);
 
                 case MembershipCreateStatus.InvalidAnswer:
-                    return StorefrontManager.GetSystemMessage("PasswordRetrievalAnswerInvalid");
+                    return StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.PasswordRetrievalAnswerInvalid);
 
                 case MembershipCreateStatus.InvalidQuestion:
-                    return StorefrontManager.GetSystemMessage("PasswordRetrievalQuestionInvalid");
+                    return StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.PasswordRetrievalQuestionInvalid);
 
                 case MembershipCreateStatus.InvalidUserName:
-                    return StorefrontManager.GetSystemMessage("UserNameInvalid");
+                    return StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.UserNameInvalid);
 
                 case MembershipCreateStatus.ProviderError:
-                    return StorefrontManager.GetSystemMessage("AuthenticationProviderError");
+                    return StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.AuthenticationProviderError);
 
                 case MembershipCreateStatus.UserRejected:
-                    return StorefrontManager.GetSystemMessage("UserRejectedError");
+                    return StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.UserRejectedError);
 
                 default:
-                    return StorefrontManager.GetSystemMessage("UnknownMembershipProviderError");
+                    return StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.UnknownMembershipProviderError);
             }
         }
 

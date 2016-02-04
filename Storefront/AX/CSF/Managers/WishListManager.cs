@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="WishListManager.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>The manager class responsible for encapsulating the wishlist business logic for the site.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -29,6 +29,7 @@ namespace Sitecore.Reference.Storefront.Managers
     using Sitecore.Reference.Storefront.Models.InputModels;
     using Sitecore.Reference.Storefront.Models.SitecoreItemModels;
     using System.Globalization;
+    using Sitecore.Commerce.Entities.Prices;
 
     /// <summary>
     /// Defines the WishListManager class.
@@ -43,20 +44,31 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <param name="wishListServiceProvider">The wish list service provider.</param>
         /// <param name="accountManager">The account manager.</param>
         /// <param name="inventoryManager">The inventory manager.</param>
-        public WishListManager([NotNull] WishListServiceProvider wishListServiceProvider, [NotNull] AccountManager accountManager, [NotNull] InventoryManager inventoryManager)
+        /// <param name="pricingManager">The pricing manager.</param>
+        public WishListManager([NotNull] WishListServiceProvider wishListServiceProvider, [NotNull] AccountManager accountManager, [NotNull] InventoryManager inventoryManager, [NotNull] PricingManager pricingManager)
         {
             Assert.ArgumentNotNull(wishListServiceProvider, "wishListServiceProvider");
             Assert.ArgumentNotNull(accountManager, "accountManager");
             Assert.ArgumentNotNull(inventoryManager, "inventoryManager");
+            Assert.ArgumentNotNull(pricingManager, "pricingManager");
 
             this.WishListServiceProvider = wishListServiceProvider;
             this.AccountManager = accountManager;
             this.InventoryManager = inventoryManager;
+            this.PricingManager = pricingManager;
         }
 
         #endregion
 
         #region Properties (public)
+
+        /// <summary>
+        /// Gets or sets the pricing manager.
+        /// </summary>
+        /// <value>
+        /// The pricing manager.
+        /// </value>
+        public PricingManager PricingManager { get; protected set; }
 
         /// <summary>
         /// Gets or sets the wish list service provider.
@@ -111,8 +123,8 @@ namespace Sitecore.Reference.Storefront.Managers
 
             if (wishListResponse.Result.Count() >= StorefrontManager.CurrentStorefront.MaxNumberOfWishLists)
             {
-                var message = StorefrontManager.GetSystemMessage("MaxWishListLimitReached");
-                message = string.Format(CultureInfo.InvariantCulture, message, StorefrontManager.CurrentStorefront.MaxNumberOfWishLists); 
+                var message = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.MaxWishListLimitReached);
+                message = string.Format(CultureInfo.InvariantCulture, message, StorefrontManager.CurrentStorefront.MaxNumberOfWishLists);
                 errorResult.SystemMessages.Add(new Commerce.Services.SystemMessage() { Message = message });
                 return new ManagerResponse<CreateWishListResult, WishList>(errorResult, null);
             }
@@ -145,6 +157,7 @@ namespace Sitecore.Reference.Storefront.Managers
             if (result.Success && result.WishList != null)
             {
                 this.PopulateStockInformation(storefront, result.WishList);
+                this.PopulatePriceInformation(storefront, visitorContext, result.WishList);
             }
             else if (!result.Success)
             {
@@ -304,7 +317,7 @@ namespace Sitecore.Reference.Storefront.Managers
 
             if (wishListResult.Result.Lines.Count() >= StorefrontManager.CurrentStorefront.MaxNumberOfWishListItems)
             {
-                var message = StorefrontManager.GetSystemMessage("MaxWishListLineLimitReached");
+                var message = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.MaxWishListLineLimitReached);
                 message = string.Format(CultureInfo.InvariantCulture, message, StorefrontManager.CurrentStorefront.MaxNumberOfWishLists);
                 errorResult.SystemMessages.Add(new Commerce.Services.SystemMessage() { Message = message });
                 return new ManagerResponse<AddLinesToWishListResult, WishList>(errorResult, null);
@@ -425,7 +438,34 @@ namespace Sitecore.Reference.Storefront.Managers
                 this.InventoryManager.VisitedProductStockStatus(storefront, stockInfo, string.Empty);
             }
         }
-        
+
+        /// <summary>
+        /// Populates the price information.
+        /// </summary>
+        /// <param name="storefront">The storefront.</param>
+        /// <param name="visitorContext">The visitor context.</param>
+        /// <param name="wishList">The wish list.</param>
+        protected virtual void PopulatePriceInformation(CommerceStorefront storefront, VisitorContext visitorContext, WishList wishList)
+        {
+            if (wishList.Lines != null && wishList.Lines.Any())
+            {
+                string catalogName = ((CommerceCartProduct)wishList.Lines[0].Product).ProductCatalog;
+                var productIds = wishList.Lines.Select(l => l.Product.ProductId).ToArray();
+                var pricesResponse = this.PricingManager.GetProductBulkPrices(StorefrontManager.CurrentStorefront, visitorContext, catalogName, productIds);
+
+                var prices = pricesResponse != null && pricesResponse.ServiceProviderResult.Success && pricesResponse.Result != null ? pricesResponse.Result : new Dictionary<string, Price>();
+
+                foreach (var line in wishList.Lines)
+                {
+                    Price price;
+                    if (prices.Any() && prices.TryGetValue(line.Product.ProductId, out price))
+                    {
+                        line.Product.Price.Amount = ((CommercePrice)price).ListPrice;
+                    }
+                }
+            }
+        }
+
         #endregion
     }
 }

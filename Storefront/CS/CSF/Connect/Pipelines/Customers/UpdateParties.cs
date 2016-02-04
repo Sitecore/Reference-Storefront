@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="UpdateParties.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Pipeline processor used to update parties (addresses) from CS user profiles.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -18,6 +18,7 @@
 namespace Sitecore.Reference.Storefront.Connect.Pipelines.Customers
 {
     using CommerceServer.Core.Runtime.Profiles;
+    using Sitecore.Commerce.Connect.CommerceServer.Orders.Models;
     using Sitecore.Commerce.Connect.CommerceServer.Pipelines;
     using Sitecore.Commerce.Connect.CommerceServer.Profiles.Models;
     using Sitecore.Commerce.Services.Customers;
@@ -25,7 +26,6 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Customers
     using Sitecore.Reference.Storefront.Connect.Pipelines.Arguments;
     using System;
     using System.Linq;
-    using RefSFModels = Sitecore.Reference.Storefront.Connect.Models;
 
     /// <summary>
     /// Defines the UpdateParties class.
@@ -64,7 +64,7 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Customers
 
                 foreach (var partyToUpdate in request.Parties)
                 {
-                    Assert.IsTrue(partyToUpdate is RefSFModels.CommerceParty, "partyToUpdate is RefSFModels.CommerceParty");
+                    Assert.IsTrue(partyToUpdate is CommerceParty, "partyToUpdate is CommerceParty");
 
                     var foundId = addressList.Where(x => x.Equals(partyToUpdate.ExternalId, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
                     if (foundId != null)
@@ -79,7 +79,7 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Customers
                         }
 
                         // Check if the IsPrimary address flag has been flipped.
-                        if (((RefSFModels.CommerceParty)partyToUpdate).IsPrimary)
+                        if (((CommerceParty)partyToUpdate).IsPrimary)
                         {
                             customerProfile["GeneralInfo.preferred_address"].Value = partyToUpdate.ExternalId;
                             customerProfile.Update();
@@ -90,7 +90,7 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Customers
                             customerProfile.Update();
                         }
 
-                        var translateToEntityRequest = new TranslateEntityToCommerceAddressProfileRequest((RefSFModels.CommerceParty)partyToUpdate, commerceAddress);
+                        var translateToEntityRequest = new TranslateEntityToCommerceAddressProfileRequest((CommerceParty)partyToUpdate, commerceAddress);
                         PipelineUtility.RunCommerceConnectPipeline<TranslateEntityToCommerceAddressProfileRequest, CommerceResult>(CommerceServerStorefrontConstants.PipelineNames.TranslateEntityToCommerceAddressProfile, translateToEntityRequest);
 
                         commerceAddress.Update();

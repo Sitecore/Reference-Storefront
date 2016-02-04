@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="AddPartiesToCart.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Pipeline used to add parties to an existing cart.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -27,7 +27,6 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Carts
     using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Services.Carts;
     using Sitecore.Diagnostics;
-    using Sitecore.Reference.Storefront.Connect.Models;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
@@ -150,8 +149,8 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Carts
             ConnectOrderModels.CommerceParty translatedParty = this.EntityFactory.Create<ConnectOrderModels.CommerceParty>("Party");
             Assert.ArgumentNotNull(translatedParty, "translatedParty");
 
-            TranslateOrderAddressToEntityRequest translateOrderAddressRequest = new TranslateOrderAddressToEntityRequest(newOrderAddress, translatedParty);
-            PipelineUtility.RunCommerceConnectPipeline<TranslateOrderAddressToEntityRequest, CommerceResult>(PipelineNames.TranslateOrderAddressToEntity, translateOrderAddressRequest);
+            var translateOrderAddressRequest = new RefSFArguments.TranslateOrderAddressToEntityRequest(newOrderAddress, translatedParty);
+            PipelineUtility.RunCommerceConnectPipeline<RefSFArguments.TranslateOrderAddressToEntityRequest, CommerceResult>(PipelineNames.TranslateOrderAddressToEntity, translateOrderAddressRequest);
 
             return translatedParty;
         }

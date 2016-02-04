@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="OrderManager.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>The manager class responsible for encapsulating the order business logic for the site.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -44,7 +44,7 @@ namespace Sitecore.Reference.Storefront.Managers
         /// </summary>
         /// <param name="orderServiceProvider">The order service provider.</param>
         /// <param name="cartManager">The cart manager.</param>
-        public OrderManager(CSFServices.Orders.CommerceOrderServiceProvider orderServiceProvider, [NotNull] CartManager cartManager)
+        public OrderManager(CommerceOrderServiceProvider orderServiceProvider, [NotNull] CartManager cartManager)
         {
             Assert.ArgumentNotNull(orderServiceProvider, "orderServiceProvider");
             Assert.ArgumentNotNull(cartManager, "cartManager");
@@ -97,7 +97,7 @@ namespace Sitecore.Reference.Storefront.Managers
 
             if (cart.Lines.Count == 0)
             {
-                errorResult.SystemMessages.Add(new SystemMessage { Message = StorefrontManager.GetSystemMessage("SubmitOrderHasEmptyCart") });
+                errorResult.SystemMessages.Add(new SystemMessage { Message = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.SubmitOrderHasEmptyCart) });
                 return new ManagerResponse<SubmitVisitorOrderResult, CommerceOrder>(errorResult, null);
             }
 
@@ -141,10 +141,10 @@ namespace Sitecore.Reference.Storefront.Managers
             Assert.ArgumentNotNullOrEmpty(countryCode, "countryCode");
 
             var request = new GetAvailableRegionsRequest(countryCode);
-            var result = ((CSFServices.Orders.CommerceOrderServiceProvider)this.OrderServiceProvider).GetAvailableRegions(request);
+            var result = ((CommerceOrderServiceProvider)this.OrderServiceProvider).GetAvailableRegions(request);
 
             Helpers.LogSystemMessages(result.SystemMessages, result);
-            return new ManagerResponse<GetAvailableRegionsResult, Dictionary<string, string>>(result, result.AvailableRegions);
+            return new ManagerResponse<GetAvailableRegionsResult, Dictionary<string, string>>(result, new Dictionary<string, string>(result.AvailableRegions));
         }
 
         /// <summary>
@@ -199,10 +199,10 @@ namespace Sitecore.Reference.Storefront.Managers
         public ManagerResponse<GetAvailableCountriesResult, Dictionary<string, string>> GetAvailableCountries()
         {
             var request = new GetAvailableCountriesRequest();
-            var result = ((CSFServices.Orders.CommerceOrderServiceProvider)this.OrderServiceProvider).GetAvailableCountries(request);
+            var result = ((CommerceOrderServiceProvider)this.OrderServiceProvider).GetAvailableCountries(request);
 
             Helpers.LogSystemMessages(result.SystemMessages, result);
-            return new ManagerResponse<GetAvailableCountriesResult, Dictionary<string, string>>(result, result.AvailableCountries);
+            return new ManagerResponse<GetAvailableCountriesResult, Dictionary<string, string>>(result, new Dictionary<string, string>(result.AvailableCountries));
         }
     }
 }

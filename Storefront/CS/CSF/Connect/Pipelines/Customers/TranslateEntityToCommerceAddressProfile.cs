@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="TranslateEntityToCommerceAddressProfile.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Pipeline processor used to translate a Party to a Commerce Server address .</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -17,10 +17,10 @@
 
 namespace Sitecore.Reference.Storefront.Connect.Pipelines.Customers
 {
+    using Sitecore.Commerce.Connect.CommerceServer.Orders.Models;
     using Sitecore.Commerce.Connect.CommerceServer.Pipelines;
     using Sitecore.Diagnostics;
     using Sitecore.Reference.Storefront.Connect.Pipelines.Arguments;
-    using RefSFModels = Sitecore.Reference.Storefront.Connect.Models;
 
     /// <summary>
     /// Defines the TranslateEntityToCommerceAddressProfile class.
@@ -42,9 +42,9 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Customers
             Assert.ArgumentNotNull(request.SourceParty, "request.SourceParty");
             Assert.ArgumentNotNull(request.DestinationProfile, "request.DestinationProfile");
 
-            if (request.SourceParty is RefSFModels.CommerceParty)
+            if (request.SourceParty is CommerceParty)
             {
-                this.TranslateCommerceCustomerParty(request.SourceParty as RefSFModels.CommerceParty, request.DestinationProfile);
+                this.TranslateCommerceCustomerParty(request.SourceParty as CommerceParty, request.DestinationProfile);
             }
             else
             {
@@ -57,7 +57,7 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Customers
         /// </summary>
         /// <param name="party">The party.</param>
         /// <param name="profile">The profile.</param>
-        protected virtual void TranslateCommerceCustomerParty(RefSFModels.CommerceParty party, CommerceServer.Core.Runtime.Profiles.Profile profile)
+        protected virtual void TranslateCommerceCustomerParty(CommerceParty party, CommerceServer.Core.Runtime.Profiles.Profile profile)
         {
             profile["GeneralInfo.first_name"].Value = party.FirstName;
             profile["GeneralInfo.last_name"].Value = party.LastName;
@@ -81,7 +81,7 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Customers
         /// </summary>
         /// <param name="party">The party.</param>
         /// <param name="profile">The profile.</param>
-        protected virtual void TranslateCommerceCustomerPartyCustomProperties(RefSFModels.CommerceParty party, CommerceServer.Core.Runtime.Profiles.Profile profile)
+        protected virtual void TranslateCommerceCustomerPartyCustomProperties(CommerceParty party, CommerceServer.Core.Runtime.Profiles.Profile profile)
         {
         }
 
@@ -90,7 +90,7 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Customers
         /// </summary>
         /// <param name="party">The party.</param>
         /// <param name="profile">The profile.</param>
-        private void TranslateCustomParty(RefSFModels.CommerceParty party, CommerceServer.Core.Runtime.Profiles.Profile profile)
+        private void TranslateCustomParty(CommerceParty party, CommerceServer.Core.Runtime.Profiles.Profile profile)
         {
         }
     }

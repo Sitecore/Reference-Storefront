@@ -1,5 +1,5 @@
 ﻿@*//-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -14,51 +14,57 @@
     var currencyDecimalSeparator = Sitecore.Context.Language.CultureInfo.NumberFormat.CurrencyDecimalSeparator;
     var currencyGroupSeparator = Sitecore.Context.Language.CultureInfo.NumberFormat.CurrencyGroupSeparator;
 
+    var confirmPage = Html.Sitecore().CurrentItem.Children["Confirm"];
+    var billingPage = Html.Sitecore().CurrentItem.Children["Billing"];
+    
     // Table Headers
-    var productDetailsLabel = Html.Sitecore().Field("Product Details Label", Html.Sitecore().CurrentItem.Children["Confirm"]);
-    var unitPriceLabel = Html.Sitecore().Field("Unit Price Label", Html.Sitecore().CurrentItem.Children["Confirm"]);
-    var quantityLabel = Html.Sitecore().Field("Quantity Label", Html.Sitecore().CurrentItem.Children["Confirm"]);
-    var totalLabel = Html.Sitecore().Field("Total Label", Html.Sitecore().CurrentItem.Children["Confirm"]);
+    var productDetailsLabel = Html.Sitecore().Field("Product Details Label", confirmPage);
+    var unitPriceLabel = Html.Sitecore().Field("Unit Price Label", confirmPage);
+    var quantityLabel = Html.Sitecore().Field("Quantity Label", confirmPage);
+    var totalLabel = Html.Sitecore().Field("Total Label", confirmPage);
 
     //Discounts and loyality credits
-    var discountsLabel = Html.Sitecore().Field("Credits Header Label", Html.Sitecore().CurrentItem.Children["Confirm"]);
-    var applyLoyaltyLabel = Html.Sitecore().Field("Apply Loyalty Credit Label", Html.Sitecore().CurrentItem.Children["Confirm"]);
-    var subtitleLoyaltyLabel = Html.Sitecore().Field("Subtitle Loyalty Credit Label", Html.Sitecore().CurrentItem.Children["Confirm"]);
-    var getBalanceButtonLabel = Html.Sitecore().Field("Get Balance Button Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var cardNumberLabel = Html.Sitecore().Field("Card Number Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var removeLabel = Html.Sitecore().Field("Remove Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var addLoyaltyCardButtonLabel = Html.Sitecore().Field("Add Loyalty Card Button", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var discountsLabel = Html.Sitecore().Field("Credits Header Label", confirmPage);
+    var applyLoyaltyLabel = Html.Sitecore().Field("Apply Loyalty Credit Label", confirmPage);
+    var subtitleLoyaltyLabel = Html.Sitecore().Field("Subtitle Loyalty Credit Label", confirmPage);
+    var getBalanceButtonLabel = Html.Sitecore().Field("Get Balance Button Label", billingPage);
+    var cardNumberLabel = Html.Sitecore().Field("Card Number Label", billingPage);
+    var cardNumberLabelPlaceholder = billingPage["Card Number Label"];
+    var removeLabel = Html.Sitecore().Field("Remove Label", billingPage);
+    var addLoyaltyCardButtonLabel = Html.Sitecore().Field("Add Loyalty Card Button", billingPage);
 
     // Payment Information Labels
-    var paymentTotalLabel = Html.Sitecore().Field("Payment Total Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var taxesLabel = Html.Sitecore().Field("Taxes Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var savingsLabel = Html.Sitecore().Field("Savings Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var orderTotalLabel = Html.Sitecore().Field("Total Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var giftCardLabel = Html.Sitecore().Field("Gift Card Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var loyaltytCardLabel = Html.Sitecore().Field("Loyalty Card Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var paymentTotalLabel = Html.Sitecore().Field("Payment Total Label", billingPage);
+    var taxesLabel = Html.Sitecore().Field("Taxes Label", billingPage);
+    var savingsLabel = Html.Sitecore().Field("Savings Label", billingPage);
+    var orderTotalLabel = Html.Sitecore().Field("Total Label", billingPage);
+    var giftCardLabel = Html.Sitecore().Field("Gift Card Label", billingPage);
+    var loyaltytCardLabel = Html.Sitecore().Field("Loyalty Card Label", billingPage);
 
     //Footer Summart
-    var ShippingAddress = Html.Sitecore().Field("Shipping Address Label", Html.Sitecore().CurrentItem.Children["Confirm"]);
-    var EditShippingAddress = Html.Sitecore().Field("Edit Shipping Address Label", Html.Sitecore().CurrentItem.Children["Confirm"]);
-    var BillingAddress = Html.Sitecore().Field("Billing Address Label", Html.Sitecore().CurrentItem.Children["Confirm"]);
-    var EditBillingAddress = Html.Sitecore().Field("Edit Billing Address Label", Html.Sitecore().CurrentItem.Children["Confirm"]);
-    var ShippingMethod = Html.Sitecore().Field("Shipping Method Label", Html.Sitecore().CurrentItem.Children["Confirm"]);
-    var EditShippingMethod = Html.Sitecore().Field("Edit Shipping Method Label", Html.Sitecore().CurrentItem.Children["Confirm"]);
-    var DiscountCode = Html.Sitecore().Field("Discount Code Label", Html.Sitecore().CurrentItem.Children["Confirm"]);
-    var EditDiscountCode = Html.Sitecore().Field("Edit Discount Code Label", Html.Sitecore().CurrentItem.Children["Confirm"]);
-    var GiftCards = Html.Sitecore().Field("Gift Cards Label", Html.Sitecore().CurrentItem.Children["Confirm"]);
-    var EditGiftCards = Html.Sitecore().Field("Edit Gift Cards Label", Html.Sitecore().CurrentItem.Children["Confirm"]);
-    var PaymentMethods = Html.Sitecore().Field("Payment Methods Label", Html.Sitecore().CurrentItem.Children["Confirm"]);
-    var EditPaymentMethods = Html.Sitecore().Field("Edit Payment Methods Label", Html.Sitecore().CurrentItem.Children["Confirm"]);
+    var ShippingAddress = Html.Sitecore().Field("Shipping Address Label", confirmPage);
+    var EditShippingAddress = Html.Sitecore().Field("Edit Shipping Address Label", confirmPage);
+    var BillingAddress = Html.Sitecore().Field("Billing Address Label", confirmPage);
+    var EditBillingAddress = Html.Sitecore().Field("Edit Billing Address Label", confirmPage);
+    var ShippingMethod = Html.Sitecore().Field("Shipping Method Label", confirmPage);
+    var EditShippingMethod = Html.Sitecore().Field("Edit Shipping Method Label", confirmPage);
+    var DiscountCode = Html.Sitecore().Field("Discount Code Label", confirmPage);
+    var EditDiscountCode = Html.Sitecore().Field("Edit Discount Code Label", confirmPage);
+    var GiftCards = Html.Sitecore().Field("Gift Cards Label", confirmPage);
+    var EditGiftCards = Html.Sitecore().Field("Edit Gift Cards Label", confirmPage);
+    var PaymentMethods = Html.Sitecore().Field("Payment Methods Label", confirmPage);
+    var EditPaymentMethods = Html.Sitecore().Field("Edit Payment Methods Label", confirmPage);
+    var creditCardLabel = Html.Sitecore().Field("Credit Card Label", confirmPage);
+    var footerLoyaltyCardLabel = Html.Sitecore().Field("Loyalty Card Label", confirmPage);
 
-    var orderInformationLabel = Html.Sitecore().Field("Order Information Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var subtotalLabel = Html.Sitecore().Field("Subtotal Label", Html.Sitecore().CurrentItem.Children["Billing"]);
-    var shippingCostLabel = Html.Sitecore().Field("Shipping Cost Label", Html.Sitecore().CurrentItem.Children["Billing"]);
+    var orderInformationLabel = Html.Sitecore().Field("Order Information Label", billingPage);
+    var subtotalLabel = Html.Sitecore().Field("Subtotal Label", billingPage);
+    var shippingCostLabel = Html.Sitecore().Field("Shipping Cost Label", billingPage);
     
     // Labels
-    var discountLabel = Html.Sitecore().Field("Discount Label", Html.Sitecore().CurrentItem.Children["Confirm"]);
-    var colorLabel = Html.Sitecore().Field("Color Label", Html.Sitecore().CurrentItem.Children["Confirm"]);
-    var deliveryLabel = Html.Sitecore().Field("Delivery Label", Html.Sitecore().CurrentItem.Children["Confirm"]);
+    var discountLabel = Html.Sitecore().Field("Discount Label", confirmPage);
+    var colorLabel = Html.Sitecore().Field("Color Label", confirmPage);
+    var deliveryLabel = Html.Sitecore().Field("Delivery Label", confirmPage);
 
     var storefront = Sitecore.Reference.Storefront.Managers.StorefrontManager.CurrentStorefront;
     bool supportsLoyaltyProgram = storefront.SupportsLoyaltyPrograms;
@@ -152,7 +158,7 @@
                         <td class="cart-total">
                             <p pid="total" data-bind="text: lineTotal"></p>
                             <span class="savings" data-bind="visible: shouldShowSavings">
-                                <span>@savingsLabel </span>
+                                <span>@discountLabel </span>
                                 <span pid="discount" data-bind="text: lineItemDiscount"></span>
                             </span>
                         </td>
@@ -173,7 +179,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="LoyalityCardNumber_Confirm">@cardNumberLabel</label>
-                                <input type="text" class="form-control" id="LoyalityCardNumber_Confirm" placeholder="@cardNumberLabel" data-bind="value: cartLoyaltyCardNumber">
+                                <input type="text" class="form-control" id="LoyalityCardNumber_Confirm" placeholder="@cardNumberLabelPlaceholder" data-bind="value: cartLoyaltyCardNumber">
                             </div>
                             <div class="form-group">
                                 <button type="button" id="addLoyaltyCard_Confirm" class="btn btn-success" data-loading-text="Updating Loyalty Card...">@addLoyaltyCardButtonLabel</button>
@@ -273,7 +279,7 @@
                 <div class="footer-payment">
                     <h4>@PaymentMethods</h4>
                     <!-- ko if: $root.creditCardPayment().isAdded -->
-                    <h5>Credit card</h5>
+                    <h5>@creditCardLabel</h5>
                     <ul class="footer-lists" data-bind="with: creditCardPayment" id="confirm-creditCardContainer">
                         <li id="confirm-creditCardNameOnCard" data-bind="text: customerNameOnPayment"></li>
                         <li id="confirm-creditCardType" data-bind="text: description"></li>
@@ -298,7 +304,7 @@
                     </ul>
                     <!-- /ko -->
                     <!-- ko if: $root.loyaltyCardPayment().isAdded -->
-                    <h5>Loyalty card</h5>
+                    <h5>@footerLoyaltyCardLabel</h5>
                     <ul class="footer-lists" data-bind="with: loyaltyCardPayment" id="confirm-loyaltyCardContainer">
                         <li id="confirm-loyaltyCardNumber" data-bind="text: loyaltyCardNumber"></li>
                         <li id="confirm-loyaltyCardAmount">

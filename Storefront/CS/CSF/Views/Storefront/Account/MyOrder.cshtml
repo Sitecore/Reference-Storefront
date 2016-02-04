@@ -1,5 +1,5 @@
 ﻿@*//-----------------------------------------------------------------------
-    // Copyright 2015 Sitecore Corporation A/S
+    // Copyright 2016 Sitecore Corporation A/S
     // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
     // except in compliance with the License. You may obtain a copy of the License at
     //       http://www.apache.org/licenses/LICENSE-2.0
@@ -62,7 +62,7 @@
                         @Html.Sitecore().Field("Order Status Label", Html.Sitecore().CurrentItem):
                     </span>
                     <span id="confirm-orderStatus">
-                        @Model.Status
+                        @StorefrontManager.GetOrderStatusName(Model.Status)
                     </span>
                 </p>
             </div>
@@ -173,9 +173,9 @@
                                             </div>
                                         }
 
-                                        if (lineAddress is Sitecore.Reference.Storefront.Connect.Models.EmailParty)
+                                        if (lineAddress is Sitecore.Commerce.Entities.EmailParty)
                                         {
-                                            var party = lineAddress as Sitecore.Reference.Storefront.Connect.Models.EmailParty;
+                                            var party = lineAddress as Sitecore.Commerce.Entities.EmailParty;
                                             <p class="cart-email" pid="lineEmail">@party.Email</p>
                                         }
                                     }
@@ -196,7 +196,7 @@
                                     @if (savings > 0)
                                     {
                                         <span class="savings">
-                                            <span>@Html.Sitecore().Field("Savings Label", Html.Sitecore().CurrentItem)  </span>
+                                            <span>@Html.Sitecore().Field("Discount Label", Html.Sitecore().CurrentItem)  </span>
                                             <span pid="discount">@savings.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)</span>
                                         </span>
                                     }

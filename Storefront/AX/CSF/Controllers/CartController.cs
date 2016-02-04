@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="CartController.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Defines the CartController class.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -28,6 +28,8 @@ namespace Sitecore.Reference.Storefront.Controllers
     using System.Web.Mvc;
     using Sitecore.Reference.Storefront.ExtensionMethods;
     using System.Web.UI;
+    using Sitecore.Commerce.Connect.CommerceServer.Orders.Models;
+    using Sitecore.Reference.Storefront.Util;
 
     /// <summary>
     /// Defines the shopping cart controller type.
@@ -133,11 +135,29 @@ namespace Sitecore.Reference.Storefront.Controllers
         {
             try
             {
-                var response = this.CartManager.GetCurrentCart(CurrentStorefront, CurrentVisitorContext, false);
-                AXCartBaseJsonResult cartResult = new AXCartBaseJsonResult(response.ServiceProviderResult);
-                if (response.ServiceProviderResult.Success && response.Result != null)
+                var id = this.CurrentVisitorContext.GetCustomerId();
+                var cartCache = CommerceTypeLoader.CreateInstance<CartCacheHelper>();
+                var cart = cartCache.GetCart(id);
+                AXCartBaseJsonResult cartResult;
+
+                // The following condition stops the creation of empty carts on startup.
+                if (cart == null && CartCookieHelper.DoesCookieExistForCustomer(id))
                 {
-                    cartResult.Initialize(response.ServiceProviderResult.Cart);
+                    var response = this.CartManager.GetCurrentCart(CurrentStorefront, CurrentVisitorContext, true);
+                    cartResult = new AXCartBaseJsonResult(response.ServiceProviderResult);
+                    if (response.ServiceProviderResult.Success && response.Result != null)
+                    {
+                        cartResult.Initialize(response.ServiceProviderResult.Cart);
+                        if (response.ServiceProviderResult.Cart != null)
+                        {
+                            cartCache.AddCartToCache(response.ServiceProviderResult.Cart as CommerceCart);
+                        }
+                    }
+                }
+                else
+                {
+                    cartResult = new AXCartBaseJsonResult();
+                    cartResult.Initialize(cart);
                 }
 
                 return Json(cartResult, JsonRequestBehavior.AllowGet);

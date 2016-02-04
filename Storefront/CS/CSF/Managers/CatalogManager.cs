@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="CatalogManager.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Defines the CategoryViewModel class.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -23,6 +23,7 @@ namespace Sitecore.Reference.Storefront.Managers
     using Sitecore.Commerce.Connect.CommerceServer.Search;
     using Sitecore.Commerce.Connect.CommerceServer.Search.Models;
     using Sitecore.Commerce.Entities.Prices;
+    using Sitecore.Commerce.Services.Catalog;
     using Sitecore.Data;
     using Sitecore.Data.Fields;
     using Sitecore.Data.Items;
@@ -32,7 +33,6 @@ namespace Sitecore.Reference.Storefront.Managers
     using Sitecore.Reference.Storefront.Models;
     using Sitecore.Reference.Storefront.Models.RenderingModels;
     using Sitecore.Reference.Storefront.Models.SitecoreItemModels;
-    using Sitecore.Reference.Storefront.Services;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
@@ -43,6 +43,7 @@ namespace Sitecore.Reference.Storefront.Managers
     /// <summary>
     /// CatalogManager class
     /// </summary>  
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
     public class CatalogManager : BaseManager
     {
         private Catalog _currentCatalog;
@@ -111,13 +112,14 @@ namespace Sitecore.Reference.Storefront.Managers
         /// The <see cref="RelatedCatalogItemsViewModel" /> representing the related catalog items.
         /// </summary>
         /// <param name="storefront">The storefront.</param>
+        /// <param name="visitorContext">The visitor context.</param>
         /// <param name="catalogItem">The catalog item.</param>
         /// <param name="rendering">The target renering.</param>
         /// <returns>
         /// The related catalog item view model.
         /// </returns>
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "Derived class is prefered.")]
-        public RelatedCatalogItemsViewModel GetRelationshipsFromItem([NotNull] CommerceStorefront storefront, Item catalogItem, Rendering rendering)
+        public RelatedCatalogItemsViewModel GetRelationshipsFromItem([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext, Item catalogItem, Rendering rendering)
         {
             Assert.ArgumentNotNull(storefront, "storefront");
 
@@ -130,11 +132,11 @@ namespace Sitecore.Reference.Storefront.Managers
                     !string.IsNullOrWhiteSpace(rendering.RenderingItem.InnerItem["RelationshipsToDisplay"]))
                 {
                     var relationshipsToDisplay = rendering.RenderingItem.InnerItem["RelationshipsToDisplay"].Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
-                    return this.GetRelationshipsFromField(storefront, field, rendering, relationshipsToDisplay);
+                    return this.GetRelationshipsFromField(storefront, visitorContext, field, rendering, relationshipsToDisplay);
                 }
                 else
                 {
-                    return this.GetRelationshipsFromField(storefront, field, rendering);
+                    return this.GetRelationshipsFromField(storefront, visitorContext, field, rendering);
                 }
             }
 
@@ -145,29 +147,31 @@ namespace Sitecore.Reference.Storefront.Managers
         /// Gets a lists of target items from a relationship field
         /// </summary>
         /// <param name="storefront">The storefront.</param>
+        /// <param name="visitorContext">The visitor context.</param>
         /// <param name="field">the relationship field</param>
         /// <param name="rendering">The target renering.</param>
         /// <returns>
         /// a list of relationship targets or null if no items found
         /// </returns>
-        public RelatedCatalogItemsViewModel GetRelationshipsFromField([NotNull] CommerceStorefront storefront, RelationshipField field, Rendering rendering)
+        public RelatedCatalogItemsViewModel GetRelationshipsFromField([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext, RelationshipField field, Rendering rendering)
         {
             Assert.ArgumentNotNull(storefront, "storefront");
 
-            return GetRelationshipsFromField(storefront, field, rendering, null);
+            return GetRelationshipsFromField(storefront, visitorContext, field, rendering, null);
         }
 
         /// <summary>
         /// Gets a lists of target items from a relationship field
         /// </summary>
         /// <param name="storefront">The storefront.</param>
+        /// <param name="visitorContext">The visitor context.</param>
         /// <param name="field">the relationship field</param>
         /// <param name="rendering">The target renering.</param>
         /// <param name="relationshipNames">the names of the relationships, to retrieve (for example upsell).</param>
         /// <returns>
         /// a list of relationship targets or null if no items found
         /// </returns>
-        public RelatedCatalogItemsViewModel GetRelationshipsFromField([NotNull] CommerceStorefront storefront, RelationshipField field, Rendering rendering, IEnumerable<string> relationshipNames)
+        public RelatedCatalogItemsViewModel GetRelationshipsFromField([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext, RelationshipField field, Rendering rendering, IEnumerable<string> relationshipNames)
         {
             Assert.ArgumentNotNull(storefront, "storefront");
 
@@ -177,13 +181,10 @@ namespace Sitecore.Reference.Storefront.Managers
 
             if (field != null)
             {
-                var productRelationshipInfoList = field.GetProductRelationships();
-                var productModelList = this.GroupRelationshipsByDescription(storefront, field, relationshipNames, productRelationshipInfoList, rendering);
+                var productRelationshipInfoList = field.GetRelationships();
+                productRelationshipInfoList = productRelationshipInfoList.OrderBy(x => x.Rank);
+                var productModelList = this.GroupRelationshipsByDescription(storefront, visitorContext, field, relationshipNames, productRelationshipInfoList, rendering);
                 model.RelatedProducts.AddRange(productModelList);
-
-                var categoryRelationshipInfoList = field.GetCategoryRelationships();
-                var categoryModelList = this.GroupRelationshipsByDescription(storefront, field, relationshipNames, categoryRelationshipInfoList, rendering);
-                model.RelatedCategories.AddRange(categoryModelList);
             }
 
             model.Initialize(rendering);
@@ -195,17 +196,16 @@ namespace Sitecore.Reference.Storefront.Managers
         /// Registers an event specifying that the category page has been visited.
         /// </summary>
         /// <param name="storefront">The storefront.</param>
+        /// <param name="categoryId">The category identifier.</param>
         /// <param name="categoryName">The category name.</param>
-        /// <param name="catalogName">The catalog name.</param>
         /// <returns>
-        /// A <see cref="VisitedCategoryPageResult" /> specifying the result of the service request.
+        /// A <see cref="CatalogResult" /> specifying the result of the service request.
         /// </returns>
-        public VisitedCategoryPageResult VisitedCategoryPage([NotNull] CommerceStorefront storefront, [NotNull] string categoryName, string catalogName)
+        public CatalogResult VisitedCategoryPage([NotNull] CommerceStorefront storefront, [NotNull] string categoryId, string categoryName)
         {
             Assert.ArgumentNotNull(storefront, "storefront");
 
-            var request = new VisitedCategoryPageRequest(storefront.ShopName, categoryName);
-            request.CatalogName = catalogName;
+            var request = new VisitedCategoryPageRequest(storefront.ShopName, categoryId, categoryName);
             return this.CatalogServiceProvider.VisitedCategoryPage(request);
         }
 
@@ -214,18 +214,17 @@ namespace Sitecore.Reference.Storefront.Managers
         /// </summary>
         /// <param name="storefront">The storefront.</param>
         /// <param name="productId">the product id.</param>
+        /// <param name="productName">Name of the product.</param>
+        /// <param name="parentCategoryId">The parent category identifier.</param>
         /// <param name="parentCategoryName">the parent category name.</param>
-        /// <param name="catalogName">the catalog name.</param>
         /// <returns>
-        /// A <see cref="VisitedProductDetailsPageResult" /> specifying the result of the service request.
+        /// A <see cref="CatalogResult" /> specifying the result of the service request.
         /// </returns>
-        public VisitedProductDetailsPageResult VisitedProductDetailsPage([NotNull] CommerceStorefront storefront, [NotNull] string productId, string parentCategoryName, string catalogName)
+        public CatalogResult VisitedProductDetailsPage([NotNull] CommerceStorefront storefront, [NotNull] string productId, string productName, string parentCategoryId, string parentCategoryName)
         {
             Assert.ArgumentNotNull(storefront, "storefront");
 
-            var request = new VisitedProductDetailsPageRequest(storefront.ShopName, productId);
-            request.ParentCategoryName = parentCategoryName;
-            request.CatalogName = catalogName;
+            var request = new VisitedProductDetailsPageRequest(storefront.ShopName, productId, productName, parentCategoryId, parentCategoryName);
             return this.CatalogServiceProvider.VisitedProductDetailsPage(request);
         }
 
@@ -245,11 +244,11 @@ namespace Sitecore.Reference.Storefront.Managers
                 int totalPageCount = 0;
                 string error = string.Empty;
 
-                if (dataSource.TemplateName == "Commerce Named Search" || dataSource.TemplateName == "Named Search")
+                if (dataSource.TemplateName == StorefrontConstants.KnownTemplateNames.CommerceNamedSearch || dataSource.TemplateName == StorefrontConstants.KnownTemplateNames.NamedSearch)
                 {
                     var returnList = new List<Item>();
                     IEnumerable<CommerceQueryFacet> facets = null;
-                    var searchOptions = new CommerceSearchOptions(10, 0);
+                    var searchOptions = new CommerceSearchOptions(-1, 0);
                     var defaultBucketQuery = dataSource[CommerceConstants.KnownSitecoreFieldNames.DefaultBucketQuery];
                     var persistendBucketFilter = CleanLanguageFromFilter(dataSource[CommerceConstants.KnownSitecoreFieldNames.PersistentBucketFilter]);
 
@@ -291,16 +290,53 @@ namespace Sitecore.Reference.Storefront.Managers
         {
             Assert.ArgumentNotNull(productSearchOptions, "productSearchOptions");
 
-            MultilistField searchesField = dataSource.Fields["Named Searches"];
+            MultilistField searchesField = dataSource.Fields[StorefrontConstants.KnownFieldNames.NamedSearches];
             var searches = searchesField.GetItems();
             var productsSearchResults = new List<SearchResults>();
             foreach (Item search in searches)
             {
-                var productsSearchResult = GetProductSearchResults(search, productSearchOptions);
-                if (productsSearchResult != null)
+                var itemType = search.ItemType();
+                switch (itemType)
                 {
-                    productsSearchResult.DisplayName = search["title"];
-                    productsSearchResults.Add(productsSearchResult);
+                    case StorefrontConstants.ItemTypes.NamedSearch:
+                        {
+                            var productsSearchResult = GetProductSearchResults(search, productSearchOptions);
+                            if (productsSearchResult != null)
+                            {
+                                productsSearchResult.NamedSearchItem = search;
+                                productsSearchResult.DisplayName = search[StorefrontConstants.KnownFieldNames.Title];
+                                productsSearchResults.Add(productsSearchResult);
+                            }
+
+                            break;
+                        }
+
+                    case StorefrontConstants.ItemTypes.SelectedProducts:
+                        {
+                            int itemCount = 0;
+                            SearchResults staticSearchList = new SearchResults();
+                            staticSearchList.DisplayName = search[StorefrontConstants.KnownFieldNames.Title];
+                            staticSearchList.NamedSearchItem = search;
+
+                            MultilistField productListField = search.Fields[StorefrontConstants.KnownFieldNames.ProductList];
+                            var productList = productListField.GetItems();
+                            foreach (Item productItem in productList)
+                            {
+                                var catalogItemtype = productItem.ItemType();
+                                if (catalogItemtype == StorefrontConstants.ItemTypes.Category || catalogItemtype == StorefrontConstants.ItemTypes.Product)
+                                {
+                                    staticSearchList.SearchResultItems.Add(productItem);
+
+                                    itemCount++;
+                                }
+                            }
+
+                            staticSearchList.TotalItemCount = itemCount;
+                            staticSearchList.TotalPageCount = itemCount;
+                            productsSearchResults.Add(staticSearchList);
+
+                            break;
+                        }
                 }
             }
 
@@ -363,8 +399,9 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <summary>
         /// Gets the product price.
         /// </summary>
+        /// <param name="visitorContext">The visitor context.</param>
         /// <param name="productViewModel">The product view model.</param>
-        public virtual void GetProductPrice(ProductViewModel productViewModel)
+        public virtual void GetProductPrice([NotNull] VisitorContext visitorContext, ProductViewModel productViewModel)
         {
             if (productViewModel == null)
             {
@@ -372,7 +409,7 @@ namespace Sitecore.Reference.Storefront.Managers
             }
 
             bool includeVariants = productViewModel.Variants != null && productViewModel.Variants.Count > 0;
-            var pricesResponse = this.PricingManager.GetProductPrices(StorefrontManager.CurrentStorefront, productViewModel.CatalogName, productViewModel.ProductId, includeVariants, null);
+            var pricesResponse = this.PricingManager.GetProductPrices(StorefrontManager.CurrentStorefront, visitorContext, productViewModel.CatalogName, productViewModel.ProductId, includeVariants, null);
             if (pricesResponse != null && pricesResponse.ServiceProviderResult.Success && pricesResponse.Result != null)
             {
                 Price price;
@@ -402,8 +439,9 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <summary>
         /// Gets the product price.
         /// </summary>
+        /// <param name="visitorContext">The visitor context.</param>
         /// <param name="productViewModels">The product view models.</param>
-        public virtual void GetProductBulkPrices(List<ProductViewModel> productViewModels)
+        public virtual void GetProductBulkPrices([NotNull] VisitorContext visitorContext, List<ProductViewModel> productViewModels)
         {
             if (productViewModels == null || !productViewModels.Any())
             {
@@ -413,7 +451,7 @@ namespace Sitecore.Reference.Storefront.Managers
             var catalogName = productViewModels.Select(p => p.CatalogName).First().ToString();
             var productIds = productViewModels.Select(p => p.ProductId).ToList();
 
-            var pricesResponse = this.PricingManager.GetProductBulkPrices(StorefrontManager.CurrentStorefront, catalogName, productIds, null);
+            var pricesResponse = this.PricingManager.GetProductBulkPrices(StorefrontManager.CurrentStorefront, visitorContext, catalogName, productIds, null);
             var prices = pricesResponse != null && pricesResponse.Result != null ? pricesResponse.Result : new Dictionary<string, Price>();
 
             foreach (var productViewModel in productViewModels)
@@ -457,15 +495,13 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <returns>
         /// The manager response
         /// </returns>
-        public virtual ManagerResponse<VisitedProductDetailsPageResult, bool> VisitedProductDetailsPage([NotNull] CommerceStorefront storefront)
+        public virtual ManagerResponse<CatalogResult, bool> VisitedProductDetailsPage([NotNull] CommerceStorefront storefront)
         {
             Assert.ArgumentNotNull(storefront, "storefront");
 
-            var request = new VisitedProductDetailsPageRequest(storefront.ShopName, CatalogUrlManager.ExtractItemIdFromCurrentUrl())
-            {
-                ParentCategoryName = CatalogUrlManager.ExtractCategoryNameFromCurrentUrl(),
-                CatalogName = CatalogUrlManager.ExtractCatalogNameFromCurrentUrl()
-            };
+            string productId = CatalogUrlManager.ExtractItemIdFromCurrentUrl();
+            string parentCategoryName = CatalogUrlManager.ExtractCategoryNameFromCurrentUrl();
+            var request = new VisitedProductDetailsPageRequest(storefront.ShopName, productId, productId, parentCategoryName, parentCategoryName);
 
             var result = this.CatalogServiceProvider.VisitedProductDetailsPage(request);
             if (!result.Success)
@@ -473,32 +509,64 @@ namespace Sitecore.Reference.Storefront.Managers
                 Helpers.LogSystemMessages(result.SystemMessages, result);
             }
 
-            return new ManagerResponse<VisitedProductDetailsPageResult, bool>(result, result.Success);
+            return new ManagerResponse<CatalogResult, bool>(result, result.Success);
         }
 
         /// <summary>
-        /// Visiteds the category page.
+        /// Facets the applied.
         /// </summary>
         /// <param name="storefront">The storefront.</param>
-        /// <returns>
-        /// The manager response
-        /// </returns>
-        public virtual ManagerResponse<VisitedCategoryPageResult, bool> VisitedCategoryPage([NotNull] CommerceStorefront storefront)
+        /// <param name="facet">The facet.</param>
+        /// <param name="isApplied">if set to <c>true</c> [is applied].</param>
+        /// <returns>The manager response.</returns>
+        public virtual ManagerResponse<CatalogResult, bool> FacetApplied([NotNull] CommerceStorefront storefront, string facet, bool isApplied)
         {
             Assert.ArgumentNotNull(storefront, "storefront");
 
-            var request = new VisitedCategoryPageRequest(storefront.ShopName, CatalogUrlManager.ExtractItemIdFromCurrentUrl())
-            {
-                CatalogName = CatalogUrlManager.ExtractCatalogNameFromCurrentUrl()
-            };
-
-            var result = this.CatalogServiceProvider.VisitedCategoryPage(request);
+            var request = new FacetAppliedRequest(storefront.ShopName, facet, isApplied);
+            var result = this.CatalogServiceProvider.FacetApplied(request);
             if (!result.Success)
             {
                 Helpers.LogSystemMessages(result.SystemMessages, result);
             }
 
-            return new ManagerResponse<VisitedCategoryPageResult, bool>(result, result.Success);
+            return new ManagerResponse<CatalogResult, bool>(result, result.Success);
+        }
+
+        /// <summary>
+        /// Sorts the order applied.
+        /// </summary>
+        /// <param name="storefront">The storefront.</param>
+        /// <param name="sortKey">The sort key.</param>
+        /// <param name="sortDirection">The sort direction.</param>
+        /// <returns>The manager response.</returns>
+        public virtual ManagerResponse<CatalogResult, bool> SortOrderApplied([NotNull] CommerceStorefront storefront, string sortKey, CommerceConstants.SortDirection? sortDirection)
+        {
+            Assert.ArgumentNotNull(storefront, "storefront");
+
+            Commerce.Entities.Catalog.SortDirection connectSortDirection = Commerce.Entities.Catalog.SortDirection.Ascending;
+            if (sortDirection.HasValue)
+            {
+                switch (sortDirection.Value)
+                {
+                    case CommerceConstants.SortDirection.Asc:
+                        connectSortDirection = Commerce.Entities.Catalog.SortDirection.Ascending;
+                        break;
+
+                    default:
+                        connectSortDirection = Commerce.Entities.Catalog.SortDirection.Descending;
+                        break;
+                }
+            }
+
+            var request = new ProductSortingRequest(storefront.ShopName, sortKey, connectSortDirection);
+            var result = this.CatalogServiceProvider.ProductSorting(request);
+            if (!result.Success)
+            {
+                Helpers.LogSystemMessages(result.SystemMessages, result);
+            }
+
+            return new ManagerResponse<CatalogResult, bool>(result, result.Success);
         }
 
         /// <summary>
@@ -510,7 +578,7 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <returns>
         /// The manager response
         /// </returns>
-        public virtual ManagerResponse<SearchInitiatedResult, bool> RegisterSearchEvent([NotNull] CommerceStorefront storefront, string searchKeyword, int numberOfHits)
+        public virtual ManagerResponse<CatalogResult, bool> RegisterSearchEvent([NotNull] CommerceStorefront storefront, string searchKeyword, int numberOfHits)
         {
             Assert.ArgumentNotNull(storefront, "storefront");
             Assert.ArgumentNotNullOrEmpty(searchKeyword, "searchKeyword");
@@ -522,7 +590,7 @@ namespace Sitecore.Reference.Storefront.Managers
                 Helpers.LogSystemMessages(result.SystemMessages, result);
             }
 
-            return new ManagerResponse<SearchInitiatedResult, bool>(result, result.Success);
+            return new ManagerResponse<CatalogResult, bool>(result, result.Success);
         }
 
         #region Protected helper methods
@@ -613,6 +681,7 @@ namespace Sitecore.Reference.Storefront.Managers
         /// Groups the provided relationships by name, and converts them into a list of <see cref="CategoryViewModel" /> objects.
         /// </summary>
         /// <param name="storefront">The storefront.</param>
+        /// <param name="visitorContext">The visitor context.</param>
         /// <param name="field">The relationship field.</param>
         /// <param name="relationshipNames">The names of the relationships to retrieve.</param>
         /// <param name="productRelationshipInfoList">The list of rerlationships to group and convert.</param>
@@ -621,7 +690,7 @@ namespace Sitecore.Reference.Storefront.Managers
         /// The grouped relationships converted into a list of <see cref="CategoryViewModel" /> objects.
         /// </returns>
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "Specific type is desired here.")]
-        protected IEnumerable<CategoryViewModel> GroupRelationshipsByDescription([NotNull] CommerceStorefront storefront, RelationshipField field, IEnumerable<string> relationshipNames, IEnumerable<CatalogRelationshipInformation> productRelationshipInfoList, Rendering rendering)
+        protected IEnumerable<CategoryViewModel> GroupRelationshipsByDescription([NotNull] CommerceStorefront storefront, [NotNull] VisitorContext visitorContext, RelationshipField field, IEnumerable<string> relationshipNames, IEnumerable<CatalogRelationshipInformation> productRelationshipInfoList, Rendering rendering)
         {
             Dictionary<string, CategoryViewModel> relationshipGroups = new Dictionary<string, CategoryViewModel>(StringComparer.OrdinalIgnoreCase);
 
@@ -676,7 +745,7 @@ namespace Sitecore.Reference.Storefront.Managers
 
                 if (productViewModelList.Count > 0)
                 {
-                    this.GetProductBulkPrices(productViewModelList);
+                    this.GetProductBulkPrices(visitorContext, productViewModelList);
                     this.InventoryManager.GetProductsStockStatusForList(storefront, productViewModelList);
                 }
             }

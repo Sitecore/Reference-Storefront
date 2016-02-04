@@ -13,9 +13,9 @@ templatekey: Template
 field: {12C33F3F-86C5-43A5-AEB4-5598CEC45116}
 name: __Base template
 key: __base template
-content-length: 38
+content-length: 77
 
-{A87A00B1-E6DB-45AB-8B54-636FEC3B5523}
+{A87A00B1-E6DB-45AB-8B54-636FEC3B5523}|{66CD2302-6169-4A29-A5D1-6000E4FA7084}
 ----field----
 field: {F7D48A55-2158-4F02-9356-756654404F73}
 name: __Standard values
@@ -33,7 +33,7 @@ Network/32x32/environment_network.png
 ----version----
 language: en
 version: 1
-revision: 0344c766-5430-43cf-af73-1733883dc132
+revision: eaea563e-90af-408f-943f-4c9f930295d5
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -48,18 +48,18 @@ name: __Revision
 key: __revision
 content-length: 36
 
-0344c766-5430-43cf-af73-1733883dc132
+eaea563e-90af-408f-943f-4c9f930295d5
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
-content-length: 34
+content-length: 16
 
-20141021T085557:635494785576951145
+20150915T080254Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
 key: __updated by
 content-length: 14
 
-sitecore\Admin
+sitecore\admin

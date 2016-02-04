@@ -16,10 +16,17 @@ key: results per page values
 content-length: 11
 
 12|18|24|30
+----field----
+field: {FD4E2050-186C-4375-8B99-E8A85DD7436E}
+name: __Enable item fallback
+key: __enable item fallback
+content-length: 1
+
+1
 ----version----
-language: en
+language: de-DE
 version: 1
-revision: 9bbc6392-78b5-4305-bec1-1d1e0192f445
+revision: dd005b51-ee44-46df-b697-cadd95d5e630
 
 ----field----
 field: {63E6284B-2F67-4F0C-84B3-17A0C6F0A80D}
@@ -90,14 +97,281 @@ name: __Revision
 key: __revision
 content-length: 36
 
-9bbc6392-78b5-4305-bec1-1d1e0192f445
+dd005b51-ee44-46df-b697-cadd95d5e630
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
-content-length: 35
+content-length: 16
 
-20150113T144611:635567571711959797Z
+20160113T074637Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin
+----version----
+language: en
+version: 1
+revision: dd005b51-ee44-46df-b697-cadd95d5e630
+
+----field----
+field: {63E6284B-2F67-4F0C-84B3-17A0C6F0A80D}
+name: Sort By
+key: sort by
+content-length: 8
+
+Sort by:
+----field----
+field: {05C11D25-1E1D-4768-9513-A9102C382CF3}
+name: Showing
+key: showing
+content-length: 7
+
+Showing
+----field----
+field: {367AD7F0-816C-46E4-8A66-21A368230057}
+name: Results Per Page
+key: results per page
+content-length: 17
+
+Results per page:
+----field----
+field: {A0186324-66D4-4B05-81C2-811DC35BD05E}
+name: Ascending
+key: ascending
+content-length: 5
+
+(Asc)
+----field----
+field: {EC21D0D2-25EF-4DB2-97CB-DCA5CF0C5C09}
+name: Descending
+key: descending
+content-length: 6
+
+(Desc)
+----field----
+field: {8E44D8A6-6B06-4F72-A46A-349206C5BC8E}
+name: Of
+key: of
+content-length: 2
+
+of
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20150113T014150Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+dd005b51-ee44-46df-b697-cadd95d5e630
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20160113T074637Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin
+----version----
+language: fr-FR
+version: 1
+revision: dd005b51-ee44-46df-b697-cadd95d5e630
+
+----field----
+field: {63E6284B-2F67-4F0C-84B3-17A0C6F0A80D}
+name: Sort By
+key: sort by
+content-length: 8
+
+Sort by:
+----field----
+field: {05C11D25-1E1D-4768-9513-A9102C382CF3}
+name: Showing
+key: showing
+content-length: 7
+
+Showing
+----field----
+field: {367AD7F0-816C-46E4-8A66-21A368230057}
+name: Results Per Page
+key: results per page
+content-length: 17
+
+Results per page:
+----field----
+field: {A0186324-66D4-4B05-81C2-811DC35BD05E}
+name: Ascending
+key: ascending
+content-length: 5
+
+(Asc)
+----field----
+field: {EC21D0D2-25EF-4DB2-97CB-DCA5CF0C5C09}
+name: Descending
+key: descending
+content-length: 6
+
+(Desc)
+----field----
+field: {8E44D8A6-6B06-4F72-A46A-349206C5BC8E}
+name: Of
+key: of
+content-length: 2
+
+of
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20150113T014150Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+dd005b51-ee44-46df-b697-cadd95d5e630
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20160113T074637Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin
+----version----
+language: ja-JP
+version: 1
+revision: dd005b51-ee44-46df-b697-cadd95d5e630
+
+----field----
+field: {63E6284B-2F67-4F0C-84B3-17A0C6F0A80D}
+name: Sort By
+key: sort by
+content-length: 8
+
+Sort by:
+----field----
+field: {05C11D25-1E1D-4768-9513-A9102C382CF3}
+name: Showing
+key: showing
+content-length: 7
+
+Showing
+----field----
+field: {367AD7F0-816C-46E4-8A66-21A368230057}
+name: Results Per Page
+key: results per page
+content-length: 17
+
+Results per page:
+----field----
+field: {A0186324-66D4-4B05-81C2-811DC35BD05E}
+name: Ascending
+key: ascending
+content-length: 5
+
+(Asc)
+----field----
+field: {EC21D0D2-25EF-4DB2-97CB-DCA5CF0C5C09}
+name: Descending
+key: descending
+content-length: 6
+
+(Desc)
+----field----
+field: {8E44D8A6-6B06-4F72-A46A-349206C5BC8E}
+name: Of
+key: of
+content-length: 2
+
+of
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20150113T014150Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+dd005b51-ee44-46df-b697-cadd95d5e630
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20160113T074637Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

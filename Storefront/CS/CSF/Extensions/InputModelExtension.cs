@@ -1,10 +1,10 @@
 ﻿//---------------------------------------------------------------------
 // <copyright file="InputModelExtension.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Extensions for dealing with the translation of action requests .</summary>
 //---------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -28,7 +28,6 @@ namespace Sitecore.Reference.Storefront
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
-    using RefSFModels = Sitecore.Reference.Storefront.Connect.Models;
 
     /// <summary>
     /// Define the InputModelExtension class.
@@ -230,27 +229,27 @@ namespace Sitecore.Reference.Storefront
         //// TODO: Move at a better location!
         public static ShippingOptionType GetShippingOptionType(string optionType)
         {
-            if (optionType.Equals(RefSFModels.ShippingOptionType.ShipToAddress.Value.ToString(CultureInfo.InvariantCulture), StringComparison.OrdinalIgnoreCase))
+            if (optionType.Equals(ShippingOptionType.ShipToAddress.Value.ToString(CultureInfo.InvariantCulture), StringComparison.OrdinalIgnoreCase))
             {
-                return RefSFModels.ShippingOptionType.ShipToAddress;
+                return ShippingOptionType.ShipToAddress;
             }
 
             if (optionType.Equals(ShippingOptionType.PickupFromStore.Value.ToString(CultureInfo.InvariantCulture), StringComparison.OrdinalIgnoreCase))
             {
-                return RefSFModels.ShippingOptionType.PickupFromStore;
+                return ShippingOptionType.PickupFromStore;
             }
 
             if (optionType.Equals(ShippingOptionType.ElectronicDelivery.Value.ToString(CultureInfo.InvariantCulture), StringComparison.OrdinalIgnoreCase))
             {
-                return RefSFModels.ShippingOptionType.ElectronicDelivery;
+                return ShippingOptionType.ElectronicDelivery;
             }
 
-            if (optionType.Equals(RefSFModels.ShippingOptionType.DeliverItemsIndividually.Value.ToString(CultureInfo.InvariantCulture), StringComparison.OrdinalIgnoreCase))
+            if (optionType.Equals(ShippingOptionType.DeliverItemsIndividually.Value.ToString(CultureInfo.InvariantCulture), StringComparison.OrdinalIgnoreCase))
             {
-                return RefSFModels.ShippingOptionType.DeliverItemsIndividually;
+                return ShippingOptionType.DeliverItemsIndividually;
             }
 
-            return RefSFModels.ShippingOptionType.None;
+            return ShippingOptionType.None;
         }
     }
 }

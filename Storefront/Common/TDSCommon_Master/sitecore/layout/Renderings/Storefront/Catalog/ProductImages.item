@@ -24,6 +24,20 @@ content-length: 7
 
 Product
 ----field----
+field: {3D08DB46-2267-41B0-BC52-BE69FD618633}
+name: Cacheable
+key: cacheable
+content-length: 1
+
+1
+----field----
+field: {11490DA4-BBC2-4397-8DF2-6DB2EF445081}
+name: VaryByUrlPath
+key: varybyurlpath
+content-length: 1
+
+1
+----field----
 field: {C7C26117-DBB1-42B2-AB5E-F7223845CCA3}
 name: __Thumbnail
 key: __thumbnail
@@ -33,7 +47,7 @@ content-length: 58
 ----version----
 language: en
 version: 1
-revision: df62d63b-0181-4507-ae79-ef7d6e441507
+revision: 17c023e2-59be-4639-a972-29bd0cec1577
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -48,14 +62,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-df62d63b-0181-4507-ae79-ef7d6e441507
+17c023e2-59be-4639-a972-29bd0cec1577
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
-content-length: 34
+content-length: 16
 
-20141107T031404:635509268448412453
+20150831T110934Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

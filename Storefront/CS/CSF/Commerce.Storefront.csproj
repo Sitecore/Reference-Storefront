@@ -31,6 +31,8 @@
     </SccProvider>
     <StyleCopOverrideSettingsFile>..\..\..\Settings.Sitecore.StyleCop</StyleCopOverrideSettingsFile>
     <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -153,9 +155,9 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http.Formatting, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.1.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
@@ -163,21 +165,21 @@
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.Helpers.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Http, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.1.2\lib\net45\System.Web.Http.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Http.WebHost, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.1.2\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.1.1\lib\net45\System.Web.Mvc.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -185,22 +187,22 @@
     </Reference>
     <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Razor.3.1.1\lib\net45\System.Web.Razor.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.1.1\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -209,7 +211,7 @@
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
-      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
     </Reference>
@@ -221,7 +223,7 @@
     </Reference>
     <Reference Include="Microsoft.Web.WebPages.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.2.0.20710.0\lib\net40\Microsoft.Web.WebPages.OAuth.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.OAuth.2.0.20710.0\lib\net40\Microsoft.Web.WebPages.OAuth.dll</HintPath>
     </Reference>
     <Reference Include="DotNetOpenAuth.AspNet, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -273,6 +275,12 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Config\Include\Reference.Storefront\Sitecore.ItemWebApi.config" />
+    <Content Include="SitecoreCommerce\Data\Catalog\Catalog.xml" />
+    <Content Include="SitecoreCommerce\Data\Inventory\Inventory.xml" />
+    <Content Include="SitecoreCommerce\Data\Marketing\Marketing.xml" />
+    <Content Include="SitecoreCommerce\Data\Orders\OrdersConfig.xml" />
+    <Content Include="SitecoreCommerce\Data\Orders\Orders.xml" />
+    <Content Include="SitecoreCommerce\Data\Profiles\Profiles.xml" />
     <Content Include="Sitecore\Copyrights\CastleWinsor_Apache.txt" />
     <Content Include="Sitecore\Copyrights\Knockout.Validation_MIT.txt" />
     <Content Include="Sitecore\Copyrights\Microsoft.AspNet.Mvc_rtw_enu.htm" />
@@ -300,10 +308,20 @@
     <Content Include="App_Config\Include\Reference.Storefront\Reference.Storefront.Carts.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="App_Config\Include\Reference.Storefront\Reference.Storefront.Prices.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Config\CommerceServer.Core.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Properties\PublishProfiles\DynamicsRetail.pubxml" />
     <Content Include="MergeFiles\Merge.Commerce.Storefront.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="MergeFiles\Views\Merge.web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Solr_Schema.xml" />
     <Content Include="web.config" />
     <Content Include="Views\Storefront\Account\MyOrders.cshtml" />
     <Content Include="Views\Storefront\Account\MyOrder.cshtml" />
@@ -320,8 +338,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="App_Start\WindsorConfig.cs" />
-    <Compile Include="Connect\Models\CommerceParty.cs" />
-    <Compile Include="Connect\Models\EmailParty.cs" />
     <Compile Include="Connect\Pipelines\Arguments\GetProductPricesRequest.cs" />
     <Compile Include="Connect\Pipelines\Arguments\TranslateCommerceAddressProfileToEntityRequest.cs" />
     <Compile Include="Connect\Pipelines\Arguments\TranslateEntityToCommerceAddressProfileRequest.cs" />
@@ -354,9 +370,6 @@
     <Compile Include="Connect\Pipelines\Payments\GetPaymentOptions.cs" />
     <Compile Include="Connect\Pipelines\Shipping\GetShippingMethods.cs" />
     <Compile Include="Connect\Pipelines\Shipping\GetShippingOptions.cs" />
-    <Compile Include="Connect\Services\Orders\CommerceOrderServiceProvider.cs" />
-    <Compile Include="Connect\Services\Orders\GenericCommerceOrderServiceProviderExtensions.cs" />
-    <Compile Include="Connect\Services\Prices\PricingServiceProvider.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CSBaseController.cs" />
     <Compile Include="Controllers\LandingController.cs" />
@@ -384,10 +397,6 @@
     <Compile Include="Managers\OrderManager.cs" />
     <Compile Include="Managers\PricingManager.cs" />
     <Compile Include="Managers\ShippingManager.cs" />
-    <Compile Include="Connect\Pipelines\Arguments\GetAvailableCountriesRequest.cs" />
-    <Compile Include="Connect\Pipelines\Arguments\GetAvailableCountriesResult.cs" />
-    <Compile Include="Connect\Pipelines\Arguments\GetAvailableRegionsRequest.cs" />
-    <Compile Include="Connect\Pipelines\Arguments\GetAvailableRegionsResult.cs" />
     <Compile Include="Managers\WishListManager.cs" />
     <Compile Include="Models\JsonResults\AddressListItemJsonResult.cs" />
     <Compile Include="Models\JsonResults\CSCartBaseJsonResult.cs" />
@@ -397,18 +406,15 @@
     <Compile Include="Models\JsonResults\AddressItemJsonResult.cs" />
     <Compile Include="CommerceServerStorefrontConstants.cs" />
     <Compile Include="Models\SitecoreItemModels\CommerceServerStorefront.cs" />
-    <Compile Include="Connect\Models\ShippingMethodPerItem.cs" />
-    <Compile Include="Connect\Models\ShippingOptionType.cs" />
     <Compile Include="Connect\Services\Orders\GetShippingMethodsRequest.cs" />
-    <Compile Include="Connect\Services\Orders\GetShippingMethodsResult.cs" />
     <Compile Include="Search\VariantIndexInfo.cs" />
     <Compile Include="Search\VariantInfoComputedField.cs" />
     <Compile Include="SitecorePipelines\InitializeBundles.cs" />
+    <Compile Include="SitecorePipelines\InitializeControllerFactory.cs" />
     <Compile Include="SitecorePipelines\InitializeRoutes.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Infrastructure\DependenciesInstaller.cs" />
     <Compile Include="Infrastructure\WindsorControllerFactory.cs" />
-    <Compile Include="Infrastructure\WindsorHttpControllerActivator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -426,6 +432,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Connect\Models\" />
+    <Folder Include="Connect\Services\Prices\" />
     <Folder Include="Util\" />
   </ItemGroup>
   <ItemGroup>
@@ -462,9 +470,15 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>XCOPY /Y /R /S "$(ProjectDir)SitecoreCommerce\Data" "$(ProjectDir)..\Database"</PostBuildEvent>
   </PropertyGroup>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

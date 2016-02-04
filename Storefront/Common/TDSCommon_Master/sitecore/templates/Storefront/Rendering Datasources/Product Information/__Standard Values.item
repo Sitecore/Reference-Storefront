@@ -10,6 +10,13 @@ template: {917BAFA7-4CD6-44B5-9DAC-59FC063A9743}
 templatekey: Product Information
 
 ----field----
+field: {FD4E2050-186C-4375-8B99-E8A85DD7436E}
+name: __Enable item fallback
+key: __enable item fallback
+content-length: 1
+
+1
+----field----
 field: {BA3F86A2-4A1C-4D78-B63D-91C2779C1B5E}
 name: __Sortorder
 key: __sortorder
@@ -19,7 +26,7 @@ content-length: 3
 ----version----
 language: en
 version: 1
-revision: 1c9ebeaf-e06f-4e3e-b405-10d5926292c7
+revision: 84ba5db5-6757-4168-977a-713c4fe57515
 
 ----field----
 field: {BC3FB1F0-651E-44CC-9820-BCD5B20AA04B}
@@ -64,7 +71,7 @@ content-length: 10
 
 Save up to
 ----field----
-field: {BD40D1D4-406A-4BB9-82FF-A306C448F4C5}
+field: {57CA5CC4-949A-4264-9EA0-6FA7D0D1D362}
 name: Invalid Variant
 key: invalid variant
 content-length: 40
@@ -97,14 +104,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-1c9ebeaf-e06f-4e3e-b405-10d5926292c7
+84ba5db5-6757-4168-977a-713c4fe57515
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
-content-length: 35
+content-length: 16
 
-20150629T101951:635711699914925682Z
+20160119T095422Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

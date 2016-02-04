@@ -1,5 +1,5 @@
 ﻿@*//-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -19,7 +19,7 @@
     var toBillingLabel = Html.Sitecore().Field("NextButtonLabel", Html.Sitecore().CurrentItem.Children["Delivery"]);
     var toConfirmLabel = Html.Sitecore().Field("NextButtonLabel", Html.Sitecore().CurrentItem.Children["Billing"]);
     var placeOrderLabel = Html.Sitecore().Field("NextButtonLabel", Html.Sitecore().CurrentItem.Children["Confirm"]);
-    var processing = @Html.Sitecore().Field("Processing Label", Html.Sitecore().CurrentItem);
+    var processing = @Html.Sitecore().CurrentItem["Processing Label"];
 }
 <div class="container">
     <div class="row">

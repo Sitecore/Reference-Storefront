@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="GetShippingOptions.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Pipeline responsible for returning the shipping options.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -26,7 +26,6 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Shipping
     using Sitecore.Commerce.Services.Shipping;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
-    using Sitecore.Reference.Storefront.Connect.Models;
     using Sitecore.Reference.Storefront.Managers;
     using Sitecore.Reference.Storefront.Models.SitecoreItemModels;
     using System;
@@ -80,8 +79,8 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Shipping
 
                 this.TranslateToShippingOption(shippingOptionItem, option);
 
-                bool add = option.ShippingOptionType == Models.ShippingOptionType.ElectronicDelivery && !CartCanBeEmailed(request.Cart as CommerceCart) ? false :
-                           option.ShippingOptionType == Models.ShippingOptionType.DeliverItemsIndividually && request.Cart.Lines.Count <= 1 ? false : true;
+                bool add = option.ShippingOptionType == ShippingOptionType.ElectronicDelivery && !CartCanBeEmailed(request.Cart as CommerceCart) ? false :
+                           option.ShippingOptionType == ShippingOptionType.DeliverItemsIndividually && request.Cart.Lines.Count <= 1 ? false : true;
 
                 if (add)
                 {
@@ -145,9 +144,9 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Shipping
 
                     foreach (var shippingOption in allShippingOptions)
                     {
-                        if (shippingOption.ShippingOptionType == Sitecore.Reference.Storefront.Connect.Models.ShippingOptionType.ShipToAddress || shippingOption.ShippingOptionType == Sitecore.Reference.Storefront.Connect.Models.ShippingOptionType.ElectronicDelivery)
+                        if (shippingOption.ShippingOptionType == ShippingOptionType.ShipToAddress || shippingOption.ShippingOptionType == ShippingOptionType.ElectronicDelivery)
                         {
-                            bool add = shippingOption.ShippingOptionType == Sitecore.Reference.Storefront.Connect.Models.ShippingOptionType.ElectronicDelivery && !this.CanLineItemBeEmailed(lineItem) ? false : true;
+                            bool add = shippingOption.ShippingOptionType == ShippingOptionType.ElectronicDelivery && !this.CanLineItemBeEmailed(lineItem) ? false : true;
 
                             if (add)
                             {

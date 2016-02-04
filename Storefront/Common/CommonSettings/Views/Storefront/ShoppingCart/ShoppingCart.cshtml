@@ -1,5 +1,5 @@
 ﻿@*//-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -18,9 +18,10 @@
 
     var enterCouponCodeMessage = Html.Sitecore().Field("Enter Coupon Code Message", Html.Sitecore().CurrentItem);
     var promoCodeLabel = Html.Sitecore().Field("Promo Code Label", Html.Sitecore().CurrentItem);
+    var promoCodeLabelPlaceholder = Html.Sitecore().CurrentItem["Promo Code Label"];
     var promoCodeListLabel = Html.Sitecore().Field("Promo Code List Label", Html.Sitecore().CurrentItem);
     var addPromoCodeLabel = Html.Sitecore().Field("Add Promo Code Button", Html.Sitecore().CurrentItem);
-    var addingPromoCodeLabel = Html.Sitecore().Field("Adding Promo Code Button", Html.Sitecore().CurrentItem);
+    var addingPromoCodeLabel = Html.Sitecore().CurrentItem["Adding Promo Code Button"];
     var removeButtonLabel = Html.Sitecore().Field("Remove Button", Html.Sitecore().CurrentItem);
 }
 
@@ -52,7 +53,7 @@
             <div class="form-group">
 
                 <label for="discountcode_cart">@promoCodeLabel</label>
-                <input type="text" class="form-control" id="discountcode_cart" placeholder="@promoCodeLabel" data-bind="value: promoCode, valueUpdate: 'keyup'">
+                <input type="text" class="form-control" id="discountcode_cart" placeholder="@promoCodeLabelPlaceholder" data-bind="value: promoCode, valueUpdate: 'keyup'">
             </div>
             <div class="form-group">
                 <button type="button" class="cart-applydiscount btn btn-success" data-bind="enable: hasPromoCode" data-loading-text="@addingPromoCodeLabel">@addPromoCodeLabel</button>

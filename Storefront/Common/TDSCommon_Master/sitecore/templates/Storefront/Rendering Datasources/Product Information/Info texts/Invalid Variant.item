@@ -1,6 +1,6 @@
 ----item----
 version: 1
-id: {BD40D1D4-406A-4BB9-82FF-A306C448F4C5}
+id: {57CA5CC4-949A-4264-9EA0-6FA7D0D1D362}
 database: master
 path: /sitecore/templates/Storefront/Rendering Datasources/Product Information/Info texts/Invalid Variant
 parent: {1A83F394-8CCC-4B00-B81C-5D0A31C4CD67}
@@ -26,7 +26,7 @@ content-length: 3
 ----version----
 language: en
 version: 1
-revision: 88c709ef-3345-4e22-81c1-2493b93bc5b7
+revision: 4312179d-9c0b-4cd5-9a49-0ade1c92d06c
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -34,21 +34,21 @@ name: __Created
 key: __created
 content-length: 16
 
-20150629T101856Z
+20150629T052712Z
 ----field----
 field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
 name: __Revision
 key: __revision
 content-length: 36
 
-88c709ef-3345-4e22-81c1-2493b93bc5b7
+4312179d-9c0b-4cd5-9a49-0ade1c92d06c
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 35
 
-20150629T101857:635711699373128624Z
+20150629T052712:635711524325191390Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

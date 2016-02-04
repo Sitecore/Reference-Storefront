@@ -1,9 +1,9 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="ProductViewModel.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -79,6 +79,30 @@ namespace Sitecore.Reference.Storefront.Models
                 return Item.Name;
             }
         }
+
+        /// <summary>
+        /// Gets or sets the name of the product.
+        /// </summary>
+        /// <value>
+        /// The name of the product.
+        /// </value>
+        public string ProductName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the parent category identifier.
+        /// </summary>
+        /// <value>
+        /// The parent category identifier.
+        /// </value>
+        public string ParentCategoryId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the parent category.
+        /// </summary>
+        /// <value>
+        /// The name of the parent category.
+        /// </value>
+        public string ParentCategoryName { get; set; }
 
         /// <summary>
         /// Gets or sets the Product Description.
@@ -166,7 +190,7 @@ namespace Sitecore.Reference.Storefront.Models
         {
             get
             {
-                return this.ListPrice.HasValue ? this.ListPrice.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode) : string.Empty;
+                return this.ListPrice.HasValue ? this.ListPrice.ToCurrency(StorefrontManager.GetCustomerCurrency()) : string.Empty;
             }
         }
 
@@ -229,7 +253,7 @@ namespace Sitecore.Reference.Storefront.Models
         {
             get
             {
-                return this.AdjustedPrice.HasValue ? this.AdjustedPrice.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode) : string.Empty;
+                return this.AdjustedPrice.HasValue ? this.AdjustedPrice.ToCurrency(StorefrontManager.GetCustomerCurrency()) : string.Empty;
             }
         }
 
@@ -262,7 +286,7 @@ namespace Sitecore.Reference.Storefront.Models
         {
             get
             {
-                return this.LowestPricedVariantAdjustedPrice.HasValue ? this.LowestPricedVariantAdjustedPrice.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode) : string.Empty;
+                return this.LowestPricedVariantAdjustedPrice.HasValue ? this.LowestPricedVariantAdjustedPrice.ToCurrency(StorefrontManager.GetCustomerCurrency()) : string.Empty;
             }
         }
 
@@ -284,7 +308,7 @@ namespace Sitecore.Reference.Storefront.Models
         {
             get
             {
-                return this.LowestPricedVariantListPrice.HasValue ? this.LowestPricedVariantListPrice.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode) : string.Empty;
+                return this.LowestPricedVariantListPrice.HasValue ? this.LowestPricedVariantListPrice.ToCurrency(StorefrontManager.GetCustomerCurrency()) : string.Empty;
             }
         }
 

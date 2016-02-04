@@ -23,10 +23,17 @@ key: controller action
 content-length: 16
 
 FooterNavigation
+----field----
+field: {3D08DB46-2267-41B0-BC52-BE69FD618633}
+name: Cacheable
+key: cacheable
+content-length: 1
+
+1
 ----version----
 language: en
 version: 1
-revision: 4a3be9ee-8597-4496-b70e-04fcfb2f9b78
+revision: ee3d3af8-8f10-4c8c-87fb-1b2d27aba883
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -41,14 +48,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-4a3be9ee-8597-4496-b70e-04fcfb2f9b78
+ee3d3af8-8f10-4c8c-87fb-1b2d27aba883
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
-content-length: 35
+content-length: 16
 
-20150217T161936:635597867768899891Z
+20150831T121318Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

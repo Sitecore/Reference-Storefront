@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="WindsorConfig.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Defines the WindsorConfig class.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -17,15 +17,15 @@
 
 using Sitecore.Reference.Storefront;
 
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(WindsorConfig), "ConfigureContainer")]
-[assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(WindsorConfig), "ReleaseContainer")]
+using WebActivatorEx;
+
+[assembly: PreApplicationStartMethod(typeof(WindsorConfig), "ConfigureContainer")]
+[assembly: ApplicationShutdownMethod(typeof(WindsorConfig), "ReleaseContainer")]
 
 namespace Sitecore.Reference.Storefront
 {
-    using System.Web.Http.Dispatcher;
     using Castle.Windsor;
     using Castle.Windsor.Installer;
-    using Sitecore.Reference.Storefront.Infrastructure;
 
     /// <summary>
     /// Configures Castle Windsor IoC container.
@@ -50,10 +50,6 @@ namespace Sitecore.Reference.Storefront
         /// </summary>
         public static void ConfigureContainer()
         {
-            var defaultActivator = System.Web.Http.GlobalConfiguration.Configuration.Services.GetService(typeof(IHttpControllerActivator)) as IHttpControllerActivator;
-
-            System.Web.Mvc.ControllerBuilder.Current.SetControllerFactory(new WindsorControllerFactory(Container.Kernel));
-            System.Web.Http.GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpControllerActivator), new WindsorHttpControllerActivator(Container, defaultActivator));
         }
 
         /// <summary>

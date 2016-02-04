@@ -1,5 +1,5 @@
 ﻿@*//-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -23,11 +23,12 @@
     var savingChanges = Html.Sitecore().Field("Saving Changes Button", currentPage);
     var cancel = Html.Sitecore().Field("Cancel Button", currentPage);
     var backtoMyAccount = Html.Sitecore().Field("Back To My Account", currentPage);
+    var telephoneNumber = Html.Sitecore().Field("Telephone Number", currentPage);
 
-    var telephoneNumberPH = Html.Sitecore().Field("Telephone Number Placeholder", currentPage);   
-    var emailPH = Html.Sitecore().Field("Email Placeholder", currentPage);
-    var firstNamePH = Html.Sitecore().Field("First Name Placeholder", currentPage);
-    var lastNamePH = Html.Sitecore().Field("Last Name Placeholder", currentPage);
+    var telephoneNumberPH = currentPage["Telephone Number Placeholder"];
+    var emailPH = currentPage["Email Placeholder"];
+    var firstNamePH = currentPage["First Name Placeholder"];
+    var lastNamePH = currentPage["Last Name Placeholder"];
 
     var firstNameRequiredMsg = Html.Sitecore().Field("First Name Required Message", currentPage);
     var lastNameRequiredMsg = Html.Sitecore().Field("Last Name Required Message", currentPage);
@@ -43,7 +44,7 @@
     <div class="wrap-main-content">
         <!-- CONTENT CONTAINER -->
         <div id="" class="row">
-            <div class="col-md-12 border-bottom"><h1><span class="back-to-myaccount pull-right"><a href="javascript:history.go(-1)"><span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span> @backtoMyAccount</a></span></h1></div>
+            <div class="col-md-12 border-bottom"><h1><span class="back-to-myaccount pull-right"><a href="@StorefrontManager.StorefrontUri("/accountmanagement")"><span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span> @backtoMyAccount</a></span></h1></div>
             <div class="col-md-12">
                 <div class="col-md-4">
                     <div class="form-group">
@@ -102,7 +103,7 @@
 
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="TelephoneNumber">Telephone number <span class="required">*</span> </label>
+                        <label for="TelephoneNumber">@telephoneNumber<span class="required">*</span> </label>
                         @Html.TextBoxFor(m => m.TelephoneNumber,
                         new
                         {

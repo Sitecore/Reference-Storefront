@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="TranslateCommerceAddressProfileToEntityRequest.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Request class for the pipeline responsible for translating a Commerce Server address to a Party.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -18,9 +18,9 @@
 namespace Sitecore.Reference.Storefront.Connect.Pipelines.Arguments
 {
     using CommerceServer.Core.Runtime.Profiles;
+    using Sitecore.Commerce.Connect.CommerceServer.Orders.Models;
     using Sitecore.Commerce.Connect.CommerceServer.Pipelines;
     using Sitecore.Diagnostics;
-    using RefSFModels = Sitecore.Reference.Storefront.Connect.Models;
 
     /// <summary>
     /// Defines the TranslateCommerceAddressProfileToEntityRequest class.
@@ -32,7 +32,7 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Arguments
         /// </summary>
         /// <param name="sourceProfile">The source profile.</param>
         /// <param name="destinationParty">The destination party.</param>
-        public TranslateCommerceAddressProfileToEntityRequest([NotNull] Profile sourceProfile, [NotNull] RefSFModels.CommerceParty destinationParty)
+        public TranslateCommerceAddressProfileToEntityRequest([NotNull] Profile sourceProfile, [NotNull] CommerceParty destinationParty)
         {
             Assert.ArgumentNotNull(sourceProfile, "commerceProfile");
             Assert.ArgumentNotNull(destinationParty, "customerParty");
@@ -55,6 +55,6 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Arguments
         /// <value>
         /// The destination party.
         /// </value>
-        public RefSFModels.CommerceParty DestinationParty { get; set; }
+        public CommerceParty DestinationParty { get; set; }
     }
 }

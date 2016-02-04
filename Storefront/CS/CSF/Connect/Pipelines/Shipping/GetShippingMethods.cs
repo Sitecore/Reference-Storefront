@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="GetShippingMethods.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Pipeline responsible for returning the shipping methods.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -17,7 +17,6 @@
 
 namespace Sitecore.Reference.Storefront.Connect.Pipelines.Shipping
 {
-    using Sitecore.Reference.Storefront.Connect.Models;
     using Sitecore.Commerce.Connect.CommerceServer.Orders.Pipelines;
     using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Shipping;
@@ -98,10 +97,10 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Shipping
                 // We need to do this type casting for now until the base OBEC classes support the additional properties.  Setting the shipping
                 // methods calls this pipeline processor for validation purposes (call is made by CS integration) and we must allow to be called using
                 // the original CS integration classes.
-                if (request is Services.Orders.GetShippingMethodsRequest && result is Services.Orders.GetShippingMethodsResult)
+                if (request is Services.Orders.GetShippingMethodsRequest && result is GetShippingMethodsResult)
                 {
                     var obecRequest = (Services.Orders.GetShippingMethodsRequest)request;
-                    var obecResult = (Services.Orders.GetShippingMethodsResult)result;
+                    var obecResult = (GetShippingMethodsResult)result;
 
                     if (obecRequest.Lines != null && obecRequest.Lines.Any())
                     {
@@ -117,7 +116,7 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Shipping
                             shippingMethodPerItemList.Add(shippingMethodPerItem);
                         }
 
-                        obecResult.ShippingMethodsPerItems = new System.Collections.ObjectModel.ReadOnlyCollection<ShippingMethodPerItem>(shippingMethodPerItemList);
+                        obecResult.ShippingMethodsPerItem = new System.Collections.ObjectModel.ReadOnlyCollection<ShippingMethodPerItem>(shippingMethodPerItemList);
                     }
                 }
             }

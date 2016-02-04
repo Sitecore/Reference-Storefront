@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="AccountController.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Defines the AccountController class.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -35,7 +35,6 @@ namespace Sitecore.Reference.Storefront.Controllers
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
     using Sitecore.Links;
-    using CSFConnectModels = Sitecore.Reference.Storefront.Connect.Models;
     using Sitecore.Reference.Storefront.ExtensionMethods;
     using System.Globalization;
     using System.Web.UI;
@@ -187,7 +186,7 @@ namespace Sitecore.Reference.Storefront.Controllers
                 return Redirect("/login");
             }
 
-            var commerceUser = this.AccountManager.GetUser(this.CurrentVisitorContext.UserName).Result;
+            var commerceUser = this.AccountManager.GetUser(Context.User.Name).Result;
 
             if (commerceUser == null)
             {
@@ -270,11 +269,13 @@ namespace Sitecore.Reference.Storefront.Controllers
                     return Json(result, JsonRequestBehavior.AllowGet);
                 }
 
+                var anonymousVisitorId = this.CurrentVisitorContext.UserId;
+
                 var response = this.AccountManager.RegisterUser(this.CurrentStorefront, inputModel);
                 if (response.ServiceProviderResult.Success && response.Result != null)
                 {
                     result.Initialize(response.Result);
-                    this.AccountManager.Login(CurrentStorefront, CurrentVisitorContext, response.Result.UserName, inputModel.Password, false);
+                    this.AccountManager.Login(CurrentStorefront, CurrentVisitorContext, anonymousVisitorId, response.Result.UserName, inputModel.Password, false);
                 }
                 else
                 {
@@ -302,7 +303,9 @@ namespace Sitecore.Reference.Storefront.Controllers
         [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult Login(LoginModel model)
         {
-            if (ModelState.IsValid && this.AccountManager.Login(CurrentStorefront, CurrentVisitorContext, UpdateUserName(model.UserName), model.Password, model.RememberMe))
+            var anonymousVisitorId = this.CurrentVisitorContext.UserId;
+
+            if (ModelState.IsValid && this.AccountManager.Login(CurrentStorefront, CurrentVisitorContext, anonymousVisitorId, UpdateUserName(model.UserName), model.Password, model.RememberMe))
             {
                 return RedirectToLocal(StorefrontManager.StorefrontHome);
             }
@@ -448,7 +451,7 @@ namespace Sitecore.Reference.Storefront.Controllers
 
             if (Context.User.IsAuthenticated && !Context.User.Profile.IsAdministrator)
             {
-                var commerceUser = this.AccountManager.GetUser(this.CurrentVisitorContext.UserName).Result;
+                var commerceUser = this.AccountManager.GetUser(Context.User.Name).Result;
                 if (commerceUser != null)
                 {
                     model.FirstName = commerceUser.FirstName;
@@ -524,7 +527,7 @@ namespace Sitecore.Reference.Storefront.Controllers
                     return Json(validationResult, JsonRequestBehavior.AllowGet);
                 }
 
-                var addresses = new List<CSFConnectModels.CommerceParty>();
+                var addresses = new List<CommerceParty>();
                 var response = this.AccountManager.RemovePartiesFromCurrentUser(this.CurrentStorefront, this.CurrentVisitorContext, model.ExternalId);
                 var result = new AddressListItemJsonResult(response.ServiceProviderResult);
                 if (response.ServiceProviderResult.Success)
@@ -567,14 +570,14 @@ namespace Sitecore.Reference.Storefront.Controllers
                     return Json(validationResult, JsonRequestBehavior.AllowGet);
                 }
 
-                var addresses = new List<CSFConnectModels.CommerceParty>();
+                var addresses = new List<CommerceParty>();
                 var userResponse = this.AccountManager.GetUser(Context.User.Name);
                 var result = new AddressListItemJsonResult(userResponse.ServiceProviderResult);
                 if (userResponse.ServiceProviderResult.Success && userResponse.Result != null)
                 {
                     var commerceUser = userResponse.Result;
                     var customer = new CommerceCustomer { ExternalId = commerceUser.ExternalId };
-                    var party = new CSFConnectModels.CommerceParty
+                    var party = new CommerceParty
                             {
                                 ExternalId = model.ExternalId,
                                 Name = model.Name,
@@ -593,7 +596,7 @@ namespace Sitecore.Reference.Storefront.Controllers
                         int numberOfAddresses = this.AllAddresses(result).Count;
                         if (numberOfAddresses >= StorefrontManager.CurrentStorefront.MaxNumberOfAddresses)
                         {
-                            var message = StorefrontManager.GetSystemMessage("MaxAddresseLimitReached");
+                            var message = StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.MaxAddressLimitReached);
                             result.Errors.Add(string.Format(CultureInfo.InvariantCulture, message, numberOfAddresses));
                             result.Success = false;
                         }
@@ -702,7 +705,7 @@ namespace Sitecore.Reference.Storefront.Controllers
                     return Json(anonymousResult, JsonRequestBehavior.AllowGet);
                 }
 
-                var response = this.AccountManager.GetUser(this.CurrentVisitorContext.UserName);
+                var response = this.AccountManager.GetUser(Context.User.Name);
                 var result = new UserBaseJsonResult(response.ServiceProviderResult);
                 if (response.ServiceProviderResult.Success && response.Result != null)
                 {
@@ -799,9 +802,9 @@ namespace Sitecore.Reference.Storefront.Controllers
             return countries;
         }
 
-        private List<CSFConnectModels.CommerceParty> AllAddresses(AddressListItemJsonResult result)
+        private List<CommerceParty> AllAddresses(AddressListItemJsonResult result)
         {
-            var addresses = new List<CSFConnectModels.CommerceParty>();
+            var addresses = new List<CommerceParty>();
             var response = this.AccountManager.GetCurrentCustomerParties(this.CurrentStorefront, this.CurrentVisitorContext);
             if (response.ServiceProviderResult.Success && response.Result != null)
             {

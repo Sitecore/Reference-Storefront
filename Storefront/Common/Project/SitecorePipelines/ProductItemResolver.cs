@@ -1,10 +1,10 @@
 ﻿//---------------------------------------------------------------------
 // <copyright file="ProductItemResolver.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>The product item resolver</summary>
 //---------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -26,6 +26,8 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
     using Sitecore.Commerce.Connect.CommerceServer;
     using Sitecore.Commerce.Connect.CommerceServer.Caching;
     using Sitecore.Reference.Storefront.Managers;
+    using Sitecore.Data.Items;
+    using System.Globalization;
     
     /// <summary>
     /// Class representing a ProductItemResolver
@@ -88,6 +90,11 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
         public const string CatalogField = "catalog";
 
         /// <summary>
+        /// The category field used in a route.
+        /// </summary>
+        public const string CategoryField = "category";
+
+        /// <summary>
         /// The product item type assigned to a route
         /// </summary>
         public const string ProductItemType = "product";
@@ -96,6 +103,16 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
         /// The category item type assigned to a route
         /// </summary>
         public const string CategoryItemType = "category";
+
+        /// <summary>
+        /// The catalog item type assigned to a route
+        /// </summary>
+        public const string CatalogItemType = "catalogitem";
+
+        /// <summary>
+        /// The navigation item name for the Product Catalog item in Sitecore.
+        /// </summary>
+        public const string NavigationItemName = "product catalog";
 
         /// <summary>
         /// The product url route base
@@ -180,7 +197,20 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
 
             if (routeData.Values.ContainsKey(ItemTypeField))
             {
-                data.IsProduct = routeData.Values[ItemTypeField].ToString() == ProductItemType ? true : false;
+                if (routeData.Values[ItemTypeField].ToString() == CatalogItemType)
+                {
+                    var currentStorefront = StorefrontManager.CurrentStorefront;
+                    Item productCatalogItem = currentStorefront.HomeItem.Axes.GetDescendant(NavigationItemName + "/" + routeData.Values["pathElements"].ToString());
+                    if (productCatalogItem != null)
+                    {
+                        data.IsProduct = (productCatalogItem.ItemType() == StorefrontConstants.ItemTypes.Product);
+                        data.Id = productCatalogItem.Name;
+                    }
+                }
+                else
+                {
+                    data.IsProduct = routeData.Values[ItemTypeField].ToString() == ProductItemType ? true : false;
+                }
             }
             else
             {
@@ -193,7 +223,10 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
             }
             else
             {
-                return null;
+                if (string.IsNullOrWhiteSpace(data.Id))
+                { 
+                    return null;
+                }
             }
 
             if (routeData.Values.ContainsKey(CatalogField))
@@ -209,6 +242,13 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
                 {
                     data.Catalog = defaultCatalog.Name;
                 }
+            }
+
+            if (routeData.Values.ContainsKey(CategoryField))
+            {
+                var siteContext = CommerceTypeLoader.CreateInstance<ISiteContext>();
+
+                siteContext.UrlContainsCategory = true;
             }
 
             return data;

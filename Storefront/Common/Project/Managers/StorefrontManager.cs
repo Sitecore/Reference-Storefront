@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="StorefrontManager.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Defines the StorefrontManager class.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -33,6 +33,8 @@ namespace Sitecore.Reference.Storefront.Managers
     using System.Web;
     using System;
     using Sitecore.Diagnostics;
+    using Sitecore.Analytics;
+    using Sitecore.Reference.Storefront.Models;
 
     /// <summary>
     /// The manager for storefronts
@@ -40,7 +42,9 @@ namespace Sitecore.Reference.Storefront.Managers
     public static class StorefrontManager
     {
         private const string IndexNameFormat = "sitecore_{0}_index";
-        
+
+        private static bool _enforceHttps = Convert.ToBoolean(Sitecore.Configuration.Settings.GetSetting("Storefront.EnforceHTTPS", "true"), CultureInfo.InvariantCulture);
+
         /// <summary>
         /// Gets the current sitecontext
         /// </summary>
@@ -53,16 +57,75 @@ namespace Sitecore.Reference.Storefront.Managers
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether [enforce HTTPS].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [enforce HTTPS]; otherwise, <c>false</c>.
+        /// </value>
+        public static bool EnforceHttps
+        {
+            get
+            {
+                return _enforceHttps;
+            }
+
+            set
+            {
+                _enforceHttps = value;
+            }
+        }
+
+        /// <summary>
         /// Gets the Current Storefront being accessed
         /// </summary>
         public static CommerceStorefront CurrentStorefront
         {
             get
             {
+                CommerceStorefront storefront;
+
+                var siteContext = CommerceTypeLoader.CreateInstance<ISiteContext>();
+
                 string path = Context.Site.RootPath + Context.Site.StartItem;
 
-                var storefront = CommerceTypeLoader.CreateInstance<CommerceStorefront>(Context.Database.GetItem(path));
+                if (!siteContext.CurrentContext.Items.Contains(path))
+                {
+                    storefront = CommerceTypeLoader.CreateInstance<CommerceStorefront>(Context.Database.GetItem(path));
+
+                    siteContext.CurrentContext.Items[path] = storefront;
+                }
+
+                storefront = siteContext.CurrentContext.Items[path] as CommerceStorefront;
+
                 return storefront;
+            }
+        }
+
+        /// <summary>
+        /// Gets the commerce item.
+        /// </summary>
+        /// <value>
+        /// The commerce item.
+        /// </value>
+        public static Item CommerceItem
+        {
+            get
+            {
+                return Sitecore.Context.Database.GetItem("/sitecore/Commerce");
+            }
+        }
+
+        /// <summary>
+        /// Gets the storefront configuration item.
+        /// </summary>
+        /// <value>
+        /// The storefront configuration item.
+        /// </value>
+        public static Item StorefrontConfigurationItem
+        {
+            get
+            {
+                return Sitecore.Context.Database.GetItem("/sitecore/Commerce/Storefront Configuration");
             }
         }
 
@@ -96,7 +159,7 @@ namespace Sitecore.Reference.Storefront.Managers
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1055:UriReturnValuesShouldNotBeStrings")]
         public static string ExternalUri(string externalLink)
         {
-            if (HttpContext.Current.Request.IsSecureConnection)
+            if (HttpContext.Current.Request.IsSecureConnection && StorefrontManager.EnforceHttps)
             {
                 return "https://" + externalLink;
             }
@@ -104,6 +167,25 @@ namespace Sitecore.Reference.Storefront.Managers
             {
                 return "http://" + externalLink;
             }
+        }
+
+        /// <summary>
+        /// Gets the customer currency.
+        /// </summary>
+        /// <returns>Returns the current customer currency.</returns>
+        public static string GetCustomerCurrency()
+        {
+            // In the future we will get the current user currency but for now we simply return the home node default.
+            return CurrentStorefront.DefaultCurrency;
+        }
+
+        /// <summary>
+        /// Sets the customer currency.
+        /// </summary>
+        /// <param name="currency">The currency.</param>
+        public static void SetCustomerCurrency(string currency)
+        {
+            // In the future we can set the currently selected user currency but for now we leave a place holder method.
         }
 
         /// <summary>
@@ -115,7 +197,7 @@ namespace Sitecore.Reference.Storefront.Managers
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1055:UriReturnValuesShouldNotBeStrings")]
         public static string SelectExternalUri(string unsecuredConnection, string securedConnection)
         {
-            if (HttpContext.Current.Request.IsSecureConnection)
+            if (HttpContext.Current.Request.IsSecureConnection && StorefrontManager.EnforceHttps)
             {
                 return securedConnection;
             }
@@ -137,7 +219,7 @@ namespace Sitecore.Reference.Storefront.Managers
             {
                 return route;
             }
-            else
+            else if (StorefrontManager.EnforceHttps)
             {
                 UrlBuilder builder = new UrlBuilder(HttpContext.Current.Request.Url);
 
@@ -148,6 +230,8 @@ namespace Sitecore.Reference.Storefront.Managers
 
                 return string.Format(CultureInfo.InvariantCulture, "https://{0}{1}", builder.Host, route);
             }
+
+            return route;
         }
 
         /// <summary>
@@ -206,6 +290,46 @@ namespace Sitecore.Reference.Storefront.Managers
         }
 
         /// <summary>
+        /// Gets the localized name of the order status.
+        /// </summary>
+        /// <param name="status">The status.</param>
+        /// <returns>An order status localizable name from the site content</returns>
+        public static string GetOrderStatusName(string status)
+        {
+            if (status == null)
+            {
+                return string.Empty;
+            }
+
+            Item lookupItem = null;
+
+            return Lookup(StorefrontConstants.KnowItemNames.OrderStatuses, status, out lookupItem, true);
+        }
+
+        /// <summary>
+        /// Gets the currency information.
+        /// </summary>
+        /// <param name="currency">The currency.</param>
+        /// <returns>Returns information about the currency.</returns>
+        public static CurrencyInformationModel GetCurrencyInformation(string currency)
+        {
+            string displayKey = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", currency, Sitecore.Context.Language.Name);
+            Item item = StorefrontManager.StorefrontConfigurationItem.Axes.GetItem(string.Concat(StorefrontConstants.KnowItemNames.CurrencyDisplay, "/", displayKey));
+            if (item != null)
+            {
+                return new CurrencyInformationModel(item);
+            }
+
+            item = StorefrontManager.StorefrontConfigurationItem.Axes.GetItem(string.Concat(StorefrontConstants.KnowItemNames.Currencies, "/", currency));
+            if (item != null)
+            {
+                return new CurrencyInformationModel(item);
+            }
+
+            return null;
+        }
+
+        /// <summary>
         /// Lookups a specific node in the "Lookups" global area based on the given table and item name.
         /// </summary>
         /// <param name="tableName">Name of the table.</param>
@@ -226,10 +350,7 @@ namespace Sitecore.Reference.Storefront.Managers
                 return string.Empty;
             }
 
-            string contentStartPath = CurrentStorefront.GlobalItem.Axes.GetItem(string.Concat(StorefrontConstants.KnowItemNames.Lookups, "/", tableName)).Paths.Path;
-            string statusPath = contentStartPath + "/" + itemName;
-
-            Item item = Sitecore.Context.Database.GetItem(statusPath);
+            Item item = CurrentStorefront.GlobalItem.Axes.GetItem(string.Concat(StorefrontConstants.KnowItemNames.Lookups, "/", tableName, "/", itemName));
             if (item == null)
             {
                 if (insertBracketsWhenNotFound)

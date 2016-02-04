@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="VisitorContext.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Defines the VisitorContext class.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -21,6 +21,7 @@ namespace Sitecore.Reference.Storefront.Managers
     using Sitecore.Commerce.Contacts;
     using Sitecore.Commerce.Entities.Customers;
     using Sitecore.Diagnostics;
+    using Sitecore.Reference.Storefront.Exceptions;
     using System;
     using System.Linq;
     using System.Web;
@@ -30,6 +31,7 @@ namespace Sitecore.Reference.Storefront.Managers
     /// </summary>
     public class VisitorContext
     {
+        private const string StaticVisitorId = "{74E29FDC-8523-4C4F-B422-23BBFF0A342A}";
         private const string VisitorTrackingCookieName = "_visitor";
         private const string VisitorIdKeyName = "visitorId";
         private const int VisitorCookieExpiryInDays = 1;
@@ -115,11 +117,13 @@ namespace Sitecore.Reference.Storefront.Managers
                     return Tracker.Current.Contact.ContactId.ToString();
                 }
 
-                // If we get to this point there are a couple of reasons this could happen.
-                // 1. Analytics may be turned of so the Tracker.Visitor will be an empty visitor
-                // 2. We have hit the site through page editor or preview mode
-                // Lets create our own tracking cookie for this visitor
-                return GetVisitorTrackingId();
+                // Generate our own tracking id if needed for the experience editor.
+                if (Sitecore.Context.PageMode.IsExperienceEditor)
+                {
+                    return GetExperienceEditorVisitorTrackingId();
+                }
+
+                throw new TrackingNotEnabledException(StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.TrackingNotEnabled));
             }
         }
 
@@ -156,34 +160,12 @@ namespace Sitecore.Reference.Storefront.Managers
         }
 
         /// <summary>
-        /// Gets a visitor tracking ID from a cookie
+        /// Gets a visitor tracking ID when in the Experience Editor.
         /// </summary>
         /// <returns>the id of this visitor</returns>
-        /// <remarks>
-        /// <para>
-        /// Disclaimer:
-        /// </para>
-        /// <para>
-        /// WARNING!
-        /// As this is only sample code used for demonstration only, the below method SHOULD NEVER be used in a 
-        /// production environment as it is vulnerable to CSRF and/or cookie highjacking/spoofing.
-        /// </para>
-        /// <para>
-        /// Please use a more secure way of tracking visitors in a production environment.
-        /// </para>
-        /// </remarks>
-        private static string GetVisitorTrackingId()
+        private static string GetExperienceEditorVisitorTrackingId()
         {
-            var visitorCookie = HttpContext.Current.Request.Cookies[VisitorTrackingCookieName] ?? new HttpCookie(VisitorTrackingCookieName);
-
-            if (string.IsNullOrEmpty(visitorCookie.Values[VisitorIdKeyName]))
-            {
-                visitorCookie.Values[VisitorIdKeyName] = Guid.NewGuid().ToString("D");
-            }
-
-            visitorCookie.Expires = DateTime.Now.AddDays(VisitorCookieExpiryInDays);
-            HttpContext.Current.Response.SetCookie(visitorCookie);
-            return visitorCookie.Values[VisitorIdKeyName];
+            return StaticVisitorId;
         }
     }
 }

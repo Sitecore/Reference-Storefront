@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="TranslateOrderGroupToEntity.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>CS Pipeline override to handle the EmailParty entity.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -28,7 +28,6 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Carts
     using System.Web;
     using ConnectOrdersPipelines = Sitecore.Commerce.Connect.CommerceServer.Orders.Pipelines;
     using RefSFArguments = Sitecore.Reference.Storefront.Connect.Pipelines.Arguments;
-    using RefSFModels = Sitecore.Reference.Storefront.Connect.Models;
 
     /// <summary>
     /// Defines the TranslateOrderGroupToEntity class.
@@ -68,8 +67,8 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Carts
                         break;
 
                     case 2:
-                        party = this.EntityFactory.Create<RefSFModels.EmailParty>("EmailParty");
-                        this.TranslateAddress(commerceAddress, party as RefSFModels.EmailParty);
+                        party = this.EntityFactory.Create<EmailParty>("EmailParty");
+                        this.TranslateAddress(commerceAddress, party as EmailParty);
                         break;
                 }
 
@@ -95,7 +94,7 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Carts
         /// </summary>
         /// <param name="sourceAddress">The source address.</param>
         /// <param name="destinationParty">The destination party.</param>
-        protected virtual void TranslateAddress(CommerceServer.Core.Runtime.Orders.OrderAddress sourceAddress, RefSFModels.EmailParty destinationParty)
+        protected virtual void TranslateAddress(CommerceServer.Core.Runtime.Orders.OrderAddress sourceAddress, EmailParty destinationParty)
         {
             RefSFArguments.TranslateOrderAddressToEntityRequest request = new RefSFArguments.TranslateOrderAddressToEntityRequest(sourceAddress, destinationParty);
             PipelineUtility.RunCommerceConnectPipeline<RefSFArguments.TranslateOrderAddressToEntityRequest, CommerceResult>(PipelineNames.TranslateOrderAddressToEntity, request);

@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="GiftCardBaseJsonResult.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Defines the GiftCardBaseJsonResult class.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -21,6 +21,7 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
     using Sitecore.Commerce.Entities.GiftCards;
     using Sitecore.Reference.Storefront.Extensions;
     using Sitecore.Commerce.Services;
+    using Sitecore.Reference.Storefront.Managers;
 
     /// <summary>
     /// The Json result of a request to retrieve gift card information.
@@ -124,14 +125,16 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
         {
             Assert.ArgumentNotNull(giftCard, "giftCard");
 
+            var currencyCode = StorefrontManager.GetCustomerCurrency();
+
             this.ExternalId = giftCard.ExternalId;
             this.Name = giftCard.Name;
             this.CustomerId = giftCard.CustomerId;
             this.ShopName = giftCard.ShopName;
             this.CurrencyCode = giftCard.CurrencyCode;
             this.Balance = giftCard.Balance;
-            this.FormattedBalance = giftCard.Balance.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
-            this.OriginalAmount = giftCard.OriginalAmount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
+            this.FormattedBalance = giftCard.Balance.ToCurrency(currencyCode);
+            this.OriginalAmount = giftCard.OriginalAmount.ToCurrency(currencyCode);
             this.Description = giftCard.Description;
         }
     }

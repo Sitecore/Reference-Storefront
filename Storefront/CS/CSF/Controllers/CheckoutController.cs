@@ -1,9 +1,9 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="CheckoutController.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -33,6 +33,7 @@ namespace Sitecore.Reference.Storefront.Controllers
     using Sitecore.Commerce.Connect.CommerceServer;
     using Sitecore.Reference.Storefront.ExtensionMethods;
     using System.Web.UI;
+    using Sitecore.Reference.Storefront.Models;
 
     /// <summary>
     /// Handles all calls to checkout
@@ -132,12 +133,29 @@ namespace Sitecore.Reference.Storefront.Controllers
         /// <summary>
         /// Gets the Orders confirmation.
         /// </summary>
-        /// <returns>Order Confirmation view</returns>
+        /// <param name="confirmationId">The confirmation identifier.</param>
+        /// <returns>
+        /// Order Confirmation view
+        /// </returns>
         [AllowAnonymous]
         [HttpGet]
-        public ActionResult OrderConfirmation()
+        public ActionResult OrderConfirmation([Bind(Prefix = StorefrontConstants.QueryStrings.ConfirmationId)] string confirmationId)
         {
-            return View(this.CurrentRenderingView);
+            var viewModel = new OrderConfirmationViewModel();
+            CommerceOrder order = null;
+
+            if (!string.IsNullOrWhiteSpace(confirmationId))
+            {
+                var response = this.OrderManager.GetOrderDetails(this.CurrentStorefront, this.CurrentVisitorContext, confirmationId);
+                if (response.ServiceProviderResult.Success)
+                {
+                    order = response.Result;
+                }
+            }
+
+            viewModel.Initialize(this.CurrentRendering, confirmationId, order);
+
+            return View(this.CurrentRenderingView, viewModel);
         }
 
         /// <summary>
@@ -165,7 +183,7 @@ namespace Sitecore.Reference.Storefront.Controllers
                         result.ShippingMethods = new List<ShippingMethod>();
                         result.CartLoyaltyCardNumber = cart.LoyaltyCardID;
 
-                        result.CurrencyCode = StorefrontConstants.Settings.DefaultCurrencyCode;
+                        result.CurrencyCode = StorefrontManager.GetCustomerCurrency();
 
                         this.AddShippingOptionsToResult(result, cart);
                         if (result.Success)
@@ -268,7 +286,7 @@ namespace Sitecore.Reference.Storefront.Controllers
                 var result = new ShippingMethodsJsonResult(response.ServiceProviderResult);
                 if (response.ServiceProviderResult.Success && response.Result != null)
                 {
-                    result.Initialize(response.ServiceProviderResult.ShippingMethods, response.ServiceProviderResult.ShippingMethodsPerItems);
+                    result.Initialize(response.ServiceProviderResult.ShippingMethods, response.ServiceProviderResult.ShippingMethodsPerItem);
                 }
 
                 return Json(result, JsonRequestBehavior.AllowGet);
@@ -521,7 +539,7 @@ namespace Sitecore.Reference.Storefront.Controllers
                 return;
             }
 
-            var addresses = new List<Sitecore.Reference.Storefront.Connect.Models.CommerceParty>();
+            var addresses = new List<CommerceParty>();
             var response = this.AccountManager.GetCurrentCustomerParties(this.CurrentStorefront, this.CurrentVisitorContext);
             if (response.ServiceProviderResult.Success && response.Result != null)
             {

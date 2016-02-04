@@ -12,7 +12,7 @@ templatekey: Slide
 ----version----
 language: en
 version: 1
-revision: 2f1a996f-6eb5-4228-bc5e-3c681e35cea9
+revision: c3e6cc84-8da2-4502-88f2-f61034ab03ea
 
 ----field----
 field: {51A720DA-CD19-4573-BF52-F90CEF743E9E}
@@ -25,16 +25,16 @@ content-length: 58
 field: {8368A4A8-B63D-4835-8478-1DAF2E4AF6F8}
 name: Title
 key: title
-content-length: 68
+content-length: 70
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis.
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis. 
 ----field----
 field: {035E53AD-6996-4C3C-9B2F-54221B60DCDC}
 name: Text
 key: text
-content-length: 133
+content-length: 134
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit lacus ut dolor bibendum, at iaculis mauris vestibulum. Ut et.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit lacus ut dolor bibendum, at iaculis mauris vestibulum. Ut et. 
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
@@ -62,14 +62,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-2f1a996f-6eb5-4228-bc5e-3c681e35cea9
+c3e6cc84-8da2-4502-88f2-f61034ab03ea
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 35
 
-20150629T111051:635711730515819046Z
+20150629T071910:635711591502247389Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
@@ -77,3 +77,10 @@ key: __updated by
 content-length: 14
 
 sitecore\admin
+----field----
+field: {001DD393-96C5-490B-924A-B0F25CD9EFD8}
+name: __Lock
+key: __lock
+content-length: 5
+
+<r />

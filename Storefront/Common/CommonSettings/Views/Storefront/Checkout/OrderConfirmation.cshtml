@@ -1,5 +1,5 @@
 ﻿@*//-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -11,6 +11,9 @@
 // -------------------------------------------------------------------------------------------*@
 
 @using Sitecore.Reference.Storefront.Managers;
+@using Sitecore.Reference.Storefront.Models;
+@model OrderConfirmationViewModel
+
 <div id="orderConfirmationContainer" class="wrap-main-content">
     <div id="##" class="wrap-content-title-text">
         <div class="col-md-6" id="printConfirmationArea">
@@ -24,10 +27,10 @@
                 @Html.Sitecore().Field("Order Information Label", Html.Sitecore().CurrentItem.Children["Order Confirmation"]):
             </h3>
             <p class="order-number">
-                @Html.Sitecore().Field("Confirmation Number Label", Html.Sitecore().CurrentItem.Children["Order Confirmation"]): <span data-bind="text:ConfirmationNumber"></span>
+                @Html.Sitecore().Field("Confirmation Number Label", Html.Sitecore().CurrentItem.Children["Order Confirmation"]): <span>@Model.ConfirmationId</span>
             </p>
             <p class="order-status">
-                @Html.Sitecore().Field("Status Label", Html.Sitecore().CurrentItem.Children["Order Confirmation"]): <span>Processing</span>
+                @Html.Sitecore().Field("Status Label", Html.Sitecore().CurrentItem.Children["Order Confirmation"]): <span>@Model.OrderStatus</span>
             </p>
             <p>
                 @Html.Sitecore().Field("Email Sent Message", Html.Sitecore().CurrentItem.Children["Order Confirmation"])
@@ -42,10 +45,3 @@
         <div class="col-md-6 spot-single-image">@Html.Sitecore().Field("Image", Html.Sitecore().CurrentItem, new { Parameters = new Sitecore.Collections.SafeDictionary<string> { { "class", "img-responsive" } } })</div>
     </div>
 </div>
-<script type="text/javascript">
-    var confirmationViewModel = {
-        ConfirmationNumber: getUrlVars()["confirmationId"]
-    }
-
-    ko.applyBindings(confirmationViewModel, document.getElementById('orderConfirmationContainer'));
-</script>

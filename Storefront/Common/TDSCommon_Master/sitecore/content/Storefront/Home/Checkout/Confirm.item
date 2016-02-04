@@ -19,7 +19,7 @@ content-length: 3
 ----version----
 language: en
 version: 1
-revision: 14af40aa-dfea-472a-a4f3-11b21f7a83e7
+revision: 63b746b5-8af8-4540-9069-e3a39e0aee85
 
 ----field----
 field: {F7164DDB-92FE-4CDF-823D-989C6F90739F}
@@ -204,6 +204,20 @@ content-length: 20
 
 Edit payment methods
 ----field----
+field: {EB52264D-68A7-4760-AD38-85389723A27E}
+name: Credit Card Label
+key: credit card label
+content-length: 11
+
+Credit Card
+----field----
+field: {A735E911-E581-438B-817E-0C289EE91335}
+name: Loyalty Card Label
+key: loyalty card label
+content-length: 12
+
+Loyalty Card
+----field----
 field: {D8619DC5-A4C3-4E1B-A535-B5FC308E74EB}
 name: Discount Label
 key: discount label
@@ -251,14 +265,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-14af40aa-dfea-472a-a4f3-11b21f7a83e7
+63b746b5-8af8-4540-9069-e3a39e0aee85
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
-content-length: 35
+content-length: 16
 
-20150503T050335:635662262156601266Z
+20150923T082757Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

@@ -1,10 +1,10 @@
 ﻿//---------------------------------------------------------------------
 // <copyright file="SimpleTypesExtensions.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Extensions for dealing with Commerce Server entities.</summary>
 //---------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -17,6 +17,8 @@
 
 namespace Sitecore.Reference.Storefront.Extensions
 {
+    using Sitecore.Reference.Storefront.Managers;
+    using Sitecore.Reference.Storefront.Models;
     using System;
     using System.Globalization;
 
@@ -55,9 +57,11 @@ namespace Sitecore.Reference.Storefront.Extensions
         /// </returns>
         public static string ToCurrency(this decimal currency, string currencyCode)
         {
-            NumberFormatInfo info = (NumberFormatInfo)Context.Language.CultureInfo.NumberFormat.Clone();
-            info.CurrencySymbol = currencyCode;
-            info.CurrencyPositivePattern = 3;
+            CurrencyInformationModel currencyInfo = StorefrontManager.GetCurrencyInformation(currencyCode);
+
+            NumberFormatInfo info = (NumberFormatInfo)CultureInfo.GetCultureInfo(currencyInfo.CurrencyNumberFormatCulture).NumberFormat.Clone();
+            info.CurrencySymbol = currencyInfo != null ? currencyInfo.Symbol : currencyCode;
+            info.CurrencyPositivePattern = currencyInfo.SymbolPosition;
             return currency.ToString("C", info);
         }
 

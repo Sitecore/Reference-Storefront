@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="GetProductBulkPricesFromIndex.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Pipeline is used to get product bulk prices from the index file.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -27,14 +27,17 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Prices
     using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Prices;
     using Sitecore.Commerce.Services;
+    using Sitecore.ContentSearch.Linq.Utilities;
     using Sitecore.Diagnostics;
     using Sitecore.Reference.Storefront.Connect.Models;
     using Sitecore.Reference.Storefront.Connect.Pipelines.Arguments;
+    using Sitecore.Reference.Storefront.Search;
     using Sitecore.Reference.Storefront.Search.ComputedFields;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
+    using System.Linq.Expressions;
     using System.Text;
     using System.Threading.Tasks;
 
@@ -87,13 +90,20 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Prices
             bool isHighestPriceVariantSpecified = request.PriceTypeIds.FirstOrDefault(x => x.Equals(PriceTypes.HighestPricedVariant, StringComparison.OrdinalIgnoreCase)) != null;
 
             var uniqueIds = request.ProductIds.ToList().Distinct();
-            foreach (var requestedProductId in uniqueIds)
+            var productSearchItemList = this.GetProductsFromIndex(request.ProductCatalogName, uniqueIds);
+            foreach (var productSearchItem in productSearchItemList)
             {
-                var productDocument = this.GetProductFromIndex(request.ProductCatalogName, requestedProductId);
-                if (productDocument != null)
+                var foundId = uniqueIds.SingleOrDefault(x => x == productSearchItem.Name);
+                if (foundId == null)
                 {
-                    decimal? listPrice = string.IsNullOrWhiteSpace(productDocument.SafeGetFieldValue("listprice")) ? (decimal?)null : Convert.ToDecimal(productDocument["listprice"], CultureInfo.InvariantCulture);
-                    decimal? basePrice = string.IsNullOrWhiteSpace(productDocument.SafeGetFieldValue("baseprice")) ? (decimal?)null : Convert.ToDecimal(productDocument["baseprice"], CultureInfo.InvariantCulture);
+                    continue;
+                }
+
+                if (productSearchItem != null)
+                {
+                    // SOLR returns 0 and not <null> for missing prices.  We set the prices to null when 0 value is encountered.
+                    decimal? listPrice = !productSearchItem.OtherFields.ContainsKey("listprice") ? (decimal?)null : ((decimal)productSearchItem.ListPrice == 0M ? (decimal?)null : (decimal)productSearchItem.ListPrice);
+                    decimal? basePrice = !productSearchItem.OtherFields.ContainsKey("baseprice") ? (decimal?)null : ((decimal)productSearchItem.BasePrice == 0M ? (decimal?)null : (decimal)productSearchItem.BasePrice);
 
                     ExtendedCommercePrice extendedPrice = this.EntityFactory.Create<ExtendedCommercePrice>("Price");
 
@@ -107,7 +117,7 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Prices
                         else
                         {
                             // No base price is defined, the List price is set to the actual ListPrice define in the catalog
-                            extendedPrice.Amount = listPrice.Value;
+                            extendedPrice.Amount = (listPrice.HasValue) ? listPrice.Value : 0M;
                         }
                     }
 
@@ -117,46 +127,73 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Prices
                         extendedPrice.ListPrice = listPrice.Value;
                     }
 
-                    var variantInfoString = productDocument["VariantInfo"];
+                    var variantInfoString = productSearchItem.VariantInfo;
                     if ((isLowestPriceVariantSpecified || isLowestPriceVariantListPriceSpecified || isHighestPriceVariantSpecified) && !string.IsNullOrWhiteSpace(variantInfoString))
                     {
                         List<VariantIndexInfo> variantIndexInfoList = JsonConvert.DeserializeObject<List<VariantIndexInfo>>(variantInfoString);
-                        this.SetVariantPricesFromProductVariants(productDocument, variantIndexInfoList, extendedPrice, isLowestPriceVariantSpecified, isLowestPriceVariantListPriceSpecified, isHighestPriceVariantSpecified);
+                        this.SetVariantPricesFromProductVariants(productSearchItem, variantIndexInfoList, extendedPrice, isLowestPriceVariantSpecified, isLowestPriceVariantListPriceSpecified, isHighestPriceVariantSpecified);
                     }
 
-                    result.Prices.Add(requestedProductId, extendedPrice);
+                    result.Prices.Add(foundId, extendedPrice);
                 }
             }
+        }
+
+        /// <summary>
+        /// Builds the product identifier list predicate.
+        /// </summary>
+        /// <param name="productIdList">The product identifier list.</param>
+        /// <returns>
+        /// The search predicate ORing the product ids.
+        /// </returns>
+        protected virtual Expression<Func<PriceSearchResultItem, bool>> BuildProductIdListPredicate(IEnumerable<string> productIdList)
+        {
+            Expression<Func<PriceSearchResultItem, bool>> predicate = null;
+
+            bool isFirst = true;
+            foreach (var productId in productIdList)
+            {
+                if (isFirst)
+                {
+                    predicate = PredicateBuilder.Create<PriceSearchResultItem>(p => p.CatalogItemId == productId.ToLowerInvariant());
+                }
+                else
+                {
+                    predicate = predicate.Or(p => p.CatalogItemId == productId.ToLowerInvariant());
+                }
+
+                isFirst = false;
+            }
+
+            return predicate;
         }
 
         /// <summary>
         /// Gets the product information from the index file.
         /// </summary>
         /// <param name="catalogName">Name of the catalog.</param>
-        /// <param name="productId">The product identifier.</param>
-        /// <returns>The found product document instance; Otherwise null.</returns>
-        protected virtual CommerceProductSearchResultItem GetProductFromIndex(String catalogName, string productId)
+        /// <param name="productIdList">The product identifier list.</param>
+        /// <returns>
+        /// The found product document instance; Otherwise null.
+        /// </returns>
+        protected virtual List<PriceSearchResultItem> GetProductsFromIndex(String catalogName, IEnumerable<string> productIdList)
         {
             var searchManager = CommerceTypeLoader.CreateInstance<ICommerceSearchManager>();
             var searchIndex = searchManager.GetIndex();
 
+            var productPredicate = this.BuildProductIdListPredicate(productIdList);
+
             using (var context = searchIndex.CreateSearchContext())
             {
-                var searchResults = context.GetQueryable<CommerceProductSearchResultItem>()
+                var searchResults = context.GetQueryable<PriceSearchResultItem>()
                                     .Where(item => item.CommerceSearchItemType == CommerceSearchResultItemType.Product)
                                     .Where(item => item.CatalogName == catalogName)
                                     .Where(item => item.Language == Sitecore.Context.Language.Name)
-                                    .Where(item => item.Name == productId)
-                                    .Select(p => p);
+                                    .Where(productPredicate)
+                                    .Select(p => new PriceSearchResultItem { OtherFields = p.Fields, ListPrice = p.ListPrice, BasePrice = p.BasePrice, VariantInfo = p.VariantInfo, Name = p.Name });
 
-                var list = searchResults.ToList();
-                if (list.Count > 0)
-                {
-                    return list[0];
-                }
+                return searchResults.ToList();
             }
-
-            return null;
         }
 
         /// <summary>
@@ -169,11 +206,11 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Prices
         /// <param name="isLowestPriceVariantListPriceSpecified">if set to <c>true</c> the lowest priced variant list price is returned.</param>
         /// <param name="isHighestPriceVariantSpecified">if set to <c>true</c> the highest priced variant adjusted price.</param>
         protected virtual void SetVariantPricesFromProductVariants(
-            CommerceProductSearchResultItem productDocument, 
-            List<VariantIndexInfo> variantInfoList, 
+            CommerceProductSearchResultItem productDocument,
+            List<VariantIndexInfo> variantInfoList,
             ExtendedCommercePrice extendedPrice,
-            bool isLowestPriceVariantSpecified, 
-            bool isLowestPriceVariantListPriceSpecified, 
+            bool isLowestPriceVariantSpecified,
+            bool isLowestPriceVariantListPriceSpecified,
             bool isHighestPriceVariantSpecified)
         {
             if (variantInfoList != null && variantInfoList.Count > 0)

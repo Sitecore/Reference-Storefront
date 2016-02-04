@@ -16,17 +16,10 @@ key: __sortorder
 content-length: 3
 
 350
-----field----
-field: {F1A1FE9E-A60C-4DDB-A3A0-BB5B29FE732E}
-name: __Renderings
-key: __renderings
-content-length: 37
-
-<r xmlns:p="p" xmlns:s="s" p:p="1" />
 ----version----
 language: en
 version: 1
-revision: 79d15b5b-8da4-463f-b29b-13bfd5e07dbb
+revision: 2fb64821-99bb-4db4-8aaa-393af85faf56
 
 ----field----
 field: {EC1F4944-D675-42F6-B354-A0A1BF04BFF8}
@@ -97,14 +90,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-79d15b5b-8da4-463f-b29b-13bfd5e07dbb
+2fb64821-99bb-4db4-8aaa-393af85faf56
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
-content-length: 35
+content-length: 16
 
-20150320T125757:635624530774066002Z
+20150923T095036Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

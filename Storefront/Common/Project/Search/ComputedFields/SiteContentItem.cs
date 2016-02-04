@@ -1,12 +1,12 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="SiteContentItem.cs" company="Sitecore Corporation">
-//   Copyright (c) Sitecore Corporation 1999-2015
+//   Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>
 //   Contains the SiteContentItem computed field class.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -43,8 +43,7 @@ namespace Sitecore.Reference.Storefront.Search.ComputedFields
             var item = (Item)(itemToIndex as SitecoreIndexableItem);
             if (item != null)
             {
-                var template = TemplateManager.GetTemplate(item);
-                if (template != null && template.DescendsFromOrEquals(StorefrontConstants.KnownTemplateItemIds.StandardPage))
+                if (item.ItemType() == StorefrontConstants.ItemTypes.StandardPage)
                 {
                     return (item[StorefrontConstants.ItemFields.DisplayInSearchResults] == "1");
                 }

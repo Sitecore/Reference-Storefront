@@ -16,10 +16,17 @@ key: type
 content-length: 16
 
 Single-Line Text
+----field----
+field: {BA3F86A2-4A1C-4D78-B63D-91C2779C1B5E}
+name: __Sortorder
+key: __sortorder
+content-length: 2
+
+50
 ----version----
 language: en
 version: 1
-revision: 8750c138-72fe-4329-b8e7-3d53ae2976ff
+revision: c2f8d0e3-7f93-407e-918a-ab9c3c825e21
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -34,14 +41,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-8750c138-72fe-4329-b8e7-3d53ae2976ff
+c2f8d0e3-7f93-407e-918a-ab9c3c825e21
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
-content-length: 35
+content-length: 16
 
-20150312T193602:635617857627056863Z
+20150915T082655Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

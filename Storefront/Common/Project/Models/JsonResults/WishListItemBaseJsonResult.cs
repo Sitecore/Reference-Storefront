@@ -1,10 +1,10 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="WishListItemBaseJsonResult.cs" company="Sitecore Corporation">
-//     Copyright (c) Sitecore Corporation 1999-2015
+//     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
 // <summary>Defines the WishListItemBaseJsonResult class.</summary>
 //-----------------------------------------------------------------------
-// Copyright 2015 Sitecore Corporation A/S
+// Copyright 2016 Sitecore Corporation A/S
 // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
 // except in compliance with the License. You may obtain a copy of the License at
 //       http://www.apache.org/licenses/LICENSE-2.0
@@ -44,11 +44,13 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
             var product = (CommerceCartProduct)line.Product;
             var productItem = Sitecore.Reference.Storefront.SitecorePipelines.ProductItemResolver.ResolveCatalogItem(product.ProductId, product.ProductCatalog, true);
 
+            var currencyCode = StorefrontManager.GetCustomerCurrency();
+
             this.DisplayName = product.DisplayName;
             this.Color = product.Properties["Color"] as string;
             this.LineDiscount = ((CommerceTotal)line.Total).LineItemDiscountAmount.ToString(Sitecore.Context.Language.CultureInfo);
             this.Quantity = line.Quantity.ToString(Sitecore.Context.Language.CultureInfo);
-            this.LineTotal = line.Total.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
+            this.LineTotal = line.Total.Amount.ToCurrency(currencyCode);
             this.ExternalLineId = line.ExternalId;
             this.ProductId = product.ProductId;
             this.VariantId = product.ProductVariantId;
@@ -60,7 +62,7 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
 
             if (product.Price.Amount != 0M)
             {
-                this.LinePrice = product.Price.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
+                this.LinePrice = product.Price.Amount.ToCurrency(currencyCode);
             }
             
             var imageInfo = product.Properties["_product_Images"] as string;
@@ -75,7 +77,7 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
             if (giftCardAmount != null)
             {
                 decimal amount = System.Convert.ToDecimal(giftCardAmount, Sitecore.Context.Language.CultureInfo);
-                this.GiftCardAmount = amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode);
+                this.GiftCardAmount = amount.ToCurrency(currencyCode);
             }
         }
         
