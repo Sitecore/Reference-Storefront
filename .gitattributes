@@ -1,5 +1,5 @@
-*.item text=crlf
-*.cs text=crlf
-*.sln text=crlf
-*.csproj text=crlf
-*.scproj text=crlf
+*.item eol=crlf
+*.cs eol=crlf
+*.sln eol=crlf
+*.csproj eol=crlf
+*.scproj eol=crlf
