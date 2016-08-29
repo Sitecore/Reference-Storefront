@@ -456,19 +456,8 @@ namespace Sitecore.Reference.Storefront.Controllers
                 lineShippingOptions = response.ServiceProviderResult.LineShippingPreferences.ToList();
             }
 
-            result.OrderShippingOptions = orderShippingOptions;
-            result.LineShippingOptions = lineShippingOptions;
-            if (result.LineShippingOptions != null && result.LineShippingOptions.Any())
-            {
-                foreach (var line in result.Cart.Lines)
-                {
-                    var lineShippingOption = result.LineShippingOptions.FirstOrDefault(l => l.LineId.Equals(line.ExternalCartLineId, StringComparison.OrdinalIgnoreCase));
-                    if (lineShippingOption != null)
-                    {
-                        line.ShippingOptions = lineShippingOption.ShippingOptions;
-                    }
-                }
-            }
+            result.InitializeShippingOptions(orderShippingOptions);
+            result.InitializeLineItemShippingOptions(lineShippingOptions);
 
             result.SetErrors(response.ServiceProviderResult);
         }
@@ -493,12 +482,17 @@ namespace Sitecore.Reference.Storefront.Controllers
             if (response.ServiceProviderResult.Success && response.Result != null)
             {
                 paymentOptions = response.Result.ToList();
+                paymentOptions.ForEach(x => x.Name = StorefrontManager.GetPaymentName(x.Name));
             }
 
             result.PaymentOptions = paymentOptions;
             result.SetErrors(response.ServiceProviderResult);
         }
 
+        /// <summary>
+        /// Gets the payment methods.
+        /// </summary>
+        /// <param name="result">The result.</param>
         private void GetPaymentMethods(CheckoutDataBaseJsonResult result)
         {
             List<PaymentMethod> paymentMethodList = new List<PaymentMethod>();
@@ -507,6 +501,7 @@ namespace Sitecore.Reference.Storefront.Controllers
             if (response.ServiceProviderResult.Success)
             {
                 paymentMethodList.AddRange(response.Result);
+                paymentMethodList.ForEach(x => x.Description = StorefrontManager.GetPaymentName(x.Description));
             }
 
             result.SetErrors(response.ServiceProviderResult);
@@ -516,16 +511,20 @@ namespace Sitecore.Reference.Storefront.Controllers
 
         private void AddShippingMethodsToResult(CheckoutDataBaseJsonResult result)
         {
+            var shippingMethodJsonResult = CommerceTypeLoader.CreateInstance<ShippingMethodBaseJsonResult>();
+
             var response = this.ShippingManager.GetShippingMethods(this.CurrentStorefront, this.CurrentVisitorContext, new ShippingOption { ShippingOptionType = ShippingOptionType.ElectronicDelivery });
             if (response.ServiceProviderResult.Success && response.Result.Count > 0)
             {
-                result.EmailDeliveryMethod = response.Result.ElementAt(0);
-
+                shippingMethodJsonResult.Initialize(response.Result.ElementAt(0));
+                result.EmailDeliveryMethod = shippingMethodJsonResult;
                 return;
             }
 
-            result.EmailDeliveryMethod = new ShippingMethod();
-            result.ShipToStoreDeliveryMethod = new ShippingMethod();
+            var shippingToStoreJsonResult = CommerceTypeLoader.CreateInstance<ShippingMethodBaseJsonResult>();
+
+            result.EmailDeliveryMethod = shippingMethodJsonResult;
+            result.ShipToStoreDeliveryMethod = shippingToStoreJsonResult;
             result.SetErrors(response.ServiceProviderResult);
         }
 

@@ -36,7 +36,7 @@ function AddressViewModel(address) {
     });
 
     self.getStates = function (countryCode) {
-        AJAXPost(StorefrontUri("api/sitecore/checkout/getAvailableStates"), '{ "CountryCode": "' + countryCode + '"}', function (data, success, sender){
+        AJAXPost(StorefrontUri("api/storefront/checkout/getAvailableStates"), '{ "CountryCode": "' + countryCode + '"}', function (data, success, sender){
             if (data.States != null) {
                 $.each(data.States, function (code, name) {
                     self.states.push(new CountryStateViewModel(name, code));
@@ -129,7 +129,7 @@ function AddressListViewModel(data) {
             self.enableDelete(false);
             var address = ko.toJSON(self.address);
 
-            AJAXPost(StorefrontUri('api/sitecore/account/addressmodify'), address, function (data, success, sender) {
+            AJAXPost(StorefrontUri('api/storefront/account/addressmodify'), address, function (data, success, sender) {
                 if (success && data.Success) {
                     self.reload(data);
                 }
@@ -150,7 +150,7 @@ function AddressListViewModel(data) {
         self.enableSave(false);
         $("#cancelChanges").attr("disabled", "disabled");
 
-        AJAXPost(StorefrontUri('api/sitecore/account/addressdelete'), '{ "ExternalId": "' + self.address().externalId() + '"}', function (data, success, sender) {
+        AJAXPost(StorefrontUri('api/storefront/account/addressdelete'), '{ "ExternalId": "' + self.address().externalId() + '"}', function (data, success, sender) {
             if (success && data.Success) {
                 self.reload(data);
             }

@@ -135,5 +135,36 @@ namespace Sitecore.Reference.Storefront
 
             return string.Empty;
         }
+
+        /// <summary>
+        /// Returns a masked form of the provided email address.
+        /// </summary>
+        /// <param name="emailAddress">The email address.</param>
+        /// <returns>The masked email address.</returns>
+        public static string GetMaskedEmailAddress(string emailAddress)
+        {
+            string maskedEmailAddress = string.Empty;
+            if (!string.IsNullOrEmpty(emailAddress))
+            {
+                string[] emailAddressSegments = emailAddress.Split('@');
+                if (emailAddressSegments.Length == 2)
+                {
+                    // AbcdD@outlook.com will become Ab*****@outlook.com
+                    string maskedUserName = string.Empty;
+                    if (emailAddressSegments[0].Length > 1)
+                    {
+                        maskedUserName = emailAddressSegments[0].Substring(0, 2) + "*****";
+                    }
+                    else
+                    {
+                        maskedUserName = emailAddressSegments[0] + "*****";
+                    }
+
+                    maskedEmailAddress = maskedUserName + "@" + emailAddressSegments[1];
+                }
+            }
+
+            return maskedEmailAddress;
+        }
     }
 }

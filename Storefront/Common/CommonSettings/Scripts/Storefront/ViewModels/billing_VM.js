@@ -47,7 +47,7 @@ function GiftCardPaymentViewModel(card) {
         states('giftCardPayment_GetBalance', 'loading');
         var data = {};
         data.GiftCardId = self.giftCardNumber();
-        AJAXPost(StorefrontUri('api/sitecore/catalog/checkgiftcardbalance'), JSON.stringify(data), function (data, success, sender) {
+        AJAXPost(StorefrontUri('api/storefront/catalog/checkgiftcardbalance'), JSON.stringify(data), function (data, success, sender) {
             if (success && data.Success) {
                 self.reload(data);
             }
@@ -239,4 +239,17 @@ function CreditCardPaymentViewModel(card) {
         write: function () { }
     });
     self.partyID = populate ? ko.observable(card.PartyID) : ko.observable();
+    self.removeCard = function () {
+        ClearGlobalMessages();
+        self.isAdded(false);
+        self.creditCardAmount(0.0);
+        $("#ccpayment").trigger('click');
+        if (checkoutDataViewModel.cardPaymentResultAccessCode.length == 0) {
+            $("#cardPaymentAcceptFrame")[0].src = $("#cardPaymentAcceptFrame")[0].src;
+        }
+        else {
+            getCardPaymentAcceptUrl();
+            checkoutDataViewModel.cardPaymentResultAccessCode = "";
+        }              
+    };
 }

@@ -1,4 +1,5 @@
-﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -19,14 +20,10 @@
     <AssemblyName>TDSProject_Master</AssemblyName>
     <Name>TDSCommon_Master</Name>
     <RootNamespace>TDSProject_Master</RootNamespace>
-    <SccProjectName>
-    </SccProjectName>
-    <SccProvider>
-    </SccProvider>
-    <SccAuxPath>
-    </SccAuxPath>
-    <SccLocalPath>
-    </SccLocalPath>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
     <SitecoreDatabase>master</SitecoreDatabase>
     <PackageName>Sitecore.Reference.Storefront.Common</PackageName>
     <EnableCodeGeneration>false</EnableCodeGeneration>
@@ -45,61 +42,8 @@
     <PackagePublisher>Sitecore Corporation</PackagePublisher>
     <PackageVersion>
     </PackageVersion>
-    <PackageReadme>&lt;p style="TEXT-ALIGN: center; font-weight:bold"&gt;
-    Sitecore Reference Storefront Common 8.1 for Sitecore Commerce powered by Commerce Server and Microsoft Dynamics
-
-    &lt;div&gt;
-        &lt;hr size="2" width="100%" /&gt;
-    &lt;/div&gt;
-&lt;p&gt;The solution is licensed under the Apache License, Version 2.0 (the "License"). You may obtain a copy of the License at &lt;/p&gt;
-&lt;p style="margin-left:100px"&gt;
-    &lt;a href="http://www.apache.org/licenses/LICENSE-2.0"&gt;http://www.apache.org/licenses/LICENSE-2.0&lt;/a&gt;
-&lt;/p&gt;
-&lt;p&gt;Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&lt;/p&gt;
-&lt;p&gt;In order to contribute as an individual or company, you will have to sign an agreement and get it approved by Sitecore. For more information and in order to obtain agreement forms, visit GitHub&lt;/p&gt;
-&lt;div&gt;
-    &lt;hr size="2" width="100%" /&gt;
-&lt;/div&gt;
-&lt;p&gt;
-    &lt;strong&gt;Prerequisites: &lt;/strong&gt;
-&lt;/p&gt;
-&lt;ul type="disc"&gt;
-    &lt;li&gt;Sitecore Experience Platform 8.1 update-1 or later&lt;/li&gt;
-    &lt;li&gt;Sitecore Commerce Connect 8.1&lt;/li&gt;
-    &lt;li&gt;One of the following:&lt;/li&gt;
-    &lt;ul type="circle"&gt;
-        &lt;li&gt;Sitecore Commerce 8.1 powered by Commerce Server(SCpbCS - CS Version 11.3)&lt;/li&gt;
-        &lt;li&gt;Sitecore Commerce 8.1 powered by Microsoft Dynamics &amp;#174; (SCpbCS - including CS Version 11.3)&lt;/li&gt;
-    &lt;/ul&gt;
-    &lt;/ul&gt;
-&lt;div&gt;
-    &lt;hr size="2" width="100%" /&gt;
-&lt;/div&gt;
-&lt;p&gt;
-    &lt;strong&gt;Sitecore Reference Storefront has been tested on: &lt;/strong&gt;
-&lt;/p&gt;
-&lt;ul type="disc"&gt;
-    &lt;li&gt;Sitecore Experience Platform 8.1 update-1&lt;/li&gt;
-    &lt;li&gt;Sitecore Commerce 8.1 powered by Commerce Server(SCpbCS - CS Version 11.3)&lt;/li&gt;
-    &lt;li&gt;Sitecore Commerce 8.1 powered by Microsoft Dynamics &amp;#174; (SCpbCS - including CS Version 11.3)&lt;/li&gt;
-    &lt;li&gt;The storefront was tested using the following browsers: &lt;/li&gt;
-    &lt;ul type="circle"&gt;
-        &lt;li&gt;Internet Explorer 11 &lt;/li&gt;
-        &lt;li&gt;Firefox 43 &lt;/li&gt;
-        &lt;li&gt;Chrome 48&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/ul&gt;
-&lt;div&gt;
-    &lt;hr size="2" width="100%" /&gt;
-&lt;/div&gt;
-&lt;p style="TEXT-ALIGN: center; font-weight:bold"&gt;
-    Sitecore&amp;reg; is a registered trademark.
-    &lt;br /&gt; All other brand and product names are the property of their respective holders.
-    &lt;br /&gt; The contents of this document are the property of Sitecore.
-    &lt;br /&gt;Copyright &amp;copy; 2001-2016 Sitecore. All rights reserved.
-&lt;/p&gt;
-&lt;/p&gt;
-</PackageReadme>
+    <PackageReadme>
+    </PackageReadme>
     <SitecoreAssemblyPath>..\..\Lib\Sitecore</SitecoreAssemblyPath>
     <GeneratePackage>True</GeneratePackage>
     <SeperateFilesAndItems>False</SeperateFilesAndItems>
@@ -107,6 +51,7 @@
     <EnableValidations>True</EnableValidations>
     <ValidationSettingsFilePath>.\TDSProject_Master_Debug.xml</ValidationSettingsFilePath>
     <DisableFileDeployment>False</DisableFileDeployment>
+    <PackageExcludeCode>False</PackageExcludeCode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DebugSymbols>false</DebugSymbols>
@@ -121,61 +66,8 @@
     <PackagePublisher>Sitecore Corporation</PackagePublisher>
     <PackageVersion>
     </PackageVersion>
-    <PackageReadme>&lt;p style="TEXT-ALIGN: center; font-weight:bold"&gt;
-    Sitecore Reference Storefront Common 8.1 for Sitecore Commerce powered by Commerce Server and Microsoft Dynamics &amp;#174;
-
-    &lt;div&gt;
-        &lt;hr size="2" width="100%" /&gt;
-    &lt;/div&gt;
-&lt;p&gt;The solution is licensed under the Apache License, Version 2.0 (the "License"). You may obtain a copy of the License at &lt;/p&gt;
-&lt;p style="margin-left:100px"&gt;
-    &lt;a href="http://www.apache.org/licenses/LICENSE-2.0"&gt;http://www.apache.org/licenses/LICENSE-2.0&lt;/a&gt;
-&lt;/p&gt;
-&lt;p&gt;Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&lt;/p&gt;
-&lt;p&gt;In order to contribute as an individual or company, you will have to sign an agreement and get it approved by Sitecore. For more information and in order to obtain agreement forms, visit GitHub&lt;/p&gt;
-&lt;div&gt;
-    &lt;hr size="2" width="100%" /&gt;
-&lt;/div&gt;
-&lt;p&gt;
-    &lt;strong&gt;Prerequisites: &lt;/strong&gt;
-&lt;/p&gt;
-&lt;ul type="disc"&gt;
-    &lt;li&gt;Sitecore Experience Platform 8.1 update-1 or later&lt;/li&gt;
-    &lt;li&gt;Sitecore Commerce Connect 8.1&lt;/li&gt;
-    &lt;li&gt;One of the following:&lt;/li&gt;
-    &lt;ul type="circle"&gt;
-        &lt;li&gt;Sitecore Commerce 8.1 powered by Commerce Server(SCpbCS - CS Version 11.3)&lt;/li&gt;
-        &lt;li&gt;Sitecore Commerce 8.1 powered by Microsoft Dynamics &amp;#174; (SCpbCS - including CS Version 11.3)&lt;/li&gt;
-    &lt;/ul&gt;
-    &lt;/ul&gt;
-&lt;div&gt;
-    &lt;hr size="2" width="100%" /&gt;
-&lt;/div&gt;
-&lt;p&gt;
-    &lt;strong&gt;Sitecore Reference Storefront has been tested on: &lt;/strong&gt;
-&lt;/p&gt;
-&lt;ul type="disc"&gt;
-    &lt;li&gt;Sitecore Experience Platform 8.1 update-1&lt;/li&gt;
-    &lt;li&gt;Sitecore Commerce 8.1 powered by Commerce Server(SCpbCS - CS Version 11.3)&lt;/li&gt;
-    &lt;li&gt;Sitecore Commerce 8.1 powered by Microsoft Dynamics &amp;#174; (SCpbCS - including CS Version 11.3)&lt;/li&gt;
-    &lt;li&gt;The storefront was tested using the following browsers: &lt;/li&gt;
-    &lt;ul type="circle"&gt;
-        &lt;li&gt;Internet Explorer 11 &lt;/li&gt;
-        &lt;li&gt;Firefox 43 &lt;/li&gt;
-        &lt;li&gt;Chrome 48&lt;/li&gt;
-    &lt;/ul&gt;
-&lt;/ul&gt;
-&lt;div&gt;
-    &lt;hr size="2" width="100%" /&gt;
-&lt;/div&gt;
-&lt;p style="TEXT-ALIGN: center; font-weight:bold"&gt;
-    Sitecore&amp;reg; is a registered trademark.
-    &lt;br /&gt; All other brand and product names are the property of their respective holders.
-    &lt;br /&gt; The contents of this document are the property of Sitecore.
-    &lt;br /&gt;Copyright &amp;copy; 2001-2016 Sitecore. All rights reserved.
-&lt;/p&gt;
-&lt;/p&gt;
-</PackageReadme>
+    <PackageReadme>
+    </PackageReadme>
     <SitecoreAssemblyPath>..\..\Lib\Sitecore</SitecoreAssemblyPath>
     <GeneratePackage>True</GeneratePackage>
     <SeperateFilesAndItems>False</SeperateFilesAndItems>
@@ -184,6 +76,7 @@
     <EnableValidations>True</EnableValidations>
     <ValidationSettingsFilePath>.\TDSProject_Master_Release.xml</ValidationSettingsFilePath>
     <DisableFileDeployment>False</DisableFileDeployment>
+    <PackageExcludeCode>False</PackageExcludeCode>
   </PropertyGroup>
   <ItemGroup>
     <AssemblyAttributes Include="AssemblyFileVersion">
@@ -344,6 +237,26 @@
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\Payments.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\Payments\Amex.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\Payments\Discover.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\Payments\Mastercard.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\Payments\Visa.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
     <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\Relationships.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
@@ -352,11 +265,71 @@
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\Shipping.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\Shipping\Email.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\Shipping\Ground.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\Shipping\Next day air.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\Shipping\Select delivery options by item.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\Shipping\Ship Items.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\Shipping\Standard overnight.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\Shipping\Standard.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
     <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\AccountNotFound.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ExcludeItemFrom>
+      </ExcludeItemFrom>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\ActivationCodeSent.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ExcludeItemFrom>
+      </ExcludeItemFrom>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
     <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\AuthenticationProviderError.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\AuthorizationCodeMissing.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ExcludeItemFrom>
+      </ExcludeItemFrom>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\CancelPendingRequest.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ExcludeItemFrom>
+      </ExcludeItemFrom>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\CardAuthorizationFailed.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
@@ -414,6 +387,18 @@
     </SitecoreItem>
     <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\InvalidShippingAddress.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\LinkupSucceeded.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ExcludeItemFrom>
+      </ExcludeItemFrom>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\LoginFailed.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ExcludeItemFrom>
+      </ExcludeItemFrom>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
     <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\MailSentToMessage.item">
@@ -494,6 +479,12 @@
     </SitecoreItem>
     <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\UserRejectedError.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Global\Lookups\System Messages\WrongActivationCode.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ExcludeItemFrom>
+      </ExcludeItemFrom>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
     <SitecoreItem Include="sitecore\content\Storefront\Global\Mails.item">
@@ -825,6 +816,10 @@
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Home\FederatedSignout.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
     <SitecoreItem Include="sitecore\content\Storefront\Home\ForgotPassword.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
@@ -883,6 +878,12 @@
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
+    <SitecoreItem Include="sitecore\content\Storefront\Home\UserPendingActivation.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ExcludeItemFrom>
+      </ExcludeItemFrom>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
     <SitecoreItem Include="sitecore\layout.item">
       <Icon>/temp/IconCache/Applications/16x16/windows.png</Icon>
       <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
@@ -938,6 +939,10 @@
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
+    <SitecoreItem Include="sitecore\layout\Renderings\Storefront\Account\FederatedSignout.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
     <SitecoreItem Include="sitecore\layout\Renderings\Storefront\Account\ForgotPassword.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
@@ -972,6 +977,12 @@
     </SitecoreItem>
     <SitecoreItem Include="sitecore\layout\Renderings\Storefront\Account\Register.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\layout\Renderings\Storefront\Account\UserPendingActivation.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ExcludeItemFrom>
+      </ExcludeItemFrom>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
     <SitecoreItem Include="sitecore\layout\Renderings\Storefront\Catalog.item">
@@ -1064,10 +1075,6 @@
     </SitecoreItem>
     <SitecoreItem Include="sitecore\layout\Renderings\Storefront\Checkout.item">
       <Icon>/temp/IconCache/Applications/16x16/folder.png</Icon>
-      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
-      <ItemDeployment>DeployOnce</ItemDeployment>
-    </SitecoreItem>
-    <SitecoreItem Include="sitecore\layout\Renderings\Storefront\Checkout\DynamicsCheckout.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
@@ -1327,6 +1334,22 @@
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
+    <SitecoreItem Include="sitecore\media library\Storefront\Identity Providers.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\media library\Storefront\Identity Providers\Facebook.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\media library\Storefront\Identity Providers\Google.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\media library\Storefront\Identity Providers\Microsoft.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
     <SitecoreItem Include="sitecore\media library\Storefront\Site Spots.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
@@ -1530,10 +1553,6 @@
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
-    <SitecoreItem Include="sitecore\templates\Storefront\Base Templates\Commerce Storefront\Storefront\ChannelId.item">
-      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
-      <ItemDeployment>DeployOnce</ItemDeployment>
-    </SitecoreItem>
     <SitecoreItem Include="sitecore\templates\Storefront\Base Templates\Commerce Storefront\Storefront\Default Currency.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
@@ -1543,6 +1562,10 @@
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
     <SitecoreItem Include="sitecore\templates\Storefront\Base Templates\Commerce Storefront\Storefront\DefaultProductId.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Base Templates\Commerce Storefront\Storefront\Forms Authentication.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
@@ -1563,6 +1586,10 @@
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
     <SitecoreItem Include="sitecore\templates\Storefront\Base Templates\Commerce Storefront\Storefront\Max Number of WishLists.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Base Templates\Commerce Storefront\Storefront\OperatingUnitNumber.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
@@ -1912,6 +1939,14 @@
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Folder Templates\Payments.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Folder Templates\Payments\__Standard Values.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
     <SitecoreItem Include="sitecore\templates\Storefront\Folder Templates\Product Search Lists.item">
       <Icon>/temp/IconCache/applications/32x32/folder_view.png</Icon>
       <ItemDeployment>DeployOnce</ItemDeployment>
@@ -1937,6 +1972,14 @@
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
     </SitecoreItem>
     <SitecoreItem Include="sitecore\templates\Storefront\Folder Templates\Relationships\__Standard Values.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Folder Templates\Shipping.item">
+      <ItemDeployment>DeployOnce</ItemDeployment>
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Folder Templates\Shipping\__Standard Values.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
@@ -2333,6 +2376,10 @@
       <ItemDeployment>DeployOnce</ItemDeployment>
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
     </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\Billing Page\Credit Card\Apply Credit Card Label.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
     <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\Billing Page\Credit Card\Card Number Label.item">
       <ItemDeployment>DeployOnce</ItemDeployment>
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
@@ -2412,6 +2459,10 @@
     <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\Billing Page\Payment Information\Credit Card Label.item">
       <ItemDeployment>DeployOnce</ItemDeployment>
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\Billing Page\Payment Information\Disclaimer Text.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
     <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\Billing Page\Payment Information\Order Information Label.item">
       <ItemDeployment>DeployOnce</ItemDeployment>
@@ -2957,6 +3008,22 @@
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\Federated Signout Page.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\Federated Signout Page\Headers.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\Federated Signout Page\Headers\Continue Shopping Text.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\Federated Signout Page\Headers\Sign Out Text.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
     <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\ForgotPassword Page.item">
       <ItemDeployment>DeployOnce</ItemDeployment>
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
@@ -3102,6 +3169,12 @@
     <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\Login Page\Headers.item">
       <ItemDeployment>DeployOnce</ItemDeployment>
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\Login Page\Headers\Activation Text.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ExcludeItemFrom>
+      </ExcludeItemFrom>
+      <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
     <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\Login Page\Headers\Customer Message 1.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
@@ -3613,6 +3686,12 @@
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\Register Page\Headers\Email Of Existing Customer.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ExcludeItemFrom>
+      </ExcludeItemFrom>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
     <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\Register Page\Headers\Email.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
@@ -3635,6 +3714,18 @@
     </SitecoreItem>
     <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\Register Page\Headers\Last Name.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\Register Page\Headers\Link Contoso Account.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ExcludeItemFrom>
+      </ExcludeItemFrom>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\Register Page\Headers\New Contoso Account.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ExcludeItemFrom>
+      </ExcludeItemFrom>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
     <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\Register Page\Headers\Password Again.item">
@@ -3674,6 +3765,14 @@
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
     </SitecoreItem>
     <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\Register Page\Validation Messages\Email Missing Message.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\Register Page\Validation Messages\First Name Missing Message.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\Register Page\Validation Messages\Last Name Missing Message.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
@@ -3837,6 +3936,90 @@
     </SitecoreItem>
     <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\Standard Page\Display\Title.item">
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\UserPendingActivation Page.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ExcludeItemFrom>
+      </ExcludeItemFrom>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\UserPendingActivation Page\__Standard Values.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ExcludeItemFrom>
+      </ExcludeItemFrom>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\UserPendingActivation Page\Headers.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ExcludeItemFrom>
+      </ExcludeItemFrom>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\UserPendingActivation Page\Headers\Activate Text.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ExcludeItemFrom>
+      </ExcludeItemFrom>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\UserPendingActivation Page\Headers\Activate User.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ExcludeItemFrom>
+      </ExcludeItemFrom>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\UserPendingActivation Page\Headers\Activating.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ExcludeItemFrom>
+      </ExcludeItemFrom>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\UserPendingActivation Page\Headers\Activation Code.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ExcludeItemFrom>
+      </ExcludeItemFrom>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\UserPendingActivation Page\Headers\Cancel.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ExcludeItemFrom>
+      </ExcludeItemFrom>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\UserPendingActivation Page\Headers\Email Address Of Existing Customer.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ExcludeItemFrom>
+      </ExcludeItemFrom>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\UserPendingActivation Page\Placeholders.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ExcludeItemFrom>
+      </ExcludeItemFrom>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\UserPendingActivation Page\Placeholders\Email Address Placeholder.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ExcludeItemFrom>
+      </ExcludeItemFrom>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\UserPendingActivation Page\Validation Messages.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ExcludeItemFrom>
+      </ExcludeItemFrom>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\UserPendingActivation Page\Validation Messages\Activation Code Missing Message.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ExcludeItemFrom>
+      </ExcludeItemFrom>
+      <ItemDeployment>DeployOnce</ItemDeployment>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\templates\Storefront\Page Templates\UserPendingActivation Page\Validation Messages\Email Missing Message.item">
+      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ExcludeItemFrom>
+      </ExcludeItemFrom>
       <ItemDeployment>DeployOnce</ItemDeployment>
     </SitecoreItem>
     <SitecoreItem Include="sitecore\templates\Storefront\Rendering Datasources.item">
@@ -4435,6 +4618,10 @@
   </ItemGroup>
   <ItemGroup Condition=" '$(Configuration)' == 'Debug' " />
   <ItemGroup>
+    <ProjectReference Include="..\Common\Project\Common.csproj">
+      <Project>{8450F330-0271-4091-8809-C671CCD50671}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CommonSettings\CommonSettings.csproj">
       <Project>{7b5bfdc5-7552-4ef0-807b-d9b60a78b3fd}</Project>
       <Name>CommonSettings</Name>
@@ -4443,71 +4630,7 @@
   <ItemGroup>
     <ExcludedAssemblies Include="Sitecore.Reference.Storefront.Common.dll" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\HedgehogDevelopment\SitecoreProject\v9.0\HedgehogDevelopment.SitecoreProject.targets" />
-  <!-- Sign the binary output before it gets packaged in the TDS .update file
-  Signing is only done on production builds CI and Release.  
-  Pathing is all relative. Only a single binary can be signed. -->
-  <!-- Start of signing process -->
-  <Target Name="BeforeSitecoreBuild" Condition="Exists('..\..\..\..\AgentID.txt')">
-    <CallTarget Targets="InitializeSigningParameters" />
-    <CallTarget Targets="SignSingleRel" />
-    <CallTarget Targets="SignSingleCI" />
-    <CallTarget Targets="AfterSigning" />
-  </Target>
-  <Target Name="SignSingleRel" Condition=" '$(CIBuild)'=='Rel' ">
-    <Exec Command="powershell.exe -ExecutionPolicy Unrestricted -FILE ..\..\..\..\Live\MojaveTools\SignSingle.ps1 $(AgentID) $(BuildDef) ..\..\AX\CSF\bin Sitecore.Reference.Storefront.Common.dll Rel" WorkingDirectory="." ContinueOnError="false" />
-  </Target>
-  <Target Name="SignSingleCI" Condition=" '$(CIBuild)'=='CI' ">
-    <Exec Command="powershell.exe -ExecutionPolicy Unrestricted -FILE ..\..\..\..\Live\MojaveTools\SignSingle.ps1 $(AgentID) $(BuildDef) ..\..\AX\CSF\bin Sitecore.Reference.Storefront.Common.dll Rel" WorkingDirectory="." ContinueOnError="false" />
-  </Target>
-  <Target Name="InitializeSigningParameters">
-    <ReadLinesFromFile File="..\..\..\..\AgentID.txt">
-      <Output TaskParameter="Lines" ItemName="ID" />
-    </ReadLinesFromFile>
-    <ReadLinesFromFile File="..\..\..\..\BuildDef.txt">
-      <Output TaskParameter="Lines" ItemName="Def" />
-    </ReadLinesFromFile>
-    <ReadLinesFromFile File="..\..\..\..\CIBuild.txt">
-      <Output TaskParameter="Lines" ItemName="Bld" />
-    </ReadLinesFromFile>
-    <ReadLinesFromFile File="..\..\..\..\Version.txt">
-      <Output TaskParameter="Lines" ItemName="Ver" />
-    </ReadLinesFromFile>
-    <PropertyGroup>
-      <AgentID>@(ID->'%(Identity)')</AgentID>
-      <BuildDef>@(Def->'%(Identity)')</BuildDef>
-      <CIBuild>@(Bld->'%(Identity)')</CIBuild>
-      <PackageVersion>@(Ver->'%(Identity)')</PackageVersion>
-    </PropertyGroup>
-    <!-- Create the readme -->
-    <Message Text="AgentID: $(AgentID)" />
-    <Message Text="BuildDef: $(BuildDef)" />
-    <Message Text="CIBuild: $(CIBuild)" />
-    <Message Text="PackageVersion: $(PackageVersion)" />
-    <Message Text="PackageReadme: $(PackageReadme)" />
-  </Target>
-  <Target Name="AfterSigning">
-    <!-- Wait for powershell to finish >
-    <Exec Command="..\..\..\..\..\BuildTools\Sleep.exe 120" /-->
-    <!-- Copy signed output to correct locations -->
-    <Copy SourceFiles="..\..\AX\CSF\bin\Sitecore.Reference.Storefront.Common.dll" DestinationFolder="..\..\..\..\binaries\$(configuration)" />
-    <Copy SourceFiles="..\..\AX\CSF\bin\Sitecore.Reference.Storefront.Common.pdb" DestinationFolder="..\..\..\..\binaries\$(configuration)" />
-    <Copy SourceFiles="..\..\AX\CSF\bin\Sitecore.Reference.Storefront.Common.dll" DestinationFolder="..\..\Common\CommonSettings\bin" />
-    <Copy SourceFiles="..\..\AX\CSF\bin\Sitecore.Reference.Storefront.Common.dll" DestinationFolder="..\..\Common\Project\bin\Release" />
-    <Copy SourceFiles="..\..\AX\CSF\bin\Sitecore.Reference.Storefront.Common.dll" DestinationFolder="..\..\Common\TDSCommon_Master\Release\bin" />
-    <Copy SourceFiles="..\..\AX\CSF\bin\Sitecore.Reference.Storefront.Common.dll" DestinationFolder="..\..\CS\CSF\bin" />
-    <!--Copy SourceFiles="..\..\AX\CSF\bin\Sitecore.Reference.Storefront.Common.dll" DestinationFolder=".\Release\bin" /-->
-    <!-- Copy the sign logs to binaries\release folder and delete them in the package release folder -->
-    <ItemGroup>
-      <SignLogsR Include=".\Release\bin\SignLogs\*.txt" />
-      <SignLogsW Include="..\..\AX\CSF\bin\SignLogs\*.txt" />
-    </ItemGroup>
-    <Copy SourceFiles="@(SignLogsW)" DestinationFolder="..\..\..\..\binaries\$(configuration)\Signlogs" />
-    <Delete Files="@(SignLogsW)" />
-    <Delete Files="@(SignLogsR)" />
-    <RemoveDir Directories=".\Release\bin\SignLogs" />
-  </Target>
-  <!-- End of signing process -->
+  <Import Project="$(MSBuildExtensionsPath)\HedgehogDevelopment\SitecoreProject\v9.0\HedgehogDevelopment.SitecoreProject.targets" Condition="Exists('$(MSBuildExtensionsPath)\HedgehogDevelopment\SitecoreProject\v9.0\HedgehogDevelopment.SitecoreProject.targets')" />
   <Target Name="BeforeGeneratePackage">
     <Message Text="Removing the license file before creating the package" Importance="high" />
     <ItemGroup>

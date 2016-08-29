@@ -30,6 +30,7 @@ namespace Sitecore.Reference.Storefront.Controllers
     using System.Web.Mvc;
     using LoyaltyRewardPoint = Sitecore.Commerce.Connect.DynamicsRetail.Entities.LoyaltyPrograms.LoyaltyRewardPoint;
     using Sitecore.Reference.Storefront.ExtensionMethods;
+    using Sitecore.Reference.Storefront.Infrastructure;
 
     /// <summary>
     /// Controller for the Loyalty program
@@ -125,10 +126,10 @@ namespace Sitecore.Reference.Storefront.Controllers
                                     point.SetPropertyValue("Transactions", transactionResponse.Result.ToList());
                                 }
 
-                                result.SetErrors(transactionResponse.ServiceProviderResult);                                
+                                result.SetErrors(transactionResponse.ServiceProviderResult);
                             }
                         }
-                    }                   
+                    }
                 }
 
                 result.Initialize(loyaltyCards);
@@ -138,7 +139,7 @@ namespace Sitecore.Reference.Storefront.Controllers
             {
                 CommerceLog.Current.Error("GetLoyaltyCards", this, e);
                 return Json(new BaseJsonResult("GetLoyaltyCards", e), JsonRequestBehavior.AllowGet);
-            }           
+            }
         }
 
         /// <summary>
@@ -148,8 +149,9 @@ namespace Sitecore.Reference.Storefront.Controllers
         [HttpPost]
         [Authorize]
         [ValidateJsonAntiForgeryToken]
+        [StorefrontSessionState(System.Web.SessionState.SessionStateBehavior.ReadOnly)]
         public JsonResult ActiveLoyaltyCards()
-        {           
+        {
             try
             {
                 var loyaltyCards = new List<LoyaltyCard>();
@@ -191,7 +193,7 @@ namespace Sitecore.Reference.Storefront.Controllers
 
                     if (response.ServiceProviderResult.Success && response.Result != null && !string.IsNullOrEmpty(response.Result.CardNumber))
                     {
-                        loyaltyCards = this.AllCards(result);                        
+                        loyaltyCards = this.AllCards(result);
                     }
                 }
 

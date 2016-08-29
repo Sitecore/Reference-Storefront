@@ -1,0 +1,47 @@
+﻿/*
+SAMPLE CODE NOTICE
+
+THIS SAMPLE CODE IS MADE AVAILABLE AS IS.  MICROSOFT MAKES NO WARRANTIES, WHETHER EXPRESS OR IMPLIED, 
+OF FITNESS FOR A PARTICULAR PURPOSE, OF ACCURACY OR COMPLETENESS OF RESPONSES, OF RESULTS, OR CONDITIONS OF MERCHANTABILITY.  
+THE ENTIRE RISK OF THE USE OR THE RESULTS FROM THE USE OF THIS SAMPLE CODE REMAINS WITH THE USER.  
+NO TECHNICAL SUPPORT IS PROVIDED.  YOU MAY NOT DISTRIBUTE THIS CODE UNLESS YOU HAVE A LICENSE AGREEMENT WITH MICROSOFT THAT ALLOWS YOU TO DO SO.
+*/
+
+body {
+    font-size: 12px;
+    font-family: "Segoe UI", "Segoe", Tahoma, Helvetica, Arial, sans-serif, "Droid Sans";
+    width: 960px;
+    margin: 0 auto;
+}
+
+.msax-PaddingRight5 {
+    padding-right: 5px;
+}
+
+#ProductsGrid {
+    width: 800px;
+    float: left;
+}
+
+.msax-PaddingBottom20 {
+    padding-bottom: 20px;
+}
+
+footer {
+    width:100%;
+	background: grey;
+    bottom: 0;
+    color: white;
+    font-size: 14px;
+    height: 80px;
+    left: 0;
+    margin-top: 100px;
+    position: relative;
+    text-transform: uppercase;
+    float:left;
+}
+
+footer > div {
+    padding-top: 5px;
+    padding-left: 30%;
+}

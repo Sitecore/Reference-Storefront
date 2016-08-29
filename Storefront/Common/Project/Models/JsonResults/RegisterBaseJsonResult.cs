@@ -48,6 +48,11 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
         public string UserName { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether this instance is signup flow.
+        /// </summary>        
+        public bool IsSignupFlow { get; set; }
+
+        /// <summary>
         /// Initializes the specified user.
         /// </summary>
         /// <param name="user">The user.</param>

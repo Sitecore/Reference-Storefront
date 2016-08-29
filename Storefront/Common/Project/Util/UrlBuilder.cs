@@ -27,6 +27,8 @@ namespace Sitecore.Reference.Storefront
     /// </summary>
     public class UrlBuilder : UriBuilder
     {
+        private const string ApiRoot = "api/storefront/";
+
         private QueryStringCollection _query = new QueryStringCollection();
 
         #region Constructor overloads
@@ -188,6 +190,21 @@ namespace Sitecore.Reference.Storefront
 
                 return urlDomain;
             }
+        }
+
+        #endregion
+
+        #region Static methods
+
+        /// <summary>
+        /// Gets the API route.
+        /// </summary>
+        /// <param name="apiUrl">The API URL.</param>
+        /// <returns>The API route url.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings", MessageId = "0#")]
+        public static string GetApiRoute(string apiUrl)
+        {
+            return ApiRoot + apiUrl;
         }
 
         #endregion

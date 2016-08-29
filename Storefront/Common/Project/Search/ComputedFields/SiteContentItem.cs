@@ -43,7 +43,9 @@ namespace Sitecore.Reference.Storefront.Search.ComputedFields
             var item = (Item)(itemToIndex as SitecoreIndexableItem);
             if (item != null)
             {
-                if (item.ItemType() == StorefrontConstants.ItemTypes.StandardPage)
+                var itemtype = item.ItemType();
+
+                if (itemtype == StorefrontConstants.ItemTypes.StandardPage || itemtype == StorefrontConstants.ItemTypes.SecuredPage)
                 {
                     return (item[StorefrontConstants.ItemFields.DisplayInSearchResults] == "1");
                 }

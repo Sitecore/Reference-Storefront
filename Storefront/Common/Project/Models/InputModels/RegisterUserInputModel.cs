@@ -36,6 +36,20 @@ namespace Sitecore.Reference.Storefront.Models.InputModels
         public string UserName { get; set; }
 
         /// <summary>
+        /// Gets or sets the first name.
+        /// </summary>       
+        [StringLength(25, ErrorMessage = "The {0} must be maximum {1} characters long.")]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the last name.
+        /// </summary>   
+        [StringLength(25, ErrorMessage = "The {0} must be maximum {1} characters long.")]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        /// <summary>
         /// Gets or sets the user's password
         /// </summary>
         [Required]
@@ -51,5 +65,22 @@ namespace Sitecore.Reference.Storefront.Models.InputModels
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        /// <summary>
+        /// Gets or sets the email of existing customer.
+        /// </summary>       
+        [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Please enter a valid e-mail address of existing customer")]
+        [Display(Name = "Email Of Existing Customer")]
+        public string LinkupEmail { get; set; }
+
+        /// <summary>
+        /// Gets or sets the external identifier.
+        /// </summary>       
+        public string ExternalId { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is signup.
+        /// </summary>       
+        public string SignupSelection { get; set; }
     }
 }

@@ -17,6 +17,7 @@
 
 namespace Sitecore.Reference.Storefront.Managers
 {
+    using Commerce.Services.Globalization;
     using Sitecore.Commerce.Connect.CommerceServer;
     using Sitecore.Commerce.Connect.CommerceServer.Catalog;
     using Sitecore.Commerce.Connect.CommerceServer.Catalog.Fields;
@@ -52,15 +53,17 @@ namespace Sitecore.Reference.Storefront.Managers
         /// Initializes a new instance of the <see cref="CatalogManager" /> class.
         /// </summary>
         /// <param name="catalogServiceProvider">The catalog service provider.</param>
+        /// <param name="globalizationServiceProvider">The globalization service provider.</param>
         /// <param name="pricingManager">The pricing manager.</param>
         /// <param name="inventoryManager">The inventory manager.</param>
-        public CatalogManager([NotNull] CatalogServiceProvider catalogServiceProvider, [NotNull] PricingManager pricingManager, [NotNull] InventoryManager inventoryManager)
+        public CatalogManager([NotNull] CatalogServiceProvider catalogServiceProvider, [NotNull] GlobalizationServiceProvider globalizationServiceProvider, [NotNull] PricingManager pricingManager, [NotNull] InventoryManager inventoryManager)
         {
             Assert.ArgumentNotNull(catalogServiceProvider, "catalogServiceProvider");
             Assert.ArgumentNotNull(pricingManager, "pricingManager");
             Assert.ArgumentNotNull(inventoryManager, "inventoryManager");
 
             this.CatalogServiceProvider = catalogServiceProvider;
+            this.GlobalizationServiceProvider = globalizationServiceProvider;
             this.PricingManager = pricingManager;
             this.InventoryManager = inventoryManager;
         }
@@ -69,6 +72,14 @@ namespace Sitecore.Reference.Storefront.Managers
         /// Gets or sets the catalog service provider.
         /// </summary>
         public CatalogServiceProvider CatalogServiceProvider { get; protected set; }
+
+        /// <summary>
+        /// Gets or sets the globalization service provider.
+        /// </summary>
+        /// <value>
+        /// The globalization service provider.
+        /// </value>
+        public GlobalizationServiceProvider GlobalizationServiceProvider { get; protected set; }
 
         /// <summary>
         /// Gets or sets the inventory manager.
@@ -591,6 +602,23 @@ namespace Sitecore.Reference.Storefront.Managers
             }
 
             return new ManagerResponse<CatalogResult, bool>(result, result.Success);
+        }
+
+        /// <summary>
+        /// Raises the culture chosen page event.
+        /// </summary>
+        /// <param name="storefront">The storefront.</param>
+        /// <param name="culture">The culture.</param>
+        /// <returns>The manager response.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Justification = "Sitecore naming convention")]
+        public virtual ManagerResponse<GlobalizationResult, bool> RaiseCultureChosenPageEvent([NotNull] CommerceStorefront storefront, string culture)
+        {
+            Assert.ArgumentNotNull(storefront, "storefront");
+            Assert.ArgumentNotNullOrEmpty(culture, "culture");
+
+            var result = this.GlobalizationServiceProvider.CultureChosen(new CultureChosenRequest(storefront.ShopName, culture));
+
+            return new ManagerResponse<GlobalizationResult, bool>(result, result.Success);
         }
 
         #region Protected helper methods

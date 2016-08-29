@@ -36,7 +36,12 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
         {
             if (Sitecore.Context.Item != null && StorefrontManager.EnforceHttps)
             {
-                if (Sitecore.Context.Item.ItemType() == StorefrontConstants.ItemTypes.SecuredPage)
+                // We must test specifically for Category and Product types because of the catalog item resolver who
+                // changes the Sitecore.Context.Item and therefore it is not the page that is represented.
+                var itemType = Sitecore.Context.Item.ItemType();
+                if (itemType == StorefrontConstants.ItemTypes.SecuredPage ||
+                    itemType == StorefrontConstants.ItemTypes.Product ||
+                    itemType == StorefrontConstants.ItemTypes.Category)
                 {
                     if (!HttpContext.Current.Request.IsSecureConnection)
                     {

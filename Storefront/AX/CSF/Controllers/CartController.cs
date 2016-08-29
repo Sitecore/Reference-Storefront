@@ -30,6 +30,7 @@ namespace Sitecore.Reference.Storefront.Controllers
     using System.Web.UI;
     using Sitecore.Commerce.Connect.CommerceServer.Orders.Models;
     using Sitecore.Reference.Storefront.Util;
+    using Sitecore.Reference.Storefront.Infrastructure;
 
     /// <summary>
     /// Defines the shopping cart controller type.
@@ -93,7 +94,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         {
             return View(this.CurrentRenderingView);
         }
-        
+
         /// <summary>
         /// Updates the mini cart.
         /// </summary>
@@ -131,6 +132,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [HttpPost]
         [ValidateJsonAntiForgeryToken]
         [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
+        [StorefrontSessionState(System.Web.SessionState.SessionStateBehavior.ReadOnly)]
         public JsonResult GetCurrentCart()
         {
             try

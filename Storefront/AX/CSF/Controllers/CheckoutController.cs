@@ -139,12 +139,6 @@ namespace Sitecore.Reference.Storefront.Controllers
         [HttpGet]
         public ActionResult StartCheckout()
         {
-            var viewRequested = this.Request.QueryString["view"];
-            if (viewRequested != null && viewRequested == "DynamicsCheckout")
-            {
-                return View(this.GetRenderingView("DynamicsCheckout"));
-            }
-
             var response = this.CartManager.GetCurrentCart(CurrentStorefront, CurrentVisitorContext, true);
             var cart = (CommerceCart)response.ServiceProviderResult.Cart;
             if (cart.Lines == null || !cart.Lines.Any())
@@ -154,18 +148,7 @@ namespace Sitecore.Reference.Storefront.Controllers
             }
 
             return View(this.CurrentRenderingView, new CartRenderingModel(response.Result));
-        }
-
-        /// <summary>
-        /// Gets Dynamicses checkout controller.
-        /// </summary>
-        /// <returns>Dynamics Checkout controller view</returns>
-        [AllowAnonymous]
-        [HttpGet]
-        public ActionResult DynamicsCheckout()
-        {
-            return View(this.CurrentRenderingView);
-        }
+        }      
 
         /// <summary>
         /// Gets the Orders confirmation.
@@ -179,9 +162,8 @@ namespace Sitecore.Reference.Storefront.Controllers
         public ActionResult OrderConfirmation([Bind(Prefix = StorefrontConstants.QueryStrings.ConfirmationId)] string confirmationId)
         {
             var viewModel = new OrderConfirmationViewModel();
-            CommerceOrder order = null;
-
-            if (!string.IsNullOrWhiteSpace(confirmationId))
+            var order = this.Session[DynamicsStorefrontConstants.KnownPropertiesNames.NewOrder] as CommerceOrder;
+            if (order == null && !string.IsNullOrWhiteSpace(confirmationId))
             {
                 var response = this.OrderManager.GetOrderDetails(this.CurrentStorefront, this.CurrentVisitorContext, confirmationId);
                 if (response.ServiceProviderResult.Success)
@@ -191,7 +173,6 @@ namespace Sitecore.Reference.Storefront.Controllers
             }
 
             viewModel.Initialize(this.CurrentRendering, confirmationId, order);
-
             return View(this.CurrentRenderingView, viewModel);
         }
 
@@ -285,6 +266,7 @@ namespace Sitecore.Reference.Storefront.Controllers
                     return Json(result, JsonRequestBehavior.AllowGet);
                 }
 
+                this.Session[DynamicsStorefrontConstants.KnownPropertiesNames.NewOrder] = response.ServiceProviderResult.Order;
                 result.Initialize(string.Concat(StorefrontManager.StorefrontUri("checkout/OrderConfirmation"), "?confirmationId=", (response.Result.TrackingNumber)));
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
@@ -364,15 +346,7 @@ namespace Sitecore.Reference.Storefront.Controllers
                     return Json(result, JsonRequestBehavior.AllowGet);
                 }
 
-                // QUERYING FOR THE CART AGAIN BECAUSE THE SHIPPING COST AND TAX TOTAL ARE NOT BEING UPDATED 
-                // ON THE RETURNED CART OF THE SETSHIPPINGMETHOD REQUEST 
-                var cartResponse = this.CartManager.GetCurrentCart(CurrentStorefront, CurrentVisitorContext, true);
-                result.SetErrors(cartResponse.ServiceProviderResult);
-                if (cartResponse.ServiceProviderResult.Success && response.Result != null)
-                {
-                    result.Initialize(cartResponse.Result);
-                }
-                
+                result.Initialize(response.ServiceProviderResult.Cart);               
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
@@ -579,19 +553,8 @@ namespace Sitecore.Reference.Storefront.Controllers
                 lineShippingOptions = response.ServiceProviderResult.LineShippingPreferences.ToList();
             }
 
-            result.OrderShippingOptions = orderShippingOptions;
-            result.LineShippingOptions = lineShippingOptions;
-            if (result.LineShippingOptions != null && result.LineShippingOptions.Any())
-            {
-                foreach (var line in result.Cart.Lines)
-                {
-                    var lineShippingOption = result.LineShippingOptions.FirstOrDefault(l => l.LineId.Equals(line.ExternalCartLineId, StringComparison.OrdinalIgnoreCase));
-                    if (lineShippingOption != null)
-                    {
-                        line.ShippingOptions = lineShippingOption.ShippingOptions;
-                    }
-                }
-            }
+            result.InitializeShippingOptions(orderShippingOptions);
+            result.InitializeLineItemShippingOptions(lineShippingOptions);
 
             result.SetErrors(response.ServiceProviderResult);
         }
@@ -608,22 +571,28 @@ namespace Sitecore.Reference.Storefront.Controllers
                     var isEmailMethod = sm.GetPropertyValue("IsEmailShippingMethod") != null && (bool)sm.GetPropertyValue("IsEmailShippingMethod");
                     var isShipToStoreMethod = sm.GetPropertyValue("IsShipToStoreShippingMethod") != null && (bool)sm.GetPropertyValue("IsShipToStoreShippingMethod");
 
+                    var shippingMethodJsonResult = CommerceTypeLoader.CreateInstance<ShippingMethodBaseJsonResult>();
+
+                    shippingMethodJsonResult.Initialize(sm);
+
                     if (isEmailMethod)
                     {
-                        result.EmailDeliveryMethod = sm;
+                        result.EmailDeliveryMethod = shippingMethodJsonResult;
                     }
 
                     if (isShipToStoreMethod)
                     {
-                        result.ShipToStoreDeliveryMethod = sm;
+                        result.ShipToStoreDeliveryMethod = shippingMethodJsonResult;
                     }
                 }
 
                 return;
             }
 
-            result.EmailDeliveryMethod = new ShippingMethod();
-            result.ShipToStoreDeliveryMethod = new ShippingMethod();
+            var emptyJsonResult = CommerceTypeLoader.CreateInstance<ShippingMethodBaseJsonResult>();
+
+            result.EmailDeliveryMethod = emptyJsonResult;
+            result.ShipToStoreDeliveryMethod = emptyJsonResult;
             result.SetErrors(response.ServiceProviderResult);
         }
 
@@ -647,6 +616,7 @@ namespace Sitecore.Reference.Storefront.Controllers
             if (response.ServiceProviderResult.Success && response.Result != null)
             {
                 paymentOptions = response.Result.ToList();
+                paymentOptions.ForEach(x => x.Name = StorefrontManager.GetPaymentName(x.Name));
             }
 
             result.PaymentOptions = paymentOptions;
@@ -660,6 +630,7 @@ namespace Sitecore.Reference.Storefront.Controllers
             if (response.ServiceProviderResult.Success && response.Result != null)
             {
                 paymentMethods = response.Result.ToList();
+                paymentMethods.ForEach(x => x.Description = StorefrontManager.GetPaymentName(x.Description));
             }
 
             result.PaymentMethods = paymentMethods;

@@ -10,20 +10,6 @@ template: {F409B9A7-B101-4DC4-AEDA-E15E09E7D719}
 templatekey: Login Page
 
 ----field----
-field: {769DCA41-4C8A-4F0C-A078-82C1FF929C59}
-name: Email Address Placeholder
-key: email address placeholder
-content-length: 13
-
-Email Address
-----field----
-field: {C3A24E20-8391-4568-AFFE-AB48DF628FE5}
-name: Password Placeholder
-key: password placeholder
-content-length: 8
-
-Password
-----field----
 field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
 name: __Icon
 key: __icon
@@ -40,7 +26,7 @@ content-length: 38
 ----version----
 language: en
 version: 1
-revision: 2ca3572f-1daa-4500-93a2-39ccbc0a6fc4
+revision: 0405348d-a616-460a-83b4-fdd2de97f413
 
 ----field----
 field: {EC1F4944-D675-42F6-B354-A0A1BF04BFF8}
@@ -49,6 +35,20 @@ key: title
 content-length: 7
 
 Sign Up
+----field----
+field: {93F692A5-B9A7-41B5-AAE9-0C4517B63C88}
+name: Activation Text
+key: activation text
+content-length: 49
+
+Enter activation code to link to existing account
+----field----
+field: {80394BCB-5D3B-41E0-9ACE-32A9BADE0DC0}
+name: Link Account
+key: link account
+content-length: 12
+
+Link Account
 ----field----
 field: {9F832330-D023-478C-93FC-220C1129C714}
 name: Signing Button
@@ -116,11 +116,9 @@ Connect to facebook
 field: {B2AFD9F7-2E3D-4EAA-A0CF-A82D1C308EC1}
 name: Facebook Text
 key: facebook text
-content-length: 150
+content-length: 24
 
-                <h3>Additional sign in options</h3>
-                <p>You will be automatically registered with us if you are a first-time user.</p>
-
+<h3>Sign in options</h3>
 ----field----
 field: {FD6DE0AA-3C18-41DF-B3B1-55ED5F16A46E}
 name: Forgot Password
@@ -128,6 +126,20 @@ key: forgot password
 content-length: 16
 
 Forgot password?
+----field----
+field: {769DCA41-4C8A-4F0C-A078-82C1FF929C59}
+name: Email Address Placeholder
+key: email address placeholder
+content-length: 13
+
+Email Address
+----field----
+field: {C3A24E20-8391-4568-AFFE-AB48DF628FE5}
+name: Password Placeholder
+key: password placeholder
+content-length: 8
+
+Password
 ----field----
 field: {CC1189E1-1FDC-4396-BE4D-C5A5B107B7EB}
 name: Email Missing Message
@@ -162,14 +174,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-2ca3572f-1daa-4500-93a2-39ccbc0a6fc4
+0405348d-a616-460a-83b4-fdd2de97f413
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
-content-length: 35
+content-length: 16
 
-20150320T125627:635624529875630576Z
+20160530T145658Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

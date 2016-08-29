@@ -22,6 +22,7 @@ namespace Sitecore.Reference.Storefront
     using System.Collections.Generic;
     using System.Globalization;
     using Sitecore.Analytics;
+    using Sitecore.Analytics.Automation.Data.Items;
     using Sitecore.Commerce.Connect.CommerceServer;
     using Sitecore.Data;
     using Sitecore.Data.Managers;
@@ -115,7 +116,7 @@ namespace Sitecore.Reference.Storefront
         {
             foreach (var planInfo in this._eaPlanInfos)
             {
-                var engagementPlanItem = Tracker.DefinitionItems.EngagementPlans[planInfo.Name];
+                var engagementPlanItem = Tracker.DefinitionDatabase.Automation().EngagementPlans[planInfo.Name];
 
                 if (engagementPlanItem.IsDeployed)
                 {

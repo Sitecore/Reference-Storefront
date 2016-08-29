@@ -45,9 +45,14 @@ namespace Sitecore.Reference.Storefront.Util
         public const string VisitorIdKey = "VisitorId";
 
         /// <summary>
+        /// The anonymous cart cookie name
+        /// </summary>
+        public const string AnonymousCartCookieName = "asc";
+
+        /// <summary>
         /// cookie expiration time in days
         /// </summary>
-        private const int CookieExpirationInDays = 365;
+        private const int CookieExpirationInDays = 365;        
 
         /// <summary>
         /// Does the cart cookie exist for the given customer
@@ -68,7 +73,8 @@ namespace Sitecore.Reference.Storefront.Util
         public static void CreateCartCookieForCustomer(string customerId)
         {
             var cartCookie = HttpContext.Current.Request.Cookies[CookieName] ?? new HttpCookie(CookieName);
-            cartCookie.Values[VisitorIdKey] = customerId;
+            cartCookie.Values[VisitorIdKey] = customerId;            
+            cartCookie.HttpOnly = true;            
             cartCookie.Expires = DateTime.Now.AddDays(CookieExpirationInDays);
             HttpContext.Current.Response.Cookies.Add(cartCookie);
         }
@@ -94,6 +100,26 @@ namespace Sitecore.Reference.Storefront.Util
             HttpContext.Current.Response.SetCookie(cartCookie);
 
             return true;
+        }
+
+        /// <summary>
+        /// Gets the anonymous cart identifier from the session cookie.
+        /// </summary>
+        /// <returns>Anonymous cart Id</returns>
+        public static string GetAnonymousCartIdFromCookie()
+        {
+            var cartCookie = HttpContext.Current.Request.Cookies[AnonymousCartCookieName];
+           
+            if (cartCookie == null || string.IsNullOrEmpty(cartCookie.Value))
+            {
+                var cartId = Guid.NewGuid().ToString();
+                cartCookie = new HttpCookie(AnonymousCartCookieName, cartId);
+                cartCookie.HttpOnly = true;                
+                HttpContext.Current.Response.SetCookie(cartCookie);
+                return cartId;
+            }
+
+            return cartCookie.Value;
         }
     }
 }

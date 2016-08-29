@@ -1,4 +1,4 @@
-----item----
+﻿----item----
 version: 1
 id: {441B60D3-09BB-4111-A3AD-D10076B78B54}
 database: master
@@ -59,6 +59,13 @@ content-length: 7
 
 website
 ----field----
+field: {EEBCD18A-6447-4DEC-9C57-12FAF4714034}
+name: Forms Authentication
+key: forms authentication
+content-length: 1
+
+1
+----field----
 field: {0D2D45C1-783B-4A72-A797-F5907BC37CFE}
 name: DefaultCartName
 key: defaultcartname
@@ -95,11 +102,11 @@ content-length: 41
 no-reply@sitecore.commerce.storefront.com
 ----field----
 field: {F605D200-01A0-4235-8886-391C4C906092}
-name: ChannelId
-key: channelid
-content-length: 10
+name: OperatingUnitNumber
+key: operatingunitnumber
+content-length: 3
 
-5637144608
+068
 ----field----
 field: {7315350F-F3B5-4740-A227-186F7A2BA9F7}
 name: Default Currency

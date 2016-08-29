@@ -11,9 +11,13 @@
 // -------------------------------------------------------------------------------------------*@
 
 @using Sitecore.Reference.Storefront.Managers;
+@using Sitecore.Reference.Storefront.Util;
+
 @model RegisterModel
 @{
     var registering = Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.Registering];
+    var storefront = Sitecore.Reference.Storefront.Managers.StorefrontManager.CurrentStorefront;
+    bool isNewUser = Model == null || string.IsNullOrEmpty(Model.FirstName);
 }
 @using (Ajax.BeginForm("Register", "Account", null, new AjaxOptions { OnBegin = "SetLoadingButton", OnSuccess = "RegisterSuccess", OnFailure = "RegisterFailure", HttpMethod = "Post" }, new { @id = "RegisterForm" }))
 {
@@ -21,6 +25,7 @@
     @Html.ValidationSummary(true)
 
         <!-- CONTENT CONTAINER -->
+   
     <div id="" class="row">
         <div class="col-md-6">
             <div class="row">
@@ -28,6 +33,15 @@
                     <p>@Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.FillFormMessage, Html.Sitecore().CurrentItem)</p>
                     <p>&nbsp;</p>
                 </div>
+            @if (storefront.IsAXSite && isNewUser)
+            {
+                <div class="col-md-12">
+                    <div class="form-group">                        
+                        @Html.RadioButtonFor(m => m.SignupSelection, "NewAccount", new { id = "new" })  
+                        <label for="new">@Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.NewContosoAccount]</label>                    
+                    </div>
+                </div>
+            }
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="UserName">@Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.Email, Html.Sitecore().CurrentItem)</label><span class="required">*</span>
@@ -36,12 +50,46 @@
                         {
                             placeholder = Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.EmailAddressPlaceholder],
                             data_val_required = Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.EmailMissingMessage],
-                            @class = "form-control"
+                            @class = "form-control new-user"
                         })
 
                         @Html.ValidationMessageFor(m => m.UserName)
                     </div>
                 </div>
+            @if (storefront.IsAXSite)
+            {
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="FirstName">@Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.FirstName, Html.Sitecore().CurrentItem)</label><span class="required">*</span>
+                        @Html.TextBoxFor(m => m.FirstName,
+                        new
+                        {
+                            placeholder = Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.FirstNamePlaceholder],
+                            data_val_required = Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.FirstNameMissingMessage],
+                            @class = "form-control new-user"
+                        })
+
+                        @Html.ValidationMessageFor(m => m.FirstName)
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="UserName">@Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.LastName, Html.Sitecore().CurrentItem)</label><span class="required">*</span>
+                        @Html.TextBoxFor(m => m.LastName,
+                        new
+                        {
+                            placeholder = Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.LastNamePlaceholder],
+                            data_val_required = Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.LastNameMissingMessage],
+                            @class = "form-control new-user"
+                        })
+
+                        @Html.ValidationMessageFor(m => m.LastName)
+                    </div>
+                </div>
+            }
+
+            @if(storefront.FormsAuthentication)
+            {
                 <div class="col-md-6 col-sm-6">
                     <div class="form-group">
                         <label for="Password">@Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.Password, Html.Sitecore().CurrentItem)</label><span class="required">*</span>
@@ -53,7 +101,7 @@
                             data_val_length_min = "6",
                             data_val_length_max = "100",
                             data_val_length = string.Format(Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.PasswordLengthMessage].ToString(), 6),
-                            @class = "form-control",
+                            @class = "form-control new-user",
                             autocomplete = "off"
                         })
 
@@ -70,13 +118,38 @@
                             data_val_required = Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.PasswordMissingMessage],
                             data_val_equalto_other = "*.Password",
                             data_val_equalto = Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.PasswordsDoNotMatchMessage],
-                            @class = "form-control",
+                            @class = "form-control new-user",
                             autocomplete = "off"
                         })
 
                         @Html.ValidationMessageFor(m => m.ConfirmPassword)
                     </div>
                 </div>
+             } 
+                
+             @if (storefront.IsAXSite && isNewUser)
+             {
+                <div class="col-md-12">                    
+                    <div class="form-group">
+                        @Html.RadioButtonFor(m => m.SignupSelection, "LinkAccount", new { id = "link" })
+                        <label for="link">@Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.LinkContosoAccount]</label>                        
+                    </div>
+                </div>               
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="LinkupEmail">@Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.EmailOfExistingCustomer, Html.Sitecore().CurrentItem)</label><span class="required">*</span>
+                        @Html.TextBoxFor(m => m.LinkupEmail,
+                        new
+                        {
+                            placeholder = Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.EmailAddressPlaceholder],
+                            data_val_required = Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.EmailMissingMessage],
+                            @class = "form-control"
+                        })
+
+                        @Html.ValidationMessageFor(m => m.LinkupEmail)
+                    </div>
+                </div>
+             }            
                 <div class="col-md-12">
                     <div class="form-group">
                         <button type="submit" id="registerButton" data-loading-text="@registering" class="btn btn-success">@Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.CreateUser, Html.Sitecore().CurrentItem)</button>
@@ -85,6 +158,8 @@
                 </div>
             </div>
         </div>
+        @if(storefront.FormsAuthentication)
+        {
         <div class="col-md-6">
             <div class="row">
                 <div class="col-md-12 spot-single-image">
@@ -98,5 +173,6 @@
                 <button type="button" onclick="window.location.href='#'" class="btn btn-info">@Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.FacebookButton, Html.Sitecore().CurrentItem)</button>
             </div>
         </div>
-    </div>
+        }
+    </div>    
 }

@@ -10,9 +10,33 @@
 // and limitations under the License.
 // -------------------------------------------------------------------------------------------
 
+$(document).ready(function () {
+    $(".form-group input[name='SignupSelection']").click(function () {
+
+        if ($('input:radio[name=SignupSelection]:checked').val() == "NewAccount") {
+            $(".new-user").attr("disabled", false);
+            $("#LinkupEmail").attr("disabled", true);            
+        } else {
+            $(".new-user").attr("disabled", true);
+            $("#LinkupEmail").attr("disabled", false);           
+        }
+    });
+
+    $(".form-group input[name='SignupSelection']:first").attr("checked", true).trigger("click");
+});
+
 function RegisterSuccess(data) {
     if (data && data.Success) {
-        window.location.href = StorefrontUri("AccountManagement");
+        if (data.IsSignupFlow) {
+             var url = new Uri(StorefrontUri("UserPendingActivation"))
+                .addQueryParam("isSignupFlow", data.IsSignupFlow)
+                .addQueryParam("email", data.UserName)
+                .toString();
+             window.location.href = url;
+        }
+        else {
+            window.location.href = StorefrontUri("AccountManagement");
+        }        
     }
 
     ClearGlobalMessages();
@@ -27,6 +51,22 @@ function RegisterFailure(data) {
 
 function SetLoadingButton(cntx) {
     $(document).ready(function () {
+        $("#registerButton").click(function (e) {
+            if ($('input:radio[name=SignupSelection]:checked').val() == "NewAccount") {
+                if ($("#UserName").val().length == 0) {
+                    e.preventDefault();
+                }
+            }
+            else if ($('input:radio[name=SignupSelection]:checked').val() == "LinkAccount") {
+                if ($("#LinkupEmail").val().length == 0) {
+                    e.preventDefault();
+                }
+            } else {
+                e.preventDefault();
+                throw "Sign up option not supported.";
+            }
+        })
+
         $("#registerButton").button('loading');
     });
 }

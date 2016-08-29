@@ -44,6 +44,7 @@ namespace Sitecore.Reference.Storefront.Managers
         private const string IndexNameFormat = "sitecore_{0}_index";
 
         private static bool _enforceHttps = Convert.ToBoolean(Sitecore.Configuration.Settings.GetSetting("Storefront.EnforceHTTPS", "true"), CultureInfo.InvariantCulture);
+        private static bool _readOnlySessionStateBehaviorEnabled = Convert.ToBoolean(Sitecore.Configuration.Settings.GetSetting("Storefront.ReadOnlySessionStateBehaviorEnabled", "true"), CultureInfo.InvariantCulture);
 
         /// <summary>
         /// Gets the current sitecontext
@@ -72,6 +73,25 @@ namespace Sitecore.Reference.Storefront.Managers
             set
             {
                 _enforceHttps = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the read only session state behavior is enabled.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if <c>true</c> the read only session state behavior is enabled; otherwise, <c>false</c>.
+        /// </value>
+        public static bool ReadOnlySessionStateBehaviorEnabled
+        {
+            get
+            {
+                return _readOnlySessionStateBehaviorEnabled;
+            }
+
+            set
+            {
+                _readOnlySessionStateBehaviorEnabled = value;
             }
         }
 
@@ -304,6 +324,40 @@ namespace Sitecore.Reference.Storefront.Managers
             Item lookupItem = null;
 
             return Lookup(StorefrontConstants.KnowItemNames.OrderStatuses, status, out lookupItem, true);
+        }
+
+        /// <summary>
+        /// Gets the name of the payment.
+        /// </summary>
+        /// <param name="payment">The payment.</param>
+        /// <returns>A licalized payment name.</returns>
+        public static string GetPaymentName(string payment)
+        {
+            if (payment == null)
+            {
+                return string.Empty;
+            }
+
+            Item lookupItem = null;
+
+            return Lookup(StorefrontConstants.KnowItemNames.Payments, payment, out lookupItem, true);
+        }
+
+        /// <summary>
+        /// Gets the name of the shipping.
+        /// </summary>
+        /// <param name="shipping">The shipping.</param>
+        /// <returns>A licalized shiping name.</returns>
+        public static string GetShippingName(string shipping)
+        {
+            if (shipping == null)
+            {
+                return string.Empty;
+            }
+
+            Item lookupItem = null;
+
+            return Lookup(StorefrontConstants.KnowItemNames.Shipping, shipping, out lookupItem, true);
         }
 
         /// <summary>

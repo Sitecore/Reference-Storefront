@@ -35,10 +35,10 @@ namespace Sitecore.Reference.Storefront.Controllers
     using Sitecore.Reference.Storefront.Models.JsonResults;
     using Sitecore.Data.Items;
     using Sitecore.Diagnostics;
-    using Sitecore.Links;
-    using Models = Sitecore.Commerce.Connect.DynamicsRetail.Entities;
+    using Sitecore.Links;    
     using Sitecore.Reference.Storefront.ExtensionMethods;
     using System.Web.UI;
+    using Sitecore.Reference.Storefront.Infrastructure;
 
     /// <summary>
     /// Used to handle all account actions
@@ -151,7 +151,23 @@ namespace Sitecore.Reference.Storefront.Controllers
         [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
         public ActionResult Register()
         {
-            return View(this.CurrentRenderingView);
+            var customer = this.Session["AxCustomer"] as CommerceCustomer;
+            if (customer != null)
+            {
+                var registerModel = new RegisterModel
+                {
+                    UserName = customer.Name,
+                    ExternalId = customer.ExternalId,
+                    FirstName = customer.Properties["FirstName"] as string,
+                    LastName = customer.Properties["LastName"] as string
+                };
+
+                return View(this.CurrentRenderingView, registerModel);
+            }
+            else
+            {
+                return View(this.CurrentRenderingView);
+            }
         }
 
         /// <summary>
@@ -262,30 +278,56 @@ namespace Sitecore.Reference.Storefront.Controllers
             try
             {
                 Assert.ArgumentNotNull(inputModel, "RegisterInputModel");
-                RegisterBaseJsonResult result = new RegisterBaseJsonResult();
+                RegisterBaseJsonResult result = new RegisterBaseJsonResult();               
 
-                this.ValidateModel(result);
-                if (result.HasErrors)
+                if (inputModel.SignupSelection == null || string.Equals(inputModel.SignupSelection, "NewAccount", StringComparison.OrdinalIgnoreCase))
                 {
-                    return Json(result, JsonRequestBehavior.AllowGet);
-                }
-
-                var response = this.AccountManager.RegisterUser(this.CurrentStorefront, inputModel);
-                if (response.ServiceProviderResult.Success && response.Result != null)
-                {
-                    var isLoggedIn = this.AccountManager.Login(CurrentStorefront, CurrentVisitorContext, response.Result.UserName, inputModel.Password, false);
-                    if (isLoggedIn)
+                    this.ValidateModel(result);
+                    if (result.HasErrors)
                     {
-                        result.Initialize(response.Result);
+                        return Json(result, JsonRequestBehavior.AllowGet);
+                    }
+
+                    var existingCustomer = this.Session["AxCustomer"] as CommerceCustomer;
+                    if (existingCustomer != null)
+                    {
+                        inputModel.ExternalId = existingCustomer.ExternalId;
+                    }
+
+                    var response = this.AccountManager.RegisterUser(this.CurrentStorefront, inputModel);
+                    if (response.ServiceProviderResult.Success && response.Result != null)
+                    {
+                        var isLoggedIn = this.AccountManager.Login(CurrentStorefront, CurrentVisitorContext, response.Result.UserName, inputModel.Password, false);
+                        if (isLoggedIn)
+                        {
+                            result.Initialize(response.Result);
+                        }
+                        else
+                        {
+                            result.SetErrors(new List<string> { StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.CouldNotCreateUser) });
+                        }
                     }
                     else
                     {
-                        result.SetErrors(new List<string> { StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.CouldNotCreateUser) });
+                        result.SetErrors(response.ServiceProviderResult);
                     }
                 }
                 else
                 {
-                    result.SetErrors(response.ServiceProviderResult);
+                    string emailOfExistingCustomer = inputModel.LinkupEmail;
+                    var response = this.AccountManager.InitiateLinkToExistingCustomer(emailOfExistingCustomer, this.Request.Url.Host);
+                    if (response.ServiceProviderResult.Success && !response.ServiceProviderResult.SystemMessages.Any())
+                    {
+                        result.UserName = emailOfExistingCustomer;
+                        result.IsSignupFlow = true;
+                        return Json(result, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        result.Success = false;
+                        result.SetErrors(response.ServiceProviderResult);
+                        return Json(result, JsonRequestBehavior.AllowGet);
+                    }
                 }
 
                 return Json(result);
@@ -296,6 +338,57 @@ namespace Sitecore.Reference.Storefront.Controllers
                 return Json(new BaseJsonResult("Register", e), JsonRequestBehavior.AllowGet);
             }
         }
+
+        /// <summary>
+        /// Accounts the linkup pending.
+        /// </summary>
+        /// <param name="isSignupFlow">The is signup flow.</param>
+        /// <param name="email">The email of the existing customer.</param>
+        /// <param name="code">The activation code.</param>
+        /// <returns>The action</returns>
+        [HttpGet]
+        [AllowAnonymous]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Security.Web.Configuration", "CA3147:MarkVerbHandlersWithValidateAntiforgeryToken", MessageId = "#ValidateAntiForgeryTokenAttributeDefaultMissing", Justification = "Support for anti-forgery token will be added once the controls are redesigned to follow MVC pattern.")]
+        public ActionResult AccountLinkupPending(string isSignupFlow, string email, string code)
+        {
+            CustomerLinkupPendingViewModel viewModel = new CustomerLinkupPendingViewModel();
+            viewModel.Messages = new List<string>();
+            if (!string.IsNullOrEmpty(isSignupFlow) && isSignupFlow.Equals("true", StringComparison.OrdinalIgnoreCase))
+            {
+                string maskedEmailAddress = Helpers.GetMaskedEmailAddress(email);
+                string message = string.Format(CultureInfo.CurrentCulture, StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.ActivationCodeSent), maskedEmailAddress);
+                viewModel.Messages.Add(message);
+            }
+            else
+            {
+                try
+                {
+                    var response = this.AccountManager.FinalizeLinkToExistingCustomer(email, code);
+                    if (response.ServiceProviderResult.Success && response.Result != null)
+                    {
+                        var customer = response.Result;
+                        customer.Name = email;
+                        this.Session["AxCustomer"] = customer;                     
+                        return Redirect("/register");                       
+                    }
+                    else
+                    {
+                        foreach (var error in response.ServiceProviderResult.SystemMessages)
+                        {
+                            var message = StorefrontManager.GetSystemMessage(error.Message, false);
+                            viewModel.Messages.Add(string.IsNullOrEmpty(message) ? error.Message : message);
+                        }                       
+                    }
+                }
+                catch (Exception ex)
+                {
+                    viewModel.Messages.Add(StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.WrongActivationCode));
+                    viewModel.Messages.Add(ex.Message);                   
+                }               
+            }
+
+            return this.View(this.GetRenderingView(StorefrontConstants.Views.UserPendingActivation), viewModel);
+        }      
 
         /// <summary>
         /// Handles a user trying to login
@@ -490,6 +583,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [Authorize]
         [ValidateJsonAntiForgeryToken]
         [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
+        [StorefrontSessionState(System.Web.SessionState.SessionStateBehavior.ReadOnly)]
         public JsonResult AddressList()
         {
             try
@@ -694,6 +788,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [AllowAnonymous]
         [ValidateJsonAntiForgeryToken]
         [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
+        [StorefrontSessionState(System.Web.SessionState.SessionStateBehavior.ReadOnly)]
         public JsonResult GetCurrentUser()
         {
             try
@@ -783,7 +878,7 @@ namespace Sitecore.Reference.Storefront.Controllers
                     defaultDomain = CommerceConstants.ProfilesStrings.CommerceUsersDomainName;
                 }
             }
-            
+
             return !userName.StartsWith(defaultDomain, StringComparison.OrdinalIgnoreCase) ? string.Concat(defaultDomain, @"\", userName) : userName;
         }
 

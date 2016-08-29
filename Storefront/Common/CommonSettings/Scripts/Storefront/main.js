@@ -84,9 +84,13 @@ function StorefrontUri(route) {
 }
 
 function ShowGlobalMessages(data) {
+    if (data && data.Url) {
+        var url = new Uri(StorefrontUri(data.Url));
+        window.location.href = url;
+    }
     if (errorSummaryViewModel && data && data.Errors && data.Errors.length > 0) {
         errorSummaryViewModel.AddToErrorList(data);
-    }
+    }    
 }
 
 function ClearGlobalMessages() {
@@ -144,9 +148,9 @@ var queryStringParamerterPageSize = "ps";
 var queryStringParameterSiteContentPage = "scpg";
 var queryStringParameterSiteContentPageSize = "scps";
 
-$(document).load(function() {
+$(window).on("load", function () {
     setEqualHeight($(".product-list div.col-sm-4"));
-})
+});
 
 $(document).ready(function () {
     $('.product-recommendation-click').on('click', productRecommendationClick);
@@ -158,7 +162,7 @@ $(document).ready(function () {
             var fieldName = val.substr(0, val.length - 1);
             var direction = val.charAt(val.length - 1) == queryStringParamerterSortDirectionAscShort ? queryStringParamerterSortDirectionAsc : queryStringParamerterSortDirectionDesc;
 
-            AJAXPost(StorefrontUri("api/sitecore/catalog/sortorderapplied"), "{\"sortField\":\"" + fieldName + "\", \"sortDirection\":\"" + direction + "\"}", function (data, success, sender) {
+            AJAXPost(StorefrontUri("api/storefront/catalog/sortorderapplied"), "{\"sortField\":\"" + fieldName + "\", \"sortDirection\":\"" + direction + "\"}", function (data, success, sender) {
                 var url = new Uri(window.location.href)
                     .deleteQueryParam(queryStringParamerterSort)
                     .deleteQueryParam(queryStringParamerterSortDirection)

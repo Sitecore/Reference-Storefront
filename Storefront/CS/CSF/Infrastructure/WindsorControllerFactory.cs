@@ -28,62 +28,15 @@ namespace Sitecore.Reference.Storefront.Infrastructure
     /// <summary>
     /// The windsor controller factory.
     /// </summary>
-    public class WindsorControllerFactory : DefaultControllerFactory
+    public class WindsorControllerFactory : WindsorControllerFactoryBase
     {
-        /// <summary>
-        /// The kernel.
-        /// </summary>
-        private readonly IKernel kernel;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="WindsorControllerFactory" /> class.
         /// </summary>
         /// <param name="kernel">The kernel.</param>
         public WindsorControllerFactory(IKernel kernel)
+            : base(kernel)
         {
-            this.kernel = kernel;
-        }
-
-        /// <summary>
-        /// Releases the specified controller.
-        /// </summary>
-        /// <param name="controller">The controller to release.</param>
-        public override void ReleaseController(IController controller)
-        {
-            if (this.IsFromCurrentAssembly(controller.GetType()))
-            {
-                this.kernel.ReleaseComponent(controller);
-            }
-            else
-            {
-                base.ReleaseController(controller);
-            }
-        }
-
-        /// <summary>
-        /// Retrieves the controller instance for the specified request context and controller type.
-        /// </summary>
-        /// <param name="requestContext">The context of the HTTP request, which includes the HTTP context and route data.</param>
-        /// <param name="controllerType">The type of the controller.</param>
-        /// <returns>
-        /// The controller instance.
-        /// </returns>
-        /// <exception cref="System.Web.HttpException">Error 40.4</exception>
-        protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)
-        {
-            if (this.IsFromCurrentAssembly(controllerType))
-            {
-                if (controllerType == null)
-                {
-                    throw new HttpException(404, string.Format(CultureInfo.InvariantCulture, "The controller for path '{0}' could not be found.", requestContext.HttpContext.Request.Path));
-                }
-
-                return (IController)this.kernel.Resolve(controllerType);
-            }
-
-            var controller = base.GetControllerInstance(requestContext, controllerType);
-
-            return controller;
         }
 
         /// <summary>
@@ -91,7 +44,7 @@ namespace Sitecore.Reference.Storefront.Infrastructure
         /// </summary>
         /// <param name="type">The type to check for.</param>
         /// <returns>True if it is from the current assembly and false otherwise</returns>
-        protected bool IsFromCurrentAssembly(Type type)
+        protected override bool IsFromCurrentAssembly(Type type)
         {
             if (type != null)
             {

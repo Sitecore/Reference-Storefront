@@ -26,7 +26,7 @@ content-length: 38
 ----version----
 language: en
 version: 1
-revision: 44b5f766-96d5-4d9f-9a1b-ec9600aa27da
+revision: cfa0927d-a0c2-4305-9f7a-c546d7ff9cda
 
 ----field----
 field: {EC1F4944-D675-42F6-B354-A0A1BF04BFF8}
@@ -42,6 +42,27 @@ key: image
 content-length: 58
 
 <image mediaid="{784E8A3C-9C91-40B7-B1B3-7072B6439AB8}" />
+----field----
+field: {17035DD9-9E0F-4459-82F1-6455BE08CCAD}
+name: Email Of Existing Customer
+key: email of existing customer
+content-length: 26
+
+Email Of Existing Customer
+----field----
+field: {4A0074F0-EA1A-4B5B-8044-08496CC87B84}
+name: Link Contoso Account
+key: link contoso account
+content-length: 12
+
+Link Account
+----field----
+field: {AC9D404B-16E2-4F92-AFDC-41C42C93AD22}
+name: New Contoso Account
+key: new contoso account
+content-length: 11
+
+New Account
 ----field----
 field: {25654646-90C4-487F-96B2-9AB21BFDBFEB}
 name: Registering
@@ -150,6 +171,20 @@ content-length: 8
 
 Password
 ----field----
+field: {B5F1B2BE-F451-4196-9B19-3B8C3ADDC0E4}
+name: First Name Missing Message
+key: first name missing message
+content-length: 27
+
+The First name is required.
+----field----
+field: {BF56E529-3EE6-4AA5-A74D-8472BE8B78CA}
+name: Last Name Missing Message
+key: last name missing message
+content-length: 24
+
+The Surname is required.
+----field----
 field: {B65DF6CB-E4D5-4B11-9DA5-1D1E411EEBC1}
 name: Email Missing Message
 key: email missing message
@@ -197,14 +232,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-44b5f766-96d5-4d9f-9a1b-ec9600aa27da
+cfa0927d-a0c2-4305-9f7a-c546d7ff9cda
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
-content-length: 35
+content-length: 16
 
-20150415T123404:635646980448590852Z
+20160527T173630Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

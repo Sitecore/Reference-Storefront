@@ -124,7 +124,7 @@ function CheckGiftCardBalance() {
     var data = {};
     data.GiftCardId = giftCardId;
     ClearGlobalMessages();
-    AJAXPost("/api/sitecore/catalog/checkgiftcardbalance", JSON.stringify(data), function (data, success, sender) {
+    AJAXPost("/api/storefront/catalog/checkgiftcardbalance", JSON.stringify(data), function (data, success, sender) {
         if (success && data.Success) {
             $("#balance-value").html(data.FormattedBalance);
         }
@@ -160,7 +160,7 @@ function addToWishList(id) {
     $("#addToWishList").find(".glyphicon").addClass("glyphicon-refresh");
     $("#addToWishList").find(".glyphicon").addClass("glyphicon-refresh-animate");
 
-    AJAXPost("/api/sitecore/WishList/AddToWishList", JSON.stringify(formData), function (data, success, sender) {
+    AJAXPost("/api/storefront/WishList/AddToWishList", JSON.stringify(formData), function (data, success, sender) {
         if (success && data.Success) {            
             wishListHeadersListViewModel.reload(data);
         }
@@ -209,7 +209,7 @@ var StockInfoListViewModel = function () {
         ClearGlobalMessages();
         var data = {};
         data.ProductId = $('#product-id').val();
-        AJAXPost(StorefrontUri("api/sitecore/catalog/GetCurrentProductStockInfo"), JSON.stringify(data), function (data, success, sender) {
+        AJAXPost(StorefrontUri("api/storefront/catalog/GetCurrentProductStockInfo"), JSON.stringify(data), function (data, success, sender) {
             if (success && data && data.Success) {
                 $.each(data.StockInformations, function () {
                     self.stockInfos.push(new StockInfoViewModel(this));
@@ -265,7 +265,7 @@ $(function() {
 
         load: function() {
             this.messages().ClearMessages();
-            AJAXPost(StorefrontUri("api/sitecore/account/getcurrentuser"), null, function(data, success, sender) {
+            AJAXPost(StorefrontUri("api/storefront/account/getcurrentuser"), null, function(data, success, sender) {
                 if (success && data && data.Success) {
                     if (data.FullName && data.FullName.length > 0) {
                         signForNotificationVM.fullName(data.FullName);
@@ -293,7 +293,7 @@ $(function() {
                     "VariantId": stockInfoVM.selectedStockInfo().variantId()
                 };
 
-                AJAXPost(StorefrontUri('api/sitecore/Catalog/signupforbackinstocknotification'), JSON.stringify(data), function(data, success, sender) {
+                AJAXPost(StorefrontUri('api/storefront/Catalog/signupforbackinstocknotification'), JSON.stringify(data), function(data, success, sender) {
                     if (data.Success && success) {
                         // CLEANING MODEL 
 

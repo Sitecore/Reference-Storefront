@@ -47,9 +47,11 @@
 
 <script type="text/javascript">
     function SwitchToLanguage(language, currentLanguage) {
-        var path = window.location.pathname.replace('/' + currentLanguage + '/', '');
-        path = (path.charAt(0) === "/") ? path : "/" + path;
-        var newpath = window.location.protocol + '//' + window.location.hostname + "/" + language + path + window.location.search;
-        window.location = newpath;
+        AJAXPost(StorefrontUri("api/storefront/shared/culturechosen"), "{\"Culture\":\"" + language + "\"}", function (data, success, sender) {
+            var path = window.location.pathname.replace('/' + currentLanguage + '/', '');
+            path = (path.charAt(0) === "/") ? path : "/" + path;
+            var newpath = window.location.protocol + '//' + window.location.hostname + "/" + language + path + window.location.search;
+            window.location = newpath;
+        });
     }
 </script>

@@ -19,8 +19,15 @@ content-length: 1
 ----version----
 language: en
 version: 1
-revision: 3195e5b1-2c7c-4d70-a74a-a96dc261c4a0
+revision: cbc6c406-3c14-4ebe-9849-4611a625d136
 
+----field----
+field: {09AEEAA8-0BCE-4D32-8E11-C6FA2355584C}
+name: Account Activation Email Template
+key: account activation email template
+content-length: 10
+
+CustActive
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
 name: __Owner
@@ -48,14 +55,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-3195e5b1-2c7c-4d70-a74a-a96dc261c4a0
+cbc6c406-3c14-4ebe-9849-4611a625d136
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
-content-length: 35
+content-length: 16
 
-20150409T113339:635641760192977378Z
+20160509T194945Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

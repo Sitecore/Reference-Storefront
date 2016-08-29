@@ -24,6 +24,9 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
     using Sitecore.Commerce.Entities.Payments;
     using Sitecore.Commerce.Entities.Shipping;
     using Sitecore.Commerce.Services;
+    using Sitecore.Commerce.Connect.CommerceServer;
+    using System.Linq;
+    using System;
 
     /// <summary>
     /// The Json result of a request to retrieve the available states..
@@ -50,12 +53,12 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
         /// <summary>
         /// Gets or sets the order shipping options.
         /// </summary>
-        public IEnumerable<ShippingOption> OrderShippingOptions { get; set; }
+        public IEnumerable<ShippingOptionBaseJsonResult> OrderShippingOptions { get; set; }
 
         /// <summary>
         /// Gets or sets the line item shipping options.
         /// </summary>
-        public IEnumerable<LineShippingOption> LineShippingOptions { get; set; }
+        public IEnumerable<LineShippingOptionBaseJsonResult> LineShippingOptions { get; set; }
 
         /// <summary>
         /// Gets or sets the ID of the 'email' delivery method.
@@ -63,7 +66,7 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
         /// <value>
         /// The email delivery method.
         /// </value>
-        public ShippingMethod EmailDeliveryMethod { get; set; }
+        public ShippingMethodBaseJsonResult EmailDeliveryMethod { get; set; }
 
         /// <summary>
         /// Gets or sets the ID of the 'ship to store' delivery method.
@@ -71,7 +74,7 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
         /// <value>
         /// The ship to store delivery method.
         /// </value>
-        public ShippingMethod ShipToStoreDeliveryMethod { get; set; }
+        public ShippingMethodBaseJsonResult ShipToStoreDeliveryMethod { get; set; }
         
         /// <summary>
         /// Gets or sets the countries that items can be shipped to.
@@ -125,5 +128,60 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
         /// </summary>
         /// <value>The cart.</value>
         public CartBaseJsonResult Cart { get; set; }
+
+        /// <summary>
+        /// Initializes the shipping options.
+        /// </summary>
+        /// <param name="shippingOptions">The shipping options.</param>
+        public virtual void InitializeShippingOptions(IEnumerable<ShippingOption> shippingOptions)
+        {
+            if (shippingOptions == null)
+            {
+                return;
+            }
+
+            var shippingOptionList = new List<ShippingOptionBaseJsonResult>();
+
+            foreach (var shippingOption in shippingOptions)
+            {
+                var jsonResult = CommerceTypeLoader.CreateInstance<ShippingOptionBaseJsonResult>();
+
+                jsonResult.Initialize(shippingOption);
+                shippingOptionList.Add(jsonResult);
+            }
+
+            this.OrderShippingOptions = shippingOptionList;
+        }
+
+        /// <summary>
+        /// Initializes the line item shipping options.
+        /// </summary>
+        /// <param name="lineItemShippingOptionList">The line item shipping option list.</param>
+        public virtual void InitializeLineItemShippingOptions(IEnumerable<LineShippingOption> lineItemShippingOptionList)
+        {
+            if (lineItemShippingOptionList != null && lineItemShippingOptionList.Any())
+            {
+                var lineShippingOptionList = new List<LineShippingOptionBaseJsonResult>();
+
+                foreach (var lineShippingOption in lineItemShippingOptionList)
+                {
+                    var jsonResult = CommerceTypeLoader.CreateInstance<LineShippingOptionBaseJsonResult>();
+
+                    jsonResult.Initialize(lineShippingOption);
+                    lineShippingOptionList.Add(jsonResult);
+                }
+
+                this.LineShippingOptions = lineShippingOptionList;
+
+                foreach (var line in this.Cart.Lines)
+                {
+                    var lineShippingOption = lineItemShippingOptionList.FirstOrDefault(l => l.LineId.Equals(line.ExternalCartLineId, StringComparison.OrdinalIgnoreCase));
+                    if (lineShippingOption != null)
+                    {
+                        line.SetShippingOptions(lineShippingOption.ShippingOptions);
+                    }
+                }
+            }
+        }
     }
 }

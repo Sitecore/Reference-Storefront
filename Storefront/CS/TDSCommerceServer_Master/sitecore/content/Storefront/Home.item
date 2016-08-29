@@ -1,4 +1,4 @@
-----item----
+﻿----item----
 version: 1
 id: {441B60D3-09BB-4111-A3AD-D10076B78B54}
 database: master
@@ -93,6 +93,13 @@ key: sender email address
 content-length: 41
 
 no-reply@sitecore.commerce.storefront.com
+----field----
+field: {F605D200-01A0-4235-8886-391C4C906092}
+name: OperatingUnitNumber
+key: operatingunitnumber
+content-length: 0
+
+
 ----field----
 field: {7FD4CA02-383C-45E1-902D-C3ED9E4A112F}
 name: Max Number of Addresses

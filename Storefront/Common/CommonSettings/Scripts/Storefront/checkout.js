@@ -18,6 +18,7 @@ var method = null;
 var expirationDates = ko.observableArray();
 var expirationYears = ko.observableArray();
 var shippingMethodsArray = [];
+var addingCountry = false;
 
 function setupCheckoutPage() {
     $("#orderGetShippingMethods").click(function () {
@@ -26,7 +27,7 @@ function setupCheckoutPage() {
             $("#orderGetShippingMethods").button('loading');
             var party = ko.toJS(checkoutDataViewModel.shippingAddress());
             var data = { "ShippingAddress": party, "ShippingPreferenceType": checkoutDataViewModel.selectedShippingOption(), "Lines": null };
-            AJAXPost(StorefrontUri("api/sitecore/checkout/GetShippingMethods"), JSON.stringify(data), function (data, success, sender) {
+            AJAXPost(StorefrontUri("api/storefront/checkout/GetShippingMethods"), JSON.stringify(data), function (data, success, sender) {
                 if (data.Success && success) {
                     var methods = "";
                     checkoutDataViewModel.shippingMethods.removeAll();
@@ -37,7 +38,7 @@ function setupCheckoutPage() {
 
                 ShowGlobalMessages(data);
                 $("#orderGetShippingMethods").button('reset');
-            }, $(this));
+            }, $(this));           
         }
         else {
             checkoutDataViewModel.shippingAddress.errors.showAllMessages();
@@ -62,7 +63,7 @@ function setupCheckoutPage() {
             var party = ko.toJS(line.shippingAddress());
             var lines = [{ "ExternalCartLineId": lineId, "ShippingPreferenceType": line.selectedShippingOption() }];
             var data = { "ShippingAddress": party, "ShippingPreferenceType": checkoutDataViewModel.selectedShippingOption(), "Lines": lines };
-            AJAXPost(StorefrontUri("api/sitecore/checkout/GetShippingMethods"), JSON.stringify(data), function (data, success, sender) {
+            AJAXPost(StorefrontUri("api/storefront/checkout/GetShippingMethods"), JSON.stringify(data), function (data, success, sender) {
                 var lineId = sender.attr('id').replace('lineGetShippingMethods-', '');
                 if (data.Success && success && checkoutDataViewModel != null) {
                     var match = ko.utils.arrayFirst(checkoutDataViewModel.cart().cartLines(), function (item) {
@@ -120,7 +121,7 @@ function setupCheckoutPage() {
 
         $('#loyaltyCardNumber_Confirm_Added').text($('#LoyalityCardNumber_Confirm').val());
         $(this).button("loading");
-        AJAXPost(StorefrontUri('api/sitecore/checkout/updateloyaltycard'), "{'loyaltyCardNumber':'" + $('#LoyalityCardNumber_Confirm').val() + "'}", function (data, success, sender) {
+        AJAXPost(StorefrontUri('api/storefront/checkout/updateloyaltycard'), "{'loyaltyCardNumber':'" + $('#LoyalityCardNumber_Confirm').val() + "'}", function (data, success, sender) {
             if (success && data.Success && data.WasUpdated) {
                 $('#loyaltyCard-success').show();
             }
@@ -140,7 +141,7 @@ function GetAvailableStates(countryCode) {
     var statesArray = [];
     // Uncomment when the States are available
     //
-    //AJAXPost(StorefrontUri("api/sitecore/checkout/getAvailableStates"), '{ "CountryCode": "' + countryCode + '"}', function (data, success, sender){     
+    //AJAXPost(StorefrontUri("api/storefront/checkout/getAvailableStates"), '{ "CountryCode": "' + countryCode + '"}', function (data, success, sender){     
     //    if (data.States != null) {
     //        $.each(data.UserAddresses, function (index, value) {         
     //            statesArray.push(new Country(value, index));
@@ -155,7 +156,7 @@ function UpdateAvailableStates(countryCode) {
 }
 
 function getCheckoutData() {
-    AJAXPost(StorefrontUri("api/sitecore/checkout/GetCheckoutData"), null, function (data, success, sender) {
+    AJAXPost(StorefrontUri("api/storefront/checkout/GetCheckoutData"), null, function (data, success, sender) {
         if (success && data.Success) {
             checkoutDataViewModel = new CheckoutDataViewModel(data);
             ko.applyBindingsWithValidation(checkoutDataViewModel, document.getElementById("checkoutSection"));
@@ -352,7 +353,7 @@ function setShippingMethods() {
     }
 
     var data = '{"OrderShippingPreferenceType": "' + orderShippingPreference + '", "ShippingMethods":' + JSON.stringify(shipping) + ', "ShippingAddresses":' + JSON.stringify(parties) + '}';
-    AJAXPost(StorefrontUri("api/sitecore/checkout/SetShippingMethods"), data, setShippingMethodsResponse, $(this));
+    AJAXPost(StorefrontUri("api/storefront/checkout/SetShippingMethods"), data, setShippingMethodsResponse, $(this));
     return false;
 }
 
@@ -363,6 +364,9 @@ function setShippingMethodsResponse(data, success, sender) {
         }
 
         updatePaymentAllAmount();
+        if (checkoutDataViewModel.cardPaymentAcceptPageUrl().length == 0) {
+            getCardPaymentAcceptUrl();
+        }
         $("#deliveryMethodSet").val(true);
         $("#billingStep").show();
         $("#reviewStep").hide();
@@ -455,7 +459,7 @@ function geocodeError(request) {
 function getNearbyStores(searchResultsContainer) {
     var data = "{'latitude': '" + searchLocation.latitude + "', 'longitude':" + searchLocation.longitude + "}";
 
-    AJAXPost(StorefrontUri("api/sitecore/checkout/GetNearbyStores"), data, renderAvailableStores, searchResultsContainer);
+    AJAXPost(StorefrontUri("api/storefront/checkout/GetNearbyStores"), data, renderAvailableStores, searchResultsContainer);
     return false;
 }
 
@@ -582,11 +586,29 @@ function initBillingPage() {
             // change plus/minus icon
             if (accordion.hasClass("open")) {
                 accordionToggleIcon.html("<span class='glyphicon glyphicon-minus-sign'></span>");
+                if (this.id == "ccpayment") {
+                    checkoutDataViewModel.creditCardPayment().isAdded(true);                  
+                }
             } else {
-                accordionToggleIcon.html("<span class='glyphicon glyphicon-plus-sign'></span>");
+                accordionToggleIcon.html("<span class='glyphicon glyphicon-plus-sign'></span>");               
             }
-        });
+        });       
     });
+}
+
+function getCardPaymentAcceptUrl() {    
+    if (checkoutDataViewModel && checkoutDataViewModel.payFederatedPayment && checkoutDataViewModel.shippingAddress()) {       
+        AJAXPost(StorefrontUri("api/storefront/checkout/GetCardPaymentAcceptUrl"), null, function (data, success, sender) {
+            if (data.Success && success) {
+                checkoutDataViewModel.cardPaymentAcceptPageUrl(data.ServiceUrl);
+                checkoutDataViewModel.messageOrigin = data.MessageOrigin;
+
+                removeCardPaymentAcceptListener(); 
+                addCardPaymentAcceptListener();
+            }
+            ShowGlobalMessages(data);
+        }, $(this));
+    }
 }
 
 function updatePaymentAllAmount() {
@@ -635,40 +657,120 @@ function updatePaymentAllAmount() {
     checkoutDataViewModel.creditCardPayment().creditCardAmount((ccAmount).toFixed(2));
 }
 
-function setPaymentMethods() {
+function submitCardPaymentAcceptPayment() {
+    if (checkoutDataViewModel && checkoutDataViewModel.payFederatedPayment && checkoutDataViewModel.creditCardPayment().isAdded() && !checkoutDataViewModel.cardPaymentResultAccessCode) {
+        if (checkoutDataViewModel.messageOrigin) {
+            // Send a message to the card page to trigger submit
+            var cardPaymentAcceptIframe = document.getElementById("cardPaymentAcceptFrame");
+            var cardPaymentAcceptMessage = {
+                type: checkoutDataViewModel.CARDPAYMENTACCEPTPAGESUBMIT,
+                value: "true"
+            };
+            cardPaymentAcceptIframe.contentWindow.postMessage(JSON.stringify(cardPaymentAcceptMessage), checkoutDataViewModel.messageOrigin);
+        }
+    }
+    else {
+        setPaymentMethods();
+    }
+};
+
+function addCardPaymentAcceptListener() {    
+    window.addEventListener("message", this.cardPaymentAcceptMessageHandler, false);
+}
+
+
+function removeCardPaymentAcceptListener() {   
+    window.removeEventListener("message", this.cardPaymentAcceptMessageHandler, false);
+}
+
+function cardPaymentAcceptMessageHandler(eventInfo) {
+    // Validate origin
+    if (!eventInfo || !(checkoutDataViewModel.messageOrigin.indexOf(eventInfo.origin) === 0)) {
+        return;
+    }
+
+    // Parse messages
+    var message = eventInfo.data;
+    if (typeof (message) === "string" && message.length > 0) {
+
+    // Handle various messages from the card payment accept page
+        var messageObject = JSON.parse(message);        
+    switch (messageObject.type) {
+        case checkoutDataViewModel.CARDPAYMENTACCEPTPAGEHEIGHT:           
+            var cardPaymentAcceptIframe = $("cardPaymentAcceptFrame");
+            cardPaymentAcceptIframe.height = messageObject.value;
+            break;
+        case checkoutDataViewModel.CARDPAYMENTACCEPTCARDPREFIX:            
+            checkoutDataViewModel.cardPaymentAcceptCardPrefix = messageObject.value;
+            break;
+        case checkoutDataViewModel.CARDPAYMENTACCEPTPAGEERROR:
+            // Handle retrieve card payment accept result failure.
+            var paymentErrors = messageObject.value;
+            var errors = [];
+            for (var i = 0; i < paymentErrors.length; i++) {
+                errors.push(!paymentErrors[i].Message ? paymentErrors[i].Code.toString() : paymentErrors[i].Message);
+            }
+            var data = { "Errors": errors};
+            ShowGlobalMessages(data);
+            break;
+        case checkoutDataViewModel.CARDPAYMENTACCEPTPAGERESULT:            
+            checkoutDataViewModel.cardPaymentResultAccessCode = messageObject.value;            
+            setPaymentMethods();
+            break;
+        default:
+            // Ignore all other messages.
+        }
+    }
+}
+
+function setPaymentMethods() {   
     var data = "{";
 
     if (checkoutDataViewModel.creditCardPayment().isAdded()) {
         var cc = checkoutDataViewModel.creditCardPayment();
-        var creditCard = {
-            "CreditCardNumber": cc.creditCardNumber(),
-            "PaymentMethodID": cc.paymentMethodID(),
-            "ValidationCode": cc.validationCode(),
-            "ExpirationMonth": cc.expirationMonth(),
-            "ExpirationYear": cc.expirationYear(),
-            "CustomerNameOnPayment": cc.customerNameOnPayment(),
-            "Amount": cc.creditCardAmount(),
-            "PartyID": $('#billingAddress-ExternalId').val()
-        };
+        if (checkoutDataViewModel && checkoutDataViewModel.payFederatedPayment) {
+            var creditCard = {
+                "CardToken": checkoutDataViewModel.cardPaymentResultAccessCode,              
+                "Amount": cc.creditCardAmount(),
+                "CardPaymentAcceptCardPrefix": checkoutDataViewModel.cardPaymentAcceptCardPrefix
+            };
 
-        var ba = checkoutDataViewModel.billingAddress();
-        var billingAddress =
-        {
-            "Name": ba.name(),
-            "Address1": ba.address1(),
-            "Country": ba.country(),
-            "City": ba.city(),
-            "State": ba.state(),
-            "ZipPostalCode": ba.zipPostalCode(),
-            "ExternalId": ba.externalId(),
-            "PartyId": ba.externalId()
-        };
+            if (data.length > 1) {
+                data += ",";
+            }
 
-        if (data.length > 1) {
-            data += ",";
+            data += '"FederatedPayment":' +JSON.stringify(creditCard);
+        } else {
+            var creditCard = {
+                "CreditCardNumber": cc.creditCardNumber(),
+                "PaymentMethodID": cc.paymentMethodID(),
+                "ValidationCode": cc.validationCode(),
+                "ExpirationMonth": cc.expirationMonth(),
+                "ExpirationYear": cc.expirationYear(),
+                "CustomerNameOnPayment": cc.customerNameOnPayment(),
+                "Amount": cc.creditCardAmount(),
+                "PartyID": $('#billingAddress-ExternalId').val()
+            };
+
+            var ba = checkoutDataViewModel.billingAddress();
+            var billingAddress =
+            {
+                "Name": ba.name(),
+                "Address1": ba.address1(),
+                "Country": ba.country(),
+                "City": ba.city(),
+                "State": ba.state(),
+                "ZipPostalCode": ba.zipPostalCode(),
+                "ExternalId": ba.externalId(),
+                "PartyId": ba.externalId()
+            };
+
+            if (data.length > 1) {
+                data += ",";
+            }
+
+            data += '"CreditCardPayment":' + JSON.stringify(creditCard) + ',"BillingAddress":' + JSON.stringify(billingAddress);
         }
-
-        data += '"CreditCardPayment":' + JSON.stringify(creditCard) + ',"BillingAddress":' + JSON.stringify(billingAddress);
     }
 
     if (checkoutDataViewModel.giftCardPayment().isAdded()) {
@@ -684,7 +786,7 @@ function setPaymentMethods() {
         data += '"GiftCardPayment":' + JSON.stringify(giftCard);
     }
 
-    if ($('#addedLoyaltyCard').val() === 'true') {
+    if (checkoutDataViewModel.loyaltyCardPayment().isAdded()) {
         var loyaltyCard = {
             "PaymentMethodID": checkoutDataViewModel.loyaltyCardPayment().loyaltyCardNumber(),
             "Amount": checkoutDataViewModel.loyaltyCardPayment().loyaltyCardAmount()
@@ -701,14 +803,31 @@ function setPaymentMethods() {
 
     $("#ToConfirmButton").button('loading');
 
-    AJAXPost(StorefrontUri("api/sitecore/checkout/SetPaymentMethods"), data, setPaymentMethodsResponse, $(this));
+    AJAXPost(StorefrontUri("api/storefront/checkout/SetPaymentMethods"), data, setPaymentMethodsResponse, $(this));
 }
 
 function setPaymentMethodsResponse(data, success, sender) {
     if (data.Success && success) {
         if (checkoutDataViewModel != null) {
             checkoutDataViewModel.cart().setSummary(data);
-        }
+            if (checkoutDataViewModel && checkoutDataViewModel.payFederatedPayment && checkoutDataViewModel.creditCardPayment().isAdded()) {
+                var cc = checkoutDataViewModel.creditCardPayment();
+                cc.creditCardNumberMasked(data.Payment[0].CreditCardNumber);
+                cc.expirationMonth(data.Payment[0].ExpirationMonth);
+                cc.expirationYear(data.Payment[0].ExpirationYear);
+                cc.customerNameOnPayment(data.Payment[0].CustomerNameOnPayment);
+
+                var ba = checkoutDataViewModel.billingAddress();                
+                var address = data.Parties[0];
+                addingCountry = checkoutDataViewModel.countries[address.Country] == undefined;
+                checkoutDataViewModel.addCountry(address.Country, address.Country);             
+                ba.address1(address.Address1);
+                ba.country(address.Country);
+                ba.city(address.City);
+                ba.state(address.State);
+                ba.zipPostalCode(address.ZipPostalCode);               
+            }
+        }        
 
         switchingCheckoutStep('confirm');
     }
@@ -727,31 +846,45 @@ function submitOrder() {
 
     if (checkoutDataViewModel.creditCardPayment().isAdded()) {
         var cc = checkoutDataViewModel.creditCardPayment();
-        var creditCard = {
-            "CreditCardNumber": cc.creditCardNumber(),
-            "PaymentMethodID": cc.paymentMethodID(),
-            "ValidationCode": cc.validationCode(),
-            "ExpirationMonth": cc.expirationMonth(),
-            "ExpirationYear": cc.expirationYear(),
-            "CustomerNameOnPayment": cc.customerNameOnPayment(),
-            "Amount": cc.creditCardAmount(),
-            "PartyID": $('#billingAddress-ExternalId').val()
-        };
+        if (checkoutDataViewModel && checkoutDataViewModel.payFederatedPayment) {
+            var creditCard = {
+                "CardToken": checkoutDataViewModel.cardPaymentResultAccessCode,
+                "Amount": cc.creditCardAmount(),
+                "CardPaymentAcceptCardPrefix": checkoutDataViewModel.cardPaymentAcceptCardPrefix
+            };
 
-        var ba = checkoutDataViewModel.billingAddress();
-        var billingAddress =
-        {
-            "Name": ba.name(),
-            "Address1": ba.address1(),
-            "Country": ba.country(),
-            "City": ba.city(),
-            "State": ba.state(),
-            "ZipPostalCode": ba.zipPostalCode(),
-            "ExternalId": ba.externalId(),
-            "PartyId": ba.externalId()
-        };
+            if (data.length > 1) {
+                data += ",";
+            }
 
-        data += ',"CreditCardPayment":' + JSON.stringify(creditCard) + ',"BillingAddress":' + JSON.stringify(billingAddress);
+            data += '"FederatedPayment":' + JSON.stringify(creditCard);
+        } else {
+            var creditCard = {
+                "CreditCardNumber": cc.creditCardNumber(),
+                "PaymentMethodID": cc.paymentMethodID(),
+                "ValidationCode": cc.validationCode(),
+                "ExpirationMonth": cc.expirationMonth(),
+                "ExpirationYear": cc.expirationYear(),
+                "CustomerNameOnPayment": cc.customerNameOnPayment(),
+                "Amount": cc.creditCardAmount(),
+                "PartyID": $('#billingAddress-ExternalId').val()
+            };
+
+            var ba = checkoutDataViewModel.billingAddress();
+            var billingAddress =
+            {
+                "Name": ba.name(),
+                "Address1": ba.address1(),
+                "Country": ba.country(),
+                "City": ba.city(),
+                "State": ba.state(),
+                "ZipPostalCode": ba.zipPostalCode(),
+                "ExternalId": ba.externalId(),
+                "PartyId": ba.externalId()
+            };
+
+            data += ',"CreditCardPayment":' + JSON.stringify(creditCard) + ',"BillingAddress":' + JSON.stringify(billingAddress);
+        }
     }
 
     if (checkoutDataViewModel.giftCardPayment().isAdded()) {
@@ -776,7 +909,7 @@ function submitOrder() {
 
     $("#PlaceOrderButton").button('loading');
 
-    AJAXPost(StorefrontUri("api/sitecore/checkout/SubmitOrder"), data, submitOrderResponse, $(this));
+    AJAXPost(StorefrontUri("api/storefront/checkout/SubmitOrder"), data, submitOrderResponse, $(this));
 }
 
 function submitOrderResponse(data, success, sender) {
@@ -794,8 +927,8 @@ function switchingCheckoutStep(step) {
 
     if (step === "billing") {
         if ($("#deliveryMethodSet").val() === 'false') {
-            setShippingMethods();
-        } else {
+            setShippingMethods();            
+            } else {
             $("#billingStep").show();
             $("#reviewStep").hide();
             $("#shippingStep").hide();
@@ -810,6 +943,9 @@ function switchingCheckoutStep(step) {
     }
 
     if (step === "shipping") {
+        if (addingCountry) {
+            checkoutDataViewModel.countries.pop();
+        }
         $("#deliveryMethodSet").val(false);
         $("#billingStep").hide();
         $("#reviewStep").hide();

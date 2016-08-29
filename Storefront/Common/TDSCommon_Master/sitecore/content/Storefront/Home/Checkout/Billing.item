@@ -12,7 +12,7 @@ templatekey: Billing Page
 ----version----
 language: en
 version: 1
-revision: 0b9dbdfe-2b0b-470b-84e4-dc591583f73f
+revision: 5349c36a-aaa3-41b0-bca9-1fa194c5819f
 
 ----field----
 field: {6D0902E3-C47C-4DE4-AEB9-2E06F0A8DA0C}
@@ -35,6 +35,13 @@ key: confirm email address label
 content-length: 21
 
 Confirm email address
+----field----
+field: {A0531C10-9929-4554-88F9-1199E044142B}
+name: Apply Credit Card Label
+key: apply credit card label
+content-length: 17
+
+Apply Credit Card
 ----field----
 field: {44E61890-4744-49DC-B9B0-8B8D0C8CFE50}
 name: Payment Options Header
@@ -147,6 +154,13 @@ key: same shipping address
 content-length: 24
 
 Same as shipping address
+----field----
+field: {A9F52D36-77DE-4F3A-940F-D99531CE59AF}
+name: Disclaimer Text
+key: disclaimer text
+content-length: 499
+
+<b>IMPORTANT NOTICE:</b> &nbsp; This form is provided by your designated third-party payment provider. By clicking "Next" you acknowledge your information will be transmitted directly to your payment provider, and will be handled in accordance with the terms and conditions and privacy statement that you agreed to with your payment provider. 'Your Company Name' does not collect, store, or transmit any of your payment card information, or provide rights for third-party products or services.&nbsp;
 ----field----
 field: {8B0E5E72-80FA-48C0-9F8E-A7A67B915EBB}
 name: Credit Card Label
@@ -363,14 +377,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-0b9dbdfe-2b0b-470b-84e4-dc591583f73f
+5349c36a-aaa3-41b0-bca9-1fa194c5819f
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
-content-length: 35
+content-length: 16
 
-20150503T050403:635662262436451184Z
+20160728T121118Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

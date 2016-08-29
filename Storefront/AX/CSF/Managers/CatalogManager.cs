@@ -39,6 +39,8 @@ namespace Sitecore.Reference.Storefront.Managers
     using Sitecore.Commerce.Entities.Prices;
     using Sitecore.Reference.Storefront.Connect.Models;
     using Sitecore.Commerce.Services.Catalog;
+    using Commerce.Services.Globalization;
+    using System.Diagnostics.CodeAnalysis;
 
     /// <summary>
     /// CatalogManager class
@@ -51,15 +53,18 @@ namespace Sitecore.Reference.Storefront.Managers
         /// Initializes a new instance of the <see cref="CatalogManager" /> class.
         /// </summary>
         /// <param name="catalogServiceProvider">The catalog service provider.</param>
+        /// <param name="globalizationServiceProvider">The globalization service provider.</param>
         /// <param name="pricingManager">The pricing manager.</param>
         /// <param name="inventoryManager">The inventory manager.</param>
-        public CatalogManager([NotNull] CatalogServiceProvider catalogServiceProvider, [NotNull] PricingManager pricingManager, [NotNull] InventoryManager inventoryManager)
+        public CatalogManager([NotNull] CatalogServiceProvider catalogServiceProvider, [NotNull] GlobalizationServiceProvider globalizationServiceProvider, [NotNull] PricingManager pricingManager, [NotNull] InventoryManager inventoryManager)
         {
             Assert.ArgumentNotNull(catalogServiceProvider, "catalogServiceProvider");
+            Assert.ArgumentNotNull(globalizationServiceProvider, "globalizationServiceProvider");
             Assert.ArgumentNotNull(pricingManager, "pricingManager");
             Assert.ArgumentNotNull(inventoryManager, "inventoryManager");
 
             this.CatalogServiceProvider = catalogServiceProvider;
+            this.GlobalizationServiceProvider = globalizationServiceProvider;
             this.PricingManager = pricingManager;
             this.InventoryManager = inventoryManager;
         }
@@ -68,6 +73,14 @@ namespace Sitecore.Reference.Storefront.Managers
         /// Gets or sets the catalog service provider.
         /// </summary>
         public CatalogServiceProvider CatalogServiceProvider { get; protected set; }
+
+        /// <summary>
+        /// Gets or sets the globalization service provider.
+        /// </summary>
+        /// <value>
+        /// The globalization service provider.
+        /// </value>
+        public GlobalizationServiceProvider GlobalizationServiceProvider { get; protected set; }
 
         /// <summary>
         /// Gets or sets the pricing manager.
@@ -388,7 +401,13 @@ namespace Sitecore.Reference.Storefront.Managers
                 return;
             }
 
-            var pricesResponse = this.PricingManager.GetProductPrices(StorefrontManager.CurrentStorefront, visitorContext, productViewModel.ProductId, null);
+            var productIds = new List<string> { productViewModel.ProductId };            
+            if (productViewModel.Variants.Any())
+            {
+                productIds.AddRange(productViewModel.Variants.Select(p => p.Id).ToArray());
+            }
+
+            var pricesResponse = this.PricingManager.GetProductBulkPrices(StorefrontManager.CurrentStorefront, visitorContext, productViewModel.CatalogName, productIds);
             if (pricesResponse != null && pricesResponse.ServiceProviderResult.Success && pricesResponse.Result != null)
             {
                 Price price;
@@ -397,14 +416,15 @@ namespace Sitecore.Reference.Storefront.Managers
                     productViewModel.ListPrice = price.Amount;
                     productViewModel.AdjustedPrice = ((CommercePrice)price).ListPrice;
 
-                    // The current implementation assumes all variants have the same price as the product.  We need to set the variant
-                    // prices so they will render properly.
                     if (productViewModel.Variants.Any())
                     {
                         foreach (var variant in productViewModel.Variants)
                         {
-                            variant.ListPrice = productViewModel.ListPrice;
-                            variant.AdjustedPrice = productViewModel.AdjustedPrice;
+                            if (pricesResponse.Result.TryGetValue(variant.Id, out price))
+                            {
+                                variant.ListPrice = price.Amount;
+                                variant.AdjustedPrice = ((CommercePrice)price).ListPrice;
+                            }
                         }
                     }
                 }
@@ -556,6 +576,23 @@ namespace Sitecore.Reference.Storefront.Managers
             return new ManagerResponse<CatalogResult, bool>(result, result.Success);
         }
 
+        /// <summary>
+        /// Raises the culture chosen page event.
+        /// </summary>
+        /// <param name="storefront">The storefront.</param>
+        /// <param name="culture">The culture.</param>
+        /// <returns>The manager response.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Justification = "Sitecore naming convention")]
+        public virtual ManagerResponse<GlobalizationResult, bool> RaiseCultureChosenPageEvent([NotNull] CommerceStorefront storefront, string culture)
+        {
+            Assert.ArgumentNotNull(storefront, "storefront");
+            Assert.ArgumentNotNullOrEmpty(culture, "culture");
+
+            var result = this.GlobalizationServiceProvider.CultureChosen(new CultureChosenRequest(storefront.ShopName, culture));
+
+            return new ManagerResponse<GlobalizationResult, bool>(result, result.Success);
+        }
+
         #region Protected helper methods
 
         /// <summary>
@@ -664,7 +701,7 @@ namespace Sitecore.Reference.Storefront.Managers
                     if (!relationshipNames.Any() || relationshipNames.Contains(relationshipInfo.RelationshipName, StringComparer.OrdinalIgnoreCase))
                     {
                         Item lookupItem = null;
-                        bool usingRelationshipName = string.IsNullOrWhiteSpace(relationshipInfo.RelationshipDescription);
+                        bool usingRelationshipName = string.IsNullOrWhiteSpace(relationshipInfo.RelationshipDescription) || relationshipInfo.RelationshipName.Equals(relationshipInfo.RelationshipDescription, StringComparison.Ordinal);
                         var relationshipDescription = usingRelationshipName ? StorefrontManager.GetRelationshipName(relationshipInfo.RelationshipName, out lookupItem) : relationshipInfo.RelationshipDescription;
                         CategoryViewModel categoryModel = null;
                         if (!relationshipGroups.TryGetValue(relationshipDescription, out categoryModel))

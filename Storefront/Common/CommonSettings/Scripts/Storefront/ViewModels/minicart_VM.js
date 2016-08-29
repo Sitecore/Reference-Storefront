@@ -37,7 +37,7 @@ function manageMiniCartActions() {
             var lineItemId = lineItem.attr("data-ajax-lineitemid");
 
             ClearGlobalMessages();
-            AJAXPost("/cart/DeleteLineItem", "{'ExternalCartLineId':'" + lineItemId + "'}", removeItemResponse, lineItem);
+            AJAXPost("api/storefront/cart/DeleteLineItem", "{'ExternalCartLineId':'" + lineItemId + "'}", removeItemResponse, lineItem);
             return false;
         });
     });
@@ -57,7 +57,7 @@ function removeItemResponse(data, success, sender) {
 
 function initMiniShoppingCart(sectionId) {
     ClearGlobalMessages();
-    AJAXPost(StorefrontUri("api/sitecore/cart/getcurrentcart"), null, function (data, success, sender) {
+    AJAXPost(StorefrontUri("api/storefront/cart/getcurrentcart"), null, function (data, success, sender) {
         if (success && data.Success) {
             miniCartItemListViewModel = new MiniCartItemListViewModel(data);
             ko.applyBindings(miniCartItemListViewModel, document.getElementById(sectionId));
@@ -70,7 +70,7 @@ function initMiniShoppingCart(sectionId) {
 
 function UpdateMiniCart(updateCart) {
     ClearGlobalMessages();
-    AJAXPost(StorefrontUri("api/sitecore/cart/getcurrentcart"), null, function (data, success, sender) {
+    AJAXPost(StorefrontUri("api/storefront/cart/getcurrentcart"), null, function (data, success, sender) {
         if (success && data.Success) {
             miniCartItemListViewModel.reload(data);
         }
@@ -88,7 +88,7 @@ function initCartAmount(updateAmount) {
     }
 
     ClearGlobalMessages();
-    AJAXPost(StorefrontUri("api/sitecore/cart/updateminicart"), null, function (data) {
+    AJAXPost(StorefrontUri("api/storefront/cart/updateminicart"), null, function (data) {
         if (success && data.Success) {
             miniCartUpdateViewModel = new MiniCartViewModel(data.LineItemCount, data.Total);
             ko.applyBindings(miniCartUpdateViewModel, document.getElementById("B02-Basket"));

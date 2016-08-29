@@ -26,7 +26,7 @@ ar|sitecore\Commerce Catalog Administrator|pe|+item:create|+item:read|+item:rena
 ----version----
 language: de-DE
 version: 1
-revision: 4a71c152-fd85-4fb2-9c61-71c024a6e5ad
+revision: c9660794-3b1c-419f-ae56-b43e0d4b8c6c
 
 ----field----
 field: {B5E02AD9-D56F-4C41-A065-A133DB87BDEB}
@@ -46,9 +46,9 @@ sitecore\Anonymous
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
 name: __Created
 key: __created
-content-length: 35
+content-length: 16
 
-20150125T105017:635577798178990506Z
+20160419T054704Z
 ----field----
 field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
 name: __Created by
@@ -62,25 +62,25 @@ name: __Revision
 key: __revision
 content-length: 36
 
-4a71c152-fd85-4fb2-9c61-71c024a6e5ad
+c9660794-3b1c-419f-ae56-b43e0d4b8c6c
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
-content-length: 35
+content-length: 16
 
-20150125T105034:635577798340790507Z
+20160419T054722Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
 key: __updated by
-content-length: 18
+content-length: 17
 
-sitecore\Anonymous
+default\Anonymous
 ----version----
 language: en
 version: 1
-revision: 7231c6a0-d844-4045-9070-29286fcf953c
+revision: 164b3cdb-d967-429c-a1ce-0c1c13a26969
 
 ----field----
 field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
@@ -109,14 +109,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-7231c6a0-d844-4045-9070-29286fcf953c
+164b3cdb-d967-429c-a1ce-0c1c13a26969
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
-content-length: 35
+content-length: 16
 
-20150125T110236:635577805562858415Z
+20160419T055701Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

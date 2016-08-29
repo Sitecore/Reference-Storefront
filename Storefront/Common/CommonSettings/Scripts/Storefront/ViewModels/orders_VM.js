@@ -38,7 +38,7 @@ function OrderHeaderViewModel(data) {
 
 //data
 function initRecentOrders(sectionId) {
-    AJAXPost(StorefrontUri("api/sitecore/account/recentOrders"), null, function (data, success, sender) {
+    AJAXPost(StorefrontUri("api/storefront/account/recentOrders"), null, function (data, success, sender) {
         if (success && data.Success) {
             ordersHeaderViewModel = new OrderHeaderViewModel(data);
             ko.applyBindings(ordersHeaderViewModel, document.getElementById(sectionId));

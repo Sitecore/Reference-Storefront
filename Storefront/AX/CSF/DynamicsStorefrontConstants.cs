@@ -34,9 +34,14 @@ namespace Sitecore.Reference.Storefront
             public static readonly string MaxNumberOfLoyaltyProgramsToJoin = "Max Number of Loyalty Programs To Join";
 
             /// <summary>
-            /// The AX channel id.
+            /// The AX operating unit number
             /// </summary>
-            public static readonly string ChannelId = "ChannelId";
+            public static readonly string OperatingUnitNumber = "OperatingUnitNumber";
+
+            /// <summary>
+            /// The account activation email template
+            /// </summary>
+            public static readonly string AccountActivationEmailTemplate = "Account Activation Email Template";
         }
 
         /// <summary>
@@ -48,6 +53,11 @@ namespace Sitecore.Reference.Storefront
             /// The AX channel id.
             /// </summary>
             public static readonly string ChannelId = "ChannelId";
-        }
+
+            /// <summary>
+            /// The new order string
+            /// </summary>
+            public static readonly string NewOrder = "NewOrder";
+        }       
     }
 }

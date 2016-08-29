@@ -17,6 +17,7 @@
 
 namespace Sitecore.Reference.Storefront.Models.JsonResults
 {
+    using Sitecore.Commerce.Connect.CommerceServer;
     using Sitecore.Commerce.Entities.Shipping;
     using Sitecore.Commerce.Services.Shipping;
     using System.Collections.Generic;
@@ -46,7 +47,7 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
         /// <summary>
         /// Gets or sets the available order-level shipping methods.
         /// </summary>
-        public IEnumerable<ShippingMethod> ShippingMethods { get; set; }
+        public IEnumerable<ShippingMethodBaseJsonResult> ShippingMethods { get; set; }
 
         /// <summary>
         /// Initilizes the specified shipping methods.
@@ -54,7 +55,22 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
         /// <param name="shippingMethods">The shipping methods.</param>        
         public virtual void Initialize(IEnumerable<ShippingMethod> shippingMethods)
         {
-            this.ShippingMethods = shippingMethods;           
+            if (shippingMethods == null)
+            {
+                return;
+            }
+
+            var shippingMethodList = new List<ShippingMethodBaseJsonResult>();
+
+            foreach (var shippingMethod in shippingMethods)
+            {
+                var jsonResult = CommerceTypeLoader.CreateInstance<ShippingMethodBaseJsonResult>();
+
+                jsonResult.Initialize(shippingMethod);
+                shippingMethodList.Add(jsonResult);
+            }
+
+            this.ShippingMethods = shippingMethodList;
         }
     }
 }

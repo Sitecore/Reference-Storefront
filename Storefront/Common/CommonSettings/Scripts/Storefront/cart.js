@@ -21,7 +21,7 @@ function manageCartActions() {
             $(this).find(".glyphicon").addClass("glyphicon-refresh");
             $(this).find(".glyphicon").addClass("glyphicon-refresh-animate");
             ClearGlobalMessages();
-            AJAXPost("/cart/DeleteLineItem", "{'ExternalCartLineId':'" + lineItemId + "'}", deleteLineItemResponse, lineItem);
+            AJAXPost("api/storefront/cart/DeleteLineItem", "{'ExternalCartLineId':'" + lineItemId + "'}", deleteLineItemResponse, lineItem);
             return false;
         });
 
@@ -33,7 +33,7 @@ function manageCartActions() {
 
             if (previousQuantity !== currentQuantity) {
                 ClearGlobalMessages();
-                AJAXPost("/cart/UpdateLineItem", "{'ExternalCartLineId':'" + lineItemId + "', 'Quantity': " + currentQuantity + "}", updateLineItemResponse, lineItem);
+                AJAXPost("api/storefront/cart/UpdateLineItem", "{'ExternalCartLineId':'" + lineItemId + "', 'Quantity': " + currentQuantity + "}", updateLineItemResponse, lineItem);
             }
             return false;
         });
@@ -45,7 +45,7 @@ function manageCartActions() {
             $(this).find(".glyphicon").addClass("glyphicon-refresh");
             $(this).find(".glyphicon").addClass("glyphicon-refresh-animate");
             ClearGlobalMessages();
-            AJAXPost("/cart/RemoveDiscount", "{'promoCode':'" + adjustmentDescription + "'}", removePromoCodeResponse, $(this));
+            AJAXPost("api/storefront/cart/RemoveDiscount", "{'promoCode':'" + adjustmentDescription + "'}", removePromoCodeResponse, $(this));
         });
     });
 }
@@ -54,7 +54,7 @@ function manageCartDiscountActions() {
     $(".cart-applydiscount").click(function () {
         $(this).button('loading');
         ClearGlobalMessages();
-        AJAXPost("/cart/ApplyDiscount", "{'promoCode':'" + $('#discountcode_cart').val() + "'}", addPromoCodeResponse, $(this));
+        AJAXPost("api/storefront/cart/ApplyDiscount", "{'promoCode':'" + $('#discountcode_cart').val() + "'}", addPromoCodeResponse, $(this));
     });
 }
 
@@ -99,7 +99,7 @@ function deleteLineItemResponse(data, success, sender) {
 
 function initShoppingCart(sectionId) {
     ClearGlobalMessages();
-    AJAXPost(StorefrontUri("api/sitecore/cart/getcurrentcart"), null, function (data, success, sender) {
+    AJAXPost(StorefrontUri("api/storefront/cart/getcurrentcart"), null, function (data, success, sender) {
         if (success && data.Success) {
             lineItemListViewModel = new LineItemListViewModel(data);
             if (sectionId) {
@@ -119,7 +119,7 @@ function initShoppingCart(sectionId) {
 
 function UpdateShoppingCartView() {
     ClearGlobalMessages();
-    AJAXPost(StorefrontUri("api/sitecore/cart/getcurrentcart"), null, function (data, success, sender) {
+    AJAXPost(StorefrontUri("api/storefront/cart/getcurrentcart"), null, function (data, success, sender) {
         if (success && data.Success) {
             lineItemListViewModel.reload(data);
         }
