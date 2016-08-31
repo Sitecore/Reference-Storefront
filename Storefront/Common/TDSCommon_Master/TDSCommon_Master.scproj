@@ -27,7 +27,6 @@
     <SitecoreDatabase>master</SitecoreDatabase>
     <PackageName>Sitecore.Reference.Storefront.Common</PackageName>
     <PostStepTarget>Sitecore.Reference.Storefront.InstallPostStep, Sitecore.Reference.Storefront.Common.dll</PostStepTarget>
-    <ChangePostStep>powershell.exe -ExecutionPolicy Unrestricted -NOPROFILE -FILE "$(SolutionDir)packages\Sitecore.Packaging.Helper.1.0.0\tools\ModifyPostStep.ps1" "$(SolutionDir)Common\$(Name)\Package_$(Configuration)\$(PackageName).update" "$(PostStepTarget)"</ChangePostStep>
     <EnableCodeGeneration>false</EnableCodeGeneration>
     <AssemblyStatus>Include</AssemblyStatus>
   </PropertyGroup>
@@ -4634,9 +4633,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\HedgehogDevelopment\SitecoreProject\v9.0\HedgehogDevelopment.SitecoreProject.targets" Condition="Exists('$(MSBuildExtensionsPath)\HedgehogDevelopment\SitecoreProject\v9.0\HedgehogDevelopment.SitecoreProject.targets')" />
   <Target Name="AfterGeneratePackage">
-    <Message Text="Changing the Post install step on the update package" Importance="high" />
-    <Exec Command="$(ChangePostStep)" />
-    <Message Text="Update package has been modified" Importance="high" />
   </Target>
   <Target Name="BeforeGeneratePackage">
     <Message Text="Removing the license file before creating the package" Importance="high" />
