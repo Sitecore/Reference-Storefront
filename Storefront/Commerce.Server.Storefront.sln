@@ -66,29 +66,4 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{02CF30F7-BC9C-4730-9094-5944125EC20C} = {971CA6AB-E662-453D-994B-47D549BE44D5}
 	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 7
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://tfs3ca2/tfs/cactusproducts
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Common\\CommonSettings\\CommonSettings.csproj
-		SccProjectName1 = Common/CommonSettings
-		SccLocalPath1 = Common\\CommonSettings
-		SccProjectUniqueName2 = Common\\Project\\Common.csproj
-		SccProjectName2 = Common/Project
-		SccLocalPath2 = Common\\Project
-		SccProjectUniqueName3 = Common\\TDSCommon_Master\\TDSCommon_Master.scproj
-		SccProjectName3 = Common/TDSCommon_Master
-		SccLocalPath3 = Common\\TDSCommon_Master
-		SccProjectUniqueName4 = CS\\TDSCommerceServer_Master\\TDSCommerceServer_Master.scproj
-		SccProjectName4 = CS/TDSCommerceServer_Master
-		SccLocalPath4 = CS\\TDSCommerceServer_Master
-		SccProjectUniqueName5 = CS\\CSF\\Commerce.Storefront.csproj
-		SccProjectName5 = CS/CSF
-		SccLocalPath5 = CS\\CSF
-		SccProjectUniqueName6 = CS\\Commerce.Storefront.ProfileDatabase\\Commerce.Storefront.ProfileDatabase.sqlproj
-		SccProjectTopLevelParentUniqueName6 = Commerce.Server.Storefront.sln
-		SccProjectName6 = CS/Commerce.Storefront.ProfileDatabase
-		SccLocalPath6 = CS\\Commerce.Storefront.ProfileDatabase
-	EndGlobalSection
 EndGlobal

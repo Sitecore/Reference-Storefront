@@ -53,25 +53,4 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 6
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://tfs3ca2/tfs/cactusproducts
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = AX\\CSF\\Commerce.Storefront.csproj
-		SccProjectName1 = AX/CSF
-		SccLocalPath1 = AX\\CSF
-		SccProjectUniqueName2 = Common\\CommonSettings\\CommonSettings.csproj
-		SccProjectName2 = Common/CommonSettings
-		SccLocalPath2 = Common\\CommonSettings
-		SccProjectUniqueName3 = Common\\Project\\Common.csproj
-		SccProjectName3 = Common/Project
-		SccLocalPath3 = Common\\Project
-		SccProjectUniqueName4 = Common\\TDSCommon_Master\\TDSCommon_Master.scproj
-		SccProjectName4 = Common/TDSCommon_Master
-		SccLocalPath4 = Common\\TDSCommon_Master
-		SccProjectUniqueName5 = AX\\TDSProject_Master\\TDSDynamicsRetails_Master.scproj
-		SccProjectName5 = AX/TDSProject_Master
-		SccLocalPath5 = AX\\TDSProject_Master
-	EndGlobalSection
 EndGlobal
