@@ -36,3 +36,6 @@
 /Storefront/CS/TDSCommerceServer_Master/Package_Debug
 /Storefront/CS/Database/Profiles/Commerce.Storefront.ProfileDatabase.dacpac
 /Storefront/CS/Commerce.Storefront.ProfileDatabase/Commerce.Storefront.ProfileDatabase.sqlproj.user
+/Storefront/Common/TDSCommon_Master/Package_Debug/Sitecore.Reference.Storefront.Common.update
+/Storefront/CS/Commerce.Storefront.ProfileDatabase/Commerce.Storefront.ProfileDatabase.dbmdl
+/Storefront/CS/CSF/Commerce.Storefront.csproj.user

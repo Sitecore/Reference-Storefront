@@ -1,4 +1,3 @@
-*.item eol=crlf
 *.cs eol=crlf
 *.sln eol=crlf
 *.csproj eol=crlf

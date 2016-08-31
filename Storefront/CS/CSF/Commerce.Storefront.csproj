@@ -91,10 +91,6 @@
       <HintPath>..\..\packages\ComponentArt.Web.UI.2010.1.2637.35\lib\ComponentArt.Web.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Facebook, Version=5.4.1.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Facebook.5.4.1.0\lib\net40-client\Facebook.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Hammock.ClientProfile, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c148cfba29ed1a4d, processorArchitecture=MSIL">
       <HintPath>..\..\lib\Sitecore\Hammock.ClientProfile.dll</HintPath>
       <Private>True</Private>
@@ -287,23 +283,23 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Stimulsoft.Base, Version=2013.1.1600.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Stimulsoft.2013.1.1600.0\lib\net35\Stimulsoft.Base.dll</HintPath>
+      <HintPath>..\..\lib\Sitecore\Stimulsoft.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Stimulsoft.Database, Version=2013.1.1600.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Stimulsoft.2013.1.1600.0\lib\net35\Stimulsoft.Database.dll</HintPath>
+      <HintPath>..\..\lib\Sitecore\Stimulsoft.Database.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Stimulsoft.Report, Version=2013.1.1600.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Stimulsoft.2013.1.1600.0\lib\net35\Stimulsoft.Report.dll</HintPath>
+      <HintPath>..\..\lib\Sitecore\Stimulsoft.Report.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Stimulsoft.Report.Web, Version=2013.1.1600.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Stimulsoft.2013.1.1600.0\lib\net35\Stimulsoft.Report.Web.dll</HintPath>
+      <HintPath>..\..\lib\Sitecore\Stimulsoft.Report.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Stimulsoft.Report.WebDesign, Version=2013.1.1600.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Stimulsoft.2013.1.1600.0\lib\net35\Stimulsoft.Report.WebDesign.dll</HintPath>
+      <HintPath>..\..\lib\Sitecore\Stimulsoft.Report.WebDesign.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
