@@ -3,3 +3,7 @@
 *.sln eol=crlf
 *.csproj eol=crlf
 *.scproj eol=crlf
+
+
+# Do not adjust line endings on Sitecore .item files
+*.item -text
