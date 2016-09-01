@@ -124,16 +124,8 @@
       <HintPath>..\..\packages\MongoDB.Driver.2.2.3\lib\net45\MongoDB.Driver.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Mvp.Xml, Version=2.0.2158.1055, Culture=neutral, PublicKeyToken=dd92544dc05f5671, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Mvp.Xml.2.0.2158.1055\lib\Mvp.Xml.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="RadEditor.Net2, Version=7.2.0.0, Culture=neutral, PublicKeyToken=852c9eb6525c1b53, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\RadEditor.Net2.7.2.0.0\lib\RadEditor.Net2.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sitecore.Abstractions, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
