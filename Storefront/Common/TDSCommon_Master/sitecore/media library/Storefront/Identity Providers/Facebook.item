@@ -1,0 +1,133 @@
+----item----
+version: 1
+id: {5059F442-B076-4A0D-AF94-0B5098056A61}
+database: master
+path: /sitecore/media library/Storefront/Identity Providers/Facebook
+parent: {C1E5E7A8-F677-432A-B98D-267D3E4AC633}
+name: Facebook
+master: {00000000-0000-0000-0000-000000000000}
+template: {F1828A2C-7E5D-4BBD-98CA-320474871548}
+templatekey: Image
+
+----field----
+field: {40E50ED9-BA07-4702-992E-A912738D32DC}
+name: Blob
+key: blob
+content-length: 2088
+
+iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+bWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
+bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
+eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0
+NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJo
+dHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlw
+dGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAv
+IiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RS
+ZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpD
+cmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNl
+SUQ9InhtcC5paWQ6NEMwOTgxMkE3NDU3MTFFNThEMkJEQkUzRDBBQzQ4MEUiIHhtcE1NOkRvY3Vt
+ZW50SUQ9InhtcC5kaWQ6NEMwOTgxMkI3NDU3MTFFNThEMkJEQkUzRDBBQzQ4MEUiPiA8eG1wTU06
+RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0QzA5ODEyODc0NTcxMUU1OEQy
+QkRCRTNEMEFDNDgwRSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo0QzA5ODEyOTc0NTcxMUU1
+OEQyQkRCRTNEMEFDNDgwRSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1w
+bWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgS0o60AAAJqSURBVHja3FVNaBNBFP529ifJJiaGRGvB
+Il6KoBU9FEERhYIgeqvgLyp6qtAetNCrICjiXVDwIuLBi3oRRDzpSTzVgx60lpI02saaZDeGNLsb
+35s1a4JKsoVcfDA7O/N23jfve9/MKvuO37sN4Az6Yw80ekygfzbBAFVq8bArFUXBasOFXa3DcZty
+TlMVpNZFqRfwmnKuygBe2MBNWlxYtpAwDWwf3oh4VAeH+1Fr4EvRhuN4EELhzz0tXHDAdT0sfbNx
++MAwLhzbjZ3bBqD6waTv3MwTvH1XQDYd87MKA8C7LCzbOHl0B65fGfvDrxI1EUOD6/0mRYQBsOw6
+tg6lcXXq4L83QfQpbeNQGZQqdZw4MgJDV+WYC3n/8SxevP4Ik+ohiMOFxTLSqdjaABqOi82bksE4
+/9XCzbuvYJGSzKghKcxQ8IihwvOa4QFkodvea6Qa5rwlzZa1gncFYElyaTntBkmvMFfESrkW+B1S
+zed8CbqqEm0+wNBgEtGILhXVFYD1zBiTZ/cgmYjgOwXfP7ol8A9kE7hxeUxqnpsqBJ6+/IBcoQIz
+pncHYM4FLZq+uPev/sz6GC6dHu2Ye04Fr9UbAYDoxjhnYFVXe6rP4pKF+VwJcVJUTzWgzUuA95+K
+GNyQkBll06akS2ZIdxEfPK48bQVvZnOokKIyKbM3gJbep649A99dcwsruDVzCOfHd8n5+XwZ45OP
+pIJ0TfApkzIV/mvvMmXZ8QJX9s2Oy4N9nuL36q9it3/SE0Ark2hEk/dNu4z5UAUZAB3BQ99Fa7H/
+A6CfICyo8P/jEBZnFd2hdqpPAA9/CjAACsLZNaAo0fEAAAAASUVORK5CYII=
+----field----
+field: {22EAC599-F13B-4607-A89D-C091763A467D}
+name: Width
+key: width
+content-length: 2
+
+24
+----field----
+field: {DE2CA9E4-C117-4C8A-A139-1FF4B199D15A}
+name: Height
+key: height
+content-length: 2
+
+24
+----field----
+field: {C06867FE-9A43-4C7D-B739-48780492D06F}
+name: Extension
+key: extension
+content-length: 3
+
+png
+----field----
+field: {6F47A0A5-9C94-4B48-ABEB-42D38DEF6054}
+name: Mime Type
+key: mime type
+content-length: 9
+
+image/png
+----field----
+field: {6954B7C7-2487-423F-8600-436CB3B6DC0E}
+name: Size
+key: size
+content-length: 4
+
+1526
+----field----
+field: {CB09946F-3218-4823-87D2-D5007C199A96}
+name: Dimensions
+key: dimensions
+content-length: 7
+
+24 x 24
+----field----
+field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
+name: __Icon
+key: __icon
+content-length: 61
+
+-/media/5059F442B0764A0DAF940B5098056A61.ashx?h=16&thn=1&w=16
+----version----
+language: en
+version: 1
+revision: 472068b3-124d-4087-a215-acf1dbb6edc5
+
+----field----
+field: {65885C44-8FCD-4A7F-94F1-EE63703FE193}
+name: Alt
+key: alt
+content-length: 8
+
+Facebook
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20160729T150720Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+472068b3-124d-4087-a215-acf1dbb6edc5
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20160729T150916Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

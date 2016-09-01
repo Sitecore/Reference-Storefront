@@ -57,14 +57,14 @@ namespace Sitecore.Reference.Storefront.Models.SitecoreItemModels
                 return MainUtil.GetInt(this.HomeItem[DynamicsStorefrontConstants.KnownFieldNames.MaxNumberOfLoyaltyProgramsToJoin], 1);
             }
         }
-        
+
         /// <summary>
-        /// Gets the channel identifier.
+        /// Gets the operating unit number.
         /// </summary>
         /// <value>
-        /// The channel identifier.
+        /// The operating unit number.
         /// </value>
-        public virtual string ChannelId
+        public virtual string OperatingUnitNumber
         {
             get
             {
@@ -73,7 +73,21 @@ namespace Sitecore.Reference.Storefront.Models.SitecoreItemModels
                     return string.Empty;
                 }
 
-                return this.InnerItem[DynamicsStorefrontConstants.KnownFieldNames.ChannelId];
+                return this.InnerItem[DynamicsStorefrontConstants.KnownFieldNames.OperatingUnitNumber];
+            }
+        }
+
+        /// <summary>
+        /// Gets the account activation email template.
+        /// </summary>
+        /// <value>
+        /// The account activation email template.
+        /// </value>
+        public virtual string AccountActivationEmailTemplate
+        {
+            get
+            {
+                return StringUtil.GetString(this.HomeItem[DynamicsStorefrontConstants.KnownFieldNames.AccountActivationEmailTemplate], string.Empty);
             }
         }
     }

@@ -2113,7 +2113,7 @@ table tr:last-of-type > td {
 /******************************  LOGIN PAGE  ******************************/
 
 
-.facebook-connect {
+.openid-connect {
     margin: 20px 0px;
 }
 

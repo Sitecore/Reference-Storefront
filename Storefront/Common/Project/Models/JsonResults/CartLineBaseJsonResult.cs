@@ -27,6 +27,7 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
     using System.Collections.Generic;
     using Sitecore.Commerce.Entities.Shipping;
     using Sitecore.Reference.Storefront.Util;
+    using Sitecore.Commerce.Connect.CommerceServer;
 
     /// <summary>
     /// Emits the Json result of a cart line request.
@@ -149,7 +150,31 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
         /// Gets or sets the line shipping options.
         /// </summary>
         /// <value>The line shipping options.</value>
-        public IEnumerable<ShippingOption> ShippingOptions { get; set; }
+        public IEnumerable<ShippingOptionBaseJsonResult> ShippingOptions { get; set; }
+
+        /// <summary>
+        /// Sets the shipping options.
+        /// </summary>
+        /// <param name="shippingOptions">The shipping options.</param>
+        public virtual void SetShippingOptions(IEnumerable<ShippingOption> shippingOptions)
+        {
+            if (shippingOptions == null)
+            {
+                return;
+            }
+
+            var shippingOptionList = new List<ShippingOptionBaseJsonResult>();
+
+            foreach (var shippingOption in shippingOptions)
+            {
+                var jsonResult = CommerceTypeLoader.CreateInstance<ShippingOptionBaseJsonResult>();
+
+                jsonResult.Initialize(shippingOption);
+                shippingOptionList.Add(jsonResult);
+            }
+
+            this.ShippingOptions = shippingOptionList;
+        }
 
         /// <summary>
         /// Gets the currency code.

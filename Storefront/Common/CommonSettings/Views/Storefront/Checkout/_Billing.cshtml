@@ -72,6 +72,7 @@
 
     // Payment Information Labels
     var paymentInfoHeaderLabel = Html.Sitecore().Field("Payment Info Header", billingPage);
+    var applyCreditCardLabel = Html.Sitecore().Field("Apply Credit Card Label", billingPage);   
     var paymentTotalLabel = Html.Sitecore().Field("Payment Total Label", billingPage);
     var taxesLabel = Html.Sitecore().Field("Taxes Label", billingPage);
     var savingsLabel = Html.Sitecore().Field("Savings Label", billingPage);
@@ -101,7 +102,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row" data-bind="visible: payCard">
         <div class="col-md-6" id="billingPayCardContainer" data-bind="with: creditCardPayment">
             <div class="col-md-12">
                 <h3>@paymentOptionsHeaderLabel *</h3>
@@ -228,154 +229,186 @@
             </div>
         </div>
     </div>
-    <div class="col-md-12" data-bind="visible:payGiftLoyaltyCard">
-        <h3>@promocardsHeaderLabel</h3>
+    <div class="col-md-6"  data-bind="visible: payFederatedPayment" id="billingPayCardContainer">
+        <div class="col-md-12">
+            <h3>@paymentOptionsHeaderLabel *</h3>
+        </div>
     </div>
-    <div class="col-md-12" data-bind="visible: payGiftCard, with: giftCardPayment" id="billingPayGiftCardContainer">
+    <div class="col-md-12" data-bind="visible: payFederatedPayment" id="billingPayCardContainer">
         <div class="accordion-container">
-            <a href="#" class="accordion-toggle">
-                <span class="toggle-icon"><span class='glyphicon glyphicon-plus-sign'></span></span>@applyGiftLabel
+            <a href="#" class="accordion-toggle" id="ccpayment">
+                <span class="toggle-icon"><span class='glyphicon glyphicon-plus-sign'></span></span>@applyCreditCardLabel
             </a>
             <div class="accordion-content">
-                <div class="col-md-12"><h4>@subtitleGiftLabel</h4></div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="giftCardPayment_PaymentMethodID">@cardNumberLabel *</label>
-                        <input type="text" class="form-control" id="giftCardPayment_PaymentMethodID" placeholder="@cardNumberLabelPlaceholder" data-bind="value: giftCardNumber">
-                    </div>
-                    <div class="form-group">
-                        <button type="button" class="btn btn-info" id="giftCardPayment_GetBalance" data-loading-text="@gettingBalanceLabel" data-bind="click: getBalance, enable: giftCardNumber().length > 0">@getBalanceButtonLabel</button>
-                        <span id="giftCardPayment_Balance" data-bind="text: formattedBalance"></span>
-                    </div>
+                <div class="col-md-12" style="font-size: 10px;">
+                     @Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.DisclaimerText, billingPage)
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="giftCardPayment_Amount">@paymentAmountLabel *</label>
-                        <input type="number" class="form-control" id="giftCardPayment_Amount" placeholder="@paymentAmountLabelPlaceholder" data-bind="value: giftCardAmount">
-                    </div>
-                    <div class="form-group" style="text-align: right;">
-                        <button type="button" class="btn btn-info" id="applyFullAmount_Button" data-bind="enable: balance() > 0, click: applyBalance">@applyFullAmountButtonLabel</button>
-                        <button type="button" class="btn btn-success" id="giftCardPayment_Button" data-bind="enable: enableAddCard, click: addCard">@addGiftCardButtonLabel</button>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="giftcard-status" id="giftCardPayment_Status" style="display:none;" data-bind="visible: isAdded">
-                        <!-- Only appears if a card has been added -->
-                        <p>
-                            @giftCardLabel:
-                            <span id="giftCardPayment_Number" data-bind="text: giftCardNumber"></span>
-                            <span> / </span>
-                            <span id="giftCardPayment_AppliedAmount" data-bind="text: giftCardAmount"></span>
-                            <span data-bind="text: $root.currencyCode"></span>
-                        </p>
-                        <span class="delete">
-                            <a href="#" id="removeGiftCard" data-bind="click: removeCard"><span class="glyphicon glyphicon-remove"></span>@removeLabel</a>
-                        </span>
-                        <input type="text" id="addedGiftCard" style="visibility: hidden; display: none;" />
+                <iframe id="cardPaymentAcceptFrame" style="height: 360px;width: 100%;border:0px" sandbox="allow-scripts allow-forms allow-same-origin" data-bind="attr: { src: cardPaymentAcceptPageUrl }"></iframe>
+                <div class="col-md-6" data-bind="with: creditCardPayment">
+                    <span class="delete">
+                        <a href="#" id="removeCreditCard" data-bind="click: removeCard"><span class="glyphicon glyphicon-remove"></span> @removeLabel</a>
+                    </span>
+                    <div class="show-payment">
+                        <div class="form-group">
+                            <label for="creditCardPayment_Amount">@paymentAmountLabel *</label>
+                            <input type="text" class="form-control" id="creaditCardPayment_Amount" data-bind="value: formatCurrency(creditCardAmount, 2, '@currencyDecimalSeparator', '@currencyCode', '@currencyGroupSeparator')" disabled>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="col-md-12" data-bind="visible: payLoyaltyCard, with: loyaltyCardPayment" id="billingLoyaltyCardContainer">
-        <div class="accordion-container">
-            <a href="#" class="accordion-toggle">
-                <span class="toggle-icon"><span class='glyphicon glyphicon-plus-sign'></span></span>@applyLoyaltyLabel
-            </a>
-            <div class="accordion-content">
-                <div class="col-md-12">
-                    <h4>@subtitleLoyaltyLabel</h4>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="loyaltyCardPayment_PaymentMethodID">@cardNumberLabel *</label>
-                        <input type="text" class="form-control" id="loyaltyCardPayment_PaymentMethodID" placeholder="@cardNumberLabelPlaceholder" data-bind="value: loyaltyCardNumber">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="loyaltyCardPayment_Amount">@paymentAmountLabel *</label>
-                        <input type="number" class="form-control" id="loyaltyCardPayment_Amount" placeholder="@paymentAmountLabelPlaceholder" data-bind="value: loyaltyCardAmount">
-                    </div>
-                    <div class="form-group" style="text-align: right;">
-                        <button type="button" class="btn btn-success" id="loyaltyCardPayment_Button" data-bind="enable: enableAddCard, click: addCard">@addLoyaltyCardButtonLabel</button>
-                    </div>
-                </div>
-                <div class="col-md-12" id="loyaltyCardPayment_Status" style="display: none;" data-bind="visible: isAdded">
-                    <div class="giftcard-status">
-                        <!-- Only appears if a card has been added -->
-                        <p>
-                            @loyaltyCardLabel:
-                            <span id="loyaltyCardPayment_Number" data-bind="text: loyaltyCardNumber"></span>
-                            <span> / </span>
-                            <span id="loyaltyCardPayment_AppliedAmount" data-bind="text: loyaltyCardAmount"></span>
-                            <span data-bind="text: $root.currencyCode"></span>
-                        </p>
-                        <span class="delete">
-                            <a href="#" id="removeLoyaltyCard" data-bind="click: removeCard"><span class="glyphicon glyphicon-remove"></span> @removeLabel</a>
-                        </span>
-                        <input type="text" id="addedLoyaltyCard" style="visibility:hidden; display:none;" />
+         </div>
+     </div>
+            @if (Sitecore.Context.User.IsAuthenticated)
+            {
+            <div class="col-md-12" data-bind="visible:payGiftLoyaltyCard">
+                <h3>@promocardsHeaderLabel</h3>
+            </div>
+            <div class="col-md-12" data-bind="visible: payGiftCard, with: giftCardPayment" id="billingPayGiftCardContainer">
+                <div class="accordion-container">
+                    <a href="#" class="accordion-toggle">
+                        <span class="toggle-icon"><span class='glyphicon glyphicon-plus-sign'></span></span>@applyGiftLabel
+                    </a>
+                    <div class="accordion-content">
+                        <div class="col-md-12"><h4>@subtitleGiftLabel</h4></div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="giftCardPayment_PaymentMethodID">@cardNumberLabel *</label>
+                                <input type="text" class="form-control" id="giftCardPayment_PaymentMethodID" placeholder="@cardNumberLabelPlaceholder" data-bind="value: giftCardNumber">
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-info" id="giftCardPayment_GetBalance" data-loading-text="@gettingBalanceLabel" data-bind="click: getBalance, enable: giftCardNumber().length > 0">@getBalanceButtonLabel</button>
+                                <span id="giftCardPayment_Balance" data-bind="text: formattedBalance"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="giftCardPayment_Amount">@paymentAmountLabel *</label>
+                                <input type="text" class="form-control" id="giftCardPayment_Amount" placeholder="@paymentAmountLabelPlaceholder" data-bind="value: giftCardAmount">
+                            </div>
+                            <div class="form-group" style="text-align: right;">
+                                <button type="button" class="btn btn-info" id="applyFullAmount_Button" data-bind="enable: balance() > 0, click: applyBalance">@applyFullAmountButtonLabel</button>
+                                <button type="button" class="btn btn-success" id="giftCardPayment_Button" data-bind="enable: enableAddCard, click: addCard">@addGiftCardButtonLabel</button>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="giftcard-status" id="giftCardPayment_Status" style="display:none;" data-bind="visible: isAdded">
+                                <!-- Only appears if a card has been added -->
+                                <p>
+                                    @giftCardLabel:
+                                    <span id="giftCardPayment_Number" data-bind="text: giftCardNumber"></span>
+                                    <span> / </span>
+                                    <span id="giftCardPayment_AppliedAmount" data-bind="text: giftCardAmount"></span>
+                                    <span data-bind="text: $root.currencyCode"></span>
+                                </p>
+                                <span class="delete">
+                                    <a href="#" id="removeGiftCard" data-bind="click: removeCard"><span class="glyphicon glyphicon-remove"></span>@removeLabel</a>
+                                </span>
+                                <input type="text" id="addedGiftCard" style="visibility: hidden; display: none;" />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            }
+            <div class="col-md-12" data-bind="visible: payLoyaltyCard, with: loyaltyCardPayment" id="billingLoyaltyCardContainer">
+                <div class="accordion-container">
+                    <a href="#" class="accordion-toggle">
+                        <span class="toggle-icon"><span class='glyphicon glyphicon-plus-sign'></span></span>@applyLoyaltyLabel
+                    </a>
+                    <div class="accordion-content">
+                        <div class="col-md-12">
+                            <h4>@subtitleLoyaltyLabel</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="loyaltyCardPayment_PaymentMethodID">@cardNumberLabel *</label>
+                                <input type="text" class="form-control" id="loyaltyCardPayment_PaymentMethodID" placeholder="@cardNumberLabelPlaceholder" data-bind="value: loyaltyCardNumber">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="loyaltyCardPayment_Amount">@paymentAmountLabel *</label>
+                                <input type="text" class="form-control" id="loyaltyCardPayment_Amount" placeholder="@paymentAmountLabelPlaceholder" data-bind="value: loyaltyCardAmount">
+                            </div>
+                            <div class="form-group" style="text-align: right;">
+                                <button type="button" class="btn btn-success" id="loyaltyCardPayment_Button" data-bind="enable: enableAddCard, click: addCard">@addLoyaltyCardButtonLabel</button>
+                            </div>
+                        </div>
+                        <div class="col-md-12" id="loyaltyCardPayment_Status" style="display: none;" data-bind="visible: isAdded">
+                            <div class="giftcard-status">
+                                <!-- Only appears if a card has been added -->
+                                <p>
+                                    @loyaltyCardLabel:
+                                    <span id="loyaltyCardPayment_Number" data-bind="text: loyaltyCardNumber"></span>
+                                    <span> / </span>
+                                    <span id="loyaltyCardPayment_AppliedAmount" data-bind="text: loyaltyCardAmount"></span>
+                                    <span data-bind="text: $root.currencyCode"></span>
+                                </p>
+                                <span class="delete">
+                                    <a href="#" id="removeLoyaltyCard" data-bind="click: removeCard"><span class="glyphicon glyphicon-remove"></span> @removeLabel</a>
+                                </span>
+                                <input type="text" id="addedLoyaltyCard" style="visibility:hidden; display:none;" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="billingPaymentSummary" class="col-md-6">
+                <div class="col-md-12"><h3>@paymentInfoHeaderLabel</h3></div>
+                <div class="col-md-12 summary" data-bind="visible: $root.giftCardPayment().isAdded">
+                    <span class="text">@giftCardLabel:</span>
+                    <span class="amount">
+                        <span id="billingGiftCardAmount" data-bind="text: formatCurrency($root.giftCardPayment().giftCardAmount, 2, '@currencyDecimalSeparator', '', '@currencyGroupSeparator')"></span>
+                        <span data-bind="text: $root.currencyCode"></span>
+                    </span>
+                </div>
+                <div class="col-md-12 summary" data-bind="visible: $root.loyaltyCardPayment().isAdded">
+                    <span class="text">@loyaltyCardLabel:</span>
+                    <span class="amount">
+                        <span id="billingLoyaltyCardAmount" data-bind="text: formatCurrency($root.loyaltyCardPayment().loyaltyCardAmount, 2, '@currencyDecimalSeparator', '', '@currencyGroupSeparator')"></span>
+                        <span data-bind="text: $root.currencyCode"></span>
+                    </span>
+                </div>
+                <div class="col-md-12 summary" data-bind="visible: $root.creditCardPayment().isAdded">
+                    <span class="text">@creditCardLabel:</span>
+                    <span class="amount">
+                        <span id="billingCreditCardAmount" data-bind="text: formatCurrency($root.creditCardPayment().creditCardAmount, 2, '@currencyDecimalSeparator', '', '@currencyGroupSeparator')"></span>
+                        <span data-bind="text: $root.currencyCode"></span>
+                    </span>
+                </div>
+                <div class="col-md-12 summary">
+                    <span class="text">@paymentTotalLabel:</span>
+                    <span class="amount">
+                        <span id="paymentTotal" data-bind="text: formatCurrency($root.paymentTotal(), 2, '@currencyDecimalSeparator', '', '@currencyGroupSeparator')"></span>
+                        <span data-bind="text: $root.currencyCode"></span>
+                    </span>
+                </div>
+            </div>
+            <div id="billingTotalSummary" class="col-md-6">
+                <div class="col-md-12"><h3>@orderInformationLabel</h3></div>
+                <div class="col-md-12 summary">
+                    <span class="text">@subtotalLabel:</span>
+                    <span class="amount" id="billingSubTotal" data-bind="text: cart().subTotal" pid="subtotal"></span>
+                </div>
+                <div class="col-md-12 summary">
+                    <span class="text">@shippingCostLabel:<span id="billingShippingCostLabel"></span></span>
+                    <span class="amount" id="billingShippingCost" data-bind="text: cart().shippingTotal" pid="shippingTotal"></span>
+                </div>
+                <div class="col-md-12 summary">
+                    <span class="text">@taxesLabel:</span>
+                    <span class="amount" id="billingTaxTotal" data-bind="text: cart().taxTotal" pid="taxTotal"></span>
+                </div>
+                <div class="col-md-12 summary">
+                    <span class="text">@savingsLabel:</span>
+                    <span class="amount" id="billingDiscount" data-bind="text: cart().discount" pid="discountTotal"></span>
+                </div>
+                <div class="col-md-12 summary">
+                    <span class="text">@totalLabel:</span>
+                    <span class="amount" id="billingOrderTotal" data-bind="text: cart().total" pid="total"></span>
+                </div>
+            </div>
         </div>
-    </div>
-    <div id="billingPaymentSummary" class="col-md-6">
-        <div class="col-md-12"><h3>@paymentInfoHeaderLabel</h3></div>
-        <div class="col-md-12 summary" data-bind="visible: $root.giftCardPayment().isAdded">
-            <span class="text">@giftCardLabel:</span>
-            <span class="amount">
-                <span id="billingGiftCardAmount" data-bind="text: formatCurrency($root.giftCardPayment().giftCardAmount, 2, '@currencyDecimalSeparator', '', '@currencyGroupSeparator')"></span>
-                <span data-bind="text: $root.currencyCode"></span>
-            </span>
-        </div>
-        <div class="col-md-12 summary" data-bind="visible: $root.loyaltyCardPayment().isAdded">
-            <span class="text">@loyaltyCardLabel:</span>
-            <span class="amount">
-                <span id="billingLoyaltyCardAmount" data-bind="text: formatCurrency($root.loyaltyCardPayment().loyaltyCardAmount, 2, '@currencyDecimalSeparator', '', '@currencyGroupSeparator')"></span>
-                <span data-bind="text: $root.currencyCode"></span>
-            </span>
-        </div>
-        <div class="col-md-12 summary" data-bind="visible: $root.creditCardPayment().isAdded">
-            <span class="text">@creditCardLabel:</span>
-            <span class="amount">
-                <span id="billingCreditCardAmount" data-bind="text: formatCurrency($root.creditCardPayment().creditCardAmount, 2, '@currencyDecimalSeparator', '', '@currencyGroupSeparator')"></span>
-                <span data-bind="text: $root.currencyCode"></span>
-            </span>
-        </div>
-        <div class="col-md-12 summary">
-            <span class="text">@paymentTotalLabel:</span>
-            <span class="amount">
-                <span id="paymentTotal" data-bind="text: formatCurrency($root.paymentTotal(), 2, '@currencyDecimalSeparator', '', '@currencyGroupSeparator')"></span>
-                <span data-bind="text: $root.currencyCode"></span>
-            </span>
-        </div>
-    </div>
-    <div id="billingTotalSummary" class="col-md-6">
-        <div class="col-md-12"><h3>@orderInformationLabel</h3></div>
-        <div class="col-md-12 summary">
-            <span class="text">@subtotalLabel:</span>
-            <span class="amount" id="billingSubTotal" data-bind="text: cart().subTotal" pid="subtotal"></span>
-        </div>
-        <div class="col-md-12 summary">
-            <span class="text">@shippingCostLabel:<span id="billingShippingCostLabel"></span></span>
-            <span class="amount" id="billingShippingCost" data-bind="text: cart().shippingTotal" pid="shippingTotal"></span>
-        </div>
-        <div class="col-md-12 summary">
-            <span class="text">@taxesLabel:</span>
-            <span class="amount" id="billingTaxTotal" data-bind="text: cart().taxTotal" pid="taxTotal"></span>
-        </div>
-        <div class="col-md-12 summary">
-            <span class="text">@savingsLabel:</span>
-            <span class="amount" id="billingDiscount" data-bind="text: cart().discount" pid="discountTotal"></span>
-        </div>
-        <div class="col-md-12 summary">
-            <span class="text">@totalLabel:</span>
-            <span class="amount" id="billingOrderTotal" data-bind="text: cart().total" pid="total"></span>
-        </div>
-    </div>
-</div>
 
-<script type="text/javascript">
+        <script type="text/javascript">
     initBillingPage();
-</script>
+        </script>

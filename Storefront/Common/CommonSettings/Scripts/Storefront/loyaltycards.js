@@ -14,7 +14,7 @@ var loyaltyCardListViewModel = null;
 
 function initActiveLoyaltyCards(sectionId) {
     ClearGlobalMessages();
-    AJAXPost(StorefrontUri("api/sitecore/loyalty/activeLoyaltyCards"), null, function (data, success, sender) {
+    AJAXPost(StorefrontUri("api/storefront/loyalty/activeLoyaltyCards"), null, function (data, success, sender) {
         if (success && data.Success) {
             loyaltyCardListViewModel = new LoyaltyCardsListViewModel(data);
             ko.applyBindings(loyaltyCardListViewModel, document.getElementById(sectionId));
@@ -29,7 +29,7 @@ function initLoyaltyCards(sectionId) {
     $("#" + sectionId).hide();
     ClearGlobalMessages();
 
-    AJAXPost(StorefrontUri("api/sitecore/loyalty/getLoyaltyCards"), null, function (data, success, sender) {
+    AJAXPost(StorefrontUri("api/storefront/loyalty/getLoyaltyCards"), null, function (data, success, sender) {
         if (success && data.Success) {
             loyaltyCardListViewModel = new LoyaltyCardsListViewModel(data);
             ko.applyBindings(loyaltyCardListViewModel, document.getElementById(sectionId));
@@ -43,7 +43,7 @@ function initLoyaltyCards(sectionId) {
 function joinLoyaltyProgram() {
     ClearGlobalMessages();
     $('#joinLoyaltyProgram').button("loading");
-    AJAXPost(StorefrontUri('api/sitecore/loyalty/activateAccount'), null, function (data, success, sender) {
+    AJAXPost(StorefrontUri('api/storefront/loyalty/activateAccount'), null, function (data, success, sender) {
         if (success && data.Success) {
             loyaltyCardListViewModel.reload(data);
             $("#loyaltyCards").show();

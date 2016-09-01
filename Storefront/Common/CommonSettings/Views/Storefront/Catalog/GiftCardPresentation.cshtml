@@ -31,7 +31,7 @@
                 <div class="col-md-4 col-sm-4 hidden-xs">
                     @Html.Sitecore().Placeholder("shareandprint")
                 </div>
-              @if (supportsGiftCardPayment)
+              @if (supportsGiftCardPayment && Sitecore.Context.User.IsAuthenticated)
               {
                 @Html.Sitecore().Placeholder("checkgiftcardbalance")
               }

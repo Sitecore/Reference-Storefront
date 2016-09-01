@@ -20,6 +20,8 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
     using System.Collections.Generic;
     using Sitecore.Commerce.Entities.Shipping;
     using Sitecore.Commerce.Services.Shipping;
+    using Sitecore.Commerce.Connect.CommerceServer;
+    using System.Linq;
 
     /// <summary>
     /// The Json result of a request to retrieve nearby store locations.
@@ -41,12 +43,12 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
         public ShippingMethodsJsonResult(GetShippingMethodsResult result)
             : base(result)
         {
-        }       
+        }
 
         /// <summary>
         /// Gets or sets the available line item shipping methods.
         /// </summary>
-        public IEnumerable<ShippingMethodPerItem> LineShippingMethods { get; set; }
+        public IEnumerable<ShippingMethodPerItemBaseJsonResult> LineShippingMethods { get; set; }
 
         /// <summary>
         /// Initilizes the specified shipping methods.
@@ -57,7 +59,21 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
         {
             base.Initialize(shippingMethods);
 
-            this.LineShippingMethods = shippingMethodsPerItem;
+            if (shippingMethodsPerItem != null && shippingMethodsPerItem.Any())
+            {
+                var lineShippingMethodList = new List<ShippingMethodPerItemBaseJsonResult>();
+
+                foreach (var shippingMethodPerItem in shippingMethodsPerItem)
+                {
+                    var jsonResult = CommerceTypeLoader.CreateInstance<ShippingMethodPerItemBaseJsonResult>();
+
+                    jsonResult.Initialize(shippingMethodPerItem);
+
+                    lineShippingMethodList.Add(jsonResult);
+                }
+
+                this.LineShippingMethods = lineShippingMethodList;
+            }
         }
     }
 }

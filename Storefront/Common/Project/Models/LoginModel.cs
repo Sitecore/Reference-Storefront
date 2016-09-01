@@ -17,6 +17,7 @@
 
 namespace Sitecore.Reference.Storefront.Models
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     /// <summary>
@@ -24,6 +25,8 @@ namespace Sitecore.Reference.Storefront.Models
     /// </summary>
     public class LoginModel
     {
+        private List<IdentityProviderModel> _providers = new List<IdentityProviderModel>();
+
         /// <summary>
         /// Gets or sets the user name
         /// </summary>
@@ -44,5 +47,26 @@ namespace Sitecore.Reference.Storefront.Models
         /// </summary>
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+        /// <summary>
+        /// Gets the Open Id providers.
+        /// </summary>        
+        public List<IdentityProviderModel> Providers 
+        {
+            get 
+            {
+                return this._providers;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the message.
+        /// </summary>       
+        public string Message { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is activation flow.
+        /// </summary>        
+        public bool IsActivationFlow { get; set; }
     }
 }

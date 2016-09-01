@@ -1,0 +1,58 @@
+----item----
+version: 1
+id: {73E8A4C3-31BB-4E64-B987-4675AF0B5CFC}
+database: master
+path: /sitecore/content/Storefront/Global/Lookups/System Messages/ActivationCodeSent
+parent: {CA53F506-8D36-40D7-A3F0-E2A9D44AD9B7}
+name: ActivationCodeSent
+master: {00000000-0000-0000-0000-000000000000}
+template: {73C120C2-846F-456C-B096-19EAAE4F6258}
+templatekey: LookupKeyValue
+
+----field----
+field: {180436B0-AFFB-41E2-B6E8-A3BC8812A9F7}
+name: Key
+key: key
+content-length: 18
+
+ActivationCodeSent
+----version----
+language: en
+version: 1
+revision: cef1879a-dae5-49ab-bd0c-f783e7776cc6
+
+----field----
+field: {DE73A874-CB1A-470D-80A2-818CABA4F0E5}
+name: Value
+key: value
+content-length: 94
+
+Congratulations! We were able to locate your account, and have sent an activation code to {0}.
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20160413T132237Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+cef1879a-dae5-49ab-bd0c-f783e7776cc6
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20160413T132251Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

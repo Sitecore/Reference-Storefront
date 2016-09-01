@@ -22,9 +22,9 @@ namespace Sitecore.Reference.Storefront.Managers
     using Sitecore.Commerce.Entities.Customers;
     using Sitecore.Diagnostics;
     using Sitecore.Reference.Storefront.Exceptions;
+    using Sitecore.Reference.Storefront.Util;
     using System;
     using System.Linq;
-    using System.Web;
 
     /// <summary>
     /// Context object to host any collected or calculated visitor information so it can be passed to service calls
@@ -32,11 +32,7 @@ namespace Sitecore.Reference.Storefront.Managers
     public class VisitorContext
     {
         private const string StaticVisitorId = "{74E29FDC-8523-4C4F-B422-23BBFF0A342A}";
-        private const string VisitorTrackingCookieName = "_visitor";
-        private const string VisitorIdKeyName = "visitorId";
-        private const int VisitorCookieExpiryInDays = 1;
-
-        private string _userId = string.Empty;
+        private string _userId = string.Empty;      
         private CommerceUser _commerceUser;
 
         /// <summary>
@@ -128,13 +124,34 @@ namespace Sitecore.Reference.Storefront.Managers
         }
 
         /// <summary>
+        /// Gets the shopping cart identifier.
+        /// Used for AX7 only
+        /// </summary>
+        /// <value>
+        /// The shopping cart identifier.
+        /// </value>
+        public string ShoppingCartId
+        {
+            get 
+            {
+                if (Context.User.IsAuthenticated)
+                {
+                    // cartId will be ignored for authenticated user                    
+                    return Guid.NewGuid().ToString();
+                }
+
+                return CartCookieHelper.GetAnonymousCartIdFromCookie();
+            }          
+        }
+
+        /// <summary>
         /// Gets the current customer Id
         /// </summary>
         /// <returns>the id</returns>
         public string GetCustomerId()
         {
             return this.UserId;
-        }
+        }       
 
         /// <summary>
         /// Resolve the CommerceUser from the Visitor
@@ -166,6 +183,6 @@ namespace Sitecore.Reference.Storefront.Managers
         private static string GetExperienceEditorVisitorTrackingId()
         {
             return StaticVisitorId;
-        }
+        }        
     }
 }

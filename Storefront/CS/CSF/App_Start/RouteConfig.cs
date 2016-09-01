@@ -20,18 +20,59 @@ namespace Sitecore.Reference.Storefront
     using System.Web.Mvc;
     using System.Web.Routing;
     using Sitecore.Reference.Storefront.SitecorePipelines;
+    using System.Collections.Generic;
+    using Util;
 
     /// <summary>
     /// Used to register all routes
     /// </summary>
     public static class RouteConfig
     {
+        private static List<ApiInfo> _apiInfoList = new List<ApiInfo>()
+        {
+            new ApiInfo("account-getcurrentuser", "Account", "GetCurrentUser"),
+            new ApiInfo("account-register", "Account", "Register"),
+            new ApiInfo("account-addresslist", "Account", "AddressList"),
+            new ApiInfo("account-recentorders", "Account", "RecentOrders"),
+            new ApiInfo("account-addressdelete", "Account", "AddressDelete"),
+            new ApiInfo("account-addressmodify", "Account", "AddressModify"),
+            new ApiInfo("account-updateprofile", "Account", "UpdateProfile"),
+            new ApiInfo("account-changepassword", "Account", "ChangePassword"),
+            new ApiInfo("cart-addcartline", "Cart", "AddCartLine"),
+            new ApiInfo("cart-applydiscount", "Cart", "ApplyDiscount"),
+            new ApiInfo("cart-deletelineitem", "Cart", "DeleteLineItem"),
+            new ApiInfo("cart-getcurrentcart", "Cart", "GetCurrentCart"),
+            new ApiInfo("cart-removediscount", "Cart", "RemoveDiscount"),
+            new ApiInfo("cart-updatelineitem", "Cart", "UpdateLineItem"),
+            new ApiInfo("cart-updateminicart", "Cart", "UpdateMiniCart"),
+            new ApiInfo("catalog-facetapplied", "Catalog", "FacetApplied"),
+            new ApiInfo("catalog-getproductstockinfo", "Catalog", "GetCurrentProductStockInfo"),
+            new ApiInfo("catalog-signupforbackinstocknotification", "Catalog", "SignUpForBackInStockNotification"),
+            new ApiInfo("catalog-sortorderapplied", "Catalog", "SortOrderApplied"),
+            new ApiInfo("catalog-switchcurrency", "Catalog", "SwitchCurrency"),
+            new ApiInfo("checkout-getavailablestates", "Checkout", "GetAvailableStates"),
+            new ApiInfo("checkout-getcheckoutdata", "Checkout", "GetCheckoutData"),
+            new ApiInfo("checkout-getshippingmethods", "Checkout", "GetShippingMethods"),
+            new ApiInfo("checkout-setshippingmethod", "Checkout", "SetShippingMethods"),
+            new ApiInfo("checkout-setpaymentmethod", "Checkout", "SetPaymentMethods"),
+            new ApiInfo("checkout-submitorder", "Checkout", "SubmitOrder"),
+            new ApiInfo("global-culturechosen", "Shared", "CultureChosen")
+        };
+
         /// <summary>
         ///  Called to register any routes
         /// </summary>
         /// <param name="routes">The route collection to add to</param>
         public static void RegisterRoutes(RouteCollection routes)
         {
+            foreach (var apiInfo in _apiInfoList)
+            {
+                routes.MapRoute(
+                    name: apiInfo.Name,
+                    url: apiInfo.Url,
+                    defaults: new { controller = apiInfo.Controller, action = apiInfo.Action, id = UrlParameter.Optional });
+            }
+
             routes.MapRoute(
                 name: ProductItemResolver.ShopCategoryRouteName,
                 url: ProductItemResolver.ShopUrlRoute + "/{id}",
@@ -53,28 +94,28 @@ namespace Sitecore.Reference.Storefront
                 defaults: new { id = UrlParameter.Optional, itemType = ProductItemResolver.ProductItemType });
 
             routes.MapRoute(
-                name: ProductItemResolver.CategoryRouteName, 
-                url: ProductItemResolver.CategoryUrlRoute + "/{id}", 
+                name: ProductItemResolver.CategoryRouteName,
+                url: ProductItemResolver.CategoryUrlRoute + "/{id}",
                 defaults: new { id = UrlParameter.Optional, itemType = ProductItemResolver.CategoryItemType });
-            
+
             routes.MapRoute(
                 name: ProductItemResolver.ProductRouteName,
-                url: ProductItemResolver.ProductUrlRoute + "/{id}", 
+                url: ProductItemResolver.ProductUrlRoute + "/{id}",
                 defaults: new { id = UrlParameter.Optional, itemType = ProductItemResolver.ProductItemType });
-            
+
             routes.MapRoute(
                 name: "ProductAction",
-                url: ProductItemResolver.ProductUrlRoute + "/{action}/{id}", 
+                url: ProductItemResolver.ProductUrlRoute + "/{action}/{id}",
                 defaults: new { controller = "Catalog", id = UrlParameter.Optional, itemType = ProductItemResolver.ProductItemType });
 
             routes.MapRoute(
                 name: ProductItemResolver.CategoryWithCatalogRouteName,
-                url: "{catalog}/" + ProductItemResolver.CategoryUrlRoute + "/{id}", 
+                url: "{catalog}/" + ProductItemResolver.CategoryUrlRoute + "/{id}",
                 defaults: new { id = UrlParameter.Optional, itemType = ProductItemResolver.CategoryItemType });
 
             routes.MapRoute(
                 name: ProductItemResolver.ProductWithCatalogRouteName,
-                url: "{catalog}/" + ProductItemResolver.ProductUrlRoute + "/{id}", 
+                url: "{catalog}/" + ProductItemResolver.ProductUrlRoute + "/{id}",
                 defaults: new { id = UrlParameter.Optional, itemType = ProductItemResolver.ProductItemType });
 
             routes.MapRoute(
@@ -83,95 +124,10 @@ namespace Sitecore.Reference.Storefront
                 defaults: new { itemType = ProductItemResolver.CatalogItemType });
 
             routes.MapRoute(
-                name: "SortOrderApplied",
-                url: "cart/SortOrderApplied",
-                defaults: new { controller = "Catalog", action = "SortOrderApplied", id = UrlParameter.Optional });
-
-            routes.MapRoute(
-                name: "DeleteLineItem",
-                url: "cart/DeleteLineItem",
-                defaults: new { controller = "Cart", action = "DeleteLineItem", id = UrlParameter.Optional });
-
-            routes.MapRoute(
-                name: "UpdateLineItem",
-                url: "cart/UpdateLineItem",
-                defaults: new { controller = "Cart", action = "UpdateLineItem", id = UrlParameter.Optional });
-
-            routes.MapRoute(
-                name: "ApplyDiscount",
-                url: "cart/ApplyDiscount",
-                defaults: new { controller = "Cart", action = "ApplyDiscount", id = UrlParameter.Optional });
-
-            routes.MapRoute(
-                name: "RemoveDiscount",
-                url: "cart/RemoveDiscount",
-                defaults: new { controller = "Cart", action = "RemoveDiscount", id = UrlParameter.Optional });
-
-            routes.MapRoute(
                 name: "logoff",
                 url: "logoff",
                 defaults: new { controller = "Account", action = "LogOff", storefront = UrlParameter.Optional }
             );
-
-            routes.MapRoute(
-                name: "AddItemsToCart",
-                url: "cart/additemstocart",
-                defaults: new { controller = "Cart", action = "AddItemsToCart", items = UrlParameter.Optional });
-
-            routes.MapRoute(
-                name: "GetCheckoutData",
-                url: "checkout/GetCheckoutData",
-                defaults: new { controller = "Checkout", action = "GetCheckoutData", id = UrlParameter.Optional });
-
-            routes.MapRoute(
-                name: "GetShippingMethods",
-                url: "checkout/GetShippingMethods/{party}/{shippingPreferenceType}/{lines}",
-                defaults: new { controller = "Checkout", action = "GetShippingMethods", id = UrlParameter.Optional, party = UrlParameter.Optional, shippingPreferenceType = UrlParameter.Optional, lines = UrlParameter.Optional });
-
-            routes.MapRoute(
-                name: "SetShippingMethods",
-                url: "checkout/SetShippingMethods/{orderShippingPreferenceType}/{shippings}/{parties}",
-                defaults: new { controller = "Checkout", action = "SetShippingMethods", id = UrlParameter.Optional, orderShippingPreferenceType = UrlParameter.Optional, shippings = UrlParameter.Optional, parties = UrlParameter.Optional });
-            
-            routes.MapRoute(
-                name: "SubmitOrder",
-                url: "checkout/SubmitOrder/{userEmail}/{creditCard}/{billingAddress}/{giftCard}/{loyaltyCard}",
-                defaults: new
-                {
-                    controller = "Checkout", 
-                    action = "SubmitOrder", 
-                    id = UrlParameter.Optional, 
-                    userEmail = UrlParameter.Optional, 
-                    creditCard = UrlParameter.Optional, 
-                    billingAddress = UrlParameter.Optional, 
-                    giftCard = UrlParameter.Optional, 
-                    loyaltyCard = UrlParameter.Optional
-                });
-
-            routes.MapRoute(
-                name: "GetGiftCardBalance",
-                url: "checkout/GetGiftCardBalance/{giftCardId}",
-                defaults: new { controller = "Checkout", action = "GetGiftCardBalance", id = UrlParameter.Optional, giftCardId = UrlParameter.Optional });
-
-            routes.MapRoute(
-                name: "GetAvailableStates",
-                url: "checkout/GetAvailableStates",
-                defaults: new { controller = "Checkout", action = "GetAvailableStates", id = UrlParameter.Optional });
-
-            routes.MapRoute(
-                name: "UpdateLoyaltyCard",
-                url: "checkout/UpdateLoyaltyCard",
-                defaults: new { controller = "Checkout", action = "UpdateLoyaltyCard", id = UrlParameter.Optional });
-
-            routes.MapRoute(
-                name: "DeleteWishListLineItem",
-                url: "wishlist/DeleteLineItem/{productId}",
-                defaults: new { controller = "WishList", action = "DeleteLineItem", id = UrlParameter.Optional, productId = UrlParameter.Optional });
-
-            routes.MapRoute(
-                name: "UpdateWishListLineItem",
-                url: "wishlist/UpdateLineItem/{productId}/{quantity}",
-                defaults: new { controller = "WishList", action = "UpdateLineItem", id = UrlParameter.Optional, productId = UrlParameter.Optional, quantity = UrlParameter.Optional });
         }
     }
 }

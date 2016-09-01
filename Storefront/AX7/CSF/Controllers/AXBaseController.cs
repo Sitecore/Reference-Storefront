@@ -1,0 +1,98 @@
+﻿//-----------------------------------------------------------------------
+// <copyright file="AXBaseController.cs" company="Sitecore Corporation">
+//     Copyright (c) Sitecore Corporation 1999-2016
+// </copyright>
+// <summary>Defines the Dynamics base controller.</summary>
+//-----------------------------------------------------------------------
+// Copyright 2016 Sitecore Corporation A/S
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
+// except in compliance with the License. You may obtain a copy of the License at
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software distributed under the 
+// License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
+// either express or implied. See the License for the specific language governing permissions 
+// and limitations under the License.
+// -------------------------------------------------------------------------------------------
+
+namespace Sitecore.Reference.Storefront.Controllers
+{
+    using Sitecore.Commerce.Contacts;
+    using Sitecore.Diagnostics;
+    using Sitecore.Reference.Storefront.Managers;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+
+    /// <summary>
+    /// Defines the AXBaseController class.
+    /// </summary>
+    public class AXBaseController : BaseController
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AXBaseController"/> class.
+        /// </summary>
+        /// <param name="accountManager">The account manager.</param>
+        /// <param name="contactFactory">The contact factory.</param>
+        public AXBaseController([NotNull] AccountManager accountManager, [NotNull] ContactFactory contactFactory)
+            : base(contactFactory)
+        {
+            Assert.ArgumentNotNull(accountManager, "accountManager");
+
+            this.AccountManager = accountManager;
+        }
+
+        /// <summary>
+        /// Gets or sets the account manager.
+        /// </summary>
+        /// <value>
+        /// The account manager.
+        /// </value>
+        public AccountManager AccountManager { get; set; }
+
+        /// <summary>
+        /// Gets the Current Visitor Context
+        /// </summary>
+        public override VisitorContext CurrentVisitorContext
+        {
+            get
+            {
+                var siteContext = this.CurrentSiteContext;
+                VisitorContext visitorContext = siteContext.Items["__visitorContext"] as VisitorContext;
+                if (visitorContext == null)
+                {
+                    visitorContext = new VisitorContext(this.ContactFactory);
+                    if (Context.User.IsAuthenticated && !Context.User.Profile.IsAdministrator)
+                    {
+                        visitorContext.SetCommerceUser(this.AccountManager.ResolveCommerceUser().Result);
+                    }
+
+                    siteContext.Items["__visitorContext"] = visitorContext;
+                }
+
+                return visitorContext;
+            }
+        }
+
+        /// <summary>
+        /// Cleans the not authorized session.
+        /// </summary>
+        public virtual void CleanNotAuthorizedSession()
+        {
+            var ctx = Request.GetOwinContext();
+            ctx.Authentication.SignOut(OpenIdConnectUtilities.ApplicationCookieAuthenticationType);
+            OpenIdConnectUtilities.RemoveCookie(OpenIdConnectUtilities.OpenIdCookie);
+
+            // Clean up openId nonce cookie. This is just a workaround. Ideally, we should be calling 'ctx.Authentication.SignOut(providerClient.Name)'              
+            foreach (string cookieName in ControllerContext.HttpContext.Request.Cookies.AllKeys)
+            {
+                if (cookieName.StartsWith("OpenIdConnect.nonce.", StringComparison.OrdinalIgnoreCase))
+                {
+                    OpenIdConnectUtilities.RemoveCookie(cookieName);
+                    break;
+                }
+            }        
+        }
+    }
+}

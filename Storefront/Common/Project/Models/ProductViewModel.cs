@@ -550,7 +550,16 @@ namespace Sitecore.Reference.Storefront.Models
         /// <returns>The HtmlString based on Sitecore field rendering.</returns>
         public HtmlString RenderField(string fieldName)
         {
-            return PageContext.Current.HtmlHelper.Sitecore().Field(fieldName, Item);
+            var fieldValue = PageContext.Current.HtmlHelper.Sitecore().Field(fieldName, Item);
+            if (fieldName.Equals("Features", StringComparison.OrdinalIgnoreCase) 
+                && (fieldValue.ToString().Equals("Default", StringComparison.OrdinalIgnoreCase) || fieldValue.ToString().Equals(string.Empty, StringComparison.OrdinalIgnoreCase))
+                && Item.HasChildren 
+                && Item.Children[0] != null)
+            {
+                fieldValue = PageContext.Current.HtmlHelper.Sitecore().Field("VariantFeatures", Item.Children[0]);
+            }
+
+            return fieldValue;
         }
 
         /// <summary>

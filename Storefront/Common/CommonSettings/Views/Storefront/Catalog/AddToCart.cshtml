@@ -14,6 +14,7 @@
 @using Sitecore.Reference.Storefront.Extensions
 @using Sitecore.Commerce.Entities.Inventory
 @using Sitecore.Reference.Storefront
+@using Sitecore.Reference.Storefront.Util
 @{
     if (Model == null)
     {
@@ -26,7 +27,7 @@
 }
 
 <div id="C12-AddToCart" class="add-to-basket">
-    @using (Ajax.BeginForm("AddCartLine", "Cart", null, new AjaxOptions { OnBegin = "SetAddButton", OnSuccess = "AddToCartSuccess", OnFailure = "AddToCartFailure", HttpMethod = "Post" }, new { @id = "AddToCartForm" }))
+    @using (Ajax.BeginForm("AddCartLine", "Cart", null, new AjaxOptions { OnBegin = "SetAddButton", OnSuccess = "AddToCartSuccess", OnFailure = "AddToCartFailure", HttpMethod = "Post"}, new { @id = "AddToCartForm" }))
     {
         @Html.ValidationSummary(true)
         @Html.HiddenFor(m => m.ProductId)

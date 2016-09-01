@@ -128,6 +128,34 @@ namespace Sitecore.Reference.Storefront.Models.SitecoreItemModels
         }
 
         /// <summary>
+        /// Gets a value indicating whether form authentication is used.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if form authentication is used; otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool FormsAuthentication
+        {
+            get
+            {
+                return MainUtil.GetBool(this.HomeItem[StorefrontConstants.KnownFieldNames.FormsAuthentication], false);
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is ax site.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is AX site; otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool IsAXSite
+        {
+            get
+            {
+                return (!string.IsNullOrEmpty(this.HomeItem[StorefrontConstants.KnownFieldNames.OperatingUnitNumber] as string));
+            }
+        }   
+
+        /// <summary>
         /// Gets or sets the name of the shop.
         /// </summary>
         /// <value>The name of the shop.</value>

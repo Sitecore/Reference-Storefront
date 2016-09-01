@@ -43,6 +43,14 @@ namespace Sitecore.Reference.Storefront.Models.InputModels
         public CreditCardPaymentInputModelItem CreditCardPayment { get; set; }
 
         /// <summary>
+        /// Gets or sets the federated payment.
+        /// </summary>
+        /// <value>
+        /// The federated payment.
+        /// </value>
+        public FederatedPaymentInputModelItem FederatedPayment { get; set; }
+
+        /// <summary>
         /// Gets or sets the gift card payment.
         /// </summary>
         /// <value>

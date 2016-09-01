@@ -68,6 +68,17 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="BaseJsonResult"/> class.
+        /// </summary>
+        /// <param name="url">The redirect URL.</param>
+        public BaseJsonResult(string url)
+        {
+            this.Success = false;
+
+            this.Url = url;
+        }
+
+        /// <summary>
         /// Gets the errors.
         /// </summary>
         /// <value>
@@ -96,6 +107,14 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
         ///   <c>true</c> if success; otherwise, <c>false</c>.
         /// </value>
         public bool Success { get; set; }
+
+        /// <summary>
+        /// Gets or sets the redirect URL.
+        /// </summary>
+        /// <value>
+        /// The redirect URL.
+        /// </value>
+        public string Url { get; set; }
 
         /// <summary>
         /// Sets the errors.

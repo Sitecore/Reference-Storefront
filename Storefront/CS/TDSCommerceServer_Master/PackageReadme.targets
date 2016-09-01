@@ -1,0 +1,55 @@
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PackageReadme>&lt;p style=&quot;TEXT-ALIGN: center; font-weight:bold&quot;&gt;
+Sitecore Reference Storefront 8.1 for Sitecore Commerce 8.1 powered by Commerce Server
+
+&lt;div&gt;
+    &lt;hr size=&quot;2&quot; width=&quot;100%&quot; /&gt;
+&lt;/div&gt;
+&lt;p&gt;The solution is licensed under the Apache License, Version 2.0 (the &quot;License&quot;). You may obtain a copy of the License at &lt;/p&gt;
+&lt;p style=&quot;margin-left:100px&quot;&gt;
+    &lt;a href=&quot;http://www.apache.org/licenses/LICENSE-2.0&quot;&gt;http://www.apache.org/licenses/LICENSE-2.0&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&lt;/p&gt;
+&lt;p&gt;In order to contribute as an individual or company, you will have to sign an agreement and get it approved by Sitecore. For more information and in order to obtain agreement forms, visit GitHub&lt;/p&gt;
+&lt;div&gt;
+    &lt;hr size=&quot;2&quot; width=&quot;100%&quot; /&gt;
+&lt;/div&gt;
+&lt;p&gt;
+    &lt;strong&gt;Prerequisites: &lt;/strong&gt;
+&lt;/p&gt;
+&lt;ul type=&quot;disc&quot;&gt;
+    &lt;li&gt;Sitecore Experience Platform 8.1 update-1 or later&lt;/li&gt;
+    &lt;li&gt;Sitecore Commerce Connect 8.1&lt;/li&gt;
+    &lt;li&gt;Sitecore Commerce 8.1 powered by Commerce Server (SCpbCS - CS Version 11.3)&lt;/li&gt;
+    &lt;li&gt;Sitecore Reference Storefront Common 8.1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div&gt;
+    &lt;hr size=&quot;2&quot; width=&quot;100%&quot; /&gt;
+&lt;/div&gt;
+&lt;p&gt;
+    &lt;strong&gt;Sitecore Reference Storefront has been tested on: &lt;/strong&gt;
+&lt;/p&gt;
+&lt;ul type=&quot;disc&quot;&gt;
+    &lt;li&gt;Sitecore Experience Platform 8.1 update-1&lt;/li&gt;
+    &lt;li&gt;Sitecore Commerce 8.1 powered by Commerce Server(SCpbCS - CS Version 11.3)&lt;/li&gt;
+    &lt;li&gt;The storefront was tested using the following browsers: &lt;/li&gt;
+    &lt;ul type=&quot;circle&quot;&gt;
+        &lt;li&gt;Internet Explorer 11 &lt;/li&gt;
+        &lt;li&gt;Firefox 43 &lt;/li&gt;
+        &lt;li&gt;Chrome 48&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/ul&gt;
+&lt;div&gt;
+    &lt;hr size=&quot;2&quot; width=&quot;100%&quot; /&gt;
+&lt;/div&gt;
+&lt;p style=&quot;TEXT-ALIGN: center; font-weight:bold&quot;&gt;
+    Sitecore&amp;reg; is a registered trademark.
+    &lt;br /&gt; All other brand and product names are the property of their respective holders.
+    &lt;br /&gt; The contents of this document are the property of Sitecore.
+    &lt;br /&gt;Copyright &amp;copy; 2001-2016 Sitecore. All rights reserved.
+&lt;/p&gt;
+&lt;/p&gt;
+    </PackageReadme>
+  </PropertyGroup>
+</Project>

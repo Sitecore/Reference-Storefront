@@ -87,7 +87,7 @@ function WishListViewModel(wishList) {
         self.showLoader(true);
         var data = {};
         data.ExternalId = wishListId;
-        AJAXPost(StorefrontUri("api/sitecore/wishlist/getWishList"), JSON.stringify(data), function (data, success, sender) {
+        AJAXPost(StorefrontUri("api/storefront/wishlist/getWishList"), JSON.stringify(data), function (data, success, sender) {
             if (success && data.Success) {
                 self.reload(data);
             }
@@ -102,7 +102,7 @@ function WishListViewModel(wishList) {
         var deleteButton = $($(event.currentTarget)[0].firstChild);
         deleteButton.removeClass("glyphicon-remove-circle");
         deleteButton.addClass("glyphicon glyphicon-refresh glyphicon-refresh-animate");
-        AJAXPost(StorefrontUri('api/sitecore/wishlist/deleteLineItem'), JSON.stringify(ko.toJS(this)), function (data, success, sender) {
+        AJAXPost(StorefrontUri('api/storefront/wishlist/deleteLineItem'), JSON.stringify(ko.toJS(this)), function (data, success, sender) {
             if (success && data.Success) {
                 self.reload(data);
             }
@@ -113,7 +113,7 @@ function WishListViewModel(wishList) {
 
     self.updateItem = function () {
         ClearGlobalMessages();
-        AJAXPost(StorefrontUri('api/sitecore/wishlist/updateLineItem'), JSON.stringify(ko.toJS(this)), function (data, success, sender) {
+        AJAXPost(StorefrontUri('api/storefront/wishlist/updateLineItem'), JSON.stringify(ko.toJS(this)), function (data, success, sender) {
             if (success && data.Success) {
                 self.reload(data);
             }
@@ -147,7 +147,7 @@ function WishListHeadersViewModel(data) {
         deleteButton.addClass("glyphicon glyphicon-refresh glyphicon-refresh-animate");
         var data = {};
         data.ExternalId = this.externalId();
-        AJAXPost(StorefrontUri('api/sitecore/wishlist/deleteWishList'), JSON.stringify(data), function (data, success, sender) {
+        AJAXPost(StorefrontUri('api/storefront/wishlist/deleteWishList'), JSON.stringify(data), function (data, success, sender) {
             if (success && data.Success) {
                 self.reload(data);
             }
@@ -166,7 +166,7 @@ function WishListHeadersViewModel(data) {
         $("#createWishList").html($("#createWishList").attr("data-loading-text"));
         var data = {};
         data.Name = $("#wishList-name").val();
-        AJAXPost('/api/sitecore/wishlist/createWishList', JSON.stringify(data), function (data, success, sender) {
+        AJAXPost('/api/storefront/wishlist/createWishList', JSON.stringify(data), function (data, success, sender) {
             if (success && data.Success) {
                 self.reload(data);
                 $('#wishList-name').val('');
@@ -185,7 +185,7 @@ function WishListHeadersViewModel(data) {
         data.ExternalId = this.externalId();
         data.Name = this.name();
         data.IsFavorite = true;
-        AJAXPost(StorefrontUri("api/sitecore/wishlist/updateWishList"), JSON.stringify(data), function (data, success, sender) {
+        AJAXPost(StorefrontUri("api/storefront/wishlist/updateWishList"), JSON.stringify(data), function (data, success, sender) {
             if (success && data.Success) {
                 self.wishLists.removeAll();
                 self.reload(data);
@@ -207,7 +207,7 @@ function WishListHeadersViewModel(data) {
 
     self.load = function () {
         ClearGlobalMessages();
-        AJAXPost(StorefrontUri("api/sitecore/wishlist/activeWishLists"), null, function (data, success, sender) {
+        AJAXPost(StorefrontUri("api/storefront/wishlist/activeWishLists"), null, function (data, success, sender) {
             if (success && data.Success) {
                 self.reload(data);
             }
@@ -230,7 +230,7 @@ function WishListHeadersViewModel(data) {
 
         var renameButton = $(event.currentTarget);
         renameButton.button('loading');
-        AJAXPost(StorefrontUri("api/sitecore/wishlist/updateWishList"), JSON.stringify(data), function (data, success, sender) {
+        AJAXPost(StorefrontUri("api/storefront/wishlist/updateWishList"), JSON.stringify(data), function (data, success, sender) {
             if (success && data.Success) {
                 self.reload(data);
             }

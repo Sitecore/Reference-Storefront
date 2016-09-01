@@ -17,8 +17,12 @@
 
 namespace Sitecore.Reference.Storefront.Controllers
 {
+    using Diagnostics;
+    using Managers;
+    using Models.JsonResults;
     using Sitecore.Commerce.Contacts;
     using Sitecore.Mvc.Presentation;
+    using System;
     using System.Web.Mvc;
 
     /// <summary>
@@ -29,14 +33,24 @@ namespace Sitecore.Reference.Storefront.Controllers
         private readonly RenderingModel _model;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SharedController"/> class.
+        /// Initializes a new instance of the <see cref="SharedController" /> class.
         /// </summary>
         /// <param name="contactFactory">The contact factory.</param>
-        public SharedController(ContactFactory contactFactory)
+        /// <param name="catalogManager">The catalog manager.</param>
+        public SharedController([NotNull] ContactFactory contactFactory, [NotNull] CatalogManager catalogManager)
             : base(contactFactory) 
         {
+            Assert.ArgumentNotNull(catalogManager, "catalogManager");
+
             _model = new RenderingModel();
+
+            this.CatalogManager = catalogManager;
         }
+
+        /// <summary>
+        /// Gets the catalog manager.
+        /// </summary>
+        public CatalogManager CatalogManager { get; private set; }
 
         /// <summary>
         /// Gets the current rendering model.
@@ -231,6 +245,30 @@ namespace Sitecore.Reference.Storefront.Controllers
         public ActionResult TopBarLinks()
         {
             return View(this.CurrentRenderingView, this.CurrentRenderingModel);
+        }
+
+        /// <summary>
+        /// Cultures the chosen.
+        /// </summary>
+        /// <param name="culture">The culture.</param>
+        /// <returns>The Json result.</returns>
+        [HttpPost]
+        public JsonResult CultureChosen(string culture)
+        {
+            bool success = false;
+
+            try
+            {
+                var result = this.CatalogManager.RaiseCultureChosenPageEvent(this.CurrentStorefront, culture);
+                success = result.Result;
+            }
+            catch (Exception e)
+            {
+                return Json(new BaseJsonResult("CultureChosen", e), JsonRequestBehavior.AllowGet);
+            }
+
+            var json = new BaseJsonResult { Success = success };
+            return json;
         }
     }
 }

@@ -36,7 +36,7 @@
             <button id="ToBillingButton" data-loading-text="@processing" onclick="switchingCheckoutStep('billing')" class="btn btn-success" data-bind="enable: enableToBilling">@toBillingLabel</button>
         </div>
         <div id="btn-billing-next" class="col-md-6 col-sm-6 col-xs-6 chk-next" style="display: none;">
-            <button id="ToConfirmButton" data-loading-text="@processing" onclick="setPaymentMethods()" class="btn btn-success" data-bind="enable: enableToConfirm">@toConfirmLabel</button>
+            <button id="ToConfirmButton" data-loading-text="@processing" onclick="submitCardPaymentAcceptPayment()" class="btn btn-success" data-bind="enable: enableToConfirm">@toConfirmLabel</button>
         </div>
         <div id="btn-confirm-next" class="col-md-6 col-sm-6 col-xs-6 chk-next" style="display: none;">
             <button id="PlaceOrderButton" data-loading-text="@processing" onclick="submitOrder()" class="btn btn-success">@placeOrderLabel</button>

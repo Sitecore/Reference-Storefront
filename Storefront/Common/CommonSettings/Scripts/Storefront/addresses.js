@@ -13,7 +13,7 @@
 var addressListViewModel = null;
 
 function initAddressList(sectionId) {
-    AJAXPost(StorefrontUri("api/sitecore/account/addressList"), null, function (data, success, sender) {
+    AJAXPost(StorefrontUri("api/storefront/account/addressList"), null, function (data, success, sender) {
         if (success && data.Success) {
             addressListViewModel = new AddressListViewModel(data);
             ko.applyBindingsWithValidation(addressListViewModel, document.getElementById(sectionId));

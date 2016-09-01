@@ -38,6 +38,7 @@ namespace Sitecore.Reference.Storefront.Controllers
     using Sitecore.Reference.Storefront.ExtensionMethods;
     using System.Globalization;
     using System.Web.UI;
+    using Sitecore.Reference.Storefront.Infrastructure;
 
     /// <summary>
     /// Used to handle all account actions
@@ -213,7 +214,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         {
             return View(this.CurrentRenderingView);
         }
-        
+
         /// <summary>
         /// Changes the password confirmation.
         /// </summary>
@@ -244,7 +245,7 @@ namespace Sitecore.Reference.Storefront.Controllers
 
             return View(this.CurrentRenderingView);
         }
-        
+
         /// <summary>
         /// Handles a user trying to register
         /// </summary>
@@ -486,6 +487,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [Authorize]
         [ValidateJsonAntiForgeryToken]
         [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
+        [StorefrontSessionState(System.Web.SessionState.SessionStateBehavior.ReadOnly)]
         public JsonResult AddressList()
         {
             try
@@ -694,6 +696,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [AllowAnonymous]
         [ValidateJsonAntiForgeryToken]
         [OutputCache(NoStore = true, Location = OutputCacheLocation.None)]
+        [StorefrontSessionState(System.Web.SessionState.SessionStateBehavior.ReadOnly)]
         public JsonResult GetCurrentUser()
         {
             try

@@ -30,6 +30,7 @@ namespace Sitecore.Reference.Storefront.Controllers
     using System.Linq;
     using System.Web.Mvc;
     using Sitecore.Reference.Storefront.ExtensionMethods;
+    using Sitecore.Reference.Storefront.Infrastructure;
 
     /// <summary>
     /// Used to handle all Wish List Actions
@@ -123,6 +124,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [HttpPost]
         [Authorize]
         [ValidateJsonAntiForgeryToken]
+        [StorefrontSessionState(System.Web.SessionState.SessionStateBehavior.ReadOnly)]
         public JsonResult ActiveWishLists(bool filter = false)
         {
             try
@@ -142,7 +144,7 @@ namespace Sitecore.Reference.Storefront.Controllers
             {
                 CommerceLog.Current.Error("ActiveWishLists", this, e);
                 return Json(new BaseJsonResult("ActiveWishLists", e), JsonRequestBehavior.AllowGet);
-            }           
+            }
         }
 
         /// <summary>
@@ -181,7 +183,7 @@ namespace Sitecore.Reference.Storefront.Controllers
             {
                 CommerceLog.Current.Error("GetWishList", this, e);
                 return Json(new BaseJsonResult("GetWishList", e), JsonRequestBehavior.AllowGet);
-            }            
+            }
         }
 
         /// <summary>
@@ -222,7 +224,7 @@ namespace Sitecore.Reference.Storefront.Controllers
             {
                 CommerceLog.Current.Error("CreateWishList", this, e);
                 return Json(new BaseJsonResult("CreateWishList", e), JsonRequestBehavior.AllowGet);
-            }            
+            }
         }
 
         /// <summary>
@@ -252,8 +254,8 @@ namespace Sitecore.Reference.Storefront.Controllers
                 var response = this.WishListManager.DeleteWishList(this.CurrentStorefront, this.CurrentVisitorContext, model.ExternalId);
                 var result = new WishListsBaseJsonResult(response.ServiceProviderResult);
                 if (response.ServiceProviderResult.Success)
-                {                    
-                    wishLists = this.WishListsHeaders(result);                   
+                {
+                    wishLists = this.WishListsHeaders(result);
                 }
 
                 result.Initialize(wishLists);
@@ -263,7 +265,7 @@ namespace Sitecore.Reference.Storefront.Controllers
             {
                 CommerceLog.Current.Error("DeleteWishList", this, e);
                 return Json(new BaseJsonResult("DeleteWishList", e), JsonRequestBehavior.AllowGet);
-            }         
+            }
         }
 
         /// <summary>
@@ -315,7 +317,7 @@ namespace Sitecore.Reference.Storefront.Controllers
         [Authorize]
         [ValidateJsonAntiForgeryToken]
         public JsonResult UpdateWishList(UpdateWishListInputModel model)
-        {          
+        {
             try
             {
                 Assert.ArgumentNotNull(model, "model");
@@ -332,7 +334,7 @@ namespace Sitecore.Reference.Storefront.Controllers
                 var result = new WishListsBaseJsonResult(response.ServiceProviderResult);
                 if (response.ServiceProviderResult.Success && response.Result != null)
                 {
-                    wishLists = this.WishListsHeaders(result);                    
+                    wishLists = this.WishListsHeaders(result);
                 }
 
                 result.Initialize(wishLists);
@@ -372,7 +374,7 @@ namespace Sitecore.Reference.Storefront.Controllers
                 var response = this.WishListManager.AddLinesToWishList(this.CurrentStorefront, this.CurrentVisitorContext, model);
                 var result = new WishListsBaseJsonResult(response.ServiceProviderResult);
                 if (response.ServiceProviderResult.Success && response.Result != null)
-                {            
+                {
                     wishLists = this.WishListsHeaders(result);
                 }
 
@@ -411,7 +413,7 @@ namespace Sitecore.Reference.Storefront.Controllers
                 var result = new WishListBaseJsonResult(response.ServiceProviderResult);
                 if (response.ServiceProviderResult.Success)
                 {
-                    this.WishList(model.WishListId, result);                   
+                    this.WishList(model.WishListId, result);
                 }
 
                 return Json(result, JsonRequestBehavior.AllowGet);
@@ -448,7 +450,7 @@ namespace Sitecore.Reference.Storefront.Controllers
                 var result = new WishListBaseJsonResult(response.ServiceProviderResult);
                 if (response.ServiceProviderResult.Success && response.Result != null)
                 {
-                    this.WishList(model.WishListId, result);       
+                    this.WishList(model.WishListId, result);
                 }
 
                 return Json(result, JsonRequestBehavior.AllowGet);

@@ -13,7 +13,8 @@
 @using Sitecore.Reference.Storefront.Managers;
 @model LoginModel
 @{
-    var signing = @Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.SigningButton];       
+    var signing = @Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.SigningButton];   
+    var storefront = Sitecore.Reference.Storefront.Managers.StorefrontManager.CurrentStorefront;
 }
 
 @using (Html.BeginRouteForm(Sitecore.Mvc.Configuration.MvcSettings.SitecoreRouteName, new { ReturnUrl = ViewBag.ReturnUrl }))
@@ -25,6 +26,8 @@
 
     <div class="wrap-main-content">
         <!-- CONTENT CONTAINER -->
+        @if(storefront.FormsAuthentication)
+        { 
         <div id="" class="row">
             <div class="col-md-6 ">
                 <div class="row">
@@ -35,12 +38,12 @@
                     <div class="col-md-12 border-top">
                         <div class="form-group">
                             <label for="UserName">@Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.Email, Html.Sitecore().CurrentItem)</label><span class="required">*</span>
-                            @Html.TextBoxFor(m => m.UserName, 
-                                new 
+                            @Html.TextBoxFor(m => m.UserName,
+                                new
                                 {
                                     placeholder = Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.EmailAddressPlaceholder],
                                     data_val_required = Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.EmailMissingMessage],
-                                    @class = "form-control" 
+                                    @class = "form-control"
                                 })
                             @Html.ValidationMessageFor(m => m.UserName)
                         </div>
@@ -73,38 +76,89 @@
                         </div>
                     </div>
                 </div>
-            </div>
+             </div>
+            <div class="col-md-6">
+                 <div class="row">
+                     <div class="col-md-12 spot-single-image">
+                         @Html.Sitecore().Field("Image", Html.Sitecore().CurrentItem, new { Parameters = new Sitecore.Collections.SafeDictionary<string> { { "class", "img-responsive" } } })
+                     </div>
+                     <div class="col-md-12">
+                         <div class="form-inline">
+                             <div class="row">
+                                 <div class="col-md-6 col-sm-6 col-xs-6">
+                                     <button type="button" id="GetToRegisterButton" onclick="window.location.href = '@StorefrontManager.StorefrontUri("/Register")'" class="btn btn-primary">@Html.Sitecore().Field("Register New Account", Html.Sitecore().CurrentItem)</button>
+                                 </div>
+                                 <div class="col-md-6 col-sm-6 col-xs-6">
+                                     <button type="button" class="btn btn-primary pull-right" onclick="window.location.href = '@StorefrontManager.StorefrontUri("/Checkout")'">@Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.GuestCheckoutButton, Html.Sitecore().CurrentItem)</button>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+        </div>       
+        }
+        @if (Model != null && Model.Providers != null && Model.Providers.Count > 0)
+        { 
+         <div id="" class="row">
             <div class="col-md-6">
                 <div class="row">
-                    <div class="col-md-12 spot-single-image">
-                        @Html.Sitecore().Field("Image", Html.Sitecore().CurrentItem, new { Parameters = new Sitecore.Collections.SafeDictionary<string> { { "class", "img-responsive" } } })
-                    </div>
+                    @Model.Message
                     <div class="col-md-12">
-                        <div class="form-inline">
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <button type="button" id="GetToRegisterButton" onclick="window.location.href = '@StorefrontManager.StorefrontUri("/Register")'" class="btn btn-primary">@Html.Sitecore().Field("Register New Account", Html.Sitecore().CurrentItem)</button>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <button type="button" class="btn btn-primary pull-right" onclick="window.location.href = '@StorefrontManager.StorefrontUri("/Checkout")'">@Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.GuestCheckoutButton, Html.Sitecore().CurrentItem)</button>
-                                </div>
+                        <div id="providersSection">
+                            @Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.FacebookText, Html.Sitecore().CurrentItem)
+                            <div id="" class="row">
+                                @foreach (var provider in Model.Providers)
+                                {
+                                    <div class="col-md-12">
+                                        <div class="form-group openid-connect">
+                                            <button name="provider" type="submit" onclick="window.location.href = '#'" class="btn btn-info" id="@provider.Name" value="@provider.Name" 
+                                                    style='background-image: url("@provider.Image.GetImageUrl(28, 28)"); background-repeat: no-repeat'>
+                                                <div id="provider-name">&emsp;&nbsp;@provider.Name&nbsp;@Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.SignInButton, Html.Sitecore().CurrentItem)</div>
+                                            </button>
+                                         </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    @if(!Model.IsActivationFlow)
+                    {
+                    <div class="col-md-12">
+                        @Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.LinkAccount, Html.Sitecore().CurrentItem)
+                        <div class="col-md-12">
+                            <a class="btn btn-primary" href="@StorefrontManager.StorefrontUri("/UserPendingActivation")">
+                                @Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.ActivationText, Html.Sitecore().CurrentItem)
+                            </a>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+          
+          <div class="col-md-6">
+             <div class="row">
+                <div class="col-md-12 spot-single-image">
+                    @Html.Sitecore().Field("Image", Html.Sitecore().CurrentItem, new { Parameters = new Sitecore.Collections.SafeDictionary<string> { { "class", "img-responsive" } } })
+                </div>
+                <div class="col-md-12">
+                    <div class="form-inline">
+                        <div class="row">                            
+                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                <button type="button" class="btn btn-primary pull-right" onclick="window.location.href = '@StorefrontManager.StorefrontUri("/Checkout")'">@Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.GuestCheckoutButton, Html.Sitecore().CurrentItem)</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-12">
-                @Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.FacebookText, Html.Sitecore().CurrentItem)
-                <div class="form-group facebook-connect">
-                    <button type="button" onclick="window.location.href='#'" class="btn btn-info">@Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.FacebookButton, Html.Sitecore().CurrentItem)</button>
-                </div>
-            </div>
-        </div>
-    </div>
+             </div>
+          </div>
+         </div>
+        }   
+    </div>      
 }
 
 <script type="text/javascript">
-    $(document).on('submit', 'form', function () {
-        $("#SignInButton").button('loading');
-    });
+  $(document).on('submit', 'form', function () {
+    $("#SignInButton").button('loading');
+  });
 </script>

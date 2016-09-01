@@ -274,6 +274,52 @@ namespace Sitecore.Reference.Storefront.Managers
         }
 
         /// <summary>
+        /// Initiates the link to existing customer.
+        /// </summary>       
+        /// <param name="emailOfExistingCustomer">The email of existing customer.</param>
+        /// <param name="hostName">Name of the host.</param>
+        /// <returns>
+        /// The manager response where the customer is returned in the response.
+        /// </returns>
+        public virtual ManagerResponse<EnableCustomerResult, CommerceCustomer> InitiateLinkToExistingCustomer(string emailOfExistingCustomer, string hostName)
+        {
+            Assert.ArgumentNotNullOrEmpty(emailOfExistingCustomer, "emailOfExistingCustomer");
+
+            string accountActivationEmailTemplate = ((DynamicsStorefront)StorefrontManager.CurrentStorefront).AccountActivationEmailTemplate;
+
+            string token = Microsoft.Security.Application.Encoder.UrlEncode(Guid.NewGuid().ToString());
+            string activationUrl = string.Format(CultureInfo.InvariantCulture, "{0}/userpendingactivation?email={1}&code={2}", hostName, emailOfExistingCustomer, token);
+            var customer = new CommerceCustomer() { Name = emailOfExistingCustomer };
+            var request = new EnableCustomerRequest(customer);
+            request.Properties.Add("EmailTemplateId", accountActivationEmailTemplate);
+            request.Properties.Add("ActivationUrl", activationUrl);
+            request.Properties.Add("ActivationToken", token);
+            request.Comment = "Initiate";
+            var result = this.CustomerServiceProvider.EnableCustomer(request);
+            return new ManagerResponse<EnableCustomerResult, CommerceCustomer>(result, result.CommerceCustomer);
+        }
+
+        /// <summary>
+        /// Finalizes the link to existing customer.
+        /// </summary>
+        /// <param name="emailOfExistingCustomer">The email of existing customer.</param>
+        /// <param name="activationCode">The activation code.</param>
+        /// <returns>
+        /// The manager response where the customer is returned in the response.
+        /// </returns>
+        public virtual ManagerResponse<EnableCustomerResult, CommerceCustomer> FinalizeLinkToExistingCustomer(string emailOfExistingCustomer, string activationCode)
+        {
+            Assert.ArgumentNotNullOrEmpty(emailOfExistingCustomer, "emailOfExistingCustomer");
+            Assert.ArgumentNotNullOrEmpty(activationCode, "activationCode");
+
+            var customer = new CommerceCustomer() { Name = emailOfExistingCustomer };
+            var request = new EnableCustomerRequest(customer);
+            request.Properties.Add("ActivationToken", activationCode);
+            var result = this.CustomerServiceProvider.EnableCustomer(request);
+            return new ManagerResponse<EnableCustomerResult, CommerceCustomer>(result, result.CommerceCustomer);
+        }
+
+        /// <summary>
         /// Gets the parties.
         /// </summary>
         /// <param name="storefront">The storefront.</param>
@@ -437,6 +483,9 @@ namespace Sitecore.Reference.Storefront.Managers
             try
             {
                 var request = new CreateUserRequest(inputModel.UserName, inputModel.Password, inputModel.UserName, storefront.ShopName);
+                request.Properties.Add("FirstName", inputModel.FirstName);
+                request.Properties.Add("LastName", inputModel.LastName);
+                request.Properties.Add("ExternalId", inputModel.ExternalId);
                 result = this.CustomerServiceProvider.CreateUser(request);
                 if (!result.Success)
                 {

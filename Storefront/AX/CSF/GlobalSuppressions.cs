@@ -1,4 +1,4 @@
-//-----------------------------------------------------------------------
+﻿//-----------------------------------------------------------------------
 // <copyright file="GlobalSuppressions.cs" company="Sitecore Corporation">
 //     Copyright (c) Sitecore Corporation 1999-2016
 // </copyright>
@@ -64,3 +64,5 @@
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Scope = "type", Target = "Sitecore.Reference.Storefront.Managers.CatalogManager")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1045:DoNotPassTypesByReference", MessageId = "2#", Scope = "member", Target = "Sitecore.Reference.Storefront.Controllers.CatalogController.#SetSortParameters(Sitecore.Reference.Storefront.Models.SitecoreItemModels.Category,System.String&,System.Nullable`1<Sitecore.Commerce.Connect.CommerceServer.CommerceConstants+SortDirection>&)")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1045:DoNotPassTypesByReference", MessageId = "1#", Scope = "member", Target = "Sitecore.Reference.Storefront.Controllers.CatalogController.#SetSortParameters(Sitecore.Reference.Storefront.Models.SitecoreItemModels.Category,System.String&,System.Nullable`1<Sitecore.Commerce.Connect.CommerceServer.CommerceConstants+SortDirection>&)")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Scope = "member", Target = "Sitecore.Reference.Storefront.Controllers.AccountController.#RecentOrders()")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Scope = "type", Target = "Sitecore.Reference.Storefront.Managers.AccountManager")]

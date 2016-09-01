@@ -18,7 +18,7 @@ function initWishListHeaders(sectionId, filter) {
 
     var data = {};
     data.Filter = filter == null ? false : filter;
-    AJAXPost(StorefrontUri("api/sitecore/wishlist/activeWishLists"), JSON.stringify(data), function (data, success, sender) {
+    AJAXPost(StorefrontUri("api/storefront/wishlist/activeWishLists"), JSON.stringify(data), function (data, success, sender) {
         if (success && data.Success) {
             wishListHeadersListViewModel = new WishListHeadersViewModel(data);
             if ($("#wishListChange").length > 0) {
@@ -42,7 +42,7 @@ function createWishList() {
     ClearGlobalMessages();
     var data = {};
     data.Name = $("#wishList-name").val();
-    AJAXPost('/api/sitecore/wishlist/createWishList', JSON.stringify(data), function (data, success, sender) {
+    AJAXPost('/api/storefront/wishlist/createWishList', JSON.stringify(data), function (data, success, sender) {
         if (success && data.Success) {
             $('#wishList-name').val('');
             wishListHeadersListViewModel.reload(data);
@@ -89,7 +89,7 @@ function addWishListsToCart() {
     ClearGlobalMessages();
     var data = {};
     data.Ids = ids;
-    AJAXPost('/api/sitecore/wishlist/addWishListsToCart', JSON.stringify(data), addWishListsToCartResponse, this);
+    AJAXPost('/api/storefront/wishlist/addWishListsToCart', JSON.stringify(data), addWishListsToCartResponse, this);
 }
 
 function addWishListsToCartResponse(data, success, sender) {
@@ -116,7 +116,7 @@ function addWishListItemsToCart() {
     });
 
     ClearGlobalMessages();
-    AJAXPost(StorefrontUri('api/sitecore/cart/addCartLines'), JSON.stringify(data), function (data, success, sender) {
+    AJAXPost(StorefrontUri('api/storefront/cart/addCartLines'), JSON.stringify(data), function (data, success, sender) {
         if (success && data.Success) {
             $('.item-to-selected').removeAttr('checked');
             $('#selectAllItems').removeAttr('checked');

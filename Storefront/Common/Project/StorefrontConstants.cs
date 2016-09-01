@@ -84,6 +84,48 @@ namespace Sitecore.Reference.Storefront
             /// The empty view.
             /// </summary>
             public static readonly string Empty = "/Shared/Empty";
+
+            /// <summary>
+            /// The addresses
+            /// </summary>
+            public static readonly string Addresses = "Addresses";
+
+            /// <summary>
+            /// The edit profile
+            /// </summary>
+            public static readonly string EditProfile = "EditProfile";
+
+            /// <summary>
+            /// The register
+            /// </summary>
+            public static readonly string Register = "Register";
+
+            /// <summary>
+            /// The user pending activation
+            /// </summary>
+            public static readonly string UserPendingActivation = "UserPendingActivation";
+        }
+
+        /// <summary>
+        /// Defines the Action names constants
+        /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
+        public static class KnownActionNames
+        {
+            /// <summary>
+            /// The account link up pending action name
+            /// </summary>
+            public static readonly string AccountLinkupPendingActionName = "AccountLinkupPending";
+
+            /// <summary>
+            /// The register action name
+            /// </summary>
+            public static readonly string RegisterActionName = "Register";
+
+            /// <summary>
+            /// The login action name
+            /// </summary>
+            public static readonly string LoginActionName = "Login";
         }
 
         /// <summary>
@@ -236,6 +278,46 @@ namespace Sitecore.Reference.Storefront
             /// The invalid currency error message.
             /// </summary>
             public static readonly string InvalidCurrencyError = "InvalidCurrencyError";
+
+            /// <summary>
+            /// The login failed error message.
+            /// </summary>
+            public static readonly string LoginFailed = "LoginFailed";
+
+            /// <summary>
+            /// The authorization code missing error message.
+            /// </summary>
+            public static readonly string AuthorizationCodeMissing = "AuthorizationCodeMissing";
+
+            /// <summary>
+            /// The cancel pending request message.
+            /// </summary>
+            public static readonly string CancelPendingRequest = "CancelPendingRequest";
+
+            /// <summary>
+            /// The account not found error message.
+            /// </summary>
+            public static readonly string AccountNotFound = "AccountNotFound";
+
+            /// <summary>
+            /// The activation code sent message.
+            /// </summary>
+            public static readonly string ActivationCodeSent = "ActivationCodeSent";
+
+            /// <summary>
+            /// The wrong activation code error message.
+            /// </summary>
+            public static readonly string WrongActivationCode = "WrongActivationCode";
+
+            /// <summary>
+            /// The linkup succeeded message.
+            /// </summary>
+            public static readonly string LinkupSucceeded = "LinkupSucceeded";
+
+            /// <summary>
+            /// The card authorization failed message.
+            /// </summary>
+            public static readonly string CardAuthorizationFailed = "CardAuthorizationFailed";
         }
         
         /// <summary>
@@ -322,6 +404,11 @@ namespace Sitecore.Reference.Storefront
             public static readonly string CreateUser = "Create user";
 
             /// <summary>
+            /// The activate user
+            /// </summary>
+            public static readonly string ActivateUser = "Activate user";
+
+            /// <summary>
             /// The customer message1 field.
             /// </summary>
             public static readonly string CustomerMessage1 = "Customer Message 1";
@@ -347,6 +434,31 @@ namespace Sitecore.Reference.Storefront
             public static readonly string EmailMissingMessage = "Email Missing Message";
 
             /// <summary>
+            /// The first name missing message
+            /// </summary>
+            public static readonly string FirstNameMissingMessage = "First Name Missing Message";
+
+            /// <summary>
+            /// The last name missing message
+            /// </summary>
+            public static readonly string LastNameMissingMessage = "Last Name Missing Message";
+
+            /// <summary>
+            /// The activation code missing message
+            /// </summary>
+            public static readonly string ActivationCodeMissingMessage = "Activation Code Missing Message";
+
+            /// <summary>
+            /// The resend activation code message
+            /// </summary>
+            public static readonly string ResendActivationCodeMessage = "Resend Activation Code Message";
+
+            /// <summary>
+            /// The activation code
+            /// </summary>
+            public static readonly string ActivationCode = "Activation Code";
+
+            /// <summary>
             /// The facebook button field.
             /// </summary>
             public static readonly string FacebookButton = "Facebook Button";
@@ -355,6 +467,21 @@ namespace Sitecore.Reference.Storefront
             /// The facebook text field.
             /// </summary>
             public static readonly string FacebookText = "Facebook Text";
+
+            /// <summary>
+            /// The activation text
+            /// </summary>
+            public static readonly string ActivationText = "Activation Text";
+
+            /// <summary>
+            /// The activate text
+            /// </summary>
+            public static readonly string ActivateText = "Activate Text";
+
+            /// <summary>
+            /// The link account text
+            /// </summary>
+            public static readonly string LinkAccount = "Link Account";
 
             /// <summary>
             /// The first name
@@ -427,6 +554,11 @@ namespace Sitecore.Reference.Storefront
             public static readonly string Registering = "Registering";
 
             /// <summary>
+            /// The activating
+            /// </summary>
+            public static readonly string Activating = "Activating";
+
+            /// <summary>
             /// The sign in button field.
             /// </summary>
             public static readonly string SignInButton = "Sign In Button";
@@ -492,6 +624,16 @@ namespace Sitecore.Reference.Storefront
             public static readonly string UseIndexFileForProductStatusInLists = "Use Index File For Product Status In Lists";
 
             /// <summary>
+            /// The form authentication
+            /// </summary>
+            public static readonly string FormsAuthentication = "Forms Authentication";
+
+            /// <summary>
+            /// The operating unit number
+            /// </summary>
+            public static readonly string OperatingUnitNumber = "OperatingUnitNumber";
+
+            /// <summary>
             /// The map key field.
             /// </summary>
             public static readonly string MapKey = "Map Key";
@@ -540,6 +682,46 @@ namespace Sitecore.Reference.Storefront
             /// The default currency field.
             /// </summary>
             public static readonly string DefaultCurrency = "Default Currency";
+
+            /// <summary>
+            /// The new contoso account
+            /// </summary>
+            public static readonly string NewContosoAccount = "New Contoso Account";
+
+            /// <summary>
+            /// The link contoso account
+            /// </summary>
+            public static readonly string LinkContosoAccount = "Link Contoso Account";
+
+            /// <summary>
+            /// The email address of existing customer
+            /// </summary>
+            public static readonly string EmailAddressOfExistingCustomer = "Email Address Of Existing Customer";
+
+            /// <summary>
+            /// The email of existing customer
+            /// </summary>
+            public static readonly string EmailOfExistingCustomer = "Email Of Existing Customer";
+
+            /// <summary>
+            /// The enter email for account association
+            /// </summary>
+            public static readonly string EnterEmailForAccountAssociation = "EnterEmailForAccountAssociation";
+
+            /// <summary>
+            /// The continue shopping text
+            /// </summary>
+            public static readonly string ContinueShoppingText = "Continue Shopping Text";
+
+            /// <summary>
+            /// The sign out text
+            /// </summary>
+            public static readonly string SignOutText = "Sign Out Text";
+
+            /// <summary>
+            /// The disclaimer text
+            /// </summary>
+            public static readonly string DisclaimerText = "Disclaimer Text";
         }
 
         /// <summary>
@@ -640,6 +822,16 @@ namespace Sitecore.Reference.Storefront
             /// The currency display folder.
             /// </summary>
             public static readonly string CurrencyDisplay = "Currency Display";
+
+            /// <summary>
+            /// The payments folder.
+            /// </summary>
+            public static readonly string Payments = "Payments";
+
+            /// <summary>
+            /// The shipping folder.
+            /// </summary>
+            public static readonly string Shipping = "Shipping";
         }
 
         /// <summary>

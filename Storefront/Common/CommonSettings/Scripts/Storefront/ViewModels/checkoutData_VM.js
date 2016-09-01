@@ -129,13 +129,25 @@ function CheckoutDataViewModel(data) {
     self.billingEmail = ko.validatedObservable(self.userEmail).extend({ required: true, email: true });
     self.billingConfirmEmail = ko.validatedObservable(self.userEmail).extend({ validation: { validator: mustEqual, message: GetMessage('EmailsMustMatchMessage'), params: self.billingEmail } });
     self.payCard = false;
+    self.payFederatedPayment = false;
     self.payGiftCard = false;
     self.payLoyaltyCard = false;
     self.payGiftLoyaltyCard = self.payGiftCard || self.payLoyaltyCard ? true : false;
+    self.cardPaymentAcceptPageUrl = ko.observable('');
+    self.cardPaymentResultAccessCode = "";
+    self.cardPaymentAcceptCardPrefix = "";
+    self.CARDPAYMENTACCEPTPAGEHEIGHT = "msax-cc-height";
+    self.CARDPAYMENTACCEPTPAGEERROR = "msax-cc-error";
+    self.CARDPAYMENTACCEPTPAGERESULT = "msax-cc-result";
+    self.CARDPAYMENTACCEPTPAGESUBMIT = "msax-cc-submit";
+    self.CARDPAYMENTACCEPTCARDPREFIX = "msax-cc-cardprefix";
     if (data.PaymentOptions != null) {
         $.each(data.PaymentOptions, function (index, value) {
             if (value.PaymentOptionType.Name === "PayCard") {
                 self.payCard = true;
+            }
+            if (value.PaymentOptionType.Name === "PayFederatedPayment") {
+                self.payFederatedPayment = true;
             }
             if (value.PaymentOptionType.Name === "PayGiftCard") {
                 self.payGiftCard = true;
@@ -162,7 +174,7 @@ function CheckoutDataViewModel(data) {
     self.cartLoyaltyCardNumber = data.CartLoyaltyCardNumber;
     self.giftCardPayment = ko.validatedObservable(new GiftCardPaymentViewModel());
     self.loyaltyCardPayment = ko.validatedObservable(data.CartLoyaltyCardNumber ? new LoyaltyCardPaymentViewModel({ "CartLoyaltyCardNumber": data.CartLoyaltyCardNumber, "Amount": 0.00 }) : new LoyaltyCardPaymentViewModel());
-    self.creditCardPayment = ko.validatedObservable(new CreditCardPaymentViewModel());
+    self.creditCardPayment = ko.validatedObservable(new CreditCardPaymentViewModel());   
     self.creditCardEnable = ko.observable(false);
     self.billingAddress = ko.validatedObservable(new AddressViewModel({ "ExternalId": "1" }));
     self.billingAddressEnable = ko.observable(false);
@@ -217,7 +229,12 @@ function CheckoutDataViewModel(data) {
             }
 
             if (self.creditCardPayment().isAdded()) {
-                paymentsAreValid = self.creditCardPayment.isValid() && self.billingAddress.isValid();
+                if (!self.payFederatedPayment) {
+                    paymentsAreValid = self.creditCardPayment.isValid() && self.billingAddress.isValid();
+                }
+                else {
+                    paymentsAreValid = true;
+                }
             }
 
             return paymentsAreValid && self.billingEmail.isValid() && self.billingConfirmEmail.isValid();
@@ -254,6 +271,13 @@ function CheckoutDataViewModel(data) {
         });
 
         return match;
+    };
+
+    self.addCountry = function (name, code) {
+        if (self.countries[code] == undefined)
+        {
+            self.countries.push(new Country(name, code));
+        }
     };
 }
 

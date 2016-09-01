@@ -1,0 +1,134 @@
+----item----
+version: 1
+id: {D8CAEC07-6463-4BA5-8551-16CB077EEA25}
+database: master
+path: /sitecore/media library/Storefront/Identity Providers/Google
+parent: {C1E5E7A8-F677-432A-B98D-267D3E4AC633}
+name: Google
+master: {00000000-0000-0000-0000-000000000000}
+template: {F1828A2C-7E5D-4BBD-98CA-320474871548}
+templatekey: Image
+
+----field----
+field: {40E50ED9-BA07-4702-992E-A912738D32DC}
+name: Blob
+key: blob
+content-length: 2114
+
+iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAIAAABvFaqvAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+bWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
+bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
+eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0
+NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJo
+dHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlw
+dGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEu
+MC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVz
+b3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1N
+Ok9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpDRkI3NDk0OTAyNzFFNTExODZDRUVEODkyNUU5
+QUM1MSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo2NUIyNkQ3MjcxMDYxMUU1QTFDQzk3NDk4
+MTU1MUQ4QyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo2NUIyNkQ3MTcxMDYxMUU1QTFDQzk3
+NDk4MTU1MUQ4QyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dz
+KSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkNGQjc0OTQ5
+MDI3MUU1MTE4NkNFRUQ4OTI1RTlBQzUxIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkNGQjc0
+OTQ5MDI3MUU1MTE4NkNFRUQ4OTI1RTlBQzUxIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpS
+REY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+gRbsvgAAAjhJREFUeNpi/P//PwM1
+ABMDlQDVDGLBJfH71vUfm9b+uX/n77Mn/3//YhYWZdHR53B0YzOxwKqeETOM/r56+bmr8feFM9ht
+1tHnK29glpQmYNDv61c+1pb8//AOjy9YTSwEOibhM+jvm1fvUyL/f/mM0GNgwqKkwsDK9ufe7d9n
+TzH8+8uipcvfPpGJmwdfGH3uaYGbwqKqwVtSw6KsBpf9c+fm9w2rebKLGDm58IXR/w9Hf59u+jjx
+M8OPP8yKKgL9M5l4eMmJ/n/PlzAx7Rcs+8yiKsCTW0KSKShe+//xJDi0b/ImcLPoGSErat/0A6tm
+GzUWWw0WjDD68QjqWy4lNA17rvzFahAbCyPcIKwpm9jch5xykFzEIcfw9QqQ/vb1AVrwWKgwIxLa
+3/9n7/+DsAW5GbEYxMhv/v/rldtsJpWvdWpfXTUW04ZLtYZxwNmHb/45e/8nhC0nzIQl1pgkY7Zx
+RKS+kH/67V3PuXmff33F9Mvff/9XHP8NtZiBwUyZGYtBjALWe/+o//wHUnfn48OsA4233j9ANuXV
+t7edO5/ceAb1l7MOMz8XI/Ys8ub7+/AdhZ9+fYGLmIjpqArIMzEyPfz07MTLi+xMbOr/0u7cNuRm
+Z5idwinOz4Qz0159e7v4SOfbHx/wRJYFX2CSZoShAjO+gk1bWHWBawfQIbhMkeeVyja3RDMFe3kE
+Adff3V17d9ftDw+ffHnx8+8vYQ4BHWE1RxkzJxkLoE+JKtiGS+EPEGAAhk7nIGyCDR4AAAAASUVO
+RK5CYII=
+----field----
+field: {22EAC599-F13B-4607-A89D-C091763A467D}
+name: Width
+key: width
+content-length: 2
+
+24
+----field----
+field: {DE2CA9E4-C117-4C8A-A139-1FF4B199D15A}
+name: Height
+key: height
+content-length: 2
+
+24
+----field----
+field: {C06867FE-9A43-4C7D-B739-48780492D06F}
+name: Extension
+key: extension
+content-length: 3
+
+png
+----field----
+field: {6F47A0A5-9C94-4B48-ABEB-42D38DEF6054}
+name: Mime Type
+key: mime type
+content-length: 9
+
+image/png
+----field----
+field: {6954B7C7-2487-423F-8600-436CB3B6DC0E}
+name: Size
+key: size
+content-length: 4
+
+1544
+----field----
+field: {CB09946F-3218-4823-87D2-D5007C199A96}
+name: Dimensions
+key: dimensions
+content-length: 7
+
+24 x 24
+----field----
+field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
+name: __Icon
+key: __icon
+content-length: 61
+
+-/media/D8CAEC0764634BA5855116CB077EEA25.ashx?h=16&thn=1&w=16
+----version----
+language: en
+version: 1
+revision: dd584d40-1339-4b19-976b-472153621826
+
+----field----
+field: {65885C44-8FCD-4A7F-94F1-EE63703FE193}
+name: Alt
+key: alt
+content-length: 6
+
+Google
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20160729T150621Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+dd584d40-1339-4b19-976b-472153621826
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20160729T150939Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin
