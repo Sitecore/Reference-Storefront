@@ -1,7 +1,7 @@
 This is the home of the Sitecore Reference storefront, which comes in three versions as of version 8.2:
 - Sitecore Reference Storefront for Sitecore Commerce powered by Commerce Server (SCpbCS)
-- Sitecore Reference Storefront for Sitecore Commerce powered by Microsoft Dynamics Retail AX (new). Internal version name AX7 CU1 (r)
-- Sitecore Reference Storefront for Sitecore Commerce powered by Microsoft Dynamics Retail AX 2012 R3 CU10. Internal version name AX6 (r)
+- Sitecore Reference Storefront for Sitecore Commerce powered by Microsoft Dynamics Retail AX (new). Internal version name AX7 CU1(r)
+- Sitecore Reference Storefront for Sitecore Commerce powered by Microsoft Dynamics Retail AX 2012 R3 CU10. Internal version name AX6(r)
 
 **For download of binary packages and documentation** go to [Releases] (https://github.com/Sitecore/Reference-Storefront/releases)  by following the link
 
