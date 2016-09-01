@@ -10,7 +10,7 @@ For information about how to deploy the solution, read the [documentation] (http
 For information about how to start contributing to the project, read the [FAQ] (https://github.com/Sitecore/Reference-Storefront/wiki/Contributor-License-Agreement-FAQ) on the [Wiki] (https://github.com/Sitecore/Reference-Storefront/wiki) 
 
 
-Copyright 2015 Sitecore Corporation A/S
+Copyright 2016 Sitecore Corporation A/S
 
 Licensed under the [Apache License] (http://www.apache.org/licenses/LICENSE-2.0), Version 2.0 (the "License");
 You may not use this solution except in compliance with the License.
