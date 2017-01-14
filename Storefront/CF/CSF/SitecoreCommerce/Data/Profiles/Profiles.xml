@@ -1,0 +1,1821 @@
+<Document xmlns="urn:schemas-commerceserver-net:bizdata-profile-schema">
+  <Catalog name="Profile Definitions" displayName="Profile Catalog" version="1" description="Profile Definitions">
+    <Profile name="Address" displayName="Address" description="Address">
+      <Group name="GeneralInfo" displayName="General Information" description="General Information Group">
+        <Property name="address_id" displayName="Address ID" description="Unique ID of this address" propType="STRING" isActive="0" isDefaultNull="0" isExported="1" isRequired="1" isSearchable="1" isUpdatable="0" keyDef="PRIMARYJOIN">
+          <DataRef idref="UPM_SQLSource.Addresses.u_address_id"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="1"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+          <Attribute name="DWMemberName" displayName="Datawarehouse Member Name" description="Member name in datawarehouse" value="Id"/>
+        </Property>
+        <Property name="last_name" displayName="Last Name" description="Last name of the user associated with this address" propType="STRING" isExported="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.Addresses.u_last_name"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="64"/>
+          <Attribute name="DWMemberName" displayName="Datawarehouse Member Name" description="Member name in datawarehouse" value="LastName"/>
+        </Property>
+        <Property name="first_name" displayName="First Name" description="First name of the user associated with this address" propType="STRING" isExported="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.Addresses.u_first_name"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="64"/>
+          <Attribute name="DWMemberName" displayName="Datawarehouse Member Name" description="Member name in datawarehouse" value="FirstName"/>
+        </Property>
+        <Property name="address_name" displayName="Address Name" description="Name of this address" propType="STRING" isExported="1" isRequired="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.Addresses.u_address_name"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="1"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+          <Attribute name="DWMemberName" displayName="Datawarehouse Member Name" description="Member name in datawarehouse" value="AddressName"/>
+        </Property>
+        <Property name="address_type" displayName="Address Type" description="Type of this address (address / ship to address / bill to address)" propType="NUMBER" isExported="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.Addresses.i_address_type"/>
+          <Attribute name="MinValue" displayName="Minimum Value" description="Minimum value of this property value" value="0"/>
+          <Attribute name="MaxValue" displayName="Maximum Value" description="Maximum value of this property value" value="2147483647"/>
+          <Attribute name="DWMemberName" displayName="Datawarehouse Member Name" description="Member name in datawarehouse" value="AddressType"/>
+        </Property>
+        <Property name="description" displayName="Description" description="Description of this address" propType="STRING" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.Addresses.u_description"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+        </Property>
+        <Property name="address_line1" displayName="Address Line 1" description="First line of this address" propType="STRING" isDefaultNull="0" isRequired="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.Addresses.u_address_line1"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="1"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="80"/>
+        </Property>
+        <Property name="address_line2" displayName="Address Line 2" description="Second line of this address" propType="STRING" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.Addresses.u_address_line2"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="80"/>
+        </Property>
+        <Property name="city" displayName="City" description="City Name" propType="STRING" isExported="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.Addresses.u_city"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="DWMemberName" displayName="Datawarehouse Member Name" description="Member name in datawarehouse" value="City"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="64"/>
+        </Property>
+        <Property name="region_code" displayName="State/Province Code" description="State or province code" propType="STRING" isDefaultNull="0" isExported="1" isRequired="1">
+          <DataRef idref="UPM_SQLSource.Addresses.u_region_code"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+          <Attribute name="DWMemberName" displayName="Datawarehouse Member Name" description="Member name in datawarehouse" value="RegionCode"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="1"/>
+        </Property>
+        <Property name="region_name" displayName="State/Province Name" description="State or province name" propType="STRING" isExported="1">
+          <DataRef idref="UPM_SQLSource.Addresses.u_region_name"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="64"/>
+          <Attribute name="DWMemberName" displayName="Datawarehouse Member Name" description="Member name in datawarehouse" value="RegionName"/>
+        </Property>
+        <Property name="postal_code" displayName="Zip/Postal Code" description="Zip or postal code" propType="STRING" isDefaultNull="0" isExported="1" isRequired="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.Addresses.u_postal_code"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="1"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="20"/>
+          <Attribute name="DWMemberName" displayName="Datawarehouse Member Name" description="Member name in datawarehouse" value="PostalCode"/>
+        </Property>
+        <Property name="country_code" displayName="Country/Region Code" description="Country or region ISO code" propType="STRING" isDefaultNull="0" isExported="1" isRequired="1">
+          <DataRef idref="UPM_SQLSource.Addresses.u_country_code"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="1"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+          <Attribute name="DWMemberName" displayName="Datawarehouse Member Name" description="Member name in datawarehouse" value="CountryCode"/>
+        </Property>
+        <Property name="country_name" displayName="Country/Region Name" description="Country or region name" propType="STRING" isExported="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.Addresses.u_country_name"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+          <Attribute name="DWMemberName" displayName="Datawarehouse Member Name" description="Member name in datawarehouse" value="CountryName"/>
+        </Property>
+        <Property name="tel_number" displayName="Telephone Number" description="Telephone number at this address" propType="STRING" isExported="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.Addresses.u_tel_number"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="32"/>
+          <Attribute name="DWMemberName" displayName="Datawarehouse Member Name" description="Member name in datawarehouse" value="TelephoneNumber"/>
+        </Property>
+        <Property name="tel_extension" displayName="Telephone Extension" description="Telephone number extension at this address" propType="STRING" isExported="1">
+          <DataRef idref="UPM_SQLSource.Addresses.u_tel_extension"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+          <Attribute name="DWMemberName" displayName="Datawarehouse Member Name" description="Member name in datawarehouse" value="TelephoneExtension"/>
+        </Property>
+        <Property name="locale" displayName="Locale ID" description="Locale in which to render this address form" propType="NUMBER">
+          <DataRef idref="UPM_SQLSource.Addresses.i_locale"/>
+          <Attribute name="MinValue" displayName="Minimum Value" description="Minimum value of this property value" value="0"/>
+          <Attribute name="MaxValue" displayName="Maximum Value" description="Maximum value of this property value" value="2147483647"/>
+        </Property>
+      </Group>
+      <Group name="ProfileSystem" displayName="Profile System" description="Profile System Group">
+        <Property name="user_id_changed_by" displayName="Changed By" description="ID of the user that last changed this address" propType="STRING">
+          <DataRef idref="UPM_SQLSource.Addresses.u_user_id_changed_by"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+        </Property>
+        <Property name="date_last_changed" displayName="Date Last Changed" description="Date that this address was last changed" propType="DATETIME" isDefaultNull="0" isExported="1" isReadOnly="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.Addresses.dt_date_last_changed"/>
+          <Attribute name="DWMemberName" displayName="Datawarehouse Member Name" description="Member name in datawarehouse" value="DateLastChanged"/>
+        </Property>
+        <Property name="date_created" displayName="Date Created" description="Date that this address was created" propType="DATETIME" isDefaultNull="0" isExported="1" isReadOnly="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.Addresses.dt_date_created"/>
+          <Attribute name="DWMemberName" displayName="Datawarehouse Member Name" description="Member name in datawarehouse" value="DateCreated"/>
+        </Property>
+        <Property name="csadapter_date_last_changed" displayName="Adapter Date Last Changed" description="Reserved for adapter functionality" propType="DATETIME" isReadOnly="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.Addresses.dt_csadapter_date_last_changed"/>
+          <Attribute name="IsRestricted" displayName="Is Property Restricted" description="Is 'Bypass Restrictions' authorization required to update this property?" value="1"/>
+        </Property>
+      </Group>
+    </Profile>
+    <Profile name="BlanketPOs" displayName="Blanket Purchase Order" description="Blanket Purchase Order">
+      <Group name="GeneralInfo" displayName="General Information" description="General Information Group">
+        <Property name="po_id" displayName="Purchase Order ID" description="Unique ID of the purchase order" propType="STRING" isActive="0" isDefaultNull="0" isExported="1" isRequired="1" isSearchable="1" isUpdatable="0" keyDef="PRIMARYJOIN">
+          <DataRef idref="UPM_SQLSource.BlanketPOs.u_po_id"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="1"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+        </Property>
+        <Property name="org_id" displayName="Organization ID" description="ID of the organization this purchase order is associated with" propType="PROFILE" referenceString="Profile Definitions.Organization">
+          <DataRef idref="UPM_SQLSource.BlanketPOs.u_org_id"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+        </Property>
+        <Property name="po_number" displayName="PO Number" description="Numeric ID of this purchase order" propType="STRING" isDefaultNull="0" isRequired="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.BlanketPOs.u_po_number"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="1"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="255"/>
+        </Property>
+        <Property name="description" displayName="Description" description="Description of this purchase order" propType="STRING" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.BlanketPOs.u_description"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="255"/>
+        </Property>
+      </Group>
+      <Group name="ProfileSystem" displayName="Profile System" description="Profile System Group">
+        <Property name="user_id_changed_by" displayName="Changed By" description="ID of the user that last changed this purchase order" propType="STRING">
+          <DataRef idref="UPM_SQLSource.BlanketPOs.u_user_id_changed_by"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+        </Property>
+        <Property name="date_last_changed" displayName="Date Last Changed" description="Date that this purchase order was last changed" propType="DATETIME" isDefaultNull="0" isReadOnly="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.BlanketPOs.dt_date_last_changed"/>
+        </Property>
+        <Property name="date_created" displayName="Date Created" description="Date that this purchase order was created" propType="DATETIME" isDefaultNull="0" isReadOnly="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.BlanketPOs.dt_date_created"/>
+        </Property>
+        <Property name="csadapter_date_last_changed" displayName="Adapter Date Last Changed" description="Reserved for adapter functionality" propType="DATETIME" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.BlanketPOs.dt_csadapter_date_last_changed"/>
+          <Attribute name="IsRestricted" displayName="Is Property Restricted" description="Is 'Bypass Restrictions' authorization required to update this property?" value="1"/>
+        </Property>
+      </Group>
+    </Profile>
+    <Profile name="CreditCard" displayName="Credit Card" description="Credit Card">
+      <Attribute name="KeyIndex" displayName="KeyIndex" description="Key index for encryption" value="KeyIndex"/>
+      <Group name="GeneralInfo" displayName="General Information" description="General Information Group">
+        <Property name="id" displayName="Credit Card ID" description="Unique ID of this credit card" propType="STRING" isActive="0" isExported="1" isRequired="1" isSearchable="1" isUpdatable="0" keyDef="PRIMARYJOIN">
+          <DataRef idref="UPM_SQLSource.CreditCards.u_id"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="1"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+        </Property>
+        <Property name="payment_group_id" displayName="Payment Group ID" description="ID of an orders system payment group." propType="STRING" isRequired="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.CreditCards.u_payment_group_id"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="1"/>
+        </Property>
+        <Property name="cc_number" displayName="Account Number" description="Account number of this credit card" propType="STRING" isRequired="1" isEncrypted="1">
+          <DataRef idref="UPM_SQLSource.CreditCards.u_cc_number"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="1"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="40"/>
+          <Attribute name="encryptiontype" displayName="Encryption Type" description="Type of encryption to be used on this property." value="2"/>
+          <Attribute name="IsRestricted" displayName="Is Property Restricted" description="Is 'Bypass Restrictions' authorization required to update this property?" value="1"/>
+        </Property>
+        <Property name="last_4_digits" displayName="Last Four Digits" description="Last four digits of this credit card account number" propType="STRING" isRequired="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.CreditCards.u_last_4_digits"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="1"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="4"/>
+        </Property>
+        <Property name="billing_address" displayName="Billing Address" description="ID of the billing addresses associated with this credit card" propType="PROFILE" referenceString="Profile Definitions.Address" isRequired="1">
+          <DataRef idref="UPM_SQLSource.CreditCards.u_billing_address"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="1"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+          <Attribute name="IsRestricted" displayName="Is Property Restricted" description="Is 'Bypass Restrictions' authorization required to update this property?" value="1"/>
+        </Property>
+        <Property name="expiration_month" displayName="Expiration Month" description="The month that the credit card expires" propType="NUMBER" isRequired="1">
+          <DataRef idref="UPM_SQLSource.CreditCards.i_expiration_month"/>
+          <Attribute name="IsRestricted" displayName="Is Property Restricted" description="Indicates that this property requires an elevated priviledge level in order to perform an update." value="0"/>
+          <Attribute name="IsMappedToLdapUserAccountControl" displayName="Is Mapped To LDAP User Account Control" description="Indicates that this property maps to the userAccountControl DataMember of a LDAP DataSource." value="0"/>
+          <Attribute name="MinValue" displayName="Minimum Value" description="Minimum value of this property value" value="-2147483648"/>
+          <Attribute name="MaxValue" displayName="Maximum Value" description="Maximum value of this property value" value="2147483647"/>
+        </Property>
+        <Property name="expiration_year" displayName="Expiration Year" description="The year that the credit card expires" propType="NUMBER" isRequired="1">
+          <DataRef idref="UPM_SQLSource.CreditCards.i_expiration_year"/>
+          <Attribute name="IsRestricted" displayName="Is Property Restricted" description="Indicates that this property requires an elevated priviledge level in order to perform an update." value="0"/>
+          <Attribute name="IsMappedToLdapUserAccountControl" displayName="Is Mapped To LDAP User Account Control" description="Indicates that this property maps to the userAccountControl DataMember of a LDAP DataSource." value="0"/>
+          <Attribute name="MinValue" displayName="Minimum Value" description="Minimum value of this property value" value="-2147483648"/>
+          <Attribute name="MaxValue" displayName="Maximum Value" description="Maximum value of this property value" value="2147483647"/>
+        </Property>
+      </Group>
+      <Group name="ProfileSystem" displayName="Profile System" description="Profile System Group">
+        <Property name="KeyIndex" displayName="Key Index" description="Key index for encryption" propType="NUMBER" isActive="0">
+          <DataRef idref="UPM_SQLSource.CreditCards.i_keyindex"/>
+          <Attribute name="MinValue" displayName="Minimum Value" description="Minimum value of this property value" value="1"/>
+          <Attribute name="MaxValue" displayName="Maximum Value" description="Maximum value of this property value" value="2"/>
+        </Property>
+        <Property name="user_id_changed_by" displayName="Changed By" description="ID of the user that last changed this credit card" propType="STRING">
+          <DataRef idref="UPM_SQLSource.CreditCards.u_user_id_changed_by"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+        </Property>
+        <Property name="date_last_changed" displayName="Date Last Changed" description="Date that this credit card was last changed" propType="DATETIME" isDefaultNull="0" isReadOnly="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.CreditCards.dt_date_last_changed"/>
+        </Property>
+        <Property name="date_created" displayName="Date Created" description="Date that this credit card was created" propType="DATETIME" isDefaultNull="0" isReadOnly="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.CreditCards.dt_date_created"/>
+        </Property>
+        <Property name="csadapter_date_last_changed" displayName="Adapter Date Last Changed" description="Reserved for adapter functionality" propType="DATETIME" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.CreditCards.dt_csadapter_date_last_changed"/>
+          <Attribute name="IsRestricted" displayName="Is Property Restricted" description="Is 'Bypass Restrictions' authorization required to update this property?" value="1"/>
+        </Property>
+      </Group>
+    </Profile>
+    <Profile name="Currency" displayName="Currency" description="Currency conversion table">
+      <Group name="GeneralInfo" displayName="General Information" description="General Information Group">
+        <Property name="currency_code" displayName="Currency Code" description="ISO 4217 Currency Code" propType="STRING" isRequired="1" isSearchable="1" isUpdatable="0" keyDef="PRIMARYJOIN">
+          <DataRef idref="UPM_SQLSource.Currency.u_currency_code"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="1"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+        </Property>
+        <Property name="currency_culture" displayName="Currency Culture" description="Culture used to format the currency" propType="STRING" isRequired="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.Currency.u_currency_culture"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="1"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+        </Property>
+        <Property name="conversion_factor" displayName="Conversion Factor" description="Currency difference coefficient." propType="FLOAT" isRequired="1">
+          <DataRef idref="UPM_SQLSource.Currency.d_conversion_factor"/>
+          <Attribute name="MinValue" displayName="Minimum Value" description="Minimum value of this property value" value="0"/>
+          <Attribute name="MaxValue" displayName="Maximum Value" description="Maximum value of this property value" value="2147483647"/>
+        </Property>
+      </Group>
+      <Group name="ProfileSystem" displayName="Profile System" description="Profile System Group">
+        <Property name="user_id_changed_by" displayName="Changed By" description="ID of the user that last changed this currency" propType="STRING">
+          <DataRef idref="UPM_SQLSource.Currency.u_user_id_changed_by"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+        </Property>
+        <Property name="date_last_changed" displayName="Date Last Changed" description="Date that this currency was last changed" propType="DATETIME" isDefaultNull="0" isReadOnly="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.Currency.dt_date_last_changed"/>
+          <Attribute name="DWMemberName" displayName="Datawarehouse Member Name" description="Member name in datawarehouse" value="DateLastChanged"/>
+        </Property>
+        <Property name="date_created" displayName="Date Created" description="Date that this currency was created" propType="DATETIME" isDefaultNull="0" isReadOnly="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.Currency.dt_date_created"/>
+          <Attribute name="DWMemberName" displayName="Datawarehouse Member Name" description="Member name in datawarehouse" value="DateCreated"/>
+        </Property>
+        <Property name="csadapter_date_last_changed" displayName="Adapter Date Last Changed" description="Reserved for adapter functionality" propType="DATETIME" isReadOnly="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.Currency.dt_csadapter_date_last_changed"/>
+          <Attribute name="IsRestricted" displayName="Is Property Restricted" description="Is 'Bypass Restrictions' authorization required to update this property?" value="1"/>
+        </Property>
+      </Group>
+    </Profile>
+    <Profile name="Organization" displayName="Organization" description="Organization Object">
+      <Group name="GeneralInfo" displayName="General Information" description="General Information Group">
+        <Property name="org_id" displayName="Organization ID" description="Unique ID of this organization" propType="STRING" isActive="0" isDefaultNull="0" isExported="1" isRequired="1" isSearchable="1" isUpdatable="0" keyDef="PRIMARYJOIN">
+          <DataRef idref="UPM_SQLSource.OrganizationObject.u_org_id"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="1"/>
+        </Property>
+        <Property name="name" displayName="Name" description="Name of this organization" propType="STRING" isDefaultNull="0" isExported="1" isRequired="1" isSearchable="1" keyDef="UNIQUE">
+          <DataRef idref="UPM_SQLSource.OrganizationObject.u_Name"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="1"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="255"/>
+          <Attribute name="DWMemberName" displayName="Datawarehouse Member Name" description="Member name in datawarehouse" value="OrganizationName"/>
+        </Property>
+        <Property name="trading_partner_number" displayName="Trading Partner Number" description="Trading partner number of this organization" propType="STRING">
+          <DataRef idref="UPM_SQLSource.OrganizationObject.u_trading_partner_number"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="255"/>
+        </Property>
+        <Property name="user_id_admin_contact" displayName="Administrative Contact" description="User ID of the administrative contact for this organization" propType="PROFILE" referenceString="Profile Definitions.UserObject">
+          <DataRef idref="UPM_SQLSource.OrganizationObject.u_user_id_admin_contact"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+        </Property>
+        <Property name="user_id_receiver" displayName="Receiver" description="User ID of the default person to receive products shipped from the supplier" propType="PROFILE" referenceString="Profile Definitions.UserObject">
+          <DataRef idref="UPM_SQLSource.OrganizationObject.u_user_id_receiver"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+        </Property>
+        <Property name="preferred_address" displayName="Preferred Address" description="Name of preferred address from this organization's address book" propType="STRING">
+          <DataRef idref="UPM_SQLSource.OrganizationObject.u_preferred_address"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+        </Property>
+        <Property name="address_list" displayName="Address List" description="List of addresses associated with this organization" propType="PROFILE" referenceString="Profile Definitions.Address" isMultiValued="1">
+          <DataRef idref="UPM_SQLSource.OrganizationObject.u_addresses"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="255"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+        </Property>
+        <Property name="org_catalog_set" displayName="Organization Catalog Set" description="Catalog set specific for the organization" propType="STRING" referenceString="Catalog.CustomCatalogSet">
+          <DataRef idref="UPM_SQLSource.OrganizationObject.u_org_catalog_set"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="255"/>
+        </Property>
+        <Property name="purchasing" displayName="Purchasing Group" description="User ID of purchasing manager of buying organization" propType="STRING">
+          <DataRef idref="UPM_SQLSource.OrganizationObject.u_purchasing"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="255"/>
+        </Property>
+      </Group>
+      <Group name="ProfileSystem" displayName="Profile System" description="Profile System Group">
+        <Property name="user_id_changed_by" displayName="Changed By" description="ID of the user that last changed this organization" propType="STRING">
+          <DataRef idref="UPM_SQLSource.OrganizationObject.u_user_id_changed_by"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+        </Property>
+        <Property name="date_last_changed" displayName="Date Last Changed" description="Date that this organization was last changed" propType="DATETIME" isDefaultNull="0" isReadOnly="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.OrganizationObject.dt_date_last_changed"/>
+        </Property>
+        <Property name="date_created" displayName="Date Created" description="Date that this organization was created" propType="DATETIME" isDefaultNull="0" isReadOnly="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.OrganizationObject.dt_date_created"/>
+        </Property>
+        <Property name="csadapter_date_last_changed" displayName="Adapter Date Last Changed" description="Reserved for adapter functionality" propType="DATETIME" isReadOnly="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.OrganizationObject.dt_csadapter_date_last_changed"/>
+          <Attribute name="IsRestricted" displayName="Is Property Restricted" description="Is 'Bypass Restrictions' authorization required to update this property?" value="1"/>
+        </Property>
+      </Group>
+    </Profile>
+    <Profile name="TargetingContext" displayName="Targeting Context" description="CSF Targeting Context">
+      <Property name="unique_id" displayName="Unique ID" description="Unique ID" propType="STRING" isDefaultNull="0" isRequired="1" isUpdatable="0" keyDef="PRIMARYJOIN"/>
+      <Property name="pagegroup" displayName="Page Group" description="Page Group" propType="STRING" isDefaultNull="0"/>
+      <Property name="channel" displayName="Channel" description="The current channel" propType="STRING">
+        <Attribute name="IsRestricted" displayName="Is Property Restricted" description="Indicates that this property requires an elevated priviledge level in order to perform an update." value="0"/>
+        <Attribute name="IsMappedToLdapUserAccountControl" displayName="Is Mapped To LDAP User Account Control" description="Indicates that this property maps to the userAccountControl DataMember of a LDAP DataSource." value="0"/>
+        <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+        <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="4000"/>
+      </Property>
+      <Property name="user_locale" displayName="User Locale" description="Locale of the current user" propType="STRING">
+        <Attribute name="IsRestricted" displayName="Is Property Restricted" description="Indicates that this property requires an elevated priviledge level in order to perform an update." value="0"/>
+        <Attribute name="IsMappedToLdapUserAccountControl" displayName="Is Mapped To LDAP User Account Control" description="Indicates that this property maps to the userAccountControl DataMember of a LDAP DataSource." value="0"/>
+        <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+        <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="4000"/>
+      </Property>
+      <Property name="user_ui_locale" displayName="User UI Locale" description="UI Locale of the current user" propType="STRING">
+        <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+        <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="4000"/>
+        <Attribute name="IsRestricted" displayName="Is Property Restricted" description="Indicates that this property requires an elevated priviledge level in order to perform an update." value="0"/>
+        <Attribute name="IsMappedToLdapUserAccountControl" displayName="Is Mapped To LDAP User Account Control" description="Indicates that this property maps to the userAccountControl DataMember of a LDAP DataSource." value="0"/>
+      </Property>
+    </Profile>
+    <Profile name="UserObject" displayName="User Object" description="User Object">
+      <Attribute name="KeyIndex" displayName="KeyIndex" description="Key index for encryption" value="KeyIndex"/>
+      <Group name="GeneralInfo" displayName="General Information" description="General Information Group">
+        <Property name="user_id" displayName="User ID" description="Unique ID of this user" propType="STRING" isActive="0" isDefaultNull="0" isExported="1" isRequired="1" isSearchable="1" isUpdatable="0" keyDef="PRIMARYJOIN">
+          <DataRef idref="UPM_SQLSource.UserObject.u_user_id"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="1"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+          <Attribute name="DWMemberName" displayName="Datawarehouse Member Name" description="Member name in datawarehouse" value="UserId"/>
+        </Property>
+        <Property name="ExternalId" displayName="External ID" description="External ID information associated with this user" propType="STRING" isRequired="1" isSearchable="1" keyDef="UNIQUE">
+          <DataRef idref="UPM_SQLSource.UserObject.u_external_id"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="256"/>
+        </Property>
+        <Property name="user_security_password" displayName="User Password" description="Password of this user" propType="PASSWORD" isDefaultNull="0" isRequired="1" isEncrypted="1">
+          <DataRef idref="UPM_SQLSource.UserObject.u_user_security_password"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="1"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="100"/>
+          <Attribute name="IsRestricted" displayName="Is Property Restricted" description="Is 'Bypass Restrictions' authorization required to update this property?" value="1"/>
+          <Attribute name="encryptiontype" displayName="Encryption Type" description="Type of encryption to be used on this property." value="1"/>
+        </Property>
+        <Property name="email_address" displayName="E-mail" description="Email address of this user" propType="STRING" isExported="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.UserObject.u_email_address"/>
+          <Attribute name="DWMemberName" displayName="Datawarehouse Member Name" description="Member name in datawarehouse" value="Email"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="1"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="64"/>
+        </Property>
+        <Property name="preferred_address" displayName="Preferred Address" description="Name of preferred address from this user's address book" propType="STRING">
+          <DataRef idref="UPM_SQLSource.UserObject.u_preferred_address"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+        </Property>
+        <Property name="address_list" displayName="Address List" description="List of addresses associated with this user" propType="PROFILE" referenceString="Profile Definitions.Address" isMultiValued="1">
+          <DataRef idref="UPM_SQLSource.UserObject.u_addresses"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="255"/>
+        </Property>
+        <Property name="preferred_credit_card" displayName="Preferred Credit Card" description="Name of preferred credit card from this user's credit card list" propType="STRING">
+          <DataRef idref="UPM_SQLSource.UserObject.u_preferred_credit_card"/>
+          <Attribute name="IsRestricted" displayName="Is Property Restricted" description="Is 'Bypass Restrictions' authorization required to update this property?" value="1"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+        </Property>
+        <Property name="credit_card_list" displayName="Credit Card List" description="List of credit cards associated with this user" propType="PROFILE" referenceString="Profile Definitions.CreditCard" isMultiValued="1">
+          <DataRef idref="UPM_SQLSource.UserObject.u_credit_cards"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="255"/>
+          <Attribute name="IsRestricted" displayName="Is Property Restricted" description="Is 'Bypass Restrictions' authorization required to update this property?" value="1"/>
+        </Property>
+        <Property name="user_type" displayName="User Type" description="Type of this user" propType="SITETERM" referenceString="UserSiteTerms.UserType" isExported="1">
+          <DataRef idref="UPM_SQLSource.UserObject.u_user_type"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+          <Attribute name="DWMemberName" displayName="Datawarehouse Member Name" description="Member name in datawarehouse" value="UserType"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+        </Property>
+        <Property name="last_name" displayName="Last Name" description="Last name of this user" propType="STRING" isExported="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.UserObject.u_last_name"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+          <Attribute name="DWMemberName" displayName="Datawarehouse Member Name" description="Member name in datawarehouse" value="LastName"/>
+        </Property>
+        <Property name="first_name" displayName="First Name" description="First name of this user" propType="STRING" isExported="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.UserObject.u_first_name"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+          <Attribute name="DWMemberName" displayName="Datawarehouse Member Name" description="Member name in datawarehouse" value="FirstName"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+        </Property>
+        <Property name="tel_number" displayName="Telephone Number" description="Contact telephone number of this user" propType="STRING" isExported="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.UserObject.u_tel_number"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="32"/>
+          <Attribute name="DWMemberName" displayName="Datawarehouse Member Name" description="Member name in datawarehouse" value="TelephoneNumber"/>
+        </Property>
+        <Property name="tel_extension" displayName="Telephone Extension" description="Contact telephone extension of this user" propType="STRING">
+          <DataRef idref="UPM_SQLSource.UserObject.u_tel_extension"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+        </Property>
+        <Property name="fax_number" displayName="Fax Number" description="Contact fax number of this user" propType="STRING">
+          <DataRef idref="UPM_SQLSource.UserObject.u_fax_number"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="32"/>
+        </Property>
+        <Property name="fax_extension" displayName="Fax Extension" description="Contact fax extension of this user" propType="STRING">
+          <DataRef idref="UPM_SQLSource.UserObject.u_fax_extension"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+        </Property>
+        <Property name="language" displayName="Default Language" description="Language in which this user prefers to recieve content" propType="SITETERM" referenceString="UserSiteTerms.Languages">
+          <DataRef idref="UPM_SQLSource.UserObject.u_language"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="128"/>
+        </Property>
+        <Property name="password_question" displayName="Password Question" description="The question that will be asked if you forgot your password." propType="STRING" isRequired="1">
+          <DataRef idref="UPM_SQLSource.UserObject.u_password_question"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="1"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="255"/>
+          <Attribute name="IsRestricted" displayName="Is Property Restricted" description="Is 'Bypass Restrictions' authorization required to update this property?" value="1"/>
+        </Property>
+        <Property name="password_answer" displayName="Password Answer" description="Answer to the password question specified by this user" propType="STRING" isRequired="1" isEncrypted="1">
+          <DataRef idref="UPM_SQLSource.UserObject.u_password_answer"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="1"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="255"/>
+          <Attribute name="encryptiontype" displayName="Encryption Type" description="Type of encryption to be used on this property." value="1"/>
+          <Attribute name="IsRestricted" displayName="Is Property Restricted" description="Is 'Bypass Restrictions' authorization required to update this property?" value="1"/>
+        </Property>
+        <Property name="direct_mail_opt_out" displayName="Direct-Mail Opt Out" description="Specifies the user's interest in direct mailings." propType="BOOL">
+          <DataRef idref="UPM_SQLSource.UserObject.b_direct_mail_opt_out"/>
+          <Attribute name="MinValue" displayName="Minimum Value" description="Minimum value of this property value" value="-2147483648"/>
+          <Attribute name="MaxValue" displayName="Maximum Value" description="Maximum value of this property value" value="2147483647"/>
+          <Attribute name="IsRestricted" displayName="Is Property Restricted" description="Is 'Bypass Restrictions' authorization required to update this property?" value="0"/>
+        </Property>
+        <Property name="express_checkout" displayName="Express Checkout" description="Species the user wants to use express checkout." propType="BOOL">
+          <DataRef idref="UPM_SQLSource.UserObject.b_express_checkout"/>
+          <Attribute name="MinValue" displayName="Minimum Value" description="Minimum value of this property value" value="-2147483648"/>
+          <Attribute name="IsRestricted" displayName="Is Property Restricted" description="Is 'Bypass Restrictions' authorization required to update this property?" value="0"/>
+          <Attribute name="MaxValue" displayName="Maximum Value" description="Maximum value of this property value" value="2147483647"/>
+        </Property>
+        <Property name="preferred_shipping_method" displayName="Preferred Shipping Method" description="Preferred shipping method for this user" propType="STRING">
+          <DataRef idref="UPM_SQLSource.UserObject.u_preferred_shipping_method"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="4000"/>
+          <Attribute name="IsRestricted" displayName="Is Property Restricted" description="Indicates that this property requires an elevated priviledge level in order to perform an update." value="0"/>
+          <Attribute name="IsMappedToLdapUserAccountControl" displayName="Is Mapped To LDAP User Account Control" description="Indicates that this property maps to the userAccountControl DataMember of a LDAP DataSource." value="0"/>
+        </Property>
+        <Property name="default_shopper_list" displayName="Default Shopping List" description="Default shopper list for this user" propType="STRING">
+          <DataRef idref="UPM_SQLSource.UserObject.u_default_shopper_list"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="4000"/>
+          <Attribute name="MinValue" displayName="Minimum Value" description="Minimum value of this property value" value="-2147483648"/>
+          <Attribute name="MaxValue" displayName="Maximum Value" description="Maximum value of this property value" value="2147483647"/>
+          <Attribute name="IsRestricted" displayName="Is Property Restricted" description="Indicates that this property requires an elevated priviledge level in order to perform an update." value="0"/>
+          <Attribute name="IsMappedToLdapUserAccountControl" displayName="Is Mapped To LDAP User Account Control" description="Indicates that this property maps to the userAccountControl DataMember of a LDAP DataSource." value="0"/>
+        </Property>
+				<Property name="comment" displayName="Comment" description="Comment for this user" propType="STRING">
+					<DataRef idref="UPM_SQLSource.UserObject.u_comment"/>
+					<Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+					<Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="256"/>
+					<Attribute name="IsRestricted" displayName="Is Property Restricted" description="Indicates that this property requires an elevated priviledge level in order to perform an update." value="0"/>
+					<Attribute name="IsMappedToLdapUserAccountControl" displayName="Is Mapped To LDAP User Account Control" description="Indicates that this property maps to the userAccountControl DataMember of a LDAP DataSource." value="0"/>
+				</Property>
+      </Group>
+      <Group name="AccountInfo" displayName="Account Info" description="Accounting Information Group">
+        <Property name="org_id" displayName="Organization ID" description="ID of the organization this user is associated with" propType="PROFILE" referenceString="Profile Definitions.Organization">
+          <DataRef idref="UPM_SQLSource.UserObject.u_org_id"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+        </Property>
+        <Property name="account_status" displayName="Account Status" description="Status of this user's account" propType="SITETERM" referenceString="UserSiteTerms.AccountStatus" isRequired="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.UserObject.u_account_status"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="1"/>
+        </Property>
+        <Property name="user_catalog_set" displayName="User Catalog Set" description="Catalog set specific for the user" propType="STRING" referenceString="Catalog.CustomCatalogSet" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.UserObject.u_user_catalog_set"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+        </Property>
+        <Property name="date_registered" displayName="Date Registered" description="Date and time the user registered on the site" propType="DATETIME" isExported="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.UserObject.dt_date_registered"/>
+          <Attribute name="DWMemberName" displayName="Datawarehouse Member Name" description="Member name in datawarehouse" value="DateRegistered"/>
+        </Property>
+        <Property name="access_level" displayName="Access Level" description="Active directory access level identifier for this user" propType="NUMBER">
+          <DataRef idref="UPM_SQLSource.UserObject.i_access_level_id"/>
+          <Attribute name="MinValue" displayName="Minimum Value" description="Minimum value of this property value" value="0"/>
+          <Attribute name="MaxValue" displayName="Maximum Value" description="Maximum value of this property value" value="2147483647"/>
+        </Property>
+      </Group>
+      <Group name="Advertising" displayName="Advertising Info" description="Advertising Information Group">
+        <Property name="campaign_history" displayName="Campaign History" description="Campaign history for this user" propType="STRING" isActive="0">
+          <DataRef idref="UPM_SQLSource.UserObject.u_campaign_history"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+        </Property>
+      </Group>
+      <Group name="ProfileSystem" displayName="Profile System" description="Profile System Group">
+        <Property name="date_last_changed" displayName="Date Last Changed" description="Date that this user was last changed" propType="DATETIME" isDefaultNull="0" isExported="1" isReadOnly="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.UserObject.dt_date_last_changed"/>
+          <Attribute name="DWMemberName" displayName="Datawarehouse Member Name" description="Member name in datawarehouse" value="DateLastChanged"/>
+        </Property>
+        <Property name="date_created" displayName="Date Created" description="Date that this user was created" propType="DATETIME" isDefaultNull="0" isExported="1" isReadOnly="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.UserObject.dt_date_created"/>
+          <Attribute name="DWMemberName" displayName="Datawarehouse Member Name" description="Member name in datawarehouse" value="DateCreated"/>
+        </Property>
+        <Property name="user_id_changed_by" displayName="Changed By" description="ID of the user that last changed this address" propType="STRING">
+          <DataRef idref="UPM_SQLSource.UserObject.u_user_id_changed_by"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="50"/>
+        </Property>
+        <Property name="KeyIndex" displayName="Key Index" description="Key Index for encryption" propType="NUMBER" isActive="0">
+          <DataRef idref="UPM_SQLSource.UserObject.i_keyindex"/>
+          <Attribute name="MaxValue" displayName="Maximum Value" description="Maximum value of this property value" value="2"/>
+          <Attribute name="MinValue" displayName="Minimum Value" description="Minimum value of this property value" value="1"/>
+        </Property>
+        <Property name="date_last_password_changed" displayName="Date Password Last Changed" description="Date and time when the password was last changed by the user" propType="DATETIME">
+          <DataRef idref="UPM_SQLSource.UserObject.dt_date_last_password_changed"/>
+        </Property>
+        <Property name="change_password" displayName="Change Password" description="Flag that indicates whether user's password needs to be changed" propType="BOOL">
+          <DataRef idref="UPM_SQLSource.UserObject.b_change_password"/>
+        </Property>
+        <Property name="date_last_logon" displayName="Date Last Logon" description="Date and time of the last login by this user" propType="DATETIME">
+          <DataRef idref="UPM_SQLSource.UserObject.dt_last_logon"/>
+        </Property>
+        <Property name="logon_error_dates" displayName="Logon Error Dates" description="List of dates that logon errors occured" propType="STRING" isMultiValued="1">
+          <DataRef idref="UPM_SQLSource.UserObject.u_logon_error_dates"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="255"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+        </Property>
+        <Property name="password_answer_error_dates" displayName="Password Answer Error Dates" description="List of dates that an incorrect password answer was entered." propType="STRING" isMultiValued="1">
+          <DataRef idref="UPM_SQLSource.UserObject.u_password_answer_error_dates"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="255"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+        </Property>
+        <Property name="csadapter_date_last_changed" displayName="Adapter Date Last Changed" description="Reserved for adapter functionality" propType="DATETIME" isReadOnly="1" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.UserObject.dt_csadapter_date_last_changed"/>
+          <Attribute name="IsRestricted" displayName="Is Property Restricted" description="Is 'Bypass Restrictions' authorization required to update this property?" value="1"/>
+        </Property>
+        <Property name="application_name" displayName="Application Name" description="Application name" propType="STRING">
+          <DataRef idref="UPM_SQLSource.UserObject.u_application_name"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="256"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="IsRestricted" displayName="Is Property Restricted" description="Is 'Bypass Restrictions' authorization required to update this property?" value="1"/>
+        </Property>
+        <Property name="last_activity_date" displayName="Last Activity Date" description="Last activity date" propType="DATETIME">
+          <DataRef idref="UPM_SQLSource.UserObject.dt_last_activity_date"/>
+          <Attribute name="IsRestricted" displayName="Is Property Restricted" description="Is 'Bypass Restrictions' authorization required to update this property?" value="1"/>
+        </Property>
+        <Property name="last_lockedout_date" displayName="Last Locked Out Date" description="Date that this user was last locked-out" propType="DATETIME" isSearchable="1">
+          <DataRef idref="UPM_SQLSource.UserObject.dt_last_lockedout_date"/>
+        </Property>
+        <Property name="date_address_list_last_changed" displayName="Date Address List Last Changed" description="Specifies the time that the address list was last changed." propType="DATETIME">
+          <DataRef idref="UPM_SQLSource.UserObject.dt_date_address_list_last_changed"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="4000"/>
+          <Attribute name="MinValue" displayName="Minimum Value" description="Minimum value of this property value" value="-2147483648"/>
+          <Attribute name="MaxValue" displayName="Maximum Value" description="Maximum value of this property value" value="2147483647"/>
+          <Attribute name="IsRestricted" displayName="Is Property Restricted" description="Is 'Bypass Restrictions' authorization required to update this property?" value="0"/>
+        </Property>
+        <Property name="date_credit_card_list_last_changed" displayName="Date Credit Card List Last Changed" description="Specifies the time taht the credit card list was last changed." propType="DATETIME">
+          <DataRef idref="UPM_SQLSource.UserObject.dt_date_credit_card_list_last_changed"/>
+          <Attribute name="MinLength" displayName="Minimum Length" description="Minimum length of this property value" value="0"/>
+          <Attribute name="MaxLength" displayName="Maximum Length" description="Maximum length of this property value" value="4000"/>
+          <Attribute name="MinValue" displayName="Minimum Value" description="Minimum value of this property value" value="-2147483648"/>
+          <Attribute name="MaxValue" displayName="Maximum Value" description="Maximum value of this property value" value="2147483647"/>
+          <Attribute name="IsRestricted" displayName="Is Property Restricted" description="Is 'Bypass Restrictions' authorization required to update this property?" value="0"/>
+        </Property>
+      </Group>
+    </Profile>
+    <DataSource name="UPM_SQLSource" displayName="ProfileService_SQLSource" description="Source" sourceType="OLEDB-ANSI">
+      <SourceInfo name="SQLSource" isDefault="1" connStr=""/>
+      <DataObject name="Addresses" displayName="Addresses" description="Addresses">
+        <DataMember name="u_address_id" displayName="Address ID" description="Address Identifier" memberType="STRING" isIndexed="1" isPrimaryKey="1" isRequired="1"/>
+        <DataMember name="u_address_name" displayName="Address Name" description="Name for this address" memberType="STRING" isIndexed="1" isRequired="1"/>
+        <DataMember name="i_address_type" displayName="Address Type" description="Address / Ship To Address / Bill To Address" memberType="NUMBER"/>
+        <DataMember name="u_last_name" displayName="Last Name" description="User Last Name" memberType="STRING" isIndexed="1"/>
+        <DataMember name="u_first_name" displayName="First Name" description="User First Name" memberType="STRING" isIndexed="1"/>
+        <DataMember name="u_description" displayName="Description" description="Description" memberType="STRING"/>
+        <DataMember name="u_address_line1" displayName="Address Line 1" description="First Line of Address" memberType="STRING"/>
+        <DataMember name="u_address_line2" displayName="Address Line 2" description="Second line of address" memberType="STRING"/>
+        <DataMember name="u_city" displayName="City" description="City Name" memberType="STRING"/>
+        <DataMember name="u_region_name" displayName="State/Province Name" description="State or province name" memberType="STRING"/>
+        <DataMember name="u_region_code" displayName="State/Province Code" description="State or province code" memberType="STRING"/>
+        <DataMember name="u_postal_code" displayName="Zip/Postal Code" description="Zip or postal code" memberType="STRING"/>
+        <DataMember name="u_country_name" displayName="Country/Region Name" description="Country or region name" memberType="STRING"/>
+        <DataMember name="u_country_code" displayName="Country/Region Code" description="Country ISO Code" memberType="STRING"/>
+        <DataMember name="u_tel_number" displayName="Telephone Number" description="Telephone Number at this address" memberType="STRING"/>
+        <DataMember name="u_tel_extension" displayName="Telephone Number Extension" description="Telephone Number Extension at this address" memberType="STRING"/>
+        <DataMember name="i_locale" displayName="Locale ID" description="Locale in which to render the address form." memberType="NUMBER"/>
+        <DataMember name="u_user_id_changed_by" displayName="Changed By" description="Changed By" memberType="STRING"/>
+        <DataMember name="dt_date_last_changed" displayName="Date Last Changed" description="Date Last Changed" memberType="DATETIME" isIndexed="1"/>
+        <DataMember name="dt_csadapter_date_last_changed" displayName="Adapter Date Last Changed" description="Adapter Date Last Changed" memberType="DATETIME" isIndexed="1"/>
+        <DataMember name="dt_date_created" displayName="Date Created" description="Date Created" memberType="DATETIME" isIndexed="1"/>
+      </DataObject>
+      <DataObject name="BlanketPOs" displayName="Blanket Purchase Orders" description="Blanket Purchase Orders">
+        <DataMember name="u_description" displayName="Description" description="Description" memberType="STRING" isIndexed="1"/>
+        <DataMember name="u_user_id_changed_by" displayName="Changed By" description="Changed By" memberType="STRING"/>
+        <DataMember name="dt_date_last_changed" displayName="Date Last Changed" description="Date Last Changed" memberType="DATETIME" isIndexed="1"/>
+        <DataMember name="dt_date_created" displayName="Date Created" description="Date Created" memberType="DATETIME" isIndexed="1"/>
+        <DataMember name="u_org_id" displayName="Organization ID" description="Organization ID" memberType="STRING"/>
+        <DataMember name="u_po_id" displayName="Purchase Order ID" description="GUID referring to the Blanket Purchase Order" memberType="STRING" isIndexed="1" isPrimaryKey="1" isRequired="1"/>
+        <DataMember name="u_po_number" displayName="PO Number" description="Blanket Purchase Order Number" memberType="STRING" isRequired="1"/>
+        <DataMember name="dt_csadapter_date_last_changed" displayName="Adapter Date Last Changed" description="Adapter Date Last Changed" memberType="DATETIME" isIndexed="1"/>
+      </DataObject>
+      <DataObject name="OrganizationObject" displayName="Organization Object" description="Organization Object">
+        <DataMember name="u_trading_partner_number" displayName="Trading Partner Number" description="Trading Partner Number" memberType="STRING"/>
+        <DataMember name="u_user_id_admin_contact" displayName="Administrative Contact" description="GUID for Administrative Contact" memberType="STRING"/>
+        <DataMember name="u_user_id_receiver" displayName="Receiver" description="User ID of the default person to receive products shipped from the supplier." memberType="STRING"/>
+        <DataMember name="u_org_catalog_set" displayName="Organization Datalog Set" description="Organization Catalog Set" memberType="STRING"/>
+        <DataMember name="u_user_id_changed_by" displayName="Changed By" description="Changed By" memberType="STRING"/>
+        <DataMember name="u_purchasing" displayName="Purchasing Group" description="Purchasing group." memberType="STRING"/>
+        <DataMember name="dt_date_last_changed" displayName="Date Last Changed" description="Date Last Changed" memberType="DATETIME" isIndexed="1"/>
+        <DataMember name="dt_csadapter_date_last_changed" displayName="Adapter Date Last Changed" description="Adapter date Last Changed" memberType="DATETIME" isIndexed="1"/>
+        <DataMember name="dt_date_created" displayName="Date Created" description="Date Created" memberType="DATETIME" isIndexed="1"/>
+        <DataMember name="u_preferred_address" displayName="Preferred Address" description="Name of preferred address" memberType="STRING"/>
+        <DataMember name="u_addresses" displayName="Addresses" description="Address List" memberType="STRING"/>
+        <DataMember name="u_org_id" displayName="Organization ID" description="Organization ID" memberType="STRING" isIndexed="1" isRequired="1"/>
+        <DataMember name="u_Name" displayName="Name" description="Name" memberType="STRING" isIndexed="1" isPrimaryKey="1" isRequired="1"/>
+      </DataObject>
+      <DataObject name="UserObject" displayName="User Object" description="User Object">
+        <DataMember name="u_password_question" displayName="Password question" description="The question that will be asked if you forgot your password" memberType="STRING"/>
+        <DataMember name="u_logon_error_dates" displayName="Logon Error Dates" description="List of dates that logon errors occurred." memberType="STRING" isMultiValued="1"/>
+        <DataMember name="b_change_password" displayName="Change Password" description="Flag to force user to change password" memberType="BOOL"/>
+        <DataMember name="dt_date_last_password_changed" displayName="Date Password Last Changed" description="Timestamp that marks when the password was last changed" memberType="DATETIME"/>
+        <DataMember name="dt_last_logon" displayName="Last Logon" description="Timestamp of last logon" memberType="DATETIME"/>
+        <DataMember name="u_application_name" displayName="Application Name" description="Application Name" memberType="STRING"/>
+        <DataMember name="dt_last_activity_date" displayName="Last Activity Date" description="Last Activity Date" memberType="DATETIME"/>
+        <DataMember name="u_org_id" displayName="Organization ID" description="Organization ID" memberType="STRING"/>
+        <DataMember name="u_Pref5" displayName="Custom Property 5" description="Custom Property 5 for Schema Extension" memberType="STRING"/>
+        <DataMember name="u_password_answer" displayName="Password Answer" description="Enter your answer to the password question." memberType="STRING"/>
+        <DataMember name="i_keyindex" displayName="Key Index" description="Key Index for encryption" memberType="NUMBER"/>
+        <DataMember name="i_access_level_id" displayName="Access Level ID" description="Access Level Identifier for AD Access level" memberType="NUMBER"/>
+        <DataMember name="u_password_answer_error_dates" displayName="Password Answer Error Dates" description="List of dates that a bad password answer was entered." memberType="STRING" isMultiValued="1"/>
+        <DataMember name="dt_last_lockedout_date" displayName="Last Locked Out Date" description="Date that this user was last locked-out" memberType="DATETIME"/>
+        <DataMember name="u_user_id" displayName="User ID" description="User ID" memberType="STRING" isIndexed="1" isPrimaryKey="1" isRequired="1"/>
+        <DataMember name="u_user_type" displayName="User Type" description="User Type" memberType="STRING"/>
+        <DataMember name="u_last_name" displayName="User Last Name" description="Name Desc" memberType="STRING" isIndexed="1"/>
+        <DataMember name="u_first_name" displayName="User First Name" description="Name Desc" memberType="STRING" isIndexed="1"/>
+        <DataMember name="u_email_address" displayName="Email Address" description="Email Address" memberType="STRING" isIndexed="1" isRequired="1"/>
+        <DataMember name="u_preferred_address" displayName="Preferred Address" description="Name of preferred address" memberType="STRING"/>
+        <DataMember name="u_addresses" displayName="Addresses" description="Address List" memberType="STRING" isMultiValued="1"/>
+        <DataMember name="u_preferred_credit_card" displayName="Preferred Credit Card" description="Name of preferred credit card" memberType="STRING"/>
+        <DataMember name="u_credit_cards" displayName="Credit Cards" description="Credit Card List" memberType="STRING" isMultiValued="1"/>
+        <DataMember name="u_tel_number" displayName="Telephone Number" description="Telephone Number" memberType="STRING"/>
+        <DataMember name="u_tel_extension" displayName="Telephone Extension" description="Telephone Extension" memberType="STRING"/>
+        <DataMember name="u_fax_number" displayName="Fax Number" description="Fax Number" memberType="STRING"/>
+        <DataMember name="u_fax_extension" displayName="Fax Extension" description="Fax Extension" memberType="STRING"/>
+        <DataMember name="u_user_security_password" displayName="Password" description="Password" memberType="STRING"/>
+        <DataMember name="u_user_id_changed_by" displayName="Changed By" description="Changed By" memberType="STRING"/>
+        <DataMember name="u_account_status" displayName="Account Status" description="Account Status" memberType="STRING"/>
+        <DataMember name="u_user_catalog_set" displayName="User Catalog Set" description="User Catalog Set" memberType="STRING"/>
+        <DataMember name="dt_date_registered" displayName="Date Created" description="Date Created" memberType="DATETIME"/>
+        <DataMember name="u_campaign_history" displayName="Campaign History" description="Campaign History" memberType="STRING"/>
+        <DataMember name="dt_date_last_changed" displayName="Date Last Changed" description="Date Last Changed" memberType="DATETIME" isIndexed="1"/>
+        <DataMember name="dt_csadapter_date_last_changed" displayName="Adapter Date Last Changed" description="Adapter date Last Changed" memberType="DATETIME" isIndexed="1"/>
+        <DataMember name="dt_date_created" displayName="Date Created" description="Date Created" memberType="DATETIME" isIndexed="1"/>
+        <DataMember name="u_language" displayName="Language" description="The users language preference" memberType="STRING"/>
+        <DataMember name="u_Pref1" displayName="Custom Property 1" description="Custom Property 1 for Schema Extension" memberType="STRING"/>
+        <DataMember name="u_Pref2" displayName="Custom Property 2" description="Custom Property 2 for Schema Extension" memberType="STRING"/>
+        <DataMember name="u_Pref3" displayName="Custom Property 3" description="Custom Property 3 for Schema Extension" memberType="STRING"/>
+        <DataMember name="u_Pref4" displayName="Custom Property 4" description="Custom Property 4 for Schema Extension" memberType="STRING"/>
+        <DataMember name="dt_date_address_list_last_changed" displayName="Date Address list Last Changed" memberType="DATETIME"/>
+        <DataMember name="dt_date_credit_card_list_last_changed" displayName="Date Credit Card list Last Changed" memberType="DATETIME"/>
+        <DataMember name="b_direct_mail_opt_out" displayName="Direct Mail Opt Out" memberType="BOOL"/>
+        <DataMember name="b_express_checkout" displayName="Express Checkout" memberType="BOOL"/>
+        <DataMember name="u_preferred_shipping_method" displayName="u_preferred_shipping_method" description="The users preferred shipping method." memberType="STRING"/>
+				<DataMember name="u_default_shopper_list" displayName="u_default_shopper_list" description="Default shopper list for this user" memberType="STRING"/>
+				<DataMember name="u_external_id" displayName="u_external_id" description="External ID for this user" memberType="STRING" isIndexed="1" isRequired="1"/>
+				<DataMember name="u_comment" displayName="Comment" description="Comment for this user" memberType="STRING"/>
+      </DataObject>
+      <DataObject name="CreditCards" displayName="Credit Cards">
+        <DataMember name="u_payment_group_id" displayName="Payment Group ID" description="ID of an orders system payment group." memberType="STRING" isRequired="1"/>
+        <DataMember name="u_last_4_digits" displayName="Last Four Digits" description="Last four digits of this credit card account number" memberType="STRING" isRequired="1"/>
+        <DataMember name="i_keyindex" displayName="Key Index" description="Key Index for encryption" memberType="NUMBER"/>
+        <DataMember name="u_user_id_changed_by" displayName="Changed By" description="Changed By" memberType="STRING"/>
+        <DataMember name="dt_date_last_changed" displayName="Date Last Changed" description="Date Last Changed" memberType="DATETIME" isIndexed="1"/>
+        <DataMember name="dt_csadapter_date_last_changed" displayName="Adapter Date Last Changed" description="Adapter Date Last Changed" memberType="DATETIME" isIndexed="1"/>
+        <DataMember name="dt_date_created" displayName="Date Created" description="Date Created" memberType="DATETIME" isIndexed="1"/>
+        <DataMember name="i_expiration_month" displayName="i_expiration_month" description="The month that the credit card expires" memberType="NUMBER" isRequired="1"/>
+        <DataMember name="i_expiration_year" displayName="i_expiration_year" description="The year that the credit card expires" memberType="NUMBER" isRequired="1"/>
+        <DataMember name="u_id" displayName="Credit Card ID" description="Credit card identifier" memberType="STRING" isIndexed="1" isPrimaryKey="1" isRequired="1"/>
+        <DataMember name="u_cc_number" displayName="Account Number" description="Account number of this credit card" memberType="STRING" isRequired="1"/>
+        <DataMember name="u_billing_address" displayName="Billing Address" description="Billing address associated with this credit card" memberType="STRING" isMultiValued="1" isRequired="1"/>
+      </DataObject>
+      <DataObject name="Currency" displayName="Currency" description="Currency Conversion Table">
+        <DataMember name="u_currency_code" displayName="Currency Code" memberType="STRING" isIndexed="1" isPrimaryKey="1" isRequired="1"/>
+        <DataMember name="u_currency_culture" displayName="Currency Culture" memberType="STRING" isRequired="1"/>
+        <DataMember name="d_conversion_factor" displayName="Conversion Factor" memberType="NUMBER" isRequired="1"/>
+        <DataMember name="u_user_id_changed_by" displayName="Changed By" description="Changed By" memberType="STRING"/>
+        <DataMember name="dt_date_last_changed" displayName="Date Last Changed" description="Date Last Changed" memberType="DATETIME" isIndexed="1"/>
+        <DataMember name="dt_csadapter_date_last_changed" displayName="Adapter Date Last Changed" description="Adapter Date Last Changed" memberType="DATETIME" isIndexed="1"/>
+        <DataMember name="dt_date_created" displayName="Date Created" description="Date Created" memberType="DATETIME" isIndexed="1"/>
+      </DataObject>
+    </DataSource>
+  </Catalog>
+  <Catalog name="Site Terms" displayName="Site Terms" version="1">
+    <Profile name="MSCommerce" displayName="Site Terms" description="Site Terms for Commerce Server" isProfile="0">
+      <Group name="UserSiteTerms" displayName="User Site Terms">
+        <Property name="AccountStatus" displayName="Account Status" description="Account Class" propType="STRING" isDefaultNull="0" isExported="1" isRequired="1" isSearchable="1">
+          <Attribute name="2" displayName="Requires Approval" description="RequiresApproval"/>
+          <Attribute name="1" displayName="Active Account" description="Active"/>
+          <Attribute name="0" displayName="Inactive Account" description="Inactive"/>
+        </Property>
+        <Property name="UserRole" displayName="User Role" description="User Role" propType="STRING" isDefaultNull="0" isExported="1" isRequired="1" isSearchable="1">
+          <Attribute name="1" displayName="Normal User" description="Normal"/>
+          <Attribute name="2" displayName="Administrator" description="Administrator"/>
+        </Property>
+        <Property name="UserType" displayName="User Type" description="User Type" propType="STRING" isDefaultNull="0" isExported="1" isRequired="1" isSearchable="1">
+          <Attribute name="0" displayName="Guest User" description="Guest"/>
+          <Attribute name="1" displayName="Registered User" description="Registered"/>
+        </Property>
+        <Property name="Languages" displayName="Languages" propType="STRING">
+          <Attribute name="fr-LU" displayName="French - Luxembourg" description="0x140C"/>
+          <Attribute name="fr-MC" displayName="French - Monaco" description="0x180C"/>
+          <Attribute name="fr-CH" displayName="French - Switzerland" description="0x100C"/>
+          <Attribute name="gl" displayName="Galician" description="0x0056"/>
+          <Attribute name="gl-ES" displayName="Galician - Spain" description="0x0456"/>
+          <Attribute name="ka" displayName="Georgian" description="0x0037"/>
+          <Attribute name="ka-GE" displayName="Georgian - Georgia" description="0x0437"/>
+          <Attribute name="de" displayName="German" description="0x0007"/>
+          <Attribute name="de-AT" displayName="German - Austria" description="0x0C07"/>
+          <Attribute name="sk" displayName="Slovak" description="0x001B"/>
+          <Attribute name="sk-SK" displayName="Slovak - Slovakia" description="0x041B"/>
+          <Attribute name="sl" displayName="Slovenian" description="0x0024"/>
+          <Attribute name="sl-SI" displayName="Slovenian - Slovenia" description="0x0424"/>
+          <Attribute name="es" displayName="Spanish" description="0x000A"/>
+          <Attribute name="es-AR" displayName="Spanish - Argentina" description="0x2C0A"/>
+          <Attribute name="es-BO" displayName="Spanish - Bolivia" description="0x400A"/>
+          <Attribute name="es-CL" displayName="Spanish - Chile" description="0x340A"/>
+          <Attribute name="es-CO" displayName="Spanish - Colombia" description="0x240A"/>
+          <Attribute name="es-CR" displayName="Spanish - Costa Rica" description="0x140A"/>
+          <Attribute name="es-DO" displayName="Spanish - Dominican Republic" description="0x1C0A"/>
+          <Attribute name="es-EC" displayName="Spanish - Ecuador" description="0x300A"/>
+          <Attribute name="es-SV" displayName="Spanish - El Salvador" description="0x440A"/>
+          <Attribute name="es-GT" displayName="Spanish - Guatemala" description="0x100A"/>
+          <Attribute name="es-HN" displayName="Spanish - Honduras" description="0x480A"/>
+          <Attribute name="es-MX" displayName="Spanish - Mexico" description="0x080A"/>
+          <Attribute name="es-NI" displayName="Spanish - Nicaragua" description="0x4C0A"/>
+          <Attribute name="es-PA" displayName="Spanish - Panama" description="0x180A"/>
+          <Attribute name="es-PY" displayName="Spanish - Paraguay" description="0x3C0A"/>
+          <Attribute name="es-PE" displayName="Spanish - Peru" description="0x280A"/>
+          <Attribute name="es-PR" displayName="Spanish - Puerto Rico" description="0x500A"/>
+          <Attribute name="es-ES" displayName="Spanish - Spain" description="0x0C0A"/>
+          <Attribute name="es-UY" displayName="Spanish - Uruguay" description="0x380A"/>
+          <Attribute name="es-VE" displayName="Spanish - Venezuela" description="0x200A"/>
+          <Attribute name="sw" displayName="Swahili" description="0x0041"/>
+          <Attribute name="sw-KE" displayName="Swahili - Kenya" description="0x0441"/>
+          <Attribute name="sv" displayName="Swedish" description="0x001D"/>
+          <Attribute name="sv-FI" displayName="Swedish - Finland" description="0x081D"/>
+          <Attribute name="sv-SE" displayName="Swedish - Sweden" description="0x041D"/>
+          <Attribute name="syr" displayName="Syriac" description="0x005A"/>
+          <Attribute name="syr-SY" displayName="Syriac - Syria" description="0x045A"/>
+          <Attribute name="ta" displayName="Tamil" description="0x0049"/>
+          <Attribute name="ta-IN" displayName="Tamil - India" description="0x0449"/>
+          <Attribute name="tt" displayName="Tatar" description="0x0044"/>
+          <Attribute name="tt-RU" displayName="Tatar - Russia" description="0x0444"/>
+          <Attribute name="te" displayName="Telugu" description="0x004A"/>
+          <Attribute name="te-IN" displayName="Telugu - India" description="0x044A"/>
+          <Attribute name="th" displayName="Thai" description="0x001E"/>
+          <Attribute name="th-TH" displayName="Thai - Thailand" description="0x041E"/>
+          <Attribute name="tr" displayName="Turkish" description="0x001F"/>
+          <Attribute name="tr-TR" displayName="Turkish - Turkey" description="0x041F"/>
+          <Attribute name="de-DE" displayName="German - Germany" description="0x0407"/>
+          <Attribute name="uk" displayName="Ukrainian" description="0x0022"/>
+          <Attribute name="da-DK" displayName="Danish - Denmark" description="0x0406"/>
+          <Attribute name="de-LI" displayName="German - Liechtenstein" description="0x1407"/>
+          <Attribute name="de-LU" displayName="German - Luxembourg" description="0x1007"/>
+          <Attribute name="de-CH" displayName="German - Switzerland" description="0x0807"/>
+          <Attribute name="el" displayName="Greek" description="0x0008"/>
+          <Attribute name="el-GR" displayName="Greek - Greece" description="0x0408"/>
+          <Attribute name="gu" displayName="Gujarati" description="0x0047"/>
+          <Attribute name="gu-IN" displayName="Gujarati - India" description="0x0447"/>
+          <Attribute name="he" displayName="Hebrew" description="0x000D"/>
+          <Attribute name="he-IL" displayName="Hebrew - Israel" description="0x040D"/>
+          <Attribute name="hi" displayName="Hindi" description="0x0039"/>
+          <Attribute name="hi-IN" displayName="Hindi - India" description="0x0439"/>
+          <Attribute name="hu" displayName="Hungarian" description="0x000E"/>
+          <Attribute name="hu-HU" displayName="Hungarian - Hungary" description="0x040E"/>
+          <Attribute name="is" displayName="Icelandic" description="0x000F"/>
+          <Attribute name="is-IS" displayName="Icelandic - Iceland" description="0x040F"/>
+          <Attribute name="id" displayName="Indonesian" description="0x0021"/>
+          <Attribute name="id-ID" displayName="Indonesian - Indonesia" description="0x0421"/>
+          <Attribute name="it" displayName="Italian" description="0x0010"/>
+          <Attribute name="it-IT" displayName="Italian - Italy" description="0x0410"/>
+          <Attribute name="it-CH" displayName="Italian - Switzerland" description="0x0810"/>
+          <Attribute name="ja" displayName="Japanese" description="0x0011"/>
+          <Attribute name="ja-JP" displayName="Japanese - Japan" description="0x0411"/>
+          <Attribute name="kn" displayName="Kannada" description="0x004B"/>
+          <Attribute name="kn-IN" displayName="Kannada - India" description="0x044B"/>
+          <Attribute name="kk" displayName="Kazakh" description="0x003F"/>
+          <Attribute name="kk-KZ" displayName="Kazakh - Kazakhstan" description="0x043F"/>
+          <Attribute name="kok" displayName="Konkani" description="0x0057"/>
+          <Attribute name="kok-IN" displayName="Konkani - India" description="0x0457"/>
+          <Attribute name="ko" displayName="Korean" description="0x0012"/>
+          <Attribute name="ko-KR" displayName="Korean - Korea" description="0x0412"/>
+          <Attribute name="ky" displayName="Kyrgyz" description="0x0040"/>
+          <Attribute name="ky-KG" displayName="Kyrgyz - Kyrgyzstan" description="0x0440"/>
+          <Attribute name="lv" displayName="Latvian" description="0x0026"/>
+          <Attribute name="lv-LV" displayName="Latvian - Latvia" description="0x0426"/>
+          <Attribute name="lt" displayName="Lithuanian" description="0x0027"/>
+          <Attribute name="lt-LT" displayName="Lithuanian - Lithuania" description="0x0427"/>
+          <Attribute name="mk" displayName="Macedonian" description="0x002F"/>
+          <Attribute name="mk-MK" displayName="Macedonian - FYROM" description="0x042F"/>
+          <Attribute name="ms" displayName="Malay" description="0x003E"/>
+          <Attribute name="ms-BN" displayName="Malay - Brunei" description="0x083E"/>
+          <Attribute name="ms-MY" displayName="Malay - Malaysia" description="0x043E"/>
+          <Attribute name="uk-UA" displayName="Ukrainian - Ukraine" description="0x0422"/>
+          <Attribute name="ur" displayName="Urdu" description="0x0020"/>
+          <Attribute name="ur-PK" displayName="Urdu - Pakistan" description="0x0420"/>
+          <Attribute name="uz" displayName="Uzbek" description="0x0043"/>
+          <Attribute name="Cy-uz-UZ" displayName="Uzbek Cyrillic - Uzbekistan" description="0x0843"/>
+          <Attribute name="Lt-uz-UZ" displayName="Uzbek Latin - Uzbekistan" description="0x0443"/>
+          <Attribute name="vi" displayName="Vietnamese" description="0x002A"/>
+          <Attribute name="vi-VN" displayName="Vietnamese - Vietnam" description="0x042A"/>
+          <Attribute name="zh-CN" displayName="Chinese - China" description="0x0804"/>
+          <Attribute name="zh-HK" displayName="Chinese - Hong Kong SAR" description="0x0C04"/>
+          <Attribute name="zh-MO" displayName="Chinese - Macau SAR" description="0x1404"/>
+          <Attribute name="zh-SG" displayName="Chinese - Singapore" description="0x1004"/>
+          <Attribute name="tw" displayName="Taiwan" description="0x0404"/>
+          <Attribute name="zh-CHS" displayName="Chinese Simplified" description="0x0004"/>
+          <Attribute name="zh-CHT" displayName="Chinese Traditional" description="0x7C04"/>
+          <Attribute name="hr" displayName="Croatian" description="0x001A"/>
+          <Attribute name="hr-HR" displayName="Croatian - Croatia" description="0x041A"/>
+          <Attribute name="cs" displayName="Czech" description="0x0005"/>
+          <Attribute name="cs-CZ" displayName="Czech - Czech Republic" description="0x0405"/>
+          <Attribute name="mr" displayName="Marathi" description="0x004E"/>
+          <Attribute name="mr-IN" displayName="Marathi - India" description="0x044E"/>
+          <Attribute name="mn" displayName="Mongolian" description="0x0050"/>
+          <Attribute name="mn-MN" displayName="Mongolian - Mongolia" description="0x0450"/>
+          <Attribute name="no" displayName="Norwegian" description="0x0014"/>
+          <Attribute name="nb-NO" displayName="Norwegian Bokml - Norway" description="0x0414"/>
+          <Attribute name="nn-NO" displayName="Norwegian Nynorsk - Norway" description="0x0814"/>
+          <Attribute name="pl" displayName="Polish" description="0x0015"/>
+          <Attribute name="pl-PL" displayName="Polish - Poland" description="0x0415"/>
+          <Attribute name="pt" displayName="Portuguese" description="0x0016"/>
+          <Attribute name="pt-BR" displayName="Portuguese - Brazil" description="0x0416"/>
+          <Attribute name="pt-PT" displayName="Portuguese - Portugal" description="0x0816"/>
+          <Attribute name="pa" displayName="Punjabi" description="0x0046"/>
+          <Attribute name="pa-IN" displayName="Punjabi - India" description="0x0446"/>
+          <Attribute name="ro" displayName="Romanian" description="0x0018"/>
+          <Attribute name="ro-RO" displayName="Romanian - Romania" description="0x0418"/>
+          <Attribute name="ru" displayName="Russian" description="0x0019"/>
+          <Attribute name="ru-RU" displayName="Russian - Russia" description="0x0419"/>
+          <Attribute name="sa" displayName="Sanskrit" description="0x004F"/>
+          <Attribute name="sa-IN" displayName="Sanskrit - India" description="0x044F"/>
+          <Attribute name="Cy-sr-SP" displayName="Serbian Cyrillic - Serbia" description="0x0C1A"/>
+          <Attribute name="ca" displayName="Catalan" description="0x0003"/>
+          <Attribute name="Lt-sr-SP" displayName="Serbian Latin - Serbia" description="0x081A"/>
+          <Attribute name="div" displayName="Dhivehi" description="0x0065"/>
+          <Attribute name="da" displayName="Danish" description="0x0006"/>
+          <Attribute name="af" displayName="Afrikaans" description="0x0036"/>
+          <Attribute name="af-ZA" displayName="Afrikaans - South Africa" description="0x0436"/>
+          <Attribute name="sq" displayName="Albanian" description="0x001C"/>
+          <Attribute name="sq-AL" displayName="Albanian - Albania" description="0x041C"/>
+          <Attribute name="ar" displayName="Arabic" description="0x0001"/>
+          <Attribute name="ar-DZ" displayName="Arabic - Algeria" description="0x1401"/>
+          <Attribute name="ar-BH" displayName="Arabic - Bahrain" description="0x3C01"/>
+          <Attribute name="ar-EG" displayName="Arabic - Egypt" description="0x0C01"/>
+          <Attribute name="ar-IQ" displayName="Arabic - Iraq" description="0x0801"/>
+          <Attribute name="ar-JO" displayName="Arabic - Jordan" description="0x2C01"/>
+          <Attribute name="ar-KW" displayName="Arabic - Kuwait" description="0x3401"/>
+          <Attribute name="ar-LB" displayName="Arabic - Lebanon" description="0x3001"/>
+          <Attribute name="ar-LY" displayName="Arabic - Libya" description="0x1001"/>
+          <Attribute name="ar-MA" displayName="Arabic - Morocco" description="0x1801"/>
+          <Attribute name="ar-OM" displayName="Arabic - Oman" description="0x2001"/>
+          <Attribute name="ar-QA" displayName="Arabic - Qatar" description="0x4001"/>
+          <Attribute name="ar-SA" displayName="Arabic - Saudi Arabia" description="0x0401"/>
+          <Attribute name="ar-SY" displayName="Arabic - Syria" description="0x2801"/>
+          <Attribute name="ar-TN" displayName="Arabic - Tunisia" description="0x1C01"/>
+          <Attribute name="ar-AE" displayName="Arabic - United Arab Emirates" description="0x3801"/>
+          <Attribute name="ar-YE" displayName="Arabic - Yemen" description="0x2401"/>
+          <Attribute name="hy" displayName="Armenian" description="0x002B"/>
+          <Attribute name="hy-AM" displayName="Armenian - Armenia" description="0x042B"/>
+          <Attribute name="az" displayName="Azeri" description="0x002C"/>
+          <Attribute name="Cy-az-AZ" displayName="Azeri Cyrillic - Azerbaijan" description="0x082C"/>
+          <Attribute name="Lt-az-AZ" displayName="Azeri Latin - Azerbaijan" description="0x042C"/>
+          <Attribute name="eu" displayName="Basque (Basque)" description="0x002D"/>
+          <Attribute name="be" displayName="Belarusian" description="0x0023"/>
+          <Attribute name="be-BY" displayName="Belarusian - Belarus" description="0x0423"/>
+          <Attribute name="bg" displayName="Bulgarian" description="0x0002"/>
+          <Attribute name="bg-BG" displayName="Bulgarian - Bulgaria" description="0x0402"/>
+          <Attribute name="ca-ES" displayName="Catalan - Spain" description="0x0403"/>
+          <Attribute name="div-MV" displayName="Dhivehi - Maldives" description="0x0465"/>
+          <Attribute name="nl" displayName="Dutch" description="0x0013"/>
+          <Attribute name="nl-BE" displayName="Dutch - Belgium" description="0x0813"/>
+          <Attribute name="nl-NL" displayName="Dutch - The Netherlands" description="0x0413"/>
+          <Attribute name="en" displayName="English" description="0x0009"/>
+          <Attribute name="en-AU" displayName="English - Australia" description="0x0C09"/>
+          <Attribute name="en-BZ" displayName="English - Belize" description="0x2809"/>
+          <Attribute name="en-CA" displayName="English - Canada" description="0x1009"/>
+          <Attribute name="en-CB" displayName="English - Caribbean" description="0x2409"/>
+          <Attribute name="en-IE" displayName="English - Ireland" description="0x1809"/>
+          <Attribute name="en-JM" displayName="English - Jamaica" description="0x2009"/>
+          <Attribute name="en-NZ" displayName="English - New Zealand" description="0x1409"/>
+          <Attribute name="en-PH" displayName="English - Philippines" description="0x3409"/>
+          <Attribute name="en-ZA" displayName="English - South Africa" description="0x1C09"/>
+          <Attribute name="en-TT" displayName="English - Trinidad and Tobago" description="0x2C09"/>
+          <Attribute name="en-GB" displayName="English - United Kingdom" description="0x0809"/>
+          <Attribute name="en-US" displayName="English - United States" description="0x0409"/>
+          <Attribute name="en-ZW" displayName="English - Zimbabwe" description="0x3009"/>
+          <Attribute name="et" displayName="Estonian" description="0x0025"/>
+          <Attribute name="et-EE" displayName="Estonian - Estonia" description="0x0425"/>
+          <Attribute name="fo" displayName="Faroese" description="0x0038"/>
+          <Attribute name="fo-FO" displayName="Faroese - Faroe Islands" description="0x0438"/>
+          <Attribute name="fa" displayName="Farsi" description="0x0029"/>
+          <Attribute name="fa-IR" displayName="Farsi - Iran" description="0x0429"/>
+          <Attribute name="fi" displayName="Finnish" description="0x000B"/>
+          <Attribute name="fi-FI" displayName="Finnish - Finland" description="0x040B"/>
+          <Attribute name="fr" displayName="French" description="0x000C"/>
+          <Attribute name="fr-BE" displayName="French - Belgium" description="0x080C"/>
+          <Attribute name="fr-CA" displayName="French - Canada" description="0x0C0C"/>
+          <Attribute name="fr-FR" displayName="French - France" description="0x040C"/>
+        </Property>
+      </Group>
+      <Group name="Region" displayName="Region Site Terms">
+        <Property name="Region_en_US" displayName="Region en-US" description="Service Region" propType="STRING" isDefaultNull="0" isExported="1" isRequired="1" isSearchable="1">
+          <Attribute name="ST" displayName="SAO TOME AND PRINCIPE" description="SAO TOME AND PRINCIPE"/>
+          <Attribute name="SA" displayName="SAUDI ARABIA" description="SAUDI ARABIA"/>
+          <Attribute name="GU" displayName="GUAM" description="GUAM"/>
+          <Attribute name="HR" displayName="CROATIA" description="CROATIA"/>
+          <Attribute name="GT" displayName="GUATEMALA" description="GUATEMALA"/>
+          <Attribute name="GN" displayName="GUINEA" description="GUINEA"/>
+          <Attribute name="GY" displayName="GUYANA" description="GUYANA"/>
+          <Attribute name="HT" displayName="HAITI" description="HAITI"/>
+          <Attribute name="HM" displayName="HEARD ISLAND AND MCDONALD ISLANDS" description="HEARD ISLAND AND MCDONALD ISLANDS"/>
+          <Attribute name="HN" displayName="HONDURAS" description="HONDURAS"/>
+          <Attribute name="HK" displayName="HONG KONG" description="HONG KONG"/>
+          <Attribute name="HU" displayName="HUNGARY" description="HUNGARY"/>
+          <Attribute name="IS" displayName="ICELAND" description="ICELAND"/>
+          <Attribute name="IN" displayName="INDIA" description="INDIA"/>
+          <Attribute name="ID" displayName="INDONESIA" description="INDONESIA"/>
+          <Attribute name="IQ" displayName="IRAQ" description="IRAQ"/>
+          <Attribute name="IE" displayName="IRELAND" description="IRELAND"/>
+          <Attribute name="IL" displayName="ISRAEL" description="ISRAEL"/>
+          <Attribute name="IT" displayName="ITALY" description="ITALY"/>
+          <Attribute name="JM" displayName="JAMAICA" description="JAMAICA"/>
+          <Attribute name="JP" displayName="JAPAN" description="JAPAN"/>
+          <Attribute name="JO" displayName="JORDAN" description="JORDAN"/>
+          <Attribute name="ZA" displayName="SOUTH AFRICA" description="SOUTH AFRICA"/>
+          <Attribute name="GS" displayName="SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS" description="SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS"/>
+          <Attribute name="LB" displayName="LEBANON" description="LEBANON"/>
+          <Attribute name="LS" displayName="LESOTHO" description="LESOTHO"/>
+          <Attribute name="LR" displayName="LIBERIA" description="LIBERIA"/>
+          <Attribute name="LY" displayName="LIBYAN ARAB JAMAHIRIYA" description="LIBYAN ARAB JAMAHIRIYA"/>
+          <Attribute name="LI" displayName="LIECHTENSTEIN" description="LIECHTENSTEIN"/>
+          <Attribute name="LT" displayName="LITHUANIA" description="LITHUANIA"/>
+          <Attribute name="LU" displayName="LUXEMBOURG" description="LUXEMBOURG"/>
+          <Attribute name="MO" displayName="MACAO" description="MACAO"/>
+          <Attribute name="MG" displayName="MADAGASCAR" description="MADAGASCAR"/>
+          <Attribute name="MW" displayName="MALAWI" description="MALAWI"/>
+          <Attribute name="MY" displayName="MALAYSIA" description="MALAYSIA"/>
+          <Attribute name="MV" displayName="MALDIVES" description="MALDIVES"/>
+          <Attribute name="ML" displayName="MALI" description="MALI"/>
+          <Attribute name="MT" displayName="MALTA" description="MALTA"/>
+          <Attribute name="MH" displayName="MARSHALL ISLANDS" description="MARSHALL ISLANDS"/>
+          <Attribute name="MQ" displayName="MARTINIQUE" description="MARTINIQUE"/>
+          <Attribute name="NO" displayName="NORWAY" description="NORWAY"/>
+          <Attribute name="CX" displayName="CHRISTMAS ISLAND" description="CHRISTMAS ISLAND"/>
+          <Attribute name="MR" displayName="MAURITANIA" description="MAURITANIA"/>
+          <Attribute name="MU" displayName="MAURITIUS" description="MAURITIUS"/>
+          <Attribute name="YT" displayName="MAYOTTE" description="MAYOTTE"/>
+          <Attribute name="MX" displayName="MEXICO" description="MEXICO"/>
+          <Attribute name="MC" displayName="MONACO" description="MONACO"/>
+          <Attribute name="CU" displayName="CUBA" description="CUBA"/>
+          <Attribute name="UZ" displayName="UZBEKISTAN" description="UZBEKISTAN"/>
+          <Attribute name="AF" displayName="AFGHANISTAN" description="AFGHANISTAN"/>
+          <Attribute name="AL" displayName="ALBANIA" description="ALBANIA"/>
+          <Attribute name="DZ" displayName="ALGERIA" description="ALGERIA"/>
+          <Attribute name="AS" displayName="AMERICAN SAMOA" description="AMERICAN SAMOA"/>
+          <Attribute name="AD" displayName="ANDORRA" description="ANDORRA"/>
+          <Attribute name="AO" displayName="ANGOLA" description="ANGOLA"/>
+          <Attribute name="AI" displayName="ANGUILLA" description="ANGUILLA"/>
+          <Attribute name="AQ" displayName="ANTARCTICA" description="ANTARCTICA"/>
+          <Attribute name="AG" displayName="ANTIGUA AND BARBUDA" description="ANTIGUA AND BARBUDA"/>
+          <Attribute name="AR" displayName="ARGENTINA" description="ARGENTINA"/>
+          <Attribute name="AM" displayName="ARMENIA" description="ARMENIA"/>
+          <Attribute name="AW" displayName="ARUBA" description="ARUBA"/>
+          <Attribute name="AU" displayName="AUSTRALIA" description="AUSTRALIA"/>
+          <Attribute name="SD" displayName="SUDAN" description="SUDAN"/>
+          <Attribute name="FK" displayName="FALKLAND ISLANDS (MALVINAS)" description="FALKLAND ISLANDS (MALVINAS)"/>
+          <Attribute name="SO" displayName="SOMALIA" description="SOMALIA"/>
+          <Attribute name="NZ" displayName="NEW ZEALAND" description="NEW ZEALAND"/>
+          <Attribute name="KZ" displayName="KAZAKHSTAN" description="KAZAKHSTAN"/>
+          <Attribute name="KE" displayName="KENYA" description="KENYA"/>
+          <Attribute name="KI" displayName="KIRIBATI" description="KIRIBATI"/>
+          <Attribute name="ES" displayName="SPAIN" description="SPAIN"/>
+          <Attribute name="UG" displayName="UGANDA" description="UGANDA"/>
+          <Attribute name="UA" displayName="UKRAINE" description="UKRAINE"/>
+          <Attribute name="AE" displayName="UNITED ARAB EMIRATES" description="UNITED ARAB EMIRATES"/>
+          <Attribute name="GB" displayName="UNITED KINGDOM" description="UNITED KINGDOM"/>
+          <Attribute name="US" displayName="UNITED STATES" description="UNITED STATES"/>
+          <Attribute name="UM" displayName="UNITED STATES MINOR OUTLYING ISLANDS" description="UNITED STATES MINOR OUTLYING ISLANDS"/>
+          <Attribute name="UY" displayName="URUGUAY" description="URUGUAY"/>
+          <Attribute name="DM" displayName="DOMINICA" description="DOMINICA"/>
+          <Attribute name="DO" displayName="DOMINICAN REPUBLIC" description="DOMINICAN REPUBLIC"/>
+          <Attribute name="EC" displayName="ECUADOR" description="ECUADOR"/>
+          <Attribute name="EG" displayName="EGYPT" description="EGYPT"/>
+          <Attribute name="SV" displayName="EL SALVADOR" description="EL SALVADOR"/>
+          <Attribute name="GQ" displayName="EQUATORIAL GUINEA" description="EQUATORIAL GUINEA"/>
+          <Attribute name="ER" displayName="ERITREA" description="ERITREA"/>
+          <Attribute name="EE" displayName="ESTONIA" description="ESTONIA"/>
+          <Attribute name="MN" displayName="MONGOLIA" description="MONGOLIA"/>
+          <Attribute name="VU" displayName="VANUATU" description="VANUATU"/>
+          <Attribute name="VE" displayName="VENEZUELA" description="VENEZUELA"/>
+          <Attribute name="VN" displayName="VIET NAM" description="VIET NAM"/>
+          <Attribute name="WF" displayName="WALLIS AND FUTUNA" description="WALLIS AND FUTUNA"/>
+          <Attribute name="YE" displayName="YEMEN" description="YEMEN"/>
+          <Attribute name="ZM" displayName="ZAMBIA" description="ZAMBIA"/>
+          <Attribute name="ZW" displayName="ZIMBABWE" description="ZIMBABWE"/>
+          <Attribute name="CC" displayName="COCOS (KEELING) ISLANDS" description="COCOS (KEELING) ISLANDS"/>
+          <Attribute name="GW" displayName="GUINEA-BISSAU" description="GUINEA-BISSAU"/>
+          <Attribute name="IR" displayName="IRAN, ISLAMIC REPUBLIC OF" description="IRAN, ISLAMIC REPUBLIC OF"/>
+          <Attribute name="KP" displayName="KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF" description="KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF"/>
+          <Attribute name="KR" displayName="KOREA, REPUBLIC OF" description="KOREA, REPUBLIC OF"/>
+          <Attribute name="MK" displayName="MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF" description="MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF"/>
+          <Attribute name="MD" displayName="MOLDOVA, REPUBLIC OF" description="MOLDOVA, REPUBLIC OF"/>
+          <Attribute name="TZ" displayName="TANZANIA, UNITED REPUBLIC OF" description="TANZANIA, UNITED REPUBLIC OF"/>
+          <Attribute name="TL" displayName="TIMOR-LESTE" description="TIMOR-LESTE"/>
+          <Attribute name="VG" displayName="VIRGIN ISLANDS, BRITISH" description="VIRGIN ISLANDS, BRITISH"/>
+          <Attribute name="VI" displayName="VIRGIN ISLANDS, U.S." description="VIRGIN ISLANDS, U.S."/>
+          <Attribute name="PS" displayName="PALESTINIAN AUTHORITY" description="PALESTINIAN AUTHORITY"/>
+          <Attribute name="FM" displayName="MICRONESIA, FEDERATED STATES OF" description="MICRONESIA, FEDERATED STATES OF"/>
+          <Attribute name="CO" displayName="COLOMBIA" description="COLOMBIA"/>
+          <Attribute name="KM" displayName="COMOROS" description="COMOROS"/>
+          <Attribute name="CG" displayName="CONGO" description="CONGO"/>
+          <Attribute name="CK" displayName="COOK ISLANDS" description="COOK ISLANDS"/>
+          <Attribute name="CR" displayName="COSTA RICA" description="COSTA RICA"/>
+          <Attribute name="MS" displayName="MONTSERRAT" description="MONTSERRAT"/>
+          <Attribute name="MA" displayName="MOROCCO" description="MOROCCO"/>
+          <Attribute name="MZ" displayName="MOZAMBIQUE" description="MOZAMBIQUE"/>
+          <Attribute name="MM" displayName="MYANMAR" description="MYANMAR"/>
+          <Attribute name="NA" displayName="NAMIBIA" description="NAMIBIA"/>
+          <Attribute name="NR" displayName="NAURU" description="NAURU"/>
+          <Attribute name="NP" displayName="NEPAL" description="NEPAL"/>
+          <Attribute name="NL" displayName="NETHERLANDS" description="NETHERLANDS"/>
+          <Attribute name="AN" displayName="NETHERLANDS ANTILLES" description="NETHERLANDS ANTILLES"/>
+          <Attribute name="NC" displayName="NEW CALEDONIA" description="NEW CALEDONIA"/>
+          <Attribute name="FO" displayName="FAROE ISLANDS" description="FAROE ISLANDS"/>
+          <Attribute name="FJ" displayName="FIJI" description="FIJI"/>
+          <Attribute name="FI" displayName="FINLAND" description="FINLAND"/>
+          <Attribute name="FR" displayName="FRANCE" description="FRANCE"/>
+          <Attribute name="OM" displayName="OMAN" description="OMAN"/>
+          <Attribute name="PK" displayName="PAKISTAN" description="PAKISTAN"/>
+          <Attribute name="PW" displayName="PALAU" description="PALAU"/>
+          <Attribute name="PA" displayName="PANAMA" description="PANAMA"/>
+          <Attribute name="PG" displayName="PAPUA NEW GUINEA" description="PAPUA NEW GUINEA"/>
+          <Attribute name="PY" displayName="PARAGUAY" description="PARAGUAY"/>
+          <Attribute name="PE" displayName="PERU" description="PERU"/>
+          <Attribute name="PH" displayName="PHILIPPINES" description="PHILIPPINES"/>
+          <Attribute name="PN" displayName="PITCAIRN" description="PITCAIRN"/>
+          <Attribute name="PL" displayName="POLAND" description="POLAND"/>
+          <Attribute name="PT" displayName="PORTUGAL" description="PORTUGAL"/>
+          <Attribute name="PR" displayName="PUERTO RICO" description="PUERTO RICO"/>
+          <Attribute name="QA" displayName="QATAR" description="QATAR"/>
+          <Attribute name="CD" displayName="CONGO, THE DEMOCRATIC REPUBLIC OF THE" description="CONGO, THE DEMOCRATIC REPUBLIC OF THE"/>
+          <Attribute name="RO" displayName="ROMANIA" description="ROMANIA"/>
+          <Attribute name="RU" displayName="RUSSIAN FEDERATION" description="RUSSIAN FEDERATION"/>
+          <Attribute name="RW" displayName="RWANDA" description="RWANDA"/>
+          <Attribute name="SH" displayName="SAINT HELENA" description="SAINT HELENA"/>
+          <Attribute name="KN" displayName="SAINT KITTS AND NEVIS" description="SAINT KITTS AND NEVIS"/>
+          <Attribute name="LC" displayName="SAINT LUCIA" description="SAINT LUCIA"/>
+          <Attribute name="PM" displayName="SAINT PIERRE AND MIQUELON" description="SAINT PIERRE AND MIQUELON"/>
+          <Attribute name="VC" displayName="SAINT VINCENT AND THE GRENADINES" description="SAINT VINCENT AND THE GRENADINES"/>
+          <Attribute name="KW" displayName="KUWAIT" description="KUWAIT"/>
+          <Attribute name="KG" displayName="KYRGYZSTAN" description="KYRGYZSTAN"/>
+          <Attribute name="LA" displayName="LAO PEOPLE'S DEMOCRATIC REPUBLIC" description="LAO PEOPLE'S DEMOCRATIC REPUBLIC"/>
+          <Attribute name="WS" displayName="SAMOA" description="SAMOA"/>
+          <Attribute name="NI" displayName="NICARAGUA" description="NICARAGUA"/>
+          <Attribute name="NE" displayName="NIGER" description="NIGER"/>
+          <Attribute name="NG" displayName="NIGERIA" description="NIGERIA"/>
+          <Attribute name="NU" displayName="NIUE" description="NIUE"/>
+          <Attribute name="NF" displayName="NORFOLK ISLAND" description="NORFOLK ISLAND"/>
+          <Attribute name="MP" displayName="NORTHERN MARIANA ISLANDS" description="NORTHERN MARIANA ISLANDS"/>
+          <Attribute name="GF" displayName="FRENCH GUIANA" description="FRENCH GUIANA"/>
+          <Attribute name="PF" displayName="FRENCH POLYNESIA" description="FRENCH POLYNESIA"/>
+          <Attribute name="TF" displayName="FRENCH SOUTHERN TERRITORIES" description="FRENCH SOUTHERN TERRITORIES"/>
+          <Attribute name="GA" displayName="GABON" description="GABON"/>
+          <Attribute name="GM" displayName="GAMBIA" description="GAMBIA"/>
+          <Attribute name="GE" displayName="GEORGIA" description="GEORGIA"/>
+          <Attribute name="DE" displayName="GERMANY" description="GERMANY"/>
+          <Attribute name="GH" displayName="GHANA" description="GHANA"/>
+          <Attribute name="GI" displayName="GIBRALTAR" description="GIBRALTAR"/>
+          <Attribute name="GR" displayName="GREECE" description="GREECE"/>
+          <Attribute name="GL" displayName="GREENLAND" description="GREENLAND"/>
+          <Attribute name="GD" displayName="GRENADA" description="GRENADA"/>
+          <Attribute name="CY" displayName="CYPRUS" description="CYPRUS"/>
+          <Attribute name="CZ" displayName="CZECH REPUBLIC" description="CZECH REPUBLIC"/>
+          <Attribute name="DK" displayName="DENMARK" description="DENMARK"/>
+          <Attribute name="DJ" displayName="DJIBOUTI" description="DJIBOUTI"/>
+          <Attribute name="AT" displayName="AUSTRIA" description="AUSTRIA"/>
+          <Attribute name="AZ" displayName="AZERBAIJAN" description="AZERBAIJAN"/>
+          <Attribute name="BS" displayName="BAHAMAS" description="BAHAMAS"/>
+          <Attribute name="BH" displayName="BAHRAIN" description="BAHRAIN"/>
+          <Attribute name="BD" displayName="BANGLADESH" description="BANGLADESH"/>
+          <Attribute name="BB" displayName="BARBADOS" description="BARBADOS"/>
+          <Attribute name="BY" displayName="BELARUS" description="BELARUS"/>
+          <Attribute name="BE" displayName="BELGIUM" description="BELGIUM"/>
+          <Attribute name="BZ" displayName="BELIZE" description="BELIZE"/>
+          <Attribute name="BJ" displayName="BENIN" description="BENIN"/>
+          <Attribute name="BM" displayName="BERMUDA" description="BERMUDA"/>
+          <Attribute name="BT" displayName="BHUTAN" description="BHUTAN"/>
+          <Attribute name="BO" displayName="BOLIVIA" description="BOLIVIA"/>
+          <Attribute name="BA" displayName="BOSNIA AND HERZEGOVINA" description="BOSNIA AND HERZEGOVINA"/>
+          <Attribute name="BW" displayName="BOTSWANA" description="BOTSWANA"/>
+          <Attribute name="BV" displayName="BOUVET ISLAND" description="BOUVET ISLAND"/>
+          <Attribute name="BR" displayName="BRAZIL" description="BRAZIL"/>
+          <Attribute name="IO" displayName="BRITISH INDIAN OCEAN TERRITORY" description="BRITISH INDIAN OCEAN TERRITORY"/>
+          <Attribute name="LV" displayName="LATVIA" description="LATVIA"/>
+          <Attribute name="VA" displayName="HOLY SEE (VATICAN CITY STATE)" description="HOLY SEE (VATICAN CITY STATE)"/>
+          <Attribute name="BN" displayName="BRUNEI DARUSSALAM" description="BRUNEI DARUSSALAM"/>
+          <Attribute name="LK" displayName="SRI LANKA" description="SRI LANKA"/>
+          <Attribute name="SN" displayName="SENEGAL" description="SENEGAL"/>
+          <Attribute name="GP" displayName="GUADELOUPE" description="GUADELOUPE"/>
+          <Attribute name="ET" displayName="ETHIOPIA" description="ETHIOPIA"/>
+          <Attribute name="YU" displayName="SERBIA AND MONTENEGRO" description="SERBIA AND MONTENEGRO"/>
+          <Attribute name="SC" displayName="SEYCHELLES" description="SEYCHELLES"/>
+          <Attribute name="SL" displayName="SIERRA LEONE" description="SIERRA LEONE"/>
+          <Attribute name="SG" displayName="SINGAPORE" description="SINGAPORE"/>
+          <Attribute name="SK" displayName="SLOVAKIA" description="SLOVAKIA"/>
+          <Attribute name="SI" displayName="SLOVENIA" description="SLOVENIA"/>
+          <Attribute name="SB" displayName="SOLOMON ISLANDS" description="SOLOMON ISLANDS"/>
+          <Attribute name="SR" displayName="SURINAME" description="SURINAME"/>
+          <Attribute name="SJ" displayName="SVALBARD AND JAN MAYEN" description="SVALBARD AND JAN MAYEN"/>
+          <Attribute name="SZ" displayName="SWAZILAND" description="SWAZILAND"/>
+          <Attribute name="SE" displayName="SWEDEN" description="SWEDEN"/>
+          <Attribute name="CH" displayName="SWITZERLAND" description="SWITZERLAND"/>
+          <Attribute name="SY" displayName="SYRIAN ARAB REPUBLIC" description="SYRIAN ARAB REPUBLIC"/>
+          <Attribute name="TJ" displayName="TAJIKISTAN" description="TAJIKISTAN"/>
+          <Attribute name="TH" displayName="THAILAND" description="THAILAND"/>
+          <Attribute name="TO" displayName="TONGA" description="TONGA"/>
+          <Attribute name="TT" displayName="TRINIDAD AND TOBAGO" description="TRINIDAD AND TOBAGO"/>
+          <Attribute name="TN" displayName="TUNISIA" description="TUNISIA"/>
+          <Attribute name="TR" displayName="TURKEY" description="TURKEY"/>
+          <Attribute name="TM" displayName="TURKMENISTAN" description="TURKMENISTAN"/>
+          <Attribute name="TC" displayName="TURKS AND CAICOS ISLANDS" description="TURKS AND CAICOS ISLANDS"/>
+          <Attribute name="TV" displayName="TUVALU" description="TUVALU"/>
+          <Attribute name="BG" displayName="BULGARIA" description="BULGARIA"/>
+          <Attribute name="BF" displayName="BURKINA FASO" description="BURKINA FASO"/>
+          <Attribute name="BI" displayName="BURUNDI" description="BURUNDI"/>
+          <Attribute name="KH" displayName="CAMBODIA" description="CAMBODIA"/>
+          <Attribute name="CM" displayName="CAMEROON" description="CAMEROON"/>
+          <Attribute name="CA" displayName="CANADA" description="CANADA"/>
+          <Attribute name="CV" displayName="CAPE VERDE" description="CAPE VERDE"/>
+          <Attribute name="KY" displayName="CAYMAN ISLANDS" description="CAYMAN ISLANDS"/>
+          <Attribute name="CF" displayName="CENTRAL AFRICAN REPUBLIC" description="CENTRAL AFRICAN REPUBLIC"/>
+          <Attribute name="TD" displayName="CHAD" description="CHAD"/>
+          <Attribute name="CL" displayName="CHILE" description="CHILE"/>
+          <Attribute name="CN" displayName="CHINA" description="CHINA"/>
+          <Attribute name="SM" displayName="SAN MARINO" description="SAN MARINO"/>
+        </Property>
+        <Property name="Region_fr_CA" displayName="Region fr-CA" description="Service Region" propType="STRING" isDefaultNull="0" isExported="1" isRequired="1" isSearchable="1">
+          <Attribute name="AS" displayName="AMERICAN SAMOA" description="AMERICAN SAMOA"/>
+          <Attribute name="AD" displayName="ANDORRA" description="ANDORRA"/>
+          <Attribute name="AO" displayName="ANGOLA" description="ANGOLA"/>
+          <Attribute name="AI" displayName="ANGUILLA" description="ANGUILLA"/>
+          <Attribute name="AQ" displayName="ANTARCTICA" description="ANTARCTICA"/>
+          <Attribute name="AG" displayName="ANTIGUA AND BARBUDA" description="ANTIGUA AND BARBUDA"/>
+          <Attribute name="AR" displayName="ARGENTINA" description="ARGENTINA"/>
+          <Attribute name="AM" displayName="ARMENIA" description="ARMENIA"/>
+          <Attribute name="NL" displayName="NETHERLANDS" description="NETHERLANDS"/>
+          <Attribute name="AN" displayName="NETHERLANDS ANTILLES" description="NETHERLANDS ANTILLES"/>
+          <Attribute name="NC" displayName="NEW CALEDONIA" description="NEW CALEDONIA"/>
+          <Attribute name="FO" displayName="FAROE ISLANDS" description="FAROE ISLANDS"/>
+          <Attribute name="FJ" displayName="FIJI" description="FIJI"/>
+          <Attribute name="FI" displayName="FINLAND" description="FINLAND"/>
+          <Attribute name="FR" displayName="FRANCE" description="FRANCE"/>
+          <Attribute name="OM" displayName="OMAN" description="OMAN"/>
+          <Attribute name="PK" displayName="PAKISTAN" description="PAKISTAN"/>
+          <Attribute name="PW" displayName="PALAU" description="PALAU"/>
+          <Attribute name="PA" displayName="PANAMA" description="PANAMA"/>
+          <Attribute name="PG" displayName="PAPUA NEW GUINEA" description="PAPUA NEW GUINEA"/>
+          <Attribute name="PY" displayName="PARAGUAY" description="PARAGUAY"/>
+          <Attribute name="PE" displayName="PERU" description="PERU"/>
+          <Attribute name="PH" displayName="PHILIPPINES" description="PHILIPPINES"/>
+          <Attribute name="PN" displayName="PITCAIRN" description="PITCAIRN"/>
+          <Attribute name="PL" displayName="POLAND" description="POLAND"/>
+          <Attribute name="AW" displayName="ARUBA" description="ARUBA"/>
+          <Attribute name="AU" displayName="AUSTRALIA" description="AUSTRALIA"/>
+          <Attribute name="SD" displayName="SUDAN" description="SUDAN"/>
+          <Attribute name="FK" displayName="FALKLAND ISLANDS (MALVINAS)" description="FALKLAND ISLANDS (MALVINAS)"/>
+          <Attribute name="CG" displayName="CONGO" description="CONGO"/>
+          <Attribute name="CK" displayName="COOK ISLANDS" description="COOK ISLANDS"/>
+          <Attribute name="CR" displayName="COSTA RICA" description="COSTA RICA"/>
+          <Attribute name="HR" displayName="CROATIA" description="CROATIA"/>
+          <Attribute name="CU" displayName="CUBA" description="CUBA"/>
+          <Attribute name="CY" displayName="CYPRUS" description="CYPRUS"/>
+          <Attribute name="ID" displayName="INDONESIA" description="INDONESIA"/>
+          <Attribute name="MX" displayName="MEXICO" description="MEXICO"/>
+          <Attribute name="MC" displayName="MONACO" description="MONACO"/>
+          <Attribute name="MN" displayName="MONGOLIA" description="MONGOLIA"/>
+          <Attribute name="MS" displayName="MONTSERRAT" description="MONTSERRAT"/>
+          <Attribute name="MA" displayName="MOROCCO" description="MOROCCO"/>
+          <Attribute name="MZ" displayName="MOZAMBIQUE" description="MOZAMBIQUE"/>
+          <Attribute name="CC" displayName="COCOS (KEELING) ISLANDS" description="COCOS (KEELING) ISLANDS"/>
+          <Attribute name="NP" displayName="NEPAL" description="NEPAL"/>
+          <Attribute name="CZ" displayName="CZECH REPUBLIC" description="CZECH REPUBLIC"/>
+          <Attribute name="DK" displayName="DENMARK" description="DENMARK"/>
+          <Attribute name="DJ" displayName="DJIBOUTI" description="DJIBOUTI"/>
+          <Attribute name="AT" displayName="AUSTRIA" description="AUSTRIA"/>
+          <Attribute name="AZ" displayName="AZERBAIJAN" description="AZERBAIJAN"/>
+          <Attribute name="BS" displayName="BAHAMAS" description="BAHAMAS"/>
+          <Attribute name="BH" displayName="BAHRAIN" description="BAHRAIN"/>
+          <Attribute name="BD" displayName="BANGLADESH" description="BANGLADESH"/>
+          <Attribute name="BB" displayName="BARBADOS" description="BARBADOS"/>
+          <Attribute name="BY" displayName="BELARUS" description="BELARUS"/>
+          <Attribute name="BE" displayName="BELGIUM" description="BELGIUM"/>
+          <Attribute name="BZ" displayName="BELIZE" description="BELIZE"/>
+          <Attribute name="BJ" displayName="BENIN" description="BENIN"/>
+          <Attribute name="BM" displayName="BERMUDA" description="BERMUDA"/>
+          <Attribute name="BT" displayName="BHUTAN" description="BHUTAN"/>
+          <Attribute name="BO" displayName="BOLIVIA" description="BOLIVIA"/>
+          <Attribute name="BA" displayName="BOSNIA AND HERZEGOVINA" description="BOSNIA AND HERZEGOVINA"/>
+          <Attribute name="BW" displayName="BOTSWANA" description="BOTSWANA"/>
+          <Attribute name="BV" displayName="BOUVET ISLAND" description="BOUVET ISLAND"/>
+          <Attribute name="BR" displayName="BRAZIL" description="BRAZIL"/>
+          <Attribute name="IO" displayName="BRITISH INDIAN OCEAN TERRITORY" description="BRITISH INDIAN OCEAN TERRITORY"/>
+          <Attribute name="LV" displayName="LATVIA" description="LATVIA"/>
+          <Attribute name="NO" displayName="NORWAY" description="NORWAY"/>
+          <Attribute name="ES" displayName="SPAIN" description="SPAIN"/>
+          <Attribute name="UG" displayName="UGANDA" description="UGANDA"/>
+          <Attribute name="UA" displayName="UKRAINE" description="UKRAINE"/>
+          <Attribute name="AE" displayName="UNITED ARAB EMIRATES" description="UNITED ARAB EMIRATES"/>
+          <Attribute name="GB" displayName="UNITED KINGDOM" description="UNITED KINGDOM"/>
+          <Attribute name="SO" displayName="SOMALIA" description="SOMALIA"/>
+          <Attribute name="NZ" displayName="NEW ZEALAND" description="NEW ZEALAND"/>
+          <Attribute name="KZ" displayName="KAZAKHSTAN" description="KAZAKHSTAN"/>
+          <Attribute name="KE" displayName="KENYA" description="KENYA"/>
+          <Attribute name="KI" displayName="KIRIBATI" description="KIRIBATI"/>
+          <Attribute name="KW" displayName="KUWAIT" description="KUWAIT"/>
+          <Attribute name="KG" displayName="KYRGYZSTAN" description="KYRGYZSTAN"/>
+          <Attribute name="SZ" displayName="SWAZILAND" description="SWAZILAND"/>
+          <Attribute name="SE" displayName="SWEDEN" description="SWEDEN"/>
+          <Attribute name="CH" displayName="SWITZERLAND" description="SWITZERLAND"/>
+          <Attribute name="SY" displayName="SYRIAN ARAB REPUBLIC" description="SYRIAN ARAB REPUBLIC"/>
+          <Attribute name="TJ" displayName="TAJIKISTAN" description="TAJIKISTAN"/>
+          <Attribute name="TH" displayName="THAILAND" description="THAILAND"/>
+          <Attribute name="TO" displayName="TONGA" description="TONGA"/>
+          <Attribute name="GW" displayName="GUINEA-BISSAU" description="GUINEA-BISSAU"/>
+          <Attribute name="YU" displayName="SERBIA AND MONTENEGRO" description="SERBIA AND MONTENEGRO"/>
+          <Attribute name="SC" displayName="SEYCHELLES" description="SEYCHELLES"/>
+          <Attribute name="SL" displayName="SIERRA LEONE" description="SIERRA LEONE"/>
+          <Attribute name="SG" displayName="SINGAPORE" description="SINGAPORE"/>
+          <Attribute name="SK" displayName="SLOVAKIA" description="SLOVAKIA"/>
+          <Attribute name="LI" displayName="LIECHTENSTEIN" description="LIECHTENSTEIN"/>
+          <Attribute name="LT" displayName="LITHUANIA" description="LITHUANIA"/>
+          <Attribute name="LU" displayName="LUXEMBOURG" description="LUXEMBOURG"/>
+          <Attribute name="MO" displayName="MACAO" description="MACAO"/>
+          <Attribute name="IR" displayName="IRAN, ISLAMIC REPUBLIC OF" description="IRAN, ISLAMIC REPUBLIC OF"/>
+          <Attribute name="KP" displayName="KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF" description="KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF"/>
+          <Attribute name="KR" displayName="KOREA, REPUBLIC OF" description="KOREA, REPUBLIC OF"/>
+          <Attribute name="MK" displayName="MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF" description="MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF"/>
+          <Attribute name="TT" displayName="TRINIDAD AND TOBAGO" description="TRINIDAD AND TOBAGO"/>
+          <Attribute name="MG" displayName="MADAGASCAR" description="MADAGASCAR"/>
+          <Attribute name="KM" displayName="COMOROS" description="COMOROS"/>
+          <Attribute name="US" displayName="UNITED STATES" description="UNITED STATES"/>
+          <Attribute name="IE" displayName="IRELAND" description="IRELAND"/>
+          <Attribute name="IL" displayName="ISRAEL" description="ISRAEL"/>
+          <Attribute name="IT" displayName="ITALY" description="ITALY"/>
+          <Attribute name="JM" displayName="JAMAICA" description="JAMAICA"/>
+          <Attribute name="JP" displayName="JAPAN" description="JAPAN"/>
+          <Attribute name="JO" displayName="JORDAN" description="JORDAN"/>
+          <Attribute name="ZA" displayName="SOUTH AFRICA" description="SOUTH AFRICA"/>
+          <Attribute name="GS" displayName="SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS" description="SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS"/>
+          <Attribute name="LB" displayName="LEBANON" description="LEBANON"/>
+          <Attribute name="LS" displayName="LESOTHO" description="LESOTHO"/>
+          <Attribute name="LR" displayName="LIBERIA" description="LIBERIA"/>
+          <Attribute name="TN" displayName="TUNISIA" description="TUNISIA"/>
+          <Attribute name="TR" displayName="TURKEY" description="TURKEY"/>
+          <Attribute name="TM" displayName="TURKMENISTAN" description="TURKMENISTAN"/>
+          <Attribute name="TC" displayName="TURKS AND CAICOS ISLANDS" description="TURKS AND CAICOS ISLANDS"/>
+          <Attribute name="TV" displayName="TUVALU" description="TUVALU"/>
+          <Attribute name="BG" displayName="BULGARIA" description="BULGARIA"/>
+          <Attribute name="BF" displayName="BURKINA FASO" description="BURKINA FASO"/>
+          <Attribute name="BI" displayName="BURUNDI" description="BURUNDI"/>
+          <Attribute name="KH" displayName="CAMBODIA" description="CAMBODIA"/>
+          <Attribute name="CM" displayName="CAMEROON" description="CAMEROON"/>
+          <Attribute name="CA" displayName="CANADA" description="CANADA"/>
+          <Attribute name="CV" displayName="CAPE VERDE" description="CAPE VERDE"/>
+          <Attribute name="KY" displayName="CAYMAN ISLANDS" description="CAYMAN ISLANDS"/>
+          <Attribute name="CF" displayName="CENTRAL AFRICAN REPUBLIC" description="CENTRAL AFRICAN REPUBLIC"/>
+          <Attribute name="TD" displayName="CHAD" description="CHAD"/>
+          <Attribute name="CL" displayName="CHILE" description="CHILE"/>
+          <Attribute name="CN" displayName="CHINA" description="CHINA"/>
+          <Attribute name="CX" displayName="CHRISTMAS ISLAND" description="CHRISTMAS ISLAND"/>
+          <Attribute name="CO" displayName="COLOMBIA" description="COLOMBIA"/>
+          <Attribute name="SJ" displayName="SVALBARD AND JAN MAYEN" description="SVALBARD AND JAN MAYEN"/>
+          <Attribute name="MM" displayName="MYANMAR" description="MYANMAR"/>
+          <Attribute name="UZ" displayName="UZBEKISTAN" description="UZBEKISTAN"/>
+          <Attribute name="LY" displayName="LIBYAN ARAB JAMAHIRIYA" description="LIBYAN ARAB JAMAHIRIYA"/>
+          <Attribute name="PT" displayName="PORTUGAL" description="PORTUGAL"/>
+          <Attribute name="PR" displayName="PUERTO RICO" description="PUERTO RICO"/>
+          <Attribute name="QA" displayName="QATAR" description="QATAR"/>
+          <Attribute name="CD" displayName="CONGO, THE DEMOCRATIC REPUBLIC OF THE" description="CONGO, THE DEMOCRATIC REPUBLIC OF THE"/>
+          <Attribute name="RO" displayName="ROMANIA" description="ROMANIA"/>
+          <Attribute name="RU" displayName="RUSSIAN FEDERATION" description="RUSSIAN FEDERATION"/>
+          <Attribute name="RW" displayName="RWANDA" description="RWANDA"/>
+          <Attribute name="SH" displayName="SAINT HELENA" description="SAINT HELENA"/>
+          <Attribute name="KN" displayName="SAINT KITTS AND NEVIS" description="SAINT KITTS AND NEVIS"/>
+          <Attribute name="LC" displayName="SAINT LUCIA" description="SAINT LUCIA"/>
+          <Attribute name="PM" displayName="SAINT PIERRE AND MIQUELON" description="SAINT PIERRE AND MIQUELON"/>
+          <Attribute name="VC" displayName="SAINT VINCENT AND THE GRENADINES" description="SAINT VINCENT AND THE GRENADINES"/>
+          <Attribute name="WS" displayName="SAMOA" description="SAMOA"/>
+          <Attribute name="SM" displayName="SAN MARINO" description="SAN MARINO"/>
+          <Attribute name="ST" displayName="SAO TOME AND PRINCIPE" description="SAO TOME AND PRINCIPE"/>
+          <Attribute name="SA" displayName="SAUDI ARABIA" description="SAUDI ARABIA"/>
+          <Attribute name="NI" displayName="NICARAGUA" description="NICARAGUA"/>
+          <Attribute name="SN" displayName="SENEGAL" description="SENEGAL"/>
+          <Attribute name="NE" displayName="NIGER" description="NIGER"/>
+          <Attribute name="NG" displayName="NIGERIA" description="NIGERIA"/>
+          <Attribute name="NU" displayName="NIUE" description="NIUE"/>
+          <Attribute name="NF" displayName="NORFOLK ISLAND" description="NORFOLK ISLAND"/>
+          <Attribute name="MP" displayName="NORTHERN MARIANA ISLANDS" description="NORTHERN MARIANA ISLANDS"/>
+          <Attribute name="GF" displayName="FRENCH GUIANA" description="FRENCH GUIANA"/>
+          <Attribute name="PF" displayName="FRENCH POLYNESIA" description="FRENCH POLYNESIA"/>
+          <Attribute name="TF" displayName="FRENCH SOUTHERN TERRITORIES" description="FRENCH SOUTHERN TERRITORIES"/>
+          <Attribute name="GA" displayName="GABON" description="GABON"/>
+          <Attribute name="GM" displayName="GAMBIA" description="GAMBIA"/>
+          <Attribute name="GE" displayName="GEORGIA" description="GEORGIA"/>
+          <Attribute name="DE" displayName="GERMANY" description="GERMANY"/>
+          <Attribute name="GH" displayName="GHANA" description="GHANA"/>
+          <Attribute name="GI" displayName="GIBRALTAR" description="GIBRALTAR"/>
+          <Attribute name="GR" displayName="GREECE" description="GREECE"/>
+          <Attribute name="GL" displayName="GREENLAND" description="GREENLAND"/>
+          <Attribute name="GD" displayName="GRENADA" description="GRENADA"/>
+          <Attribute name="GP" displayName="GUADELOUPE" description="GUADELOUPE"/>
+          <Attribute name="GU" displayName="GUAM" description="GUAM"/>
+          <Attribute name="GT" displayName="GUATEMALA" description="GUATEMALA"/>
+          <Attribute name="UM" displayName="UNITED STATES MINOR OUTLYING ISLANDS" description="UNITED STATES MINOR OUTLYING ISLANDS"/>
+          <Attribute name="UY" displayName="URUGUAY" description="URUGUAY"/>
+          <Attribute name="DM" displayName="DOMINICA" description="DOMINICA"/>
+          <Attribute name="DO" displayName="DOMINICAN REPUBLIC" description="DOMINICAN REPUBLIC"/>
+          <Attribute name="EC" displayName="ECUADOR" description="ECUADOR"/>
+          <Attribute name="EG" displayName="EGYPT" description="EGYPT"/>
+          <Attribute name="SV" displayName="EL SALVADOR" description="EL SALVADOR"/>
+          <Attribute name="GQ" displayName="EQUATORIAL GUINEA" description="EQUATORIAL GUINEA"/>
+          <Attribute name="ER" displayName="ERITREA" description="ERITREA"/>
+          <Attribute name="EE" displayName="ESTONIA" description="ESTONIA"/>
+          <Attribute name="ET" displayName="ETHIOPIA" description="ETHIOPIA"/>
+          <Attribute name="VU" displayName="VANUATU" description="VANUATU"/>
+          <Attribute name="VE" displayName="VENEZUELA" description="VENEZUELA"/>
+          <Attribute name="VN" displayName="VIET NAM" description="VIET NAM"/>
+          <Attribute name="WF" displayName="WALLIS AND FUTUNA" description="WALLIS AND FUTUNA"/>
+          <Attribute name="YE" displayName="YEMEN" description="YEMEN"/>
+          <Attribute name="ZM" displayName="ZAMBIA" description="ZAMBIA"/>
+          <Attribute name="ZW" displayName="ZIMBABWE" description="ZIMBABWE"/>
+          <Attribute name="MD" displayName="MOLDOVA, REPUBLIC OF" description="MOLDOVA, REPUBLIC OF"/>
+          <Attribute name="TZ" displayName="TANZANIA, UNITED REPUBLIC OF" description="TANZANIA, UNITED REPUBLIC OF"/>
+          <Attribute name="TL" displayName="TIMOR-LESTE" description="TIMOR-LESTE"/>
+          <Attribute name="VG" displayName="VIRGIN ISLANDS, BRITISH" description="VIRGIN ISLANDS, BRITISH"/>
+          <Attribute name="VI" displayName="VIRGIN ISLANDS, U.S." description="VIRGIN ISLANDS, U.S."/>
+          <Attribute name="PS" displayName="PALESTINIAN AUTHORITY" description="PALESTINIAN AUTHORITY"/>
+          <Attribute name="FM" displayName="MICRONESIA, FEDERATED STATES OF" description="MICRONESIA, FEDERATED STATES OF"/>
+          <Attribute name="LA" displayName="LAO PEOPLE'S DEMOCRATIC REPUBLIC" description="LAO PEOPLE'S DEMOCRATIC REPUBLIC"/>
+          <Attribute name="VA" displayName="HOLY SEE (VATICAN CITY STATE)" description="HOLY SEE (VATICAN CITY STATE)"/>
+          <Attribute name="BN" displayName="BRUNEI DARUSSALAM" description="BRUNEI DARUSSALAM"/>
+          <Attribute name="LK" displayName="SRI LANKA" description="SRI LANKA"/>
+          <Attribute name="IQ" displayName="IRAQ" description="IRAQ"/>
+          <Attribute name="GN" displayName="GUINEA" description="GUINEA"/>
+          <Attribute name="GY" displayName="GUYANA" description="GUYANA"/>
+          <Attribute name="HT" displayName="HAITI" description="HAITI"/>
+          <Attribute name="HM" displayName="HEARD ISLAND AND MCDONALD ISLANDS" description="HEARD ISLAND AND MCDONALD ISLANDS"/>
+          <Attribute name="HN" displayName="HONDURAS" description="HONDURAS"/>
+          <Attribute name="HK" displayName="HONG KONG" description="HONG KONG"/>
+          <Attribute name="HU" displayName="HUNGARY" description="HUNGARY"/>
+          <Attribute name="IS" displayName="ICELAND" description="ICELAND"/>
+          <Attribute name="IN" displayName="INDIA" description="INDIA"/>
+          <Attribute name="YT" displayName="MAYOTTE" description="MAYOTTE"/>
+          <Attribute name="NA" displayName="NAMIBIA" description="NAMIBIA"/>
+          <Attribute name="NR" displayName="NAURU" description="NAURU"/>
+          <Attribute name="SI" displayName="SLOVENIA" description="SLOVENIA"/>
+          <Attribute name="SB" displayName="SOLOMON ISLANDS" description="SOLOMON ISLANDS"/>
+          <Attribute name="SR" displayName="SURINAME" description="SURINAME"/>
+          <Attribute name="MW" displayName="MALAWI" description="MALAWI"/>
+          <Attribute name="MY" displayName="MALAYSIA" description="MALAYSIA"/>
+          <Attribute name="MV" displayName="MALDIVES" description="MALDIVES"/>
+          <Attribute name="ML" displayName="MALI" description="MALI"/>
+          <Attribute name="MT" displayName="MALTA" description="MALTA"/>
+          <Attribute name="MH" displayName="MARSHALL ISLANDS" description="MARSHALL ISLANDS"/>
+          <Attribute name="MQ" displayName="MARTINIQUE" description="MARTINIQUE"/>
+          <Attribute name="MR" displayName="MAURITANIA" description="MAURITANIA"/>
+          <Attribute name="MU" displayName="MAURITIUS" description="MAURITIUS"/>
+          <Attribute name="AF" displayName="AFGHANISTAN" description="AFGHANISTAN"/>
+          <Attribute name="AL" displayName="ALBANIA" description="ALBANIA"/>
+          <Attribute name="DZ" displayName="ALGERIA" description="ALGERIA"/>
+        </Property>
+        <Property name="Region_en_CA" displayName="Region en-CA" description="Service Region" propType="STRING" isDefaultNull="0" isExported="1" isRequired="1" isSearchable="1">
+          <Attribute name="BS" displayName="BAHAMAS" description="BAHAMAS"/>
+          <Attribute name="PL" displayName="POLAND" description="POLAND"/>
+          <Attribute name="CD" displayName="CONGO, THE DEMOCRATIC REPUBLIC OF THE" description="CONGO, THE DEMOCRATIC REPUBLIC OF THE"/>
+          <Attribute name="RW" displayName="RWANDA" description="RWANDA"/>
+          <Attribute name="KN" displayName="SAINT KITTS AND NEVIS" description="SAINT KITTS AND NEVIS"/>
+          <Attribute name="NZ" displayName="NEW ZEALAND" description="NEW ZEALAND"/>
+          <Attribute name="SH" displayName="SAINT HELENA" description="SAINT HELENA"/>
+          <Attribute name="BH" displayName="BAHRAIN" description="BAHRAIN"/>
+          <Attribute name="BD" displayName="BANGLADESH" description="BANGLADESH"/>
+          <Attribute name="BB" displayName="BARBADOS" description="BARBADOS"/>
+          <Attribute name="BY" displayName="BELARUS" description="BELARUS"/>
+          <Attribute name="BE" displayName="BELGIUM" description="BELGIUM"/>
+          <Attribute name="BZ" displayName="BELIZE" description="BELIZE"/>
+          <Attribute name="BM" displayName="BERMUDA" description="BERMUDA"/>
+          <Attribute name="BT" displayName="BHUTAN" description="BHUTAN"/>
+          <Attribute name="BO" displayName="BOLIVIA" description="BOLIVIA"/>
+          <Attribute name="BA" displayName="BOSNIA AND HERZEGOVINA" description="BOSNIA AND HERZEGOVINA"/>
+          <Attribute name="GA" displayName="GABON" description="GABON"/>
+          <Attribute name="GM" displayName="GAMBIA" description="GAMBIA"/>
+          <Attribute name="GE" displayName="GEORGIA" description="GEORGIA"/>
+          <Attribute name="DE" displayName="GERMANY" description="GERMANY"/>
+          <Attribute name="GH" displayName="GHANA" description="GHANA"/>
+          <Attribute name="GI" displayName="GIBRALTAR" description="GIBRALTAR"/>
+          <Attribute name="GR" displayName="GREECE" description="GREECE"/>
+          <Attribute name="GL" displayName="GREENLAND" description="GREENLAND"/>
+          <Attribute name="GD" displayName="GRENADA" description="GRENADA"/>
+          <Attribute name="GP" displayName="GUADELOUPE" description="GUADELOUPE"/>
+          <Attribute name="GU" displayName="GUAM" description="GUAM"/>
+          <Attribute name="GT" displayName="GUATEMALA" description="GUATEMALA"/>
+          <Attribute name="GN" displayName="GUINEA" description="GUINEA"/>
+          <Attribute name="GY" displayName="GUYANA" description="GUYANA"/>
+          <Attribute name="HT" displayName="HAITI" description="HAITI"/>
+          <Attribute name="HM" displayName="HEARD ISLAND AND MCDONALD ISLANDS" description="HEARD ISLAND AND MCDONALD ISLANDS"/>
+          <Attribute name="HN" displayName="HONDURAS" description="HONDURAS"/>
+          <Attribute name="HK" displayName="HONG KONG" description="HONG KONG"/>
+          <Attribute name="HU" displayName="HUNGARY" description="HUNGARY"/>
+          <Attribute name="IS" displayName="ICELAND" description="ICELAND"/>
+          <Attribute name="IN" displayName="INDIA" description="INDIA"/>
+          <Attribute name="ID" displayName="INDONESIA" description="INDONESIA"/>
+          <Attribute name="NI" displayName="NICARAGUA" description="NICARAGUA"/>
+          <Attribute name="TF" displayName="FRENCH SOUTHERN TERRITORIES" description="FRENCH SOUTHERN TERRITORIES"/>
+          <Attribute name="AG" displayName="ANTIGUA AND BARBUDA" description="ANTIGUA AND BARBUDA"/>
+          <Attribute name="BW" displayName="BOTSWANA" description="BOTSWANA"/>
+          <Attribute name="CA" displayName="CANADA" description="CANADA"/>
+          <Attribute name="CF" displayName="CENTRAL AFRICAN REPUBLIC" description="CENTRAL AFRICAN REPUBLIC"/>
+          <Attribute name="TD" displayName="CHAD" description="CHAD"/>
+          <Attribute name="TV" displayName="TUVALU" description="TUVALU"/>
+          <Attribute name="UG" displayName="UGANDA" description="UGANDA"/>
+          <Attribute name="UA" displayName="UKRAINE" description="UKRAINE"/>
+          <Attribute name="AE" displayName="UNITED ARAB EMIRATES" description="UNITED ARAB EMIRATES"/>
+          <Attribute name="GB" displayName="UNITED KINGDOM" description="UNITED KINGDOM"/>
+          <Attribute name="US" displayName="UNITED STATES" description="UNITED STATES"/>
+          <Attribute name="UM" displayName="UNITED STATES MINOR OUTLYING ISLANDS" description="UNITED STATES MINOR OUTLYING ISLANDS"/>
+          <Attribute name="UY" displayName="URUGUAY" description="URUGUAY"/>
+          <Attribute name="UZ" displayName="UZBEKISTAN" description="UZBEKISTAN"/>
+          <Attribute name="KP" displayName="KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF" description="KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF"/>
+          <Attribute name="KR" displayName="KOREA, REPUBLIC OF" description="KOREA, REPUBLIC OF"/>
+          <Attribute name="MK" displayName="MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF" description="MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF"/>
+          <Attribute name="IQ" displayName="IRAQ" description="IRAQ"/>
+          <Attribute name="RO" displayName="ROMANIA" description="ROMANIA"/>
+          <Attribute name="RU" displayName="RUSSIAN FEDERATION" description="RUSSIAN FEDERATION"/>
+          <Attribute name="NE" displayName="NIGER" description="NIGER"/>
+          <Attribute name="NG" displayName="NIGERIA" description="NIGERIA"/>
+          <Attribute name="NU" displayName="NIUE" description="NIUE"/>
+          <Attribute name="NF" displayName="NORFOLK ISLAND" description="NORFOLK ISLAND"/>
+          <Attribute name="MP" displayName="NORTHERN MARIANA ISLANDS" description="NORTHERN MARIANA ISLANDS"/>
+          <Attribute name="NO" displayName="NORWAY" description="NORWAY"/>
+          <Attribute name="OM" displayName="OMAN" description="OMAN"/>
+          <Attribute name="PK" displayName="PAKISTAN" description="PAKISTAN"/>
+          <Attribute name="PW" displayName="PALAU" description="PALAU"/>
+          <Attribute name="PA" displayName="PANAMA" description="PANAMA"/>
+          <Attribute name="PG" displayName="PAPUA NEW GUINEA" description="PAPUA NEW GUINEA"/>
+          <Attribute name="PY" displayName="PARAGUAY" description="PARAGUAY"/>
+          <Attribute name="PE" displayName="PERU" description="PERU"/>
+          <Attribute name="PH" displayName="PHILIPPINES" description="PHILIPPINES"/>
+          <Attribute name="PN" displayName="PITCAIRN" description="PITCAIRN"/>
+          <Attribute name="JO" displayName="JORDAN" description="JORDAN"/>
+          <Attribute name="KZ" displayName="KAZAKHSTAN" description="KAZAKHSTAN"/>
+          <Attribute name="KE" displayName="KENYA" description="KENYA"/>
+          <Attribute name="KI" displayName="KIRIBATI" description="KIRIBATI"/>
+          <Attribute name="KW" displayName="KUWAIT" description="KUWAIT"/>
+          <Attribute name="KG" displayName="KYRGYZSTAN" description="KYRGYZSTAN"/>
+          <Attribute name="LV" displayName="LATVIA" description="LATVIA"/>
+          <Attribute name="LB" displayName="LEBANON" description="LEBANON"/>
+          <Attribute name="LS" displayName="LESOTHO" description="LESOTHO"/>
+          <Attribute name="LR" displayName="LIBERIA" description="LIBERIA"/>
+          <Attribute name="LY" displayName="LIBYAN ARAB JAMAHIRIYA" description="LIBYAN ARAB JAMAHIRIYA"/>
+          <Attribute name="LI" displayName="LIECHTENSTEIN" description="LIECHTENSTEIN"/>
+          <Attribute name="LT" displayName="LITHUANIA" description="LITHUANIA"/>
+          <Attribute name="LU" displayName="LUXEMBOURG" description="LUXEMBOURG"/>
+          <Attribute name="MO" displayName="MACAO" description="MACAO"/>
+          <Attribute name="MG" displayName="MADAGASCAR" description="MADAGASCAR"/>
+          <Attribute name="MW" displayName="MALAWI" description="MALAWI"/>
+          <Attribute name="CN" displayName="CHINA" description="CHINA"/>
+          <Attribute name="CX" displayName="CHRISTMAS ISLAND" description="CHRISTMAS ISLAND"/>
+          <Attribute name="CO" displayName="COLOMBIA" description="COLOMBIA"/>
+          <Attribute name="KM" displayName="COMOROS" description="COMOROS"/>
+          <Attribute name="CG" displayName="CONGO" description="CONGO"/>
+          <Attribute name="CK" displayName="COOK ISLANDS" description="COOK ISLANDS"/>
+          <Attribute name="CR" displayName="COSTA RICA" description="COSTA RICA"/>
+          <Attribute name="HR" displayName="CROATIA" description="CROATIA"/>
+          <Attribute name="CU" displayName="CUBA" description="CUBA"/>
+          <Attribute name="CY" displayName="CYPRUS" description="CYPRUS"/>
+          <Attribute name="CZ" displayName="CZECH REPUBLIC" description="CZECH REPUBLIC"/>
+          <Attribute name="DK" displayName="DENMARK" description="DENMARK"/>
+          <Attribute name="DJ" displayName="DJIBOUTI" description="DJIBOUTI"/>
+          <Attribute name="DM" displayName="DOMINICA" description="DOMINICA"/>
+          <Attribute name="DO" displayName="DOMINICAN REPUBLIC" description="DOMINICAN REPUBLIC"/>
+          <Attribute name="EC" displayName="ECUADOR" description="ECUADOR"/>
+          <Attribute name="EG" displayName="EGYPT" description="EGYPT"/>
+          <Attribute name="SV" displayName="EL SALVADOR" description="EL SALVADOR"/>
+          <Attribute name="GQ" displayName="EQUATORIAL GUINEA" description="EQUATORIAL GUINEA"/>
+          <Attribute name="JP" displayName="JAPAN" description="JAPAN"/>
+          <Attribute name="SO" displayName="SOMALIA" description="SOMALIA"/>
+          <Attribute name="ZA" displayName="SOUTH AFRICA" description="SOUTH AFRICA"/>
+          <Attribute name="GS" displayName="SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS" description="SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS"/>
+          <Attribute name="ES" displayName="SPAIN" description="SPAIN"/>
+          <Attribute name="LK" displayName="SRI LANKA" description="SRI LANKA"/>
+          <Attribute name="SD" displayName="SUDAN" description="SUDAN"/>
+          <Attribute name="SR" displayName="SURINAME" description="SURINAME"/>
+          <Attribute name="SJ" displayName="SVALBARD AND JAN MAYEN" description="SVALBARD AND JAN MAYEN"/>
+          <Attribute name="SZ" displayName="SWAZILAND" description="SWAZILAND"/>
+          <Attribute name="SE" displayName="SWEDEN" description="SWEDEN"/>
+          <Attribute name="CH" displayName="SWITZERLAND" description="SWITZERLAND"/>
+          <Attribute name="SY" displayName="SYRIAN ARAB REPUBLIC" description="SYRIAN ARAB REPUBLIC"/>
+          <Attribute name="TJ" displayName="TAJIKISTAN" description="TAJIKISTAN"/>
+          <Attribute name="TH" displayName="THAILAND" description="THAILAND"/>
+          <Attribute name="TO" displayName="TONGA" description="TONGA"/>
+          <Attribute name="TT" displayName="TRINIDAD AND TOBAGO" description="TRINIDAD AND TOBAGO"/>
+          <Attribute name="TN" displayName="TUNISIA" description="TUNISIA"/>
+          <Attribute name="TR" displayName="TURKEY" description="TURKEY"/>
+          <Attribute name="TM" displayName="TURKMENISTAN" description="TURKMENISTAN"/>
+          <Attribute name="TC" displayName="TURKS AND CAICOS ISLANDS" description="TURKS AND CAICOS ISLANDS"/>
+          <Attribute name="LC" displayName="SAINT LUCIA" description="SAINT LUCIA"/>
+          <Attribute name="PM" displayName="SAINT PIERRE AND MIQUELON" description="SAINT PIERRE AND MIQUELON"/>
+          <Attribute name="VC" displayName="SAINT VINCENT AND THE GRENADINES" description="SAINT VINCENT AND THE GRENADINES"/>
+          <Attribute name="WS" displayName="SAMOA" description="SAMOA"/>
+          <Attribute name="SM" displayName="SAN MARINO" description="SAN MARINO"/>
+          <Attribute name="ST" displayName="SAO TOME AND PRINCIPE" description="SAO TOME AND PRINCIPE"/>
+          <Attribute name="SA" displayName="SAUDI ARABIA" description="SAUDI ARABIA"/>
+          <Attribute name="SN" displayName="SENEGAL" description="SENEGAL"/>
+          <Attribute name="YU" displayName="SERBIA AND MONTENEGRO" description="SERBIA AND MONTENEGRO"/>
+          <Attribute name="PT" displayName="PORTUGAL" description="PORTUGAL"/>
+          <Attribute name="PR" displayName="PUERTO RICO" description="PUERTO RICO"/>
+          <Attribute name="QA" displayName="QATAR" description="QATAR"/>
+          <Attribute name="IE" displayName="IRELAND" description="IRELAND"/>
+          <Attribute name="IL" displayName="ISRAEL" description="ISRAEL"/>
+          <Attribute name="IT" displayName="ITALY" description="ITALY"/>
+          <Attribute name="JM" displayName="JAMAICA" description="JAMAICA"/>
+          <Attribute name="SC" displayName="SEYCHELLES" description="SEYCHELLES"/>
+          <Attribute name="SL" displayName="SIERRA LEONE" description="SIERRA LEONE"/>
+          <Attribute name="SG" displayName="SINGAPORE" description="SINGAPORE"/>
+          <Attribute name="SK" displayName="SLOVAKIA" description="SLOVAKIA"/>
+          <Attribute name="SI" displayName="SLOVENIA" description="SLOVENIA"/>
+          <Attribute name="SB" displayName="SOLOMON ISLANDS" description="SOLOMON ISLANDS"/>
+          <Attribute name="AF" displayName="AFGHANISTAN" description="AFGHANISTAN"/>
+          <Attribute name="AL" displayName="ALBANIA" description="ALBANIA"/>
+          <Attribute name="DZ" displayName="ALGERIA" description="ALGERIA"/>
+          <Attribute name="AS" displayName="AMERICAN SAMOA" description="AMERICAN SAMOA"/>
+          <Attribute name="AD" displayName="ANDORRA" description="ANDORRA"/>
+          <Attribute name="AO" displayName="ANGOLA" description="ANGOLA"/>
+          <Attribute name="AI" displayName="ANGUILLA" description="ANGUILLA"/>
+          <Attribute name="AQ" displayName="ANTARCTICA" description="ANTARCTICA"/>
+          <Attribute name="BJ" displayName="BENIN" description="BENIN"/>
+          <Attribute name="ER" displayName="ERITREA" description="ERITREA"/>
+          <Attribute name="EE" displayName="ESTONIA" description="ESTONIA"/>
+          <Attribute name="ET" displayName="ETHIOPIA" description="ETHIOPIA"/>
+          <Attribute name="FK" displayName="FALKLAND ISLANDS (MALVINAS)" description="FALKLAND ISLANDS (MALVINAS)"/>
+          <Attribute name="FO" displayName="FAROE ISLANDS" description="FAROE ISLANDS"/>
+          <Attribute name="FJ" displayName="FIJI" description="FIJI"/>
+          <Attribute name="FI" displayName="FINLAND" description="FINLAND"/>
+          <Attribute name="FR" displayName="FRANCE" description="FRANCE"/>
+          <Attribute name="GF" displayName="FRENCH GUIANA" description="FRENCH GUIANA"/>
+          <Attribute name="MY" displayName="MALAYSIA" description="MALAYSIA"/>
+          <Attribute name="MV" displayName="MALDIVES" description="MALDIVES"/>
+          <Attribute name="ML" displayName="MALI" description="MALI"/>
+          <Attribute name="MT" displayName="MALTA" description="MALTA"/>
+          <Attribute name="MH" displayName="MARSHALL ISLANDS" description="MARSHALL ISLANDS"/>
+          <Attribute name="MQ" displayName="MARTINIQUE" description="MARTINIQUE"/>
+          <Attribute name="MR" displayName="MAURITANIA" description="MAURITANIA"/>
+          <Attribute name="MU" displayName="MAURITIUS" description="MAURITIUS"/>
+          <Attribute name="YT" displayName="MAYOTTE" description="MAYOTTE"/>
+          <Attribute name="MX" displayName="MEXICO" description="MEXICO"/>
+          <Attribute name="MC" displayName="MONACO" description="MONACO"/>
+          <Attribute name="MN" displayName="MONGOLIA" description="MONGOLIA"/>
+          <Attribute name="MS" displayName="MONTSERRAT" description="MONTSERRAT"/>
+          <Attribute name="MA" displayName="MOROCCO" description="MOROCCO"/>
+          <Attribute name="VU" displayName="VANUATU" description="VANUATU"/>
+          <Attribute name="VE" displayName="VENEZUELA" description="VENEZUELA"/>
+          <Attribute name="VN" displayName="VIET NAM" description="VIET NAM"/>
+          <Attribute name="WF" displayName="WALLIS AND FUTUNA" description="WALLIS AND FUTUNA"/>
+          <Attribute name="MD" displayName="MOLDOVA, REPUBLIC OF" description="MOLDOVA, REPUBLIC OF"/>
+          <Attribute name="TZ" displayName="TANZANIA, UNITED REPUBLIC OF" description="TANZANIA, UNITED REPUBLIC OF"/>
+          <Attribute name="TL" displayName="TIMOR-LESTE" description="TIMOR-LESTE"/>
+          <Attribute name="VG" displayName="VIRGIN ISLANDS, BRITISH" description="VIRGIN ISLANDS, BRITISH"/>
+          <Attribute name="VI" displayName="VIRGIN ISLANDS, U.S." description="VIRGIN ISLANDS, U.S."/>
+          <Attribute name="PS" displayName="PALESTINIAN AUTHORITY" description="PALESTINIAN AUTHORITY"/>
+          <Attribute name="FM" displayName="MICRONESIA, FEDERATED STATES OF" description="MICRONESIA, FEDERATED STATES OF"/>
+          <Attribute name="LA" displayName="LAO PEOPLE'S DEMOCRATIC REPUBLIC" description="LAO PEOPLE'S DEMOCRATIC REPUBLIC"/>
+          <Attribute name="VA" displayName="HOLY SEE (VATICAN CITY STATE)" description="HOLY SEE (VATICAN CITY STATE)"/>
+          <Attribute name="MZ" displayName="MOZAMBIQUE" description="MOZAMBIQUE"/>
+          <Attribute name="MM" displayName="MYANMAR" description="MYANMAR"/>
+          <Attribute name="NA" displayName="NAMIBIA" description="NAMIBIA"/>
+          <Attribute name="NR" displayName="NAURU" description="NAURU"/>
+          <Attribute name="NP" displayName="NEPAL" description="NEPAL"/>
+          <Attribute name="NL" displayName="NETHERLANDS" description="NETHERLANDS"/>
+          <Attribute name="AN" displayName="NETHERLANDS ANTILLES" description="NETHERLANDS ANTILLES"/>
+          <Attribute name="NC" displayName="NEW CALEDONIA" description="NEW CALEDONIA"/>
+          <Attribute name="CL" displayName="CHILE" description="CHILE"/>
+          <Attribute name="CV" displayName="CAPE VERDE" description="CAPE VERDE"/>
+          <Attribute name="KY" displayName="CAYMAN ISLANDS" description="CAYMAN ISLANDS"/>
+          <Attribute name="BV" displayName="BOUVET ISLAND" description="BOUVET ISLAND"/>
+          <Attribute name="BR" displayName="BRAZIL" description="BRAZIL"/>
+          <Attribute name="IO" displayName="BRITISH INDIAN OCEAN TERRITORY" description="BRITISH INDIAN OCEAN TERRITORY"/>
+          <Attribute name="BN" displayName="BRUNEI DARUSSALAM" description="BRUNEI DARUSSALAM"/>
+          <Attribute name="BG" displayName="BULGARIA" description="BULGARIA"/>
+          <Attribute name="BF" displayName="BURKINA FASO" description="BURKINA FASO"/>
+          <Attribute name="BI" displayName="BURUNDI" description="BURUNDI"/>
+          <Attribute name="KH" displayName="CAMBODIA" description="CAMBODIA"/>
+          <Attribute name="CM" displayName="CAMEROON" description="CAMEROON"/>
+          <Attribute name="AR" displayName="ARGENTINA" description="ARGENTINA"/>
+          <Attribute name="AM" displayName="ARMENIA" description="ARMENIA"/>
+          <Attribute name="AW" displayName="ARUBA" description="ARUBA"/>
+          <Attribute name="AU" displayName="AUSTRALIA" description="AUSTRALIA"/>
+          <Attribute name="AT" displayName="AUSTRIA" description="AUSTRIA"/>
+          <Attribute name="AZ" displayName="AZERBAIJAN" description="AZERBAIJAN"/>
+          <Attribute name="YE" displayName="YEMEN" description="YEMEN"/>
+          <Attribute name="ZM" displayName="ZAMBIA" description="ZAMBIA"/>
+          <Attribute name="ZW" displayName="ZIMBABWE" description="ZIMBABWE"/>
+          <Attribute name="CC" displayName="COCOS (KEELING) ISLANDS" description="COCOS (KEELING) ISLANDS"/>
+          <Attribute name="GW" displayName="GUINEA-BISSAU" description="GUINEA-BISSAU"/>
+          <Attribute name="IR" displayName="IRAN, ISLAMIC REPUBLIC OF" description="IRAN, ISLAMIC REPUBLIC OF"/>
+          <Attribute name="PF" displayName="FRENCH POLYNESIA" description="FRENCH POLYNESIA"/>
+        </Property>
+      </Group>
+      <Group name="StateProvince" displayName="States Provinces Site Terms">
+        <Property name="AU_en_US" displayName="Australia en-US" description="State/Provicne" propType="STRING" isDefaultNull="0" isExported="1" isRequired="1" isSearchable="1">
+          <Attribute name="ACT" displayName="Australian Capital Territory" description="Australian Capital Territory - AUSTRALIA"/>
+          <Attribute name="NSW" displayName="New South Wales" description="New South Wales - AUSTRALIA"/>
+          <Attribute name="NT" displayName="Northern Territory" description="Northern Territory - AUSTRALIA"/>
+          <Attribute name="QLD" displayName="Queensland" description="Queensland - AUSTRALIA"/>
+          <Attribute name="SA" displayName="South Australia" description="South Australia - AUSTRALIA"/>
+          <Attribute name="TAS" displayName="Tasmania" description="Tasmania - AUSTRALIA"/>
+          <Attribute name="VIC" displayName="Victoria" description="Victoria - AUSTRALIA"/>
+          <Attribute name="WA" displayName="Western Australia" description="Western Australia - AUSTRALIA"/>
+        </Property>
+        <Property name="CA_en_US" displayName="Canada en-US" description="State/Provicne" propType="STRING" isDefaultNull="0" isExported="1" isRequired="1" isSearchable="1">
+          <Attribute name="AB" displayName="Alberta" description="Alberta - CANADA"/>
+          <Attribute name="BC" displayName="British Columbia" description="British Columbia - CANADA"/>
+          <Attribute name="MB" displayName="Manitoba" description="Manitoba - CANADA"/>
+          <Attribute name="NB" displayName="New Brunswick" description="New Brunswick - CANADA"/>
+          <Attribute name="NF" displayName="Newfoundland and Labrador" description="Newfoundland and Labrador - CANADA"/>
+          <Attribute name="NT" displayName="Northwest Territories" description="Northwest Territories - CANADA"/>
+          <Attribute name="NS" displayName="Nova Scotia" description="Nova Scotia - CANADA"/>
+          <Attribute name="NU" displayName="Nunavut" description="Nunavut - CANADA"/>
+          <Attribute name="ON" displayName="Ontario" description="Ontario - CANADA"/>
+          <Attribute name="PE" displayName="Prince Edward Island" description="Prince Edward Island - CANADA"/>
+          <Attribute name="QC" displayName="Quebec" description="Quebec - CANADA"/>
+          <Attribute name="SK" displayName="Saskatchewan" description="Saskatchewan - CANADA"/>
+          <Attribute name="YT" displayName="Yukon Territory" description="Yukon Territory - CANADA"/>
+        </Property>
+        <Property name="AU_en_AU" displayName="Australia en-AU" description="State/Provicne" propType="STRING" isDefaultNull="0" isExported="1" isRequired="1" isSearchable="1">
+          <Attribute name="ACT" displayName="Australian Capital Territory" description="Australian Capital Territory - AUSTRALIA"/>
+          <Attribute name="NSW" displayName="New South Wales" description="New South Wales - AUSTRALIA"/>
+          <Attribute name="NT" displayName="Northern Territory" description="Northern Territory - AUSTRALIA"/>
+          <Attribute name="QLD" displayName="Queensland" description="Queensland - AUSTRALIA"/>
+          <Attribute name="SA" displayName="South Australia" description="South Australia - AUSTRALIA"/>
+          <Attribute name="TAS" displayName="Tasmania" description="Tasmania - AUSTRALIA"/>
+          <Attribute name="VIC" displayName="Victoria" description="Victoria - AUSTRALIA"/>
+          <Attribute name="WA" displayName="Western Australia" description="Western Australia - AUSTRALIA"/>
+        </Property>
+        <Property name="CA_en_CA" displayName="Canada en-CA" description="State/Provicne" propType="STRING" isDefaultNull="0" isExported="1" isRequired="1" isSearchable="1">
+          <Attribute name="AB" displayName="Alberta" description="Alberta - CANADA"/>
+          <Attribute name="BC" displayName="British Columbia" description="British Columbia - CANADA"/>
+          <Attribute name="MB" displayName="Manitoba" description="Manitoba - CANADA"/>
+          <Attribute name="NB" displayName="New Brunswick" description="New Brunswick - CANADA"/>
+          <Attribute name="NF" displayName="Newfoundland and Labrador" description="Newfoundland and Labrador - CANADA"/>
+          <Attribute name="NT" displayName="Northwest Territories" description="Northwest Territories - CANADA"/>
+          <Attribute name="NS" displayName="Nova Scotia" description="Nova Scotia - CANADA"/>
+          <Attribute name="NU" displayName="Nunavut" description="Nunavut - CANADA"/>
+          <Attribute name="ON" displayName="Ontario" description="Ontario - CANADA"/>
+          <Attribute name="PE" displayName="Prince Edward Island" description="Prince Edward Island - CANADA"/>
+          <Attribute name="QC" displayName="Quebec" description="Quebec - CANADA"/>
+          <Attribute name="SK" displayName="Saskatchewan" description="Saskatchewan - CANADA"/>
+          <Attribute name="YT" displayName="Yukon Territory" description="Yukon Territory - CANADA"/>
+        </Property>
+        <Property name="CA_fr_CA" displayName="Canada fr-CA" description="State/Provicne" propType="STRING" isDefaultNull="0" isExported="1" isRequired="1" isSearchable="1">
+          <Attribute name="AB" displayName="Alberta" description="Alberta - CANADA"/>
+          <Attribute name="BC" displayName="Colombie britannique" description="Colombie britannique - CANADA"/>
+          <Attribute name="MB" displayName="Manitoba" description="Manitoba - CANADA"/>
+          <Attribute name="NB" displayName="Nouveau-Brunswick" description="Nouveau-Brunswick - CANADA"/>
+          <Attribute name="NF" displayName="Terre-Neuve et Labrador" description="Terre-Neuve et Labrador - CANADA"/>
+          <Attribute name="NT" displayName="(territoires du) Nord-Ouest" description="(territoires du) Nord-Ouest - CANADA"/>
+          <Attribute name="NS" displayName="Nouvelle-Ã‰cosse" description="Nouvelle-Ã‰cosse - CANADA"/>
+          <Attribute name="NU" displayName="Nunavut" description="Nunavut - CANADA"/>
+          <Attribute name="ON" displayName="Ontario" description="Ontario - CANADA"/>
+          <Attribute name="PE" displayName="l'Ã®le du Prince-Ã‰douard" description="l'Ã®le du Prince-Ã‰douard - CANADA"/>
+          <Attribute name="QC" displayName="QuÃ©bec" description="QuÃ©bec - CANADA"/>
+          <Attribute name="SK" displayName="Saskatchewan" description="Saskatchewan - CANADA"/>
+          <Attribute name="YT" displayName="(territoire du) Yukon" description="(territoire du) Yukon - CANADA"/>
+        </Property>
+        <Property name="US_en_US" displayName="United en-US" description="State/Provicne" propType="STRING" isDefaultNull="0" isExported="1" isRequired="1" isSearchable="1">
+          <Attribute name="MI" displayName="Michigan" description="Michigan - UNITED STATES"/>
+          <Attribute name="MN" displayName="Minnesota" description="Minnesota - UNITED STATES"/>
+          <Attribute name="MS" displayName="Mississippi" description="Mississippi - UNITED STATES"/>
+          <Attribute name="MO" displayName="Missouri" description="Missouri - UNITED STATES"/>
+          <Attribute name="MT" displayName="Montana" description="Montana - UNITED STATES"/>
+          <Attribute name="NE" displayName="Nebraska" description="Nebraska - UNITED STATES"/>
+          <Attribute name="NV" displayName="Nevada" description="Nevada - UNITED STATES"/>
+          <Attribute name="NH" displayName="New Hampshire" description="New Hampshire - UNITED STATES"/>
+          <Attribute name="NJ" displayName="New Jersey" description="New Jersey - UNITED STATES"/>
+          <Attribute name="NM" displayName="New Mexico" description="New Mexico - UNITED STATES"/>
+          <Attribute name="NY" displayName="New York" description="New York - UNITED STATES"/>
+          <Attribute name="NC" displayName="North Carolina" description="North Carolina - UNITED STATES"/>
+          <Attribute name="ND" displayName="North Dakota" description="North Dakota - UNITED STATES"/>
+          <Attribute name="OH" displayName="Ohio" description="Ohio - UNITED STATES"/>
+          <Attribute name="OK" displayName="Oklahoma" description="Oklahoma - UNITED STATES"/>
+          <Attribute name="OR" displayName="Oregon" description="Oregon - UNITED STATES"/>
+          <Attribute name="PA" displayName="Pennsylvania" description="Pennsylvania - UNITED STATES"/>
+          <Attribute name="RI" displayName="Rhode Island" description="Rhode Island - UNITED STATES"/>
+          <Attribute name="SC" displayName="South Carolina" description="South Carolina - UNITED STATES"/>
+          <Attribute name="SD" displayName="South Dakota" description="South Dakota - UNITED STATES"/>
+          <Attribute name="TN" displayName="Tennessee" description="Tennessee - UNITED STATES"/>
+          <Attribute name="TX" displayName="Texas" description="Texas - UNITED STATES"/>
+          <Attribute name="UT" displayName="Utah" description="Utah - UNITED STATES"/>
+          <Attribute name="VT" displayName="Vermont" description="Vermont - UNITED STATES"/>
+          <Attribute name="VA" displayName="Virginia" description="Virginia - UNITED STATES"/>
+          <Attribute name="WA" displayName="Washington" description="Washington - UNITED STATES"/>
+          <Attribute name="AL" displayName="Alabama" description="Alabama - UNITED STATES"/>
+          <Attribute name="AK" displayName="Alaska" description="Alaska - UNITED STATES"/>
+          <Attribute name="AZ" displayName="Arizona" description="Arizona - UNITED STATES"/>
+          <Attribute name="AR" displayName="Arkansas" description="Arkansas - UNITED STATES"/>
+          <Attribute name="CA" displayName="California" description="California - UNITED STATES"/>
+          <Attribute name="CO" displayName="Colorado" description="Colorado - UNITED STATES"/>
+          <Attribute name="CT" displayName="Connecticut" description="Connecticut - UNITED STATES"/>
+          <Attribute name="DE" displayName="Delaware" description="Delaware - UNITED STATES"/>
+          <Attribute name="DC" displayName="District of Columbia" description="District of Columbia - UNITED STATES"/>
+          <Attribute name="FL" displayName="Florida" description="Florida - UNITED STATES"/>
+          <Attribute name="GA" displayName="Georgia" description="Georgia - UNITED STATES"/>
+          <Attribute name="WV" displayName="West Virginia" description="West Virginia - UNITED STATES"/>
+          <Attribute name="WI" displayName="Wisconsin" description="Wisconsin - UNITED STATES"/>
+          <Attribute name="WY" displayName="Wyoming" description="Wyoming - UNITED STATES"/>
+          <Attribute name="HI" displayName="Hawaii" description="Hawaii - UNITED STATES"/>
+          <Attribute name="ID" displayName="Idaho" description="Idaho - UNITED STATES"/>
+          <Attribute name="IL" displayName="Illinois" description="Illinois - UNITED STATES"/>
+          <Attribute name="IN" displayName="Indiana" description="Indiana - UNITED STATES"/>
+          <Attribute name="IA" displayName="Iowa" description="Iowa - UNITED STATES"/>
+          <Attribute name="KS" displayName="Kansas" description="Kansas - UNITED STATES"/>
+          <Attribute name="KY" displayName="Kentucky" description="Kentucky - UNITED STATES"/>
+          <Attribute name="LA" displayName="Louisiana" description="Louisiana - UNITED STATES"/>
+          <Attribute name="ME" displayName="Maine" description="Maine - UNITED STATES"/>
+          <Attribute name="MD" displayName="Maryland" description="Maryland - UNITED STATES"/>
+          <Attribute name="MA" displayName="Massachusetts" description="Massachusetts - UNITED STATES"/>
+        </Property>
+      </Group>
+      <Group name="CalendarSiteTerms" displayName="Calendar Site Terms">
+        <Property name="Days" displayName="Days" propType="STRING" isDefaultNull="0" isExported="1" isRequired="1" isSearchable="1">
+          <Attribute name="0" displayName="Sunday" description="Day of Week"/>
+          <Attribute name="1" displayName="Monday" description="Day of Week"/>
+          <Attribute name="2" displayName="Tuesday" description="Day of Week"/>
+          <Attribute name="3" displayName="Wednesday" description="Day of Week"/>
+          <Attribute name="4" displayName="Thursday" description="Day of Week"/>
+          <Attribute name="5" displayName="Friday" description="Day of Week"/>
+          <Attribute name="6" displayName="Saturday" description="Day of Week"/>
+        </Property>
+        <Property name="Months" displayName="Months" propType="STRING" isDefaultNull="0" isExported="1" isRequired="1" isSearchable="1">
+          <Attribute name="0" displayName="January" description="Month in Year"/>
+          <Attribute name="1" displayName="February" description="Month in Year"/>
+          <Attribute name="2" displayName="March" description="Month in Year"/>
+          <Attribute name="3" displayName="April" description="Month in Year"/>
+          <Attribute name="4" displayName="May" description="Month in Year"/>
+          <Attribute name="5" displayName="June" description="Month in Year"/>
+          <Attribute name="6" displayName="July" description="Month in Year"/>
+          <Attribute name="7" displayName="August" description="Month in Year"/>
+          <Attribute name="8" displayName="September" description="Month in Year"/>
+          <Attribute name="9" displayName="October" description="Month in Year"/>
+          <Attribute name="10" displayName="November" description="Month in Year"/>
+          <Attribute name="11" displayName="December" description="Month in Year"/>
+        </Property>
+        <Property name="Years" displayName="Years" propType="STRING" isDefaultNull="0" isExported="1" isRequired="1" isSearchable="1">
+          <Attribute name="2011" displayName="2011"/>
+          <Attribute name="2012" displayName="2012"/>
+          <Attribute name="2013" displayName="2013"/>
+          <Attribute name="2014" displayName="2014"/>
+          <Attribute name="2015" displayName="2015"/>
+          <Attribute name="2016" displayName="2016"/>
+          <Attribute name="2017" displayName="2017"/>
+          <Attribute name="2018" displayName="2018"/>
+          <Attribute name="2019" displayName="2019"/>
+          <Attribute name="2020" displayName="2020"/>
+          <Attribute name="2021" displayName="2021"/>
+        </Property>
+      </Group>
+    </Profile>
+  </Catalog>
+</Document>

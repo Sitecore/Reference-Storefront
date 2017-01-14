@@ -136,20 +136,6 @@ namespace Sitecore.Reference.Storefront.Managers
         }
 
         /// <summary>
-        /// Gets the storefront configuration item.
-        /// </summary>
-        /// <value>
-        /// The storefront configuration item.
-        /// </value>
-        public static Item StorefrontConfigurationItem
-        {
-            get
-            {
-                return Sitecore.Context.Database.GetItem("/sitecore/Commerce/Storefront Configuration");
-            }
-        }
-
-        /// <summary>
         /// Gets the URL for the current storefronts home page
         /// </summary>
         public static string StorefrontHome
@@ -367,17 +353,22 @@ namespace Sitecore.Reference.Storefront.Managers
         /// <returns>Returns information about the currency.</returns>
         public static CurrencyInformationModel GetCurrencyInformation(string currency)
         {
-            string displayKey = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", currency, Sitecore.Context.Language.Name);
-            Item item = StorefrontManager.StorefrontConfigurationItem.Axes.GetItem(string.Concat(StorefrontConstants.KnowItemNames.CurrencyDisplay, "/", displayKey));
-            if (item != null)
-            {
-                return new CurrencyInformationModel(item);
-            }
+            var storefront = StorefrontManager.CurrentStorefront;
 
-            item = StorefrontManager.StorefrontConfigurationItem.Axes.GetItem(string.Concat(StorefrontConstants.KnowItemNames.Currencies, "/", currency));
-            if (item != null)
+            var currencyDisplayOverrides = storefront.CurrencyDisplayOverrides;
+            if (currencyDisplayOverrides != null)
             {
-                return new CurrencyInformationModel(item);
+                var currencyItem = currencyDisplayOverrides.Axes.GetChild(currency);
+                if (currencyItem != null)
+                {
+                    var currencyOverride = currencyItem.Axes.GetChild(Sitecore.Context.Language.Name);
+                    if (currencyOverride != null)
+                    {
+                        return new Models.CurrencyInformationModel(currencyOverride);
+                    }
+
+                    return new CurrencyInformationModel(currencyItem);
+                }
             }
 
             return null;

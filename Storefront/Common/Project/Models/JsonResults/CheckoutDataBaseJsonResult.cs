@@ -93,6 +93,11 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
         public IEnumerable<PaymentMethod> PaymentMethods { get; set; }
 
         /// <summary>
+        /// Gets or sets the payment client token.
+        /// </summary>       
+        public string PaymentClientToken { get; set; }
+
+        /// <summary>
         /// Gets or sets the available shipping methods.
         /// </summary>
         public IEnumerable<ShippingMethod> ShippingMethods { get; set; }

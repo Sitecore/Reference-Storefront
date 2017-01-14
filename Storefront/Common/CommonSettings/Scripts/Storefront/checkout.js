@@ -364,7 +364,22 @@ function setShippingMethodsResponse(data, success, sender) {
         }
 
         updatePaymentAllAmount();
-        if (checkoutDataViewModel.cardPaymentAcceptPageUrl().length == 0) {
+        if (checkoutDataViewModel.paymentClientToken() != null)
+        {
+            var clientToken = checkoutDataViewModel.paymentClientToken();
+            if (clientToken.length > 0) {
+                braintree.setup(clientToken, 'dropin', {
+                    container: 'dropin-container',
+                    paymentMethodNonceReceived: function (event, nonce) {
+                        if (nonce.length > 0) {
+                            checkoutDataViewModel.cardPaymentResultAccessCode = nonce;
+                            checkoutDataViewModel.cardPaymentAcceptCardPrefix = "paypal";
+                        }
+                    }
+                });
+            }
+        } 
+        else if (checkoutDataViewModel.cardPaymentAcceptPageUrl().length == 0) {
             getCardPaymentAcceptUrl();
         }
         $("#deliveryMethodSet").val(true);
@@ -587,7 +602,11 @@ function initBillingPage() {
             if (accordion.hasClass("open")) {
                 accordionToggleIcon.html("<span class='glyphicon glyphicon-minus-sign'></span>");
                 if (this.id == "ccpayment") {
-                    checkoutDataViewModel.creditCardPayment().isAdded(true);                  
+                    checkoutDataViewModel.creditCardPayment().isAdded(true);
+                    if (checkoutDataViewModel.paymentClientToken() != null) {
+                        checkoutDataViewModel.creditCardEnable(true);
+                        checkoutDataViewModel.billingAddressEnable(true);
+                    }                    
                 }
             } else {
                 accordionToggleIcon.html("<span class='glyphicon glyphicon-plus-sign'></span>");               
@@ -739,7 +758,28 @@ function setPaymentMethods() {
                 data += ",";
             }
 
-            data += '"FederatedPayment":' +JSON.stringify(creditCard);
+            data += '"FederatedPayment":' + JSON.stringify(creditCard);
+            if (checkoutDataViewModel.cardPaymentAcceptCardPrefix === "paypal")
+            {
+                var ba = checkoutDataViewModel.billingAddress();
+                var billingAddress =
+                {
+                    "Name": ba.name(),
+                    "Address1": ba.address1(),
+                    "Country": ba.country(),
+                    "City": ba.city(),
+                    "State": ba.state(),
+                    "ZipPostalCode": ba.zipPostalCode(),
+                    "ExternalId": ba.externalId(),
+                    "PartyId": ba.externalId()
+                };
+
+                if (data.length > 1) {
+                    data += ",";
+                }
+
+                data += '"BillingAddress":' + JSON.stringify(billingAddress);
+            }
         } else {
             var creditCard = {
                 "CreditCardNumber": cc.creditCardNumber(),
@@ -810,12 +850,12 @@ function setPaymentMethodsResponse(data, success, sender) {
     if (data.Success && success) {
         if (checkoutDataViewModel != null) {
             checkoutDataViewModel.cart().setSummary(data);
-            if (checkoutDataViewModel && checkoutDataViewModel.payFederatedPayment && checkoutDataViewModel.creditCardPayment().isAdded()) {
+            if (checkoutDataViewModel && checkoutDataViewModel.payFederatedPayment && checkoutDataViewModel.cardPaymentAcceptCardPrefix != "paypal" && checkoutDataViewModel.creditCardPayment().isAdded()) {                
                 var cc = checkoutDataViewModel.creditCardPayment();
                 cc.creditCardNumberMasked(data.Payment[0].CreditCardNumber);
                 cc.expirationMonth(data.Payment[0].ExpirationMonth);
                 cc.expirationYear(data.Payment[0].ExpirationYear);
-                cc.customerNameOnPayment(data.Payment[0].CustomerNameOnPayment);
+                cc.customerNameOnPayment(data.Payment[0].CustomerNameOnPayment);                
 
                 var ba = checkoutDataViewModel.billingAddress();                
                 var address = data.Parties[0];

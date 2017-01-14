@@ -1,0 +1,375 @@
+----item----
+version: 1
+id: {441B60D3-09BB-4111-A3AD-D10076B78B54}
+database: master
+path: /sitecore/content/Storefront/Home
+parent: {662344C9-D908-46D8-9A1A-CBF2EAA32E93}
+name: Home
+master: {00000000-0000-0000-0000-000000000000}
+template: {FB9DBD60-CBA2-490D-9C72-997271D576A3}
+templatekey: Home
+created: 20170105T213241Z
+
+----field----
+field: {B36DE708-9413-4382-BB53-B944E6D02CFC}
+name: Catalogs
+key: catalogs
+content-length: 38
+
+{A890E85A-FE79-4574-9B99-E180A877993A}
+----field----
+field: {AE00DC8B-C90D-412F-B262-19EF55A20506}
+name: Product Images
+key: product images
+content-length: 0
+
+
+----field----
+field: {A204F8D6-B81A-4C1B-88EF-2DBC9471C18A}
+name: Category Images
+key: category images
+content-length: 0
+
+
+----field----
+field: {FBF2BBA1-47BC-4B2E-BF76-133C8FAEA0FB}
+name: General Images
+key: general images
+content-length: 38
+
+{D2BE1B43-9784-47F1-B00E-F324BC0D474A}
+----field----
+field: {6C86E9A8-D48A-4E3B-8375-B81414CE28E5}
+name: Default Image
+key: default image
+content-length: 0
+
+
+----field----
+field: {268036A9-3394-4964-8CB3-AC4CA68BF4B4}
+name: RouteKey
+key: routekey
+content-length: 7
+
+contoso
+----field----
+field: {239412BD-046D-4C97-98BA-17B5FB07F004}
+name: ShopName
+key: shopname
+content-length: 7
+
+website
+----field----
+field: {EEBCD18A-6447-4DEC-9C57-12FAF4714034}
+name: Forms Authentication
+key: forms authentication
+content-length: 1
+
+1
+----field----
+field: {0D2D45C1-783B-4A72-A797-F5907BC37CFE}
+name: DefaultCartName
+key: defaultcartname
+content-length: 7
+
+Default
+----field----
+field: {872F1C3E-42E7-4F28-9B06-AE6D0C40C3CA}
+name: DefaultProductId
+key: defaultproductid
+content-length: 7
+
+6042986
+----field----
+field: {2F3DFFC4-3648-4183-8741-1CC97A04937C}
+name: GiftCardProductId
+key: giftcardproductid
+content-length: 7
+
+6042986
+----field----
+field: {51CDF89D-E4E6-438B-A6CF-75747529CAFD}
+name: GiftCardAmountOptions
+key: giftcardamountoptions
+content-length: 15
+
+10|20|25|50|100
+----field----
+field: {A8925EB2-72E3-4636-9F21-C894A61975B8}
+name: Sender Email Address
+key: sender email address
+content-length: 41
+
+no-reply@sitecore.commerce.storefront.com
+----field----
+field: {F605D200-01A0-4235-8886-391C4C906092}
+name: OperatingUnitNumber
+key: operatingunitnumber
+content-length: 0
+
+
+----field----
+field: {7FD4CA02-383C-45E1-902D-C3ED9E4A112F}
+name: Max Number of Addresses
+key: max number of addresses
+content-length: 1
+
+6
+----field----
+field: {7315350F-F3B5-4740-A227-186F7A2BA9F7}
+name: Default Currency
+key: default currency
+content-length: 0
+
+
+----field----
+field: {CC553205-A4D2-4FEB-B722-9B41E9FA5271}
+name: TrackingCookieName
+key: trackingcookiename
+content-length: 8
+
+_visitor
+----field----
+field: {E00B561C-503B-47AF-979F-D6C0C911721D}
+name: IdKeyName
+key: idkeyname
+content-length: 9
+
+visitorId
+----field----
+field: {0CCF5AC9-FA08-4421-9651-707B33193F8E}
+name: CookieExpiryInDays
+key: cookieexpiryindays
+content-length: 1
+
+2
+----field----
+field: {01C98AE9-82BB-4237-ACDD-BA5B0A518F2F}
+name: Use Index File For Product Status In Lists
+key: use index file for product status in lists
+content-length: 0
+
+
+----field----
+field: {F1A1FE9E-A60C-4DDB-A3A0-BB5B29FE732E}
+name: __Renderings
+key: __renderings
+content-length: 286
+
+<r xmlns:p="p" xmlns:s="s" p:p="1"><d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}"><r uid="{1634C13E-4B80-414F-BD44-0D3DA46A2A9F}" p:before="r[@uid='{1A6AE860-A323-460D-B8D7-CEFA22469672}']" s:ph="messages" /><r uid="{31CF9A90-BB50-48CA-B541-C98879643BEA}" s:cac="0" s:ciu="0" /></d></r>
+----version----
+language: de-DE
+version: 1
+revision: 4b9a11d7-5eb3-4827-94bb-7e5207241815
+
+----field----
+field: {EC1F4944-D675-42F6-B354-A0A1BF04BFF8}
+name: Title
+key: title
+content-length: 20
+
+Reference Storefront
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20150423T171740Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+4b9a11d7-5eb3-4827-94bb-7e5207241815
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20170105T213328Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 18
+
+extranet\Anonymous
+----version----
+language: en
+version: 1
+revision: 3fd67ab5-3210-44d4-90c3-1f5ec25e4843
+
+----field----
+field: {EC1F4944-D675-42F6-B354-A0A1BF04BFF8}
+name: Title
+key: title
+content-length: 20
+
+Reference Storefront
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20141009T064502Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\Admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+3fd67ab5-3210-44d4-90c3-1f5ec25e4843
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20170106T141207Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\Admin
+----field----
+field: {001DD393-96C5-490B-924A-B0F25CD9EFD8}
+name: __Lock
+key: __lock
+content-length: 5
+
+<r />
+----version----
+language: fr-FR
+version: 1
+revision: 885e2290-e0fa-45f8-bd85-1e8cc50742d3
+
+----field----
+field: {EC1F4944-D675-42F6-B354-A0A1BF04BFF8}
+name: Title
+key: title
+content-length: 20
+
+Reference Storefront
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20150423T171804Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+885e2290-e0fa-45f8-bd85-1e8cc50742d3
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20170105T213328Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 18
+
+extranet\Anonymous
+----version----
+language: ja-JP
+version: 1
+revision: 7f76f490-c1a2-44e4-b37f-8ee4007c245e
+
+----field----
+field: {EC1F4944-D675-42F6-B354-A0A1BF04BFF8}
+name: Title
+key: title
+content-length: 20
+
+Reference Storefront
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20150423T171813Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+7f76f490-c1a2-44e4-b37f-8ee4007c245e
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20170105T213328Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 18
+
+extranet\Anonymous

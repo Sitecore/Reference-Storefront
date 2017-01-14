@@ -1,0 +1,66 @@
+----item----
+version: 1
+id: {877A679F-0F20-4B4E-9853-C7E63AD628F5}
+database: master
+path: /sitecore/Commerce/Commerce Control Panel/Storefront Settings/Storefronts/Storefront/Payment Configuration
+parent: {51541163-54AF-4D41-B86E-0B2E3A26B215}
+name: Payment Configuration
+master: {00000000-0000-0000-0000-000000000000}
+template: {2C7E608F-5450-4F6C-A990-B53526E7D35F}
+templatekey: Payment Configuration
+created: 20161212T202707Z
+
+----field----
+field: {EE2D99C3-35C0-4467-8532-0E2AA960BB87}
+name: Payment Options
+key: payment options
+content-length: 77
+
+{3C86B4A2-7D72-4110-A697-82D6CD0B6619}|{C6E45321-A7CD-4992-AAE7-95A5F04F8BC0}
+----version----
+language: en
+version: 1
+revision: f53d2b0a-8322-4264-8e86-946de052d1fa
+
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\Admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20161210T062402Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\Admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+f53d2b0a-8322-4264-8e86-946de052d1fa
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20161212T221520Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\Admin

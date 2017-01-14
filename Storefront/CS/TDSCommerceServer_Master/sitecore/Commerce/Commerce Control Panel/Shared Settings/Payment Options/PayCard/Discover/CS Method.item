@@ -1,0 +1,66 @@
+----item----
+version: 1
+id: {04F74C0B-7E1D-47F7-89EE-549C2223FA7C}
+database: master
+path: /sitecore/Commerce/Commerce Control Panel/Shared Settings/Payment Options/PayCard/Discover/CS Method
+parent: {9D07FE52-6686-492A-B203-094AFFA4C5A8}
+name: CS Method
+master: {00000000-0000-0000-0000-000000000000}
+template: {CC8E2AB7-CA42-46B3-8662-83842E886EE1}
+templatekey: Payment Method CS
+created: 20161206T150320Z
+
+----version----
+language: en
+version: 1
+revision: 47b80e23-eeef-441f-8074-745df0c82aea
+
+----field----
+field: {48294FBD-CCDB-4EC6-95AC-A6EB2FB54F58}
+name: Method ID
+key: method id
+content-length: 36
+
+E6187C02-4DAF-4D30-9CCF-D41EBB9CDEEB
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\Admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20161206T150250Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\Admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+47b80e23-eeef-441f-8074-745df0c82aea
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20161206T150335Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\Admin

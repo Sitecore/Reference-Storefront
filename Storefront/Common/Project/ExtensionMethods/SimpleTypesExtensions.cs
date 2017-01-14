@@ -57,11 +57,19 @@ namespace Sitecore.Reference.Storefront.Extensions
         /// </returns>
         public static string ToCurrency(this decimal currency, string currencyCode)
         {
+            NumberFormatInfo info;
             CurrencyInformationModel currencyInfo = StorefrontManager.GetCurrencyInformation(currencyCode);
+            if (currencyInfo != null)
+            {
+                info = (NumberFormatInfo)CultureInfo.GetCultureInfo(currencyInfo.CurrencyNumberFormatCulture).NumberFormat.Clone();
+                info.CurrencySymbol = currencyInfo != null ? currencyInfo.Symbol : currencyCode;
+                info.CurrencyPositivePattern = currencyInfo.SymbolPosition;
+            }
+            else
+            {
+                info = (NumberFormatInfo)CultureInfo.GetCultureInfo(Sitecore.Context.Language.Name).NumberFormat.Clone();
+            }
 
-            NumberFormatInfo info = (NumberFormatInfo)CultureInfo.GetCultureInfo(currencyInfo.CurrencyNumberFormatCulture).NumberFormat.Clone();
-            info.CurrencySymbol = currencyInfo != null ? currencyInfo.Symbol : currencyCode;
-            info.CurrencyPositivePattern = currencyInfo.SymbolPosition;
             return currency.ToString("C", info);
         }
 

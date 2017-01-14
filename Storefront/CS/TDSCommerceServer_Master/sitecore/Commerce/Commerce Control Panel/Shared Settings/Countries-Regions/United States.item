@@ -1,0 +1,59 @@
+----item----
+version: 1
+id: {F2E6CE5F-7868-42B5-8B6F-134F0D781303}
+database: master
+path: /sitecore/Commerce/Commerce Control Panel/Shared Settings/Countries-Regions/United States
+parent: {41FBC29E-001F-42AC-80B7-835440C852A7}
+name: United States
+master: {00000000-0000-0000-0000-000000000000}
+template: {1F8158D8-4139-46BE-94AF-9FF80501F5DE}
+templatekey: Country-Region
+created: 20161214T122636Z
+
+----field----
+field: {6364FD2C-7B9E-482D-B96B-7C324D49011E}
+name: Country Code
+key: country code
+content-length: 2
+
+US
+----version----
+language: en
+version: 1
+revision: 60164b42-43a6-4f4c-91c3-ecf2fb750d5e
+
+----field----
+field: {9F6720CC-654F-4FDD-9848-7039DA6A0E7B}
+name: Name
+key: name
+content-length: 13
+
+United States
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20161206T052626Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+60164b42-43a6-4f4c-91c3-ecf2fb750d5e
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20161206T052630Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\Admin

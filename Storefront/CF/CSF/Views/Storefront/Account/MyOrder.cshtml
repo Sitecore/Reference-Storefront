@@ -1,0 +1,382 @@
+﻿@*//-----------------------------------------------------------------------
+    // Copyright 2016 Sitecore Corporation A/S
+    // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+    // except in compliance with the License. You may obtain a copy of the License at
+    //       http://www.apache.org/licenses/LICENSE-2.0
+    //
+    // Unless required by applicable law or agreed to in writing, software distributed under the
+    // License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+    // either express or implied. See the License for the specific language governing permissions
+    // and limitations under the License.
+    // -------------------------------------------------------------------------------------------*@
+
+@using Sitecore.Commerce.Entities.Carts
+@using Sitecore.Reference.Storefront.Managers
+@using System.Linq;
+@using Sitecore.Commerce.Connect.CommerceServer.Orders.Models
+@using Sitecore.Commerce.Entities.GiftCards
+@using Sitecore.Commerce.Entities.LoyaltyPrograms
+@using Sitecore.Commerce.Engine.Connect.Entities.Carts
+@using Sitecore.Data.Items
+@using Sitecore.Mvc
+@using Sitecore.Reference.Storefront.Extensions
+@using Sitecore.Reference.Storefront
+@model Sitecore.Commerce.Connect.CommerceServer.Orders.Models.CommerceOrder
+@{
+    var productDetailsLabel = Html.Sitecore().Field("Product Details Label", Html.Sitecore().CurrentItem);
+    var unitPriceLabel = Html.Sitecore().Field("Unit Price Label", Html.Sitecore().CurrentItem);
+    var quantityLabel = Html.Sitecore().Field("Quantity Label", Html.Sitecore().CurrentItem);
+    var totalLabel = Html.Sitecore().Field("Total Label", Html.Sitecore().CurrentItem);
+    var addItemsLoadingLabel = Html.Sitecore().Field("Add Selected Items To Cart Button Loading", Html.Sitecore().CurrentItem);
+    var addItemsToCartButtonLabel = Html.Sitecore().Field("Add Selected Items To Cart Button", Html.Sitecore().CurrentItem);
+    var cancelItemsLoadingLabel = Html.Sitecore().Field("Cancel Order Lines Button Loading", Html.Sitecore().CurrentItem);
+    var cancelItemsLabel = Html.Sitecore().Field("Cancel Order Lines Button", Html.Sitecore().CurrentItem);
+
+    var parties = Model.Parties.ToList();
+    var isLineShipping = ViewBag.IsItemShipping;
+    var shipments = Model.Shipping;
+    var payments = Model.Payment;
+    var total = Model.Total as CommerceTotal;
+    var lines = Model.Lines;
+    decimal totalSavings = 0.0M;
+}
+
+<div class="wrap-main-content">
+    <div class="row">
+        <h2>
+            <a href="@StorefrontManager.StorefrontUri("/accountmanagement/myorders")" class="view-all pull-right">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> @Html.Sitecore().Field("View All Orders Label", Html.Sitecore().CurrentItem)
+            </a>
+        </h2>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-12">
+                <button type="button" class="btn btn-default" onclick="printPage()"><span class="glyphicon glyphicon-print"></span></button>
+                <p class="order-number">
+                    <span>
+                        @Html.Sitecore().Field("Order Number Label", Html.Sitecore().CurrentItem):
+                    </span>
+                    <span id="confirm-orderNumber">
+                        @Model.TrackingNumber
+                    </span>
+                </p>
+                <p class="order-date">
+                    <span>
+                        @Html.Sitecore().Field("Order Date Label", Html.Sitecore().CurrentItem):
+                    </span>
+                    <span id="confirm-orderDate">
+                        @Model.Created.ToDisplayedDate()
+                    </span>
+                </p>
+                <p class="order-status">
+                    <span>
+                        @Html.Sitecore().Field("Order Status Label", Html.Sitecore().CurrentItem):
+                    </span>
+                    <span id="confirm-orderStatus" data-value="@Model.Status">
+                        @StorefrontManager.GetOrderStatusName(Model.Status)
+                    </span>
+                </p>
+            </div>
+            <div class="col-md-12">
+                <h3>@Html.Sitecore().Field("Your Products Header", Html.Sitecore().CurrentItem)</h3>
+            </div>
+            <div class="col-md-12">
+                <div class="table-responsive" id="confirmProductsContainer">
+                    <table class="table table-hover" id="orderTable" data-orderId="@Model.OrderID">
+                        <thead>
+                            <tr class="order-header">
+                                <td>
+                                    <input type="checkbox" onclick=" selectAllOrderItems(this) " id="selectAllOrderItems" />
+                                </td>
+                                <th></th>
+                                <td>@productDetailsLabel</td>
+                                <td>@unitPriceLabel</td>
+                                <td>@quantityLabel</td>
+                                <td class="text-right">@totalLabel</td>
+                            </tr>
+                        </thead>
+
+                        @foreach (CommerceCartLine cartLine in lines)
+                        {
+                            var product = cartLine.Product as CommerceCartProduct;
+                            if (product == null)
+                            {
+                                continue;
+                            }
+
+                            var lineTotal = cartLine.Total;
+
+                            var savings = ((CommerceTotal)lineTotal).LineItemDiscountAmount;
+                            totalSavings += savings;
+
+                            var image = string.Empty;
+                            var images = cartLine.Properties["_product_Images"] as string;
+                            if (!String.IsNullOrWhiteSpace(images))
+                            {
+                                string[] imagesList = images.Split('|');
+                                string[] imageInfoArray = imagesList[0].Split(',');
+
+                                MediaItem imageItem = Sitecore.Context.Database.GetItem(Sitecore.Data.ID.Parse(imageInfoArray[0]));
+                                image = imageItem.GetImageUrl(110, 110);
+                            }
+
+                            var isGiftCard = product.ProductId.Equals(StorefrontManager.CurrentStorefront.GiftCardProductId, StringComparison.OrdinalIgnoreCase);
+                            var productUrl = isGiftCard ? StorefrontManager.StorefrontUri("/buygiftcard") : StorefrontManager.StorefrontUri("/product/" + product.ProductId);
+                            var lineShippingMethod = shipments.FirstOrDefault(s => s.LineIDs.Contains(cartLine.ExternalCartLineId)) as CommerceShippingInfo;
+
+                            string offers = string.Empty;
+                            if (cartLine.Adjustments != null && cartLine.Adjustments.Count > 0)
+                            {
+                                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                                foreach (var adjustment in cartLine.Adjustments)
+                                {
+                                    if (sb.Length > 0)
+                                    {
+                                        sb.Append(", ");
+                                    }
+
+                                    sb.Append(adjustment.Description);
+                                }
+
+                                offers = sb.ToString();
+                            }
+
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="item-to-selected" onchange=" enableAddOrderItemsToCart(); enableCancelOrderItems(); " data-externalId="@cartLine.ExternalCartLineId" />
+                                </td>
+                                <td class="cart-image hidden-sm hidden-xs">
+                                    <img src="@image" class="img-responsive" alt="a" pid="image" />
+                                </td>
+                                <td class="cart-info">
+                                    <a pid="link " href="@productUrl"><h5 pid="displayName">@product.DisplayName</h5></a>
+                                    @if (!string.IsNullOrEmpty(product.Properties["Color"] as string))
+                                    {
+                                        <p class="cart-variable">
+                                            <span>
+                                                @Html.Sitecore().Field("Color Label", Html.Sitecore().CurrentItem):
+                                            </span>
+                                            <span pid="color">
+                                                @product.Properties["Color"]
+                                            </span>
+                                        </p>
+                                    }
+                                    @if (lineShippingMethod != null)
+                                    {
+                                        <p class="cart-delivery">
+                                            <span>
+                                                @Html.Sitecore().Field("Delivery Label", Html.Sitecore().CurrentItem):
+                                            </span>
+                                            <span pid="shippingMethodName">
+                                                @lineShippingMethod.Properties["ShippingMethodName"]
+                                            </span>
+                                        </p>
+                                    }
+                                    @if (isLineShipping)
+                                    {
+                                        string lineAddressId = shipments.Where(shipping => shipping.LineIDs.ToList().Contains(cartLine.ExternalCartLineId) && shipping.LineIDs.Count == 1).Select(s => s.PartyID).FirstOrDefault();
+                                        var lineAddress = parties.FirstOrDefault(p => p.ExternalId.Equals(lineAddressId, StringComparison.OrdinalIgnoreCase));
+
+                                        if (lineAddress is CommerceParty)
+                                        {
+                                            var party = lineAddress as CommerceParty;
+                                            <div class="cart-delivery">
+                                                <ul pid="lineShippingAddress">
+                                                    <li pid="lineShippingAddressName">@party.Name</li>
+                                                    <li>
+                                                        <span pid="lineShippingAddressLine">
+                                                            @party.Address1,
+                                                        </span>
+                                                        <span pid="lineShippingAddressCity">
+                                                            @party.City
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <span pid="lineShippingAddressState">@party.State, </span>
+                                                        <span pid="lineShippingAddressZipCode">@party.ZipPostalCode</span>
+                                                    </li>
+                                                    <li pid="lineShippingAddressCountry">@party.Country</li>
+                                                </ul>
+                                            </div>
+                                        }
+
+                                        if (!string.IsNullOrEmpty(lineShippingMethod.ElectronicDeliveryEmail))
+                                        {
+                                            <p class="cart-email" pid="lineEmail">@lineShippingMethod.ElectronicDeliveryEmail</p>
+                                        }
+                                    }
+                                </td>
+                                <td class="cart-price" pid="price">
+                                    <p pid="price">@product.Price.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)</p>
+                                    @if (!string.IsNullOrWhiteSpace(offers))
+                                    {
+                                        <span>
+                                            <span>@Html.Sitecore().Field("Discount Label", Html.Sitecore().CurrentItem): </span>
+                                            <span pid="discountNames" class="savings">@offers</span>
+                                        </span>
+                                    }
+                                </td>
+                                <td class="cart-quantity text-center" style="width: 10%;" pid="quantity">@cartLine.Quantity</td>
+                                <td class="cart-total">
+                                    <p pid="total">@lineTotal.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)</p>
+                                    @if (savings > 0)
+                                    {
+                                        <span class="savings">
+                                            <span>@Html.Sitecore().Field("Discount Label", Html.Sitecore().CurrentItem)  </span>
+                                            <span pid="discount">@savings.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)</span>
+                                        </span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-12 border-top">
+                <div class="form-inline">
+                    <button type="button" id="addOrderItemsToCart" class="btn btn-success" disabled="disabled" onclick="addOrderItemsToCart()" data-loading-text="@addItemsLoadingLabel" data-text="@addItemsToCartButtonLabel">
+                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                        <span id="buttonText">@addItemsToCartButtonLabel</span>
+                    </button>
+                    <button type="button" id="cancelOrderItems" class="btn btn-success" disabled="disabled" onclick="cancelOrderItems()" data-loading-text="@cancelItemsLoadingLabel" data-text="@cancelItemsLabel">
+                        <span id="buttonText">@cancelItemsLabel</span>
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <h3>@Html.Sitecore().Field("Order Total Label", Html.Sitecore().CurrentItem)</h3>
+            </div>
+            <div id="confirmTotalSummaryContainer">
+                <div class="col-md-12">
+                    <div class="col-md-12 summary">
+                        <span class="text">@Html.Sitecore().Field("Subtotal Label", Html.Sitecore().CurrentItem):</span>
+                        <span class="amount" pid="subtotal" id="confirm-subtotal">@total.Subtotal.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)</span>
+                    </div>
+                    <div class="col-md-12 summary">
+                        <span class="text">@Html.Sitecore().Field("Shipping Total Label", Html.Sitecore().CurrentItem):</span>
+                        <span class="amount" pid="shippingTotal" id="confirm-shippingTotal">@total.ShippingTotal.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)</span>
+                    </div>
+                    <div class="col-md-12 summary">
+                        <span class="text">@Html.Sitecore().Field("Tax Total Label", Html.Sitecore().CurrentItem):</span>
+                        <span class="amount" pid="taxTotal" id="confirm-taxTotal">@total.TaxTotal.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)</span>
+                    </div>
+                    <div class="col-md-12 summary">
+                        <span class="text">@Html.Sitecore().Field("Savings Label", Html.Sitecore().CurrentItem):</span>
+                        <span class="amount" pid="discountTotal" id="confirm-discountTotal">@totalSavings.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)</span>
+                    </div>
+                    <div class="col-md-12 total">
+                        <span class="text">@Html.Sitecore().Field("Order total Label", Html.Sitecore().CurrentItem):</span>
+                        <span class="amount" pid="total" id="confirm-total">@total.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 checkout-footer">
+                @if (!isLineShipping)
+                {
+                    <div class="col-md-2 col-sm-6 col-xs-6" id="confirm-shippingAddressContainer">
+                        @foreach (ShippingInfo shipping in shipments)
+                        {
+                            var partyId = shipping.PartyID;
+                            var shippingAddress = parties.FirstOrDefault(p => p.ExternalId.Equals(partyId, StringComparison.OrdinalIgnoreCase)) as CommerceParty;
+                            if (shippingAddress == null)
+                            {
+                                continue;
+                            }
+
+                            <div class="footer-shipping">
+                                <h4>@Html.Sitecore().Field("Shipping address Label", Html.Sitecore().CurrentItem)</h4>
+                                <ul>
+                                    <li id="confirm-shippingAddressName">@shippingAddress.Name</li>
+                                    <li id="confirm-shippingAddressLine">@shippingAddress.Address1</li>
+                                    <li>
+                                        <span id="confirm-shippingAddressCity">@shippingAddress.City, </span>
+                                        <span id="confirm-shippingAddressState">@shippingAddress.State, </span>
+                                        <span id="confirm-shippingAddressCountry">@shippingAddress.Country</span>
+                                    </li>
+                                    <li id="confirm-shippingAddressZipCode">@shippingAddress.ZipPostalCode</li>
+                                </ul>
+                            </div>
+                        }
+                    </div>
+                }
+
+                <div class="col-md-2 col-sm-6 col-xs-6" id="confirm-billingAddressContainer">
+                    @foreach (PaymentInfo payment in payments)
+                    {
+                        var partyId = payment.PartyID;
+                        var billingAddress = parties.FirstOrDefault(p => p.ExternalId.Equals(partyId, StringComparison.OrdinalIgnoreCase)) as CommerceParty;
+                        if (billingAddress == null)
+                        {
+                            continue;
+                        }
+
+
+                        <div class="footer-billing">
+                            <h4>@Html.Sitecore().Field("Billing address Label", Html.Sitecore().CurrentItem)</h4>
+                            <ul>
+                                <li id="confirm-billingAddressName">@billingAddress.Name</li>
+                                <li id="confirm-billingAddressLine">@billingAddress.Address1</li>
+                                <li>
+                                    <span id="confirm-billingAddressCity">@billingAddress.City, </span>
+                                    <span id="confirm-billingAddressState">@billingAddress.State, </span>
+                                    <span id="confirm-billingAddressCountry">@billingAddress.Country</span>
+                                </li>
+                                <li id="confirm-billingAddressZipCode">@billingAddress.ZipPostalCode</li>
+                            </ul>
+                        </div>
+                    }
+                </div>
+
+                <div class="col-md-2 col-sm-6 col-xs-6" id="confirm-paymentMethodsContainer">
+                    <div class="footer-payment">
+                        <h4>@Html.Sitecore().Field("Payments Label", Html.Sitecore().CurrentItem)</h4>
+                        @foreach (PaymentInfo payment in payments)
+                        {
+                            if (payment is CommerceCreditCardPaymentInfo)
+                            {
+                                var creditCard = payment as CommerceCreditCardPaymentInfo;
+                                <h5>Credit Card</h5>
+                                <ul class="footer-lists" id="confirm-creditCardContainer">
+                                    <li id="confirm-creditCardNameOnCard">@creditCard.CustomerNameOnPayment</li>
+                                    <li id="confirm-creditCardType">@creditCard.CardType</li>
+                                    <li id="confirm-creditCardNumber">@creditCard.CreditCardNumber</li>
+                                    <li>
+                                        <span id="confirm-creditCardExpMonth">@creditCard.ExpirationMonth</span> - <span id="confirm-creditCardExpYear">@creditCard.ExpirationYear</span>
+                                    </li>
+                                    <li id="confirm-creditCardAmount">
+                                        @creditCard.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)
+                                    </li>
+                                </ul>
+                            }
+
+                            if (payment is GiftCardPaymentInfo)
+                            {
+                                var giftCard = payment as GiftCardPaymentInfo;
+                                <h5>Gift Card</h5>
+                                <ul class="footer-lists" id="confirm-giftCardContainer">
+                                    <li id="confirm-giftCardNumber">@giftCard.PaymentMethodID</li>
+                                    <li id="confirm-giftCardAmount">
+                                        @giftCard.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)
+                                    </li>
+                                </ul>
+                            }
+
+                            if (payment is LoyaltyCardPaymentInfo)
+                            {
+                                var loyaltyCard = payment as LoyaltyCardPaymentInfo;
+                                <h5>Loyalty Card</h5>
+                                <ul class="footer-lists" id="confirm-loyaltyCardContainer">
+                                    <li id="confirm-loyaltyCardNumber">@loyaltyCard.PaymentMethodID</li>
+                                    <li id="confirm-loyaltyCardAmount">
+                                        @loyaltyCard.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)
+                                    </li>
+                                </ul>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

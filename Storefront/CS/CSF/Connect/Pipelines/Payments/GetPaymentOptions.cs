@@ -17,6 +17,8 @@
 
 namespace Sitecore.Reference.Storefront.Connect.Pipelines.Payments
 {
+    using Data;
+    using Data.Fields;
     using Sitecore.Commerce.Connect.CommerceServer;
     using Sitecore.Commerce.Connect.CommerceServer.Pipelines;
     using Sitecore.Commerce.Entities;
@@ -70,15 +72,32 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Payments
             var request = (GetPaymentOptionsRequest)args.Request;
             var result = (GetPaymentOptionsResult)args.Result;
 
+            List<ID> filteredList = null;
+            var paymentConfiguration = StorefrontManager.CurrentStorefront.PaymentConfiguration;
+            if (paymentConfiguration != null)
+            {
+                MultilistField multiList = paymentConfiguration.Fields[Sitecore.Commerce.Constants.Templates.PaymentConfiguration.Fields.PaymentOptions];
+                filteredList = new List<ID>(multiList.TargetIDs);
+            }
+
             List<PaymentOption> paymentOptionList = new List<PaymentOption>();
 
             foreach (Item paymentOptionItem in this.GetPaymentOptionsItem().GetChildren())
             {
-                PaymentOption option = this.EntityFactory.Create<PaymentOption>("PaymentOption");
+                bool add = true;
+                if (filteredList != null)
+                {
+                    add = filteredList.Exists(p => p == paymentOptionItem.ID);
+                }
 
-                this.TranslateToPaymentOption(paymentOptionItem, option, result);
+                if (add)
+                {
+                    PaymentOption option = this.EntityFactory.Create<PaymentOption>("PaymentOption");
 
-                paymentOptionList.Add(option);
+                    this.TranslateToPaymentOption(paymentOptionItem, option, result);
+
+                    paymentOptionList.Add(option);
+                }
             }
 
             result.PaymentOptions = new System.Collections.ObjectModel.ReadOnlyCollection<PaymentOption>(paymentOptionList);
@@ -94,9 +113,15 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Payments
         {
             paymentOption.ExternalId = paymentOptionItem.ID.Guid.ToString();
             paymentOption.Name = paymentOptionItem.DisplayName;
+            paymentOption.Description = paymentOptionItem.DisplayName;
             paymentOption.ShopName = this.GetShopName();
 
-            int enumValue = MainUtil.GetInt(paymentOptionItem[CommerceServerStorefrontConstants.KnownFieldNames.PaymentOptionValue], 0);
+            var paymentOptionTypeId = paymentOptionItem[Sitecore.Commerce.Constants.Templates.PaymentOption.Fields.PaymentOptionType];
+
+            var paymentOptionTypeItem = Sitecore.Context.Database.GetItem(paymentOptionTypeId);
+            Assert.IsNotNull(paymentOptionTypeItem, string.Format(CultureInfo.InvariantCulture, "The Payment Option Type is undefined in Sitecore.  ID: {0}", paymentOptionTypeId));
+
+            int enumValue = MainUtil.GetInt(paymentOptionTypeItem[CommerceServerStorefrontConstants.KnownFieldNames.TypeId], 0);
             paymentOption.PaymentOptionType = this.TranslatePaymentOptionType(enumValue, result);
         }
 
@@ -106,7 +131,7 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Payments
         /// <returns>The Payment Options node from Sitecore.</returns>
         protected virtual Item GetPaymentOptionsItem()
         {
-            return Sitecore.Context.Database.GetItem("/sitecore/Commerce/Payment Options");
+            return Sitecore.Context.Database.GetItem("/sitecore/Commerce/Commerce Control Panel/Shared Settings/Payment Options");
         }
 
         /// <summary>

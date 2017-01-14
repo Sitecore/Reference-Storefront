@@ -1,0 +1,66 @@
+----item----
+version: 1
+id: {74000922-13CE-4416-9586-B020C9EC87B7}
+database: master
+path: /sitecore/Commerce/Commerce Control Panel/Shared Settings/Fulfillment Options/Ship items/Standard overnight/CS Method
+parent: {9968680E-4D9C-47C9-A99D-C4FD7C8238DB}
+name: CS Method
+master: {00000000-0000-0000-0000-000000000000}
+template: {E559FC58-21DC-48CD-881D-B5E80C9652C9}
+templatekey: Fulfillment Method CS
+created: 20161206T132127Z
+
+----version----
+language: en
+version: 1
+revision: bbbc689b-141d-49f4-bdbb-e6da2cdd6263
+
+----field----
+field: {47220E68-47A3-4E4E-B059-11EAE9F3CBF4}
+name: Method ID
+key: method id
+content-length: 36
+
+4E60FAF7-92D9-451C-BBC6-3A2B9C182627
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\Admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20161206T132002Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\Admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+bbbc689b-141d-49f4-bdbb-e6da2cdd6263
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20161206T132144Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\Admin

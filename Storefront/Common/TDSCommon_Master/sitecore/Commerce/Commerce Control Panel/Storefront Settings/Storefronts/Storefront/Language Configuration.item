@@ -1,0 +1,66 @@
+----item----
+version: 1
+id: {5915E5BC-73D7-43BD-82BB-7309971609FC}
+database: master
+path: /sitecore/Commerce/Commerce Control Panel/Storefront Settings/Storefronts/Storefront/Language Configuration
+parent: {51541163-54AF-4D41-B86E-0B2E3A26B215}
+name: Language Configuration
+master: {00000000-0000-0000-0000-000000000000}
+template: {9C514FF0-FBF7-42F1-82F6-156272F70CAA}
+templatekey: Language Configuration
+created: 20161212T152555Z
+
+----version----
+language: en
+version: 1
+revision: c27923c9-3717-4579-9b21-72333ebd117d
+
+----field----
+field: {03265DC1-CCFE-470D-AED1-EA9AAB5B3F55}
+name: Language Set
+key: language set
+content-length: 38
+
+{DA122580-69B3-4C1F-B533-E35B8F015514}
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\Admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20161212T152555Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\Admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+c27923c9-3717-4579-9b21-72333ebd117d
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20161212T153311Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\Admin

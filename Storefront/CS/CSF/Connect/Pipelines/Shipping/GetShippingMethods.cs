@@ -17,6 +17,7 @@
 
 namespace Sitecore.Reference.Storefront.Connect.Pipelines.Shipping
 {
+    using Data;
     using Sitecore.Commerce.Connect.CommerceServer.Orders.Pipelines;
     using Sitecore.Commerce.Entities;
     using Sitecore.Commerce.Entities.Shipping;
@@ -62,64 +63,87 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Shipping
                 return;
             }
 
-            Item shippingOptionsItem = this.GetShippingOptionsItem();
+            Item shippingOptionTypesFolder = this.GetShippingOptionsTypeFolder();
 
-            string query = string.Format(CultureInfo.InvariantCulture, "fast:{0}//*[@{1} = '{2}']", shippingOptionsItem.Paths.FullPath, CommerceServerStorefrontConstants.KnownFieldNames.ShippingOptionValue, request.ShippingOption.ShippingOptionType.Value);
-            Item foundOption = shippingOptionsItem.Database.SelectSingleItem(query);
-            if (foundOption != null)
+            string query = string.Format(CultureInfo.InvariantCulture, "fast:{0}//*[@{1} = '{2}']", shippingOptionTypesFolder.Paths.FullPath, CommerceServerStorefrontConstants.KnownFieldNames.TypeId, request.ShippingOption.ShippingOptionType.Value);
+            Item foundOptionType = shippingOptionTypesFolder.Database.SelectSingleItem(query);
+            if (foundOptionType != null)
             {
-                string shippingMethodsIds = foundOption[CommerceServerStorefrontConstants.KnownFieldNames.CommerceServerShippingMethods];
-                if (!string.IsNullOrWhiteSpace(shippingMethodsIds))
+                Item shippingOptionsItem = this.GetShippingOptionsItem();
+
+                query = string.Format(CultureInfo.InvariantCulture, "fast:{0}//*[@{1} = '{2}']", shippingOptionsItem.Paths.FullPath, CommerceServerStorefrontConstants.KnownFieldNames.FulfillmentOptionType, foundOptionType.ID);
+                Item fulfillmentOptionItem = shippingOptionsItem.Database.SelectSingleItem(query);
+                if (fulfillmentOptionItem != null)
                 {
-                    base.Process(args);
-                    if (result.Success)
+                    // Has methods?
+                    if (fulfillmentOptionItem.HasChildren)
                     {
-                        List<ShippingMethod> currentList = new List<ShippingMethod>(result.ShippingMethods);
                         List<ShippingMethod> returnList = new List<ShippingMethod>();
 
-                        string[] ids = shippingMethodsIds.Split('|');
-                        foreach (string id in ids)
+                        foreach (Item fulfillmentMethodItem in fulfillmentOptionItem.GetChildren())
                         {
-                            string trimmedId = id.Trim();
-
-                            var found2 = currentList.Find(o => o.ExternalId.Equals(trimmedId, StringComparison.OrdinalIgnoreCase));
-                            ShippingMethod found = currentList.Find(o => o.ExternalId.Equals(trimmedId, StringComparison.OrdinalIgnoreCase)) as ShippingMethod;
-                            if (found != null)
+                            // Do we have a Commerce Server Method?
+                            if (fulfillmentMethodItem.HasChildren)
                             {
-                                returnList.Add(found);
+                                Item csMethod = fulfillmentMethodItem.GetChildren()[0];
+                                string csMethodId = csMethod[StorefrontConstants.KnownFieldNames.MethodId];
+                                Assert.IsNotNullOrEmpty(csMethodId, string.Format(CultureInfo.InvariantCulture, "The CS Method of the {0} Fulfillment Method is empty.", fulfillmentMethodItem.Name));
+
+                                ShippingMethod shippingMethod = this.EntityFactory.Create<ShippingMethod>("ShippingMethod");
+
+                                this.TranslateShippingMethod(fulfillmentOptionItem, fulfillmentMethodItem, csMethodId, shippingMethod);
+
+                                returnList.Add(shippingMethod);
                             }
                         }
 
                         result.ShippingMethods = new System.Collections.ObjectModel.ReadOnlyCollection<ShippingMethod>(returnList);
-                    }
-                }
 
-                // We need to do this type casting for now until the base OBEC classes support the additional properties.  Setting the shipping
-                // methods calls this pipeline processor for validation purposes (call is made by CS integration) and we must allow to be called using
-                // the original CS integration classes.
-                if (request is Services.Orders.GetShippingMethodsRequest && result is GetShippingMethodsResult)
-                {
-                    var obecRequest = (Services.Orders.GetShippingMethodsRequest)request;
-                    var obecResult = (GetShippingMethodsResult)result;
-
-                    if (obecRequest.Lines != null && obecRequest.Lines.Any())
-                    {
-                        var shippingMethodPerItemList = new List<ShippingMethodPerItem>();
-
-                        foreach (var line in obecRequest.Lines)
+                        // We need to do this type casting for now until the base OBEC classes support the additional properties.  Setting the shipping
+                        // methods calls this pipeline processor for validation purposes (call is made by CS integration) and we must allow to be called using
+                        // the original CS integration classes.
+                        if (request is Services.Orders.GetShippingMethodsRequest && result is GetShippingMethodsResult)
                         {
-                            var shippingMethodPerItem = new ShippingMethodPerItem();
+                            var obecRequest = (Services.Orders.GetShippingMethodsRequest)request;
+                            var obecResult = (GetShippingMethodsResult)result;
 
-                            shippingMethodPerItem.LineId = line.ExternalCartLineId;
-                            shippingMethodPerItem.ShippingMethods = result.ShippingMethods;
+                            if (obecRequest.Lines != null && obecRequest.Lines.Any())
+                            {
+                                var shippingMethodPerItemList = new List<ShippingMethodPerItem>();
 
-                            shippingMethodPerItemList.Add(shippingMethodPerItem);
+                                foreach (var line in obecRequest.Lines)
+                                {
+                                    var shippingMethodPerItem = new ShippingMethodPerItem();
+
+                                    shippingMethodPerItem.LineId = line.ExternalCartLineId;
+                                    shippingMethodPerItem.ShippingMethods = result.ShippingMethods;
+
+                                    shippingMethodPerItemList.Add(shippingMethodPerItem);
+                                }
+
+                                obecResult.ShippingMethodsPerItem = new System.Collections.ObjectModel.ReadOnlyCollection<ShippingMethodPerItem>(shippingMethodPerItemList);
+                            }
                         }
-
-                        obecResult.ShippingMethodsPerItem = new System.Collections.ObjectModel.ReadOnlyCollection<ShippingMethodPerItem>(shippingMethodPerItemList);
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Translates the shipping method from an item to a ShippingMethod instance.
+        /// </summary>
+        /// <param name="shippingOptionItem">The shipping option item.</param>
+        /// <param name="shippingMethodItem">The shipping method item.</param>
+        /// <param name="csMethodId">The cs method identifier.</param>
+        /// <param name="shippingMethod">The shipping method.</param>
+        protected virtual void TranslateShippingMethod(Item shippingOptionItem, Item shippingMethodItem, string csMethodId, ShippingMethod shippingMethod)
+        {
+            Guid shippingMethodGuid = new Guid(csMethodId);
+
+            shippingMethod.ExternalId = shippingMethodGuid.ToString("B");
+            shippingMethod.Name = shippingMethodItem.Name;
+            shippingMethod.Description = shippingMethod.Name;
+            shippingMethod.ShippingOptionId = shippingOptionItem.ID.ToString();
         }
 
         /// <summary>
@@ -128,7 +152,16 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Shipping
         /// <returns>The Shipping Options item from Sitecore.</returns>
         protected virtual Item GetShippingOptionsItem()
         {
-            return Sitecore.Context.Database.GetItem("/sitecore/Commerce/Shipping Options");
+            return Sitecore.Context.Database.GetItem("/sitecore/Commerce/Commerce Control Panel/Shared Settings/Fulfillment Options");
+        }
+
+        /// <summary>
+        /// Gets the shipping options type folder item.
+        /// </summary>
+        /// <returns>The shipping options type folder item.</returns>
+        protected virtual Item GetShippingOptionsTypeFolder()
+        {
+            return Sitecore.Context.Database.GetItem("/sitecore/Commerce/Commerce Control Panel/Shared Settings/Fulfillment Option Types");
         }
     }
 }

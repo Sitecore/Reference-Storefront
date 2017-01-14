@@ -1,0 +1,66 @@
+----item----
+version: 1
+id: {DA122580-69B3-4C1F-B533-E35B8F015514}
+database: master
+path: /sitecore/Commerce/Commerce Control Panel/Shared Settings/Language Sets/All Languages
+parent: {16055462-0DFA-4B49-A130-012589D12D47}
+name: All Languages
+master: {00000000-0000-0000-0000-000000000000}
+template: {D8ABC594-0FBF-4407-B0E0-7FE4FEAEB2ED}
+templatekey: Language Set
+created: 20161205T075628Z
+
+----field----
+field: {3A621478-CC5C-4777-8CB3-A7911AE264E2}
+name: Default Language
+key: default language
+content-length: 2
+
+en
+----field----
+field: {FFD6D079-7DBC-4F1E-B46E-75745B71B1E6}
+name: Fallback Language
+key: fallback language
+content-length: 2
+
+en
+----field----
+field: {12B7253C-1E8C-43C1-A733-124957D529FB}
+name: Languages
+key: languages
+content-length: 20
+
+de-DE|en|fr-FR|ja-JP
+----version----
+language: en
+version: 1
+revision: 18c32162-ee3d-4725-9ee7-b0af9b093578
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20160201T160204Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+18c32162-ee3d-4725-9ee7-b0af9b093578
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20160404T180701Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\Admin

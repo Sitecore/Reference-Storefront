@@ -1,0 +1,66 @@
+----item----
+version: 1
+id: {7C0E7B38-52F2-4F4D-B674-956683ED03B6}
+database: master
+path: /sitecore/Commerce/Commerce Control Panel/Shared Settings/Payment Options/PayCard/Visa
+parent: {4AF21646-C4FF-4DB8-88DF-6A8B506DE338}
+name: Visa
+master: {00000000-0000-0000-0000-000000000000}
+template: {38CBAE5F-0DE6-40C2-B0C8-8CD8039FBD27}
+templatekey: Payment Method
+created: 20161214T122636Z
+
+----version----
+language: en
+version: 1
+revision: 843713ca-0589-4d72-9fb3-68b9e3b12c40
+
+----field----
+field: {7207EC3E-F92A-4193-9BE9-F5C2140E4793}
+name: Title
+key: title
+content-length: 4
+
+Visa
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\Admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20161206T145949Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\Admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+843713ca-0589-4d72-9fb3-68b9e3b12c40
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20161214T124327Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\Admin

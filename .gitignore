@@ -1,4 +1,4 @@
-﻿################################################################################
+################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
@@ -39,3 +39,24 @@
 /Storefront/Common/TDSCommon_Master/Package_Debug/Sitecore.Reference.Storefront.Common.update
 /Storefront/CS/Commerce.Storefront.ProfileDatabase/Commerce.Storefront.ProfileDatabase.dbmdl
 /Storefront/CS/CSF/Commerce.Storefront.csproj.user
+/Storefront/CF/Commerce.Storefront.ProfileDatabase/Commerce.Storefront.ProfileDatabase.sqlproj.user
+/Storefront/CF/Commerce.Storefront.ProfileDatabase/bin
+/Storefront/CF/Commerce.Storefront.ProfileDatabase/obj/Debug
+/Storefront/CF/CSF/bin
+/Storefront/CF/CSF/obj/Debug
+/Storefront/CF/Database/Profiles/Commerce.Storefront.ProfileDatabase.dacpac
+/Storefront/CF/TDSCommerceEngine_Master/bin
+/Storefront/CF/TDSCommerceEngine_Master/Package_Debug
+/Storefront/CF/TDSCommerceEngine_Master/Debug
+/Storefront/CF/Commerce.Storefront.ProfileDatabase/obj/Release
+/Storefront/CF/CSF/obj/Release
+/Storefront/CF/TDSCommerceEngine_Master/Package_Release
+/Storefront/CF/TDSCommerceEngine_Master/Release
+/Storefront/Common/CommonSettings/obj/Release
+/Storefront/Common/TDSCommon_Master/Release
+/Storefront/Common/TDSCommon_Master/Package_Release
+/Storefront/CS/Commerce.Storefront.ProfileDatabase/obj/Release
+/Storefront/CS/CSF/obj/Release
+/Storefront/CS/TDSCommerceServer_Master/Package_Release
+/Storefront/CS/TDSCommerceServer_Master/Release
+Storefront/CF/Commerce.Storefront.ProfileDatabase/Commerce.Storefront.ProfileDatabase.dbmdl

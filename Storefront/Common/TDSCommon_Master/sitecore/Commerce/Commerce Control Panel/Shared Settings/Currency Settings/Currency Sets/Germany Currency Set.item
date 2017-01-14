@@ -1,0 +1,66 @@
+----item----
+version: 1
+id: {1AE2DE80-49BA-4C65-88A1-ACB67D99E3F7}
+database: master
+path: /sitecore/Commerce/Commerce Control Panel/Shared Settings/Currency Settings/Currency Sets/Germany Currency Set
+parent: {D779664A-29F8-4ADA-B12C-A6666EC03958}
+name: Germany Currency Set
+master: {00000000-0000-0000-0000-000000000000}
+template: {2E5CB4CD-59D1-4AE0-9967-831BED5B7945}
+templatekey: Currency Set
+created: 20161205T075628Z
+
+----field----
+field: {9CC02000-C6FB-41B6-B3B2-F1E9B2DFF4D1}
+name: Default Currency
+key: default currency
+content-length: 3
+
+USD
+----field----
+field: {3FAC8159-F5C1-471D-A26C-4C3C3D494532}
+name: Currencies
+key: currencies
+content-length: 7
+
+USD|EUR
+----version----
+language: en
+version: 1
+revision: be0223de-346d-4b6e-843e-53a71d2100c3
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20160404T180411Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\Admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+be0223de-346d-4b6e-843e-53a71d2100c3
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20160404T181041Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\Admin

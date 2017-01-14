@@ -1,0 +1,59 @@
+----item----
+version: 1
+id: {4272A2A4-AD4B-42F2-AF87-5D3316CA27EB}
+database: master
+path: /sitecore/Commerce/Commerce Control Panel/Shared Settings/Fulfillment Options/Select delivery options by item
+parent: {EDA9D296-26B7-433E-AB7E-8F795854B417}
+name: Select delivery options by item
+master: {00000000-0000-0000-0000-000000000000}
+template: {7CC3185B-6DEF-4D8E-BF12-D981DFD2B614}
+templatekey: Fulfillment Option
+created: 20161214T122636Z
+
+----field----
+field: {EF1E0A0B-AC9A-4171-9CBC-00DA3D85250A}
+name: Fulfillment Option Type
+key: fulfillment option type
+content-length: 38
+
+{476EB910-E8B8-44E7-97DC-9FC88D7E109A}
+----version----
+language: en
+version: 1
+revision: 92906424-85e6-4395-8b76-7f0a22adefd8
+
+----field----
+field: {F311C61A-08DD-411A-B280-42E335EC6118}
+name: Title
+key: title
+content-length: 31
+
+Select delivery options by item
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20161206T131808Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+92906424-85e6-4395-8b76-7f0a22adefd8
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20161207T110033Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\Admin

@@ -1,0 +1,27 @@
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PackageReadme>&amp;lt;p style=&amp;quot;TEXT-ALIGN: center; font-weight:bold&amp;quot;&amp;gt;
+Sitecore Reference Storefront
+
+&amp;lt;div&amp;gt;
+    &amp;lt;hr size=&amp;quot;2&amp;quot; width=&amp;quot;100%&amp;quot; /&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;p&amp;gt;The solution is licensed under the Apache License, Version 2.0 (the &amp;quot;License&amp;quot;). You may obtain a copy of the License at &amp;lt;/p&amp;gt;
+&amp;lt;p style=&amp;quot;margin-left:100px&amp;quot;&amp;gt;
+    &amp;lt;a href=&amp;quot;http://www.apache.org/licenses/LICENSE-2.0&amp;quot;&amp;gt;http://www.apache.org/licenses/LICENSE-2.0&amp;lt;/a&amp;gt;
+&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an &amp;quot;AS IS&amp;quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;In order to contribute as an individual or company, you will have to sign an agreement and get it approved by Sitecore. For more information and in order to obtain agreement forms, visit GitHub&amp;lt;/p&amp;gt;
+&amp;lt;div&amp;gt;
+    &amp;lt;hr size=&amp;quot;2&amp;quot; width=&amp;quot;100%&amp;quot; /&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;p style=&amp;quot;TEXT-ALIGN: center; font-weight:bold&amp;quot;&amp;gt;
+    Sitecore&amp;#174; is a registered trademark.
+    &amp;lt;br /&amp;gt; All other brand and product names are the property of their respective holders.
+    &amp;lt;br /&amp;gt; The contents of this document are the property of Sitecore.
+    &amp;lt;br /&amp;gt;Copyright &amp;#169; 2001-2017 Sitecore. All rights reserved.
+&amp;lt;/p&amp;gt;
+&amp;lt;/p&amp;gt;
+    </PackageReadme>
+  </PropertyGroup>
+</Project>

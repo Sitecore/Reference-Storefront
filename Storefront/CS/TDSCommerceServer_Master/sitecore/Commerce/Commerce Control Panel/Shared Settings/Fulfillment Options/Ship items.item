@@ -1,0 +1,59 @@
+----item----
+version: 1
+id: {E2F71FE5-565E-4B6A-8F7C-11AAB698D574}
+database: master
+path: /sitecore/Commerce/Commerce Control Panel/Shared Settings/Fulfillment Options/Ship items
+parent: {EDA9D296-26B7-433E-AB7E-8F795854B417}
+name: Ship items
+master: {00000000-0000-0000-0000-000000000000}
+template: {7CC3185B-6DEF-4D8E-BF12-D981DFD2B614}
+templatekey: Fulfillment Option
+created: 20161214T122635Z
+
+----field----
+field: {EF1E0A0B-AC9A-4171-9CBC-00DA3D85250A}
+name: Fulfillment Option Type
+key: fulfillment option type
+content-length: 38
+
+{0C80137C-132B-4C0D-8476-4BCABDAFE9F7}
+----version----
+language: en
+version: 1
+revision: 1d60afb0-d445-44ce-9c88-4e0752bd4bf9
+
+----field----
+field: {F311C61A-08DD-411A-B280-42E335EC6118}
+name: Title
+key: title
+content-length: 10
+
+Ship items
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20161206T131727Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+1d60afb0-d445-44ce-9c88-4e0752bd4bf9
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20161207T110042Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\Admin
