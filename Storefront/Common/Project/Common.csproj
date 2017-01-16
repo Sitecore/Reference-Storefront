@@ -56,6 +56,14 @@
     </Reference>
     <Reference Include="CommerceServer.Core.Catalog, Version=10.0.0.0, Culture=neutral, PublicKeyToken=f5c79cb11734af7a, processorArchitecture=MSIL">
     </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\Sitecore\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\Sitecore\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -132,17 +140,15 @@
       <HintPath>..\..\lib\Sitecore\Sitecore.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sitecore.Commerce, Version=8.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Sitecore.Commerce">
       <HintPath>..\..\lib\Sitecore.Commerce.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Sitecore.Commerce.Connect.CommerceServer, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\lib\Sitecore.Commerce.Connect.CommerceServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sitecore.Commerce.Remote, Version=8.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Sitecore.Commerce.Remote">
       <HintPath>..\..\lib\Sitecore.Commerce.Remote.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Sitecore.ContentSearch, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\lib\Sitecore\Sitecore.ContentSearch.dll</HintPath>
@@ -204,7 +210,7 @@
       <HintPath>..\..\lib\Sitecore\Sitecore.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sitecore.Update, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Sitecore.Update, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\lib\Sitecore\Sitecore.Update.dll</HintPath>
       <Private>True</Private>
     </Reference>
@@ -292,8 +298,11 @@
     <Compile Include="Models\CurrencyInformationModel.cs" />
     <Compile Include="Models\CustomerLinkupPendingViewModel.cs" />
     <Compile Include="Models\IdentityProviderModel.cs" />
+    <Compile Include="Models\InputModels\CancelOrderInputModel.cs" />
     <Compile Include="Models\InputModels\CustomerLinkupPendingInputModel.cs" />
     <Compile Include="Models\InputModels\FederatedPaymentInputModelItem.cs" />
+    <Compile Include="Models\InputModels\ReorderInputModel.cs" />
+    <Compile Include="Models\JsonResults\CancelOrderBaseJsonResult.cs" />
     <Compile Include="Models\JsonResults\CardPaymentAcceptUrlJsonResult.cs" />
     <Compile Include="Models\JsonResults\LineShippingOptionBaseJsonResult.cs" />
     <Compile Include="Models\JsonResults\ShippingMethodBaseJsonResult.cs" />

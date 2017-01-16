@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    OrderPipelineMappings.xml - Commerce Services Orders pipeline mapping information.
+
+    Copyright (C) 2003 Microsoft Corporation
+-->
+
+<!--
+Usage notes
+		* This XML mapping is used by the Orders system Pipeline Adapter to marshal the data
+		from the new object model to a legacy Commerce Server IDictionary data structure
+		used by the Order Pipelines.
+		* The mapping information is case sensitive.
+
+Tag definitions
+		* PipelineAdapterMap: This is the root node. Mapping information contained within this node
+		is used by the Pipeline Adapter. There are no attributes for this node. This node
+		can have zero or more of each of the following child nodes.
+
+		* Class: This node corresponds to a class in the object model. This node can only
+		have a Name attribute. Any additional attributes are ignored. This node can
+		have zero or more of each of the following child nodes.
+
+		* Property: Used for mapping non-collection properties in the class.
+		This node can have following attributes.
+
+		* Name: The name of the class strongly typed property. The system will use reflection to
+		find this class property in an assembly.
+
+		* DictionaryKey: The key with which this class member value will be added in
+		the Commerce Server IDictionary.
+
+		* ClassKey: Boolean value, set to true for the set of properties that can
+		be used to uniquely identify an instance of this class among all possible
+		instances in the .NET object model. If a collection is mapped to Dictionary (KeyType = Dictionary)
+		then the classKey is used as a key to Add the collection members in the commerce dictionary.
+		If there are more than one classKeys defined in a class mapping then all the keys will be appeneded
+		in the order they are provided in the class mapping and that will form the key for the commerce dictionary.
+
+		* Collection: Used for class members that hold collections. This node can have
+		the following attributes.
+
+		* Name: The name of the class strongly typed property that holds the collection. 
+		The system will use reflection to find this class property in an assembly.
+
+		* DictionaryKey: The key with which this class property value will be associated with
+		in the Commerce Server IDictionary.
+
+		* KeyType: Indicates the type of legacy Commerce Server collection to be
+		used to represent the managed collection in the IDictionary entry. The allowed
+		values include "Dictionary" and "SimpleList".
+
+		* ReferTo: Specifies the type of object this collection holds. The value for the
+		attribute must be a valid class (abstract or concrete) in the object model.
+		Pipeline mapping information for this class must also be provided.
+
+		* AbstractClass: This node corresponds to an abstract base class in the object model.
+		This node can only have the [distinguisher] attribute. Any additional attributes are ignored.
+		No child nodes are allowed for this node. Mapping information for all classes derived from
+		this abstract base class must also be provided in the pipeline mapping.
+
+		* Distinguisher: The value for the distinguisher attribute is the Dictionary key
+		corresponding to the class member that holds the name for a derived class.
+		This property will be used while populating the object model with the data in
+		the dictionary returned by the pipelines, to determine which derived class
+		instance the data in the dictionary corresponds to. For an example of this,
+		see the Payment abstract base class and its derived class definitions
+		(CreditCardPayment, etc.) below.
+
+-->
+<PipelineAdapterMap>
+	<Class Name="OrderForm">
+		<Property Name="OrderFormId" DictionaryKey="orderform_id" />
+		<Property Name="OrderGroupId" DictionaryKey="BasketOrderGroupId" />
+		<Property Name="PromoUserIdentity" DictionaryKey="promo_user_identity" />
+		<Property Name="SubTotal" DictionaryKey="_cy_oadjust_subtotal" />
+		<Property Name="ShippingTotal" DictionaryKey="_cy_shipping_total" />
+		<Property Name="HandlingTotal" DictionaryKey="_cy_handling_total" />
+		<Property Name="TaxTotal" DictionaryKey="_cy_tax_total" />
+		<Property Name="Total" DictionaryKey="_cy_total_total" />
+		<Property Name="BillingAddressId" DictionaryKey="billing_address_id" />
+		<Property Name="Status" DictionaryKey="orderform_status" />
+		<Collection Name="PromoCodes" DictionaryKey="promo_codes" KeyType="SimpleList" />
+		<Collection Name="Shipments" DictionaryKey="shipments" KeyType="SimpleList" ReferTo="Shipment" />
+		<Collection Name="LineItems" DictionaryKey="items" KeyType="SimpleList" ReferTo="LineItem" />
+		<Collection Name="PromoCodeRecords" DictionaryKey="promo_code_info" KeyType="SimpleList" ReferTo="PromoCodeRecord" />
+		<Collection Name="Payments" DictionaryKey="payments" KeyType="SimpleList" ReferTo="Payment" />
+		<!--Following properties in this map are in the OrderForm where as in the object model
+		these properties reside in the OrderGroup class. This is an exceptional case for these three properties.
+		This kind of mapping is not allowed for other properties.-->
+		<Property Name="TrackingNumber" DictionaryKey="order_number" />
+		<Property Name="SoldToId" DictionaryKey="user_id" />
+		<Collection Name="Addresses" DictionaryKey="Addresses" KeyType="Dictionary" ReferTo="OrderAddress" />
+	</Class>
+	<AbstractClass Name="Payment" Distinguisher="derived_class_name" />
+	<Class Name="CreditCardPayment">
+		<Property Name="BillingAddressId" DictionaryKey="billing_address_id" />
+		<Property Name="PaymentId" DictionaryKey="payment_id" ClassKey="true" />
+		<Property Name="PaymentMethodId" DictionaryKey="payment_method_id" />
+		<Property Name="PaymentMethodName" DictionaryKey="payment_method_name" />
+		<Property Name="CustomerNameOnPayment" DictionaryKey="customer_name_on_payment" />
+		<Property Name="Amount" DictionaryKey="cy_amount" />
+		<Property Name="DerivedClassName" DictionaryKey="derived_class_name" />
+		<Property Name="CreditCardNumber" DictionaryKey="_cc_number" />
+		<Property Name="CreditCardIdentifier" DictionaryKey="cc_identifier" />
+		<Property Name="ExpirationMonth" DictionaryKey="_cc_expmonth" />
+		<Property Name="ExpirationYear" DictionaryKey="_cc_expyear" />
+		<Property Name="CardType" DictionaryKey="cc_type" />
+		<Property Name="ValidationCode" DictionaryKey="validation_code" />
+		<Property Name="AuthorizationCode" DictionaryKey="authorization_code" />
+		<Property Name="Status" DictionaryKey="payment_status" />
+	</Class>
+	<Class Name="GiftCertificatePayment">
+		<Property Name="BillingAddressId" DictionaryKey="billing_address_id" />
+		<Property Name="PaymentId" DictionaryKey="payment_id" ClassKey="true" />
+		<Property Name="PaymentMethodId" DictionaryKey="payment_method_id" />
+		<Property Name="PaymentMethodName" DictionaryKey="payment_method_name" />
+		<Property Name="CustomerNameOnPayment" DictionaryKey="customer_name_on_payment" />
+		<Property Name="Amount" DictionaryKey="cy_amount" />
+		<Property Name="DerivedClassName" DictionaryKey="derived_class_name" />
+		<Property Name="GiftCertificateNumber" DictionaryKey="gift_certificate_number" />
+		<Property Name="ExpirationDate" DictionaryKey="dt_expiration" />
+		<Property Name="Pin" DictionaryKey="pin" />
+		<Property Name="Status" DictionaryKey="payment_status" />
+	</Class>
+	<Class Name="PurchaseOrderPayment">
+		<Property Name="BillingAddressId" DictionaryKey="billing_address_id" />
+		<Property Name="PaymentId" DictionaryKey="payment_id" ClassKey="true" />
+		<Property Name="PaymentMethodId" DictionaryKey="payment_method_id" />
+		<Property Name="PaymentMethodName" DictionaryKey="payment_method_name" />
+		<Property Name="CustomerNameOnPayment" DictionaryKey="customer_name_on_payment" />
+		<Property Name="Amount" DictionaryKey="cy_amount" />
+		<Property Name="DerivedClassName" DictionaryKey="derived_class_name" />
+		<Property Name="PurchaseOrderPaymentNumber" DictionaryKey=" purchase_order_payment_number" />
+		<Property Name="Status" DictionaryKey="payment_status" />
+	</Class>
+	<Class Name="CashCardPayment">
+		<Property Name="BillingAddressId" DictionaryKey="billing_address_id" />
+		<Property Name="PaymentId" DictionaryKey="payment_id" ClassKey="true" />
+		<Property Name="PaymentMethodId" DictionaryKey="payment_method_id" />
+		<Property Name="PaymentMethodName" DictionaryKey="payment_method_name" />
+		<Property Name="CustomerNameOnPayment" DictionaryKey="customer_name_on_payment" />
+		<Property Name="Amount" DictionaryKey="cy_amount" />
+		<Property Name="DerivedClassName" DictionaryKey="derived_class_name" />
+		<Property Name="CashCardNumber" DictionaryKey="cash_card_number" />
+		<Property Name="Pin" DictionaryKey="pin" />
+		<Property Name="Status" DictionaryKey="payment_status" />
+	</Class>
+	<Class Name="Shipment">
+		<Property Name="ShipmentId" DictionaryKey="shipment_id" ClassKey="true" />
+		<Property Name="ShippingAddressId" DictionaryKey="shipping_address_id" />
+		<Property Name="ShippingMethodId" DictionaryKey="shipping_method_id" />
+		<Property Name="ShipmentTrackingNumber" DictionaryKey="shipment_tracking_number" />
+		<Property Name="ShipmentTotal" DictionaryKey="_cy_shipping_total" />
+		<Property Name="ShippingDiscountAmount" DictionaryKey="_cy_shipping_discounts_subtotal" />
+		<Property Name="ShippingMethodName" DictionaryKey="shipping_method_name" />
+		<Property Name="Status" DictionaryKey="shipment_status" />
+		<Collection Name="LineItemIndexes" DictionaryKey="ItemIndexes" KeyType="SimpleList" />
+		<Collection Name="ShippingDiscounts" DictionaryKey="_shipping_discounts_applied" KeyType="SimpleList" ReferTo="ShippingDiscountRecord" />
+	</Class>
+	<Class Name="OrderAddress">
+		<Property Name="OrderAddressId" DictionaryKey="address_id" ClassKey="true" />
+		<Property Name="Name" DictionaryKey="name" />
+		<Property Name="FirstName" DictionaryKey="first_name" />
+		<Property Name="LastName" DictionaryKey="last_name" />
+		<Property Name="Line1" DictionaryKey="address_line1" />
+		<Property Name="Line2" DictionaryKey="address_line2" />
+		<Property Name="City" DictionaryKey="city" />
+		<Property Name="State" DictionaryKey="state" />
+		<Property Name="CountryCode" DictionaryKey="country_code" />
+		<Property Name="CountryName" DictionaryKey="country_name" />
+		<Property Name="PostalCode" DictionaryKey="postal_code" />
+		<Property Name="RegionName" DictionaryKey="region_name" />
+		<Property Name="RegionCode" DictionaryKey="region_code" />
+		<Property Name="DaytimePhoneNumber" DictionaryKey="day_time_phone_number" />
+		<Property Name="EveningPhoneNumber" DictionaryKey="evening_phone_number" />
+		<Property Name="Email" DictionaryKey="email" />
+		<Property Name="OrderGroupId" DictionaryKey="order_group_id" />
+	</Class>
+	<Class Name="LineItem">
+		<Property Name="LineItemId" DictionaryKey="index" ClassKey="true" />
+		<Property Name="ProductCatalog" DictionaryKey="product_catalog" />
+		<Property Name="ProductCategory" DictionaryKey="product_category" />
+		<Property Name="ProductId" DictionaryKey="product_id" />
+		<Property Name="ProductVariantId" DictionaryKey="product_variant_id" />
+		<Property Name="Quantity" DictionaryKey="quantity" />
+		<Property Name="PlacedPrice" DictionaryKey="cy_placed_price" />
+		<Property Name="ListPrice" DictionaryKey="_cy_iadjust_regularprice" />
+		<Property Name="LineItemDiscountAmount" DictionaryKey="_cy_itemlevel_discounts_subtotal" />
+		<Property Name="OrderLevelDiscountAmount" DictionaryKey="_cy_orderlevel_discounts_subtotal" />
+		<Property Name="ShippingAddressId" DictionaryKey="shipping_address_id" />
+		<Property Name="ShippingMethodId" DictionaryKey="shipping_method_id" />
+		<Property Name="ShippingMethodName" DictionaryKey="shipping_method_name" />
+		<Property Name="ExtendedPrice" DictionaryKey="_cy_oadjust_adjustedprice" />
+		<Property Name="DisplayName" DictionaryKey="_product_DisplayName" />
+		<Property Name="InStockQuantity" DictionaryKey="_inventory_in_stock_for_request" />
+		<Property Name="PreorderQuantity" DictionaryKey="_inventory_pre_order_for_request" />
+		<Property Name="InventoryCondition" DictionaryKey="_inventory_condition" />
+		<Property Name="BackorderQuantity" DictionaryKey="_inventory_back_order_for_request" />
+		<Property Name="AllowBackordersAndPreorders" DictionaryKey="_inventory_allow_backorder_and_preorder" />
+		<Property Name="Status" DictionaryKey="item_status" />
+		<Collection Name="ItemLevelDiscountsApplied" DictionaryKey="_itemlevel_discounts_applied" KeyType="SimpleList" ReferTo="DiscountApplicationRecord" />
+		<Collection Name="OrderLevelDiscountsApplied" DictionaryKey="_orderlevel_discounts_applied" KeyType="SimpleList" ReferTo="DiscountApplicationRecord" />
+	</Class>
+	<Class Name="DiscountApplicationRecord">
+		<Property Name="DiscountId" DictionaryKey="discount_id" ClassKey="true" />
+		<Property Name="Priority" DictionaryKey="discount_priority" />
+		<Property Name="DiscountAmount" DictionaryKey="cy_discount_amount" />
+		<Property Name="DiscountValue" DictionaryKey="cy_discount_value" />
+		<Property Name="DiscountName" DictionaryKey="discount_name" />
+		<Property Name="TypeOfDiscount" DictionaryKey="discount_type" />
+		<Property Name="LastModified" DictionaryKey="discount_timestamp" />
+		<Property Name="PromoCode" DictionaryKey="promo_code" />
+		<Property Name="PromoCodeDefinitionId" DictionaryKey="promocode_defn_id" />
+		<Property Name="BasketDisplayMessage" DictionaryKey="discount_basket_display" />
+	</Class>
+	<Class Name="ShippingDiscountRecord">
+		<Property Name="DiscountId" DictionaryKey="discount_id" ClassKey="true" />
+		<Property Name="Priority" DictionaryKey="discount_priority" />
+		<Property Name="DiscountAmount" DictionaryKey="cy_discount_amount" />
+		<Property Name="DiscountValue" DictionaryKey="cy_discount_value" />
+		<Property Name="DiscountName" DictionaryKey="discount_name" />
+		<Property Name="TypeOfDiscount" DictionaryKey="discount_type" />
+		<Property Name="LastModified" DictionaryKey="discount_timestamp" />
+		<Property Name="PromoCode" DictionaryKey="promo_code" />
+		<Property Name="PromoCodeDefinitionId" DictionaryKey="promocode_defn_id" />
+		<Property Name="BasketDisplayMessage" DictionaryKey="discount_basket_display" />
+	</Class>
+	<Class Name="PromoCodeRecord">
+		<Property Name="PromoCode" DictionaryKey="promo_code" ClassKey="true" />
+		<Property Name="PromoCodeDefinitionId" DictionaryKey="promo_code_definition_id" />
+		<Property Name="PromoCodeLookupDate" DictionaryKey="dt_promo_code_lookup" />
+		<Property Name="PromoCodeStatus" DictionaryKey="promo_code_status" />
+		<Property Name="PromoApplied" DictionaryKey="promo_applied" />
+		<Property Name="PromoCodeReserved" DictionaryKey="promo_code_reserved" />
+	</Class>
+</PipelineAdapterMap>
+

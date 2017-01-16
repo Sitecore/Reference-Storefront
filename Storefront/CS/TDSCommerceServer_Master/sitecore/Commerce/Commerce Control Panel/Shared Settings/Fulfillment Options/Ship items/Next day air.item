@@ -1,0 +1,66 @@
+----item----
+version: 1
+id: {46BB9DC1-4E56-46ED-9ADF-405A5AA772C3}
+database: master
+path: /sitecore/Commerce/Commerce Control Panel/Shared Settings/Fulfillment Options/Ship items/Next day air
+parent: {E2F71FE5-565E-4B6A-8F7C-11AAB698D574}
+name: Next day air
+master: {00000000-0000-0000-0000-000000000000}
+template: {79C4BB54-DF7D-4825-BFA7-32FF9B051299}
+templatekey: Fulfillment Method
+created: 20161214T122636Z
+
+----version----
+language: en
+version: 1
+revision: e219ebab-b590-44e9-b5d7-40d2e6093359
+
+----field----
+field: {19110EBD-4668-429D-9237-E8DFE81C09A8}
+name: Title
+key: title
+content-length: 12
+
+Next day air
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\Admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20161206T132212Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\Admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+e219ebab-b590-44e9-b5d7-40d2e6093359
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20161214T124240Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\Admin

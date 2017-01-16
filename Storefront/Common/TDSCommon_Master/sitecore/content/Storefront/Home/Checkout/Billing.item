@@ -12,7 +12,7 @@ templatekey: Billing Page
 ----version----
 language: en
 version: 1
-revision: 5349c36a-aaa3-41b0-bca9-1fa194c5819f
+revision: b53eca37-3b4b-4090-85ed-d3f13a29f3fa
 
 ----field----
 field: {6D0902E3-C47C-4DE4-AEB9-2E06F0A8DA0C}
@@ -84,6 +84,13 @@ key: ccid label
 content-length: 4
 
 CCID
+----field----
+field: {D6E5495F-8F1B-423A-AEEF-ED544704CDE0}
+name: Validate Payment Label
+key: validate payment label
+content-length: 16
+
+Validate Payment
 ----field----
 field: {00249BCB-F270-4EDD-8EC1-3DFE65136314}
 name: Billing Address Header
@@ -377,14 +384,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-5349c36a-aaa3-41b0-bca9-1fa194c5819f
+b53eca37-3b4b-4090-85ed-d3f13a29f3fa
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 16
 
-20160728T121118Z
+20161101T171224Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

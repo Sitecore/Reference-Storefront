@@ -56,6 +56,11 @@ namespace Sitecore.Reference.Storefront
         public static class KnownFieldNames
         {
             /// <summary>
+            /// The title field.
+            /// </summary>
+            public const string Title = "Title";
+
+            /// <summary>
             /// The commerce server payment methods field.
             /// </summary>
             public const string CommerceServerPaymentMethods = "CS Payment Methods";
@@ -71,11 +76,6 @@ namespace Sitecore.Reference.Storefront
             public const string CountryLocationPath = "Country location path";
 
             /// <summary>
-            /// The country name field.
-            /// </summary>
-            public const string CountryName = "Name";
-
-            /// <summary>
             /// The country code field.
             /// </summary>
             public const string CountryCode = "Country Code";
@@ -83,7 +83,7 @@ namespace Sitecore.Reference.Storefront
             /// <summary>
             /// The payment option value field.
             /// </summary>
-            public const string PaymentOptionValue = "Payment Option Value";
+            public const string PaymentOptionType = "Payment Option Type";
 
             /// <summary>
             /// The region name field.
@@ -93,7 +93,12 @@ namespace Sitecore.Reference.Storefront
             /// <summary>
             /// The shipping option value field.
             /// </summary>
-            public const string ShippingOptionValue = "Shipping Option Value";
+            public const string FulfillmentOptionType = "Fulfillment Option Type";
+
+            /// <summary>
+            /// The type id field.
+            /// </summary>
+            public const string TypeId = "Type ID";
 
             /// <summary>
             /// The shipping options location path field.

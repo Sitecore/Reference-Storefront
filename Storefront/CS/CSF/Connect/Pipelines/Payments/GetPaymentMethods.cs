@@ -66,31 +66,37 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Payments
                 return;
             }
 
-            Item paymentOptionsItem = this.GetPaymentOptionsItem();
+            Item paymentOptionTypesFolder = this.GetPaymentOptionsTypesFolder();
 
-            string query = string.Format(CultureInfo.InvariantCulture, "fast:{0}//*[@{1} = '{2}']", paymentOptionsItem.Paths.FullPath, CommerceServerStorefrontConstants.KnownFieldNames.PaymentOptionValue, request.PaymentOption.PaymentOptionType.Value);
-            Item foundOption = paymentOptionsItem.Database.SelectSingleItem(query);
-            if (foundOption != null)
+            string query = string.Format(CultureInfo.InvariantCulture, "fast:{0}//*[@{1} = '{2}']", paymentOptionTypesFolder.Paths.FullPath, CommerceServerStorefrontConstants.KnownFieldNames.TypeId, request.PaymentOption.PaymentOptionType.Value);
+            Item foundOptionType = paymentOptionTypesFolder.Database.SelectSingleItem(query);
+            if (foundOptionType != null)
             {
-                string paymentMethodsIds = foundOption[CommerceServerStorefrontConstants.KnownFieldNames.CommerceServerPaymentMethods];
-                if (!string.IsNullOrWhiteSpace(paymentMethodsIds))
+                Item paymentOptionsItem = this.GetPaymentOptionsItem();
+
+                query = string.Format(CultureInfo.InvariantCulture, "fast:{0}//*[@{1} = '{2}']", paymentOptionsItem.Paths.FullPath, CommerceServerStorefrontConstants.KnownFieldNames.PaymentOptionType, foundOptionType.ID);
+                Item paymentOptionItem = paymentOptionsItem.Database.SelectSingleItem(query);
+                if (paymentOptionItem != null)
                 {
-                    base.Process(args);
-                    if (result.Success)
+                    // Has methods?
+                    if (paymentOptionItem.HasChildren)
                     {
-                        List<PaymentMethod> currentList = new List<PaymentMethod>(result.PaymentMethods);
                         List<PaymentMethod> returnList = new List<PaymentMethod>();
 
-                        string[] ids = paymentMethodsIds.Split('|');
-                        foreach (string id in ids)
+                        foreach (Item paymentMethodItem in paymentOptionItem.GetChildren())
                         {
-                            string trimmedId = id.Trim();
-
-                            var found2 = currentList.Find(o => o.ExternalId.Equals(trimmedId, StringComparison.OrdinalIgnoreCase));
-                            PaymentMethod found = currentList.Find(o => o.ExternalId.Equals(trimmedId, StringComparison.OrdinalIgnoreCase));
-                            if (found != null)
+                            // Do we have a Commerce Server Method?
+                            if (paymentMethodItem.HasChildren)
                             {
-                                returnList.Add(found);
+                                Item csMethod = paymentMethodItem.GetChildren()[0];
+                                string csMethodId = csMethod[StorefrontConstants.KnownFieldNames.MethodId];
+                                Assert.IsNotNullOrEmpty(csMethodId, string.Format(CultureInfo.InvariantCulture, "The CS Method of the {0} Fulfillment Method is empty.", paymentMethodItem.Name));
+
+                                PaymentMethod shippingMethod = this.EntityFactory.Create<PaymentMethod>("PaymentMethod");
+
+                                this.TranslatePaymentMethod(paymentOptionItem, paymentMethodItem, csMethodId, shippingMethod);
+
+                                returnList.Add(shippingMethod);
                             }
                         }
 
@@ -101,12 +107,38 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Payments
         }
 
         /// <summary>
+        /// Translates the payment method from an item to a PaymentMethod clas..
+        /// </summary>
+        /// <param name="paymentOptionItem">The payment option item.</param>
+        /// <param name="paymentMethodItem">The payment method item.</param>
+        /// <param name="csMethodId">The cs method identifier.</param>
+        /// <param name="paymentMethod">The payment method.</param>
+        protected virtual void TranslatePaymentMethod(Item paymentOptionItem, Item paymentMethodItem, string csMethodId, PaymentMethod paymentMethod)
+        {
+            Guid shippingMethodGuid = new Guid(csMethodId);
+
+            paymentMethod.ExternalId = shippingMethodGuid.ToString("B");
+            paymentMethod.Name = paymentMethodItem.Name;
+            paymentMethod.Description = paymentMethodItem.Name;
+            paymentMethod.PaymentOptionId = paymentOptionItem.ID.ToString();
+        }
+
+        /// <summary>
         /// Gets the payment option item.
         /// </summary>
         /// <returns>Get the Payment Options item from Sitecore.</returns>
         protected virtual Item GetPaymentOptionsItem()
         {
-            return Sitecore.Context.Database.GetItem("/sitecore/Commerce/Payment Options");
+            return Sitecore.Context.Database.GetItem("/sitecore/Commerce/Commerce Control Panel/Shared Settings/Payment Options");
+        }
+
+        /// <summary>
+        /// Gets the payment options types folder item.
+        /// </summary>
+        /// <returns>The payment option types folder item.</returns>
+        protected virtual Item GetPaymentOptionsTypesFolder()
+        {
+            return Sitecore.Context.Database.GetItem("/sitecore/Commerce/Commerce Control Panel/Shared Settings/Payment Option Types");
         }
 
         /// <summary>

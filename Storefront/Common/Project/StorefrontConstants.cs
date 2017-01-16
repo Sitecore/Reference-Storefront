@@ -394,6 +394,16 @@ namespace Sitecore.Reference.Storefront
         public static class KnownFieldNames
         {
             /// <summary>
+            /// The method id field.
+            /// </summary>
+            public static readonly string MethodId = "Method ID";
+
+            /// <summary>
+            /// The storefront configuration field.
+            /// </summary>
+            public static readonly string StorefrontConfiguration = "Storefront Configuration";
+
+            /// <summary>
             /// The cancel field.
             /// </summary>
             public static readonly string Cancel = "Cancel";
@@ -783,6 +793,11 @@ namespace Sitecore.Reference.Storefront
         /// </summary>
         public static class KnowItemNames
         {
+            public static readonly string CurrencyConfiguration = "Currency Configuration";
+            public static readonly string CurrencyDisplayAdjustments = "Currencies Display Adjustments";
+            public static readonly string FulfillmentConfiguration = "Fulfillment Configuration";
+            public static readonly string PaymentConfiguration = "Payment Configuration";
+
             /// <summary>
             /// The mails template name
             /// </summary>
@@ -817,11 +832,6 @@ namespace Sitecore.Reference.Storefront
             /// The currencies lookup folder.
             /// </summary>
             public static readonly string Currencies = "Currencies";
-
-            /// <summary>
-            /// The currency display folder.
-            /// </summary>
-            public static readonly string CurrencyDisplay = "Currency Display";
 
             /// <summary>
             /// The payments folder.

@@ -17,6 +17,8 @@
 
 namespace Sitecore.Reference.Storefront.Connect.Pipelines.Shipping
 {
+    using Data;
+    using Data.Fields;
     using Sitecore.Commerce.Connect.CommerceServer;
     using Sitecore.Commerce.Connect.CommerceServer.Catalog;
     using Sitecore.Commerce.Connect.CommerceServer.Orders.Models;
@@ -30,6 +32,7 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Shipping
     using Sitecore.Reference.Storefront.Models.SitecoreItemModels;
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using CSCatalog = CommerceServer.Core.Catalog;
 
@@ -73,21 +76,44 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Shipping
             List<ShippingOption> availableShippingOptionList = new List<ShippingOption>();
             List<ShippingOption> allShippingOptionList = new List<ShippingOption>();
 
+            List<ID> filteredList = null;
+
+            var fulfillmentConfiguration = StorefrontManager.CurrentStorefront.FulfillmentConfiguration;
+            if (fulfillmentConfiguration != null)
+            {
+                MultilistField multiList = fulfillmentConfiguration.Fields[Sitecore.Commerce.Constants.Templates.FulfillmentConfiguration.Fields.FulfillmentOptions];
+                filteredList = new List<ID>(multiList.TargetIDs);
+            }
+
             foreach (Item shippingOptionItem in this.GetShippingOptionsItem().GetChildren())
             {
-                ShippingOption option = this.EntityFactory.Create<ShippingOption>("ShippingOption");
-
-                this.TranslateToShippingOption(shippingOptionItem, option);
-
-                bool add = option.ShippingOptionType == ShippingOptionType.ElectronicDelivery && !CartCanBeEmailed(request.Cart as CommerceCart) ? false :
-                           option.ShippingOptionType == ShippingOptionType.DeliverItemsIndividually && request.Cart.Lines.Count <= 1 ? false : true;
+                bool add = true;
+                if (filteredList != null)
+                {
+                    add = filteredList.Exists(p => p == shippingOptionItem.ID);
+                }
 
                 if (add)
                 {
-                    availableShippingOptionList.Add(option);
-                }
+                    var fulfillmentTypeId = shippingOptionItem[Sitecore.Commerce.Constants.Templates.FulfillmentOption.Fields.FulfillmentOptionType];
 
-                allShippingOptionList.Add(option);
+                    ShippingOption option = this.EntityFactory.Create<ShippingOption>("ShippingOption");
+
+                    var shippingOptionType = Sitecore.Context.Database.GetItem(fulfillmentTypeId);
+                    Assert.IsNotNull(shippingOptionType, string.Format(CultureInfo.InvariantCulture, "The Fulfillment Option Type is undefined in Sitecore.  ID: {0}", fulfillmentTypeId));
+
+                    this.TranslateToShippingOption(shippingOptionItem, shippingOptionType, option);
+
+                    add = option.ShippingOptionType == ShippingOptionType.ElectronicDelivery && !CartCanBeEmailed(request.Cart as CommerceCart) ? false :
+                          option.ShippingOptionType == ShippingOptionType.DeliverItemsIndividually && request.Cart.Lines.Count <= 1 ? false : true;
+
+                    if (add)
+                    {
+                        availableShippingOptionList.Add(option);
+                    }
+
+                    allShippingOptionList.Add(option);
+                }
             }
 
             result.ShippingOptions = new System.Collections.ObjectModel.ReadOnlyCollection<ShippingOption>(availableShippingOptionList);
@@ -98,13 +124,17 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Shipping
         /// Translates to shipping option.
         /// </summary>
         /// <param name="shippingOptionItem">The shipping option item.</param>
+        /// <param name="shippingOptionType">Type of the shipping option.</param>
         /// <param name="shippingOption">The shipping option.</param>
-        protected virtual void TranslateToShippingOption(Item shippingOptionItem, ShippingOption shippingOption)
+        protected virtual void TranslateToShippingOption(Item shippingOptionItem, Item shippingOptionType, ShippingOption shippingOption)
         {
+            var fulfillmentOptionTypeString = shippingOptionType[Sitecore.Commerce.Constants.Templates.FulfillmentOptionType.Fields.TypeID];
+            Assert.IsNotNullOrEmpty(fulfillmentOptionTypeString, string.Format(CultureInfo.InvariantCulture, "The Fulfillment Option Type item is not defined. ID: {0}", fulfillmentOptionTypeString));
+
             shippingOption.ExternalId = shippingOptionItem.ID.Guid.ToString();
-            shippingOption.Name = shippingOptionItem[CommerceServerStorefrontConstants.KnownFieldNames.Value];
+            shippingOption.Name = shippingOptionItem[CommerceServerStorefrontConstants.KnownFieldNames.Title];
             shippingOption.ShopName = this.GetShopName();
-            shippingOption.ShippingOptionType = MainUtil.GetInt(shippingOptionItem[CommerceServerStorefrontConstants.KnownFieldNames.ShippingOptionValue], 0);
+            shippingOption.ShippingOptionType = MainUtil.GetInt(shippingOptionType[Sitecore.Commerce.Constants.Templates.FulfillmentOptionType.Fields.TypeID], 0);
         }
 
         /// <summary>
@@ -113,7 +143,7 @@ namespace Sitecore.Reference.Storefront.Connect.Pipelines.Shipping
         /// <returns>The shipping options item from Sitecore.</returns>
         protected virtual Item GetShippingOptionsItem()
         {
-            return Sitecore.Context.Database.GetItem("/sitecore/Commerce/Shipping Options");
+            return Sitecore.Context.Database.GetItem("/sitecore/Commerce/Commerce Control Panel/Shared Settings/Fulfillment Options");
         }
 
         /// <summary>

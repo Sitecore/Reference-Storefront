@@ -22,6 +22,7 @@ function CheckoutDataViewModel(data) {
     self.isShipItems = ko.observable(false);
     self.emailDeliveryMethod = ko.observable(data.EmailDeliveryMethod);
     self.shipToStoreDeliveryMethod = ko.observable(data.ShipToStoreDeliveryMethod);
+    self.paymentClientToken = ko.observable(data.PaymentClientToken);
 
     self.orderShippingOptions = ko.observableArray();
     if (data.OrderShippingOptions != null) {

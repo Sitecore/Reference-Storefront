@@ -59,8 +59,28 @@
       <HintPath>..\..\packages\ComponentArt.Web.UI.2010.1.2637.35\lib\ComponentArt.Web.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="DotNetOpenAuth, Version=4.0.0.11165, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DotNetOpenAuth.4.0.0.11165\lib\net40\DotNetOpenAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Facebook, Version=5.4.1.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Facebook.5.4.1.0\lib\net40-client\Facebook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FacebookAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FacebookAPI.1.0.0.0\lib\net35\FacebookAPI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Google.Apis, Version=1.0.0.30541, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Apis.1.0.0.30541\lib\net45\Google.Apis.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Google.Apis.Authentication.OAuth2, Version=1.0.0.30542, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Apis.Authentication.1.0.0.30542\lib\net40\Google.Apis.Authentication.OAuth2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Google.Apis.Plus.v1, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Apis.Plus.v1.1.0.0.0\lib\portable-net4+sl4+wp71+win8\Google.Apis.Plus.v1.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Hammock.ClientProfile, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c148cfba29ed1a4d, processorArchitecture=MSIL">
@@ -108,6 +128,10 @@
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="OAuthLinkedIn, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\OAuthLinkedIn.1.0.0\lib\net35\OAuthLinkedIn.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="RadEditor.Net2, Version=7.2.0.0, Culture=neutral, PublicKeyToken=852c9eb6525c1b53, processorArchitecture=MSIL">
       <HintPath>..\..\packages\RadEditor.Net2.7.2.0.0\lib\RadEditor.Net2.dll</HintPath>
       <Private>True</Private>
@@ -124,16 +148,34 @@
       <HintPath>..\..\lib\Sitecore\Sitecore.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sitecore.Commerce, Version=8.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Sitecore.Commerce">
       <HintPath>..\..\lib\Sitecore.Commerce.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Sitecore.Commerce.Connect.CommerceServer, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\lib\Sitecore.Commerce.Connect.CommerceServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sitecore.Commerce.Remote, Version=8.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Sitecore.Commerce.Remote">
       <HintPath>..\..\lib\Sitecore.Commerce.Remote.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.ContentSearch, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\Sitecore\Sitecore.ContentSearch.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Sitecore.ContentSearch.Client, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\Sitecore\Sitecore.ContentSearch.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Sitecore.ContentSearch.Linq, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\Sitecore\Sitecore.ContentSearch.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Sitecore.ContentSearch.Linq.Lucene, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\Sitecore\Sitecore.ContentSearch.Linq.Lucene.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Sitecore.ContentSearch.LuceneProvider, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\Sitecore\Sitecore.ContentSearch.LuceneProvider.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sitecore.Kernel, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -148,7 +190,7 @@
       <HintPath>..\..\lib\Sitecore\Sitecore.Logging.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sitecore.Nexus, Version=1.0.4415.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Sitecore.Nexus, Version=1.0.4425.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\lib\Sitecore\Sitecore.Nexus.dll</HintPath>
       <Private>True</Private>
     </Reference>
@@ -170,6 +212,10 @@
     </Reference>
     <Reference Include="Sitecore.SessionProvider.Sql, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\lib\Sitecore\Sitecore.SessionProvider.Sql.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Sitecore.Update, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\lib\Sitecore\Sitecore.Update.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sitecore.Zip, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -198,6 +244,7 @@
       <HintPath>..\..\packages\Sitecore.CMS.Core.API.10.0.0.103\lib\net452\System.Web.WebPages.Deployment.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -266,6 +313,7 @@
     <Content Include="Scripts\Storefront\checkout.js" />
     <Content Include="Scripts\Storefront\debug-knockout.js" />
     <Content Include="Scripts\Storefront\editprofile.js" />
+    <Content Include="Scripts\Storefront\order.js" />
     <Content Include="Scripts\Storefront\passwordmanagement.js" />
     <Content Include="Scripts\Storefront\knockout-3.2.0.debug.js" />
     <Content Include="Scripts\Storefront\loyaltycards.js" />
@@ -290,7 +338,6 @@
     <Content Include="Scripts\Storefront\ViewModels\wishlist_VM.js" />
     <Content Include="Scripts\Storefront\wishlist.js" />
     <None Include="Scripts\_references.js" />
-    <Content Include="web.config" />
     <Content Include="Views\Storefront\Account\Addresses.cshtml" />
     <Content Include="Views\Storefront\Account\EditProfile.cshtml" />
     <Content Include="Views\Storefront\Account\ForgotPassword.cshtml" />
@@ -369,7 +416,6 @@
     <Content Include="Views\Storefront\ShoppingCart\ShoppingCart.cshtml" />
     <Content Include="Views\Storefront\ShoppingCart\_CartSummary.cshtml" />
     <Content Include="Views\Storefront\ShoppingCart\_LineItem.cshtml" />
-    <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Scripts\jquery-2.0.3.min.map" />
     <Content Include="Scripts\jsuri-1.1.1.min.js.map">
@@ -388,12 +434,6 @@
     <Content Include="Views\Storefront\Account\Register.cshtml" />
     <Content Include="Views\Storefront\Account\UserPendingActivation.cshtml" />
     <Content Include="Views\Storefront\Account\FederatedSignout.cshtml" />
-    <None Include="web.Debug.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
-    <None Include="web.Release.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Project\Common.csproj">

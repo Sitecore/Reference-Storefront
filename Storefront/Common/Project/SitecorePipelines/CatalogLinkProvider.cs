@@ -41,6 +41,11 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
         public const string UseShopLinksAttribute = "useShopLinks";
 
         /// <summary>
+        /// The attribute name of the UseDirectNavigation setting.
+        /// </summary>
+        public const string UseDirectNavigationAttribute = "useDirectNavigation";
+
+        /// <summary>
         /// The attribute name of the includeFriendlyName setting.
         /// </summary>
         public const string IncludeFriendlyNameAttribute = "includeFriendlyName";
@@ -54,6 +59,11 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
         /// The default value for the useShopLinks setting.
         /// </summary>
         public const bool UseShopLinksDefault = true;
+
+        /// <summary>
+        /// The default value for the useShopLinks setting.
+        /// </summary>
+        public const bool UseDirectNavigationDefault = false;
 
         /// <summary>
         /// The default value for the includeFriendlyName setting.
@@ -76,6 +86,12 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
         public bool IncludeFriendlyName { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether direct navigation against catalog items should be enforced or not. 
+        /// Default is fakse and wildcard approach is used
+        /// </summary>
+        public bool UseDirectNavigation { get; set; }
+
+        /// <summary>
         /// Initializes the provider.
         /// </summary>
         /// <param name="name">The friendly name of the provider.</param>
@@ -86,6 +102,7 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
 
             this.IncludeCatalog = MainUtil.GetBool(config[IncludeCatalogsAttribute], IncludeCatalogsDefault);
             this.UseShopLinks = MainUtil.GetBool(config[UseShopLinksAttribute], UseShopLinksDefault);
+            this.UseDirectNavigation = MainUtil.GetBool(config[UseDirectNavigationAttribute], UseDirectNavigationDefault);
             this.IncludeFriendlyName = MainUtil.GetBool(config[IncludeFriendlyNameAttribute], IncludeFriendlyNameDefault);
         }
 
@@ -104,10 +121,10 @@ namespace Sitecore.Reference.Storefront.SitecorePipelines
             var itemType = item.ItemType();
 
             bool productCatalogLinkRequired = Sitecore.Web.WebUtil.GetRawUrl().IndexOf(ProductItemResolver.NavigationItemName, System.StringComparison.OrdinalIgnoreCase) >= 0;
-            if (productCatalogLinkRequired)
+            if (productCatalogLinkRequired || UseDirectNavigation)
             {
                 url = CatalogUrlManager.BuildProductCatalogLink(item);
-            } 
+            }
             else if (this.UseShopLinks)
             {
                 if (itemType == StorefrontConstants.ItemTypes.Product)

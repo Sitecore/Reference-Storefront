@@ -1,0 +1,59 @@
+----item----
+version: 1
+id: {3C86B4A2-7D72-4110-A697-82D6CD0B6619}
+database: master
+path: /sitecore/Commerce/Commerce Control Panel/Shared Settings/Payment Options/Federated
+parent: {92CAF6BE-135A-4D03-9438-83BAE34D5A6B}
+name: Federated
+master: {00000000-0000-0000-0000-000000000000}
+template: {B4FB6139-9750-4DAC-AD16-1E4663E22DCE}
+templatekey: Payment Option
+created: 20161214T110117Z
+
+----field----
+field: {3C9AB946-F6BB-4A99-A5B6-C7FD79E2DE4B}
+name: Payment Option Type
+key: payment option type
+content-length: 38
+
+{642E367E-4281-4C21-A25C-9B4A47722958}
+----version----
+language: en
+version: 1
+revision: 7a675b9a-9f82-4bee-b494-7fae128be2f1
+
+----field----
+field: {8BB2CC42-F0D1-4D31-A94F-DA60BD47EC2D}
+name: Title
+key: title
+content-length: 9
+
+Federated
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20161204T121844Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+7a675b9a-9f82-4bee-b494-7fae128be2f1
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20161211T101045Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\Admin

@@ -1,4 +1,4 @@
-﻿----item----
+----item----
 version: 1
 id: {8B1D9D97-A517-48D8-BD62-7CB01366FD3C}
 database: master
@@ -8,6 +8,7 @@ name: Product List Texts
 master: {00000000-0000-0000-0000-000000000000}
 template: {455A3E98-A627-4B40-8035-E683A0331AC7}
 templatekey: Template field
+created: 20161207T104818Z
 
 ----field----
 field: {AB162CC0-DC80-4ABF-8871-998EE5D7BA32}
@@ -40,7 +41,7 @@ content-length: 3
 ----version----
 language: en
 version: 1
-revision: 901613ae-a1ab-4336-b2ca-569672c35602
+revision: e7a99a9d-3d15-4b94-892b-bb62be26a1e9
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -55,18 +56,18 @@ name: __Revision
 key: __revision
 content-length: 36
 
-901613ae-a1ab-4336-b2ca-569672c35602
+e7a99a9d-3d15-4b94-892b-bb62be26a1e9
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
-content-length: 34
+content-length: 16
 
-20141106T093225:635508631450813856
+20161207T113328Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
 key: __updated by
 content-length: 14
 
-sitecore\admin
+sitecore\Admin

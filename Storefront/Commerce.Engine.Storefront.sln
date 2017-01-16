@@ -1,0 +1,69 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonSettings", "Common\CommonSettings\CommonSettings.csproj", "{7B5BFDC5-7552-4EF0-807B-D9B60A78B3FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Project\Common.csproj", "{8450F330-0271-4091-8809-C671CCD50671}"
+EndProject
+Project("{CAA73BB0-EF22-4D79-A57E-DF67B3BA9C80}") = "TDSCommon_Master", "Common\TDSCommon_Master\TDSCommon_Master.scproj", "{703AFC07-DE4D-4100-A80A-D46D8730854D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commerce.Storefront", "CF\CSF\Commerce.Storefront.csproj", "{304F09AD-2FC3-453F-B016-50A1F842E3A9}"
+EndProject
+Project("{CAA73BB0-EF22-4D79-A57E-DF67B3BA9C80}") = "TDSCommerceEngine_Master", "CF\TDSCommerceEngine_Master\TDSCommerceEngine_Master.scproj", "{FD2EACBA-3EB3-41E4-965B-E06B5F96E619}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAndSchemas", "DataAndSchemas", "{971CA6AB-E662-453D-994B-47D549BE44D5}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Commerce.Storefront.ProfileDatabase", "CF\Commerce.Storefront.ProfileDatabase\Commerce.Storefront.ProfileDatabase.sqlproj", "{02CF30F7-BC9C-4730-9094-5944125EC20C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{CCA78494-7F61-437B-BFC6-CDE3EF96A64A}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7B5BFDC5-7552-4EF0-807B-D9B60A78B3FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B5BFDC5-7552-4EF0-807B-D9B60A78B3FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B5BFDC5-7552-4EF0-807B-D9B60A78B3FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B5BFDC5-7552-4EF0-807B-D9B60A78B3FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8450F330-0271-4091-8809-C671CCD50671}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8450F330-0271-4091-8809-C671CCD50671}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8450F330-0271-4091-8809-C671CCD50671}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8450F330-0271-4091-8809-C671CCD50671}.Release|Any CPU.Build.0 = Release|Any CPU
+		{703AFC07-DE4D-4100-A80A-D46D8730854D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{703AFC07-DE4D-4100-A80A-D46D8730854D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{703AFC07-DE4D-4100-A80A-D46D8730854D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{703AFC07-DE4D-4100-A80A-D46D8730854D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{703AFC07-DE4D-4100-A80A-D46D8730854D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{703AFC07-DE4D-4100-A80A-D46D8730854D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{304F09AD-2FC3-453F-B016-50A1F842E3A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{304F09AD-2FC3-453F-B016-50A1F842E3A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{304F09AD-2FC3-453F-B016-50A1F842E3A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{304F09AD-2FC3-453F-B016-50A1F842E3A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD2EACBA-3EB3-41E4-965B-E06B5F96E619}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD2EACBA-3EB3-41E4-965B-E06B5F96E619}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD2EACBA-3EB3-41E4-965B-E06B5F96E619}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{FD2EACBA-3EB3-41E4-965B-E06B5F96E619}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD2EACBA-3EB3-41E4-965B-E06B5F96E619}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD2EACBA-3EB3-41E4-965B-E06B5F96E619}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{02CF30F7-BC9C-4730-9094-5944125EC20C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02CF30F7-BC9C-4730-9094-5944125EC20C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02CF30F7-BC9C-4730-9094-5944125EC20C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{02CF30F7-BC9C-4730-9094-5944125EC20C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02CF30F7-BC9C-4730-9094-5944125EC20C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02CF30F7-BC9C-4730-9094-5944125EC20C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{02CF30F7-BC9C-4730-9094-5944125EC20C} = {971CA6AB-E662-453D-994B-47D549BE44D5}
+	EndGlobalSection
+EndGlobal

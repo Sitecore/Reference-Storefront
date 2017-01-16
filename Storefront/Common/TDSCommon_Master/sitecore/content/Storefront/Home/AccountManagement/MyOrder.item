@@ -1,4 +1,4 @@
-﻿----item----
+----item----
 version: 1
 id: {7536D18B-EBCF-4A24-9DDE-8BA77AA60DC0}
 database: master
@@ -8,11 +8,12 @@ name: MyOrder
 master: {00000000-0000-0000-0000-000000000000}
 template: {D4D9E81A-C494-43AE-9851-410D09394CF8}
 templatekey: MyOrder Page
+created: 20170109T234605Z
 
 ----version----
 language: en
 version: 1
-revision: e35ecf7b-b1d1-49f3-9d18-fb2573b38bf9
+revision: a06bd00e-1c37-4bdc-b8cf-1c169768d487
 
 ----field----
 field: {EC1F4944-D675-42F6-B354-A0A1BF04BFF8}
@@ -162,6 +163,62 @@ content-length: 15
 
 Loyalty Rewards
 ----field----
+field: {900D90A7-7143-4CE3-98C8-8A1D6398C665}
+name: Product Details Label
+key: product details label
+content-length: 15
+
+Product Details
+----field----
+field: {BC6BA4B3-5F04-497D-87AD-560F73566DA6}
+name: Unit Price Label
+key: unit price label
+content-length: 10
+
+Unit Price
+----field----
+field: {97281EA2-075F-4E95-A234-5B2F76855872}
+name: Quantity Label
+key: quantity label
+content-length: 8
+
+Quantity
+----field----
+field: {51D85A20-B4BB-4E77-A7CC-D319ECC37429}
+name: Total Label
+key: total label
+content-length: 5
+
+Total
+----field----
+field: {78A916B2-8E56-4C44-83F6-AFFD748B435B}
+name: Add Selected Items To Cart Button
+key: add selected items to cart button
+content-length: 26
+
+Add selected items to cart
+----field----
+field: {C0896BEE-CF6E-4B34-89B3-A04BE591A0DC}
+name: Add Selected Items To Cart Button Loading
+key: add selected items to cart button loading
+content-length: 16
+
+Adding items ...
+----field----
+field: {C6B0ED6F-C21E-424C-BECC-11648804EFD4}
+name: Cancel Order Lines Button
+key: cancel order lines button
+content-length: 12
+
+Cancel order
+----field----
+field: {83F54C02-D754-4D49-943B-96BE0B14E893}
+name: Cancel Order Lines Button Loading
+key: cancel order lines button loading
+content-length: 19
+
+Cancelling order...
+----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
 name: __Created
 key: __created
@@ -174,18 +231,18 @@ name: __Revision
 key: __revision
 content-length: 36
 
-e35ecf7b-b1d1-49f3-9d18-fb2573b38bf9
+a06bd00e-1c37-4bdc-b8cf-1c169768d487
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
-content-length: 35
+content-length: 16
 
-20150409T203552:635642085529308437Z
+20170111T155645Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
 key: __updated by
 content-length: 14
 
-sitecore\admin
+sitecore\Admin

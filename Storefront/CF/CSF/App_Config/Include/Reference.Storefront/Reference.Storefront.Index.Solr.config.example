@@ -1,0 +1,47 @@
+﻿<!--
+// Copyright 2016 Sitecore Corporation A/S
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+// except in compliance with the License. You may obtain a copy of the License at
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software distributed under the
+// License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+// either express or implied. See the License for the specific language governing permissions
+// and limitations under the License.
+-->
+
+<configuration xmlns:patch="http://www.sitecore.net/xmlconfig/">
+  <sitecore>
+
+    <contentSearch>
+      <indexConfigurations>
+        <defaultSolrIndexConfiguration type="Sitecore.ContentSearch.SolrProvider.SolrIndexConfiguration, Sitecore.ContentSearch.SolrProvider">
+
+          <fieldMap type="Sitecore.ContentSearch.SolrProvider.SolrFieldMap, Sitecore.ContentSearch.SolrProvider">
+            <fieldNames hint="raw:AddFieldByFieldName">
+              <field fieldName="productcolor" storageType="YES" indexType="TOKENIZED" vectorType="NO" boost="1f" returnType="stringCollection" settingType="Sitecore.ContentSearch.SolrProvider.SolrSearchFieldConfiguration, Sitecore.ContentSearch.SolrProvider"/>
+              <field fieldName="productsize" storageType="YES" indexType="TOKENIZED" vectorType="NO" boost="1f" returnType="stringCollection" settingType="Sitecore.ContentSearch.SolrProvider.SolrSearchFieldConfiguration, Sitecore.ContentSearch.SolrProvider"/>
+              <field fieldName="variantid" storageType="YES" indexType="TOKENIZED" vectorType="NO" boost="1f" returnType="stringCollection" settingType="Sitecore.ContentSearch.SolrProvider.SolrSearchFieldConfiguration, Sitecore.ContentSearch.SolrProvider"/>
+              <field fieldName="sitecontentitem" storageType="YES" indexType="TOKENIZED" vectorType="NO" boost="1f" returnType="bool" settingType="Sitecore.ContentSearch.SolrProvider.SolrSearchFieldConfiguration, Sitecore.ContentSearch.SolrProvider"/>
+              <field fieldName="variantinfo" storageType="YES" indexType="TOKENIZED" vectorType="NO" boost="1f" returnType="text" settingType="Sitecore.ContentSearch.SolrProvider.SolrSearchFieldConfiguration, Sitecore.ContentSearch.SolrProvider"/>
+              <field fieldName="childcategoriessequence" storageType="YES" indexType="TOKENIZED" vectorType="NO" boost="1f" returnType="stringCollection" settingType="Sitecore.ContentSearch.SolrProvider.SolrSearchFieldConfiguration, Sitecore.ContentSearch.SolrProvider"/>
+            </fieldNames>
+          </fieldMap>
+
+          <documentOptions type="Sitecore.ContentSearch.SolrProvider.SolrDocumentBuilderOptions, Sitecore.ContentSearch.SolrProvider">
+            <fields hint="raw:AddComputedIndexField">
+              <field fieldName="ProductColor" returnType="stringCollection">Sitecore.Commerce.Connect.CommerceServer.Search.ComputedFields.CommerceVariants, Sitecore.Commerce.Connect.CommerceServer</field>
+              <field fieldName="ProductSize" returnType="stringCollection">Sitecore.Commerce.Connect.CommerceServer.Search.ComputedFields.CommerceVariants, Sitecore.Commerce.Connect.CommerceServer</field>
+              <field fieldName="VariantId" returnType="stringCollection">Sitecore.Commerce.Connect.CommerceServer.Search.ComputedFields.CommerceVariants, Sitecore.Commerce.Connect.CommerceServer</field>
+              <field fieldName="sitecontentitem" returnType="bool">Sitecore.Reference.Storefront.Search.ComputedFields.SiteContentItem, Sitecore.Reference.Storefront.Common</field>
+              <field fieldName="VariantInfo" returnType="string">Sitecore.Reference.Storefront.Search.ComputedFields.VariantInfoComputedField, Sitecore.Reference.Storefront.Powered.by.SitecoreCommerce</field>
+              <field fieldName="ChildCategoriesSequence" returnType="stringCollection">Sitecore.Reference.Storefront.Search.ComputedFields.ChildCategoriesComputedField, Sitecore.Reference.Storefront.Common</field>
+            </fields>
+          </documentOptions>
+
+        </defaultSolrIndexConfiguration>
+      </indexConfigurations>
+    </contentSearch>
+
+  </sitecore>
+</configuration>

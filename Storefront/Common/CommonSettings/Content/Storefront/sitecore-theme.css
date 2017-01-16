@@ -223,7 +223,7 @@ p {
 }
 
 .twolines {
-    height: 40px;
+    min-height: 40px;
 }
 
 

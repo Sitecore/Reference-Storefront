@@ -26,6 +26,8 @@ namespace Sitecore.Reference.Storefront.Models.SitecoreItemModels
     using Sitecore.Data.Fields;
     using System.Collections.Generic;
     using System.Linq;
+    using Diagnostics;
+    using Commerce.Multishop;
 
     /// <summary>
     /// Defines the CommerceStorefront class
@@ -329,6 +331,105 @@ namespace Sitecore.Reference.Storefront.Models.SitecoreItemModels
         }
 
         /// <summary>
+        /// Gets the storefront configuration item.
+        /// </summary>
+        /// <value>
+        /// The storefront configuration.
+        /// </value>
+        public virtual Item StorefrontConfiguration
+        {
+            get
+            {
+                return ConnectStorefrontContext.Current.StorefrontConfiguration;
+            }
+        }
+
+        /// <summary>
+        /// Gets the currency configuration item.
+        /// </summary>
+        /// <value>
+        /// The currency configuration.
+        /// </value>
+        public virtual Item CurrencyConfiguration
+        {
+            get
+            {
+                var configuration = this.StorefrontConfiguration;
+                var currencyConfiguration = configuration.Axes.GetChild(StorefrontConstants.KnowItemNames.CurrencyConfiguration);
+                Assert.IsNotNull(currencyConfiguration, "The Currency Configuration child item must be defined for the current Storefront Configuration.");
+
+                return currencyConfiguration;
+            }
+        }
+
+        /// <summary>
+        /// Gets the fulfillment configuration item.
+        /// </summary>
+        /// <value>
+        /// The fulfillment configuration.
+        /// </value>
+        public virtual Item FulfillmentConfiguration
+        {
+            get
+            {
+                var fulfillmentConfiguration = this.StorefrontConfiguration.Axes.GetChild(StorefrontConstants.KnowItemNames.FulfillmentConfiguration);
+
+                return fulfillmentConfiguration;
+            }
+        }
+
+        /// <summary>
+        /// Gets the payment configuration item.
+        /// </summary>
+        /// <value>
+        /// The payment configuration.
+        /// </value>
+        public virtual Item PaymentConfiguration
+        {
+            get
+            {
+                var paymentConfiguration = this.StorefrontConfiguration.Axes.GetChild(StorefrontConstants.KnowItemNames.PaymentConfiguration);
+
+                return paymentConfiguration;
+            }
+        }
+
+        /// <summary>
+        /// Gets the currency set control panel ite,.
+        /// </summary>
+        /// <value>
+        /// The currency set.
+        /// </value>
+        public virtual Item CurrencySet
+        {
+            get
+            {
+                string currencySetId = this.CurrencyConfiguration[Sitecore.Commerce.Constants.Templates.CurrencyConfiguration.Fields.CurrencySet];
+                Assert.IsNotNullOrEmpty(currencySetId, "The Currency Set must be defined on the Storefront Currency Configuration item");
+
+                var currencySet = Sitecore.Context.Database.GetItem(ID.Parse(currencySetId));
+                Assert.IsNotNull(currencySet, "A valid Currency Set must be defined on the Storefront Currency Configuration item");
+
+                return currencySet;
+            }
+        }
+
+        /// <summary>
+        /// Gets the currency display overrides storefront configuration item.
+        /// </summary>
+        /// <value>
+        /// The currency display overrides.  Can be null if no overrides have been defined.
+        /// </value>
+        public virtual Item CurrencyDisplayOverrides
+        {
+            get
+            {
+                var item = this.StorefrontConfiguration.Axes.GetChild(StorefrontConstants.KnowItemNames.CurrencyDisplayAdjustments);
+                return item;
+            }
+        }
+
+        /// <summary>
         /// Gets the default currency.
         /// </summary>
         /// <value>
@@ -339,13 +440,10 @@ namespace Sitecore.Reference.Storefront.Models.SitecoreItemModels
         {
             get
             {
-                string linkedCurrency = this.HomeItem[StorefrontConstants.KnownFieldNames.DefaultCurrency];
-                if (!string.IsNullOrWhiteSpace(linkedCurrency))
-                {
-                    return Sitecore.Context.Database.GetItem(ID.Parse(linkedCurrency)).Name;
-                }
+                string defaultCurrency = this.CurrencySet[Sitecore.Commerce.Constants.Templates.CurrencySet.Fields.DefaultCurrency];
+                Assert.IsNotNullOrEmpty(defaultCurrency, "A Default Currency must be defined on the configured Currency Set");
 
-                throw new DefaultCurrencyNotSetException(StorefrontManager.GetSystemMessage(StorefrontConstants.SystemMessages.DefaultCurrencyNotSetException));
+                return defaultCurrency;
             }
         }
 
