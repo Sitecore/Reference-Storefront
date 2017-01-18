@@ -96,19 +96,19 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Sitecore.Analytics.DataAccess, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.xDB.API.10.0.1-r00145\lib\net452\Sitecore.Analytics.DataAccess.dll</HintPath>
+      <HintPath>..\..\lib\Sitecore\Sitecore.Analytics.DataAccess.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sitecore.Analytics.Model, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.xDB.API.10.0.1-r00145\lib\net452\Sitecore.Analytics.Model.dll</HintPath>
+      <HintPath>..\..\lib\Sitecore\Sitecore.Analytics.Model.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sitecore.Analytics.MongoDB, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.xDB.API.10.0.1-r00145\lib\net452\Sitecore.Analytics.MongoDB.dll</HintPath>
+      <HintPath>..\..\lib\Sitecore\Sitecore.Analytics.MongoDB.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sitecore.Buckets, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.Buckets.API.8.2.1-r00048\lib\net452\Sitecore.Buckets.dll</HintPath>
+      <HintPath>..\..\lib\Sitecore\Sitecore.Buckets.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sitecore.Commerce">
@@ -126,19 +126,19 @@
       <HintPath>..\..\lib\Sitecore.Commerce.Remote.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.ContentSearch, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.ContentSearch.API.8.2.3-r00121\lib\net452\Sitecore.ContentSearch.dll</HintPath>
+      <HintPath>..\..\lib\Sitecore\Sitecore.ContentSearch.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sitecore.ContentSearch.Linq, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Sitecore\Sitecore.ContentSearch.API.8.2.3-r00121\lib\net452\Sitecore.ContentSearch.Linq.dll</HintPath>
+      <HintPath>..\..\lib\Sitecore\Sitecore.ContentSearch.Linq.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Kernel, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.CMS.Core.API.10.0.3-r00309\lib\net452\Sitecore.Kernel.dll</HintPath>
+      <HintPath>..\..\lib\Sitecore\Sitecore.Kernel.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sitecore.Mvc, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.Mvc.API.1.2.0-r272\lib\net452\Sitecore.Mvc.dll</HintPath>
+      <HintPath>..\..\lib\Sitecore\Sitecore.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
