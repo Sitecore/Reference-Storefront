@@ -1,4 +1,5 @@
-This is the home of the Sitecore Reference storefront, which comes in two versions :
+This is the home of the Sitecore Reference storefront, which comes in three versions :
+- Sitecore Reference Storefront for Sitecore Commerce Engine (SCpbCE)
 - Sitecore Reference Storefront for Sitecore Commerce powered by Commerce Server (SCpbCS)
 - Sitecore Reference Storefront for Sitecore Commerce powered by Microsoft Dynamics Retail AX 2012 R3 CU10. Internal version name AX6 (r)
 
