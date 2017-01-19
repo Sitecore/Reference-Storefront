@@ -3,6 +3,8 @@ This is the home of the Sitecore Reference storefront, which comes in three vers
 - Sitecore Reference Storefront for Sitecore Commerce powered by Commerce Server (SCpbCS)
 - Sitecore Reference Storefront for Sitecore Commerce powered by Microsoft Dynamics Retail AX 2012 R3 CU10. Internal version name AX6 (r)
 
+Not all versions are avilable in every release. For more information on which versions are available, go to [Releases] (https://github.com/Sitecore/Reference-Storefront/releases)  by following the link
+
 **For download of binary packages and documentation** go to [Releases] (https://github.com/Sitecore/Reference-Storefront/releases)  by following the link
 
 For information about how to deploy the solution, read the [documentation] (https://github.com/Sitecore/Reference-Storefront/wiki/documentation) on the [Wiki] (https://github.com/Sitecore/Reference-Storefront/wiki)  
@@ -10,7 +12,7 @@ For information about how to deploy the solution, read the [documentation] (http
 For information about how to start contributing to the project, read the [FAQ] (https://github.com/Sitecore/Reference-Storefront/wiki/Contributor-License-Agreement-FAQ) on the [Wiki] (https://github.com/Sitecore/Reference-Storefront/wiki) 
 
 
-Copyright 2016 Sitecore Corporation A/S
+Copyright 2017 Sitecore Corporation A/S
 
 Licensed under the [Apache License] (http://www.apache.org/licenses/LICENSE-2.0), Version 2.0 (the "License");
 You may not use this solution except in compliance with the License.
