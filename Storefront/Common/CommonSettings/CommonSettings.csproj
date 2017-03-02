@@ -290,7 +290,6 @@
     <Content Include="Scripts\Storefront\ViewModels\wishlist_VM.js" />
     <Content Include="Scripts\Storefront\wishlist.js" />
     <None Include="Scripts\_references.js" />
-    <Content Include="web.config" />
     <Content Include="Views\Storefront\Account\Addresses.cshtml" />
     <Content Include="Views\Storefront\Account\EditProfile.cshtml" />
     <Content Include="Views\Storefront\Account\ForgotPassword.cshtml" />
@@ -388,12 +387,6 @@
     <Content Include="Views\Storefront\Account\Register.cshtml" />
     <Content Include="Views\Storefront\Account\UserPendingActivation.cshtml" />
     <Content Include="Views\Storefront\Account\FederatedSignout.cshtml" />
-    <None Include="web.Debug.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
-    <None Include="web.Release.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Project\Common.csproj">
