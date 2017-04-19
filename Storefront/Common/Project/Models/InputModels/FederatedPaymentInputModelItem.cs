@@ -22,6 +22,8 @@ namespace Sitecore.Reference.Storefront.Models.InputModels
     /// <summary>
     ///  Defines the FederatedPaymentInputModelItem class
     /// </summary>
+    [System.Web.Mvc.ModelBinder(typeof(Binders.FederatedPaymentModelBinder))]
+
     public class FederatedPaymentInputModelItem
     {
         /// <summary>

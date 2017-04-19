@@ -18,14 +18,16 @@
 namespace Sitecore.Reference.Storefront.Managers
 {
     using System;
+    using System.Collections.Generic;
+
     using Sitecore.Commerce.Entities.Prices;
+    using Sitecore.Commerce.Services;
     using Sitecore.Commerce.Services.Prices;
     using Sitecore.Diagnostics;
     using Sitecore.Reference.Storefront.Connect.Models;
-    using RefSFArgs = Sitecore.Reference.Storefront.Connect.Pipelines.Arguments;
     using Sitecore.Reference.Storefront.Models.SitecoreItemModels;
-    using System.Collections.Generic;
-    using Sitecore.Commerce.Services;
+
+    using RefSFArgs = Sitecore.Reference.Storefront.Connect.Pipelines.Arguments;
 
     /// <summary>
     /// Defines the PricingManager class.
@@ -82,10 +84,16 @@ namespace Sitecore.Reference.Storefront.Managers
                 priceTypeIds = DefaultPriceTypeIds;
             }
 
-            var request = new Sitecore.Commerce.Engine.Connect.Services.Prices.GetProductPricesRequest(catalogName, productId, priceTypeIds)
+            var request = new Sitecore.Commerce.Engine.Connect.Services.Prices.GetProductPricesRequest(
+                catalogName,
+                productId,
+                priceTypeIds);
+
+            var date = this.GetDateFromCookie();
+            if (date.HasValue)
             {
-                DateTime = this.GetCurrentDate()
-            };
+                request.DateTime = date.Value;
+            }
 
             if (Sitecore.Context.User.IsAuthenticated)
             {
@@ -121,13 +129,18 @@ namespace Sitecore.Reference.Storefront.Managers
             var request = new Sitecore.Commerce.Engine.Connect.Services.Prices.GetProductBulkPricesRequest(catalogName, productIds, priceTypeIds)
             {
                 CurrencyCode = StorefrontManager.GetCustomerCurrency(),
-                DateTime = this.GetCurrentDate()
             };
+
+            var date = this.GetDateFromCookie();
+            if (date.HasValue)
+            {
+                request.DateTime = date.Value;
+            }
 
             var result = this.PricingServiceProvider.GetProductBulkPrices(request);
 
             // Currently, both Categories and Products are passed in and are waiting for a fix to filter the categories out. Until then, this code is commented
-            // out as it generates an unecessary Error event indicating the product cannot be found.
+            // out as it generates an unnecessary Error event indicating the product cannot be found.
             // Helpers.LogSystemMessages(result.SystemMessages, result);
             return new ManagerResponse<GetProductBulkPricesResult, IDictionary<string, Price>>(result, result.Prices ?? new Dictionary<string, Price>());
         }
@@ -167,10 +180,19 @@ namespace Sitecore.Reference.Storefront.Managers
 
         #endregion
 
-        private DateTime GetCurrentDate()
+        /// <summary>
+        /// Gets the current date.
+        /// </summary>
+        /// <returns>A <see cref="DateTime"/></returns>
+        private DateTime? GetDateFromCookie()
         {
             var dateCookieValue = Sitecore.Web.WebUtil.GetCookieValue(Sitecore.Context.Site.GetCookieKey(Sitecore.Constants.PreviewDateCookieName));
-            return !string.IsNullOrEmpty(dateCookieValue) ? Sitecore.DateUtil.ToUniversalTime(DateUtil.IsoDateToDateTime(dateCookieValue)) : DateTime.UtcNow;
+            if (!string.IsNullOrEmpty(dateCookieValue))
+            {
+                return DateUtil.IsoDateToDateTime(dateCookieValue);
+            }
+
+            return null;
         }
     }
 }

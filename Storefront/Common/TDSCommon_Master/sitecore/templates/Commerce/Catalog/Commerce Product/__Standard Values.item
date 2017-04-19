@@ -1,4 +1,4 @@
-﻿----item----
+----item----
 version: 1
 id: {AE5BF3D6-601C-470D-814A-21D750260B0E}
 database: master
@@ -8,6 +8,7 @@ name: __Standard Values
 master: {00000000-0000-0000-0000-000000000000}
 template: {225F8638-2611-4841-9B89-19A5440A1DA1}
 templatekey: Commerce Product
+created: 20170320T180332Z
 
 ----field----
 field: {B5E7B1DF-4155-4862-8D81-1E63ED6D3BC2}
@@ -20,9 +21,9 @@ content-length: 116
 field: {420373A7-F888-490A-ABD6-E1BA4FCB75E0}
 name: Tools Search Facets
 key: tools search facets
-content-length: 116
+content-length: 77
 
-{3B423C39-C10C-4B4F-8692-B563CA632B31}|{929CE3F4-5333-4F37-8C22-5C3BFE1BD57B}|{154DC6DA-89C4-4704-8CDA-95994D794BEA}
+{3B423C39-C10C-4B4F-8692-B563CA632B31}|{154DC6DA-89C4-4704-8CDA-95994D794BEA}
 ----field----
 field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
 name: __Icon
@@ -101,7 +102,7 @@ sitecore\Anonymous
 ----version----
 language: en
 version: 1
-revision: 787814d7-28f3-4263-a88a-644f0309f985
+revision: 381542b6-1542-43c5-8c73-dbd3145e894a
 
 ----field----
 field: {738B32EE-B885-46A2-97C7-645915EBA217}
@@ -137,18 +138,18 @@ name: __Revision
 key: __revision
 content-length: 36
 
-787814d7-28f3-4263-a88a-644f0309f985
+381542b6-1542-43c5-8c73-dbd3145e894a
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 16
 
-20150921T063528Z
+20170321T143653Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
 key: __updated by
 content-length: 14
 
-sitecore\admin
+sitecore\Admin

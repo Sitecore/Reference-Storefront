@@ -111,7 +111,7 @@
       <HintPath>..\..\lib\Sitecore\Sitecore.Buckets.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sitecore.Commerce">
+    <Reference Include="Sitecore.Commerce, Version=10.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\lib\Sitecore.Commerce.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Commerce.Connect.CommerceServer, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -302,6 +302,7 @@
     <Content Include="Views\Storefront\Account\MyOrders.cshtml" />
     <Content Include="Views\Storefront\Account\MyOrder.cshtml" />
     <Content Include="Views\Storefront\Checkout\_Billing.cshtml" />
+    <Content Include="Views\Storefront\Catalog\ProductInformation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -357,6 +358,7 @@
     <Compile Include="Models\JsonResults\ShippingMethodsJsonResult.cs" />
     <Compile Include="Models\JsonResults\AddressItemJsonResult.cs" />
     <Compile Include="CommerceServerStorefrontConstants.cs" />
+    <Compile Include="Models\JsonResults\ShippingMethodJsonResult.cs" />
     <Compile Include="Models\SitecoreItemModels\CommerceServerStorefront.cs" />
     <Compile Include="Search\VariantIndexInfo.cs" />
     <Compile Include="Search\VariantInfoComputedField.cs" />

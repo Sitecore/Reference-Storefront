@@ -333,17 +333,25 @@
                         <h4>@Html.Sitecore().Field("Payments Label", Html.Sitecore().CurrentItem)</h4>
                         @foreach (PaymentInfo payment in payments)
                         {
-                            if (payment is CommerceCreditCardPaymentInfo)
+                            if (payment is FederatedPaymentInfo)
                             {
-                                var creditCard = payment as CommerceCreditCardPaymentInfo;
+                                var creditCard = payment as FederatedPaymentInfo;
                                 <h5>Credit Card</h5>
-                                <ul class="footer-lists" id="confirm-creditCardContainer">
-                                    <li id="confirm-creditCardNameOnCard">@creditCard.CustomerNameOnPayment</li>
-                                    <li id="confirm-creditCardType">@creditCard.CardType</li>
-                                    <li id="confirm-creditCardNumber">@creditCard.CreditCardNumber</li>
+                                <ul class="footer-lists" id="confirm-creditCardContainer">   
+                                    @if (creditCard.Properties.Contains("CardType"))                                 
+                                    {
+                                    <li id="confirm-creditCardType">@creditCard.Properties["CardType"]</li>
+                                    }
+                                    @if (creditCard.Properties.Contains("MaskedNumber"))
+                                    {
+                                    <li id="confirm-creditCardNumber">@creditCard.Properties["MaskedNumber"]</li>
+                                    }
+                                    @if (creditCard.Properties.Contains("ExpirationMonth") && @creditCard.Properties.Contains("ExpirationYear"))
+                                    {
                                     <li>
-                                        <span id="confirm-creditCardExpMonth">@creditCard.ExpirationMonth</span> - <span id="confirm-creditCardExpYear">@creditCard.ExpirationYear</span>
+                                        <span id="confirm-creditCardExpMonth">@creditCard.Properties["ExpirationMonth"]</span> - <span id="confirm-creditCardExpYear">@creditCard.Properties["ExpirationYear"]</span>
                                     </li>
+                                    }
                                     <li id="confirm-creditCardAmount">
                                         @creditCard.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)
                                     </li>
@@ -355,7 +363,7 @@
                                 var giftCard = payment as GiftCardPaymentInfo;
                                 <h5>Gift Card</h5>
                                 <ul class="footer-lists" id="confirm-giftCardContainer">
-                                    <li id="confirm-giftCardNumber">@giftCard.PaymentMethodID</li>
+                                    <li id="confirm-giftCardNumber">@giftCard.ExternalId</li>
                                     <li id="confirm-giftCardAmount">
                                         @giftCard.Amount.ToCurrency(StorefrontConstants.Settings.DefaultCurrencyCode)
                                     </li>

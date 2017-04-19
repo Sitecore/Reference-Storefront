@@ -70,7 +70,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Abstractions, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\lib\Sitecore\Sitecore.Abstractions.dll</HintPath>
@@ -145,7 +145,6 @@
     </Reference>
     <Reference Include="Sitecore.Commerce.Connect.CommerceServer, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\lib\Sitecore.Commerce.Connect.CommerceServer.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Sitecore.Commerce.Remote">
       <HintPath>..\..\lib\Sitecore.Commerce.Remote.dll</HintPath>
@@ -273,6 +272,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Binders\FederatedPaymentModelBinder.cs" />
     <Compile Include="Connect\Arguments\GetProductBulkPricesRequest.cs" />
     <Compile Include="Connect\Arguments\GetSupportedCurrenciesRequest.cs" />
     <Compile Include="Connect\Models\ExtendedCommercePrice.cs" />

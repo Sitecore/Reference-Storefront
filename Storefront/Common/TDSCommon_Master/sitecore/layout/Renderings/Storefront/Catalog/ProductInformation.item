@@ -8,6 +8,7 @@ name: ProductInformation
 master: {00000000-0000-0000-0000-000000000000}
 template: {2A3E91A0-7987-44B5-AB34-35C2D9DE83B9}
 templatekey: Controller rendering
+created: 20170321T225610Z
 
 ----field----
 field: {E64AD073-DFCC-4D20-8C0B-FE5AA6226CD7}
@@ -27,9 +28,9 @@ Product
 field: {3D08DB46-2267-41B0-BC52-BE69FD618633}
 name: Cacheable
 key: cacheable
-content-length: 1
+content-length: 0
 
-1
+
 ----field----
 field: {8D9232B0-613F-440B-A2FA-DCDD80FBD33E}
 name: VaryByLogin
@@ -75,33 +76,33 @@ content-length: 58
 ----version----
 language: en
 version: 1
-revision: c3b64bde-ca7f-451d-942e-641155997927
+revision: ae9b82ab-088c-40f9-9b09-c1d197b23cb4
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
 name: __Created
 key: __created
-content-length: 15
+content-length: 16
 
-20141023T062510
+20141023T102510Z
 ----field----
 field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
 name: __Revision
 key: __revision
 content-length: 36
 
-c3b64bde-ca7f-451d-942e-641155997927
+ae9b82ab-088c-40f9-9b09-c1d197b23cb4
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 16
 
-20151004T065110Z
+20170323T121130Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
 key: __updated by
 content-length: 14
 
-sitecore\admin
+sitecore\Admin

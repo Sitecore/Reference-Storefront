@@ -156,6 +156,13 @@ namespace Sitecore.Reference.Storefront
         /// <returns>A CommerceShippingInfo.</returns>
         public static CommerceShippingInfo ToShippingInfo(this ShippingMethodInputModelItem item)
         {
+            // get item name
+            var shippingItem = SitecoreItemManager.Instance().GetItem(item.ShippingMethodID);
+            if (shippingItem != null && shippingItem["Title"] != null && shippingItem["Title"].Equals(item.ShippingMethodName, StringComparison.OrdinalIgnoreCase))
+            {
+                item.ShippingMethodName = shippingItem.Name;
+            }
+
             var shippingInfo = new CommerceShippingInfo
             {
                 PartyID = item.PartyID,

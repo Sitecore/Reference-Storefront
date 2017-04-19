@@ -1,0 +1,211 @@
+﻿@*//-----------------------------------------------------------------------
+    // Copyright 2016 Sitecore Corporation A/S
+    // Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+    // except in compliance with the License. You may obtain a copy of the License at
+    //       http://www.apache.org/licenses/LICENSE-2.0
+    //
+    // Unless required by applicable law or agreed to in writing, software distributed under the
+    // License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+    // either express or implied. See the License for the specific language governing permissions
+    // and limitations under the License.
+    // -------------------------------------------------------------------------------------------*@
+
+@using Sitecore.Commerce.Entities.Inventory
+@using Sitecore.Reference.Storefront.Managers
+@using Sitecore.Reference.Storefront
+@using Sitecore.Reference.Storefront.Models
+@model ProductViewModel
+@{
+    if (Model == null)
+    {
+        return;
+    }
+
+    var invalidVariantText = Html.Sitecore().Field("Invalid Variant", Html.Sitecore().CurrentItem);
+    var currencyCode = StorefrontManager.GetCustomerCurrency();
+}
+
+<div id="C11-ProductInformation">
+    <div class="col-md-12 col-xs-12">
+        <h1 id="displayName">@Model.DisplayNameRender</h1>
+    </div>    
+    <div class="col-md-12 col-xs-12">
+        <div class="description">
+            <h6>@Html.Sitecore().Field("Description", Model.Rendering.RenderingItem)</h6>
+            <p id="description">@Model.DescriptionRender</p>
+        </div>
+    </div>
+    <div class="col-md-12 col-xs-12">
+        <div class="features" id="features">
+            @Model.RenderField("Features")
+        </div>
+    </div>
+
+    <div id="price-info">
+        <div id="priceWithSavings">
+            <div class="col-md-12 col-xs-12">
+                <h3 class="price-now">
+                    <span id="priceNow" data-bind="text: priceNow"></span>
+                    <span class="savings" id="savings" data-bind="text: savingsMessage"></span>
+                </h3>
+            </div>
+            <div class="col-md-12 col-xs-12">
+                <h4 class="price-before" id="price-before" data-bind="text: priceBefore"></h4>
+            </div>
+        </div>
+        <div id="priceOnly">
+            <div class="col-md-12 col-xs-12">
+                <h3 class="price-now" id="price" data-bind="text: priceNow"></h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12 col-xs-12">
+        <input type="hidden" value="@Model.ProductId" id="product-id" />
+        <input type="hidden" value="@Model.CatalogName" id="product-catalog" />
+        <div class="stock-info" id="stock-info">
+            <div>
+                <span id="stockStatus">
+                    <strong data-bind="text: selectedStockInfo().status"></strong>
+                </span>
+                / <span id="stockCount" data-bind="text:selectedStockInfo(). count"></span>
+                <!-- ko if: selectedStockInfo().showSingleLabel -->
+                <label id="stockCountLabel">@Html.Sitecore().Field("Item Count", Model.Rendering.RenderingItem)</label>
+                <!-- /ko -->
+                <!-- ko ifnot: selectedStockInfo().showSingleLabel -->
+                <label id="stockCountLabel">@Html.Sitecore().Field("Items Count", Model.Rendering.RenderingItem)</label>
+                <!-- /ko -->
+                <!-- ko if: selectedStockInfo().availabilityDate -->
+                / <span id="stockAvailabilityDate" data-bind="text: selectedStockInfo().availabilityDate"></span>
+                <!-- /ko -->
+            </div>
+            <a id="signForStockNotification" data-toggle="modal" data-target="#signForNotificationModal" title="@Html.Sitecore().CurrentItem["Sign Up For Notification Tooltip"]" data-bind="visible: selectedStockInfo().showSignUpForNotification">
+                @Html.Sitecore().Field("Sign Up For Notification Label", Model.Rendering.RenderingItem)
+            </a>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        @if (Model.Variants != null && Model.Variants.Count > 0)
+        {
+            var colors = Model.Variants.Where(variant => !string.IsNullOrWhiteSpace(variant.ProductColor)).Distinct(new VariantPropertiesEqualityComparer(VariantPropertiesComparisonProperty.ProductColor));
+            if (colors.Any())
+            {
+                <div class="color">
+                    <label for="variantColour">@Html.Sitecore().Field("Color", Model.Rendering.RenderingItem)</label>
+                    <select class="form-control" name="Variant_Color" id="variantColor" onchange=" VariantSelectionChanged() ">
+                        @foreach (var color in colors)
+                        {
+                            <option value="@color.ProductColor.GetHashCode()">@color.ProductColor</option>
+                        }
+                    </select>
+                </div>
+            }
+        }
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        @if (Model.Variants != null && Model.Variants.Count > 0)
+        {
+            var sizes = Model.Variants.Where(variant => !string.IsNullOrWhiteSpace(variant.Size)).Distinct(new VariantPropertiesEqualityComparer(VariantPropertiesComparisonProperty.Size));
+
+            if (sizes.Any() && sizes.All(s => !string.IsNullOrEmpty(s.Size)))
+            {
+                <div class="size">
+                    <label for="variantSize">@Html.Sitecore().Field("Size", Model.Rendering.RenderingItem)</label>
+                    <select class="form-control" name="Variant_Size" id="variantSize" onchange="VariantSelectionChanged()">
+                        @foreach (var size in sizes)
+                        {
+                            <option value="@size.Size.GetHashCode()">@size.Size</option>
+                        }
+                    </select>
+                </div>
+            }
+        }
+    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="prod-variants-close"></div>
+    </div>
+</div>
+
+<div class="modal fade" id="signForNotificationModal" tabindex="-1" role="dialog" aria-labelledby="signForNotificationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id="signForNotificationModalMessages" class="wrap-error generic-error-handler" data-bind="visible: messages().shouldShowErrorList">
+                <div class="container">
+                    <div class="row">
+                        <table>
+                            <tbody data-bind="foreach: messages().errorList">
+                                <tr>
+                                    <td>
+                                        <p class="text-danger pull-left" pid=" errormessage" data-bind="text: errorMessage"></p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-header">
+                <button type="button" class="close" data-bind="click: close"><span aria-hidden="true">&times;</span><span class="sr-only">@Html.Sitecore().Field("Close Label", Html.Sitecore().CurrentItem)</span></button>
+                <h2 class="modal-title" id="signForNotificationModalLabel">@Html.Sitecore().Field("Sign Up For Notification Label", Html.Sitecore().CurrentItem)</h2>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="user-name">@Html.Sitecore().Field("Name Label", Html.Sitecore().CurrentItem)</label>
+                    <input type="text" class="form-control" id="user-name" placeholder="@Html.Sitecore().Field("Name Label", Html.Sitecore().CurrentItem)" data-bind="value: fullName">
+                </div>
+
+                <div class="form-group">
+                    <label for="user-email">@Html.Sitecore().Field("Email Label", Html.Sitecore().CurrentItem)</label>
+                    <input type="text" class="form-control" id="user-email" placeholder="@Html.Sitecore().Field("Email Label", Html.Sitecore().CurrentItem)" data-bind="value: email">
+                </div>
+                <div class="form-group">
+                    <label for="user-confirm-email">@Html.Sitecore().Field("Confirm Email Label", Html.Sitecore().CurrentItem)</label>
+                    <input type="text" class="form-control" id="user-confirm-email" placeholder="@Html.Sitecore().Field("Confirm Email Label", Html.Sitecore().CurrentItem)" data-bind="value: confirmEmail">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="signForNotificationButton" data-loading-text="@Html.Sitecore().Field("Signing Up Label", Html.Sitecore().CurrentItem)" data-bind="click: signUp, enable: signUpEnable">
+                    @Html.Sitecore().Field("Sign Up Label", Html.Sitecore().CurrentItem)
+                </button>
+                <button type="button" class="btn btn-default" aria-hidden="true" id="signForNotificationClose" data-bind="click: close">@Html.Sitecore().Field("Close Label", Html.Sitecore().CurrentItem)</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<span id="InvalidVariant" style="display:none">@invalidVariantText</span>
+
+<script type="text/javascript">
+    priceInfoVM = new PriceInfoViewModel();
+    ko.applyBindingsWithValidation(priceInfoVM, document.getElementById('price-info'));
+
+    @if (Model.Variants != null && Model.Variants.Any())
+    {
+        foreach (var variant in Model.Variants)
+        {
+            string savingsMessage = string.Empty;
+            if (variant.IsOnSale)
+            {
+                string percentLead = Html.Sitecore().CurrentRendering.Item["Save percent lead"];
+                savingsMessage = percentLead + " " + variant.SavingsPercentage + "%";
+            }
+
+            string sizeValue = string.IsNullOrWhiteSpace(variant.Size) ? string.Empty : variant.Size.GetHashCode().ToString();
+            string colorValue = string.IsNullOrWhiteSpace(variant.ProductColor) ? string.Empty : variant.ProductColor.GetHashCode().ToString();
+            
+            @:AddVariantCombination('@sizeValue', '@colorValue', '@variant.Id', '@variant.ListPrice.ToCurrency(currencyCode)', '@variant.AdjustedPrice.ToCurrency(currencyCode)', @variant.IsOnSale.ToString().ToLower(), '@savingsMessage');
+                    }
+            }
+    else
+    {
+        string savingsMessage = string.Empty;
+        if (Model.IsOnSale)
+        {
+            string percentLead = Html.Sitecore().CurrentRendering.Item["Save percent lead"];
+            savingsMessage = percentLead + " " + Model.SavingsPercentage + "%";
+        }
+
+        @:priceInfoVM.switchInfo('@Model.ListPriceWithCurrency', '@Model.AdjustedPriceWithCurrency', @Model.IsOnSale.ToString().ToLower(), '@savingsMessage');
+     }
+</script>
+

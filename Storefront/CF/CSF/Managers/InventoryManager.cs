@@ -258,15 +258,15 @@ namespace Sitecore.Reference.Storefront.Managers
 
             var visitorId = this.ContactFactory.GetContact();
             var builder = new CommerceInventoryProductBuilder();
-            CommerceInventoryProduct inventoryProduct = (CommerceInventoryProduct)builder.CreateInventoryProduct(model.ProductId);
-            if (string.IsNullOrEmpty(model.VariantId))
+            var inventoryProduct = (CommerceInventoryProduct)builder.CreateInventoryProduct(model.ProductId);
+            if (!string.IsNullOrEmpty(model.VariantId))
             {
-                (inventoryProduct).VariantId = model.VariantId;
+                inventoryProduct.VariantId = model.VariantId;
             }
 
             if (string.IsNullOrEmpty(inventoryProduct.CatalogName))
             {
-                (inventoryProduct).CatalogName = model.CatalogName;
+                inventoryProduct.CatalogName = model.CatalogName;
             }
 
             DateTime interestDate;

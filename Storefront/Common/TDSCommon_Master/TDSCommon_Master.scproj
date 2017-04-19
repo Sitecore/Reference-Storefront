@@ -26,7 +26,6 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SitecoreDatabase>master</SitecoreDatabase>
     <PackageName>Sitecore.Reference.Storefront.Common</PackageName>
-    <PostStepTarget>Sitecore.Reference.Storefront.InstallPostStep, Sitecore.Reference.Storefront.Common.dll</PostStepTarget>
     <EnableCodeGeneration>false</EnableCodeGeneration>
     <AssemblyStatus>Include</AssemblyStatus>
   </PropertyGroup>
@@ -36,7 +35,7 @@
     <RecursiveDeployAction>Ignore</RecursiveDeployAction>
     <SitecoreDeployFolder>
     </SitecoreDeployFolder>
-    <SitecoreWebUrl>http://localhost:7665</SitecoreWebUrl>
+    <SitecoreWebUrl>http://localhost:7669</SitecoreWebUrl>
     <SitecoreAccessGuid>3a6d874f-0fb2-4d5d-bd15-b4cc7b14003f</SitecoreAccessGuid>
     <InstallSitecoreConnector>True</InstallSitecoreConnector>
     <PackageAuthor>Sitecore Corporation</PackageAuthor>
@@ -45,7 +44,7 @@
     </PackageVersion>
     <PackageReadme>
     </PackageReadme>
-    <SitecoreAssemblyPath>..\..\Common\Project\bin</SitecoreAssemblyPath>
+    <SitecoreAssemblyPath>..\..\Lib\Sitecore</SitecoreAssemblyPath>
     <GeneratePackage>True</GeneratePackage>
     <SeperateFilesAndItems>False</SeperateFilesAndItems>
     <AddDateTimeToPackageName>False</AddDateTimeToPackageName>
@@ -60,7 +59,7 @@
     <RecursiveDeployAction>Ignore</RecursiveDeployAction>
     <SitecoreDeployFolder>
     </SitecoreDeployFolder>
-    <SitecoreWebUrl>http://localhost:7667</SitecoreWebUrl>
+    <SitecoreWebUrl>http://localhost:7669</SitecoreWebUrl>
     <SitecoreAccessGuid>3a6d874f-0fb2-4d5d-bd15-b4cc7b14003f</SitecoreAccessGuid>
     <InstallSitecoreConnector>True</InstallSitecoreConnector>
     <PackageAuthor>Sitecore Corporation</PackageAuthor>
@@ -69,7 +68,7 @@
     </PackageVersion>
     <PackageReadme>
     </PackageReadme>
-    <SitecoreAssemblyPath>..\..\Common\Project\bin</SitecoreAssemblyPath>
+    <SitecoreAssemblyPath>..\..\Lib\Sitecore</SitecoreAssemblyPath>
     <GeneratePackage>True</GeneratePackage>
     <SeperateFilesAndItems>False</SeperateFilesAndItems>
     <AddDateTimeToPackageName>False</AddDateTimeToPackageName>
@@ -4756,9 +4755,8 @@
   <ItemGroup>
     <ExcludedAssemblies Include="Sitecore.Reference.Storefront.Common.dll" />
   </ItemGroup>
+  <Import Project=".\PackageReadme.targets" />
   <Import Project="$(MSBuildExtensionsPath)\HedgehogDevelopment\SitecoreProject\v9.0\HedgehogDevelopment.SitecoreProject.targets" Condition="Exists('$(MSBuildExtensionsPath)\HedgehogDevelopment\SitecoreProject\v9.0\HedgehogDevelopment.SitecoreProject.targets')" />
-  <Target Name="AfterGeneratePackage">
-  </Target>
   <Target Name="BeforeGeneratePackage">
     <Message Text="Removing the license file before creating the package" Importance="high" />
     <ItemGroup>

@@ -17,22 +17,24 @@
 
 namespace Sitecore.Reference.Storefront.Models.JsonResults
 {
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
+
+    using Sitecore.Commerce.Connect.CommerceServer;
     using Sitecore.Commerce.Entities.Shipping;
     using Sitecore.Commerce.Services.Shipping;
-    using Sitecore.Commerce.Connect.CommerceServer;
-    using System.Linq;
 
     /// <summary>
     /// The Json result of a request to retrieve nearby store locations.
     /// </summary>
+    /// <seealso cref="Sitecore.Reference.Storefront.Models.JsonResults.ShippingMethodsBaseJsonResult" />
     public class ShippingMethodsJsonResult : ShippingMethodsBaseJsonResult
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ShippingMethodsJsonResult"/> class.
         /// </summary>
         public ShippingMethodsJsonResult()
-            : base()
         {
         }
 
@@ -51,7 +53,7 @@ namespace Sitecore.Reference.Storefront.Models.JsonResults
         public IEnumerable<ShippingMethodPerItemBaseJsonResult> LineShippingMethods { get; set; }
 
         /// <summary>
-        /// Initilizes the specified shipping methods.
+        /// Initializes the specified shipping methods.
         /// </summary>
         /// <param name="shippingMethods">The shipping methods.</param>
         /// <param name="shippingMethodsPerItem">The shipping methods per item.</param>
