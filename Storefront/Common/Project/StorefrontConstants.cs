@@ -443,7 +443,12 @@ namespace Sitecore.Reference.Storefront
             /// </summary>
             public static readonly string EmailMissingMessage = "Email Missing Message";
 
-            /// <summary>
+			/// <summary>
+			/// The email missing message field.
+			/// </summary>
+			public static readonly string EmailLengthMessage = "Email Length Message";
+
+			/// <summary>
             /// The first name missing message
             /// </summary>
             public static readonly string FirstNameMissingMessage = "First Name Missing Message";

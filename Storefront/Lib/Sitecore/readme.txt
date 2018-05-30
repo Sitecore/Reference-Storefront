@@ -1,0 +1,1 @@
+Copy dlls from your Sitecore website bin folder to this location for missing references.

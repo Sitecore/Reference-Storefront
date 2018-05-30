@@ -10,6 +10,7 @@
 // and limitations under the License.
 // -------------------------------------------------------------------------------------------*@
 
+@using Sitecore.Reference.Storefront
 @using Sitecore.Reference.Storefront.Managers;
 @using Sitecore.Reference.Storefront.Util;
 
@@ -50,6 +51,8 @@
                         {
                             placeholder = Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.EmailAddressPlaceholder],
                             data_val_required = Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.EmailMissingMessage],
+	                        data_val_length_max = "64",
+	                        data_val_length = string.Format(Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.EmailLengthMessage].ToString(), 64),
                             @class = "form-control new-user"
                         })
 
@@ -138,14 +141,15 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="LinkupEmail">@Html.Sitecore().Field(StorefrontConstants.KnownFieldNames.EmailOfExistingCustomer, Html.Sitecore().CurrentItem)</label><span class="required">*</span>
-                        @Html.TextBoxFor(m => m.LinkupEmail,
-                        new
-                        {
-                            placeholder = Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.EmailAddressPlaceholder],
-                            data_val_required = Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.EmailMissingMessage],
-                            @class = "form-control"
-                        })
-
+	                    @Html.TextBoxFor(m => m.LinkupEmail, 
+		                    new 
+		                    {
+			                    placeholder = Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.EmailAddressPlaceholder],
+			                    data_val_required = Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.EmailMissingMessage],
+			                    data_val_length_max = "64",
+			                    data_val_length = string.Format(Html.Sitecore().CurrentItem[StorefrontConstants.KnownFieldNames.EmailLengthMessage].ToString(), 64),
+			                    @class = "form-control"
+		                    })					
                         @Html.ValidationMessageFor(m => m.LinkupEmail)
                     </div>
                 </div>

@@ -816,7 +816,7 @@ function setPaymentMethods() {
     if (checkoutDataViewModel.giftCardPayment().isAdded()) {
         var giftCard = {
             "PaymentMethodID": checkoutDataViewModel.giftCardPayment().giftCardNumber(),
-            "Amount": checkoutDataViewModel.giftCardPayment().giftCardAmount()
+            "Amount": parseFloat(checkoutDataViewModel.giftCardPayment().giftCardAmount())
         };
 
         if (data.length > 1) {
@@ -829,7 +829,7 @@ function setPaymentMethods() {
     if (checkoutDataViewModel.loyaltyCardPayment().isAdded()) {
         var loyaltyCard = {
             "PaymentMethodID": checkoutDataViewModel.loyaltyCardPayment().loyaltyCardNumber(),
-            "Amount": checkoutDataViewModel.loyaltyCardPayment().loyaltyCardAmount()
+            "Amount": parseFloat(checkoutDataViewModel.loyaltyCardPayment().loyaltyCardAmount())
         };
 
         if (data.length > 1) {
@@ -930,7 +930,7 @@ function submitOrder() {
     if (checkoutDataViewModel.giftCardPayment().isAdded()) {
         var giftCard = {
             "PaymentMethodID": checkoutDataViewModel.giftCardPayment().giftCardNumber(),
-            "Amount": checkoutDataViewModel.giftCardPayment().giftCardAmount()
+            "Amount": parseFloat(checkoutDataViewModel.giftCardPayment().giftCardAmount())
         };
 
         data += ',"GiftCardPayment":' + JSON.stringify(giftCard);
@@ -939,7 +939,7 @@ function submitOrder() {
     if (checkoutDataViewModel.loyaltyCardPayment().isAdded()) {
         var loyaltyCard = {
             "PaymentMethodID": checkoutDataViewModel.loyaltyCardPayment().loyaltyCardNumber(),
-            "Amount": checkoutDataViewModel.loyaltyCardPayment().loyaltyCardAmount()
+            "Amount": parseFloat(checkoutDataViewModel.loyaltyCardPayment().loyaltyCardAmount())
         };
 
         data += ',"LoyaltyCardPayment":' + JSON.stringify(loyaltyCard);

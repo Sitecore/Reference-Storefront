@@ -8,13 +8,20 @@ name: Storefront
 master: {00000000-0000-0000-0000-000000000000}
 template: {59190273-FDCC-4048-9537-7EDBDF94B22D}
 templatekey: Storefront
-created: 20161209T070022Z
+created: 20170412T124731Z
 
 ----version----
 language: en
 version: 1
-revision: 01483238-1176-4985-b150-9de2e34e3824
+revision: d63f7745-c33c-4784-82d5-220981276ea8
 
+----field----
+field: {CCF9A87B-BDC7-472D-A6F1-FFEDB3795249}
+name: Environment
+key: environment
+content-length: 16
+
+HabitatAuthoring
 ----field----
 field: {B5E02AD9-D56F-4C41-A065-A133DB87BDEB}
 name: __Display name
@@ -35,18 +42,18 @@ name: __Revision
 key: __revision
 content-length: 36
 
-01483238-1176-4985-b150-9de2e34e3824
+d63f7745-c33c-4784-82d5-220981276ea8
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 16
 
-20161117T151308Z
+20170118T204631Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
 key: __updated by
 content-length: 14
 
-sitecore\admin
+sitecore\Admin

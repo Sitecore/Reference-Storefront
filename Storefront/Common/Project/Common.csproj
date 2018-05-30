@@ -56,14 +56,6 @@
     </Reference>
     <Reference Include="CommerceServer.Core.Catalog, Version=10.0.0.0, Culture=neutral, PublicKeyToken=f5c79cb11734af7a, processorArchitecture=MSIL">
     </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Microsoft.Extensions.DependencyInjection.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -72,177 +64,48 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Abstractions, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.Abstractions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Sitecore.Analytics, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\lib\Sitecore\Sitecore.Analytics.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sitecore.Analytics.Aggregation, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.Analytics.Aggregation.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sitecore.Analytics.Automation, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\lib\Sitecore\Sitecore.Analytics.Automation.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sitecore.Analytics.Automation.Aggregation, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.Analytics.Automation.Aggregation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sitecore.Analytics.Automation.MongoDB, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Sitecore.Analytics.Automation.MongoDB">
       <HintPath>..\..\lib\Sitecore\Sitecore.Analytics.Automation.MongoDB.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sitecore.Analytics.Core, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.Analytics.Core.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Sitecore.Analytics.DataAccess">
+      <HintPath>..\..\Lib\Sitecore\Sitecore.Analytics.DataAccess.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Analytics.DataAccess, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.Analytics.DataAccess.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sitecore.Analytics.Model, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.Analytics.Model.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sitecore.Analytics.MongoDB, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Sitecore.Analytics.MongoDB">
       <HintPath>..\..\lib\Sitecore\Sitecore.Analytics.MongoDB.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sitecore.Analytics.OmniChannel, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.Analytics.OmniChannel.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sitecore.Analytics.Outcome, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.Analytics.Outcome.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sitecore.Analytics.Processing, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.Analytics.Processing.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sitecore.Analytics.Sql, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.Analytics.Sql.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sitecore.Buckets, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.Buckets.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sitecore.Buckets.Client, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.Buckets.Client.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sitecore.Client, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.Client.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Sitecore.Commerce">
-      <HintPath>..\..\lib\Sitecore.Commerce.dll</HintPath>
+      <HintPath>..\..\Lib\Sitecore\Sitecore.Commerce.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Commerce.Connect.CommerceServer, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore.Commerce.Connect.CommerceServer.dll</HintPath>
+    <Reference Include="Sitecore.Commerce.Connect.CommerceServer">
+      <HintPath>..\..\Lib\Sitecore\Sitecore.Commerce.Connect.CommerceServer.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Commerce.Remote">
-      <HintPath>..\..\lib\Sitecore.Commerce.Remote.dll</HintPath>
+      <HintPath>..\..\Lib\Sitecore\Sitecore.Commerce.Remote.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.ContentSearch, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\lib\Sitecore\Sitecore.ContentSearch.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sitecore.ContentSearch.Client, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.ContentSearch.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sitecore.ContentSearch.Linq, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\lib\Sitecore\Sitecore.ContentSearch.Linq.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sitecore.ContentSearch.Linq.Lucene, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.ContentSearch.Linq.Lucene.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sitecore.ContentSearch.Linq.Solr, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.ContentSearch.Linq.Solr.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sitecore.ContentSearch.LuceneProvider, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.ContentSearch.LuceneProvider.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sitecore.ContentSearch.SolrProvider, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.ContentSearch.SolrProvider.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Sitecore.Kernel, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\lib\Sitecore\Sitecore.Kernel.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sitecore.Logging, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.Logging.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sitecore.Logging.Client, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.Logging.Client.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sitecore.Marketing, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.Marketing.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sitecore.Marketing.Core, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.Marketing.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sitecore.Marketing.Search, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.Marketing.Search.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sitecore.Marketing.Taxonomy, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.Marketing.Taxonomy.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Sitecore.Mvc, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\lib\Sitecore\Sitecore.Mvc.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sitecore.Update, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.Update.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sitecore.Xdb.Client, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.Xdb.Client.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sitecore.Xdb.Configuration, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.Xdb.Configuration.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Sitecore.Zip, Version=10.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Sitecore.Zip.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Stimulsoft.Base, Version=2013.1.1600.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Stimulsoft.Base.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Stimulsoft.Database, Version=2013.1.1600.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Stimulsoft.Database.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Stimulsoft.Report, Version=2013.1.1600.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Stimulsoft.Report.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Stimulsoft.Report.Web, Version=2013.1.1600.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Stimulsoft.Report.Web.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Stimulsoft.Report.WebDesign, Version=2013.1.1600.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\Sitecore\Stimulsoft.Report.WebDesign.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -265,9 +128,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>

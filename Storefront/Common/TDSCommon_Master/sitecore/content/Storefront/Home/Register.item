@@ -8,6 +8,7 @@ name: Register
 master: {00000000-0000-0000-0000-000000000000}
 template: {2483D7FA-6703-4633-9FFC-76F6CE53D7C4}
 templatekey: Register Page
+created: 20170510T173158Z
 
 ----field----
 field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
@@ -26,7 +27,7 @@ content-length: 38
 ----version----
 language: en
 version: 1
-revision: cfa0927d-a0c2-4305-9f7a-c546d7ff9cda
+revision: 2cd9c1c2-8685-404f-af37-0c0d2e8824fe
 
 ----field----
 field: {EC1F4944-D675-42F6-B354-A0A1BF04BFF8}
@@ -171,6 +172,13 @@ content-length: 8
 
 Password
 ----field----
+field: {1A04347C-91DE-4F7B-A2D1-7BA1B1FB1FD7}
+name: Email Length Message
+key: email length message
+content-length: 46
+
+The Email must be at most {0} characters long.
+----field----
 field: {B5F1B2BE-F451-4196-9B19-3B8C3ADDC0E4}
 name: First Name Missing Message
 key: first name missing message
@@ -232,21 +240,21 @@ name: __Revision
 key: __revision
 content-length: 36
 
-cfa0927d-a0c2-4305-9f7a-c546d7ff9cda
+2cd9c1c2-8685-404f-af37-0c0d2e8824fe
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 16
 
-20160527T173630Z
+20170602T164749Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
 key: __updated by
 content-length: 14
 
-sitecore\admin
+sitecore\Admin
 ----field----
 field: {3E431DE1-525E-47A3-B6B0-1CCBEC3A8C98}
 name: __Workflow state

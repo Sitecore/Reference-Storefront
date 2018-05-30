@@ -57,6 +57,7 @@ namespace Sitecore.Reference.Storefront.Models
         /// Gets or sets the email
         /// </summary>
         [Display(Name = "Email")]
+		[StringLength(64, ErrorMessage = "The {0} must be at most {1} characters long.")]
         public string Email { get; set; }
 
         /// <summary>
@@ -66,6 +67,7 @@ namespace Sitecore.Reference.Storefront.Models
         /// The reentered email.
         /// </value>
         [Compare("Email", ErrorMessage = "The email and repeat email do not match.")]
+		[StringLength(64, ErrorMessage = "The {0} must be at most {1} characters long.")]
         public string EmailRepeat { get; set; }
 
         /// <summary>

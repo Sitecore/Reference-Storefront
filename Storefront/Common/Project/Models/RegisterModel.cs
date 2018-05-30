@@ -31,6 +31,7 @@ namespace Sitecore.Reference.Storefront.Models
         [Required]
         [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Please enter a valid e-mail address")]         
         [Display(Name = "Email")]
+		[StringLength(64, ErrorMessage = "The {0} must be at most {1} characters long.")]
         public string UserName { get; set; }
 
         /// <summary>
@@ -69,6 +70,7 @@ namespace Sitecore.Reference.Storefront.Models
         /// </summary>       
         [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Please enter a valid e-mail address of existing customer")]
         [Display(Name = "Email Of Existing Customer")]
+		[StringLength(64, ErrorMessage = "The {0} must be at most {1} characters long.")]
         public string LinkupEmail { get; set; }
 
         /// <summary>
