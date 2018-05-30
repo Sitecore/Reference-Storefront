@@ -1,14 +1,11 @@
 Branch: release/10.3.158/master
+
 Storefront version: Sitecore Reference Storefront for Sitecore Commerce (only)
 
 This branch hosts the Sitecore Reference storefront source code pertaining to the Sitecore Commerce 8.2.1 Update-3 release.
 
 The corresponding Storefront binary packages are downloaded with the Sitecore Commerce 8.2.1 Update-3 release package at https://dev.sitecore.net/Downloads/Sitecore_Commerce/821/Sitecore_Commerce_821_Update3.aspx
 
-
-For information about how to deploy the solution, read the [documentation] (https://github.com/Sitecore/Reference-Storefront/wiki/documentation) on the [Wiki] (https://github.com/Sitecore/Reference-Storefront/wiki)  
-
-For information about how to start contributing to the project, read the [FAQ] (https://github.com/Sitecore/Reference-Storefront/wiki/Contributor-License-Agreement-FAQ) on the [Wiki] (https://github.com/Sitecore/Reference-Storefront/wiki) 
 
 
 Copyright 2015 - 2018 Sitecore Corporation A/S
